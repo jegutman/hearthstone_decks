@@ -6,4 +6,3 @@ cards_by_id = {}
 for card in cards_json:
     if 'dbfId' in card:
         cards_by_id[card['dbfId']] = card
-
