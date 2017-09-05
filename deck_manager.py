@@ -36,6 +36,15 @@ class EasyDeck():
             res += ["%-2s %-25s x%s" % (cost, name, count)] 
         return res
 
+    def get_cards_to_print(self): 
+        res = {}
+        for i,j in self.deck.cards:
+            count, name, card_class, cost = j, cards[i]['name'], cards[i]['playerClass'], cards[i]['cost']
+            if card_class == 'NEUTRAL':
+                card_class = "ZZ_NEUTRAL"
+            res[(card_class, i)] = j
+        return res
+
     def print_deck(self):
         res = ""
         total = 0
@@ -107,6 +116,23 @@ def print_side_by_side(list_of_decks):
         if len(dpl) < max(lengths):
             dpl += [""] * (max(lengths) - len(dpl))
     for i in range(0, max(lengths)):
+        for dpl in deck_print_lines:
+            print "%35s" % dpl[i],
+        print ""
+
+def print_side_by_side_diff(list_of_decks):
+    list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
+    #get_cards_to_print
+    deck_cards_to_print = [d.get_cards_to_print() for d in list_of_decks]
+    card_set = set()
+    for cl in deck_cards_to_print:
+        card_set = card_set.union(set(cl.keys()))
+    print sorted(card_set)
+    sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['playerClass'], cards[x[1]]['cost'], cards[x[1]]['name']))
+    #for dpl in deck_print_lines:
+    #    if len(dpl) < max(lengths):
+    #        dpl += [""] * (max(lengths) - len(dpl))
+    for i in sorted_card_set:
         for dpl in deck_print_lines:
             print "%35s" % dpl[i],
         print ""

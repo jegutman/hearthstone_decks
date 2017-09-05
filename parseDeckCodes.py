@@ -1,5 +1,5 @@
 import re
-from deck_manager import EasyDeck, print_side_by_side
+from deck_manager import EasyDeck, print_side_by_side, print_side_by_side_diff
 #from euPrelimsListUrls import deck_urls
 #import requests
 from euDecklistCodesSummer import decks as euSummerDecks
@@ -57,3 +57,6 @@ for deck_class in sorted(decks_by_class):
     print "  %-10s %s" % (deck_class, len(archetypes[deck_class]))
     #if len(uncategorized_by_class[deck_class]) > 0:
     #    print deck_class, len(uncategorized_by_class[deck_class]), uncategorized_by_class[deck_class]
+
+print_side_by_side_diff([at[0] for at in archetypes['Druid']])
+    
