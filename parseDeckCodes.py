@@ -1,5 +1,5 @@
 import re
-from deck_manager import EasyDeck, print_deck, deck_details, deck_from_string
+from deck_manager import EasyDeck, print_side_by_side
 #from euPrelimsListUrls import deck_urls
 #import requests
 from euDecklistCodesSummer import decks as euSummerDecks
@@ -45,9 +45,13 @@ for deck in decks:
         decks_by_class[deck_class] = []
     decks_by_class[deck_class].append(deck)
 
-# GROUP ARCHETYPES
 archetypes = get_archetypes_by_class(decks_by_class)
 
+sample_archetypes = {}
+for deck_class in archetypes:
+    sample_archetypes[deck_class] = []
+    for at in archetypes[deck_class]:
+        sample_archetypes[deck_class].append(min([d for d in at], key=lambda x:x.get_average_distance(at)))
 
 for deck_class in sorted(decks_by_class):
     print "  %-10s %s" % (deck_class, len(archetypes[deck_class]))

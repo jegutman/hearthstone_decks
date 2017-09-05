@@ -15,7 +15,26 @@ class EasyDeck():
 
     def __repr__(self):
         return self.name + ' ' + self.get_class() + ' ' + self.deckstring
-        
+
+    def get_print_lines(self): 
+        res = []
+        total = 0
+        deck = []
+        for i,j in self.deck.cards:
+            total += j
+            count, name, card_class, cost = j, cards[i]['name'], cards[i]['playerClass'], cards[i]['cost']
+            if card_class == 'NEUTRAL':
+                card_class = "ZZ_NEUTRAL"
+            deck.append([card_class, cost, name, count])
+        deck.sort()
+        last_class = ""
+        for card_class, cost, name, count in deck:
+            if card_class != last_class:
+                res += [""]
+                res += [card_class.replace('ZZ_', '')]
+            last_class = card_class
+            res += ["%-2s %-25s x%s" % (cost, name, count)] 
+        return res
 
     def print_deck(self):
         res = ""
@@ -41,6 +60,10 @@ class EasyDeck():
         s1 = self.card_set
         s2 = other_deck.card_set
         return len(s1.difference(s2))
+
+    def get_average_distance(self, other_decks):
+        total = sum([self.get_distance(od) for od in other_decks])
+        return total / float(len(other_decks))
 
     def get_class(self):
         class_map = {
@@ -76,37 +99,14 @@ class EasyDeck():
             res.append((j, cards[i]))
         return res
 
-def print_deck(deck_cards, cards=cards):
-    total = 0
-    deck = []
-    for i,j in deck_cards:
-        total += j
-        count, name, card_class, cost = j, cards[i]['name'], cards[i]['playerClass'], cards[i]['cost']
-        if card_class == 'NEUTRAL':
-            card_class = "ZZ_NEUTRAL"
-        deck.append([card_class, cost, name, count])
-    deck.sort()
-    last_class = ""
-    print("")
-    for card_class, cost, name, count in deck:
-        if card_class != last_class:
-            print("")
-            print(card_class.replace('ZZ_', ''))
-        last_class = card_class
-        print("%-2s %-25s x%s" % (cost, name, count))
-
-def deck_details(deck_cards, cards=cards):
-    total = 0
-    deck = []
-    for i,j in deck_cards:
-        total += j
-        count, name, card_class, cost = j, cards[i]['name'], cards[i]['playerClass'], cards[i]['cost']
-        if card_class == 'NEUTRAL':
-            card_class = "ZZ_NEUTRAL"
-        deck.append([card_class, cost, name, count])
-    deck.sort()
-    return deck
-
-def deck_from_string(deck_string):
-    deck = Deck.from_deckstring(deck_string)
-    return deck
+def print_side_by_side(list_of_decks):
+    list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
+    deck_print_lines = [d.get_print_lines() for d in list_of_decks]
+    lengths = [len(dpl) for dpl in deck_print_lines]
+    for dpl in deck_print_lines:
+        if len(dpl) < max(lengths):
+            dpl += [""] * (max(lengths) - len(dpl))
+    for i in range(0, max(lengths)):
+        for dpl in deck_print_lines:
+            print "%35s" % dpl[i],
+        print ""
