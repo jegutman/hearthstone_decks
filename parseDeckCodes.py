@@ -88,8 +88,8 @@ for lu in lineups.values():
 for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1]):
    print lu, count
 
-for dc in archetypes:
-    for at in archetypes[dc]:
-        print "'Label' : '%s'," % at[0].get_original_code()
-        at[0].print_deck()
+#for dc in archetypes:
+#    for at in archetypes[dc]:
+#        print "'Label' : '%s'," % at[0].get_original_code()
+#        at[0].print_deck()
 

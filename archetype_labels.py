@@ -23,5 +23,5 @@ archetype_to_example = {
 }
 
 example_to_archetype = {}
-for i, j in archetypes_to_label.items():
-    examples_to_archetype[j] = i
+for i, j in archetype_to_example.items():
+    example_to_archetype[j] = i
