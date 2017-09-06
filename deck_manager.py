@@ -127,7 +127,7 @@ def print_side_by_side_diff(list_of_decks):
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
-    sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['playerClass'], cards[x[1]]['cost'], cards[x[1]]['name']))
+    sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['playerClass'].replace('NEUTRAL', 'ZZ_NEUTRAL'), cards[x[1]]['cost'], cards[x[1]]['name']))
     last_class = ""
     for card_class, card_number in sorted_card_set:
         if card_class != last_class:
