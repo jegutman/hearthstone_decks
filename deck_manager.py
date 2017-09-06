@@ -16,6 +16,9 @@ class EasyDeck():
     def __repr__(self):
         return self.name + ' ' + self.get_class() + ' ' + self.deckstring
 
+    def get_copy(self, new_name):
+        return EasyDeck(self.deckstring, new_name)
+
     def get_print_lines(self): 
         res = []
         total = 0
@@ -78,15 +81,28 @@ class EasyDeck():
         class_map = {
             274  : 'Druid',
             671  : 'Paladin',
+            46116: 'Paladin',
+            2827 : 'Paladin',
             813  : 'Priest',
+            41887: 'Priest',
             7    : 'Warrior',
+            2828 : 'Warrior',
             1066 : 'Shaman',
+            40183: 'Shaman',
             637  : 'Mage',
+            39117: 'Mage',
+            2829 : 'Mage',
             893  : 'Warlock',
             31   : 'Hunter',
             930  : 'Rogue',
+            40195: 'Rogue',
         }
         return class_map[self.deck.heroes[0]]
+        #try:
+        #    return class_map[self.deck.heroes[0]]
+        #except:
+        #    print self.deck.heroes[0]
+        #    assert False, self.print_deck()
     
     def get_original_code(self):
         return self.deckstring
@@ -124,6 +140,8 @@ def print_side_by_side_diff(list_of_decks):
     list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
     #get_cards_to_print
     deck_cards_to_print = [d.get_cards_to_print() for d in list_of_decks]
+    for dl in list_of_decks:
+        print "     %-20s     " % (dl.name),
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))

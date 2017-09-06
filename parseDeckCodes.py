@@ -2,7 +2,8 @@ import re
 from deck_manager import EasyDeck, print_side_by_side, print_side_by_side_diff
 #from euPrelimsListUrls import deck_urls
 #import requests
-from euDecklistCodesSummer import decks as euSummerDecks
+#from euDecklistCodesSummer import decks as decklistToAnalyze
+from apacDecklistCodesSummer import decks as decklistToAnalyze
 from archetypes import get_archetypes_by_class
 
 def getCodes(url):
@@ -22,7 +23,7 @@ decks = []
 #        print(dl)
 
 lineups = {}
-for name, lists in euSummerDecks.items():
+for name, lists in decklistToAnalyze.items():
     #print(name)
     lu = []
     for dl in lists:
@@ -51,13 +52,16 @@ sample_archetypes = {}
 for deck_class in archetypes:
     sample_archetypes[deck_class] = []
     for at in archetypes[deck_class]:
-        sample_archetypes[deck_class].append(min([d for d in at], key=lambda x:x.get_average_distance(at)))
+        sample_archetypes[deck_class].append(min([d for d in at], key=lambda x:x.get_average_distance(at)).get_copy(len(at)))
 
 for deck_class in sorted(decks_by_class):
-    print "  %-10s %s" % (deck_class, len(archetypes[deck_class]))
+    print "  %-10s %s" % (deck_class, len(archetypes[deck_class])), [len(at) for at in archetypes[deck_class]]
     #if len(uncategorized_by_class[deck_class]) > 0:
     #    print deck_class, len(uncategorized_by_class[deck_class]), uncategorized_by_class[deck_class]
 
-for deck_class in sorted(decks_by_class):
-    print deck_class
-    print_side_by_side_diff([at[0] for at in sorted(archetypes[deck_class], key=lambda x:len(x), reverse=True)])
+#for deck_class in sorted(decks_by_class):
+#    print deck_class
+#    print_side_by_side_diff([at[0] for at in sorted(archetypes[deck_class], key=lambda x:len(x), reverse=True)])
+print_side_by_side_diff([at[0] for at in sorted(archetypes['Mage'], key=lambda x:len(x), reverse=True)])
+print_side_by_side_diff([at[0] for at in sorted(archetypes['Priest'], key=lambda x:len(x), reverse=True)])
+print_side_by_side_diff([at[0] for at in sorted(archetypes['Warlock'], key=lambda x:len(x), reverse=True)])
