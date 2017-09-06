@@ -5,6 +5,7 @@ from deck_manager import EasyDeck, print_side_by_side, print_side_by_side_diff
 #from euDecklistCodesSummer import decks as decklistToAnalyze
 from apacDecklistCodesSummer import decks as decklistToAnalyze
 from archetypes import get_archetypes_by_class
+from archetype_labels import example_to_archetype, archetype_to_example
 
 def getCodes(url):
     name = url.replace('https://www.icy-veins.com/hearthstone/', '').replace('-decks-at-hct-eu-summer-playoffs-2017', '')
@@ -86,3 +87,9 @@ for lu in lineups.values():
 
 for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1]):
    print lu, count
+
+for dc in archetypes:
+    for at in archetypes[dc]:
+        print "'Label' : '%s'," % at[0].get_original_code()
+        at[0].print_deck()
+
