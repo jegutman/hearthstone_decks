@@ -127,12 +127,19 @@ def print_side_by_side_diff(list_of_decks):
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
-    print sorted(card_set)
     sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['playerClass'], cards[x[1]]['cost'], cards[x[1]]['name']))
-    #for dpl in deck_print_lines:
-    #    if len(dpl) < max(lengths):
-    #        dpl += [""] * (max(lengths) - len(dpl))
-    for i in sorted_card_set:
-        for dpl in deck_print_lines:
-            print "%35s" % dpl[i],
+    last_class = ""
+    for card_class, card_number in sorted_card_set:
+        if card_class != last_class:
+            print "" 
+            print card_class.replace('ZZ_', '') 
+            last_class = card_class
+        card_name = cards[card_number]['name']
+        print "%-5s" % cards[card_number]['cost'],
+        for dl in deck_cards_to_print:
+            card_count = dl.get((card_class, card_number), 0)
+            if card_count:
+                print "%-25s x%1s  " % (card_name, card_count),
+            else:
+                print "%-25s  %1s  " % ("", ""),
         print ""
