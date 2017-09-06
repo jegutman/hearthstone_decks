@@ -22,17 +22,21 @@ decks = []
 #        decks.append(EasyDeck(dl, name))
 #        print(dl)
 
+class_lineups = {}
 lineups = {}
 for name, lists in decklistToAnalyze.items():
     #print(name)
     lu = []
+    if name not in lineups:
+        lineups[name] = []
     for dl in lists:
         deck = EasyDeck(dl, name)
+        lineups[name].append(deck)
         decks.append(deck)
         lu.append(deck.get_class())
         #print(dl)
     lu = tuple(sorted(lu))
-    lineups[lu] = lineups.get(lu, 0) + 1
+    class_lineups[lu] = class_lineups.get(lu, 0) + 1
 
 deck_code_counts = {}
 for deck in decks:
@@ -62,6 +66,23 @@ for deck_class in sorted(decks_by_class):
 #for deck_class in sorted(decks_by_class):
 #    print deck_class
 #    print_side_by_side_diff([at[0] for at in sorted(archetypes[deck_class], key=lambda x:len(x), reverse=True)])
-print_side_by_side_diff([at[0] for at in sorted(archetypes['Mage'], key=lambda x:len(x), reverse=True)])
-print_side_by_side_diff([at[0] for at in sorted(archetypes['Priest'], key=lambda x:len(x), reverse=True)])
-print_side_by_side_diff([at[0] for at in sorted(archetypes['Warlock'], key=lambda x:len(x), reverse=True)])
+#print_side_by_side_diff([at[0] for at in sorted(archetypes['Mage'], key=lambda x:len(x), reverse=True)])
+#print_side_by_side_diff([at[0] for at in sorted(archetypes['Priest'], key=lambda x:len(x), reverse=True)])
+#print_side_by_side_diff([at[0] for at in sorted(archetypes['Warlock'], key=lambda x:len(x), reverse=True)])
+
+lineup_indexes = {}
+for lu in lineups.values():
+    lineup_set = set() 
+    for deck in lu:
+        dc = deck.get_class()
+        at_index = -1
+        for at in archetypes[dc]:
+            if deck in at:
+                #at_index = archetypes[dc].index(at)
+                at_index = at[0]
+        lineup_set.add((dc, at_index))
+    index = tuple(sorted(lineup_set))
+    lineup_indexes[index] = lineup_indexes.get(index, 0) + 1
+
+for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1]):
+   print lu, count
