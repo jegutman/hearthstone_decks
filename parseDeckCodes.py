@@ -118,6 +118,10 @@ for name, lu in lineups.items():
 #    lineup_indexes[index] = lineup_indexes.get(index, 0) + 1
 
 
+res = ""
+for name in "Deck 1,Deck 2,Deck 3,Deck4".split(','):
+    res += "%-25s" % name
+print "%85s" % str(res), "#"
 for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1]):
     res = ""
     for name in lu:
