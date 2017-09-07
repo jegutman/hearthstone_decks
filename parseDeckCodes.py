@@ -122,7 +122,7 @@ res = ""
 for name in "Deck 1,Deck 2,Deck 3,Deck4".split(','):
     res += "%-25s" % name
 print "%85s" % str(res), "#"
-for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1]):
+for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1], reverse=True):
     res = ""
     for name in lu:
         res += "%-25s" % name
