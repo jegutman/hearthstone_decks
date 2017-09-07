@@ -14,7 +14,7 @@ class EasyDeck():
         assert sum([c[1] for c in self.deck.cards]) == 30, self.deck.cards
 
     def __repr__(self):
-        return self.name + ' ' + self.get_class() + ' ' + self.deckstring
+        return str(self.name) + ' ' + self.get_class() + ' ' + str(self.deckstring)
 
     def get_copy(self, new_name):
         return EasyDeck(self.deckstring, new_name)
@@ -81,8 +81,8 @@ class EasyDeck():
         class_map = {
             274  : 'Druid',
             671  : 'Paladin',
-            46116: 'Paladin',
             2827 : 'Paladin',
+            46116: 'Paladin',
             813  : 'Priest',
             41887: 'Priest',
             7    : 'Warrior',
@@ -90,8 +90,8 @@ class EasyDeck():
             1066 : 'Shaman',
             40183: 'Shaman',
             637  : 'Mage',
-            39117: 'Mage',
             2829 : 'Mage',
+            39117: 'Mage',
             893  : 'Warlock',
             31   : 'Hunter',
             930  : 'Rogue',

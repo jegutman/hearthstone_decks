@@ -71,22 +71,58 @@ for deck_class in sorted(decks_by_class):
 #print_side_by_side_diff([at[0] for at in sorted(archetypes['Priest'], key=lambda x:len(x), reverse=True)])
 #print_side_by_side_diff([at[0] for at in sorted(archetypes['Warlock'], key=lambda x:len(x), reverse=True)])
 
+arch_decks = {}
+for arch_deck_list, name in example_to_archetype.items():
+    arch_decks[name] = EasyDeck(arch_deck_list, name)
+
+deck_to_archetype = {}
+for deck_class in archetypes:
+    label = "Unknown " + deck_class
+    orig = "Unknown " + deck_class
+    for at in archetypes[deck_class]:
+        for name, arch_deck in arch_decks.items():
+            if arch_deck.get_average_distance(at) <=5:
+                label = name
+        if label == orig:
+            for name, arch_deck in arch_decks.items():
+                if arch_deck.get_average_distance(at) <=5:
+                    label = name
+            print "DIST", at_deck.deck.heroes, deck_class, arch_deck.get_average_distance(at), label
+            print arch_deck.get_original_code()
+            arch_deck.print_deck()
+        for at_deck in at:
+            deck_to_archetype[at_deck] = label
+
 lineup_indexes = {}
-for lu in lineups.values():
+for name, lu in lineups.items():
     lineup_set = set() 
     for deck in lu:
-        dc = deck.get_class()
-        at_index = -1
-        for at in archetypes[dc]:
-            if deck in at:
-                #at_index = archetypes[dc].index(at)
-                at_index = at[0]
-        lineup_set.add((dc, at_index))
+        lineup_set.add(deck_to_archetype[deck])
     index = tuple(sorted(lineup_set))
+    if len(index) != 4:
+        assert False, name
     lineup_indexes[index] = lineup_indexes.get(index, 0) + 1
 
+#lineup_indexes = {}
+#for lu in lineups.values():
+#    lineup_set = set() 
+#    for deck in lu:
+#        dc = deck.get_class()
+#        at_index = -1
+#        for at in archetypes[dc]:
+#            if deck in at:
+#                #at_index = archetypes[dc].index(at)
+#                at_index = at[0]
+#        lineup_set.add((dc, at_index))
+#    index = tuple(sorted(lineup_set))
+#    lineup_indexes[index] = lineup_indexes.get(index, 0) + 1
+
+
 for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1]):
-   print lu, count
+    res = ""
+    for name in lu:
+        res += "%-25s" % name
+    print "%85s" % str(res), count
 
 #for dc in archetypes:
 #    for at in archetypes[dc]:
