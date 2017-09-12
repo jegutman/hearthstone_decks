@@ -1,3 +1,4 @@
+from __future__ import print_function
 from hearthstone.deckstrings import Deck
 from hearthstone.enums import FormatType
 import json
@@ -66,7 +67,7 @@ class EasyDeck():
                 res += card_class.replace('ZZ_', '') + "\n"
             last_class = card_class
             res += "%-2s %-25s x%s" % (cost, name, count) + "\n"
-        print res
+        print(res)
 
     def get_distance(self, other_deck):
         s1 = self.card_set
@@ -133,15 +134,15 @@ def print_side_by_side(list_of_decks):
             dpl += [""] * (max(lengths) - len(dpl))
     for i in range(0, max(lengths)):
         for dpl in deck_print_lines:
-            print "%35s" % dpl[i],
-        print ""
+            print("%35s" % dpl[i], end = "")
+        print("")
 
 def print_side_by_side_diff(list_of_decks):
     list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
     #get_cards_to_print
     deck_cards_to_print = [d.get_cards_to_print() for d in list_of_decks]
     for dl in list_of_decks:
-        print "     %-20s     " % (dl.name),
+        print("     %-20s     " % (dl.name), end = "")
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
@@ -149,15 +150,15 @@ def print_side_by_side_diff(list_of_decks):
     last_class = ""
     for card_class, card_number in sorted_card_set:
         if card_class != last_class:
-            print "" 
-            print card_class.replace('ZZ_', '') 
+            print("")
+            print(card_class.replace('ZZ_', ''))
             last_class = card_class
         card_name = cards[card_number]['name']
-        print "%-5s" % cards[card_number]['cost'],
+        print("%-5s" % cards[card_number]['cost'], end = "")
         for dl in deck_cards_to_print:
             card_count = dl.get((card_class, card_number), 0)
             if card_count:
-                print "%-25s x%1s  " % (card_name, card_count),
+                print("%-25s x%1s  " % (card_name, card_count), end = "")
             else:
-                print "%-25s  %1s  " % ("", ""),
-        print ""
+                print("%-25s  %1s  " % ("", ""), end = "")
+        print("")

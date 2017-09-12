@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import re
 from deck_manager import EasyDeck, print_side_by_side, print_side_by_side_diff
 #from euPrelimsListUrls import deck_urls
@@ -60,7 +61,7 @@ for deck_class in archetypes:
         sample_archetypes[deck_class].append(min([d for d in at], key=lambda x:x.get_average_distance(at)).get_copy(len(at)))
 
 for deck_class in sorted(decks_by_class):
-    print "  %-10s %s" % (deck_class, len(archetypes[deck_class])), [len(at) for at in archetypes[deck_class]]
+    print("  %-10s %s" % (deck_class, len(archetypes[deck_class])), [len(at) for at in archetypes[deck_class]])
     #if len(uncategorized_by_class[deck_class]) > 0:
     #    print deck_class, len(uncategorized_by_class[deck_class]), uncategorized_by_class[deck_class]
 
@@ -87,8 +88,8 @@ for deck_class in archetypes:
             for name, arch_deck in arch_decks.items():
                 if arch_deck.get_average_distance(at) <=5:
                     label = name
-            print "DIST", at_deck.deck.heroes, deck_class, arch_deck.get_average_distance(at), label
-            print arch_deck.get_original_code()
+            print("DIST", at_deck.deck.heroes, deck_class, arch_deck.get_average_distance(at), label)
+            print(arch_deck.get_original_code())
             arch_deck.print_deck()
         for at_deck in at:
             deck_to_archetype[at_deck] = label
@@ -121,12 +122,12 @@ for name, lu in lineups.items():
 res = ""
 for name in "Deck 1,Deck 2,Deck 3,Deck4".split(','):
     res += "%-25s" % name
-print "%85s" % str(res), "#"
+print("%85s" % str(res), "#")
 for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1], reverse=True):
     res = ""
     for name in lu:
         res += "%-25s" % name
-    print "%85s" % str(res), count
+    print("%85s" % str(res), count)
 
 #for dc in archetypes:
 #    for at in archetypes[dc]:
