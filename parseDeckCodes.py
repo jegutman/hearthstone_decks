@@ -144,8 +144,16 @@ for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1], reverse=Tru
     print("%85s" % str(res), end = "")
     print(count)
 
-#for dc in archetypes:
-#    for at in archetypes[dc]:
-#        print "'Label' : '%s'," % at[0].get_original_code()
-#        at[0].print_deck()
+# Find unique cards
+card_info = {}
+player_info = {}
+for deck in decks:
+    player = deck.name
+    for card_id, count in deck.get_card_codes():
+        if card_id not in card_info:
+            card_info[card_id] = [0, []]
+        card_info[card_id][0] += 1
+        if player not in card_info[card_id][1]:
+            card_info[card_id][1].append(player)
+        
 

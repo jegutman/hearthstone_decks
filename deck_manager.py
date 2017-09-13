@@ -99,17 +99,15 @@ class EasyDeck():
             40195: 'Rogue',
         }
         return class_map[self.deck.heroes[0]]
-        #try:
-        #    return class_map[self.deck.heroes[0]]
-        #except:
-        #    print self.deck.heroes[0]
-        #    assert False, self.print_deck()
     
     def get_original_code(self):
         return self.deckstring
 
     def get_card_codes(self):
         return self.deck.cards
+
+    def get_card_set(self):
+        return self.get_card_codes_long_set()
 
     def get_card_codes_long_set(self):
         res = set()
