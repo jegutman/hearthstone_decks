@@ -3,7 +3,7 @@ def get_archetypes_by_class(decks_by_class):
     uncategorized_by_class = {}
     for deck_class in decks_by_class:
         uncategorized_by_class[deck_class] = []
-        cat_distance = 5
+        cat_distance = 6
         new_distance = 9
         archetypes[deck_class] = []
         uncategorized = []

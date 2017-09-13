@@ -1,10 +1,12 @@
 #!/usr/bin/python3
+from __future__ import print_function
 import re
 from deck_manager import EasyDeck, print_side_by_side, print_side_by_side_diff
 #from euPrelimsListUrls import deck_urls
 #import requests
 #from euDecklistCodesSummer import decks as decklistToAnalyze
-from apacDecklistCodesSummer import decks as decklistToAnalyze
+#from apacDecklistCodesSummer import decks as decklistToAnalyze
+from naDecklistCodesSummer import na_decks as decklistToAnalyze
 from archetypes import get_archetypes_by_class
 from archetype_labels import example_to_archetype, archetype_to_example
 
@@ -54,6 +56,9 @@ for deck in decks:
 
 archetypes = get_archetypes_by_class(decks_by_class)
 
+for deck_class in archetypes:
+    archetypes[deck_class] = sorted(archetypes[deck_class], key=lambda x:len(x), reverse=True)
+
 sample_archetypes = {}
 for deck_class in archetypes:
     sample_archetypes[deck_class] = []
@@ -76,21 +81,29 @@ arch_decks = {}
 for arch_deck_list, name in example_to_archetype.items():
     arch_decks[name] = EasyDeck(arch_deck_list, name)
 
+used_name = []
 deck_to_archetype = {}
 for deck_class in archetypes:
-    label = "Unknown " + deck_class
-    orig = "Unknown " + deck_class
     for at in archetypes[deck_class]:
+        label = "Unknown " + deck_class
+        orig = "Unknown " + deck_class
         for name, arch_deck in arch_decks.items():
-            if arch_deck.get_average_distance(at) <=5:
-                label = name
-        if label == orig:
-            for name, arch_deck in arch_decks.items():
-                if arch_deck.get_average_distance(at) <=5:
+            if arch_deck.get_average_distance(at) <= 5:
+                if name not in used_name:
                     label = name
-            print("DIST", at_deck.deck.heroes, deck_class, arch_deck.get_average_distance(at), label)
-            print(arch_deck.get_original_code())
-            arch_deck.print_deck()
+                    #print(label)
+                    used_name.append(label)
+        if label == orig:
+            problem_deck = at[0]
+            #for name, arch_deck in arch_decks.items():
+            #    if arch_deck.get_average_distance(at) <=5:
+            #        label = name
+            #print("DIST", deck_class, at_deck.deck.heroes, deck_class, arch_deck.get_average_distance(at), label)
+            #print(arch_deck.get_original_code())
+            #arch_deck.print_deck()
+            print("DIST", deck_class, at_deck.deck.heroes, deck_class, problem_deck.get_average_distance(at), label)
+            print(problem_deck.get_original_code())
+            problem_deck.print_deck()
         for at_deck in at:
             deck_to_archetype[at_deck] = label
 
@@ -127,7 +140,9 @@ for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1], reverse=Tru
     res = ""
     for name in lu:
         res += "%-25s" % name
-    print("%85s" % str(res), count)
+    #print("%85s" % str(res), count)
+    print("%85s" % str(res), end = "")
+    print(count)
 
 #for dc in archetypes:
 #    for at in archetypes[dc]:
