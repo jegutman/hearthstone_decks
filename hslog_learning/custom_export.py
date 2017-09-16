@@ -16,6 +16,10 @@ class CardOrderExport(BaseExporter):
     tag_change_count = 0
     tag_events = {}
     card_sequence = []
+    cards_played = []
+    packet_types = set()
+    turn_count = {}
+    current_player = ""
 
     class EntityNotFound(Exception):
         pass
@@ -88,11 +92,20 @@ class CardOrderExport(BaseExporter):
         return entity
 
     def handle_tag_change(self, packet):
+        self.packet_types.add(packet.tag)
         #print dir(packet)
         #e = packet.entity
         #e = self.find_entity(packet.entity, "TAG_CHANGE")
         e = self.game.find_entity_by_id(packet.entity)
+        if packet.tag == GameTag.CURRENT_PLAYER and packet.value == 1:
+            self.current_player = e.controller
+            if self.current_player not in self.turn_count: self.turn_count[self.current_player] = 0
+        if packet.tag == GameTag.TURN:
+            #print("TURN? :", '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, packet.value)
+            self.turn_count[self.current_player] += 1
+            self.cards_played.append("\nStart Turn %s %s" % (self.turn_count[self.current_player], self.current_player) )
         if not e.can_be_in_deck: 
+            #print("OTHER? :", '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, packet.value)
             return
         #print(e.card_id)
         if e.card_id:
@@ -106,7 +119,10 @@ class CardOrderExport(BaseExporter):
         #    assert False
         encounter_num = self.add_entity_tag_event(packet.entity, packet)
         #print("ENCOUNTER: %s" % encounter_num)
-        if encounter_num == 1:
+        if packet.tag == GameTag.JUST_PLAYED:
+            #self.cards_played.append((card, card_name))
+            self.cards_played.append(card_name)
+        if encounter_num == 1 or packet.value == Zone.DECK:
             #if isinstance(e, Card): return
             if e.zone != Zone.HAND:
                 print("OPP %4s" % self.tag_change_count, '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
