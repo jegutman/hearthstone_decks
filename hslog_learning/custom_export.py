@@ -104,8 +104,13 @@ class CardOrderExport(BaseExporter):
             #print("TURN? :", '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, packet.value)
             self.turn_count[self.current_player] += 1
             self.cards_played.append("\nStart Turn %s %s" % (self.turn_count[self.current_player], self.current_player) )
-        if not e.can_be_in_deck: 
-            #print("OTHER? :", '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, packet.value)
+        if not e.can_be_in_deck:
+            if 'card_id' in dir(e):
+                card = cards_by_raw_id.get(e.card_id, {'name' : 'no_card'})
+                card_name = card['name']
+                print('NON-CARD', '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
+                if e.card_id in hero_powers and packet.value == 1:
+                    self.cards_played.append('Hero Power: ' + card_name)
             return
         #print(e.card_id)
         if e.card_id:
@@ -119,9 +124,10 @@ class CardOrderExport(BaseExporter):
         #    assert False
         encounter_num = self.add_entity_tag_event(packet.entity, packet)
         #print("ENCOUNTER: %s" % encounter_num)
-        if packet.tag == GameTag.JUST_PLAYED:
+        if packet.tag == GameTag.JUST_PLAYED and packet.value == 1:
             #self.cards_played.append((card, card_name))
             self.cards_played.append(card_name)
+            print("JUST_PLAYED %4s" % self.tag_change_count, '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
         if encounter_num == 1 or packet.value == Zone.DECK:
             #if isinstance(e, Card): return
             if e.zone != Zone.HAND:

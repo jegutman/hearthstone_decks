@@ -10,7 +10,8 @@ parser = LogParser()
 with open("Power.log") as f:
     parser.read(f)
 
-packet_tree = parser.games[-1]
+#packet_tree = parser.games[-1]
+packet_tree = parser.games[-2]
 export = CardOrderExport(packet_tree)
 game = export.export()
 
