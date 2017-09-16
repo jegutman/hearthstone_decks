@@ -24,3 +24,9 @@ for card in cards_json:
         if name not in names:
             names[name] = []
         names[name].append(card['dbfId'])
+
+hero_powers = {}
+for card in cards_json:
+    if 'type' in card:
+        if card['type'] == 'HERO_POWER':
+            hero_powers[card['id']] = card
