@@ -54,7 +54,7 @@ class CardOrderExport(BaseExporter):
         return entity
 
     def lookup_entity(self, entity_id):
-        return self.ids_to_card.get(entity_id, {'name' : "Unknown"})
+        return self.ids_to_card.get(entity_id, "Unknown")
         
     def print_ordered_draw(self, player):
         for entity_id, position in self.ordered_draw[player]:
@@ -113,31 +113,40 @@ class CardOrderExport(BaseExporter):
         e = self.game.find_entity_by_id(packet.entity)
         if 'card_id' in dir(e):
             if e.card_id is not None:
-                self.ids_to_card[packet.packet_id] = e.card_id
+                self.ids_to_card[e.id] = e.card_id
 
     def check_update_hand(self, packet):
         if packet.tag == GameTag.ZONE_POSITION:
             e = self.game.find_entity_by_id(packet.entity)
+            #if e.zone != Zone.HAND:
+            #    return
             player = e.controller.name
+            to_remove = []
             if player in self.ordered_draw:
                 #for i in dir(packet):
                 #    print(i, eval('packet.' + i))
                 #    assert False
                 self.ordered_draw[player].append((packet.packet_id, packet.value))
                 if packet.value > 0:
-                    self.hand_positions[player][packet.value] = packet.packet_id
+                    self.hand_positions[player][packet.value] = e.id
+                    keys_to_check = [key for key in sorted(self.hand_positions[player].keys()) if packet.value < key]
+                    for i in keys_to_check:
+                        if self.hand_positions[player][i] == e.id:
+                            to_remove.append(i)
+                for i in to_remove:
+                    self.hand_positions[player].pop(i, None)
+                    
 
     def print_hand(self, player):
         for position in sorted(self.hand_positions[player].keys()):
-            print("%2s" % position, end = '')
-            print(cards_by_raw_id[self.lookup_entity(self.hand_positions[player][position])]['name'])
+            print("%-2s" % position, end = '')
+            print(cards_by_raw_id.get(self.lookup_entity(self.hand_positions[player][position]), {'name' : 'Unknown'})['name'])
             
 
     def handle_tag_change(self, packet):
         self.check_update_hand(packet)
         self.update_card_info(packet)
         self.packet_types.add(packet.tag)
-        #print dir(packet)
         #e = packet.entity
         #e = self.find_entity(packet.entity, "TAG_CHANGE")
         e = self.game.find_entity_by_id(packet.entity)
@@ -171,9 +180,9 @@ class CardOrderExport(BaseExporter):
         if packet.tag == GameTag.ZONE_POSITION:
             #self.cards_played.append((card, card_name))
             self.cards_played.append(card_name)
-            print("ZONE_POSITION %4s" % self.tag_change_count, '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
-            print("ZONE_POSITION", dir(packet))
-            print("ZONE_POSITION", e.zone)
+            #print("ZONE_POSITION %4s" % self.tag_change_count, '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
+            #print("ZONE_POSITION", dir(packet))
+            #print("ZONE_POSITION", e.zone)
         if packet.tag == GameTag.JUST_PLAYED and packet.value == 1:
             #self.cards_played.append((card, card_name))
             self.cards_played.append(card_name)
