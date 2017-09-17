@@ -20,6 +20,8 @@ class CardOrderExport(BaseExporter):
     packet_types = set()
     turn_count = {}
     current_player = ""
+    ordered_draw = {}
+    ids_to_card = {}
 
     class EntityNotFound(Exception):
         pass
@@ -50,12 +52,21 @@ class CardOrderExport(BaseExporter):
             raise self.EntityNotFound("Attempting %s on entity %r (not found)" % (opcode, entity_id))
         return entity
 
+    def get_card_by_entity_id(self, entity_id):
+        pass
+        
+
     def handle_create_game(self, packet):
         #pass
         self.game = self.game_class(packet.entity)
         self.game.create(packet.tags)
         for player in packet.players:
             self.export_packet(player)
+            player_name = player.name
+            if player_name not in self.turn_count:
+                self.turn_count[player_name] = 0
+            if player_name not in self.ordered_draw:
+                self.ordered_draw[player_name] = []
         return self.game
 
     def handle_player(self, packet):
@@ -91,7 +102,22 @@ class CardOrderExport(BaseExporter):
         entity.change(packet.card_id, dict(packet.tags))
         return entity
 
+    def update_card_info(self, packet):
+        e = self.game.find_entity_by_id(packet.entity)
+        if 'card_id' in dir(e):
+            if e.card_id is not None:
+                self.ids_to_card[packet.packet_id] = e.card_id
+
+    def check_update_hand(self, packet):
+        if packet.tag == GameTag.ZONE_POSITION:
+            e = self.game.find_entity_by_id(packet.entity)
+            player = e.controller.name
+            if player in self.ordered_draw:
+                self.ordered_draw[player].append((packet.packet_id, packet.value))
+
     def handle_tag_change(self, packet):
+        self.check_update_hand(packet)
+        self.update_card_info(packet)
         self.packet_types.add(packet.tag)
         #print dir(packet)
         #e = packet.entity
@@ -108,7 +134,7 @@ class CardOrderExport(BaseExporter):
             if 'card_id' in dir(e):
                 card = cards_by_raw_id.get(e.card_id, {'name' : 'no_card'})
                 card_name = card['name']
-                print('NON-CARD', '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
+                #print('NON-CARD', '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
                 if e.card_id in hero_powers and packet.value == 1:
                     self.cards_played.append('Hero Power: ' + card_name)
             return
@@ -131,15 +157,13 @@ class CardOrderExport(BaseExporter):
         if encounter_num == 1 or packet.value == Zone.DECK:
             #if isinstance(e, Card): return
             if e.zone != Zone.HAND:
-                print("OPP %4s" % self.tag_change_count, '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
+                #print("OPP %4s" % self.tag_change_count, '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
+                pass
             else:
-                print("    %4s" % self.tag_change_count, '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
+                #print("    %4s" % self.tag_change_count, '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
+                pass
             # excluding power_type because always TAG_CHANGE in this method
             self.tag_change_count += 1
             #assert False
             #['entity', 'packet_id', 'power_type', 'tag', 'ts', 'value']
-            
             pass
-            #entity = self.find_entity(packet.entity, "TAG_CHANGE")
-            #entity.tag_change(packet.tag, packet.value)
-            #return entity
