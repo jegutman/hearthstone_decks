@@ -23,6 +23,7 @@ class CardOrderExport(BaseExporter):
     ordered_draw = {}
     ids_to_card = {}
     hand_positions = {}
+    log = []
 
     class EntityNotFound(Exception):
         pass
@@ -41,8 +42,8 @@ class CardOrderExport(BaseExporter):
             card_name = card['name']
         else:
             card, card_name = "", ""
-        print('%20s' % entity.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
-        
+        print('%20s' % entity.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, 
+              "%-30s" % packet.tag, "%20s" % card_name, packet.value)
 
     def find_entity(self, entity_id, opcode=""):
         try:
@@ -62,7 +63,6 @@ class CardOrderExport(BaseExporter):
             print("%25s" % card_name, position)
 
     def handle_create_game(self, packet):
-        #pass
         self.game = self.game_class(packet.entity)
         self.game.create(packet.tags)
         for player in packet.players:
@@ -118,9 +118,11 @@ class CardOrderExport(BaseExporter):
     def check_update_hand(self, packet):
         if packet.tag == GameTag.ZONE_POSITION:
             e = self.game.find_entity_by_id(packet.entity)
-            #if e.zone != Zone.HAND:
-            #    return
             player = e.controller.name
+            if e.id == 56:
+                print(packet.packet_id, packet.tag, e.zone, packet.value, packet.power_type, packet.power_type.value, packet.ts)
+                print([i for i in dir(packet) if '__' not in i])
+                print([i for i in dir(packet.entity) if '__' not in i])
             to_remove = []
             if player in self.ordered_draw:
                 #for i in dir(packet):
@@ -135,6 +137,18 @@ class CardOrderExport(BaseExporter):
                             to_remove.append(i)
                 for i in to_remove:
                     self.hand_positions[player].pop(i, None)
+        to_remove = None
+        #if packet.tag == GameTag.JUST_PLAYED:
+        #    e = self.game.find_entity_by_id(packet.entity)
+        #    player = e.controller.name
+        #    for i,j in self.hand_positions[player].items():
+        #        if j == e.id:
+        #            to_remove = i
+        #            break
+        #    if to_remove:
+        #        self.log.append((to_remove, e.id, self.hand_positions))
+        #        self.hand_positions[player].pop(to_remove)
+            
                     
 
     def print_hand(self, player):
@@ -186,7 +200,7 @@ class CardOrderExport(BaseExporter):
         if packet.tag == GameTag.JUST_PLAYED and packet.value == 1:
             #self.cards_played.append((card, card_name))
             self.cards_played.append(card_name)
-            print("JUST_PLAYED %4s" % self.tag_change_count, '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
+            #print("JUST_PLAYED %4s" % self.tag_change_count, '%20s' % e.controller, ' : ', packet.ts, "Entity: %-5s" % packet.entity, "id: %-5s" % packet.packet_id, packet.power_type, "%-30s" % packet.tag, "%20s" % card_name, packet.value)
         if encounter_num == 1 or packet.value == Zone.DECK:
             #if isinstance(e, Card): return
             if e.zone != Zone.HAND:
