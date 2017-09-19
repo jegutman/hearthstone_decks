@@ -30,3 +30,8 @@ for card in cards_json:
     if 'type' in card:
         if card['type'] == 'HERO_POWER':
             hero_powers[card['id']] = card
+
+def lookup_card_name(card):
+    if 'card_id' not in dir(card): return "Not Card"
+    if card.card_id is None: return "Unknown Card"
+    return cards_by_raw_id[card.card_id]['name']

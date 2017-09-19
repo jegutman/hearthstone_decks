@@ -1,15 +1,18 @@
 from __future__ import print_function
 from hearthstone.entities import Card, Game, Player
 #from hearthstone.enums import GameTag, Zone
-from hslog.export import BaseExporter
+from hslog.export import BaseExporter, EntityTreeExporter
 from hearthstone.enums import (
     CardType, ChoiceType, GameTag, OptionType, PlayReq, PlayState, PowerType,
     State, Step, Zone
 )
+import pprint
+pp = pprint.PrettyPrinter(depth=6)
+pp = pp.pprint
 
 from json_cards_to_python import *
 
-class CardOrderExport(BaseExporter):
+class CardOrderExport(EntityTreeExporter):
     game_class = Game
     player_class = Player
     card_class = Card
@@ -63,6 +66,7 @@ class CardOrderExport(BaseExporter):
             print("%25s" % card_name, position)
 
     def handle_create_game(self, packet):
+        super(CardOrderExport, self).handle_create_game(packet)
         self.game = self.game_class(packet.entity)
         self.game.create(packet.tags)
         for player in packet.players:
@@ -77,6 +81,7 @@ class CardOrderExport(BaseExporter):
         return self.game
 
     def handle_player(self, packet):
+        super(CardOrderExport, self).handle_player(packet)
         entity_id = int(packet.entity)
         if hasattr(self.packet_tree, "manager"):
             # If we have a PlayerManager, first we mutate the CreateGame.Player packet.
@@ -89,22 +94,26 @@ class CardOrderExport(BaseExporter):
         return entity
 
     def handle_full_entity(self, packet):
+        super(CardOrderExport, self).handle_full_entity(packet)
         entity = self.card_class(packet.entity, packet.card_id)
         entity.tags = dict(packet.tags)
         self.game.register_entity(entity)
         return entity
 
     def handle_hide_entity(self, packet):
+        super(CardOrderExport, self).handle_hide_entity(packet)
         entity = self.find_entity(packet.entity, "HIDE_ENTITY")
         entity.hide()
         return entity
 
     def handle_show_entity(self, packet):
+        super(CardOrderExport, self).handle_show_entity(packet)
         entity = self.find_entity(packet.entity, "SHOW_ENTITY")
         entity.reveal(packet.card_id, dict(packet.tags))
         return entity
 
     def handle_change_entity(self, packet):
+        super(CardOrderExport, self).handle_change_entity(packet)
         entity = self.find_entity(packet.entity, "CHANGE_ENTITY")
         entity.change(packet.card_id, dict(packet.tags))
         return entity
@@ -158,6 +167,7 @@ class CardOrderExport(BaseExporter):
             
 
     def handle_tag_change(self, packet):
+        super(CardOrderExport, self).handle_tag_change(packet)
         self.check_update_hand(packet)
         self.update_card_info(packet)
         self.packet_types.add(packet.tag)
