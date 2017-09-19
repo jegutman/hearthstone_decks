@@ -1,7 +1,8 @@
 from hslog.export import EntityTreeExporter, FriendlyPlayerExporter
 from hslog.packets import TagChange
 from hslog import LogParser
-from custom_export import *
+#from custom_export import *
+from card_order_export import *
 
 #def logfile(path):
 #    return os.path.join(LOG_DATA_DIR, "hslog-tests", path)
@@ -13,7 +14,7 @@ with open("Power.log") as f:
 
 packet_tree = parser.games[-1]
 #packet_tree = parser.games[-2]
-export = CardOrderExport(packet_tree)
+export = CardOrderExporter(packet_tree)
 game = export.export()
 
 #for card_id in export.card_sequence:

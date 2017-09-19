@@ -1,0 +1,123 @@
+from __future__ import print_function
+from hearthstone.entities import Card, Game, Player
+#from hearthstone.enums import GameTag, Zone
+from hslog.export import BaseExporter, EntityTreeExporter
+from hearthstone.enums import (
+    CardType, ChoiceType, GameTag, OptionType, PlayReq, PlayState, PowerType,
+    State, Step, Zone
+)
+import pprint
+pp = pprint.PrettyPrinter(depth=6)
+pp = pp.pprint
+
+from json_cards_to_python import *
+
+class CardOrderExporter(BaseExporter):
+    game_class = Game
+    player_class = Player
+    card_class = Card
+    player_hands = {}
+    last_known_position = {}
+    last_mmm = []
+
+    class EntityNotFound(Exception):
+        pass
+
+    def find_entity(self, entity_id, opcode=""):
+        try:
+            entity = self.game.find_entity_by_id(entity_id)
+        except MissingPlayerData as e:
+            raise self.EntityNotFound("Error getting entity %r for %s" % (entity_id, opcode))
+        if not entity:
+            raise self.EntityNotFound("Attempting %s on entity %r (not found)" % (opcode, entity_id))
+        return entity
+
+    def handle_create_game(self, packet):
+        self.game = self.game_class(packet.entity)
+        self.game.create(packet.tags)
+        for player in packet.players:
+            self.export_packet(player)
+            self.player_hands[player.name] = []
+        return self.game
+
+    def handle_player(self, packet):
+        entity_id = int(packet.entity)
+        if hasattr(self.packet_tree, "manager"):
+            # If we have a PlayerManager, first we mutate the CreateGame.Player packet.
+            # This will have to change if we're ever able to immediately get the names.
+            player = self.packet_tree.manager.get_player_by_id(entity_id)
+            packet.name = player.name
+        entity = self.player_class(entity_id, packet.player_id, packet.hi, packet.lo, packet.name)
+        entity.tags = dict(packet.tags)
+        self.game.register_entity(entity)
+        return entity
+
+    def handle_full_entity(self, packet):
+        entity = self.card_class(packet.entity, packet.card_id)
+        entity.tags = dict(packet.tags)
+        self.game.register_entity(entity)
+        return entity
+
+    def handle_hide_entity(self, packet):
+        entity = self.find_entity(packet.entity, "HIDE_ENTITY")
+        entity.hide()
+        return entity
+
+    def handle_show_entity(self, packet):
+        entity = self.find_entity(packet.entity, "SHOW_ENTITY")
+        entity.reveal(packet.card_id, dict(packet.tags))
+        return entity
+
+    def handle_change_entity(self, packet):
+        entity = self.find_entity(packet.entity, "CHANGE_ENTITY")
+        entity.change(packet.card_id, dict(packet.tags))
+        return entity
+
+    def handle_tag_change(self, packet):
+        entity = self.find_entity(packet.entity, "TAG_CHANGE")
+        entity.tag_change(packet.tag, packet.value)
+        return entity
+
+    def update_hand(self, packet):
+        for player in self.player_hands:
+            cards_in_hand = [e for e in self.game.entities if(e.zone == Zone.HAND and str(e.controller) == player)]
+            self.player_hands[player] = [c for c in self.player_hands if c in cards_in_hand]
+            for card in cards_in_hand:
+                if card not in self.player_hands[player]:
+                    self.player_hands[player].append(card)
+            self.player_hands[player].sort(key = lambda x:self.last_known_position.get(x, 11))
+            if player == 'MegaManMusic' and self.player_hands[player] != self.last_mmm:
+                print([lookup_card_name(x) for x in self.player_hands[player]])
+                self.last_mmm = self.player_hands[player][:]
+        
+
+    def handle_block(self, packet):
+        for p in packet.packets:
+            self.export_packet(p)
+            if 'tag' not in dir(p): continue
+            if p.tag == GameTag.ZONE_POSITION:
+                entity = self.find_entity(p.entity, "HANDLE_BLOCK")
+                self.last_known_position[entity] = p.value
+        self.update_hand(packet)
+
+    def handle_metadata(self, packet):
+        pass
+
+    def handle_choices(self, packet):
+        pass
+
+    def handle_send_choices(self, packet):
+        pass
+
+    def handle_chosen_entities(self, packet):
+        pass
+
+    def handle_options(self, packet):
+        pass
+
+    def handle_option(self, packet):
+        pass
+
+    def handle_send_option(self, packet):
+        pass
+
