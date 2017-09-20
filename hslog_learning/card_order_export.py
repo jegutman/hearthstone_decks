@@ -18,6 +18,7 @@ class CardOrderExporter(BaseExporter):
     card_class = Card
     player_hands = {}
     last_known_position = {}
+    hand_positions = {}
     last_mmm = []
 
     class EntityNotFound(Exception):
@@ -38,6 +39,7 @@ class CardOrderExporter(BaseExporter):
         for player in packet.players:
             self.export_packet(player)
             self.player_hands[player.name] = []
+            self.hand_positions[player.name] = {}
         return self.game
 
     def handle_player(self, packet):
@@ -78,7 +80,7 @@ class CardOrderExporter(BaseExporter):
         entity.tag_change(packet.tag, packet.value)
         return entity
 
-    def update_hand(self, packet):
+    def update_hand(self, block):
         for player in self.player_hands:
             cards_in_hand = [e for e in self.game.entities if(e.zone == Zone.HAND and str(e.controller) == player)]
             self.player_hands[player] = [c for c in self.player_hands if c in cards_in_hand]
@@ -87,18 +89,44 @@ class CardOrderExporter(BaseExporter):
                     self.player_hands[player].append(card)
             self.player_hands[player].sort(key = lambda x:self.last_known_position.get(x, 11))
             if player == 'MegaManMusic' and self.player_hands[player] != self.last_mmm:
-                print([lookup_card_name(x) for x in self.player_hands[player]])
+                #print([lookup_card_name(x) for x in self.player_hands[player]])
+                self.print_hand('MegaManMusic')
                 self.last_mmm = self.player_hands[player][:]
+
+    def alt_update_hand(self, packet, entity):
+        if entity.zone != Zone.HAND:
+            return
+        player = entity.controller.name
+        if packet.value == 0:
+            if self.hand_positions[player].get(packet.entity, False):
+                self.hand_positions[player].pop(packet.entity)
+        else:
+            self.hand_positions[player][packet.entity] = packet.value
+
+    def print_hand(self, player):
+        cards = sorted(self.hand_positions[player].keys(), key=lambda x:self.hand_positions[player][x])
+        print("\n%-25s" % "Card")
+        for card in cards:
+            entity = self.find_entity(card)
+            creator = entity.tags.get(GameTag.CREATOR, "")
+            if creator != 1:
+                creator_entity = self.find_entity(creator) if creator else ""
+                creator_name = 'created_by: ' + lookup_card_name(creator_entity) if creator else ""
+            print("%-25s" % lookup_card_name(entity), "%-25s" % creator_name)
+        #pp([lookup_card_name(self.find_entity(card)) for card in cards])
         
 
-    def handle_block(self, packet):
-        for p in packet.packets:
+    def handle_block(self, block):
+        for p in block.packets:
             self.export_packet(p)
             if 'tag' not in dir(p): continue
+            entity = self.find_entity(p.entity, "HANDLE_BLOCK")
             if p.tag == GameTag.ZONE_POSITION:
-                entity = self.find_entity(p.entity, "HANDLE_BLOCK")
                 self.last_known_position[entity] = p.value
-        self.update_hand(packet)
+                if 'card_id' in dir(entity):
+                    if entity.zone == Zone.HAND:
+                        self.alt_update_hand(p, entity)
+        self.update_hand(block)
 
     def handle_metadata(self, packet):
         pass
