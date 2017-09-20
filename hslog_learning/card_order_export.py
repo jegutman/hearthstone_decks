@@ -19,10 +19,13 @@ class CardOrderExporter(BaseExporter):
     player_hands = {}
     last_known_position = {}
     hand_positions = {}
-    #last_mmm = []
+    last_mmm = []
 
     class EntityNotFound(Exception):
         pass
+
+    def update_packet_tree(self, packet_tree):
+        self.packet_tree = packet_tree
 
     def find_entity(self, entity_id, opcode=""):
         try:
@@ -88,10 +91,10 @@ class CardOrderExporter(BaseExporter):
                 if card not in self.player_hands[player]:
                     self.player_hands[player].append(card)
             self.player_hands[player].sort(key = lambda x:self.last_known_position.get(x, 11))
-            #if player == 'MegaManMusic' and self.player_hands[player] != self.last_mmm:
-            #    #print([lookup_card_name(x) for x in self.player_hands[player]])
-            #    self.print_hand('MegaManMusic')
-            #    self.last_mmm = self.player_hands[player][:]
+            if player == 'MegaManMusic' and self.player_hands[player] != self.last_mmm:
+                #print([lookup_card_name(x) for x in self.player_hands[player]])
+                self.print_hand('MegaManMusic')
+                self.last_mmm = self.player_hands[player][:]
 
     def alt_update_hand(self, packet, entity):
         if entity.zone != Zone.HAND:

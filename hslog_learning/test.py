@@ -19,14 +19,21 @@ if platform.system() == 'Darwin':
 
 with open(power_logs) as f:
     parser.read(f)
-
-for line in tailer.follow(open(power_logs), 0):
-    print(line)
-
 packet_tree = parser.games[-1]
-#packet_tree = parser.games[-2]
 export = CardOrderExporter(packet_tree)
 game = export.export()
+
+#initialized = False
+#for line in tailer.follow(open(power_logs), 0):
+#    parser.read_line(line)
+#    if len(parser.games) > 0:
+#        packet_tree = parser.games[-1]
+#        if not initialized:
+#            export = CardOrderExporter(packet_tree)
+#            initialized = True
+#        else:
+#            export.update_packet_tree(packet_tree)
+
 
 #for card_id in export.card_sequence:
 #    print("NEW ENTITY", card_id)
