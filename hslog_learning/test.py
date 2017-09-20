@@ -8,8 +8,8 @@ from card_order_export import *
 #    return os.path.join(LOG_DATA_DIR, "hslog-tests", path)
 
 parser = LogParser()
-with open("Power.log") as f:
-#with open("/Applications/Hearthstone/Logs/Power.log") as f:
+#with open("Power.log") as f:
+with open("/Applications/Hearthstone/Logs/Power.log") as f:
     parser.read(f)
 
 packet_tree = parser.games[-1]
