@@ -3,14 +3,25 @@ from hslog.packets import TagChange
 from hslog import LogParser
 #from custom_export import *
 from card_order_export import *
+import platform
+import tailer
 
-#def logfile(path):
-#    return os.path.join(LOG_DATA_DIR, "hslog-tests", path)
 
 parser = LogParser()
 #with open("Power.log") as f:
-with open("/Applications/Hearthstone/Logs/Power.log") as f:
+
+power_logs = "Power.log"
+if platform.system() == 'Linux':
+    if 'Microsoft' in platform.release():
+        power_logs = "/mnt/c/Program Files (x86)/Hearthstone/Logs/Power.log"
+if platform.system() == 'Darwin':
+    power_logs = "/Applications/Hearthstone/Logs/Power.log"
+
+with open(power_logs) as f:
     parser.read(f)
+
+for line in tailer.follow(open(power_logs), 0):
+    print(line)
 
 packet_tree = parser.games[-1]
 #packet_tree = parser.games[-2]

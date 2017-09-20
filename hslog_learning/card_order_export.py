@@ -105,14 +105,14 @@ class CardOrderExporter(BaseExporter):
 
     def print_hand(self, player):
         cards = sorted(self.hand_positions[player].keys(), key=lambda x:self.hand_positions[player][x])
-        print("\n%-25s" % "Card")
-        for card in cards:
+        print("\n    %-25s" % "Card")
+        for position, card in enumerate(cards):
             entity = self.find_entity(card)
             creator = entity.tags.get(GameTag.CREATOR, "")
             if creator != 1:
                 creator_entity = self.find_entity(creator) if creator else ""
                 creator_name = 'created_by: ' + lookup_card_name(creator_entity) if creator else ""
-            print("%-25s" % lookup_card_name(entity), "%-25s" % creator_name)
+            print("%-3s" % (position+1), "%-25s" % lookup_card_name(entity), "%-25s" % creator_name)
         #pp([lookup_card_name(self.find_entity(card)) for card in cards])
         
 
