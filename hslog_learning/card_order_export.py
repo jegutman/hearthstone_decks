@@ -96,6 +96,14 @@ class CardOrderExporter(BaseExporter):
                 self.print_hand('MegaManMusic')
                 self.last_mmm = self.player_hands[player][:]
 
+    def get_graveyard_minions(self, player):
+        res = []
+        for entity in self.game.entities:
+            if entity.zone == Zone.GRAVEYARD and entity.type == CardType.MINION:
+                if str(entity.controller) == player:
+                    res.append(entity)
+        return res
+
     def alt_update_hand(self, packet, entity):
         if entity.zone != Zone.HAND:
             return
