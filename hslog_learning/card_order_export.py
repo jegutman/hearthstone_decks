@@ -104,6 +104,10 @@ class CardOrderExporter(BaseExporter):
                     res.append(entity)
         return res
 
+    def print_card_list(self, card_list):
+        for card in card_list:
+            print(lookup_card_name(card))
+
     def alt_update_hand(self, packet, entity):
         if entity.zone != Zone.HAND:
             return
