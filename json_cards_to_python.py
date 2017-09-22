@@ -35,3 +35,24 @@ def lookup_card_name(card):
     if 'card_id' not in dir(card): return "Not Card"
     if card.card_id is None: return "Unknown Card"
     return cards_by_raw_id[card.card_id]['name']
+
+standard_sets = [
+    'OG', 
+    'ICECROWN', 
+    'CORE', 
+    'EXPERT1', 
+    'UNGORO', 
+    'GANGS', 
+    'KARA', 
+]
+
+wild_sets = [
+    'LOE', 
+    'TGT', 
+    'BRM', 
+    'GVG', 
+    'NAXX',
+    'HOF', 
+    ]
+
+all_sets = standard_sets + wild_sets
