@@ -1,5 +1,6 @@
 archetypes = []
 data = {}
+line_data = []
 
 with open('CoinData.csv') as f:
     for line in f:
@@ -19,3 +20,4 @@ with open('CoinData.csv') as f:
         pct = float(pct)
         games = int(games)
         data[deck_a][deck_b][first] = (pct, games)
+        line_data.append((deck_a, deck_b, first, pct, games))
