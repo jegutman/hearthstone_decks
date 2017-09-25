@@ -132,7 +132,7 @@ Miracle Rogue,Dead Man Warrior,0,46.32,870
 Miracle Rogue,Dead Man Warrior,1,46.25,800
 Miracle Rogue,Prince Rogue,0,36.88,3915
 Miracle Rogue,Prince Rogue,1,34.82,3831
-Evolve Shaman,10,1,61.68,107
+#Evolve Shaman,10,1,61.68,107
 Evolve Shaman,Tempo Mage,0,48.12,293
 Evolve Shaman,Tempo Mage,1,49.19,311
 Evolve Shaman,Pirate Warrior,0,55.55,5627
@@ -680,8 +680,8 @@ Highlander Warlock,Dead Man Warrior,0,59.13,115
 Highlander Warlock,Dead Man Warrior,1,64.12,131
 Highlander Warlock,Prince Rogue,0,38.9,640
 Highlander Warlock,Prince Rogue,1,40.9,599
-Midrange Hunter,10,0,43.28,134
-Midrange Hunter,10,1,49.6,125
+#Midrange Hunter,10,0,43.28,134
+#Midrange Hunter,10,1,49.6,125
 Midrange Hunter,Tempo Mage,0,58.17,373
 Midrange Hunter,Tempo Mage,1,58.82,374
 Midrange Hunter,Pirate Warrior,0,59.66,7314
