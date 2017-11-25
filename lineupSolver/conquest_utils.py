@@ -28,7 +28,7 @@ def pre_ban_old(decks_a, decks_b, win_pcts):
 
 def win_rate(decks_a, decks_b, win_pcts):
     res = pre_ban(decks_a, decks_b, win_pcts)
-    return max(res.values())
+    return max(res.items(), key=lambda x:x[1])
 
 def pre_ban(decks_a, decks_b, win_pcts):
     mins = {}
@@ -42,7 +42,7 @@ def pre_ban(decks_a, decks_b, win_pcts):
             tmp_b.remove(d2)
             res = post_ban(tmp_a,tmp_b, win_pcts)
             #mins[d2].append(res)
-            mins[d2] = min(mins[d2], res)
+            mins[d2] = round(min(mins[d2], res), 3)
     return mins
 
 def post_ban(decks_a, decks_b, win_pcts):

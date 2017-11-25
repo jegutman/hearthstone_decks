@@ -32,6 +32,12 @@ level_2 = ['Big Druid', 'Dragon Priest', 'Murloc Paladin', 'Tempo Rogue']
 #lineups_to_test = [level_1, level_1_b, level_2, new_god]#, level_3]
 lineups_to_test = [level_1, level_2]#, level_3]
 
+print "\n"
+print "TESTING vs LINEUPS"
+for l in lineups_to_test:
+    print "   ".join(l)
+print "\n"
+
 for lineup in lineups:
     for lu_test in lineups_to_test:
         win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts)]
