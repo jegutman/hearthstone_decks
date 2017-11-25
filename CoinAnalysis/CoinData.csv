@@ -1,1703 +1,1785 @@
 #"ranked standard, 2017-09-20 to 2017-09-24, all ranks, all regions, min 100 games",,,,
+#,,,,
 #friendly_archetype,opponent_archetype,friendly_is_first,win_rate,total_games
-Tempo Mage,Evolve Shaman,0,50.8,311
-Tempo Mage,Evolve Shaman,1,51.87,293
-Tempo Mage,Highlander Priest,0,44.71,331
-Tempo Mage,Highlander Priest,1,41.46,287
-Tempo Mage,Midrange Hunter,0,41.17,374
-Tempo Mage,Midrange Hunter,1,41.82,373
-Tempo Mage,Deathrattle Hunter,0,43.75,112
-Tempo Mage,Secret Mage,0,45.23,168
-Tempo Mage,Secret Mage,1,38.99,159
-Tempo Mage,Jade Druid,0,43,193
-Tempo Mage,Jade Druid,1,42.85,182
-Tempo Mage,Prince Rogue,0,52.38,273
-Tempo Mage,Prince Rogue,1,53.81,249
-Pirate Warrior,Pirate Warrior,0,50,1230
-Pirate Warrior,Pirate Warrior,1,50,1230
-Pirate Warrior,Miracle Rogue,0,67.23,1587
-Pirate Warrior,Miracle Rogue,1,63.48,1665
-Pirate Warrior,Evolve Shaman,0,44.31,5736
-Pirate Warrior,Evolve Shaman,1,44.44,5627
-Pirate Warrior,Aggro Druid,0,38.34,811
-Pirate Warrior,Aggro Druid,1,39.97,823
-Pirate Warrior,Demon Control Warlock,0,68.34,796
-Pirate Warrior,Demon Control Warlock,1,68.62,835
-Pirate Warrior,Highlander Priest,0,53.08,6921
-Pirate Warrior,Highlander Priest,1,51.16,6927
-Pirate Warrior,Resurrect Priest,0,59.05,1707
-Pirate Warrior,Resurrect Priest,1,54.58,1735
-Pirate Warrior,Dragon Priest,0,54.09,1074
-Pirate Warrior,Dragon Priest,1,60.95,1196
-Pirate Warrior,Silence Priest,0,65,160
-Pirate Warrior,Silence Priest,1,62.96,162
-Pirate Warrior,Handlock,0,61.87,2143
-Pirate Warrior,Handlock,1,60.34,2295
-Pirate Warrior,Zoolock,0,48.08,1017
-Pirate Warrior,Zoolock,1,49.69,974
-Pirate Warrior,Highlander Warlock,0,62.86,237
-Pirate Warrior,Highlander Warlock,1,58.21,280
-Pirate Warrior,Midrange Hunter,0,40.59,7363
-Pirate Warrior,Midrange Hunter,1,40.29,7314
-Pirate Warrior,Deathrattle Hunter,0,51.09,2276
-Pirate Warrior,Deathrattle Hunter,1,51.23,2235
-Pirate Warrior,Secret Mage,0,51.87,3697
-Pirate Warrior,Secret Mage,1,54.93,3577
-Pirate Warrior,Quest Mage,0,86.25,1928
-Pirate Warrior,Quest Mage,1,86.47,1878
-Pirate Warrior,Control Mage,0,55.41,1940
-Pirate Warrior,Control Mage,1,55.86,1910
-Pirate Warrior,Jade Druid,0,55.46,4228
-Pirate Warrior,Jade Druid,1,57.03,4138
-Pirate Warrior,Big Druid,0,63.7,135
-Pirate Warrior,Big Druid,1,66.18,139
-Pirate Warrior,Taunt Druid,0,55.52,362
-Pirate Warrior,Taunt Druid,1,60.25,395
-Pirate Warrior,Mill Rogue,0,84.52,446
-Pirate Warrior,Mill Rogue,1,80.35,448
-Pirate Warrior,Elemental Rogue,0,40.38,879
-Pirate Warrior,Elemental Rogue,1,47.35,868
-Pirate Warrior,Quest Rogue,0,70.08,117
-Pirate Warrior,Control Paladin,0,42.55,846
-Pirate Warrior,Control Paladin,1,46.37,841
-Pirate Warrior,Murloc Paladin,0,42.03,1463
-Pirate Warrior,Murloc Paladin,1,43.88,1488
-Pirate Warrior,Grimestreet Paladin,0,42.67,778
-Pirate Warrior,Grimestreet Paladin,1,44.6,834
-Pirate Warrior,Enrage Warrior,0,59.11,406
-Pirate Warrior,Enrage Warrior,1,58.85,384
-Pirate Warrior,Quest Warrior,0,55.08,492
-Pirate Warrior,Quest Warrior,1,55.67,476
-Pirate Warrior,Dead Man Warrior,0,68.44,786
-Pirate Warrior,Dead Man Warrior,1,60.23,767
-Pirate Warrior,Prince Rogue,0,44.74,3913
-Pirate Warrior,Prince Rogue,1,47.81,3898
-Miracle Rogue,Pirate Warrior,0,36.51,1665
-Miracle Rogue,Pirate Warrior,1,32.76,1587
-Miracle Rogue,Miracle Rogue,0,50,1942
-Miracle Rogue,Miracle Rogue,1,50,1942
-Miracle Rogue,Evolve Shaman,0,38.23,6900
-Miracle Rogue,Evolve Shaman,1,39.8,6861
-Miracle Rogue,Aggro Druid,0,43.04,1057
-Miracle Rogue,Aggro Druid,1,39.65,1054
-Miracle Rogue,Demon Control Warlock,0,56.23,866
-Miracle Rogue,Demon Control Warlock,1,50.82,850
-Miracle Rogue,Highlander Priest,0,49.25,6616
-Miracle Rogue,Highlander Priest,1,43,6520
-Miracle Rogue,Resurrect Priest,0,58.79,1973
-Miracle Rogue,Resurrect Priest,1,55.49,2085
-Miracle Rogue,Dragon Priest,0,55.87,1217
-Miracle Rogue,Dragon Priest,1,49.6,1272
-Miracle Rogue,Silence Priest,0,53.29,182
-Miracle Rogue,Silence Priest,1,60.65,183
-Miracle Rogue,Handlock,0,55.12,2469
-Miracle Rogue,Handlock,1,52,2396
-Miracle Rogue,Zoolock,0,44.2,1070
-Miracle Rogue,Zoolock,1,45.91,1078
-Miracle Rogue,Highlander Warlock,0,60.83,263
-Miracle Rogue,Highlander Warlock,1,52,225
-Miracle Rogue,Midrange Hunter,0,37.73,9262
-Miracle Rogue,Midrange Hunter,1,38.93,9054
-Miracle Rogue,Deathrattle Hunter,0,44.83,2906
-Miracle Rogue,Deathrattle Hunter,1,45.23,2821
-Miracle Rogue,Secret Mage,0,37.14,4089
-Miracle Rogue,Secret Mage,1,33.92,4124
-Miracle Rogue,Quest Mage,0,60.11,2239
-Miracle Rogue,Quest Mage,1,55.63,2335
-Miracle Rogue,Control Mage,0,48.41,1803
-Miracle Rogue,Control Mage,1,45.69,1779
-Miracle Rogue,Jade Druid,0,52.76,4298
-Miracle Rogue,Jade Druid,1,45.19,4416
-Miracle Rogue,Big Druid,0,65.56,151
-Miracle Rogue,Big Druid,1,51.94,154
-Miracle Rogue,Taunt Druid,0,51.91,443
-Miracle Rogue,Taunt Druid,1,53.63,481
-Miracle Rogue,Mill Rogue,0,59.29,425
-Miracle Rogue,Mill Rogue,1,57.91,423
-Miracle Rogue,Elemental Rogue,0,39.06,837
-Miracle Rogue,Elemental Rogue,1,39.9,827
-Miracle Rogue,Quest Rogue,0,54.07,135
-Miracle Rogue,Quest Rogue,1,43.04,151
-Miracle Rogue,Control Paladin,0,58.83,855
-Miracle Rogue,Control Paladin,1,55.58,851
-Miracle Rogue,Murloc Paladin,0,44.89,1791
-Miracle Rogue,Murloc Paladin,1,46.31,1887
-Miracle Rogue,Grimestreet Paladin,0,52.23,829
-Miracle Rogue,Grimestreet Paladin,1,52.06,870
-Miracle Rogue,Enrage Warrior,0,45.52,391
-Miracle Rogue,Enrage Warrior,1,37.66,369
-Miracle Rogue,Quest Warrior,0,51.34,522
-Miracle Rogue,Quest Warrior,1,47.8,523
-Miracle Rogue,Dead Man Warrior,0,46.32,870
-Miracle Rogue,Dead Man Warrior,1,46.25,800
-Miracle Rogue,Prince Rogue,0,36.88,3915
-Miracle Rogue,Prince Rogue,1,34.82,3831
-#Evolve Shaman,10,1,61.68,107
-Evolve Shaman,Tempo Mage,0,48.12,293
-Evolve Shaman,Tempo Mage,1,49.19,311
-Evolve Shaman,Pirate Warrior,0,55.55,5627
-Evolve Shaman,Pirate Warrior,1,55.68,5736
-Evolve Shaman,Miracle Rogue,0,60.19,6861
-Evolve Shaman,Miracle Rogue,1,61.76,6900
-Evolve Shaman,Evolve Shaman,0,50,26844
-Evolve Shaman,Evolve Shaman,1,50,26844
-Evolve Shaman,Aggro Druid,0,47.42,3732
-Evolve Shaman,Aggro Druid,1,55.78,3648
-Evolve Shaman,Demon Control Warlock,0,39.94,3262
-Evolve Shaman,Demon Control Warlock,1,47.61,3276
-Evolve Shaman,Highlander Priest,0,47.82,29616
-Evolve Shaman,Highlander Priest,1,50.59,29982
-Evolve Shaman,Resurrect Priest,0,51.88,7821
-Evolve Shaman,Resurrect Priest,1,51.05,7842
-Evolve Shaman,Dragon Priest,0,55.3,4587
-Evolve Shaman,Dragon Priest,1,61.49,4693
-Evolve Shaman,Silence Priest,0,64.69,592
-Evolve Shaman,Silence Priest,1,71.05,653
-Evolve Shaman,Handlock,0,34.93,9089
-Evolve Shaman,Handlock,1,40.58,9057
-Evolve Shaman,Zoolock,0,39.69,4323
-Evolve Shaman,Zoolock,1,53.28,4275
-Evolve Shaman,Highlander Warlock,0,45.31,971
-Evolve Shaman,Highlander Warlock,1,55.92,1005
-Evolve Shaman,Midrange Hunter,0,56.85,33736
-Evolve Shaman,Midrange Hunter,1,64.09,33871
-Evolve Shaman,Deathrattle Hunter,0,55.42,10124
-Evolve Shaman,Deathrattle Hunter,1,63.47,10077
-Evolve Shaman,Secret Mage,0,55.79,16149
-Evolve Shaman,Secret Mage,1,58.87,16145
-Evolve Shaman,Quest Mage,0,62.29,8151
-Evolve Shaman,Quest Mage,1,62.5,8392
-Evolve Shaman,Control Mage,0,53.21,7216
-Evolve Shaman,Control Mage,1,56.43,7255
-Evolve Shaman,Highlander Mage,0,53.82,340
-Evolve Shaman,Highlander Mage,1,60.33,363
-Evolve Shaman,Jade Druid,0,51.92,18345
-Evolve Shaman,Jade Druid,1,56.61,18138
-Evolve Shaman,Big Druid,0,54.48,624
-Evolve Shaman,Big Druid,1,59.86,613
-Evolve Shaman,Taunt Druid,0,55.73,1570
-Evolve Shaman,Taunt Druid,1,64.6,1726
-Evolve Shaman,Mill Rogue,0,78.34,1496
-Evolve Shaman,Mill Rogue,1,81.77,1536
-Evolve Shaman,Elemental Rogue,0,42.34,3970
-Evolve Shaman,Elemental Rogue,1,51.64,3979
-Evolve Shaman,Quest Rogue,0,59.54,482
-Evolve Shaman,Quest Rogue,1,66.8,473
-Evolve Shaman,Control Paladin,0,55,3398
-Evolve Shaman,Control Paladin,1,60.32,3599
-Evolve Shaman,Murloc Paladin,0,51.59,7137
-Evolve Shaman,Murloc Paladin,1,61.03,7137
-Evolve Shaman,Aggro Paladin,0,51.67,298
-Evolve Shaman,Aggro Paladin,1,66.97,324
-Evolve Shaman,Grimestreet Paladin,0,61.49,3384
-Evolve Shaman,Grimestreet Paladin,1,70.8,3449
-Evolve Shaman,Enrage Warrior,0,47.15,1442
-Evolve Shaman,Enrage Warrior,1,51.77,1493
-Evolve Shaman,Quest Warrior,0,49.74,1789
-Evolve Shaman,Quest Warrior,1,54.59,1839
-Evolve Shaman,Dead Man Warrior,0,59.02,2946
-Evolve Shaman,Dead Man Warrior,1,61.45,2937
-Evolve Shaman,Prince Rogue,0,47.67,18859
-Evolve Shaman,Prince Rogue,1,53.61,18645
-Aggro Druid,Pirate Warrior,0,60.02,823
-Aggro Druid,Pirate Warrior,1,61.65,811
-Aggro Druid,Miracle Rogue,0,60.34,1054
-Aggro Druid,Miracle Rogue,1,56.95,1057
-Aggro Druid,Evolve Shaman,0,44.21,3648
-Aggro Druid,Evolve Shaman,1,52.57,3732
-Aggro Druid,Aggro Druid,0,50,560
-Aggro Druid,Aggro Druid,1,50,560
-Aggro Druid,Demon Control Warlock,0,49.6,504
-Aggro Druid,Demon Control Warlock,1,52.15,579
-Aggro Druid,Highlander Priest,0,44.93,4507
-Aggro Druid,Highlander Priest,1,49.51,4514
-Aggro Druid,Resurrect Priest,0,43.56,1134
-Aggro Druid,Resurrect Priest,1,37.06,1206
-Aggro Druid,Dragon Priest,0,53.49,729
-Aggro Druid,Dragon Priest,1,61.2,732
-Aggro Druid,Handlock,0,43.13,1370
-Aggro Druid,Handlock,1,49.22,1422
-Aggro Druid,Zoolock,0,44.71,662
-Aggro Druid,Zoolock,1,54.05,666
-Aggro Druid,Highlander Warlock,0,56.02,166
-Aggro Druid,Highlander Warlock,1,55.89,195
-Aggro Druid,Midrange Hunter,0,46.84,4933
-Aggro Druid,Midrange Hunter,1,55.4,4958
-Aggro Druid,Deathrattle Hunter,0,46.38,1384
-Aggro Druid,Deathrattle Hunter,1,55.39,1446
-Aggro Druid,Secret Mage,0,49.24,2319
-Aggro Druid,Secret Mage,1,54.47,2434
-Aggro Druid,Quest Mage,0,72.87,1202
-Aggro Druid,Quest Mage,1,74.93,1193
-Aggro Druid,Control Mage,0,46.04,1125
-Aggro Druid,Control Mage,1,51.16,1118
-Aggro Druid,Jade Druid,0,58.46,2634
-Aggro Druid,Jade Druid,1,63.93,2687
-Aggro Druid,Big Druid,0,74.07,108
-Aggro Druid,Taunt Druid,0,57.74,239
-Aggro Druid,Taunt Druid,1,62.21,262
-Aggro Druid,Mill Rogue,0,69.23,234
-Aggro Druid,Mill Rogue,1,68.87,241
-Aggro Druid,Elemental Rogue,0,43.85,570
-Aggro Druid,Elemental Rogue,1,49.91,585
-Aggro Druid,Control Paladin,0,45.03,584
-Aggro Druid,Control Paladin,1,46.82,583
-Aggro Druid,Murloc Paladin,0,38.77,1016
-Aggro Druid,Murloc Paladin,1,57.21,1033
-Aggro Druid,Grimestreet Paladin,0,47.57,536
-Aggro Druid,Grimestreet Paladin,1,51.95,485
-Aggro Druid,Enrage Warrior,0,49.05,265
-Aggro Druid,Enrage Warrior,1,56.64,256
-Aggro Druid,Quest Warrior,0,38.76,325
-Aggro Druid,Quest Warrior,1,53.98,326
-Aggro Druid,Dead Man Warrior,0,53.45,492
-Aggro Druid,Dead Man Warrior,1,56.28,501
-Aggro Druid,Prince Rogue,0,47.72,2682
-Aggro Druid,Prince Rogue,1,50.42,2707
-Demon Control Warlock,Pirate Warrior,0,31.25,835
-Demon Control Warlock,Pirate Warrior,1,31.53,796
-Demon Control Warlock,Miracle Rogue,0,49.17,850
-Demon Control Warlock,Miracle Rogue,1,43.53,866
-Demon Control Warlock,Evolve Shaman,0,52.38,3276
-Demon Control Warlock,Evolve Shaman,1,59.99,3262
-Demon Control Warlock,Aggro Druid,0,47.84,579
-Demon Control Warlock,Aggro Druid,1,50.39,504
-Demon Control Warlock,Demon Control Warlock,0,50,420
-Demon Control Warlock,Demon Control Warlock,1,50,420
-Demon Control Warlock,Highlander Priest,0,36.67,2945
-Demon Control Warlock,Highlander Priest,1,38.74,2940
-Demon Control Warlock,Resurrect Priest,0,35.21,937
-Demon Control Warlock,Resurrect Priest,1,38.65,921
-Demon Control Warlock,Dragon Priest,0,40.06,584
-Demon Control Warlock,Dragon Priest,1,45.21,595
-Demon Control Warlock,Handlock,0,44.41,1083
-Demon Control Warlock,Handlock,1,48.61,1082
-Demon Control Warlock,Zoolock,0,42.25,542
-Demon Control Warlock,Zoolock,1,54.42,531
-Demon Control Warlock,Highlander Warlock,1,51.72,116
-Demon Control Warlock,Midrange Hunter,0,30.91,4590
-Demon Control Warlock,Midrange Hunter,1,40.39,4416
-Demon Control Warlock,Deathrattle Hunter,0,30.5,1295
-Demon Control Warlock,Deathrattle Hunter,1,38.91,1267
-Demon Control Warlock,Secret Mage,0,24.26,2085
-Demon Control Warlock,Secret Mage,1,24.97,2126
-Demon Control Warlock,Quest Mage,0,52.97,1108
-Demon Control Warlock,Quest Mage,1,50.71,1183
-Demon Control Warlock,Control Mage,0,42.06,825
-Demon Control Warlock,Control Mage,1,48.34,848
-Demon Control Warlock,Jade Druid,0,32.05,1953
-Demon Control Warlock,Jade Druid,1,35.02,1967
-Demon Control Warlock,Taunt Druid,0,44.01,209
-Demon Control Warlock,Taunt Druid,1,49.75,207
-Demon Control Warlock,Mill Rogue,0,51.77,197
-Demon Control Warlock,Mill Rogue,1,47.86,211
-Demon Control Warlock,Elemental Rogue,0,39.22,436
-Demon Control Warlock,Elemental Rogue,1,47.91,384
-Demon Control Warlock,Control Paladin,0,42.26,388
-Demon Control Warlock,Control Paladin,1,37.46,331
-Demon Control Warlock,Murloc Paladin,0,40.23,840
-Demon Control Warlock,Murloc Paladin,1,46.35,850
-Demon Control Warlock,Grimestreet Paladin,0,33.09,420
-Demon Control Warlock,Grimestreet Paladin,1,40.66,423
-Demon Control Warlock,Enrage Warrior,0,40,185
-Demon Control Warlock,Enrage Warrior,1,40.22,179
-Demon Control Warlock,Quest Warrior,0,25,204
-Demon Control Warlock,Quest Warrior,1,25.49,204
-Demon Control Warlock,Dead Man Warrior,0,38.61,391
-Demon Control Warlock,Dead Man Warrior,1,40.94,337
-Demon Control Warlock,Prince Rogue,0,36.73,2085
-Demon Control Warlock,Prince Rogue,1,41.01,2048
-Highlander Priest,Tempo Mage,0,58.53,287
-Highlander Priest,Tempo Mage,1,55.28,331
-Highlander Priest,Pirate Warrior,0,48.82,6927
-Highlander Priest,Pirate Warrior,1,46.91,6921
-Highlander Priest,Miracle Rogue,0,56.96,6520
-Highlander Priest,Miracle Rogue,1,50.72,6616
-Highlander Priest,Evolve Shaman,0,49.4,29982
-Highlander Priest,Evolve Shaman,1,52.16,29616
-Highlander Priest,Aggro Druid,0,50.48,4514
-Highlander Priest,Aggro Druid,1,55.06,4507
-Highlander Priest,Demon Control Warlock,0,61.05,2940
-Highlander Priest,Demon Control Warlock,1,63.12,2945
-Highlander Priest,Highlander Priest,0,50,27720
-Highlander Priest,Highlander Priest,1,50,27720
-Highlander Priest,Resurrect Priest,0,43.76,7990
-Highlander Priest,Resurrect Priest,1,39.63,7988
-Highlander Priest,Dragon Priest,0,45.45,4316
-Highlander Priest,Dragon Priest,1,44.61,4339
-Highlander Priest,Silence Priest,0,50.7,564
-Highlander Priest,Silence Priest,1,53.3,559
-Highlander Priest,Handlock,0,57.52,7915
-Highlander Priest,Handlock,1,57.36,7869
-Highlander Priest,Zoolock,0,48.27,4760
-Highlander Priest,Zoolock,1,55.53,4707
-Highlander Priest,Highlander Warlock,0,54.58,786
-Highlander Priest,Highlander Warlock,1,55.94,790
-Highlander Priest,Midrange Hunter,0,44.58,40240
-Highlander Priest,Midrange Hunter,1,49.06,39601
-Highlander Priest,Deathrattle Hunter,0,43.19,9490
-Highlander Priest,Deathrattle Hunter,1,48.34,9465
-Highlander Priest,Secret Mage,0,44.42,17634
-Highlander Priest,Secret Mage,1,40.9,17688
-Highlander Priest,Quest Mage,0,41,8426
-Highlander Priest,Quest Mage,1,39.39,8273
-Highlander Priest,Control Mage,0,60.03,5785
-Highlander Priest,Control Mage,1,57.59,5858
-Highlander Priest,Highlander Mage,0,59.5,242
-Highlander Priest,Highlander Mage,1,54.84,299
-Highlander Priest,Jade Druid,0,40.33,17301
-Highlander Priest,Jade Druid,1,38.23,17429
-Highlander Priest,Big Druid,0,34.73,570
-Highlander Priest,Big Druid,1,32.99,591
-Highlander Priest,Taunt Druid,0,47.23,1539
-Highlander Priest,Taunt Druid,1,51.59,1533
-Highlander Priest,Mill Rogue,0,53.39,1281
-Highlander Priest,Mill Rogue,1,56.93,1261
-Highlander Priest,Elemental Rogue,0,52.81,4563
-Highlander Priest,Elemental Rogue,1,53.98,4496
-Highlander Priest,Quest Rogue,0,45.03,493
-Highlander Priest,Quest Rogue,1,40.5,511
-Highlander Priest,Control Paladin,0,60.94,2778
-Highlander Priest,Control Paladin,1,61.96,2695
-Highlander Priest,Murloc Paladin,0,43.66,8197
-Highlander Priest,Murloc Paladin,1,49.48,8196
-Highlander Priest,Aggro Paladin,0,47.41,329
-Highlander Priest,Aggro Paladin,1,43.71,318
-Highlander Priest,Grimestreet Paladin,0,50.8,3214
-Highlander Priest,Grimestreet Paladin,1,50.71,3206
-Highlander Priest,Enrage Warrior,0,66.3,1199
-Highlander Priest,Enrage Warrior,1,61.72,1249
-Highlander Priest,Quest Warrior,0,57.76,1577
-Highlander Priest,Quest Warrior,1,59.36,1538
-Highlander Priest,Dead Man Warrior,0,54.18,2283
-Highlander Priest,Dead Man Warrior,1,54.83,2429
-Highlander Priest,Prince Rogue,0,49.46,22880
-Highlander Priest,Prince Rogue,1,50.95,22810
-Resurrect Priest,Pirate Warrior,0,45.36,1735
-Resurrect Priest,Pirate Warrior,1,40.94,1707
-Resurrect Priest,Miracle Rogue,0,44.5,2085
-Resurrect Priest,Miracle Rogue,1,41.2,1973
-Resurrect Priest,Evolve Shaman,0,48.94,7842
-Resurrect Priest,Evolve Shaman,1,48.11,7821
-Resurrect Priest,Aggro Druid,0,62.93,1206
-Resurrect Priest,Aggro Druid,1,56.43,1134
-Resurrect Priest,Demon Control Warlock,0,61.23,921
-Resurrect Priest,Demon Control Warlock,1,64.46,937
-Resurrect Priest,Highlander Priest,0,60.27,7988
-Resurrect Priest,Highlander Priest,1,56.19,7990
-Resurrect Priest,Resurrect Priest,0,50,2272
-Resurrect Priest,Resurrect Priest,1,50,2272
-Resurrect Priest,Dragon Priest,0,58.27,1354
-Resurrect Priest,Dragon Priest,1,54.28,1387
-Resurrect Priest,Silence Priest,0,66.09,174
-Resurrect Priest,Silence Priest,1,66.3,184
-Resurrect Priest,Handlock,0,58.39,2406
-Resurrect Priest,Handlock,1,58.83,2502
-Resurrect Priest,Zoolock,0,55.69,1255
-Resurrect Priest,Zoolock,1,56.56,1181
-Resurrect Priest,Highlander Warlock,0,55.3,264
-Resurrect Priest,Highlander Warlock,1,59.77,271
-Resurrect Priest,Midrange Hunter,0,39.94,9887
-Resurrect Priest,Midrange Hunter,1,39.02,9838
-Resurrect Priest,Deathrattle Hunter,0,44.51,2878
-Resurrect Priest,Deathrattle Hunter,1,45.29,2720
-Resurrect Priest,Secret Mage,0,41.5,4751
-Resurrect Priest,Secret Mage,1,34.15,4743
-Resurrect Priest,Quest Mage,0,33.63,2322
-Resurrect Priest,Quest Mage,1,30.36,2467
-Resurrect Priest,Control Mage,0,57.98,2016
-Resurrect Priest,Control Mage,1,59.49,1943
-Resurrect Priest,Jade Druid,0,49.43,4936
-Resurrect Priest,Jade Druid,1,45.39,4987
-Resurrect Priest,Big Druid,0,47.39,173
-Resurrect Priest,Big Druid,1,50.28,173
-Resurrect Priest,Taunt Druid,0,57.63,465
-Resurrect Priest,Taunt Druid,1,58.24,479
-Resurrect Priest,Mill Rogue,0,38.94,475
-Resurrect Priest,Mill Rogue,1,40.58,441
-Resurrect Priest,Elemental Rogue,0,49.44,1165
-Resurrect Priest,Elemental Rogue,1,49.33,1052
-Resurrect Priest,Quest Rogue,0,36.8,144
-Resurrect Priest,Quest Rogue,1,33.87,124
-Resurrect Priest,Control Paladin,0,51.88,904
-Resurrect Priest,Control Paladin,1,51.58,913
-Resurrect Priest,Murloc Paladin,0,49.09,2157
-Resurrect Priest,Murloc Paladin,1,48.09,1992
-Resurrect Priest,Aggro Paladin,0,40.95,105
-Resurrect Priest,Aggro Paladin,1,42.99,107
-Resurrect Priest,Grimestreet Paladin,0,44.58,1090
-Resurrect Priest,Grimestreet Paladin,1,45.56,1060
-Resurrect Priest,Enrage Warrior,0,68.9,402
-Resurrect Priest,Enrage Warrior,1,70.6,432
-Resurrect Priest,Quest Warrior,0,66.98,521
-Resurrect Priest,Quest Warrior,1,64.77,582
-Resurrect Priest,Dead Man Warrior,0,65.37,953
-Resurrect Priest,Dead Man Warrior,1,64.23,920
-Resurrect Priest,Prince Rogue,0,50.63,5160
-Resurrect Priest,Prince Rogue,1,47.07,5160
-Dragon Priest,Pirate Warrior,0,39.04,1196
-Dragon Priest,Pirate Warrior,1,45.9,1074
-Dragon Priest,Miracle Rogue,0,50.39,1272
-Dragon Priest,Miracle Rogue,1,44.12,1217
-Dragon Priest,Evolve Shaman,0,38.5,4693
-Dragon Priest,Evolve Shaman,1,44.69,4587
-Dragon Priest,Aggro Druid,0,38.79,732
-Dragon Priest,Aggro Druid,1,46.5,729
-Dragon Priest,Demon Control Warlock,0,54.45,595
-Dragon Priest,Demon Control Warlock,1,59.93,584
-Dragon Priest,Highlander Priest,0,55.38,4339
-Dragon Priest,Highlander Priest,1,54.49,4316
-Dragon Priest,Resurrect Priest,0,45.71,1387
-Dragon Priest,Resurrect Priest,1,41.72,1354
-Dragon Priest,Dragon Priest,0,50,904
-Dragon Priest,Dragon Priest,1,50,904
-Dragon Priest,Silence Priest,0,58.82,136
-Dragon Priest,Silence Priest,1,60.14,138
-Dragon Priest,Handlock,0,46.03,1562
-Dragon Priest,Handlock,1,52.99,1587
-Dragon Priest,Zoolock,0,38.35,717
-Dragon Priest,Zoolock,1,51.46,717
-Dragon Priest,Highlander Warlock,0,49.35,156
-Dragon Priest,Highlander Warlock,1,57.98,169
-Dragon Priest,Midrange Hunter,0,36.88,6073
-Dragon Priest,Midrange Hunter,1,42.99,6121
-Dragon Priest,Deathrattle Hunter,0,36.07,1968
-Dragon Priest,Deathrattle Hunter,1,45.61,1925
-Dragon Priest,Secret Mage,0,38.76,2729
-Dragon Priest,Secret Mage,1,38.89,2795
-Dragon Priest,Quest Mage,0,54.23,1486
-Dragon Priest,Quest Mage,1,47.8,1550
-Dragon Priest,Control Mage,0,59.7,1231
-Dragon Priest,Control Mage,1,59.77,1243
-Dragon Priest,Jade Druid,0,51.51,2943
-Dragon Priest,Jade Druid,1,53.5,2850
-Dragon Priest,Big Druid,0,49.12,114
-Dragon Priest,Taunt Druid,0,51.88,318
-Dragon Priest,Taunt Druid,1,55.24,324
-Dragon Priest,Mill Rogue,0,50.5,297
-Dragon Priest,Mill Rogue,1,55.88,306
-Dragon Priest,Elemental Rogue,0,38.18,605
-Dragon Priest,Elemental Rogue,1,46.77,590
-Dragon Priest,Quest Rogue,0,57.84,102
-Dragon Priest,Control Paladin,0,47.63,550
-Dragon Priest,Control Paladin,1,55.38,585
-Dragon Priest,Murloc Paladin,0,30.35,1130
-Dragon Priest,Murloc Paladin,1,40.28,1112
-Dragon Priest,Grimestreet Paladin,0,40.2,582
-Dragon Priest,Grimestreet Paladin,1,45.1,603
-Dragon Priest,Enrage Warrior,0,62.5,264
-Dragon Priest,Enrage Warrior,1,65.87,293
-Dragon Priest,Quest Warrior,0,64.89,339
-Dragon Priest,Quest Warrior,1,72.19,356
-Dragon Priest,Dead Man Warrior,0,64.32,541
-Dragon Priest,Dead Man Warrior,1,68.54,620
-Dragon Priest,Prince Rogue,0,38.73,2793
-Dragon Priest,Prince Rogue,1,42.13,2656
-Silence Priest,Pirate Warrior,0,37.03,162
-Silence Priest,Pirate Warrior,1,35,160
-Silence Priest,Miracle Rogue,0,39.34,183
-Silence Priest,Miracle Rogue,1,46.7,182
-Silence Priest,Evolve Shaman,0,28.94,653
-Silence Priest,Evolve Shaman,1,35.3,592
-Silence Priest,Highlander Priest,0,46.69,559
-Silence Priest,Highlander Priest,1,49.29,564
-Silence Priest,Resurrect Priest,0,33.69,184
-Silence Priest,Resurrect Priest,1,33.9,174
-Silence Priest,Dragon Priest,0,39.85,138
-Silence Priest,Dragon Priest,1,41.17,136
-Silence Priest,Handlock,0,36.29,259
-Silence Priest,Handlock,1,48.55,208
-Silence Priest,Midrange Hunter,0,37.79,807
-Silence Priest,Midrange Hunter,1,40.29,819
-Silence Priest,Deathrattle Hunter,0,39.11,294
-Silence Priest,Deathrattle Hunter,1,38.06,289
-Silence Priest,Secret Mage,0,36.52,386
-Silence Priest,Secret Mage,1,36.21,370
-Silence Priest,Quest Mage,0,60.63,221
-Silence Priest,Quest Mage,1,58.5,200
-Silence Priest,Control Mage,0,43.27,171
-Silence Priest,Control Mage,1,45.05,182
-Silence Priest,Jade Druid,0,55.47,402
-Silence Priest,Jade Druid,1,51.52,394
-Silence Priest,Murloc Paladin,0,31.39,172
-Silence Priest,Murloc Paladin,1,33.33,150
-Silence Priest,Prince Rogue,0,36.26,353
-Silence Priest,Prince Rogue,1,34.81,316
-Handlock,Pirate Warrior,0,39.38,2295
-Handlock,Pirate Warrior,1,37.98,2143
-Handlock,Miracle Rogue,0,47.78,2396
-Handlock,Miracle Rogue,1,44.75,2469
-Handlock,Evolve Shaman,0,59.37,9057
-Handlock,Evolve Shaman,1,65.05,9089
-Handlock,Aggro Druid,0,50.77,1422
-Handlock,Aggro Druid,1,56.86,1370
-Handlock,Demon Control Warlock,0,51.29,1082
-Handlock,Demon Control Warlock,1,55.21,1083
-Handlock,Highlander Priest,0,42.58,7869
-Handlock,Highlander Priest,1,42.46,7915
-Handlock,Resurrect Priest,0,41.12,2502
-Handlock,Resurrect Priest,1,41.56,2406
-Handlock,Dragon Priest,0,46.94,1587
-Handlock,Dragon Priest,1,53.9,1562
-Handlock,Silence Priest,0,51.44,208
-Handlock,Silence Priest,1,63.7,259
-Handlock,Handlock,0,50,3012
-Handlock,Handlock,1,50,3012
-Handlock,Zoolock,0,48.78,1361
-Handlock,Zoolock,1,60.86,1293
-Handlock,Highlander Warlock,0,48.05,308
-Handlock,Highlander Warlock,1,57.84,306
-Handlock,Midrange Hunter,0,38.99,12119
-Handlock,Midrange Hunter,1,45.13,11966
-Handlock,Deathrattle Hunter,0,42.84,3998
-Handlock,Deathrattle Hunter,1,48.81,3929
-Handlock,Secret Mage,0,29.13,5444
-Handlock,Secret Mage,1,28.01,5372
-Handlock,Quest Mage,0,38.29,2794
-Handlock,Quest Mage,1,34.95,2772
-Handlock,Control Mage,0,45.68,2180
-Handlock,Control Mage,1,46.44,2183
-Handlock,Jade Druid,0,38.87,5373
-Handlock,Jade Druid,1,41.35,5387
-Handlock,Big Druid,0,40.52,190
-Handlock,Big Druid,1,38.63,176
-Handlock,Taunt Druid,0,50.34,576
-Handlock,Taunt Druid,1,57.97,552
-Handlock,Mill Rogue,0,45.13,534
-Handlock,Mill Rogue,1,46.89,580
-Handlock,Elemental Rogue,0,43.1,1160
-Handlock,Elemental Rogue,1,44.43,1141
-Handlock,Quest Rogue,0,39.08,197
-Handlock,Quest Rogue,1,39.76,171
-Handlock,Control Paladin,0,45.73,1019
-Handlock,Control Paladin,1,50.83,1013
-Handlock,Murloc Paladin,0,45.61,2247
-Handlock,Murloc Paladin,1,55.69,2223
-Handlock,Aggro Paladin,0,58.06,124
-Handlock,Aggro Paladin,1,64.34,129
-Handlock,Grimestreet Paladin,0,40.23,1198
-Handlock,Grimestreet Paladin,1,44.04,1151
-Handlock,Enrage Warrior,0,45.63,515
-Handlock,Enrage Warrior,1,56.03,505
-Handlock,Quest Warrior,0,49.41,599
-Handlock,Quest Warrior,1,56.14,618
-Handlock,Dead Man Warrior,0,49.94,921
-Handlock,Dead Man Warrior,1,54.08,1004
-Handlock,Prince Rogue,0,42.01,5293
-Handlock,Prince Rogue,1,44.88,5231
-Zoolock,Pirate Warrior,0,50.3,974
-Zoolock,Pirate Warrior,1,51.91,1017
-Zoolock,Miracle Rogue,0,54.08,1078
-Zoolock,Miracle Rogue,1,55.79,1070
-Zoolock,Evolve Shaman,0,46.69,4275
-Zoolock,Evolve Shaman,1,60.3,4323
-Zoolock,Aggro Druid,0,45.94,666
-Zoolock,Aggro Druid,1,55.28,662
-Zoolock,Demon Control Warlock,0,45.57,531
-Zoolock,Demon Control Warlock,1,57.74,542
-Zoolock,Highlander Priest,0,44.46,4707
-Zoolock,Highlander Priest,1,51.7,4760
-Zoolock,Resurrect Priest,0,43.35,1181
-Zoolock,Resurrect Priest,1,44.3,1255
-Zoolock,Dragon Priest,0,48.53,717
-Zoolock,Dragon Priest,1,61.64,717
-Zoolock,Handlock,0,39.13,1293
-Zoolock,Handlock,1,51.13,1361
-Zoolock,Zoolock,0,50,793
-Zoolock,Zoolock,1,50,793
-Zoolock,Highlander Warlock,0,52.51,179
-Zoolock,Highlander Warlock,1,60.71,168
-Zoolock,Midrange Hunter,0,48.18,5444
-Zoolock,Midrange Hunter,1,61.12,5490
-Zoolock,Deathrattle Hunter,0,51.16,1417
-Zoolock,Deathrattle Hunter,1,64.13,1503
-Zoolock,Secret Mage,0,55.82,2517
-Zoolock,Secret Mage,1,70.39,2506
-Zoolock,Quest Mage,0,60.29,1277
-Zoolock,Quest Mage,1,66.02,1245
-Zoolock,Control Mage,0,47.03,1197
-Zoolock,Control Mage,1,60.57,1149
-Zoolock,Jade Druid,0,49.12,2917
-Zoolock,Jade Druid,1,59.73,2993
-Zoolock,Big Druid,1,60.95,105
-Zoolock,Taunt Druid,0,51.53,260
-Zoolock,Taunt Druid,1,68.18,242
-Zoolock,Mill Rogue,0,70.74,270
-Zoolock,Mill Rogue,1,70.38,260
-Zoolock,Elemental Rogue,0,37.01,651
-Zoolock,Elemental Rogue,1,45.19,635
-Zoolock,Control Paladin,0,47.16,547
-Zoolock,Control Paladin,1,57.16,537
-Zoolock,Murloc Paladin,0,41.97,1153
-Zoolock,Murloc Paladin,1,60.33,1137
-Zoolock,Grimestreet Paladin,0,54.59,522
-Zoolock,Grimestreet Paladin,1,61.92,499
-Zoolock,Enrage Warrior,0,47.22,216
-Zoolock,Enrage Warrior,1,62.23,233
-Zoolock,Quest Warrior,0,46.47,284
-Zoolock,Quest Warrior,1,66.45,322
-Zoolock,Dead Man Warrior,0,63.15,456
-Zoolock,Dead Man Warrior,1,72.98,485
-Zoolock,Prince Rogue,0,39.73,3294
-Zoolock,Prince Rogue,1,48.15,3117
-Highlander Warlock,Pirate Warrior,0,41.78,280
-Highlander Warlock,Pirate Warrior,1,37.13,237
-Highlander Warlock,Miracle Rogue,0,48,225
-Highlander Warlock,Miracle Rogue,1,39.16,263
-Highlander Warlock,Evolve Shaman,0,44.07,1005
-Highlander Warlock,Evolve Shaman,1,54.68,971
-Highlander Warlock,Aggro Druid,0,44.1,195
-Highlander Warlock,Aggro Druid,1,43.97,166
-Highlander Warlock,Demon Control Warlock,0,48.27,116
-Highlander Warlock,Highlander Priest,0,44.05,790
-Highlander Warlock,Highlander Priest,1,45.29,786
-Highlander Warlock,Resurrect Priest,0,40.22,271
-Highlander Warlock,Resurrect Priest,1,44.69,264
-Highlander Warlock,Dragon Priest,0,42.01,169
-Highlander Warlock,Dragon Priest,1,50.64,156
-Highlander Warlock,Handlock,0,42.15,306
-Highlander Warlock,Handlock,1,51.94,308
-Highlander Warlock,Zoolock,0,39.28,168
-Highlander Warlock,Zoolock,1,46.92,179
-Highlander Warlock,Midrange Hunter,0,27.41,1419
-Highlander Warlock,Midrange Hunter,1,33.98,1371
-Highlander Warlock,Deathrattle Hunter,0,29.82,446
-Highlander Warlock,Deathrattle Hunter,1,32.04,440
-Highlander Warlock,Secret Mage,0,19.76,602
-Highlander Warlock,Secret Mage,1,23.76,627
-Highlander Warlock,Quest Mage,0,35.35,280
-Highlander Warlock,Quest Mage,1,37.95,274
-Highlander Warlock,Control Mage,0,41.1,236
-Highlander Warlock,Control Mage,1,42.6,223
-Highlander Warlock,Jade Druid,0,33.96,524
-Highlander Warlock,Jade Druid,1,34.84,508
-Highlander Warlock,Elemental Rogue,0,40.17,112
-Highlander Warlock,Murloc Paladin,0,35.66,272
-Highlander Warlock,Murloc Paladin,1,43.13,255
-Highlander Warlock,Grimestreet Paladin,0,27.35,117
-Highlander Warlock,Grimestreet Paladin,1,45.21,115
-Highlander Warlock,Dead Man Warrior,0,59.13,115
-Highlander Warlock,Dead Man Warrior,1,64.12,131
-Highlander Warlock,Prince Rogue,0,38.9,640
-Highlander Warlock,Prince Rogue,1,40.9,599
-#Midrange Hunter,10,0,43.28,134
-#Midrange Hunter,10,1,49.6,125
-Midrange Hunter,Tempo Mage,0,58.17,373
-Midrange Hunter,Tempo Mage,1,58.82,374
-Midrange Hunter,Pirate Warrior,0,59.66,7314
-Midrange Hunter,Pirate Warrior,1,59.32,7363
-Midrange Hunter,Miracle Rogue,0,61.04,9054
-Midrange Hunter,Miracle Rogue,1,62.26,9262
-Midrange Hunter,Evolve Shaman,0,35.89,33871
-Midrange Hunter,Evolve Shaman,1,43.13,33736
-Midrange Hunter,Aggro Druid,0,44.53,4958
-Midrange Hunter,Aggro Druid,1,53.11,4933
-Midrange Hunter,Demon Control Warlock,0,59.51,4416
-Midrange Hunter,Demon Control Warlock,1,69.04,4590
-Midrange Hunter,Highlander Priest,0,50.93,39601
-Midrange Hunter,Highlander Priest,1,55.41,40240
-Midrange Hunter,Resurrect Priest,0,60.96,9838
-Midrange Hunter,Resurrect Priest,1,60.04,9887
-Midrange Hunter,Dragon Priest,0,57,6121
-Midrange Hunter,Dragon Priest,1,63.11,6073
-Midrange Hunter,Silence Priest,0,59.7,819
-Midrange Hunter,Silence Priest,1,62.2,807
-Midrange Hunter,Handlock,0,54.62,11966
-Midrange Hunter,Handlock,1,60.73,12119
-Midrange Hunter,Zoolock,0,38.87,5490
-Midrange Hunter,Zoolock,1,51.8,5444
-Midrange Hunter,Highlander Warlock,0,65.79,1371
-Midrange Hunter,Highlander Warlock,1,72.37,1419
-Midrange Hunter,Midrange Hunter,0,50,45088
-Midrange Hunter,Midrange Hunter,1,50,45088
-Midrange Hunter,Deathrattle Hunter,0,43.99,12848
-Midrange Hunter,Deathrattle Hunter,1,54.55,12639
-Midrange Hunter,Secret Mage,0,51.74,21859
-Midrange Hunter,Secret Mage,1,56.52,21961
-Midrange Hunter,Quest Mage,0,84.6,10847
-Midrange Hunter,Quest Mage,1,87.17,10973
-Midrange Hunter,Control Mage,0,57.87,9853
-Midrange Hunter,Control Mage,1,66.31,9635
-Midrange Hunter,Highlander Mage,0,61.41,482
-Midrange Hunter,Highlander Mage,1,69.16,548
-Midrange Hunter,Jade Druid,0,50.89,23818
-Midrange Hunter,Jade Druid,1,57.98,23697
-Midrange Hunter,Big Druid,0,64.01,778
-Midrange Hunter,Big Druid,1,70.05,788
-Midrange Hunter,Taunt Druid,0,56.34,2167
-Midrange Hunter,Taunt Druid,1,63.73,2151
-Midrange Hunter,Mill Rogue,0,76.3,1844
-Midrange Hunter,Mill Rogue,1,79.66,1928
-Midrange Hunter,Elemental Rogue,0,34.42,5182
-Midrange Hunter,Elemental Rogue,1,43.92,5077
-Midrange Hunter,Quest Rogue,0,68.22,661
-Midrange Hunter,Quest Rogue,1,77.79,671
-Midrange Hunter,Control Paladin,0,42.05,4858
-Midrange Hunter,Control Paladin,1,52.46,4559
-Midrange Hunter,Murloc Paladin,0,37.2,9348
-Midrange Hunter,Murloc Paladin,1,45.97,9408
-Midrange Hunter,Aggro Paladin,0,39.63,386
-Midrange Hunter,Aggro Paladin,1,54.27,374
-Midrange Hunter,Grimestreet Paladin,0,37.3,4669
-Midrange Hunter,Grimestreet Paladin,1,46.48,4569
-Midrange Hunter,Enrage Warrior,0,61.43,1950
-Midrange Hunter,Enrage Warrior,1,65.39,2075
-Midrange Hunter,Quest Warrior,0,60.65,2468
-Midrange Hunter,Quest Warrior,1,67.82,2505
-Midrange Hunter,Dead Man Warrior,0,78.45,3913
-Midrange Hunter,Dead Man Warrior,1,79.73,4100
-Midrange Hunter,Prince Rogue,0,42.97,23574
-Midrange Hunter,Prince Rogue,1,49.99,23297
-Deathrattle Hunter,Tempo Mage,1,56.25,112
-Deathrattle Hunter,Pirate Warrior,0,48.76,2235
-Deathrattle Hunter,Pirate Warrior,1,48.9,2276
-Deathrattle Hunter,Miracle Rogue,0,54.73,2821
-Deathrattle Hunter,Miracle Rogue,1,55.16,2906
-Deathrattle Hunter,Evolve Shaman,0,36.52,10077
-Deathrattle Hunter,Evolve Shaman,1,44.56,10124
-Deathrattle Hunter,Aggro Druid,0,44.6,1446
-Deathrattle Hunter,Aggro Druid,1,53.54,1384
-Deathrattle Hunter,Demon Control Warlock,0,61.01,1267
-Deathrattle Hunter,Demon Control Warlock,1,69.49,1295
-Deathrattle Hunter,Highlander Priest,0,51.65,9465
-Deathrattle Hunter,Highlander Priest,1,56.8,9490
-Deathrattle Hunter,Resurrect Priest,0,54.7,2720
-Deathrattle Hunter,Resurrect Priest,1,55.48,2878
-Deathrattle Hunter,Dragon Priest,0,54.38,1925
-Deathrattle Hunter,Dragon Priest,1,63.92,1968
-Deathrattle Hunter,Silence Priest,0,61.93,289
-Deathrattle Hunter,Silence Priest,1,60.88,294
-Deathrattle Hunter,Handlock,0,50.95,3929
-Deathrattle Hunter,Handlock,1,56.97,3998
-Deathrattle Hunter,Zoolock,0,35.86,1503
-Deathrattle Hunter,Zoolock,1,48.83,1417
-Deathrattle Hunter,Highlander Warlock,0,67.95,440
-Deathrattle Hunter,Highlander Warlock,1,70.17,446
-Deathrattle Hunter,Midrange Hunter,0,45.43,12639
-Deathrattle Hunter,Midrange Hunter,1,56,12848
-Deathrattle Hunter,Deathrattle Hunter,0,50,4747
-Deathrattle Hunter,Deathrattle Hunter,1,50,4747
-Deathrattle Hunter,Secret Mage,0,49.24,5893
-Deathrattle Hunter,Secret Mage,1,54.96,5875
-Deathrattle Hunter,Quest Mage,0,80.67,3260
-Deathrattle Hunter,Quest Mage,1,84.09,3320
-Deathrattle Hunter,Control Mage,0,58.68,3168
-Deathrattle Hunter,Control Mage,1,67.9,3262
-Deathrattle Hunter,Highlander Mage,0,63.69,146
-Deathrattle Hunter,Highlander Mage,1,73.58,159
-Deathrattle Hunter,Jade Druid,0,48.29,6528
-Deathrattle Hunter,Jade Druid,1,55.4,6499
-Deathrattle Hunter,Big Druid,0,55.55,207
-Deathrattle Hunter,Big Druid,1,65.45,220
-Deathrattle Hunter,Taunt Druid,0,54.82,684
-Deathrattle Hunter,Taunt Druid,1,62.61,757
-Deathrattle Hunter,Mill Rogue,0,76.21,639
-Deathrattle Hunter,Mill Rogue,1,82.02,651
-Deathrattle Hunter,Elemental Rogue,0,28.47,1166
-Deathrattle Hunter,Elemental Rogue,1,41.53,1240
-Deathrattle Hunter,Quest Rogue,0,67.03,179
-Deathrattle Hunter,Quest Rogue,1,75.23,214
-Deathrattle Hunter,Control Paladin,0,43.14,1328
-Deathrattle Hunter,Control Paladin,1,55.7,1463
-Deathrattle Hunter,Murloc Paladin,0,33.41,2418
-Deathrattle Hunter,Murloc Paladin,1,45.06,2341
-Deathrattle Hunter,Aggro Paladin,0,40.68,145
-Deathrattle Hunter,Aggro Paladin,1,52.38,147
-Deathrattle Hunter,Grimestreet Paladin,0,37.45,1383
-Deathrattle Hunter,Grimestreet Paladin,1,48.91,1386
-Deathrattle Hunter,Enrage Warrior,0,63.26,607
-Deathrattle Hunter,Enrage Warrior,1,67.75,645
-Deathrattle Hunter,Quest Warrior,0,63.64,861
-Deathrattle Hunter,Quest Warrior,1,71.55,900
-Deathrattle Hunter,Dead Man Warrior,0,85.08,1207
-Deathrattle Hunter,Dead Man Warrior,1,86.13,1233
-Deathrattle Hunter,Prince Rogue,0,36.48,5383
-Deathrattle Hunter,Prince Rogue,1,44.56,5190
-Secret Mage,Tempo Mage,0,61,159
-Secret Mage,Tempo Mage,1,54.76,168
-Secret Mage,Pirate Warrior,0,45.06,3577
-Secret Mage,Pirate Warrior,1,48.12,3697
-Secret Mage,Miracle Rogue,0,66.05,4124
-Secret Mage,Miracle Rogue,1,62.82,4089
-Secret Mage,Evolve Shaman,0,41.12,16145
-Secret Mage,Evolve Shaman,1,44.19,16149
-Secret Mage,Aggro Druid,0,45.48,2434
-Secret Mage,Aggro Druid,1,50.75,2319
-Secret Mage,Demon Control Warlock,0,75.02,2126
-Secret Mage,Demon Control Warlock,1,75.73,2085
-Secret Mage,Highlander Priest,0,59.09,17688
-Secret Mage,Highlander Priest,1,55.57,17634
-Secret Mage,Resurrect Priest,0,65.82,4743
-Secret Mage,Resurrect Priest,1,58.47,4751
-Secret Mage,Dragon Priest,0,61.1,2795
-Secret Mage,Dragon Priest,1,61.19,2729
-Secret Mage,Silence Priest,0,63.78,370
-Secret Mage,Silence Priest,1,63.47,386
-Secret Mage,Handlock,0,71.9,5372
-Secret Mage,Handlock,1,70.81,5444
-Secret Mage,Zoolock,0,29.6,2506
-Secret Mage,Zoolock,1,44.17,2517
-Secret Mage,Highlander Warlock,0,76.23,627
-Secret Mage,Highlander Warlock,1,80.06,602
-Secret Mage,Midrange Hunter,0,43.46,21961
-Secret Mage,Midrange Hunter,1,48.24,21859
-Secret Mage,Deathrattle Hunter,0,45.03,5875
-Secret Mage,Deathrattle Hunter,1,50.75,5893
-Secret Mage,Secret Mage,0,50,10192
-Secret Mage,Secret Mage,1,50,10192
-Secret Mage,Quest Mage,0,85.63,5145
-Secret Mage,Quest Mage,1,84.24,5204
-Secret Mage,Control Mage,0,67.75,4196
-Secret Mage,Control Mage,1,65.63,4298
-Secret Mage,Highlander Mage,0,69.81,222
-Secret Mage,Highlander Mage,1,70.09,214
-Secret Mage,Jade Druid,0,62.45,10985
-Secret Mage,Jade Druid,1,60.64,10968
-Secret Mage,Big Druid,0,73.59,356
-Secret Mage,Big Druid,1,74.23,361
-Secret Mage,Taunt Druid,0,65.95,990
-Secret Mage,Taunt Druid,1,65.31,989
-Secret Mage,Mill Rogue,0,80.18,959
-Secret Mage,Mill Rogue,1,81.28,887
-Secret Mage,Elemental Rogue,0,33.69,2327
-Secret Mage,Elemental Rogue,1,38.59,2384
-Secret Mage,Quest Rogue,0,74.37,281
-Secret Mage,Quest Rogue,1,71.06,311
-Secret Mage,Control Paladin,0,53.22,2048
-Secret Mage,Control Paladin,1,59.01,2091
-Secret Mage,Murloc Paladin,0,35.33,4449
-Secret Mage,Murloc Paladin,1,42.42,4431
-Secret Mage,Aggro Paladin,0,32.16,171
-Secret Mage,Aggro Paladin,1,41.93,186
-Secret Mage,Grimestreet Paladin,0,44.81,2035
-Secret Mage,Grimestreet Paladin,1,48.47,2137
-Secret Mage,Enrage Warrior,0,71.16,874
-Secret Mage,Enrage Warrior,1,68.86,909
-Secret Mage,Quest Warrior,0,71,1169
-Secret Mage,Quest Warrior,1,70.64,1148
-Secret Mage,Dead Man Warrior,0,80.32,1870
-Secret Mage,Dead Man Warrior,1,78.11,1759
-Secret Mage,Prince Rogue,0,38.18,10863
-Secret Mage,Prince Rogue,1,43.5,10878
-Quest Mage,Pirate Warrior,0,13.52,1878
-Quest Mage,Pirate Warrior,1,13.74,1928
-Quest Mage,Miracle Rogue,0,44.32,2335
-Quest Mage,Miracle Rogue,1,39.83,2239
-Quest Mage,Evolve Shaman,0,37.48,8392
-Quest Mage,Evolve Shaman,1,37.7,8151
-Quest Mage,Aggro Druid,0,25.06,1193
-Quest Mage,Aggro Druid,1,27.12,1202
-Quest Mage,Demon Control Warlock,0,49.19,1183
-Quest Mage,Demon Control Warlock,1,47.02,1108
-Quest Mage,Highlander Priest,0,60.58,8273
-Quest Mage,Highlander Priest,1,58.97,8426
-Quest Mage,Resurrect Priest,0,69.63,2467
-Quest Mage,Resurrect Priest,1,66.36,2322
-Quest Mage,Dragon Priest,0,52.19,1550
-Quest Mage,Dragon Priest,1,45.76,1486
-Quest Mage,Silence Priest,0,41.5,200
-Quest Mage,Silence Priest,1,39.36,221
-Quest Mage,Handlock,0,64.93,2772
-Quest Mage,Handlock,1,61.7,2794
-Quest Mage,Zoolock,0,33.97,1245
-Quest Mage,Zoolock,1,39.7,1277
-Quest Mage,Highlander Warlock,0,62.04,274
-Quest Mage,Highlander Warlock,1,64.64,280
-Quest Mage,Midrange Hunter,0,12.8,10973
-Quest Mage,Midrange Hunter,1,15.39,10847
-Quest Mage,Deathrattle Hunter,0,15.9,3320
-Quest Mage,Deathrattle Hunter,1,19.32,3260
-Quest Mage,Secret Mage,0,15.75,5204
-Quest Mage,Secret Mage,1,14.36,5145
-Quest Mage,Quest Mage,0,50,3031
-Quest Mage,Quest Mage,1,50,3031
-Quest Mage,Control Mage,0,41.22,2256
-Quest Mage,Control Mage,1,42.48,2222
-Quest Mage,Highlander Mage,0,49.5,101
-Quest Mage,Jade Druid,0,54.62,5437
-Quest Mage,Jade Druid,1,51.85,5432
-Quest Mage,Big Druid,0,58.13,172
-Quest Mage,Big Druid,1,56.2,153
-Quest Mage,Taunt Druid,0,49.2,563
-Quest Mage,Taunt Druid,1,47.12,556
-Quest Mage,Mill Rogue,0,42.26,601
-Quest Mage,Mill Rogue,1,39.22,594
-Quest Mage,Elemental Rogue,0,32.75,1038
-Quest Mage,Elemental Rogue,1,36.88,1060
-Quest Mage,Quest Rogue,0,45.14,175
-Quest Mage,Quest Rogue,1,47.36,152
-Quest Mage,Control Paladin,0,51.58,1070
-Quest Mage,Control Paladin,1,54.94,1081
-Quest Mage,Murloc Paladin,0,30.64,2173
-Quest Mage,Murloc Paladin,1,33.63,2218
-Quest Mage,Grimestreet Paladin,0,47.85,1097
-Quest Mage,Grimestreet Paladin,1,50.92,976
-Quest Mage,Enrage Warrior,0,66.23,468
-Quest Mage,Enrage Warrior,1,65.45,440
-Quest Mage,Quest Warrior,0,60.86,598
-Quest Mage,Quest Warrior,1,56.17,575
-Quest Mage,Dead Man Warrior,0,49.48,1158
-Quest Mage,Dead Man Warrior,1,49.47,1140
-Quest Mage,Prince Rogue,0,23.53,4911
-Quest Mage,Prince Rogue,1,24.33,4881
-Control Mage,Pirate Warrior,0,44.13,1910
-Control Mage,Pirate Warrior,1,44.58,1940
-Control Mage,Miracle Rogue,0,54.3,1779
-Control Mage,Miracle Rogue,1,51.58,1803
-Control Mage,Evolve Shaman,0,43.54,7255
-Control Mage,Evolve Shaman,1,46.78,7216
-Control Mage,Aggro Druid,0,48.83,1118
-Control Mage,Aggro Druid,1,53.95,1125
-Control Mage,Demon Control Warlock,0,51.65,848
-Control Mage,Demon Control Warlock,1,57.93,825
-Control Mage,Highlander Priest,0,42.38,5858
-Control Mage,Highlander Priest,1,39.94,5785
-Control Mage,Resurrect Priest,0,40.45,1943
-Control Mage,Resurrect Priest,1,41.96,2016
-Control Mage,Dragon Priest,0,40.22,1243
-Control Mage,Dragon Priest,1,40.29,1231
-Control Mage,Silence Priest,0,54.39,182
-Control Mage,Silence Priest,1,56.72,171
-Control Mage,Handlock,0,53.5,2183
-Control Mage,Handlock,1,54.31,2180
-Control Mage,Zoolock,0,39.42,1149
-Control Mage,Zoolock,1,52.88,1197
-Control Mage,Highlander Warlock,0,57.39,223
-Control Mage,Highlander Warlock,1,58.89,236
-Control Mage,Midrange Hunter,0,33.68,9635
-Control Mage,Midrange Hunter,1,42.09,9853
-Control Mage,Deathrattle Hunter,0,32.06,3262
-Control Mage,Deathrattle Hunter,1,41.28,3168
-Control Mage,Secret Mage,0,34.36,4298
-Control Mage,Secret Mage,1,32.22,4196
-Control Mage,Quest Mage,0,57.51,2222
-Control Mage,Quest Mage,1,58.77,2256
-Control Mage,Control Mage,0,50,1764
-Control Mage,Control Mage,1,50,1764
-Control Mage,Jade Druid,0,39.62,4096
-Control Mage,Jade Druid,1,39.5,4075
-Control Mage,Big Druid,0,49.57,119
-Control Mage,Big Druid,1,38.68,137
-Control Mage,Taunt Druid,0,44.13,435
-Control Mage,Taunt Druid,1,50.54,459
-Control Mage,Mill Rogue,0,54.93,415
-Control Mage,Mill Rogue,1,60.36,439
-Control Mage,Elemental Rogue,0,41.46,902
-Control Mage,Elemental Rogue,1,49.51,832
-Control Mage,Quest Rogue,0,44.13,145
-Control Mage,Quest Rogue,1,46,150
-Control Mage,Control Paladin,0,52.03,738
-Control Mage,Control Paladin,1,54.43,790
-Control Mage,Murloc Paladin,0,41.31,1820
-Control Mage,Murloc Paladin,1,47.02,1799
-Control Mage,Aggro Paladin,0,27.27,110
-Control Mage,Grimestreet Paladin,0,40.95,896
-Control Mage,Grimestreet Paladin,1,42.55,860
-Control Mage,Enrage Warrior,0,53.45,376
-Control Mage,Enrage Warrior,1,52.01,373
-Control Mage,Quest Warrior,0,44.74,485
-Control Mage,Quest Warrior,1,44.95,416
-Control Mage,Dead Man Warrior,0,38.61,751
-Control Mage,Dead Man Warrior,1,43.66,781
-Control Mage,Prince Rogue,0,43.92,4455
-Control Mage,Prince Rogue,1,49.03,4370
-Highlander Mage,Evolve Shaman,0,39.66,363
-Highlander Mage,Evolve Shaman,1,46.17,340
-Highlander Mage,Highlander Priest,0,45.15,299
-Highlander Mage,Highlander Priest,1,40.49,242
-Highlander Mage,Midrange Hunter,0,30.83,548
-Highlander Mage,Midrange Hunter,1,38.58,482
-Highlander Mage,Deathrattle Hunter,0,26.41,159
-Highlander Mage,Deathrattle Hunter,1,35.61,146
-Highlander Mage,Secret Mage,0,29.9,214
-Highlander Mage,Secret Mage,1,30.18,222
-Highlander Mage,Quest Mage,1,50.49,101
-Highlander Mage,Jade Druid,0,32.05,209
-Highlander Mage,Jade Druid,1,31.21,189
-Highlander Mage,Murloc Paladin,0,28.3,106
-Highlander Mage,Prince Rogue,0,38.26,230
-Highlander Mage,Prince Rogue,1,48.59,214
-Jade Druid,Tempo Mage,0,57.14,182
-Jade Druid,Tempo Mage,1,56.99,193
-Jade Druid,Pirate Warrior,0,42.96,4138
-Jade Druid,Pirate Warrior,1,44.51,4228
-Jade Druid,Miracle Rogue,0,54.77,4416
-Jade Druid,Miracle Rogue,1,47.2,4298
-Jade Druid,Evolve Shaman,0,43.36,18138
-Jade Druid,Evolve Shaman,1,48.03,18345
-Jade Druid,Aggro Druid,0,36.06,2687
-Jade Druid,Aggro Druid,1,41.41,2634
-Jade Druid,Demon Control Warlock,0,64.46,1967
-Jade Druid,Demon Control Warlock,1,67.53,1953
-Jade Druid,Highlander Priest,0,61.51,17429
-Jade Druid,Highlander Priest,1,59.47,17301
-Jade Druid,Resurrect Priest,0,54.48,4987
-Jade Druid,Resurrect Priest,1,50.52,4936
-Jade Druid,Dragon Priest,0,46.45,2850
-Jade Druid,Dragon Priest,1,48.45,2943
-Jade Druid,Silence Priest,0,48.47,394
-Jade Druid,Silence Priest,1,44.52,402
-Jade Druid,Handlock,0,58.52,5387
-Jade Druid,Handlock,1,61,5373
-Jade Druid,Zoolock,0,40.22,2993
-Jade Druid,Zoolock,1,50.83,2917
-Jade Druid,Highlander Warlock,0,65.15,508
-Jade Druid,Highlander Warlock,1,65.83,524
-Jade Druid,Midrange Hunter,0,42,23697
-Jade Druid,Midrange Hunter,1,49.08,23818
-Jade Druid,Deathrattle Hunter,0,44.59,6499
-Jade Druid,Deathrattle Hunter,1,51.66,6528
-Jade Druid,Secret Mage,0,39.31,10968
-Jade Druid,Secret Mage,1,37.53,10985
-Jade Druid,Quest Mage,0,48.1,5432
-Jade Druid,Quest Mage,1,45.31,5437
-Jade Druid,Control Mage,0,60.39,4075
-Jade Druid,Control Mage,1,60.22,4096
-Jade Druid,Highlander Mage,0,68.25,189
-Jade Druid,Highlander Mage,1,67.94,209
-Jade Druid,Jade Druid,0,50,11245
-Jade Druid,Jade Druid,1,50,11245
-Jade Druid,Big Druid,0,43.04,374
-Jade Druid,Big Druid,1,47.93,388
-Jade Druid,Taunt Druid,0,48.16,1038
-Jade Druid,Taunt Druid,1,48.63,1061
-Jade Druid,Mill Rogue,0,75.15,958
-Jade Druid,Mill Rogue,1,74.27,937
-Jade Druid,Elemental Rogue,0,48.19,2685
-Jade Druid,Elemental Rogue,1,51.28,2615
-Jade Druid,Quest Rogue,0,39.56,321
-Jade Druid,Quest Rogue,1,41.07,336
-Jade Druid,Control Paladin,0,60.55,1848
-Jade Druid,Control Paladin,1,62.71,1955
-Jade Druid,Murloc Paladin,0,38.65,4910
-Jade Druid,Murloc Paladin,1,44.59,4830
-Jade Druid,Aggro Paladin,0,43.23,229
-Jade Druid,Aggro Paladin,1,47.42,194
-Jade Druid,Grimestreet Paladin,0,48.77,2130
-Jade Druid,Grimestreet Paladin,1,49.6,2163
-Jade Druid,Enrage Warrior,0,67.91,907
-Jade Druid,Enrage Warrior,1,69.05,895
-Jade Druid,Quest Warrior,0,70.63,1032
-Jade Druid,Quest Warrior,1,72.21,1087
-Jade Druid,Dead Man Warrior,0,63.48,1728
-Jade Druid,Dead Man Warrior,1,65.85,1684
-Jade Druid,Prince Rogue,0,43.89,13098
-Jade Druid,Prince Rogue,1,47.77,12859
-Big Druid,Pirate Warrior,0,33.09,139
-Big Druid,Pirate Warrior,1,36.29,135
-Big Druid,Miracle Rogue,0,48.05,154
-Big Druid,Miracle Rogue,1,33.77,151
-Big Druid,Evolve Shaman,0,40.13,613
-Big Druid,Evolve Shaman,1,45.51,624
-Big Druid,Aggro Druid,1,25.92,108
-Big Druid,Highlander Priest,0,66.66,591
-Big Druid,Highlander Priest,1,65.26,570
-Big Druid,Resurrect Priest,0,49.71,173
-Big Druid,Resurrect Priest,1,52.6,173
-Big Druid,Dragon Priest,1,50.87,114
-Big Druid,Handlock,0,61.36,176
-Big Druid,Handlock,1,59.47,190
-Big Druid,Zoolock,0,39.04,105
-Big Druid,Midrange Hunter,0,29.94,788
-Big Druid,Midrange Hunter,1,35.98,778
-Big Druid,Deathrattle Hunter,0,34.54,220
-Big Druid,Deathrattle Hunter,1,44.44,207
-Big Druid,Secret Mage,0,25.76,361
-Big Druid,Secret Mage,1,26.4,356
-Big Druid,Quest Mage,0,43.79,153
-Big Druid,Quest Mage,1,41.86,172
-Big Druid,Control Mage,0,61.31,137
-Big Druid,Control Mage,1,49.57,119
-Big Druid,Jade Druid,0,52.06,388
-Big Druid,Jade Druid,1,56.95,374
-Big Druid,Murloc Paladin,0,25.49,153
-Big Druid,Murloc Paladin,1,32.33,167
-Big Druid,Prince Rogue,0,32.94,425
-Big Druid,Prince Rogue,1,38.87,409
-Taunt Druid,Pirate Warrior,0,39.74,395
-Taunt Druid,Pirate Warrior,1,44.47,362
-Taunt Druid,Miracle Rogue,0,46.36,481
-Taunt Druid,Miracle Rogue,1,48.08,443
-Taunt Druid,Evolve Shaman,0,35.39,1726
-Taunt Druid,Evolve Shaman,1,44.26,1570
-Taunt Druid,Aggro Druid,0,37.78,262
-Taunt Druid,Aggro Druid,1,42.25,239
-Taunt Druid,Demon Control Warlock,0,50.24,207
-Taunt Druid,Demon Control Warlock,1,55.98,209
-Taunt Druid,Highlander Priest,0,48.33,1533
-Taunt Druid,Highlander Priest,1,52.69,1539
-Taunt Druid,Resurrect Priest,0,41.75,479
-Taunt Druid,Resurrect Priest,1,41.93,465
-Taunt Druid,Dragon Priest,0,44.75,324
-Taunt Druid,Dragon Priest,1,48.11,318
-Taunt Druid,Handlock,0,41.84,552
-Taunt Druid,Handlock,1,49.65,576
-Taunt Druid,Zoolock,0,31.81,242
-Taunt Druid,Zoolock,1,48.46,260
-Taunt Druid,Midrange Hunter,0,36.12,2151
-Taunt Druid,Midrange Hunter,1,43.56,2167
-Taunt Druid,Deathrattle Hunter,0,37.38,757
-Taunt Druid,Deathrattle Hunter,1,45.17,684
-Taunt Druid,Secret Mage,0,34.68,989
-Taunt Druid,Secret Mage,1,34.04,990
-Taunt Druid,Quest Mage,0,52.87,556
-Taunt Druid,Quest Mage,1,50.62,563
-Taunt Druid,Control Mage,0,49.45,459
-Taunt Druid,Control Mage,1,55.63,435
-Taunt Druid,Jade Druid,0,51.27,1061
-Taunt Druid,Jade Druid,1,51.73,1038
-Taunt Druid,Taunt Druid,0,50,102
-Taunt Druid,Taunt Druid,1,50,102
-Taunt Druid,Mill Rogue,0,66.07,112
-Taunt Druid,Mill Rogue,1,58.49,106
-Taunt Druid,Elemental Rogue,0,38.2,212
-Taunt Druid,Elemental Rogue,1,41.5,212
-Taunt Druid,Control Paladin,0,45.12,195
-Taunt Druid,Control Paladin,1,49.46,186
-Taunt Druid,Murloc Paladin,0,29.71,424
-Taunt Druid,Murloc Paladin,1,38.07,436
-Taunt Druid,Grimestreet Paladin,0,34.74,236
-Taunt Druid,Grimestreet Paladin,1,40.26,226
-Taunt Druid,Enrage Warrior,1,65.13,109
-Taunt Druid,Quest Warrior,0,53.71,121
-Taunt Druid,Quest Warrior,1,60.74,135
-Taunt Druid,Dead Man Warrior,0,63.63,220
-Taunt Druid,Dead Man Warrior,1,66,200
-Taunt Druid,Prince Rogue,0,38.31,916
-Taunt Druid,Prince Rogue,1,43.62,917
-Mill Rogue,Pirate Warrior,0,19.64,448
-Mill Rogue,Pirate Warrior,1,15.47,446
-Mill Rogue,Miracle Rogue,0,42.08,423
-Mill Rogue,Miracle Rogue,1,40.7,425
-Mill Rogue,Evolve Shaman,0,18.16,1536
-Mill Rogue,Evolve Shaman,1,21.59,1496
-Mill Rogue,Aggro Druid,0,30.7,241
-Mill Rogue,Aggro Druid,1,30.76,234
-Mill Rogue,Demon Control Warlock,0,51.18,211
-Mill Rogue,Demon Control Warlock,1,46.7,197
-Mill Rogue,Highlander Priest,0,42.98,1261
-Mill Rogue,Highlander Priest,1,46.6,1281
-Mill Rogue,Resurrect Priest,0,58.73,441
-Mill Rogue,Resurrect Priest,1,60.42,475
-Mill Rogue,Dragon Priest,0,43.79,306
-Mill Rogue,Dragon Priest,1,48.48,297
-Mill Rogue,Handlock,0,52.58,580
-Mill Rogue,Handlock,1,54.3,534
-Mill Rogue,Zoolock,0,29.23,260
-Mill Rogue,Zoolock,1,28.88,270
-Mill Rogue,Midrange Hunter,0,20.28,1928
-Mill Rogue,Midrange Hunter,1,23.64,1844
-Mill Rogue,Deathrattle Hunter,0,17.81,651
-Mill Rogue,Deathrattle Hunter,1,23.47,639
-Mill Rogue,Secret Mage,0,18.6,887
-Mill Rogue,Secret Mage,1,19.81,959
-Mill Rogue,Quest Mage,0,60.6,594
-Mill Rogue,Quest Mage,1,57.73,601
-Mill Rogue,Control Mage,0,39.63,439
-Mill Rogue,Control Mage,1,45.06,415
-Mill Rogue,Jade Druid,0,25.18,937
-Mill Rogue,Jade Druid,1,24.63,958
-Mill Rogue,Taunt Druid,0,41.5,106
-Mill Rogue,Taunt Druid,1,33.92,112
-Mill Rogue,Mill Rogue,0,50,162
-Mill Rogue,Mill Rogue,1,50,162
-Mill Rogue,Elemental Rogue,0,16.86,172
-Mill Rogue,Elemental Rogue,1,21.59,176
-Mill Rogue,Control Paladin,0,35.02,197
-Mill Rogue,Control Paladin,1,33.93,165
-Mill Rogue,Murloc Paladin,0,18.67,391
-Mill Rogue,Murloc Paladin,1,27.91,437
-Mill Rogue,Grimestreet Paladin,0,34.71,193
-Mill Rogue,Grimestreet Paladin,1,36.55,186
-Mill Rogue,Quest Warrior,0,23.07,130
-Mill Rogue,Quest Warrior,1,27.19,114
-Mill Rogue,Dead Man Warrior,0,24.57,236
-Mill Rogue,Dead Man Warrior,1,30.76,182
-Mill Rogue,Prince Rogue,0,15.12,813
-Mill Rogue,Prince Rogue,1,16.07,790
-Elemental Rogue,Pirate Warrior,0,52.64,868
-Elemental Rogue,Pirate Warrior,1,59.61,879
-Elemental Rogue,Miracle Rogue,0,60.09,827
-Elemental Rogue,Miracle Rogue,1,60.81,837
-Elemental Rogue,Evolve Shaman,0,48.35,3979
-Elemental Rogue,Evolve Shaman,1,57.65,3970
-Elemental Rogue,Aggro Druid,0,50.08,585
-Elemental Rogue,Aggro Druid,1,56.14,570
-Elemental Rogue,Demon Control Warlock,0,52.08,384
-Elemental Rogue,Demon Control Warlock,1,60.77,436
-Elemental Rogue,Highlander Priest,0,46.01,4496
-Elemental Rogue,Highlander Priest,1,47.18,4563
-Elemental Rogue,Resurrect Priest,0,50.66,1052
-Elemental Rogue,Resurrect Priest,1,50.55,1165
-Elemental Rogue,Dragon Priest,0,53.22,590
-Elemental Rogue,Dragon Priest,1,61.81,605
-Elemental Rogue,Handlock,0,55.47,1141
-Elemental Rogue,Handlock,1,56.81,1160
-Elemental Rogue,Zoolock,0,54.8,635
-Elemental Rogue,Zoolock,1,62.98,651
-Elemental Rogue,Highlander Warlock,1,59.82,112
-Elemental Rogue,Midrange Hunter,0,56.07,5077
-Elemental Rogue,Midrange Hunter,1,65.55,5182
-Elemental Rogue,Deathrattle Hunter,0,58.46,1240
-Elemental Rogue,Deathrattle Hunter,1,71.52,1166
-Elemental Rogue,Secret Mage,0,61.4,2384
-Elemental Rogue,Secret Mage,1,66.26,2327
-Elemental Rogue,Quest Mage,0,63.11,1060
-Elemental Rogue,Quest Mage,1,67.24,1038
-Elemental Rogue,Control Mage,0,50.36,832
-Elemental Rogue,Control Mage,1,58.53,902
-Elemental Rogue,Jade Druid,0,48.71,2615
-Elemental Rogue,Jade Druid,1,51.8,2685
-Elemental Rogue,Taunt Druid,0,58.49,212
-Elemental Rogue,Taunt Druid,1,61.79,212
-Elemental Rogue,Mill Rogue,0,78.4,176
-Elemental Rogue,Mill Rogue,1,83.13,172
-Elemental Rogue,Elemental Rogue,0,50,764
-Elemental Rogue,Elemental Rogue,1,50,764
-Elemental Rogue,Control Paladin,0,64.07,412
-Elemental Rogue,Control Paladin,1,63.91,460
-Elemental Rogue,Murloc Paladin,0,53.44,1119
-Elemental Rogue,Murloc Paladin,1,66.66,1107
-Elemental Rogue,Grimestreet Paladin,0,60.86,460
-Elemental Rogue,Grimestreet Paladin,1,72.18,507
-Elemental Rogue,Enrage Warrior,0,54.74,179
-Elemental Rogue,Enrage Warrior,1,57.37,183
-Elemental Rogue,Quest Warrior,0,59.3,231
-Elemental Rogue,Quest Warrior,1,69.01,213
-Elemental Rogue,Dead Man Warrior,0,69.85,355
-Elemental Rogue,Dead Man Warrior,1,73.86,352
-Elemental Rogue,Prince Rogue,0,49.23,3323
-Elemental Rogue,Prince Rogue,1,57.33,3380
-Quest Rogue,Pirate Warrior,1,29.91,117
-Quest Rogue,Miracle Rogue,0,56.95,151
-Quest Rogue,Miracle Rogue,1,45.92,135
-Quest Rogue,Evolve Shaman,0,33.19,473
-Quest Rogue,Evolve Shaman,1,40.24,482
-Quest Rogue,Highlander Priest,0,59.49,511
-Quest Rogue,Highlander Priest,1,54.96,493
-Quest Rogue,Resurrect Priest,0,66.12,124
-Quest Rogue,Resurrect Priest,1,63.19,144
-Quest Rogue,Dragon Priest,1,42.15,102
-Quest Rogue,Handlock,0,59.64,171
-Quest Rogue,Handlock,1,60.91,197
-Quest Rogue,Midrange Hunter,0,22.05,671
-Quest Rogue,Midrange Hunter,1,31.77,661
-Quest Rogue,Deathrattle Hunter,0,24.76,214
-Quest Rogue,Deathrattle Hunter,1,32.96,179
-Quest Rogue,Secret Mage,0,28.93,311
-Quest Rogue,Secret Mage,1,25.62,281
-Quest Rogue,Quest Mage,0,52.63,152
-Quest Rogue,Quest Mage,1,54.85,175
-Quest Rogue,Control Mage,0,54,150
-Quest Rogue,Control Mage,1,55.86,145
-Quest Rogue,Jade Druid,0,58.63,336
-Quest Rogue,Jade Druid,1,60.43,321
-Quest Rogue,Murloc Paladin,0,20.63,126
-Quest Rogue,Murloc Paladin,1,26.44,121
-Quest Rogue,Prince Rogue,0,23.45,243
-Quest Rogue,Prince Rogue,1,27.45,244
-Control Paladin,Pirate Warrior,0,53.62,841
-Control Paladin,Pirate Warrior,1,57.44,846
-Control Paladin,Miracle Rogue,0,44.41,851
-Control Paladin,Miracle Rogue,1,41.05,855
-Control Paladin,Evolve Shaman,0,39.67,3599
-Control Paladin,Evolve Shaman,1,44.99,3398
-Control Paladin,Aggro Druid,0,53.17,583
-Control Paladin,Aggro Druid,1,54.96,584
-Control Paladin,Demon Control Warlock,0,61.93,331
-Control Paladin,Demon Control Warlock,1,57.47,388
-Control Paladin,Highlander Priest,0,37.92,2695
-Control Paladin,Highlander Priest,1,39.05,2778
-Control Paladin,Resurrect Priest,0,48.3,913
-Control Paladin,Resurrect Priest,1,48.11,904
-Control Paladin,Dragon Priest,0,44.44,585
-Control Paladin,Dragon Priest,1,52.36,550
-Control Paladin,Handlock,0,48.96,1013
-Control Paladin,Handlock,1,53.87,1019
-Control Paladin,Zoolock,0,42.83,537
-Control Paladin,Zoolock,1,52.65,547
-Control Paladin,Midrange Hunter,0,47.51,4559
-Control Paladin,Midrange Hunter,1,57.9,4858
-Control Paladin,Deathrattle Hunter,0,44.29,1463
-Control Paladin,Deathrattle Hunter,1,56.77,1328
-Control Paladin,Secret Mage,0,40.98,2091
-Control Paladin,Secret Mage,1,46.72,2048
-Control Paladin,Quest Mage,0,45.05,1081
-Control Paladin,Quest Mage,1,48.31,1070
-Control Paladin,Control Mage,0,45.56,790
-Control Paladin,Control Mage,1,47.96,738
-Control Paladin,Jade Druid,0,36.82,1955
-Control Paladin,Jade Druid,1,39.12,1848
-Control Paladin,Taunt Druid,0,50.53,186
-Control Paladin,Taunt Druid,1,54.87,195
-Control Paladin,Mill Rogue,0,65.45,165
-Control Paladin,Mill Rogue,1,64.97,197
-Control Paladin,Elemental Rogue,0,36.08,460
-Control Paladin,Elemental Rogue,1,35.92,412
-Control Paladin,Control Paladin,0,50,312
-Control Paladin,Control Paladin,1,50,312
-Control Paladin,Murloc Paladin,0,36.45,960
-Control Paladin,Murloc Paladin,1,48.57,914
-Control Paladin,Grimestreet Paladin,0,34.98,403
-Control Paladin,Grimestreet Paladin,1,42.82,390
-Control Paladin,Enrage Warrior,0,60.25,156
-Control Paladin,Enrage Warrior,1,59.53,173
-Control Paladin,Quest Warrior,0,51.26,197
-Control Paladin,Quest Warrior,1,55.82,206
-Control Paladin,Dead Man Warrior,0,65.97,335
-Control Paladin,Dead Man Warrior,1,70.47,315
-Control Paladin,Prince Rogue,0,40.94,2110
-Control Paladin,Prince Rogue,1,44.47,2100
-Murloc Paladin,Pirate Warrior,0,56.04,1488
-Murloc Paladin,Pirate Warrior,1,57.96,1463
-Murloc Paladin,Miracle Rogue,0,53.63,1887
-Murloc Paladin,Miracle Rogue,1,55.1,1791
-Murloc Paladin,Evolve Shaman,0,38.96,7137
-Murloc Paladin,Evolve Shaman,1,48.38,7137
-Murloc Paladin,Aggro Druid,0,42.78,1033
-Murloc Paladin,Aggro Druid,1,61.22,1016
-Murloc Paladin,Demon Control Warlock,0,53.52,850
-Murloc Paladin,Demon Control Warlock,1,59.64,840
-Murloc Paladin,Highlander Priest,0,50.48,8196
-Murloc Paladin,Highlander Priest,1,56.31,8197
-Murloc Paladin,Resurrect Priest,0,51.9,1992
-Murloc Paladin,Resurrect Priest,1,50.9,2157
-Murloc Paladin,Dragon Priest,0,59.71,1112
-Murloc Paladin,Dragon Priest,1,69.64,1130
-Murloc Paladin,Silence Priest,0,66.66,150
-Murloc Paladin,Silence Priest,1,68.6,172
-Murloc Paladin,Handlock,0,44.17,2223
-Murloc Paladin,Handlock,1,54.33,2247
-Murloc Paladin,Zoolock,0,39.66,1137
-Murloc Paladin,Zoolock,1,57.93,1153
-Murloc Paladin,Highlander Warlock,0,56.86,255
-Murloc Paladin,Highlander Warlock,1,64.33,272
-Murloc Paladin,Midrange Hunter,0,53.99,9408
-Murloc Paladin,Midrange Hunter,1,62.78,9348
-Murloc Paladin,Deathrattle Hunter,0,54.93,2341
-Murloc Paladin,Deathrattle Hunter,1,66.58,2418
-Murloc Paladin,Secret Mage,0,57.54,4431
-Murloc Paladin,Secret Mage,1,64.66,4449
-Murloc Paladin,Quest Mage,0,66.32,2218
-Murloc Paladin,Quest Mage,1,69.35,2173
-Murloc Paladin,Control Mage,0,52.8,1799
-Murloc Paladin,Control Mage,1,58.57,1820
-Murloc Paladin,Highlander Mage,1,71.69,106
-Murloc Paladin,Jade Druid,0,55.34,4830
-Murloc Paladin,Jade Druid,1,61.32,4910
-Murloc Paladin,Big Druid,0,67.66,167
-Murloc Paladin,Big Druid,1,74.5,153
-Murloc Paladin,Taunt Druid,0,61.92,436
-Murloc Paladin,Taunt Druid,1,70.28,424
-Murloc Paladin,Mill Rogue,0,72.08,437
-Murloc Paladin,Mill Rogue,1,81.32,391
-Murloc Paladin,Elemental Rogue,0,33.24,1107
-Murloc Paladin,Elemental Rogue,1,46.55,1119
-Murloc Paladin,Quest Rogue,0,73.55,121
-Murloc Paladin,Quest Rogue,1,78.57,126
-Murloc Paladin,Control Paladin,0,51.42,914
-Murloc Paladin,Control Paladin,1,63.54,960
-Murloc Paladin,Murloc Paladin,0,50,1914
-Murloc Paladin,Murloc Paladin,1,50,1914
-Murloc Paladin,Grimestreet Paladin,0,55.97,829
-Murloc Paladin,Grimestreet Paladin,1,66.55,894
-Murloc Paladin,Enrage Warrior,0,60.82,365
-Murloc Paladin,Enrage Warrior,1,66.58,398
-Murloc Paladin,Quest Warrior,0,63.29,455
-Murloc Paladin,Quest Warrior,1,70.97,472
-Murloc Paladin,Dead Man Warrior,0,74.94,850
-Murloc Paladin,Dead Man Warrior,1,77.67,851
-Murloc Paladin,Prince Rogue,0,39.87,5096
-Murloc Paladin,Prince Rogue,1,48.84,5110
-Aggro Paladin,Evolve Shaman,0,33.02,324
-Aggro Paladin,Evolve Shaman,1,48.32,298
-Aggro Paladin,Highlander Priest,0,56.28,318
-Aggro Paladin,Highlander Priest,1,52.58,329
-Aggro Paladin,Resurrect Priest,0,57,107
-Aggro Paladin,Resurrect Priest,1,59.04,105
-Aggro Paladin,Handlock,0,35.65,129
-Aggro Paladin,Handlock,1,41.93,124
-Aggro Paladin,Midrange Hunter,0,45.72,374
-Aggro Paladin,Midrange Hunter,1,60.1,386
-Aggro Paladin,Deathrattle Hunter,0,47.61,147
-Aggro Paladin,Deathrattle Hunter,1,59.31,145
-Aggro Paladin,Secret Mage,0,58.06,186
-Aggro Paladin,Secret Mage,1,67.83,171
-Aggro Paladin,Control Mage,1,71.81,110
-Aggro Paladin,Jade Druid,0,52.57,194
-Aggro Paladin,Jade Druid,1,56.33,229
-Aggro Paladin,Prince Rogue,0,33.15,187
-Aggro Paladin,Prince Rogue,1,43.84,203
-Grimestreet Paladin,Pirate Warrior,0,55.39,834
-Grimestreet Paladin,Pirate Warrior,1,57.32,778
-Grimestreet Paladin,Miracle Rogue,0,47.93,870
-Grimestreet Paladin,Miracle Rogue,1,47.64,829
-Grimestreet Paladin,Evolve Shaman,0,29.19,3449
-Grimestreet Paladin,Evolve Shaman,1,38.5,3384
-Grimestreet Paladin,Aggro Druid,0,48.04,485
-Grimestreet Paladin,Aggro Druid,1,52.42,536
-Grimestreet Paladin,Demon Control Warlock,0,59.33,423
-Grimestreet Paladin,Demon Control Warlock,1,66.9,420
-Grimestreet Paladin,Highlander Priest,0,49.28,3206
-Grimestreet Paladin,Highlander Priest,1,49.15,3214
-Grimestreet Paladin,Resurrect Priest,0,54.33,1060
-Grimestreet Paladin,Resurrect Priest,1,55.41,1090
-Grimestreet Paladin,Dragon Priest,0,54.89,603
-Grimestreet Paladin,Dragon Priest,1,59.79,582
-Grimestreet Paladin,Handlock,0,55.86,1151
-Grimestreet Paladin,Handlock,1,59.76,1198
-Grimestreet Paladin,Zoolock,0,38.07,499
-Grimestreet Paladin,Zoolock,1,45.4,522
-Grimestreet Paladin,Highlander Warlock,0,54.78,115
-Grimestreet Paladin,Highlander Warlock,1,72.64,117
-Grimestreet Paladin,Midrange Hunter,0,53.51,4569
-Grimestreet Paladin,Midrange Hunter,1,62.69,4669
-Grimestreet Paladin,Deathrattle Hunter,0,51.08,1386
-Grimestreet Paladin,Deathrattle Hunter,1,62.54,1383
-Grimestreet Paladin,Secret Mage,0,51.47,2137
-Grimestreet Paladin,Secret Mage,1,55.18,2035
-Grimestreet Paladin,Quest Mage,0,49.07,976
-Grimestreet Paladin,Quest Mage,1,52.14,1097
-Grimestreet Paladin,Control Mage,0,57.32,860
-Grimestreet Paladin,Control Mage,1,59.04,896
-Grimestreet Paladin,Jade Druid,0,50.34,2163
-Grimestreet Paladin,Jade Druid,1,51.17,2130
-Grimestreet Paladin,Taunt Druid,0,59.73,226
-Grimestreet Paladin,Taunt Druid,1,65.25,236
-Grimestreet Paladin,Mill Rogue,0,63.44,186
-Grimestreet Paladin,Mill Rogue,1,65.28,193
-Grimestreet Paladin,Elemental Rogue,0,27.61,507
-Grimestreet Paladin,Elemental Rogue,1,39.13,460
-Grimestreet Paladin,Control Paladin,0,57.17,390
-Grimestreet Paladin,Control Paladin,1,65.01,403
-Grimestreet Paladin,Murloc Paladin,0,33.44,894
-Grimestreet Paladin,Murloc Paladin,1,44.02,829
-Grimestreet Paladin,Grimestreet Paladin,0,50,440
-Grimestreet Paladin,Grimestreet Paladin,1,50,440
-Grimestreet Paladin,Enrage Warrior,0,63.1,206
-Grimestreet Paladin,Enrage Warrior,1,70.05,197
-Grimestreet Paladin,Quest Warrior,0,69.81,212
-Grimestreet Paladin,Quest Warrior,1,70.24,242
-Grimestreet Paladin,Dead Man Warrior,0,82.68,439
-Grimestreet Paladin,Dead Man Warrior,1,83.14,451
-Grimestreet Paladin,Prince Rogue,0,37.29,2169
-Grimestreet Paladin,Prince Rogue,1,44.5,2128
-Enrage Warrior,Pirate Warrior,0,41.14,384
-Enrage Warrior,Pirate Warrior,1,40.64,406
-Enrage Warrior,Miracle Rogue,0,62.33,369
-Enrage Warrior,Miracle Rogue,1,54.47,391
-Enrage Warrior,Evolve Shaman,0,48.22,1493
-Enrage Warrior,Evolve Shaman,1,52.84,1442
-Enrage Warrior,Aggro Druid,0,43.35,256
-Enrage Warrior,Aggro Druid,1,50.94,265
-Enrage Warrior,Demon Control Warlock,0,59.77,179
-Enrage Warrior,Demon Control Warlock,1,60,185
-Enrage Warrior,Highlander Priest,0,38.19,1249
-Enrage Warrior,Highlander Priest,1,33.52,1199
-Enrage Warrior,Resurrect Priest,0,29.16,432
-Enrage Warrior,Resurrect Priest,1,30.84,402
-Enrage Warrior,Dragon Priest,0,34.12,293
-Enrage Warrior,Dragon Priest,1,37.5,264
-Enrage Warrior,Handlock,0,43.96,505
-Enrage Warrior,Handlock,1,54.17,515
-Enrage Warrior,Zoolock,0,37.76,233
-Enrage Warrior,Zoolock,1,52.77,216
-Enrage Warrior,Midrange Hunter,0,34.6,2075
-Enrage Warrior,Midrange Hunter,1,38.56,1950
-Enrage Warrior,Deathrattle Hunter,0,32.24,645
-Enrage Warrior,Deathrattle Hunter,1,36.73,607
-Enrage Warrior,Secret Mage,0,31.13,909
-Enrage Warrior,Secret Mage,1,28.83,874
-Enrage Warrior,Quest Mage,0,34.54,440
-Enrage Warrior,Quest Mage,1,33.76,468
-Enrage Warrior,Control Mage,0,47.98,373
-Enrage Warrior,Control Mage,1,46.54,376
-Enrage Warrior,Jade Druid,0,30.83,895
-Enrage Warrior,Jade Druid,1,31.97,907
-Enrage Warrior,Taunt Druid,0,34.86,109
-Enrage Warrior,Elemental Rogue,0,42.62,183
-Enrage Warrior,Elemental Rogue,1,45.25,179
-Enrage Warrior,Control Paladin,0,40.46,173
-Enrage Warrior,Control Paladin,1,39.74,156
-Enrage Warrior,Murloc Paladin,0,33.41,398
-Enrage Warrior,Murloc Paladin,1,39.17,365
-Enrage Warrior,Grimestreet Paladin,0,29.94,197
-Enrage Warrior,Grimestreet Paladin,1,36.89,206
-Enrage Warrior,Quest Warrior,0,30,120
-Enrage Warrior,Quest Warrior,1,39.25,107
-Enrage Warrior,Dead Man Warrior,0,44.27,192
-Enrage Warrior,Dead Man Warrior,1,45.16,186
-Enrage Warrior,Prince Rogue,0,44.48,852
-Enrage Warrior,Prince Rogue,1,46.71,867
-Quest Warrior,Pirate Warrior,0,44.11,476
-Quest Warrior,Pirate Warrior,1,44.91,492
-Quest Warrior,Miracle Rogue,0,52.19,523
-Quest Warrior,Miracle Rogue,1,48.65,522
-Quest Warrior,Evolve Shaman,0,45.4,1839
-Quest Warrior,Evolve Shaman,1,50.25,1789
-Quest Warrior,Aggro Druid,0,46.01,326
-Quest Warrior,Aggro Druid,1,61.23,325
-Quest Warrior,Demon Control Warlock,0,74.5,204
-Quest Warrior,Demon Control Warlock,1,75,204
-Quest Warrior,Highlander Priest,0,40.63,1538
-Quest Warrior,Highlander Priest,1,42.23,1577
-Quest Warrior,Resurrect Priest,0,35.22,582
-Quest Warrior,Resurrect Priest,1,33.01,521
-Quest Warrior,Dragon Priest,0,27.8,356
-Quest Warrior,Dragon Priest,1,35.1,339
-Quest Warrior,Handlock,0,43.68,618
-Quest Warrior,Handlock,1,50.41,599
-Quest Warrior,Zoolock,0,33.54,322
-Quest Warrior,Zoolock,1,53.52,284
-Quest Warrior,Midrange Hunter,0,32.17,2505
-Quest Warrior,Midrange Hunter,1,39.34,2468
-Quest Warrior,Deathrattle Hunter,0,28.44,900
-Quest Warrior,Deathrattle Hunter,1,36.35,861
-Quest Warrior,Secret Mage,0,29.35,1148
-Quest Warrior,Secret Mage,1,28.99,1169
-Quest Warrior,Quest Mage,0,43.82,575
-Quest Warrior,Quest Mage,1,39.13,598
-Quest Warrior,Control Mage,0,55.04,416
-Quest Warrior,Control Mage,1,55.25,485
-Quest Warrior,Jade Druid,0,27.23,1087
-Quest Warrior,Jade Druid,1,29.16,1032
-Quest Warrior,Taunt Druid,0,39.25,135
-Quest Warrior,Taunt Druid,1,45.45,121
-Quest Warrior,Mill Rogue,0,72.8,114
-Quest Warrior,Mill Rogue,1,76.92,130
-Quest Warrior,Elemental Rogue,0,30.98,213
-Quest Warrior,Elemental Rogue,1,40.69,231
-Quest Warrior,Control Paladin,0,44.17,206
-Quest Warrior,Control Paladin,1,47.71,197
-Quest Warrior,Murloc Paladin,0,29.02,472
-Quest Warrior,Murloc Paladin,1,36.7,455
-Quest Warrior,Grimestreet Paladin,0,29.75,242
-Quest Warrior,Grimestreet Paladin,1,30.18,212
-Quest Warrior,Enrage Warrior,0,60.74,107
-Quest Warrior,Enrage Warrior,1,70,120
-Quest Warrior,Quest Warrior,0,50,104
-Quest Warrior,Quest Warrior,1,50,104
-Quest Warrior,Dead Man Warrior,0,88.05,201
-Quest Warrior,Dead Man Warrior,1,86.22,225
-Quest Warrior,Prince Rogue,0,42.23,1134
-Quest Warrior,Prince Rogue,1,40.39,1109
-Dead Man Warrior,Pirate Warrior,0,39.63,767
-Dead Man Warrior,Pirate Warrior,1,31.55,786
-Dead Man Warrior,Miracle Rogue,0,53.75,800
-Dead Man Warrior,Miracle Rogue,1,53.33,870
-Dead Man Warrior,Evolve Shaman,0,38.5,2937
-Dead Man Warrior,Evolve Shaman,1,40.97,2946
-Dead Man Warrior,Aggro Druid,0,43.71,501
-Dead Man Warrior,Aggro Druid,1,46.54,492
-Dead Man Warrior,Demon Control Warlock,0,59.05,337
-Dead Man Warrior,Demon Control Warlock,1,60.61,391
-Dead Man Warrior,Highlander Priest,0,44.87,2429
-Dead Man Warrior,Highlander Priest,1,45.68,2283
-Dead Man Warrior,Resurrect Priest,0,35.65,920
-Dead Man Warrior,Resurrect Priest,1,34.31,953
-Dead Man Warrior,Dragon Priest,0,30.96,620
-Dead Man Warrior,Dragon Priest,1,35.48,541
-Dead Man Warrior,Handlock,0,45.81,1004
-Dead Man Warrior,Handlock,1,49.94,921
-Dead Man Warrior,Zoolock,0,27.01,485
-Dead Man Warrior,Zoolock,1,36.84,456
-Dead Man Warrior,Highlander Warlock,0,35.87,131
-Dead Man Warrior,Highlander Warlock,1,40.86,115
-Dead Man Warrior,Midrange Hunter,0,20.24,4100
-Dead Man Warrior,Midrange Hunter,1,21.54,3913
-Dead Man Warrior,Deathrattle Hunter,0,13.86,1233
-Dead Man Warrior,Deathrattle Hunter,1,14.91,1207
-Dead Man Warrior,Secret Mage,0,21.88,1759
-Dead Man Warrior,Secret Mage,1,19.67,1870
-Dead Man Warrior,Quest Mage,0,50.52,1140
-Dead Man Warrior,Quest Mage,1,50.51,1158
-Dead Man Warrior,Control Mage,0,56.33,781
-Dead Man Warrior,Control Mage,1,61.25,751
-Dead Man Warrior,Jade Druid,0,33.61,1684
-Dead Man Warrior,Jade Druid,1,36.16,1728
-Dead Man Warrior,Taunt Druid,0,34,200
-Dead Man Warrior,Taunt Druid,1,36.36,220
-Dead Man Warrior,Mill Rogue,0,68.68,182
-Dead Man Warrior,Mill Rogue,1,75,236
-Dead Man Warrior,Elemental Rogue,0,26.13,352
-Dead Man Warrior,Elemental Rogue,1,30.14,355
-Dead Man Warrior,Control Paladin,0,28.88,315
-Dead Man Warrior,Control Paladin,1,34.02,335
-Dead Man Warrior,Murloc Paladin,0,22.32,851
-Dead Man Warrior,Murloc Paladin,1,25.05,850
-Dead Man Warrior,Grimestreet Paladin,0,16.62,451
-Dead Man Warrior,Grimestreet Paladin,1,17.31,439
-Dead Man Warrior,Enrage Warrior,0,53.76,186
-Dead Man Warrior,Enrage Warrior,1,55.72,192
-Dead Man Warrior,Quest Warrior,0,13.77,225
-Dead Man Warrior,Quest Warrior,1,11.44,201
-Dead Man Warrior,Dead Man Warrior,0,50,443
-Dead Man Warrior,Dead Man Warrior,1,50,443
-Dead Man Warrior,Prince Rogue,0,34.31,1658
-Dead Man Warrior,Prince Rogue,1,32.57,1587
-Prince Rogue,Tempo Mage,0,46.18,249
-Prince Rogue,Tempo Mage,1,47.61,273
-Prince Rogue,Pirate Warrior,0,52.15,3898
-Prince Rogue,Pirate Warrior,1,55.2,3913
-Prince Rogue,Miracle Rogue,0,65.15,3831
-Prince Rogue,Miracle Rogue,1,63.11,3915
-Prince Rogue,Evolve Shaman,0,46.38,18645
-Prince Rogue,Evolve Shaman,1,52.31,18859
-Prince Rogue,Aggro Druid,0,49.57,2707
-Prince Rogue,Aggro Druid,1,52.16,2682
-Prince Rogue,Demon Control Warlock,0,58.93,2048
-Prince Rogue,Demon Control Warlock,1,63.26,2085
-Prince Rogue,Highlander Priest,0,49.04,22810
-Prince Rogue,Highlander Priest,1,50.52,22880
-Prince Rogue,Resurrect Priest,0,52.9,5160
-Prince Rogue,Resurrect Priest,1,49.34,5160
-Prince Rogue,Dragon Priest,0,57.86,2656
-Prince Rogue,Dragon Priest,1,61.26,2793
-Prince Rogue,Silence Priest,0,65.18,316
-Prince Rogue,Silence Priest,1,63.73,353
-Prince Rogue,Handlock,0,54.96,5231
-Prince Rogue,Handlock,1,57.84,5293
-Prince Rogue,Zoolock,0,51.84,3117
-Prince Rogue,Zoolock,1,60.13,3294
-Prince Rogue,Highlander Warlock,0,59.09,599
-Prince Rogue,Highlander Warlock,1,61.09,640
-Prince Rogue,Midrange Hunter,0,49.96,23297
-Prince Rogue,Midrange Hunter,1,56.96,23574
-Prince Rogue,Deathrattle Hunter,0,55.41,5190
-Prince Rogue,Deathrattle Hunter,1,63.49,5383
-Prince Rogue,Secret Mage,0,56.46,10878
-Prince Rogue,Secret Mage,1,61.78,10863
-Prince Rogue,Quest Mage,0,75.64,4881
-Prince Rogue,Quest Mage,1,76.46,4911
-Prince Rogue,Control Mage,0,50.91,4370
-Prince Rogue,Control Mage,1,56.02,4455
-Prince Rogue,Highlander Mage,0,51.4,214
-Prince Rogue,Highlander Mage,1,61.73,230
-Prince Rogue,Jade Druid,0,52.18,12859
-Prince Rogue,Jade Druid,1,56.06,13098
-Prince Rogue,Big Druid,0,61.12,409
-Prince Rogue,Big Druid,1,67.05,425
-Prince Rogue,Taunt Druid,0,56.37,917
-Prince Rogue,Taunt Druid,1,61.68,916
-Prince Rogue,Mill Rogue,0,83.67,790
-Prince Rogue,Mill Rogue,1,84.87,813
-Prince Rogue,Elemental Rogue,0,42.66,3380
-Prince Rogue,Elemental Rogue,1,50.73,3323
-Prince Rogue,Quest Rogue,0,72.54,244
-Prince Rogue,Quest Rogue,1,76.54,243
-Prince Rogue,Control Paladin,0,55.52,2100
-Prince Rogue,Control Paladin,1,59.05,2110
-Prince Rogue,Murloc Paladin,0,51.11,5110
-Prince Rogue,Murloc Paladin,1,60.12,5096
-Prince Rogue,Aggro Paladin,0,56.15,203
-Prince Rogue,Aggro Paladin,1,66.84,187
-Prince Rogue,Grimestreet Paladin,0,55.49,2128
-Prince Rogue,Grimestreet Paladin,1,62.7,2169
-Prince Rogue,Enrage Warrior,0,53.28,867
-Prince Rogue,Enrage Warrior,1,55.51,852
-Prince Rogue,Quest Warrior,0,59.6,1109
-Prince Rogue,Quest Warrior,1,57.76,1134
-Prince Rogue,Dead Man Warrior,0,67.35,1587
-Prince Rogue,Dead Man Warrior,1,65.62,1658
-Prince Rogue,Prince Rogue,0,50,17101
-Prince Rogue,Prince Rogue,1,50,17101
+Tempo Mage,Evolve Shaman,0,52.21,406
+Tempo Mage,Evolve Shaman,1,49.73,382
+Tempo Mage,Highlander Priest,0,45.57,452
+Tempo Mage,Highlander Priest,1,41.37,377
+Tempo Mage,Resurrect Priest,1,50,108
+Tempo Mage,Handlock,0,69.36,111
+Tempo Mage,Handlock,1,65.83,120
+Tempo Mage,Midrange Hunter,0,41.37,464
+Tempo Mage,Midrange Hunter,1,42.68,492
+Tempo Mage,Deathrattle Hunter,0,42.1,152
+Tempo Mage,Deathrattle Hunter,1,40.25,154
+Tempo Mage,Secret Mage,0,45.28,212
+Tempo Mage,Secret Mage,1,40.65,214
+Tempo Mage,Quest Mage,0,73.39,109
+Tempo Mage,Quest Mage,1,71.96,107
+Tempo Mage,Jade Druid,0,42.85,252
+Tempo Mage,Jade Druid,1,42.43,238
+Tempo Mage,Prince Rogue,0,51.21,369
+Tempo Mage,Prince Rogue,1,53.42,350
+Pirate Warrior,Pirate Warrior,0,49.1,1456
+Pirate Warrior,Pirate Warrior,1,50.82,1456
+Pirate Warrior,Miracle Rogue,0,66.94,1806
+Pirate Warrior,Miracle Rogue,1,63.66,1918
+Pirate Warrior,Evolve Shaman,0,44.39,6967
+Pirate Warrior,Evolve Shaman,1,44.58,6882
+Pirate Warrior,Aggro Druid,0,38.8,956
+Pirate Warrior,Aggro Druid,1,40.46,996
+Pirate Warrior,Demon Control Warlock,0,68.08,940
+Pirate Warrior,Demon Control Warlock,1,68.28,1012
+Pirate Warrior,Highlander Priest,0,53.61,8380
+Pirate Warrior,Highlander Priest,1,51.14,8304
+Pirate Warrior,Resurrect Priest,0,59.86,2048
+Pirate Warrior,Resurrect Priest,1,54.75,2062
+Pirate Warrior,Dragon Priest,0,54.34,1301
+Pirate Warrior,Dragon Priest,1,60.11,1429
+Pirate Warrior,Silence Priest,0,65.34,176
+Pirate Warrior,Silence Priest,1,63.97,186
+Pirate Warrior,Handlock,0,62.22,2621
+Pirate Warrior,Handlock,1,60.33,2778
+Pirate Warrior,Zoolock,0,46.5,1372
+Pirate Warrior,Zoolock,1,48.53,1331
+Pirate Warrior,Highlander Warlock,0,61.43,293
+Pirate Warrior,Highlander Warlock,1,56.49,331
+Pirate Warrior,Midrange Hunter,0,40.48,8630
+Pirate Warrior,Midrange Hunter,1,40,8547
+Pirate Warrior,Deathrattle Hunter,0,50.78,2938
+Pirate Warrior,Deathrattle Hunter,1,50.69,2866
+Pirate Warrior,Secret Mage,0,52.41,4325
+Pirate Warrior,Secret Mage,1,55.25,4226
+Pirate Warrior,Quest Mage,0,85.87,2223
+Pirate Warrior,Quest Mage,1,86.6,2180
+Pirate Warrior,Control Mage,0,55.29,2313
+Pirate Warrior,Control Mage,1,56.35,2312
+Pirate Warrior,Highlander Mage,0,69.44,108
+Pirate Warrior,Highlander Mage,1,55.14,107
+Pirate Warrior,Jade Druid,0,55.06,5030
+Pirate Warrior,Jade Druid,1,56.77,4955
+Pirate Warrior,Big Druid,0,62.8,164
+Pirate Warrior,Big Druid,1,63.97,161
+Pirate Warrior,Taunt Druid,0,56.16,422
+Pirate Warrior,Taunt Druid,1,59.6,458
+Pirate Warrior,Mill Rogue,0,83.96,524
+Pirate Warrior,Mill Rogue,1,81.55,526
+Pirate Warrior,Elemental Rogue,0,40.23,1039
+Pirate Warrior,Elemental Rogue,1,46.89,1013
+Pirate Warrior,Quest Rogue,0,70.63,126
+Pirate Warrior,Quest Rogue,1,76.57,111
+Pirate Warrior,Control Paladin,0,42.98,1005
+Pirate Warrior,Control Paladin,1,46.21,991
+Pirate Warrior,Murloc Paladin,0,41.31,1699
+Pirate Warrior,Murloc Paladin,1,45.45,1760
+Pirate Warrior,Aggro Paladin,1,53.27,107
+Pirate Warrior,Grimestreet Paladin,0,42.62,915
+Pirate Warrior,Grimestreet Paladin,1,44.02,995
+Pirate Warrior,Enrage Warrior,0,59.2,478
+Pirate Warrior,Enrage Warrior,1,59.73,457
+Pirate Warrior,Quest Warrior,0,55.87,587
+Pirate Warrior,Quest Warrior,1,55.65,575
+Pirate Warrior,Dead Man Warrior,0,67.6,920
+Pirate Warrior,Dead Man Warrior,1,60.24,903
+Pirate Warrior,Prince Rogue,0,44.2,4977
+Pirate Warrior,Prince Rogue,1,47.73,5001
+Miracle Rogue,Pirate Warrior,0,36.33,1918
+Miracle Rogue,Pirate Warrior,1,32.94,1806
+Miracle Rogue,Miracle Rogue,0,54.6,2152
+Miracle Rogue,Miracle Rogue,1,45.39,2152
+Miracle Rogue,Evolve Shaman,0,38.3,8118
+Miracle Rogue,Evolve Shaman,1,39.45,8121
+Miracle Rogue,Aggro Druid,0,43.03,1213
+Miracle Rogue,Aggro Druid,1,39.52,1212
+Miracle Rogue,Demon Control Warlock,0,55.44,992
+Miracle Rogue,Demon Control Warlock,1,50.6,986
+Miracle Rogue,Highlander Priest,0,49.23,7691
+Miracle Rogue,Highlander Priest,1,42.84,7567
+Miracle Rogue,Resurrect Priest,0,58.97,2262
+Miracle Rogue,Resurrect Priest,1,55.6,2365
+Miracle Rogue,Dragon Priest,0,55.82,1442
+Miracle Rogue,Dragon Priest,1,49.96,1473
+Miracle Rogue,Silence Priest,0,54.22,201
+Miracle Rogue,Silence Priest,1,60.28,209
+Miracle Rogue,Handlock,0,54.36,2899
+Miracle Rogue,Handlock,1,51.33,2836
+Miracle Rogue,Zoolock,0,42.52,1418
+Miracle Rogue,Zoolock,1,46.19,1392
+Miracle Rogue,Highlander Warlock,0,58.52,299
+Miracle Rogue,Highlander Warlock,1,51.44,276
+Miracle Rogue,Midrange Hunter,0,37.87,10462
+Miracle Rogue,Midrange Hunter,1,38.94,10331
+Miracle Rogue,Deathrattle Hunter,0,44.35,3659
+Miracle Rogue,Deathrattle Hunter,1,44.99,3503
+Miracle Rogue,Secret Mage,0,37.48,4700
+Miracle Rogue,Secret Mage,1,33.64,4726
+Miracle Rogue,Quest Mage,0,59.74,2554
+Miracle Rogue,Quest Mage,1,55.45,2660
+Miracle Rogue,Control Mage,0,48.59,2105
+Miracle Rogue,Control Mage,1,45.79,2083
+Miracle Rogue,Jade Druid,0,52.63,4995
+Miracle Rogue,Jade Druid,1,44.72,5111
+Miracle Rogue,Big Druid,0,67.27,165
+Miracle Rogue,Big Druid,1,51.7,176
+Miracle Rogue,Taunt Druid,0,52.64,511
+Miracle Rogue,Taunt Druid,1,52.69,556
+Miracle Rogue,Mill Rogue,0,58.43,510
+Miracle Rogue,Mill Rogue,1,57.31,492
+Miracle Rogue,Elemental Rogue,0,40.95,984
+Miracle Rogue,Elemental Rogue,1,40.06,951
+Miracle Rogue,Quest Rogue,0,54.66,150
+Miracle Rogue,Quest Rogue,1,44.04,168
+Miracle Rogue,Control Paladin,0,57.18,974
+Miracle Rogue,Control Paladin,1,55.55,972
+Miracle Rogue,Murloc Paladin,0,45.21,2028
+Miracle Rogue,Murloc Paladin,1,45.89,2129
+Miracle Rogue,Aggro Paladin,0,39.21,102
+Miracle Rogue,Aggro Paladin,1,39.47,114
+Miracle Rogue,Grimestreet Paladin,0,52.35,934
+Miracle Rogue,Grimestreet Paladin,1,52.01,1019
+Miracle Rogue,Enrage Warrior,0,46.5,443
+Miracle Rogue,Enrage Warrior,1,38.72,439
+Miracle Rogue,Quest Warrior,0,52.24,624
+Miracle Rogue,Quest Warrior,1,48.85,612
+Miracle Rogue,Dead Man Warrior,0,46.15,962
+Miracle Rogue,Dead Man Warrior,1,46.66,900
+Miracle Rogue,Prince Rogue,0,36.63,4801
+Miracle Rogue,Prince Rogue,1,34.79,4702
+Evolve Shaman,Tempo Mage,0,50.26,382
+Evolve Shaman,Tempo Mage,1,47.78,406
+Evolve Shaman,Pirate Warrior,0,55.41,6882
+Evolve Shaman,Pirate Warrior,1,55.6,6967
+Evolve Shaman,Miracle Rogue,0,60.54,8121
+Evolve Shaman,Miracle Rogue,1,61.69,8118
+Evolve Shaman,Evolve Shaman,0,46.29,33652
+Evolve Shaman,Evolve Shaman,1,53.7,33652
+Evolve Shaman,Aggro Druid,0,47.69,4546
+Evolve Shaman,Aggro Druid,1,55.53,4541
+Evolve Shaman,Demon Control Warlock,0,39.57,4043
+Evolve Shaman,Demon Control Warlock,1,46.77,4013
+Evolve Shaman,Highlander Priest,0,47.69,36850
+Evolve Shaman,Highlander Priest,1,50.44,37258
+Evolve Shaman,Resurrect Priest,0,51.53,9527
+Evolve Shaman,Resurrect Priest,1,51.4,9578
+Evolve Shaman,Dragon Priest,0,54.94,5678
+Evolve Shaman,Dragon Priest,1,61.7,5790
+Evolve Shaman,Silence Priest,0,65.57,703
+Evolve Shaman,Silence Priest,1,70.55,771
+Evolve Shaman,Handlock,0,34.8,11492
+Evolve Shaman,Handlock,1,40.34,11507
+Evolve Shaman,Zoolock,0,38.64,6304
+Evolve Shaman,Zoolock,1,51.76,6222
+Evolve Shaman,Highlander Warlock,0,45.8,1264
+Evolve Shaman,Highlander Warlock,1,56.19,1283
+Evolve Shaman,Midrange Hunter,0,56.81,40277
+Evolve Shaman,Midrange Hunter,1,64.08,40436
+Evolve Shaman,Deathrattle Hunter,0,55.53,13434
+Evolve Shaman,Deathrattle Hunter,1,63.24,13343
+Evolve Shaman,Secret Mage,0,55.73,19574
+Evolve Shaman,Secret Mage,1,59.06,19578
+Evolve Shaman,Quest Mage,0,62.64,9868
+Evolve Shaman,Quest Mage,1,62.69,10052
+Evolve Shaman,Control Mage,0,53.29,8809
+Evolve Shaman,Control Mage,1,56.27,8882
+Evolve Shaman,Highlander Mage,0,54.52,420
+Evolve Shaman,Highlander Mage,1,59.86,431
+Evolve Shaman,Jade Druid,0,51.92,22386
+Evolve Shaman,Jade Druid,1,56.64,22177
+Evolve Shaman,Big Druid,0,53.54,762
+Evolve Shaman,Big Druid,1,60.98,751
+Evolve Shaman,Taunt Druid,0,55.26,1918
+Evolve Shaman,Taunt Druid,1,64.28,2027
+Evolve Shaman,Mill Rogue,0,78.62,1857
+Evolve Shaman,Mill Rogue,1,82.35,1904
+Evolve Shaman,Elemental Rogue,0,42.06,4833
+Evolve Shaman,Elemental Rogue,1,51.69,4848
+Evolve Shaman,Quest Rogue,0,59.09,550
+Evolve Shaman,Quest Rogue,1,66.23,545
+Evolve Shaman,Control Paladin,0,54.67,4099
+Evolve Shaman,Control Paladin,1,60.36,4289
+Evolve Shaman,Murloc Paladin,0,51.45,8436
+Evolve Shaman,Murloc Paladin,1,60.82,8452
+Evolve Shaman,Aggro Paladin,0,51.85,378
+Evolve Shaman,Aggro Paladin,1,67.21,424
+Evolve Shaman,Grimestreet Paladin,0,61.82,4092
+Evolve Shaman,Grimestreet Paladin,1,70.12,4197
+Evolve Shaman,Enrage Warrior,0,47.81,1717
+Evolve Shaman,Enrage Warrior,1,52.33,1800
+Evolve Shaman,Quest Warrior,0,49.31,2269
+Evolve Shaman,Quest Warrior,1,54.19,2279
+Evolve Shaman,Dead Man Warrior,0,58.61,3501
+Evolve Shaman,Dead Man Warrior,1,61.53,3510
+Evolve Shaman,Prince Rogue,0,47.51,24813
+Evolve Shaman,Prince Rogue,1,53.36,24640
+Aggro Druid,Pirate Warrior,0,59.43,996
+Aggro Druid,Pirate Warrior,1,61.19,956
+Aggro Druid,Miracle Rogue,0,60.47,1212
+Aggro Druid,Miracle Rogue,1,56.96,1213
+Aggro Druid,Evolve Shaman,0,44.46,4541
+Aggro Druid,Evolve Shaman,1,52.3,4546
+Aggro Druid,Aggro Druid,0,46.58,674
+Aggro Druid,Aggro Druid,1,53.26,674
+Aggro Druid,Demon Control Warlock,0,49.17,604
+Aggro Druid,Demon Control Warlock,1,53.6,679
+Aggro Druid,Highlander Priest,0,44.63,5505
+Aggro Druid,Highlander Priest,1,48.86,5519
+Aggro Druid,Resurrect Priest,0,43.81,1342
+Aggro Druid,Resurrect Priest,1,37.2,1430
+Aggro Druid,Dragon Priest,0,53.81,879
+Aggro Druid,Dragon Priest,1,61.24,867
+Aggro Druid,Silence Priest,0,50.8,124
+Aggro Druid,Silence Priest,1,58.47,118
+Aggro Druid,Handlock,0,42.33,1684
+Aggro Druid,Handlock,1,48.82,1708
+Aggro Druid,Zoolock,0,46.16,925
+Aggro Druid,Zoolock,1,55.56,907
+Aggro Druid,Highlander Warlock,0,54.2,214
+Aggro Druid,Highlander Warlock,1,56.27,231
+Aggro Druid,Midrange Hunter,0,46.99,5766
+Aggro Druid,Midrange Hunter,1,55.43,5794
+Aggro Druid,Deathrattle Hunter,0,46.68,1763
+Aggro Druid,Deathrattle Hunter,1,54.56,1818
+Aggro Druid,Secret Mage,0,49.23,2738
+Aggro Druid,Secret Mage,1,54.95,2886
+Aggro Druid,Quest Mage,0,72.7,1425
+Aggro Druid,Quest Mage,1,74.14,1400
+Aggro Druid,Control Mage,0,46.15,1378
+Aggro Druid,Control Mage,1,51.39,1327
+Aggro Druid,Jade Druid,0,58.32,3203
+Aggro Druid,Jade Druid,1,64.25,3245
+Aggro Druid,Big Druid,0,69.29,127
+Aggro Druid,Big Druid,1,69.9,103
+Aggro Druid,Taunt Druid,0,56.04,273
+Aggro Druid,Taunt Druid,1,60.71,308
+Aggro Druid,Mill Rogue,0,71.08,287
+Aggro Druid,Mill Rogue,1,70.6,313
+Aggro Druid,Elemental Rogue,0,43.79,685
+Aggro Druid,Elemental Rogue,1,50,692
+Aggro Druid,Control Paladin,0,45.61,673
+Aggro Druid,Control Paladin,1,46.97,694
+Aggro Druid,Murloc Paladin,0,39.34,1182
+Aggro Druid,Murloc Paladin,1,56.67,1198
+Aggro Druid,Grimestreet Paladin,0,47.31,634
+Aggro Druid,Grimestreet Paladin,1,52.22,561
+Aggro Druid,Enrage Warrior,0,47.41,310
+Aggro Druid,Enrage Warrior,1,55.11,303
+Aggro Druid,Quest Warrior,0,40,405
+Aggro Druid,Quest Warrior,1,52.01,398
+Aggro Druid,Dead Man Warrior,0,52.58,561
+Aggro Druid,Dead Man Warrior,1,56.52,575
+Aggro Druid,Prince Rogue,0,47.46,3455
+Aggro Druid,Prince Rogue,1,50.67,3564
+Demon Control Warlock,Pirate Warrior,0,31.62,1012
+Demon Control Warlock,Pirate Warrior,1,31.8,940
+Demon Control Warlock,Miracle Rogue,0,49.39,986
+Demon Control Warlock,Miracle Rogue,1,44.35,992
+Demon Control Warlock,Evolve Shaman,0,53.22,4013
+Demon Control Warlock,Evolve Shaman,1,60.37,4043
+Demon Control Warlock,Aggro Druid,0,46.39,679
+Demon Control Warlock,Aggro Druid,1,50.82,604
+Demon Control Warlock,Demon Control Warlock,0,46.52,503
+Demon Control Warlock,Demon Control Warlock,1,53.08,503
+Demon Control Warlock,Highlander Priest,0,37.26,3596
+Demon Control Warlock,Highlander Priest,1,38.58,3654
+Demon Control Warlock,Resurrect Priest,0,34.73,1117
+Demon Control Warlock,Resurrect Priest,1,38.73,1087
+Demon Control Warlock,Dragon Priest,0,39.3,720
+Demon Control Warlock,Dragon Priest,1,44.78,710
+Demon Control Warlock,Silence Priest,0,62.71,118
+Demon Control Warlock,Handlock,0,44.71,1344
+Demon Control Warlock,Handlock,1,49.69,1314
+Demon Control Warlock,Zoolock,0,41.73,750
+Demon Control Warlock,Zoolock,1,56.24,713
+Demon Control Warlock,Highlander Warlock,0,42.62,122
+Demon Control Warlock,Highlander Warlock,1,51.03,145
+Demon Control Warlock,Midrange Hunter,0,31.18,5336
+Demon Control Warlock,Midrange Hunter,1,40.78,5183
+Demon Control Warlock,Deathrattle Hunter,0,30.67,1669
+Demon Control Warlock,Deathrattle Hunter,1,38.75,1667
+Demon Control Warlock,Secret Mage,0,24.2,2512
+Demon Control Warlock,Secret Mage,1,25.17,2522
+Demon Control Warlock,Quest Mage,0,52.34,1301
+Demon Control Warlock,Quest Mage,1,50.96,1352
+Demon Control Warlock,Control Mage,0,42.74,978
+Demon Control Warlock,Control Mage,1,49,1006
+Demon Control Warlock,Jade Druid,0,32.95,2400
+Demon Control Warlock,Jade Druid,1,35.59,2368
+Demon Control Warlock,Taunt Druid,0,44.89,245
+Demon Control Warlock,Taunt Druid,1,48.6,251
+Demon Control Warlock,Mill Rogue,0,53.47,230
+Demon Control Warlock,Mill Rogue,1,48.03,254
+Demon Control Warlock,Elemental Rogue,0,39.92,531
+Demon Control Warlock,Elemental Rogue,1,48.44,450
+Demon Control Warlock,Control Paladin,0,42,450
+Demon Control Warlock,Control Paladin,1,38.08,407
+Demon Control Warlock,Murloc Paladin,0,41.51,1002
+Demon Control Warlock,Murloc Paladin,1,46.4,1000
+Demon Control Warlock,Grimestreet Paladin,0,33.46,490
+Demon Control Warlock,Grimestreet Paladin,1,40.89,494
+Demon Control Warlock,Enrage Warrior,0,39.72,219
+Demon Control Warlock,Enrage Warrior,1,39.9,213
+Demon Control Warlock,Quest Warrior,0,25.84,236
+Demon Control Warlock,Quest Warrior,1,27.93,247
+Demon Control Warlock,Dead Man Warrior,0,38.47,460
+Demon Control Warlock,Dead Man Warrior,1,40.87,389
+Demon Control Warlock,Prince Rogue,0,37.97,2728
+Demon Control Warlock,Prince Rogue,1,41.39,2718
+Highlander Priest,Tempo Mage,0,58.62,377
+Highlander Priest,Tempo Mage,1,54.42,452
+Highlander Priest,Pirate Warrior,0,48.84,8304
+Highlander Priest,Pirate Warrior,1,46.38,8380
+Highlander Priest,Miracle Rogue,0,57.12,7567
+Highlander Priest,Miracle Rogue,1,50.74,7691
+Highlander Priest,Evolve Shaman,0,49.55,37258
+Highlander Priest,Evolve Shaman,1,52.29,36850
+Highlander Priest,Aggro Druid,0,51.13,5519
+Highlander Priest,Aggro Druid,1,55.36,5505
+Highlander Priest,Demon Control Warlock,0,61.19,3654
+Highlander Priest,Demon Control Warlock,1,62.56,3596
+Highlander Priest,Highlander Priest,0,52.93,34636
+Highlander Priest,Highlander Priest,1,47.05,34636
+Highlander Priest,Resurrect Priest,0,43.87,9726
+Highlander Priest,Resurrect Priest,1,39.18,9673
+Highlander Priest,Dragon Priest,0,45.55,5284
+Highlander Priest,Dragon Priest,1,45.05,5344
+Highlander Priest,Silence Priest,0,50.88,678
+Highlander Priest,Silence Priest,1,52.65,659
+Highlander Priest,Handlock,0,57.47,9932
+Highlander Priest,Handlock,1,57.11,9927
+Highlander Priest,Zoolock,0,47.26,6779
+Highlander Priest,Zoolock,1,54.93,6744
+Highlander Priest,Highlander Warlock,0,54.84,990
+Highlander Priest,Highlander Warlock,1,55.26,1017
+Highlander Priest,Midrange Hunter,0,44.6,47652
+Highlander Priest,Midrange Hunter,1,49.36,47024
+Highlander Priest,Deathrattle Hunter,0,43.49,12680
+Highlander Priest,Deathrattle Hunter,1,48.69,12597
+Highlander Priest,Secret Mage,0,44.39,21065
+Highlander Priest,Secret Mage,1,40.88,21145
+Highlander Priest,Quest Mage,0,40.97,9939
+Highlander Priest,Quest Mage,1,39.21,9815
+Highlander Priest,Control Mage,0,59.46,7083
+Highlander Priest,Control Mage,1,57.46,7180
+Highlander Priest,Highlander Mage,0,58.64,295
+Highlander Priest,Highlander Mage,1,54.1,353
+Highlander Priest,Jade Druid,0,40.69,21024
+Highlander Priest,Jade Druid,1,38.33,21223
+Highlander Priest,Big Druid,0,34.73,714
+Highlander Priest,Big Druid,1,32.4,716
+Highlander Priest,Taunt Druid,0,47.6,1876
+Highlander Priest,Taunt Druid,1,50.71,1824
+Highlander Priest,Mill Rogue,0,53.83,1577
+Highlander Priest,Mill Rogue,1,56.86,1551
+Highlander Priest,Elemental Rogue,0,53.01,5566
+Highlander Priest,Elemental Rogue,1,53.79,5456
+Highlander Priest,Quest Rogue,0,45.12,574
+Highlander Priest,Quest Rogue,1,41.15,588
+Highlander Priest,Control Paladin,0,61.39,3295
+Highlander Priest,Control Paladin,1,62,3240
+Highlander Priest,Murloc Paladin,0,43.82,9579
+Highlander Priest,Murloc Paladin,1,49.67,9604
+Highlander Priest,Aggro Paladin,0,45.25,411
+Highlander Priest,Aggro Paladin,1,42.59,378
+Highlander Priest,Grimestreet Paladin,0,51,3892
+Highlander Priest,Grimestreet Paladin,1,50.68,3869
+Highlander Priest,Enrage Warrior,0,65.41,1440
+Highlander Priest,Enrage Warrior,1,61.64,1486
+Highlander Priest,Quest Warrior,0,57.92,1918
+Highlander Priest,Quest Warrior,1,59.96,1896
+Highlander Priest,Dead Man Warrior,0,53.62,2693
+Highlander Priest,Dead Man Warrior,1,54.51,2849
+Highlander Priest,Prince Rogue,0,49.87,30299
+Highlander Priest,Prince Rogue,1,51.27,30059
+Resurrect Priest,Tempo Mage,0,50,108
+Resurrect Priest,Pirate Warrior,0,45.19,2062
+Resurrect Priest,Pirate Warrior,1,40.13,2048
+Resurrect Priest,Miracle Rogue,0,44.39,2365
+Resurrect Priest,Miracle Rogue,1,41.02,2262
+Resurrect Priest,Evolve Shaman,0,48.59,9578
+Resurrect Priest,Evolve Shaman,1,48.45,9527
+Resurrect Priest,Aggro Druid,0,62.79,1430
+Resurrect Priest,Aggro Druid,1,56.18,1342
+Resurrect Priest,Demon Control Warlock,0,61.17,1087
+Resurrect Priest,Demon Control Warlock,1,64.99,1117
+Resurrect Priest,Highlander Priest,0,60.72,9673
+Resurrect Priest,Highlander Priest,1,56.05,9726
+Resurrect Priest,Resurrect Priest,0,48.84,2690
+Resurrect Priest,Resurrect Priest,1,51.11,2690
+Resurrect Priest,Dragon Priest,0,57.6,1625
+Resurrect Priest,Dragon Priest,1,53.84,1690
+Resurrect Priest,Silence Priest,0,64.82,199
+Resurrect Priest,Silence Priest,1,67.47,206
+Resurrect Priest,Handlock,0,58.46,2964
+Resurrect Priest,Handlock,1,59.42,3034
+Resurrect Priest,Zoolock,0,54.47,1720
+Resurrect Priest,Zoolock,1,56.78,1643
+Resurrect Priest,Highlander Warlock,0,55.03,318
+Resurrect Priest,Highlander Warlock,1,60.9,330
+Resurrect Priest,Midrange Hunter,0,40.02,11504
+Resurrect Priest,Midrange Hunter,1,39.52,11484
+Resurrect Priest,Deathrattle Hunter,0,43.88,3689
+Resurrect Priest,Deathrattle Hunter,1,45.08,3451
+Resurrect Priest,Secret Mage,0,41.21,5535
+Resurrect Priest,Secret Mage,1,34.02,5608
+Resurrect Priest,Quest Mage,0,33.66,2712
+Resurrect Priest,Quest Mage,1,30.2,2870
+Resurrect Priest,Control Mage,0,58.45,2371
+Resurrect Priest,Control Mage,1,59.27,2328
+Resurrect Priest,Highlander Mage,0,57.14,105
+Resurrect Priest,Highlander Mage,1,62.28,114
+Resurrect Priest,Jade Druid,0,49.13,5943
+Resurrect Priest,Jade Druid,1,45.75,5938
+Resurrect Priest,Big Druid,0,48.13,214
+Resurrect Priest,Big Druid,1,48.83,215
+Resurrect Priest,Taunt Druid,0,57.67,560
+Resurrect Priest,Taunt Druid,1,56.91,564
+Resurrect Priest,Mill Rogue,0,38.91,573
+Resurrect Priest,Mill Rogue,1,40.37,535
+Resurrect Priest,Elemental Rogue,0,50.03,1371
+Resurrect Priest,Elemental Rogue,1,49.17,1269
+Resurrect Priest,Quest Rogue,0,38.92,167
+Resurrect Priest,Quest Rogue,1,33.1,148
+Resurrect Priest,Control Paladin,0,52.77,1080
+Resurrect Priest,Control Paladin,1,51.6,1087
+Resurrect Priest,Murloc Paladin,0,48.57,2499
+Resurrect Priest,Murloc Paladin,1,48.03,2338
+Resurrect Priest,Aggro Paladin,0,40.6,133
+Resurrect Priest,Aggro Paladin,1,43.7,135
+Resurrect Priest,Grimestreet Paladin,0,44.56,1241
+Resurrect Priest,Grimestreet Paladin,1,45.55,1227
+Resurrect Priest,Enrage Warrior,0,68.92,457
+Resurrect Priest,Enrage Warrior,1,70.13,509
+Resurrect Priest,Quest Warrior,0,67.24,635
+Resurrect Priest,Quest Warrior,1,63.78,682
+Resurrect Priest,Dead Man Warrior,0,64.82,1106
+Resurrect Priest,Dead Man Warrior,1,63.94,1040
+Resurrect Priest,Prince Rogue,0,50.13,6648
+Resurrect Priest,Prince Rogue,1,47.25,6632
+Dragon Priest,Pirate Warrior,0,39.88,1429
+Dragon Priest,Pirate Warrior,1,45.65,1301
+Dragon Priest,Miracle Rogue,0,50.03,1473
+Dragon Priest,Miracle Rogue,1,44.17,1442
+Dragon Priest,Evolve Shaman,0,38.29,5790
+Dragon Priest,Evolve Shaman,1,45.05,5678
+Dragon Priest,Aggro Druid,0,38.75,867
+Dragon Priest,Aggro Druid,1,46.18,879
+Dragon Priest,Demon Control Warlock,0,54.78,710
+Dragon Priest,Demon Control Warlock,1,60.69,720
+Dragon Priest,Highlander Priest,0,54.94,5344
+Dragon Priest,Highlander Priest,1,54.4,5284
+Dragon Priest,Resurrect Priest,0,46.15,1690
+Dragon Priest,Resurrect Priest,1,42.4,1625
+Dragon Priest,Dragon Priest,0,48.15,1086
+Dragon Priest,Dragon Priest,1,51.84,1086
+Dragon Priest,Silence Priest,0,58.66,150
+Dragon Priest,Silence Priest,1,60.73,163
+Dragon Priest,Handlock,0,45.93,1944
+Dragon Priest,Handlock,1,52.25,1975
+Dragon Priest,Zoolock,0,37.32,978
+Dragon Priest,Zoolock,1,51.31,1023
+Dragon Priest,Highlander Warlock,0,48.38,186
+Dragon Priest,Highlander Warlock,1,58.79,216
+Dragon Priest,Midrange Hunter,0,36.31,7232
+Dragon Priest,Midrange Hunter,1,43.06,7278
+Dragon Priest,Deathrattle Hunter,0,35.86,2607
+Dragon Priest,Deathrattle Hunter,1,45.44,2548
+Dragon Priest,Secret Mage,0,38.2,3227
+Dragon Priest,Secret Mage,1,38.6,3383
+Dragon Priest,Quest Mage,0,53.52,1760
+Dragon Priest,Quest Mage,1,47.55,1821
+Dragon Priest,Control Mage,0,60.26,1485
+Dragon Priest,Control Mage,1,60.15,1506
+Dragon Priest,Jade Druid,0,51.62,3545
+Dragon Priest,Jade Druid,1,52.83,3473
+Dragon Priest,Big Druid,0,53.73,134
+Dragon Priest,Big Druid,1,54.78,115
+Dragon Priest,Taunt Druid,0,51.96,381
+Dragon Priest,Taunt Druid,1,53.84,377
+Dragon Priest,Mill Rogue,0,51.35,370
+Dragon Priest,Mill Rogue,1,58.13,375
+Dragon Priest,Elemental Rogue,0,39.45,702
+Dragon Priest,Elemental Rogue,1,46.26,709
+Dragon Priest,Quest Rogue,0,54.76,126
+Dragon Priest,Quest Rogue,1,56.31,103
+Dragon Priest,Control Paladin,0,47.8,661
+Dragon Priest,Control Paladin,1,54.99,671
+Dragon Priest,Murloc Paladin,0,30.44,1337
+Dragon Priest,Murloc Paladin,1,40.04,1336
+Dragon Priest,Grimestreet Paladin,0,39.38,716
+Dragon Priest,Grimestreet Paladin,1,46.05,723
+Dragon Priest,Enrage Warrior,0,62.96,324
+Dragon Priest,Enrage Warrior,1,66.1,357
+Dragon Priest,Quest Warrior,0,63.9,410
+Dragon Priest,Quest Warrior,1,72.89,439
+Dragon Priest,Dead Man Warrior,0,65.56,633
+Dragon Priest,Dead Man Warrior,1,69.24,712
+Dragon Priest,Prince Rogue,0,39.21,3580
+Dragon Priest,Prince Rogue,1,42.64,3445
+Silence Priest,Pirate Warrior,0,36.02,186
+Silence Priest,Pirate Warrior,1,34.65,176
+Silence Priest,Miracle Rogue,0,39.71,209
+Silence Priest,Miracle Rogue,1,45.77,201
+Silence Priest,Evolve Shaman,0,29.44,771
+Silence Priest,Evolve Shaman,1,34.42,703
+Silence Priest,Aggro Druid,0,41.52,118
+Silence Priest,Aggro Druid,1,49.19,124
+Silence Priest,Demon Control Warlock,1,37.28,118
+Silence Priest,Highlander Priest,0,47.34,659
+Silence Priest,Highlander Priest,1,49.11,678
+Silence Priest,Resurrect Priest,0,32.52,206
+Silence Priest,Resurrect Priest,1,35.17,199
+Silence Priest,Dragon Priest,0,39.26,163
+Silence Priest,Dragon Priest,1,41.33,150
+Silence Priest,Handlock,0,37.08,302
+Silence Priest,Handlock,1,48.28,263
+Silence Priest,Zoolock,0,35.18,108
+Silence Priest,Zoolock,1,50.41,121
+Silence Priest,Midrange Hunter,0,38.53,955
+Silence Priest,Midrange Hunter,1,40.26,966
+Silence Priest,Deathrattle Hunter,0,36.82,391
+Silence Priest,Deathrattle Hunter,1,38.75,369
+Silence Priest,Secret Mage,0,37,454
+Silence Priest,Secret Mage,1,35.98,428
+Silence Priest,Quest Mage,0,59.27,248
+Silence Priest,Quest Mage,1,57.64,229
+Silence Priest,Control Mage,0,46.53,202
+Silence Priest,Control Mage,1,46.34,205
+Silence Priest,Jade Druid,0,56.08,460
+Silence Priest,Jade Druid,1,53.66,464
+Silence Priest,Control Paladin,0,37.03,108
+Silence Priest,Murloc Paladin,0,30,200
+Silence Priest,Murloc Paladin,1,32.96,179
+Silence Priest,Dead Man Warrior,1,44.14,111
+Silence Priest,Prince Rogue,0,36.76,427
+Silence Priest,Prince Rogue,1,34.68,418
+Handlock,Tempo Mage,0,34.16,120
+Handlock,Tempo Mage,1,30.63,111
+Handlock,Pirate Warrior,0,39.45,2778
+Handlock,Pirate Warrior,1,37.58,2621
+Handlock,Miracle Rogue,0,48.48,2836
+Handlock,Miracle Rogue,1,45.42,2899
+Handlock,Evolve Shaman,0,59.63,11507
+Handlock,Evolve Shaman,1,65.18,11492
+Handlock,Aggro Druid,0,51.17,1708
+Handlock,Aggro Druid,1,57.6,1684
+Handlock,Demon Control Warlock,0,50.22,1314
+Handlock,Demon Control Warlock,1,54.98,1344
+Handlock,Highlander Priest,0,42.84,9927
+Handlock,Highlander Priest,1,42.51,9932
+Handlock,Resurrect Priest,0,40.54,3034
+Handlock,Resurrect Priest,1,41.49,2964
+Handlock,Dragon Priest,0,47.64,1975
+Handlock,Dragon Priest,1,54.01,1944
+Handlock,Silence Priest,0,51.71,263
+Handlock,Silence Priest,1,62.91,302
+Handlock,Handlock,0,45.87,3791
+Handlock,Handlock,1,53.99,3791
+Handlock,Zoolock,0,49.37,2070
+Handlock,Zoolock,1,60.24,1962
+Handlock,Highlander Warlock,0,46.21,396
+Handlock,Highlander Warlock,1,58.13,387
+Handlock,Midrange Hunter,0,39.01,14617
+Handlock,Midrange Hunter,1,45.52,14387
+Handlock,Deathrattle Hunter,0,42.02,5337
+Handlock,Deathrattle Hunter,1,49.16,5240
+Handlock,Secret Mage,0,28.97,6681
+Handlock,Secret Mage,1,28.54,6607
+Handlock,Quest Mage,0,37.86,3330
+Handlock,Quest Mage,1,34.96,3298
+Handlock,Control Mage,0,45.06,2676
+Handlock,Control Mage,1,47.61,2707
+Handlock,Highlander Mage,0,45.6,125
+Handlock,Highlander Mage,1,53.5,114
+Handlock,Jade Druid,0,38.76,6611
+Handlock,Jade Druid,1,41.37,6642
+Handlock,Big Druid,0,39.47,228
+Handlock,Big Druid,1,38.6,215
+Handlock,Taunt Druid,0,49.57,710
+Handlock,Taunt Druid,1,57.91,670
+Handlock,Mill Rogue,0,46.37,675
+Handlock,Mill Rogue,1,46.67,692
+Handlock,Elemental Rogue,0,43.16,1441
+Handlock,Elemental Rogue,1,44.95,1408
+Handlock,Quest Rogue,0,39.39,231
+Handlock,Quest Rogue,1,39.5,200
+Handlock,Control Paladin,0,46.7,1246
+Handlock,Control Paladin,1,50.33,1206
+Handlock,Murloc Paladin,0,45.47,2696
+Handlock,Murloc Paladin,1,54.96,2651
+Handlock,Aggro Paladin,0,57.57,165
+Handlock,Aggro Paladin,1,62.42,165
+Handlock,Grimestreet Paladin,0,39.68,1469
+Handlock,Grimestreet Paladin,1,44.54,1392
+Handlock,Enrage Warrior,0,46.89,629
+Handlock,Enrage Warrior,1,55.21,594
+Handlock,Quest Warrior,0,47.59,748
+Handlock,Quest Warrior,1,55.12,742
+Handlock,Dead Man Warrior,0,49.19,1120
+Handlock,Dead Man Warrior,1,53.33,1215
+Handlock,Prince Rogue,0,42.02,7162
+Handlock,Prince Rogue,1,44.34,7105
+Zoolock,Pirate Warrior,0,51.46,1331
+Zoolock,Pirate Warrior,1,53.49,1372
+Zoolock,Miracle Rogue,0,53.8,1392
+Zoolock,Miracle Rogue,1,57.47,1418
+Zoolock,Evolve Shaman,0,48.21,6222
+Zoolock,Evolve Shaman,1,61.35,6304
+Zoolock,Aggro Druid,0,44.43,907
+Zoolock,Aggro Druid,1,53.83,925
+Zoolock,Demon Control Warlock,0,43.75,713
+Zoolock,Demon Control Warlock,1,58.26,750
+Zoolock,Highlander Priest,0,45.06,6744
+Zoolock,Highlander Priest,1,52.72,6779
+Zoolock,Resurrect Priest,0,43.15,1643
+Zoolock,Resurrect Priest,1,45.52,1720
+Zoolock,Dragon Priest,0,48.68,1023
+Zoolock,Dragon Priest,1,62.67,978
+Zoolock,Silence Priest,0,49.58,121
+Zoolock,Silence Priest,1,64.81,108
+Zoolock,Handlock,0,39.75,1962
+Zoolock,Handlock,1,50.48,2070
+Zoolock,Zoolock,0,43.79,1386
+Zoolock,Zoolock,1,56.2,1386
+Zoolock,Highlander Warlock,0,51.2,250
+Zoolock,Highlander Warlock,1,60.9,243
+Zoolock,Midrange Hunter,0,48.92,7459
+Zoolock,Midrange Hunter,1,61.63,7486
+Zoolock,Deathrattle Hunter,0,51.23,2307
+Zoolock,Deathrattle Hunter,1,65.52,2474
+Zoolock,Secret Mage,0,57.87,3456
+Zoolock,Secret Mage,1,71.02,3455
+Zoolock,Quest Mage,0,60.68,1722
+Zoolock,Quest Mage,1,66.15,1708
+Zoolock,Control Mage,0,49.69,1648
+Zoolock,Control Mage,1,61.28,1604
+Zoolock,Highlander Mage,0,61.38,101
+Zoolock,Jade Druid,0,49.08,3993
+Zoolock,Jade Druid,1,59.67,4134
+Zoolock,Big Druid,0,54.62,119
+Zoolock,Big Druid,1,62.5,144
+Zoolock,Taunt Druid,0,51.71,350
+Zoolock,Taunt Druid,1,67.15,344
+Zoolock,Mill Rogue,0,70.19,359
+Zoolock,Mill Rogue,1,72.55,368
+Zoolock,Elemental Rogue,0,37.31,887
+Zoolock,Elemental Rogue,1,46.86,924
+Zoolock,Control Paladin,0,48.1,738
+Zoolock,Control Paladin,1,57.76,715
+Zoolock,Murloc Paladin,0,41.91,1558
+Zoolock,Murloc Paladin,1,61.05,1579
+Zoolock,Grimestreet Paladin,0,54.76,714
+Zoolock,Grimestreet Paladin,1,63.79,696
+Zoolock,Enrage Warrior,0,51.3,306
+Zoolock,Enrage Warrior,1,62.62,305
+Zoolock,Quest Warrior,0,48.49,398
+Zoolock,Quest Warrior,1,66.09,466
+Zoolock,Dead Man Warrior,0,63.91,593
+Zoolock,Dead Man Warrior,1,74.49,639
+Zoolock,Prince Rogue,0,40.07,5120
+Zoolock,Prince Rogue,1,49.1,4816
+Highlander Warlock,Pirate Warrior,0,43.5,331
+Highlander Warlock,Pirate Warrior,1,38.56,293
+Highlander Warlock,Miracle Rogue,0,48.55,276
+Highlander Warlock,Miracle Rogue,1,41.47,299
+Highlander Warlock,Evolve Shaman,0,43.8,1283
+Highlander Warlock,Evolve Shaman,1,54.19,1264
+Highlander Warlock,Aggro Druid,0,43.72,231
+Highlander Warlock,Aggro Druid,1,45.79,214
+Highlander Warlock,Demon Control Warlock,0,48.96,145
+Highlander Warlock,Demon Control Warlock,1,57.37,122
+Highlander Warlock,Highlander Priest,0,44.64,1017
+Highlander Warlock,Highlander Priest,1,45.05,990
+Highlander Warlock,Resurrect Priest,0,39.09,330
+Highlander Warlock,Resurrect Priest,1,44.96,318
+Highlander Warlock,Dragon Priest,0,41.2,216
+Highlander Warlock,Dragon Priest,1,51.61,186
+Highlander Warlock,Handlock,0,41.86,387
+Highlander Warlock,Handlock,1,53.78,396
+Highlander Warlock,Zoolock,0,39.09,243
+Highlander Warlock,Zoolock,1,48.4,250
+Highlander Warlock,Midrange Hunter,0,28.12,1703
+Highlander Warlock,Midrange Hunter,1,34.41,1630
+Highlander Warlock,Deathrattle Hunter,0,30.64,607
+Highlander Warlock,Deathrattle Hunter,1,30.96,578
+Highlander Warlock,Secret Mage,0,20.21,737
+Highlander Warlock,Secret Mage,1,24.31,765
+Highlander Warlock,Quest Mage,0,36.77,329
+Highlander Warlock,Quest Mage,1,35.79,338
+Highlander Warlock,Control Mage,0,40.54,291
+Highlander Warlock,Control Mage,1,46.15,273
+Highlander Warlock,Jade Druid,0,33.33,678
+Highlander Warlock,Jade Druid,1,35.8,620
+Highlander Warlock,Elemental Rogue,0,43.7,135
+Highlander Warlock,Elemental Rogue,1,32.55,129
+Highlander Warlock,Control Paladin,0,45.08,122
+Highlander Warlock,Control Paladin,1,46.08,115
+Highlander Warlock,Murloc Paladin,0,34.95,329
+Highlander Warlock,Murloc Paladin,1,42.67,307
+Highlander Warlock,Grimestreet Paladin,0,31.03,145
+Highlander Warlock,Grimestreet Paladin,1,41.84,141
+Highlander Warlock,Dead Man Warrior,0,60.14,138
+Highlander Warlock,Dead Man Warrior,1,63.57,151
+Highlander Warlock,Prince Rogue,0,39.35,869
+Highlander Warlock,Prince Rogue,1,39.14,838
+Midrange Hunter,Tempo Mage,0,57.31,492
+Midrange Hunter,Tempo Mage,1,58.62,464
+Midrange Hunter,Pirate Warrior,0,59.96,8547
+Midrange Hunter,Pirate Warrior,1,59.43,8630
+Midrange Hunter,Miracle Rogue,0,61.02,10331
+Midrange Hunter,Miracle Rogue,1,62.1,10462
+Midrange Hunter,Evolve Shaman,0,35.9,40436
+Midrange Hunter,Evolve Shaman,1,43.17,40277
+Midrange Hunter,Aggro Druid,0,44.49,5794
+Midrange Hunter,Aggro Druid,1,52.96,5766
+Midrange Hunter,Demon Control Warlock,0,59.09,5183
+Midrange Hunter,Demon Control Warlock,1,68.72,5336
+Midrange Hunter,Highlander Priest,0,50.63,47024
+Midrange Hunter,Highlander Priest,1,55.39,47652
+Midrange Hunter,Resurrect Priest,0,60.46,11484
+Midrange Hunter,Resurrect Priest,1,59.96,11504
+Midrange Hunter,Dragon Priest,0,56.93,7278
+Midrange Hunter,Dragon Priest,1,63.68,7232
+Midrange Hunter,Silence Priest,0,59.73,966
+Midrange Hunter,Silence Priest,1,61.46,955
+Midrange Hunter,Handlock,0,54.25,14387
+Midrange Hunter,Handlock,1,60.73,14617
+Midrange Hunter,Zoolock,0,38.36,7486
+Midrange Hunter,Zoolock,1,51.06,7459
+Midrange Hunter,Highlander Warlock,0,65.39,1630
+Midrange Hunter,Highlander Warlock,1,71.69,1703
+Midrange Hunter,Midrange Hunter,0,45.83,51755
+Midrange Hunter,Midrange Hunter,1,54.16,51755
+Midrange Hunter,Deathrattle Hunter,0,44.2,16270
+Midrange Hunter,Deathrattle Hunter,1,54.92,16067
+Midrange Hunter,Secret Mage,0,51.89,25387
+Midrange Hunter,Secret Mage,1,56.33,25402
+Midrange Hunter,Quest Mage,0,84.5,12481
+Midrange Hunter,Quest Mage,1,86.89,12625
+Midrange Hunter,Control Mage,0,58,11616
+Midrange Hunter,Control Mage,1,66.15,11398
+Midrange Hunter,Highlander Mage,0,60.54,588
+Midrange Hunter,Highlander Mage,1,68.94,644
+Midrange Hunter,Jade Druid,0,50.92,27988
+Midrange Hunter,Jade Druid,1,58.09,27928
+Midrange Hunter,Big Druid,0,64.37,918
+Midrange Hunter,Big Druid,1,69.8,944
+Midrange Hunter,Taunt Druid,0,56.57,2510
+Midrange Hunter,Taunt Druid,1,63.4,2506
+Midrange Hunter,Mill Rogue,0,76.82,2188
+Midrange Hunter,Mill Rogue,1,80.08,2275
+Midrange Hunter,Elemental Rogue,0,34.88,6046
+Midrange Hunter,Elemental Rogue,1,44.3,5938
+Midrange Hunter,Quest Rogue,0,67.75,738
+Midrange Hunter,Quest Rogue,1,77.99,759
+Midrange Hunter,Control Paladin,0,41.97,5611
+Midrange Hunter,Control Paladin,1,52.32,5363
+Midrange Hunter,Murloc Paladin,0,36.79,10621
+Midrange Hunter,Murloc Paladin,1,45.92,10686
+Midrange Hunter,Aggro Paladin,0,37.93,485
+Midrange Hunter,Aggro Paladin,1,53.44,464
+Midrange Hunter,Grimestreet Paladin,0,37.64,5438
+Midrange Hunter,Grimestreet Paladin,1,46.42,5396
+Midrange Hunter,Enrage Warrior,0,61.22,2262
+Midrange Hunter,Enrage Warrior,1,65.95,2403
+Midrange Hunter,Quest Warrior,0,60.26,2902
+Midrange Hunter,Quest Warrior,1,67.89,2968
+Midrange Hunter,Dead Man Warrior,0,78.14,4462
+Midrange Hunter,Dead Man Warrior,1,79.76,4670
+Midrange Hunter,Prince Rogue,0,42.81,29674
+Midrange Hunter,Prince Rogue,1,50.17,29202
+Deathrattle Hunter,Tempo Mage,0,59.74,154
+Deathrattle Hunter,Tempo Mage,1,57.89,152
+Deathrattle Hunter,Pirate Warrior,0,49.3,2866
+Deathrattle Hunter,Pirate Warrior,1,49.21,2938
+Deathrattle Hunter,Miracle Rogue,0,54.98,3503
+Deathrattle Hunter,Miracle Rogue,1,55.64,3659
+Deathrattle Hunter,Evolve Shaman,0,36.75,13343
+Deathrattle Hunter,Evolve Shaman,1,44.46,13434
+Deathrattle Hunter,Aggro Druid,0,45.43,1818
+Deathrattle Hunter,Aggro Druid,1,53.26,1763
+Deathrattle Hunter,Demon Control Warlock,0,61.18,1667
+Deathrattle Hunter,Demon Control Warlock,1,69.32,1669
+Deathrattle Hunter,Highlander Priest,0,51.3,12597
+Deathrattle Hunter,Highlander Priest,1,56.5,12680
+Deathrattle Hunter,Resurrect Priest,0,54.91,3451
+Deathrattle Hunter,Resurrect Priest,1,56.11,3689
+Deathrattle Hunter,Dragon Priest,0,54.55,2548
+Deathrattle Hunter,Dragon Priest,1,64.13,2607
+Deathrattle Hunter,Silence Priest,0,61.24,369
+Deathrattle Hunter,Silence Priest,1,63.17,391
+Deathrattle Hunter,Handlock,0,50.61,5240
+Deathrattle Hunter,Handlock,1,57.8,5337
+Deathrattle Hunter,Zoolock,0,34.47,2474
+Deathrattle Hunter,Zoolock,1,48.76,2307
+Deathrattle Hunter,Highlander Warlock,0,69.03,578
+Deathrattle Hunter,Highlander Warlock,1,69.35,607
+Deathrattle Hunter,Midrange Hunter,0,45.06,16067
+Deathrattle Hunter,Midrange Hunter,1,55.79,16270
+Deathrattle Hunter,Deathrattle Hunter,0,44.96,6774
+Deathrattle Hunter,Deathrattle Hunter,1,55.03,6774
+Deathrattle Hunter,Secret Mage,0,49.02,7613
+Deathrattle Hunter,Secret Mage,1,54.81,7635
+Deathrattle Hunter,Quest Mage,0,80.9,4084
+Deathrattle Hunter,Quest Mage,1,83.92,4150
+Deathrattle Hunter,Control Mage,0,58.95,4137
+Deathrattle Hunter,Control Mage,1,68.12,4213
+Deathrattle Hunter,Highlander Mage,0,62.12,198
+Deathrattle Hunter,Highlander Mage,1,71.55,225
+Deathrattle Hunter,Jade Druid,0,48.9,8469
+Deathrattle Hunter,Jade Druid,1,55.35,8401
+Deathrattle Hunter,Big Druid,0,53.51,256
+Deathrattle Hunter,Big Druid,1,66.06,277
+Deathrattle Hunter,Taunt Druid,0,55.01,858
+Deathrattle Hunter,Taunt Druid,1,62.39,944
+Deathrattle Hunter,Mill Rogue,0,76.52,852
+Deathrattle Hunter,Mill Rogue,1,82.15,874
+Deathrattle Hunter,Elemental Rogue,0,28.44,1508
+Deathrattle Hunter,Elemental Rogue,1,41.39,1587
+Deathrattle Hunter,Quest Rogue,0,67.55,225
+Deathrattle Hunter,Quest Rogue,1,73.43,256
+Deathrattle Hunter,Control Paladin,0,43.26,1699
+Deathrattle Hunter,Control Paladin,1,54.66,1842
+Deathrattle Hunter,Murloc Paladin,0,33.19,3043
+Deathrattle Hunter,Murloc Paladin,1,45.14,2975
+Deathrattle Hunter,Aggro Paladin,0,40.3,196
+Deathrattle Hunter,Aggro Paladin,1,53.12,192
+Deathrattle Hunter,Grimestreet Paladin,0,36.66,1800
+Deathrattle Hunter,Grimestreet Paladin,1,49.15,1825
+Deathrattle Hunter,Enrage Warrior,0,64.09,777
+Deathrattle Hunter,Enrage Warrior,1,68.07,830
+Deathrattle Hunter,Quest Warrior,0,64.03,1129
+Deathrattle Hunter,Quest Warrior,1,71.32,1189
+Deathrattle Hunter,Dead Man Warrior,0,84.25,1505
+Deathrattle Hunter,Dead Man Warrior,1,84.95,1535
+Deathrattle Hunter,Prince Rogue,0,36.59,7651
+Deathrattle Hunter,Prince Rogue,1,44.92,7406
+Secret Mage,Tempo Mage,0,59.34,214
+Secret Mage,Tempo Mage,1,54.71,212
+Secret Mage,Pirate Warrior,0,44.74,4226
+Secret Mage,Pirate Warrior,1,47.58,4325
+Secret Mage,Miracle Rogue,0,66.33,4726
+Secret Mage,Miracle Rogue,1,62.48,4700
+Secret Mage,Evolve Shaman,0,40.92,19578
+Secret Mage,Evolve Shaman,1,44.25,19574
+Secret Mage,Aggro Druid,0,45.01,2886
+Secret Mage,Aggro Druid,1,50.76,2738
+Secret Mage,Demon Control Warlock,0,74.82,2522
+Secret Mage,Demon Control Warlock,1,75.79,2512
+Secret Mage,Highlander Priest,0,59.11,21145
+Secret Mage,Highlander Priest,1,55.6,21065
+Secret Mage,Resurrect Priest,0,65.95,5608
+Secret Mage,Resurrect Priest,1,58.77,5535
+Secret Mage,Dragon Priest,0,61.39,3383
+Secret Mage,Dragon Priest,1,61.76,3227
+Secret Mage,Silence Priest,0,64.01,428
+Secret Mage,Silence Priest,1,62.99,454
+Secret Mage,Handlock,0,71.39,6607
+Secret Mage,Handlock,1,70.97,6681
+Secret Mage,Zoolock,0,28.97,3455
+Secret Mage,Zoolock,1,42.12,3456
+Secret Mage,Highlander Warlock,0,75.68,765
+Secret Mage,Highlander Warlock,1,79.64,737
+Secret Mage,Midrange Hunter,0,43.66,25402
+Secret Mage,Midrange Hunter,1,48.09,25387
+Secret Mage,Deathrattle Hunter,0,45.18,7635
+Secret Mage,Deathrattle Hunter,1,50.97,7613
+Secret Mage,Secret Mage,0,51.51,11992
+Secret Mage,Secret Mage,1,48.48,11992
+Secret Mage,Quest Mage,0,85.82,6012
+Secret Mage,Quest Mage,1,84.08,6065
+Secret Mage,Control Mage,0,67.9,4923
+Secret Mage,Control Mage,1,66.15,5117
+Secret Mage,Highlander Mage,0,69.14,256
+Secret Mage,Highlander Mage,1,70.38,260
+Secret Mage,Jade Druid,0,62.51,12997
+Secret Mage,Jade Druid,1,60.46,12976
+Secret Mage,Big Druid,0,72.9,417
+Secret Mage,Big Druid,1,73.44,418
+Secret Mage,Taunt Druid,0,65.21,1173
+Secret Mage,Taunt Druid,1,64.98,1168
+Secret Mage,Mill Rogue,0,80.88,1156
+Secret Mage,Mill Rogue,1,80.79,1036
+Secret Mage,Elemental Rogue,0,33.81,2727
+Secret Mage,Elemental Rogue,1,38.72,2771
+Secret Mage,Quest Rogue,0,72.98,322
+Secret Mage,Quest Rogue,1,70.77,349
+Secret Mage,Control Paladin,0,53.47,2403
+Secret Mage,Control Paladin,1,59.36,2439
+Secret Mage,Murloc Paladin,0,35.26,5136
+Secret Mage,Murloc Paladin,1,42.35,5090
+Secret Mage,Aggro Paladin,0,30.04,213
+Secret Mage,Aggro Paladin,1,41.25,240
+Secret Mage,Grimestreet Paladin,0,45.4,2414
+Secret Mage,Grimestreet Paladin,1,48.77,2530
+Secret Mage,Enrage Warrior,0,71.49,1014
+Secret Mage,Enrage Warrior,1,69.05,1031
+Secret Mage,Quest Warrior,0,70.66,1408
+Secret Mage,Quest Warrior,1,70.79,1366
+Secret Mage,Dead Man Warrior,0,79.66,2154
+Secret Mage,Dead Man Warrior,1,78.01,2038
+Secret Mage,Prince Rogue,0,38.52,13760
+Secret Mage,Prince Rogue,1,43.41,13697
+Quest Mage,Tempo Mage,0,28.03,107
+Quest Mage,Tempo Mage,1,26.6,109
+Quest Mage,Pirate Warrior,0,13.39,2180
+Quest Mage,Pirate Warrior,1,14.08,2223
+Quest Mage,Miracle Rogue,0,44.51,2660
+Quest Mage,Miracle Rogue,1,40.21,2554
+Quest Mage,Evolve Shaman,0,37.29,10052
+Quest Mage,Evolve Shaman,1,37.35,9868
+Quest Mage,Aggro Druid,0,25.85,1400
+Quest Mage,Aggro Druid,1,27.29,1425
+Quest Mage,Demon Control Warlock,0,48.96,1352
+Quest Mage,Demon Control Warlock,1,47.65,1301
+Quest Mage,Highlander Priest,0,60.76,9815
+Quest Mage,Highlander Priest,1,58.99,9939
+Quest Mage,Resurrect Priest,0,69.79,2870
+Quest Mage,Resurrect Priest,1,66.33,2712
+Quest Mage,Dragon Priest,0,52.44,1821
+Quest Mage,Dragon Priest,1,46.47,1760
+Quest Mage,Silence Priest,0,42.35,229
+Quest Mage,Silence Priest,1,40.72,248
+Quest Mage,Handlock,0,64.94,3298
+Quest Mage,Handlock,1,62.1,3330
+Quest Mage,Zoolock,0,33.84,1708
+Quest Mage,Zoolock,1,39.31,1722
+Quest Mage,Highlander Warlock,0,64.2,338
+Quest Mage,Highlander Warlock,1,62.91,329
+Quest Mage,Midrange Hunter,0,13.09,12625
+Quest Mage,Midrange Hunter,1,15.49,12481
+Quest Mage,Deathrattle Hunter,0,16.07,4150
+Quest Mage,Deathrattle Hunter,1,19.09,4084
+Quest Mage,Secret Mage,0,15.91,6065
+Quest Mage,Secret Mage,1,14.17,6012
+Quest Mage,Quest Mage,0,50.07,3497
+Quest Mage,Quest Mage,1,49.92,3497
+Quest Mage,Control Mage,0,41.54,2648
+Quest Mage,Control Mage,1,42.73,2600
+Quest Mage,Highlander Mage,0,46.42,112
+Quest Mage,Highlander Mage,1,38.83,103
+Quest Mage,Jade Druid,0,54.99,6433
+Quest Mage,Jade Druid,1,51.71,6372
+Quest Mage,Big Druid,0,57.71,201
+Quest Mage,Big Druid,1,56.42,179
+Quest Mage,Taunt Druid,0,48.38,651
+Quest Mage,Taunt Druid,1,47.05,646
+Quest Mage,Mill Rogue,0,42.02,721
+Quest Mage,Mill Rogue,1,38.93,714
+Quest Mage,Elemental Rogue,0,32.04,1214
+Quest Mage,Elemental Rogue,1,36.17,1233
+Quest Mage,Quest Rogue,0,46.19,197
+Quest Mage,Quest Rogue,1,45.3,181
+Quest Mage,Control Paladin,0,51.64,1243
+Quest Mage,Control Paladin,1,55.64,1249
+Quest Mage,Murloc Paladin,0,30.42,2485
+Quest Mage,Murloc Paladin,1,33.46,2531
+Quest Mage,Aggro Paladin,0,22.68,119
+Quest Mage,Aggro Paladin,1,39.42,104
+Quest Mage,Grimestreet Paladin,0,47.59,1267
+Quest Mage,Grimestreet Paladin,1,50.71,1118
+Quest Mage,Enrage Warrior,0,66.23,539
+Quest Mage,Enrage Warrior,1,65.16,511
+Quest Mage,Quest Warrior,0,60.89,734
+Quest Mage,Quest Warrior,1,55.06,681
+Quest Mage,Dead Man Warrior,0,49.43,1319
+Quest Mage,Dead Man Warrior,1,48.83,1288
+Quest Mage,Prince Rogue,0,23.68,6231
+Quest Mage,Prince Rogue,1,24.37,6211
+Control Mage,Pirate Warrior,0,43.64,2312
+Control Mage,Pirate Warrior,1,44.7,2313
+Control Mage,Miracle Rogue,0,54.2,2083
+Control Mage,Miracle Rogue,1,51.4,2105
+Control Mage,Evolve Shaman,0,43.69,8882
+Control Mage,Evolve Shaman,1,46.7,8809
+Control Mage,Aggro Druid,0,48.6,1327
+Control Mage,Aggro Druid,1,53.84,1378
+Control Mage,Demon Control Warlock,0,50.99,1006
+Control Mage,Demon Control Warlock,1,57.25,978
+Control Mage,Highlander Priest,0,42.52,7180
+Control Mage,Highlander Priest,1,40.51,7083
+Control Mage,Resurrect Priest,0,40.67,2328
+Control Mage,Resurrect Priest,1,41.5,2371
+Control Mage,Dragon Priest,0,39.84,1506
+Control Mage,Dragon Priest,1,39.73,1485
+Control Mage,Silence Priest,0,53.17,205
+Control Mage,Silence Priest,1,53.46,202
+Control Mage,Handlock,0,52.34,2707
+Control Mage,Handlock,1,54.85,2676
+Control Mage,Zoolock,0,38.71,1604
+Control Mage,Zoolock,1,50.24,1648
+Control Mage,Highlander Warlock,0,53.84,273
+Control Mage,Highlander Warlock,1,59.45,291
+Control Mage,Midrange Hunter,0,33.83,11398
+Control Mage,Midrange Hunter,1,41.96,11616
+Control Mage,Deathrattle Hunter,0,31.85,4213
+Control Mage,Deathrattle Hunter,1,41.02,4137
+Control Mage,Secret Mage,0,33.84,5117
+Control Mage,Secret Mage,1,32.07,4923
+Control Mage,Quest Mage,0,57.23,2600
+Control Mage,Quest Mage,1,58.45,2648
+Control Mage,Control Mage,0,50.47,2108
+Control Mage,Control Mage,1,49.52,2108
+Control Mage,Jade Druid,0,39.87,4923
+Control Mage,Jade Druid,1,39.6,4904
+Control Mage,Big Druid,0,48.32,149
+Control Mage,Big Druid,1,38.03,163
+Control Mage,Taunt Druid,0,43.95,521
+Control Mage,Taunt Druid,1,50.83,537
+Control Mage,Mill Rogue,0,55.32,488
+Control Mage,Mill Rogue,1,61.04,516
+Control Mage,Elemental Rogue,0,40.51,1091
+Control Mage,Elemental Rogue,1,49.25,1007
+Control Mage,Quest Rogue,0,43.35,173
+Control Mage,Quest Rogue,1,46.15,169
+Control Mage,Control Paladin,0,52.25,865
+Control Mage,Control Paladin,1,53.93,927
+Control Mage,Murloc Paladin,0,41.38,2119
+Control Mage,Murloc Paladin,1,46.95,2083
+Control Mage,Aggro Paladin,0,27.48,131
+Control Mage,Aggro Paladin,1,42.59,108
+Control Mage,Grimestreet Paladin,0,40.96,1052
+Control Mage,Grimestreet Paladin,1,43.52,1027
+Control Mage,Enrage Warrior,0,51.72,435
+Control Mage,Enrage Warrior,1,53.54,437
+Control Mage,Quest Warrior,0,43.78,571
+Control Mage,Quest Warrior,1,44.44,504
+Control Mage,Dead Man Warrior,0,39.4,878
+Control Mage,Dead Man Warrior,1,42.34,895
+Control Mage,Prince Rogue,0,44.34,5730
+Control Mage,Prince Rogue,1,49.02,5685
+Highlander Mage,Pirate Warrior,0,44.85,107
+Highlander Mage,Pirate Warrior,1,30.55,108
+Highlander Mage,Evolve Shaman,0,40.13,431
+Highlander Mage,Evolve Shaman,1,45.47,420
+Highlander Mage,Highlander Priest,0,45.89,353
+Highlander Mage,Highlander Priest,1,41.35,295
+Highlander Mage,Resurrect Priest,0,37.71,114
+Highlander Mage,Resurrect Priest,1,42.85,105
+Highlander Mage,Handlock,0,46.49,114
+Highlander Mage,Handlock,1,53.6,125
+Highlander Mage,Zoolock,1,38.61,101
+Highlander Mage,Midrange Hunter,0,31.05,644
+Highlander Mage,Midrange Hunter,1,39.45,588
+Highlander Mage,Deathrattle Hunter,0,28.44,225
+Highlander Mage,Deathrattle Hunter,1,37.37,198
+Highlander Mage,Secret Mage,0,29.61,260
+Highlander Mage,Secret Mage,1,30.85,256
+Highlander Mage,Quest Mage,0,61.16,103
+Highlander Mage,Quest Mage,1,53.57,112
+Highlander Mage,Jade Druid,0,33.99,253
+Highlander Mage,Jade Druid,1,31.91,235
+Highlander Mage,Murloc Paladin,0,30.23,129
+Highlander Mage,Murloc Paladin,1,43.68,103
+Highlander Mage,Prince Rogue,0,39.04,292
+Highlander Mage,Prince Rogue,1,49.26,272
+Jade Druid,Tempo Mage,0,57.56,238
+Jade Druid,Tempo Mage,1,57.14,252
+Jade Druid,Pirate Warrior,0,43.22,4955
+Jade Druid,Pirate Warrior,1,44.91,5030
+Jade Druid,Miracle Rogue,0,55.23,5111
+Jade Druid,Miracle Rogue,1,47.34,4995
+Jade Druid,Evolve Shaman,0,43.33,22177
+Jade Druid,Evolve Shaman,1,48.02,22386
+Jade Druid,Aggro Druid,0,35.74,3245
+Jade Druid,Aggro Druid,1,41.58,3203
+Jade Druid,Demon Control Warlock,0,63.93,2368
+Jade Druid,Demon Control Warlock,1,66.7,2400
+Jade Druid,Highlander Priest,0,61.43,21223
+Jade Druid,Highlander Priest,1,59.11,21024
+Jade Druid,Resurrect Priest,0,54.14,5938
+Jade Druid,Resurrect Priest,1,50.83,5943
+Jade Druid,Dragon Priest,0,47.1,3473
+Jade Druid,Dragon Priest,1,48.32,3545
+Jade Druid,Silence Priest,0,46.33,464
+Jade Druid,Silence Priest,1,43.91,460
+Jade Druid,Handlock,0,58.52,6642
+Jade Druid,Handlock,1,61.12,6611
+Jade Druid,Zoolock,0,40.29,4134
+Jade Druid,Zoolock,1,50.88,3993
+Jade Druid,Highlander Warlock,0,64.19,620
+Jade Druid,Highlander Warlock,1,66.37,678
+Jade Druid,Midrange Hunter,0,41.88,27928
+Jade Druid,Midrange Hunter,1,49.04,27988
+Jade Druid,Deathrattle Hunter,0,44.63,8401
+Jade Druid,Deathrattle Hunter,1,51.05,8469
+Jade Druid,Secret Mage,0,39.5,12976
+Jade Druid,Secret Mage,1,37.47,12997
+Jade Druid,Quest Mage,0,48.25,6372
+Jade Druid,Quest Mage,1,44.95,6433
+Jade Druid,Control Mage,0,60.27,4904
+Jade Druid,Control Mage,1,59.96,4923
+Jade Druid,Highlander Mage,0,67.65,235
+Jade Druid,Highlander Mage,1,66,253
+Jade Druid,Jade Druid,0,52.05,13566
+Jade Druid,Jade Druid,1,47.85,13566
+Jade Druid,Big Druid,0,44.51,447
+Jade Druid,Big Druid,1,48.38,465
+Jade Druid,Taunt Druid,0,49.09,1212
+Jade Druid,Taunt Druid,1,48.91,1239
+Jade Druid,Mill Rogue,0,74.82,1148
+Jade Druid,Mill Rogue,1,74.54,1155
+Jade Druid,Elemental Rogue,0,48.28,3202
+Jade Druid,Elemental Rogue,1,52.13,3117
+Jade Druid,Quest Rogue,0,41.27,361
+Jade Druid,Quest Rogue,1,41.46,381
+Jade Druid,Control Paladin,0,60.89,2176
+Jade Druid,Control Paladin,1,63.07,2340
+Jade Druid,Murloc Paladin,0,38.53,5719
+Jade Druid,Murloc Paladin,1,44.94,5663
+Jade Druid,Aggro Paladin,0,41.93,279
+Jade Druid,Aggro Paladin,1,46.77,248
+Jade Druid,Grimestreet Paladin,0,49.23,2537
+Jade Druid,Grimestreet Paladin,1,50.27,2566
+Jade Druid,Enrage Warrior,0,68.52,1058
+Jade Druid,Enrage Warrior,1,68.9,1055
+Jade Druid,Quest Warrior,0,70.55,1270
+Jade Druid,Quest Warrior,1,72.23,1293
+Jade Druid,Dead Man Warrior,0,64.33,2019
+Jade Druid,Dead Man Warrior,1,65.63,1944
+Jade Druid,Prince Rogue,0,44.01,16903
+Jade Druid,Prince Rogue,1,47.24,16509
+Big Druid,Pirate Warrior,0,35.4,161
+Big Druid,Pirate Warrior,1,37.19,164
+Big Druid,Miracle Rogue,0,48.29,176
+Big Druid,Miracle Rogue,1,32.12,165
+Big Druid,Evolve Shaman,0,39.01,751
+Big Druid,Evolve Shaman,1,46.32,762
+Big Druid,Aggro Druid,0,30.09,103
+Big Druid,Aggro Druid,1,30.7,127
+Big Druid,Highlander Priest,0,67.31,716
+Big Druid,Highlander Priest,1,65.26,714
+Big Druid,Resurrect Priest,0,51.16,215
+Big Druid,Resurrect Priest,1,51.86,214
+Big Druid,Dragon Priest,0,45.21,115
+Big Druid,Dragon Priest,1,46.26,134
+Big Druid,Handlock,0,61.39,215
+Big Druid,Handlock,1,60.52,228
+Big Druid,Zoolock,0,37.5,144
+Big Druid,Zoolock,1,45.37,119
+Big Druid,Midrange Hunter,0,30.19,944
+Big Druid,Midrange Hunter,1,35.62,918
+Big Druid,Deathrattle Hunter,0,33.93,277
+Big Druid,Deathrattle Hunter,1,46.48,256
+Big Druid,Secret Mage,0,26.55,418
+Big Druid,Secret Mage,1,27.09,417
+Big Druid,Quest Mage,0,43.57,179
+Big Druid,Quest Mage,1,42.28,201
+Big Druid,Control Mage,0,61.96,163
+Big Druid,Control Mage,1,51,149
+Big Druid,Jade Druid,0,51.61,465
+Big Druid,Jade Druid,1,55.48,447
+Big Druid,Murloc Paladin,0,26.4,178
+Big Druid,Murloc Paladin,1,32.29,192
+Big Druid,Prince Rogue,0,34.39,532
+Big Druid,Prince Rogue,1,39.08,527
+Taunt Druid,Pirate Warrior,0,40.39,458
+Taunt Druid,Pirate Warrior,1,43.83,422
+Taunt Druid,Miracle Rogue,0,47.3,556
+Taunt Druid,Miracle Rogue,1,47.35,511
+Taunt Druid,Evolve Shaman,0,35.71,2027
+Taunt Druid,Evolve Shaman,1,44.73,1918
+Taunt Druid,Aggro Druid,0,39.28,308
+Taunt Druid,Aggro Druid,1,43.95,273
+Taunt Druid,Demon Control Warlock,0,51.39,251
+Taunt Druid,Demon Control Warlock,1,55.1,245
+Taunt Druid,Highlander Priest,0,49.23,1824
+Taunt Druid,Highlander Priest,1,52.29,1876
+Taunt Druid,Resurrect Priest,0,43.08,564
+Taunt Druid,Resurrect Priest,1,41.96,560
+Taunt Druid,Dragon Priest,0,46.15,377
+Taunt Druid,Dragon Priest,1,48.03,381
+Taunt Druid,Handlock,0,41.94,670
+Taunt Druid,Handlock,1,50.42,710
+Taunt Druid,Zoolock,0,32.84,344
+Taunt Druid,Zoolock,1,48.28,350
+Taunt Druid,Midrange Hunter,0,36.47,2506
+Taunt Druid,Midrange Hunter,1,43.34,2510
+Taunt Druid,Deathrattle Hunter,0,37.6,944
+Taunt Druid,Deathrattle Hunter,1,44.98,858
+Taunt Druid,Secret Mage,0,35.01,1168
+Taunt Druid,Secret Mage,1,34.78,1173
+Taunt Druid,Quest Mage,0,52.94,646
+Taunt Druid,Quest Mage,1,51.45,651
+Taunt Druid,Control Mage,0,49.16,537
+Taunt Druid,Control Mage,1,55.85,521
+Taunt Druid,Jade Druid,0,51,1239
+Taunt Druid,Jade Druid,1,50.82,1212
+Taunt Druid,Taunt Druid,0,50.42,119
+Taunt Druid,Taunt Druid,1,49.57,119
+Taunt Druid,Mill Rogue,0,68.88,135
+Taunt Druid,Mill Rogue,1,59.34,123
+Taunt Druid,Elemental Rogue,0,38.07,239
+Taunt Druid,Elemental Rogue,1,42.02,257
+Taunt Druid,Control Paladin,0,42.85,231
+Taunt Druid,Control Paladin,1,48.89,227
+Taunt Druid,Murloc Paladin,0,29.72,481
+Taunt Druid,Murloc Paladin,1,38.3,496
+Taunt Druid,Grimestreet Paladin,0,36.71,286
+Taunt Druid,Grimestreet Paladin,1,41.37,261
+Taunt Druid,Enrage Warrior,0,56.6,106
+Taunt Druid,Enrage Warrior,1,66.39,122
+Taunt Druid,Quest Warrior,0,55.24,143
+Taunt Druid,Quest Warrior,1,62,150
+Taunt Druid,Dead Man Warrior,0,62.6,246
+Taunt Druid,Dead Man Warrior,1,67.53,231
+Taunt Druid,Prince Rogue,0,39.66,1147
+Taunt Druid,Prince Rogue,1,43.44,1160
+Mill Rogue,Pirate Warrior,0,18.44,526
+Mill Rogue,Pirate Warrior,1,16.03,524
+Mill Rogue,Miracle Rogue,0,42.68,492
+Mill Rogue,Miracle Rogue,1,41.56,510
+Mill Rogue,Evolve Shaman,0,17.59,1904
+Mill Rogue,Evolve Shaman,1,21.32,1857
+Mill Rogue,Aggro Druid,0,29.07,313
+Mill Rogue,Aggro Druid,1,28.91,287
+Mill Rogue,Demon Control Warlock,0,51.18,254
+Mill Rogue,Demon Control Warlock,1,45.21,230
+Mill Rogue,Highlander Priest,0,43,1551
+Mill Rogue,Highlander Priest,1,46.03,1577
+Mill Rogue,Resurrect Priest,0,59.06,535
+Mill Rogue,Resurrect Priest,1,60.55,573
+Mill Rogue,Dragon Priest,0,41.6,375
+Mill Rogue,Dragon Priest,1,47.83,370
+Mill Rogue,Handlock,0,52.89,692
+Mill Rogue,Handlock,1,53.03,675
+Mill Rogue,Zoolock,0,27.17,368
+Mill Rogue,Zoolock,1,29.52,359
+Mill Rogue,Midrange Hunter,0,19.86,2275
+Mill Rogue,Midrange Hunter,1,23.12,2188
+Mill Rogue,Deathrattle Hunter,0,17.73,874
+Mill Rogue,Deathrattle Hunter,1,23.23,852
+Mill Rogue,Secret Mage,0,19.11,1036
+Mill Rogue,Secret Mage,1,19.11,1156
+Mill Rogue,Quest Mage,0,60.92,714
+Mill Rogue,Quest Mage,1,57.97,721
+Mill Rogue,Control Mage,0,38.95,516
+Mill Rogue,Control Mage,1,44.46,488
+Mill Rogue,Jade Druid,0,24.93,1155
+Mill Rogue,Jade Druid,1,25,1148
+Mill Rogue,Taunt Druid,0,40.65,123
+Mill Rogue,Taunt Druid,1,31.11,135
+Mill Rogue,Mill Rogue,0,42.85,189
+Mill Rogue,Mill Rogue,1,56.08,189
+Mill Rogue,Elemental Rogue,0,17.32,202
+Mill Rogue,Elemental Rogue,1,20,210
+Mill Rogue,Control Paladin,0,34.33,233
+Mill Rogue,Control Paladin,1,36.27,204
+Mill Rogue,Murloc Paladin,0,18.73,459
+Mill Rogue,Murloc Paladin,1,27.67,495
+Mill Rogue,Grimestreet Paladin,0,33.03,224
+Mill Rogue,Grimestreet Paladin,1,34.23,222
+Mill Rogue,Enrage Warrior,0,26.54,113
+Mill Rogue,Quest Warrior,0,23.89,159
+Mill Rogue,Quest Warrior,1,30.14,136
+Mill Rogue,Dead Man Warrior,0,21.47,284
+Mill Rogue,Dead Man Warrior,1,27.51,229
+Mill Rogue,Prince Rogue,0,14.43,1060
+Mill Rogue,Prince Rogue,1,15.72,1030
+Elemental Rogue,Pirate Warrior,0,53.1,1013
+Elemental Rogue,Pirate Warrior,1,59.67,1039
+Elemental Rogue,Miracle Rogue,0,59.93,951
+Elemental Rogue,Miracle Rogue,1,58.94,984
+Elemental Rogue,Evolve Shaman,0,48.3,4848
+Elemental Rogue,Evolve Shaman,1,57.93,4833
+Elemental Rogue,Aggro Druid,0,50,692
+Elemental Rogue,Aggro Druid,1,56.2,685
+Elemental Rogue,Demon Control Warlock,0,51.55,450
+Elemental Rogue,Demon Control Warlock,1,60.07,531
+Elemental Rogue,Highlander Priest,0,46.2,5456
+Elemental Rogue,Highlander Priest,1,46.98,5566
+Elemental Rogue,Resurrect Priest,0,50.82,1269
+Elemental Rogue,Resurrect Priest,1,49.96,1371
+Elemental Rogue,Dragon Priest,0,53.73,709
+Elemental Rogue,Dragon Priest,1,60.54,702
+Elemental Rogue,Handlock,0,54.97,1408
+Elemental Rogue,Handlock,1,56.69,1441
+Elemental Rogue,Zoolock,0,53.13,924
+Elemental Rogue,Zoolock,1,62.68,887
+Elemental Rogue,Highlander Warlock,0,67.44,129
+Elemental Rogue,Highlander Warlock,1,56.29,135
+Elemental Rogue,Midrange Hunter,0,55.69,5938
+Elemental Rogue,Midrange Hunter,1,65.1,6046
+Elemental Rogue,Deathrattle Hunter,0,58.6,1587
+Elemental Rogue,Deathrattle Hunter,1,71.55,1508
+Elemental Rogue,Secret Mage,0,61.27,2771
+Elemental Rogue,Secret Mage,1,66.15,2727
+Elemental Rogue,Quest Mage,0,63.82,1233
+Elemental Rogue,Quest Mage,1,67.95,1214
+Elemental Rogue,Control Mage,0,50.64,1007
+Elemental Rogue,Control Mage,1,59.48,1091
+Elemental Rogue,Jade Druid,0,47.86,3117
+Elemental Rogue,Jade Druid,1,51.71,3202
+Elemental Rogue,Taunt Druid,0,57.97,257
+Elemental Rogue,Taunt Druid,1,61.92,239
+Elemental Rogue,Mill Rogue,0,80,210
+Elemental Rogue,Mill Rogue,1,82.67,202
+Elemental Rogue,Elemental Rogue,0,45.36,895
+Elemental Rogue,Elemental Rogue,1,54.63,895
+Elemental Rogue,Control Paladin,0,63.31,488
+Elemental Rogue,Control Paladin,1,63.53,543
+Elemental Rogue,Murloc Paladin,0,52.5,1276
+Elemental Rogue,Murloc Paladin,1,66.4,1286
+Elemental Rogue,Grimestreet Paladin,0,61.95,531
+Elemental Rogue,Grimestreet Paladin,1,71.45,599
+Elemental Rogue,Enrage Warrior,0,50.92,216
+Elemental Rogue,Enrage Warrior,1,57.64,229
+Elemental Rogue,Quest Warrior,0,58.74,286
+Elemental Rogue,Quest Warrior,1,69.07,249
+Elemental Rogue,Dead Man Warrior,0,70.53,414
+Elemental Rogue,Dead Man Warrior,1,73.52,423
+Elemental Rogue,Prince Rogue,0,49.21,4285
+Elemental Rogue,Prince Rogue,1,57.15,4309
+Quest Rogue,Pirate Warrior,0,23.42,111
+Quest Rogue,Pirate Warrior,1,29.36,126
+Quest Rogue,Miracle Rogue,0,55.95,168
+Quest Rogue,Miracle Rogue,1,45.33,150
+Quest Rogue,Evolve Shaman,0,33.76,545
+Quest Rogue,Evolve Shaman,1,40.72,550
+Quest Rogue,Highlander Priest,0,58.84,588
+Quest Rogue,Highlander Priest,1,54.87,574
+Quest Rogue,Resurrect Priest,0,66.89,148
+Quest Rogue,Resurrect Priest,1,61.07,167
+Quest Rogue,Dragon Priest,0,43.68,103
+Quest Rogue,Dragon Priest,1,45.23,126
+Quest Rogue,Handlock,0,60,200
+Quest Rogue,Handlock,1,60.6,231
+Quest Rogue,Midrange Hunter,0,21.87,759
+Quest Rogue,Midrange Hunter,1,32.24,738
+Quest Rogue,Deathrattle Hunter,0,26.56,256
+Quest Rogue,Deathrattle Hunter,1,32.44,225
+Quest Rogue,Secret Mage,0,29.22,349
+Quest Rogue,Secret Mage,1,27.01,322
+Quest Rogue,Quest Mage,0,54.69,181
+Quest Rogue,Quest Mage,1,53.8,197
+Quest Rogue,Control Mage,0,53.84,169
+Quest Rogue,Control Mage,1,56.64,173
+Quest Rogue,Jade Druid,0,58.26,381
+Quest Rogue,Jade Druid,1,58.72,361
+Quest Rogue,Murloc Paladin,0,18.43,141
+Quest Rogue,Murloc Paladin,1,28.46,137
+Quest Rogue,Prince Rogue,0,23.85,306
+Quest Rogue,Prince Rogue,1,26.57,286
+Control Paladin,Pirate Warrior,0,53.78,991
+Control Paladin,Pirate Warrior,1,57.01,1005
+Control Paladin,Miracle Rogue,0,44.44,972
+Control Paladin,Miracle Rogue,1,42.71,974
+Control Paladin,Evolve Shaman,0,39.63,4289
+Control Paladin,Evolve Shaman,1,45.32,4099
+Control Paladin,Aggro Druid,0,53.02,694
+Control Paladin,Aggro Druid,1,54.38,673
+Control Paladin,Demon Control Warlock,0,61.42,407
+Control Paladin,Demon Control Warlock,1,57.77,450
+Control Paladin,Highlander Priest,0,37.9,3240
+Control Paladin,Highlander Priest,1,38.6,3295
+Control Paladin,Resurrect Priest,0,48.29,1087
+Control Paladin,Resurrect Priest,1,47.22,1080
+Control Paladin,Dragon Priest,0,44.85,671
+Control Paladin,Dragon Priest,1,52.19,661
+Control Paladin,Silence Priest,1,62.03,108
+Control Paladin,Handlock,0,49.5,1206
+Control Paladin,Handlock,1,52.96,1246
+Control Paladin,Zoolock,0,42.23,715
+Control Paladin,Zoolock,1,51.76,738
+Control Paladin,Highlander Warlock,0,53.91,115
+Control Paladin,Highlander Warlock,1,54.91,122
+Control Paladin,Midrange Hunter,0,47.65,5363
+Control Paladin,Midrange Hunter,1,57.99,5611
+Control Paladin,Deathrattle Hunter,0,45.33,1842
+Control Paladin,Deathrattle Hunter,1,56.68,1699
+Control Paladin,Secret Mage,0,40.59,2439
+Control Paladin,Secret Mage,1,46.48,2403
+Control Paladin,Quest Mage,0,44.35,1249
+Control Paladin,Quest Mage,1,48.27,1243
+Control Paladin,Control Mage,0,46.06,927
+Control Paladin,Control Mage,1,47.74,865
+Control Paladin,Jade Druid,0,36.49,2340
+Control Paladin,Jade Druid,1,38.78,2176
+Control Paladin,Taunt Druid,0,51.1,227
+Control Paladin,Taunt Druid,1,56.7,231
+Control Paladin,Mill Rogue,0,62.74,204
+Control Paladin,Mill Rogue,1,65.66,233
+Control Paladin,Elemental Rogue,0,36.46,543
+Control Paladin,Elemental Rogue,1,36.68,488
+Control Paladin,Control Paladin,0,48.36,366
+Control Paladin,Control Paladin,1,51.36,366
+Control Paladin,Murloc Paladin,0,37.1,1086
+Control Paladin,Murloc Paladin,1,49.17,1035
+Control Paladin,Grimestreet Paladin,0,35.89,482
+Control Paladin,Grimestreet Paladin,1,43.01,451
+Control Paladin,Enrage Warrior,0,60.21,186
+Control Paladin,Enrage Warrior,1,56.92,195
+Control Paladin,Quest Warrior,0,50.2,239
+Control Paladin,Quest Warrior,1,56.03,257
+Control Paladin,Dead Man Warrior,0,64.98,397
+Control Paladin,Dead Man Warrior,1,70.88,371
+Control Paladin,Prince Rogue,0,40.54,2686
+Control Paladin,Prince Rogue,1,43.74,2645
+Murloc Paladin,Pirate Warrior,0,54.48,1760
+Murloc Paladin,Pirate Warrior,1,58.68,1699
+Murloc Paladin,Miracle Rogue,0,54.01,2129
+Murloc Paladin,Miracle Rogue,1,54.78,2028
+Murloc Paladin,Evolve Shaman,0,39.17,8452
+Murloc Paladin,Evolve Shaman,1,48.51,8436
+Murloc Paladin,Aggro Druid,0,43.32,1198
+Murloc Paladin,Aggro Druid,1,60.65,1182
+Murloc Paladin,Demon Control Warlock,0,53.5,1000
+Murloc Paladin,Demon Control Warlock,1,58.38,1002
+Murloc Paladin,Highlander Priest,0,50.3,9604
+Murloc Paladin,Highlander Priest,1,56.15,9579
+Murloc Paladin,Resurrect Priest,0,51.92,2338
+Murloc Paladin,Resurrect Priest,1,51.42,2499
+Murloc Paladin,Dragon Priest,0,59.95,1336
+Murloc Paladin,Dragon Priest,1,69.55,1337
+Murloc Paladin,Silence Priest,0,67.03,179
+Murloc Paladin,Silence Priest,1,70,200
+Murloc Paladin,Handlock,0,44.92,2651
+Murloc Paladin,Handlock,1,54.45,2696
+Murloc Paladin,Zoolock,0,38.94,1579
+Murloc Paladin,Zoolock,1,58.02,1558
+Murloc Paladin,Highlander Warlock,0,57.32,307
+Murloc Paladin,Highlander Warlock,1,65.04,329
+Murloc Paladin,Midrange Hunter,0,54.04,10686
+Murloc Paladin,Midrange Hunter,1,63.19,10621
+Murloc Paladin,Deathrattle Hunter,0,54.85,2975
+Murloc Paladin,Deathrattle Hunter,1,66.8,3043
+Murloc Paladin,Secret Mage,0,57.62,5090
+Murloc Paladin,Secret Mage,1,64.71,5136
+Murloc Paladin,Quest Mage,0,66.49,2531
+Murloc Paladin,Quest Mage,1,69.53,2485
+Murloc Paladin,Control Mage,0,52.9,2083
+Murloc Paladin,Control Mage,1,58.51,2119
+Murloc Paladin,Highlander Mage,0,56.31,103
+Murloc Paladin,Highlander Mage,1,69.76,129
+Murloc Paladin,Jade Druid,0,55,5663
+Murloc Paladin,Jade Druid,1,61.44,5719
+Murloc Paladin,Big Druid,0,67.7,192
+Murloc Paladin,Big Druid,1,73.59,178
+Murloc Paladin,Taunt Druid,0,61.69,496
+Murloc Paladin,Taunt Druid,1,70.27,481
+Murloc Paladin,Mill Rogue,0,72.32,495
+Murloc Paladin,Mill Rogue,1,81.26,459
+Murloc Paladin,Elemental Rogue,0,33.51,1286
+Murloc Paladin,Elemental Rogue,1,47.49,1276
+Murloc Paladin,Quest Rogue,0,71.53,137
+Murloc Paladin,Quest Rogue,1,80.85,141
+Murloc Paladin,Control Paladin,0,50.82,1035
+Murloc Paladin,Control Paladin,1,62.89,1086
+Murloc Paladin,Murloc Paladin,0,39.59,2149
+Murloc Paladin,Murloc Paladin,1,60.4,2149
+Murloc Paladin,Aggro Paladin,0,43.24,111
+Murloc Paladin,Aggro Paladin,1,57.42,101
+Murloc Paladin,Grimestreet Paladin,0,55.77,961
+Murloc Paladin,Grimestreet Paladin,1,66.25,1043
+Murloc Paladin,Enrage Warrior,0,61.65,412
+Murloc Paladin,Enrage Warrior,1,68.09,442
+Murloc Paladin,Quest Warrior,0,62.31,528
+Murloc Paladin,Quest Warrior,1,71.75,563
+Murloc Paladin,Dead Man Warrior,0,74.87,963
+Murloc Paladin,Dead Man Warrior,1,78.27,953
+Murloc Paladin,Prince Rogue,0,39.37,6342
+Murloc Paladin,Prince Rogue,1,48.95,6334
+Aggro Paladin,Pirate Warrior,0,46.72,107
+Aggro Paladin,Miracle Rogue,0,60.52,114
+Aggro Paladin,Miracle Rogue,1,60.78,102
+Aggro Paladin,Evolve Shaman,0,32.78,424
+Aggro Paladin,Evolve Shaman,1,48.14,378
+Aggro Paladin,Highlander Priest,0,57.4,378
+Aggro Paladin,Highlander Priest,1,54.74,411
+Aggro Paladin,Resurrect Priest,0,56.29,135
+Aggro Paladin,Resurrect Priest,1,59.39,133
+Aggro Paladin,Handlock,0,37.57,165
+Aggro Paladin,Handlock,1,42.42,165
+Aggro Paladin,Midrange Hunter,0,46.55,464
+Aggro Paladin,Midrange Hunter,1,61.85,485
+Aggro Paladin,Deathrattle Hunter,0,46.87,192
+Aggro Paladin,Deathrattle Hunter,1,59.69,196
+Aggro Paladin,Secret Mage,0,58.75,240
+Aggro Paladin,Secret Mage,1,69.95,213
+Aggro Paladin,Quest Mage,0,60.57,104
+Aggro Paladin,Quest Mage,1,77.31,119
+Aggro Paladin,Control Mage,0,57.4,108
+Aggro Paladin,Control Mage,1,71.75,131
+Aggro Paladin,Jade Druid,0,53.22,248
+Aggro Paladin,Jade Druid,1,57.7,279
+Aggro Paladin,Murloc Paladin,0,42.57,101
+Aggro Paladin,Murloc Paladin,1,56.75,111
+Aggro Paladin,Prince Rogue,0,35.03,254
+Aggro Paladin,Prince Rogue,1,40,285
+Grimestreet Paladin,Pirate Warrior,0,55.97,995
+Grimestreet Paladin,Pirate Warrior,1,57.37,915
+Grimestreet Paladin,Miracle Rogue,0,47.98,1019
+Grimestreet Paladin,Miracle Rogue,1,47.53,934
+Grimestreet Paladin,Evolve Shaman,0,29.87,4197
+Grimestreet Paladin,Evolve Shaman,1,38.17,4092
+Grimestreet Paladin,Aggro Druid,0,47.77,561
+Grimestreet Paladin,Aggro Druid,1,52.68,634
+Grimestreet Paladin,Demon Control Warlock,0,59.1,494
+Grimestreet Paladin,Demon Control Warlock,1,66.53,490
+Grimestreet Paladin,Highlander Priest,0,49.31,3869
+Grimestreet Paladin,Highlander Priest,1,48.97,3892
+Grimestreet Paladin,Resurrect Priest,0,54.36,1227
+Grimestreet Paladin,Resurrect Priest,1,55.43,1241
+Grimestreet Paladin,Dragon Priest,0,53.94,723
+Grimestreet Paladin,Dragon Priest,1,60.61,716
+Grimestreet Paladin,Handlock,0,55.38,1392
+Grimestreet Paladin,Handlock,1,60.24,1469
+Grimestreet Paladin,Zoolock,0,36.2,696
+Grimestreet Paladin,Zoolock,1,45.23,714
+Grimestreet Paladin,Highlander Warlock,0,58.15,141
+Grimestreet Paladin,Highlander Warlock,1,68.96,145
+Grimestreet Paladin,Midrange Hunter,0,53.57,5396
+Grimestreet Paladin,Midrange Hunter,1,62.33,5438
+Grimestreet Paladin,Deathrattle Hunter,0,50.84,1825
+Grimestreet Paladin,Deathrattle Hunter,1,63.33,1800
+Grimestreet Paladin,Secret Mage,0,51.18,2530
+Grimestreet Paladin,Secret Mage,1,54.59,2414
+Grimestreet Paladin,Quest Mage,0,49.28,1118
+Grimestreet Paladin,Quest Mage,1,52.4,1267
+Grimestreet Paladin,Control Mage,0,56.37,1027
+Grimestreet Paladin,Control Mage,1,59.03,1052
+Grimestreet Paladin,Jade Druid,0,49.68,2566
+Grimestreet Paladin,Jade Druid,1,50.72,2537
+Grimestreet Paladin,Taunt Druid,0,58.62,261
+Grimestreet Paladin,Taunt Druid,1,63.28,286
+Grimestreet Paladin,Mill Rogue,0,65.76,222
+Grimestreet Paladin,Mill Rogue,1,66.51,224
+Grimestreet Paladin,Elemental Rogue,0,28.38,599
+Grimestreet Paladin,Elemental Rogue,1,38.04,531
+Grimestreet Paladin,Control Paladin,0,56.98,451
+Grimestreet Paladin,Control Paladin,1,64.1,482
+Grimestreet Paladin,Murloc Paladin,0,33.74,1043
+Grimestreet Paladin,Murloc Paladin,1,44.22,961
+Grimestreet Paladin,Grimestreet Paladin,0,46.03,530
+Grimestreet Paladin,Grimestreet Paladin,1,53.96,530
+Grimestreet Paladin,Enrage Warrior,0,62.54,251
+Grimestreet Paladin,Enrage Warrior,1,71.24,233
+Grimestreet Paladin,Quest Warrior,0,69.66,267
+Grimestreet Paladin,Quest Warrior,1,71.83,284
+Grimestreet Paladin,Dead Man Warrior,0,83,500
+Grimestreet Paladin,Dead Man Warrior,1,83.59,506
+Grimestreet Paladin,Prince Rogue,0,36.99,2765
+Grimestreet Paladin,Prince Rogue,1,44.04,2677
+Enrage Warrior,Pirate Warrior,0,40.26,457
+Enrage Warrior,Pirate Warrior,1,40.58,478
+Enrage Warrior,Miracle Rogue,0,61.27,439
+Enrage Warrior,Miracle Rogue,1,53.49,443
+Enrage Warrior,Evolve Shaman,0,47.66,1800
+Enrage Warrior,Evolve Shaman,1,52.18,1717
+Enrage Warrior,Aggro Druid,0,44.88,303
+Enrage Warrior,Aggro Druid,1,52.58,310
+Enrage Warrior,Demon Control Warlock,0,60.09,213
+Enrage Warrior,Demon Control Warlock,1,60.27,219
+Enrage Warrior,Highlander Priest,0,38.29,1486
+Enrage Warrior,Highlander Priest,1,34.44,1440
+Enrage Warrior,Resurrect Priest,0,29.66,509
+Enrage Warrior,Resurrect Priest,1,30.85,457
+Enrage Warrior,Dragon Priest,0,33.89,357
+Enrage Warrior,Dragon Priest,1,37.03,324
+Enrage Warrior,Handlock,0,44.61,594
+Enrage Warrior,Handlock,1,52.94,629
+Enrage Warrior,Zoolock,0,37.37,305
+Enrage Warrior,Zoolock,1,48.69,306
+Enrage Warrior,Midrange Hunter,0,34.04,2403
+Enrage Warrior,Midrange Hunter,1,38.77,2262
+Enrage Warrior,Deathrattle Hunter,0,31.92,830
+Enrage Warrior,Deathrattle Hunter,1,35.9,777
+Enrage Warrior,Secret Mage,0,30.94,1031
+Enrage Warrior,Secret Mage,1,28.5,1014
+Enrage Warrior,Quest Mage,0,34.83,511
+Enrage Warrior,Quest Mage,1,33.76,539
+Enrage Warrior,Control Mage,0,46.45,437
+Enrage Warrior,Control Mage,1,48.27,435
+Enrage Warrior,Jade Druid,0,30.99,1055
+Enrage Warrior,Jade Druid,1,31.37,1058
+Enrage Warrior,Taunt Druid,0,33.6,122
+Enrage Warrior,Taunt Druid,1,43.39,106
+Enrage Warrior,Mill Rogue,1,73.45,113
+Enrage Warrior,Elemental Rogue,0,42.35,229
+Enrage Warrior,Elemental Rogue,1,49.07,216
+Enrage Warrior,Control Paladin,0,43.07,195
+Enrage Warrior,Control Paladin,1,39.78,186
+Enrage Warrior,Murloc Paladin,0,31.9,442
+Enrage Warrior,Murloc Paladin,1,38.34,412
+Enrage Warrior,Grimestreet Paladin,0,28.75,233
+Enrage Warrior,Grimestreet Paladin,1,37.45,251
+Enrage Warrior,Enrage Warrior,0,53.09,113
+Enrage Warrior,Enrage Warrior,1,46.9,113
+Enrage Warrior,Quest Warrior,0,34.01,147
+Enrage Warrior,Quest Warrior,1,36.71,128
+Enrage Warrior,Dead Man Warrior,0,44.09,220
+Enrage Warrior,Dead Man Warrior,1,47.61,210
+Enrage Warrior,Prince Rogue,0,43.01,1053
+Enrage Warrior,Prince Rogue,1,46.42,1090
+Quest Warrior,Pirate Warrior,0,44.17,575
+Quest Warrior,Pirate Warrior,1,44.12,587
+Quest Warrior,Miracle Rogue,0,51.14,612
+Quest Warrior,Miracle Rogue,1,47.75,624
+Quest Warrior,Evolve Shaman,0,45.8,2279
+Quest Warrior,Evolve Shaman,1,50.68,2269
+Quest Warrior,Aggro Druid,0,47.98,398
+Quest Warrior,Aggro Druid,1,60,405
+Quest Warrior,Demon Control Warlock,0,71.65,247
+Quest Warrior,Demon Control Warlock,1,74.15,236
+Quest Warrior,Highlander Priest,0,40.03,1896
+Quest Warrior,Highlander Priest,1,42.07,1918
+Quest Warrior,Resurrect Priest,0,36.21,682
+Quest Warrior,Resurrect Priest,1,32.75,635
+Quest Warrior,Dragon Priest,0,27.1,439
+Quest Warrior,Dragon Priest,1,36.09,410
+Quest Warrior,Handlock,0,44.74,742
+Quest Warrior,Handlock,1,52.27,748
+Quest Warrior,Zoolock,0,33.9,466
+Quest Warrior,Zoolock,1,51.5,398
+Quest Warrior,Midrange Hunter,0,32.1,2968
+Quest Warrior,Midrange Hunter,1,39.73,2902
+Quest Warrior,Deathrattle Hunter,0,28.67,1189
+Quest Warrior,Deathrattle Hunter,1,35.96,1129
+Quest Warrior,Secret Mage,0,29.2,1366
+Quest Warrior,Secret Mage,1,29.33,1408
+Quest Warrior,Quest Mage,0,44.93,681
+Quest Warrior,Quest Mage,1,39.1,734
+Quest Warrior,Control Mage,0,55.55,504
+Quest Warrior,Control Mage,1,56.21,571
+Quest Warrior,Jade Druid,0,27.22,1293
+Quest Warrior,Jade Druid,1,29.29,1270
+Quest Warrior,Taunt Druid,0,38,150
+Quest Warrior,Taunt Druid,1,44.05,143
+Quest Warrior,Mill Rogue,0,69.85,136
+Quest Warrior,Mill Rogue,1,76.1,159
+Quest Warrior,Elemental Rogue,0,30.92,249
+Quest Warrior,Elemental Rogue,1,41.25,286
+Quest Warrior,Control Paladin,0,43.96,257
+Quest Warrior,Control Paladin,1,48.95,239
+Quest Warrior,Murloc Paladin,0,28.24,563
+Quest Warrior,Murloc Paladin,1,37.68,528
+Quest Warrior,Grimestreet Paladin,0,28.16,284
+Quest Warrior,Grimestreet Paladin,1,30.33,267
+Quest Warrior,Enrage Warrior,0,63.28,128
+Quest Warrior,Enrage Warrior,1,65.98,147
+Quest Warrior,Quest Warrior,0,49.23,130
+Quest Warrior,Quest Warrior,1,50.76,130
+Quest Warrior,Dead Man Warrior,0,86.72,226
+Quest Warrior,Dead Man Warrior,1,85.82,261
+Quest Warrior,Prince Rogue,0,42.82,1527
+Quest Warrior,Prince Rogue,1,41.38,1445
+Dead Man Warrior,Pirate Warrior,0,39.64,903
+Dead Man Warrior,Pirate Warrior,1,32.39,920
+Dead Man Warrior,Miracle Rogue,0,53.33,900
+Dead Man Warrior,Miracle Rogue,1,53.53,962
+Dead Man Warrior,Evolve Shaman,0,38.43,3510
+Dead Man Warrior,Evolve Shaman,1,41.38,3501
+Dead Man Warrior,Aggro Druid,0,43.47,575
+Dead Man Warrior,Aggro Druid,1,47.41,561
+Dead Man Warrior,Demon Control Warlock,0,59.12,389
+Dead Man Warrior,Demon Control Warlock,1,60.86,460
+Dead Man Warrior,Highlander Priest,0,45.24,2849
+Dead Man Warrior,Highlander Priest,1,46.26,2693
+Dead Man Warrior,Resurrect Priest,0,35.96,1040
+Dead Man Warrior,Resurrect Priest,1,34.81,1106
+Dead Man Warrior,Dragon Priest,0,30.33,712
+Dead Man Warrior,Dragon Priest,1,34.28,633
+Dead Man Warrior,Silence Priest,0,55.85,111
+Dead Man Warrior,Handlock,0,46.58,1215
+Dead Man Warrior,Handlock,1,50.71,1120
+Dead Man Warrior,Zoolock,0,25.5,639
+Dead Man Warrior,Zoolock,1,36.08,593
+Dead Man Warrior,Highlander Warlock,0,36.42,151
+Dead Man Warrior,Highlander Warlock,1,39.85,138
+Dead Man Warrior,Midrange Hunter,0,20.21,4670
+Dead Man Warrior,Midrange Hunter,1,21.85,4462
+Dead Man Warrior,Deathrattle Hunter,0,15.04,1535
+Dead Man Warrior,Deathrattle Hunter,1,15.68,1505
+Dead Man Warrior,Secret Mage,0,21.98,2038
+Dead Man Warrior,Secret Mage,1,20.33,2154
+Dead Man Warrior,Quest Mage,0,51.16,1288
+Dead Man Warrior,Quest Mage,1,50.56,1319
+Dead Man Warrior,Control Mage,0,57.65,895
+Dead Man Warrior,Control Mage,1,60.47,878
+Dead Man Warrior,Jade Druid,0,33.89,1944
+Dead Man Warrior,Jade Druid,1,35.26,2019
+Dead Man Warrior,Taunt Druid,0,32.46,231
+Dead Man Warrior,Taunt Druid,1,37.39,246
+Dead Man Warrior,Mill Rogue,0,72.05,229
+Dead Man Warrior,Mill Rogue,1,78.16,284
+Dead Man Warrior,Elemental Rogue,0,26.47,423
+Dead Man Warrior,Elemental Rogue,1,29.46,414
+Dead Man Warrior,Control Paladin,0,28.57,371
+Dead Man Warrior,Control Paladin,1,35.01,397
+Dead Man Warrior,Murloc Paladin,0,21.72,953
+Dead Man Warrior,Murloc Paladin,1,25.12,963
+Dead Man Warrior,Grimestreet Paladin,0,16.2,506
+Dead Man Warrior,Grimestreet Paladin,1,17,500
+Dead Man Warrior,Enrage Warrior,0,51.42,210
+Dead Man Warrior,Enrage Warrior,1,55.9,220
+Dead Man Warrior,Quest Warrior,0,14.17,261
+Dead Man Warrior,Quest Warrior,1,12.83,226
+Dead Man Warrior,Dead Man Warrior,0,47.05,510
+Dead Man Warrior,Dead Man Warrior,1,44.7,510
+Dead Man Warrior,Prince Rogue,0,34.51,2005
+Dead Man Warrior,Prince Rogue,1,33.59,2009
+Prince Rogue,Tempo Mage,0,46.57,350
+Prince Rogue,Tempo Mage,1,48.78,369
+Prince Rogue,Pirate Warrior,0,52.22,5001
+Prince Rogue,Pirate Warrior,1,55.73,4977
+Prince Rogue,Miracle Rogue,0,65.18,4702
+Prince Rogue,Miracle Rogue,1,63.36,4801
+Prince Rogue,Evolve Shaman,0,46.63,24640
+Prince Rogue,Evolve Shaman,1,52.47,24813
+Prince Rogue,Aggro Druid,0,49.29,3564
+Prince Rogue,Aggro Druid,1,52.44,3455
+Prince Rogue,Demon Control Warlock,0,58.57,2718
+Prince Rogue,Demon Control Warlock,1,62.02,2728
+Prince Rogue,Highlander Priest,0,48.72,30059
+Prince Rogue,Highlander Priest,1,50.11,30299
+Prince Rogue,Resurrect Priest,0,52.72,6632
+Prince Rogue,Resurrect Priest,1,49.84,6648
+Prince Rogue,Dragon Priest,0,57.35,3445
+Prince Rogue,Dragon Priest,1,60.78,3580
+Prince Rogue,Silence Priest,0,65.31,418
+Prince Rogue,Silence Priest,1,63.23,427
+Prince Rogue,Handlock,0,55.52,7105
+Prince Rogue,Handlock,1,57.87,7162
+Prince Rogue,Zoolock,0,50.89,4816
+Prince Rogue,Zoolock,1,59.84,5120
+Prince Rogue,Highlander Warlock,0,60.85,838
+Prince Rogue,Highlander Warlock,1,60.64,869
+Prince Rogue,Midrange Hunter,0,49.78,29202
+Prince Rogue,Midrange Hunter,1,57.12,29674
+Prince Rogue,Deathrattle Hunter,0,55.06,7406
+Prince Rogue,Deathrattle Hunter,1,63.37,7651
+Prince Rogue,Secret Mage,0,56.55,13697
+Prince Rogue,Secret Mage,1,61.44,13760
+Prince Rogue,Quest Mage,0,75.59,6211
+Prince Rogue,Quest Mage,1,76.31,6231
+Prince Rogue,Control Mage,0,50.94,5685
+Prince Rogue,Control Mage,1,55.61,5730
+Prince Rogue,Highlander Mage,0,50.73,272
+Prince Rogue,Highlander Mage,1,60.95,292
+Prince Rogue,Jade Druid,0,52.72,16509
+Prince Rogue,Jade Druid,1,55.93,16903
+Prince Rogue,Big Druid,0,60.91,527
+Prince Rogue,Big Druid,1,65.6,532
+Prince Rogue,Taunt Druid,0,56.55,1160
+Prince Rogue,Taunt Druid,1,60.33,1147
+Prince Rogue,Mill Rogue,0,84.07,1030
+Prince Rogue,Mill Rogue,1,85.56,1060
+Prince Rogue,Elemental Rogue,0,42.84,4309
+Prince Rogue,Elemental Rogue,1,50.75,4285
+Prince Rogue,Quest Rogue,0,73.42,286
+Prince Rogue,Quest Rogue,1,76.14,306
+Prince Rogue,Control Paladin,0,56.25,2645
+Prince Rogue,Control Paladin,1,59.45,2686
+Prince Rogue,Murloc Paladin,0,51.01,6334
+Prince Rogue,Murloc Paladin,1,60.62,6342
+Prince Rogue,Aggro Paladin,0,60,285
+Prince Rogue,Aggro Paladin,1,64.96,254
+Prince Rogue,Grimestreet Paladin,0,55.95,2677
+Prince Rogue,Grimestreet Paladin,1,63,2765
+Prince Rogue,Enrage Warrior,0,53.57,1090
+Prince Rogue,Enrage Warrior,1,56.98,1053
+Prince Rogue,Quest Warrior,0,58.61,1445
+Prince Rogue,Quest Warrior,1,57.17,1527
+Prince Rogue,Dead Man Warrior,0,66.35,2009
+Prince Rogue,Dead Man Warrior,1,65.43,2005
+Prince Rogue,Prince Rogue,0,47.34,23582
+Prince Rogue,Prince Rogue,1,52.62,23582

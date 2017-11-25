@@ -1,0 +1,120 @@
+# some assumptions on formating
+# whatever deck a player is forced to play should be listed first (for 3v2 and 2v2 scenarios, irrelevant otherwise)
+
+# branching calcs
+# 16 x ban phase
+# assume order doesn't matter
+# branch on both possible results
+
+#win_pct = {}
+
+from parseWinRates import win_pcts
+from conquest_utils import *
+
+#for pair in [(1,4),(4,1),(2,5),(5,2),(3,6),(6,3)]:
+#    win_pct[pair] = 0.5
+#for i in (1,2,3,4):
+#    for j in (1,2,3,4):
+#        value = 0.5 + 0.1 * (i-j)
+#        win_pct[(i,j)] = value
+#        win_pct[(j,i)] = 1-value
+
+# "real" lineup
+#win_pct = {
+#    ('rogue', 'rogue')   : 0.5,
+#    ('zoo', 'zoo')       : 0.5,
+#    ('druid', 'druid')   : 0.5,
+#    ('priest', 'priest') : 0.5,
+#    ('murloc', 'murloc') : 0.5,
+#    ('rogue', 'priest')  : 0.452,
+#    ('rogue', 'zoo')     : 0.530,
+#    ('rogue', 'druid')   : 0.505,
+#    ('rogue', 'murloc')  : 0.539,
+#    ('priest', 'zoo')    : 0.498,
+#    ('priest', 'druid')  : 0.427,
+#    ('priest', 'murloc') : 0.507,
+#    ('zoo', 'druid')     : 0.521,
+#    ('zoo', 'murloc')     : 0.511,
+#    ('druid', 'murloc')  : 0.456,
+#}
+
+print "win_pcts"
+for i, j in sorted(win_pcts.items()):
+    d1, d2 = i
+    print '%-16s %-16s %s' % (d1, d2, j)
+
+
+for pair in win_pcts.keys():
+    i,j = pair
+    if (j,i) not in win_pcts:
+        win_pcts[(j,i)] = 1 - win_pcts[(i,j)]
+
+def get_win_pct(a,b, win_pcts):
+    if win_pcts == 'test':
+        #return 0.6
+        if b == 4:
+            value = 0.8
+            print a,b, value
+            return value
+        else:
+            value = 0.4
+            print a,b, value
+            return value
+    return win_pcts[(a,b)]
+
+def pre_ban(decks_a, decks_b, win_pcts):
+    ban_grid = {}
+    for i in range(0, len(decks_a)):
+        for j in range(0, len(decks_a)):
+            ban_grid[(decks_b[j],decks_a[i])] = post_ban(decks_a[:i] + decks_a[i+1:], decks_b[:j] + decks_b[j+1:], win_pcts)
+    return ban_grid
+
+def post_ban(decks_a, decks_b, win_pcts):
+    if len(decks_b) == 0 and len(decks_a) > 0:
+        return 0
+    elif len(decks_a) == 0 and len(decks_b) > 0:
+        return 1
+    else:
+        res = 0
+        pct = get_win_pct(decks_a[0], decks_b[0], win_pcts)
+        res += pct * post_ban(decks_a[1:], decks_b[:], win_pcts)
+        res += (1-pct) * post_ban(decks_a[:], decks_b[1:], win_pcts)
+        return res
+
+#print post_ban([1,2,3],[4,5,6], 'test')
+#print post_ban([1,2,3],[1,2,3], win_pcts)
+#for i, j in pre_ban([1,2,3,4],[1,2,3,4], win_pct).items():
+#    print i, j
+
+archetypes = [
+    'Tempo Rogue',
+    'Razakus Priest',
+    'Zoo Warlock',
+    'Aggro-Token Druid',
+    'Jade Druid',
+    'Big Druid',
+    'Big Priest',
+    'Control Mage',
+    'Midrange Hunter',
+    'Token Shaman',
+    'Control Warlock',
+    'Murloc Paladin',
+    'Secret Mage',
+    'Exodia Mage',
+    'Dragon Priest',
+    'Miracle Rogue',
+]
+
+lineup_1 = ['Tempo Rogue', 'Jade Druid', 'Razakus Priest', 'Zoo Warlock']
+lineup_2 = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Zoo Warlock']
+res = pre_ban(lineup_1,
+              lineup_2,
+              win_pcts)
+print ""
+print lineup_1, "vs", lineup_2
+print "bans"
+print "%-16s %-16s" % ("p1_ban", "p2_ban")
+#for i, j in sorted(res.items(), key=lambda x:-x[1]):
+for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
+    d1, d2 = i
+    print '%-16s %-16s %s' % (d1, d2, round(j,4))

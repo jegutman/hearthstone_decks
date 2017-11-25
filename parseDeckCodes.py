@@ -10,13 +10,13 @@ from naDecklistCodesSummer import na_decks as decklistToAnalyze
 from archetypes import get_archetypes_by_class
 from archetype_labels import example_to_archetype, archetype_to_example
 
-def getCodes(url):
-    name = url.replace('https://www.icy-veins.com/hearthstone/', '').replace('-decks-at-hct-eu-summer-playoffs-2017', '')
-    request = requests.get(url)
-    content = request.content
-    groups = re.findall("copyToClipboard\('\S+'\)", content)
-    list_codes = [g.replace("copyToClipboard('", "").replace("')", "") for g in groups]
-    return name, list_codes
+#def getCodes(url):
+#    name = url.replace('https://www.icy-veins.com/hearthstone/', '').replace('-decks-at-hct-eu-summer-playoffs-2017', '')
+#    request = requests.get(url)
+#    content = request.content
+#    groups = re.findall("copyToClipboard\('\S+'\)", content)
+#    list_codes = [g.replace("copyToClipboard('", "").replace("')", "") for g in groups]
+#    return name, list_codes
 
 decks = []
 #for url in deck_urls:
