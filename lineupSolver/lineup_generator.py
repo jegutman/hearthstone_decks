@@ -23,9 +23,10 @@ for a in archetypes:
 
 win_rates_against_good = {}
 
-level1 = ['Tempo Rogue', 'Jade Druid', 'Razakus Priest', 'Murloc Paladin']
+#level1 = ['Tempo Rogue', 'Jade Druid', 'Razakus Priest', 'Murloc Paladin']
+level1 = ['Tempo Rogue', 'Big Druid', 'Razakus Priest', 'Zoo Warlock']
 #level1_shaman = ['Tempo Rogue', 'Jade Druid', 'Razakus Priest', 'Token Shaman']
-#level2 = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Zoo Warlock']
+level2_b = ['Big Druid', 'Big Priest', 'Tempo Rogue', 'Zoo Warlock']
 level2 = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Murloc Paladin']
 level3 = ['Big Druid', 'Big Priest', 'Control Mage', 'Tempo Rogue']
 
@@ -40,7 +41,7 @@ opp_lineup_1 = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Control Mage']
 opp_lineup_2 = ['Tempo Rogue', 'Big Druid', 'Murloc Paladin', 'Razakus Priest']
 #lineups_to_test = [level1,level2, level3]
 #lineups_to_test = [opp_lineup_1, opp_lineup_2]
-lineups_to_test = [level1, level2, opp_lineup_2]
+lineups_to_test = [level1, level2_b, opp_lineup_2]
 #lineups_to_test = [level1_shaman]
 
 print "\n"
@@ -62,9 +63,9 @@ for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i i
 
 #my_lineup = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Zoo Warlock']
 #my_lineup = ['Big Druid', 'Big Priest', 'Tempo Rogue', 'Zoo Warlock']
-my_lineup = level1
+my_lineup = level2
 #opp_lineup = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Control Mage']
-opp_lineup = opp_lineup_2
+opp_lineup = level1
 
 print my_lineup, "vs", opp_lineup
 win_rates_grid(my_lineup, opp_lineup, win_pcts)
