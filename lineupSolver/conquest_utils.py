@@ -7,6 +7,8 @@
 # branch on both possible results
 
 def get_win_pct(a,b, win_pcts):
+    if a == 'Unbeatable': return 1
+    if b == 'Unbeatable': return 0
     if win_pcts == 'test':
         #return 0.6
         if b == 4:

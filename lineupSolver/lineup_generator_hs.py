@@ -1,7 +1,9 @@
-from parseWinRates import * 
-print archetypes 
+from json_win_rates import * 
 from conquest_utils import * 
 from shared_utils import *
+
+win_pcts, num_games, game_count, archetypes = get_win_pcts(200)
+print archetypes 
 
 lineups = []
 
@@ -23,14 +25,12 @@ for a in archetypes:
 
 win_rates_against_good = {}
 
-level1 = ['Tempo Rogue', 'Jade Druid', 'Razakus Priest', 'Murloc Paladin']
-level1_fake = ['Unbeatable', 'Tempo Rogue', 'Jade Druid', 'Razakus Priest']
-level2_fake = ['Unbeatable', 'Tempo Rogue', 'Big Druid', 'Big Priest']
-level3_fake = ['Unbeatable', 'Tempo Rogue', 'Aggro-Token Druid', 'Razakus Priest']
+#level1 = ['Tempo Rogue', 'Jade Druid', 'Razakus Priest', 'Murloc Paladin']
+level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoolock']
 #level1_shaman = ['Tempo Rogue', 'Jade Druid', 'Razakus Priest', 'Token Shaman']
-level2_b = ['Big Druid', 'Big Priest', 'Tempo Rogue', 'Zoo Warlock']
-level2 = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Murloc Paladin']
-level3 = ['Big Druid', 'Big Priest', 'Control Mage', 'Tempo Rogue']
+#level2_b = ['Big Druid', 'Big Priest', 'Tempo Rogue', 'Zoo Warlock']
+#level2 = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Murloc Paladin']
+#level3 = ['Big Druid', 'Big Priest', 'Control Mage', 'Tempo Rogue']
 
 
 #new_god = ['Aggro-Token Druid', 'Big Priest', 'Murloc Paladin', 'Tempo Rogue']
@@ -39,13 +39,9 @@ level3 = ['Big Druid', 'Big Priest', 'Control Mage', 'Tempo Rogue']
 #
 #lineups_to_test = [level1, level1_b, level2]#, level3]
 #lineups_to_test = [level1, level1_b, level2, new_god]#, level3]
-opp_lineup_1 = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Control Mage']
-opp_lineup_2 = ['Tempo Rogue', 'Big Druid', 'Murloc Paladin', 'Razakus Priest']
-#lineups_to_test = [level1,level2, level3]
-#lineups_to_test = [opp_lineup_1, opp_lineup_2]
-#lineups_to_test = [level1, level2_b, opp_lineup_2]
-lineups_to_test = [level1_fake, level2_fake, level3_fake]
-#lineups_to_test = [level1_shaman]
+#opp_lineup_1 = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Control Mage']
+#opp_lineup_2 = ['Tempo Rogue', 'Big Druid', 'Murloc Paladin', 'Razakus Priest']
+lineups_to_test = [level1]
 
 print "\n"
 print "TESTING vs LINEUPS"
@@ -67,23 +63,22 @@ for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i i
 #my_lineup = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Zoo Warlock']
 #my_lineup = ['Big Druid', 'Big Priest', 'Tempo Rogue', 'Zoo Warlock']
 #my_lineup = level2
-my_lineup = ['Aggro-Token Druid', 'Midrange Hunter', 'Murloc Paladin', 'Secret Mage']
 #opp_lineup = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Control Mage']
-opp_lineup = level1_fake
+#opp_lineup = level1
 
-print my_lineup, "vs", opp_lineup
-win_rates_grid(my_lineup, opp_lineup, win_pcts)
-print win_rate(my_lineup, opp_lineup, win_pcts)
-print pre_ban(my_lineup, opp_lineup, win_pcts)
+#print my_lineup, "vs", opp_lineup
+#win_rates_grid(my_lineup, opp_lineup, win_pcts)
+#print win_rate(my_lineup, opp_lineup, win_pcts)
+#print pre_ban(my_lineup, opp_lineup, win_pcts)
 
-res = pre_ban_old(my_lineup,
-                  opp_lineup,
-                  win_pcts)
-print ""
-print my_lineup, "vs", opp_lineup
-print "bans"
-print "%-18s %-18s" % ("p1_ban", "p2_ban")
-#for i, j in sorted(res.items(), key=lambda x:-x[1]):
-for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
-    d1, d2 = i
-    print '%-18s %-18s %s' % (d1, d2, round(j,4))
+#res = pre_ban_old(my_lineup,
+#                  opp_lineup,
+#                  win_pcts)
+#print ""
+#print my_lineup, "vs", opp_lineup
+#print "bans"
+#print "%-18s %-18s" % ("p1_ban", "p2_ban")
+##for i, j in sorted(res.items(), key=lambda x:-x[1]):
+#for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
+#    d1, d2 = i
+#    print '%-18s %-18s %s' % (d1, d2, round(j,4))

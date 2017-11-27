@@ -1,5 +1,5 @@
 def win_rates_grid(decks_a, decks_b, win_pcts):
-    top_line = "%-20s" % ""
+    top_line = "%-20s" % "x"
     for deck in decks_b:
         top_line += "%-20s" % deck
     print top_line
