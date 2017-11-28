@@ -29,3 +29,6 @@ def get_win_pcts(min_game_threshold=0, min_game_count=0):
             game_count[arch1] += total_games
     hsreplay_archetypes = [a for a in hsreplay_archetypes if game_count[a] > min_game_count]
     return win_pcts, num_games, game_count, hsreplay_archetypes
+
+if __name__ == "__main__":
+    win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=200, min_game_count=100)

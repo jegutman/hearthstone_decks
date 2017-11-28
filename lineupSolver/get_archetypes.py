@@ -1,14 +1,17 @@
 import json
-#import requests
+import requests
 
-#r = requests.get('https://hsreplay.net/api/v1/archetypes/')
-#archetypes_json = json.loads(r.content)
+r = requests.get('https://hsreplay.net/api/v1/archetypes/')
+archetypes_json = json.loads(r.content)
 
-archetypes_json = json.load(open('archetypes.json'))
+#archetypes_json = json.load(open('archetypes.json'))
 
 archetype_names = {}
+archetype_ids = {}
 for archetype in archetypes_json:
     archetype_names[archetype['id']] = archetype['name']
+    archetype_ids[archetype['name']] = archetype['id']
+
 
 resMap = {
     'zoolock': 'Zoo Warlock',
@@ -25,7 +28,7 @@ vs_arch_map = {
     'Aggro-Token Druid' : 'Aggro Druid',
     'Jade Druid'        : 'Jade Druid',
     'Big Druid'         : 'Big Druid',
-    'Big Priest'        : 'Big Druid',
+    'Big Priest'        : 'Big Priest',
     'Control Mage'      : 'Control Mage',
     'Midrange Hunter'   : 'Midrange Hunter',
     'Token Shaman'      : 'Token Shaman',
