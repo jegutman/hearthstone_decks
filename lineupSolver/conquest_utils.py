@@ -1,3 +1,4 @@
+from shared_utils import *
 # some assumptions on formating
 # whatever deck a player is forced to play should be listed first (for 3v2 and 2v2 scenarios, irrelevant otherwise)
 
@@ -5,21 +6,6 @@
 # 16 x ban phase
 # assume order doesn't matter
 # branch on both possible results
-
-def get_win_pct(a,b, win_pcts):
-    if a == 'Unbeatable': return 1
-    if b == 'Unbeatable': return 0
-    if win_pcts == 'test':
-        #return 0.6
-        if b == 4:
-            value = 0.8
-            print a,b, value
-            return value
-        else:
-            value = 0.4
-            print a,b, value
-            return value
-    return win_pcts.get((a,b), 0)
 
 def pre_ban_old(decks_a, decks_b, win_pcts):
     ban_grid = {}

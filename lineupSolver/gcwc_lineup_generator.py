@@ -7,9 +7,12 @@ print archetypes
 
 excluded = []
 excluded = ['Big Priest']
+excluded_classes = []
+excluded_classes = ['Druid', 'Priest']
 #excluded = ['Murloc Paladin', 'Secret Mage', 'Exodia Mage', 'Aggro-Token Druid', 'Dragon Priest']
 print "\n\nEXCLUDING:", excluded
-archetypes = [a for a in archetypes if a not in excluded]
+print "\n\nEXCLUDING CLASSES:", excluded_classes
+archetypes = [a for a in archetypes if a not in excluded and a.split(' ')[-1] not in excluded_classes] + ['Unbeatable']
 
 lineups = generate_lineups(archetypes)
 

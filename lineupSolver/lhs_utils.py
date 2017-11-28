@@ -1,3 +1,4 @@
+from shared_utils import *
 # some assumptions on formating
 # whatever deck a player is forced to play should be listed first (for 3v2 and 2v2 scenarios, irrelevant otherwise)
 
@@ -25,8 +26,6 @@ def pre_ban(decks_a, decks_b, win_pcts):
             mins[d2] = round(min(mins[d2], res), 4)
     return mins
 
-def get_win_pct(a,b, win_pcts):
-    return win_pcts[(a,b)]
 
 def pre_pick_average(decks_a, decks_b, win_pcts):
     all_res = []

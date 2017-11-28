@@ -24,3 +24,8 @@ def generate_lineups(archetypes):
                         if decks not in lineups:
                             lineups.append(decks)
     return lineups
+
+def get_win_pct(a,b, win_pcts):
+    if a == 'Unbeatable': return 1
+    if b == 'Unbeatable': return 0
+    return win_pcts.get((a,b), 0)
