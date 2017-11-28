@@ -14,7 +14,7 @@ for archetype in archetypes_json:
 
 
 resMap = {
-    'zoolock': 'Zoo Warlock',
+    'Zoolock': 'Zoo Warlock',
 }
 
 def get_archetype(arch_id):
