@@ -46,8 +46,9 @@ if __name__ == '__main__':
         win_rates_against_good = {}
         level1, level2, level3, level4, level5 = None, None, None, None, None
         #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Murloc Paladin']
-        level1 = ['Tempo Rogue', 'Unbeatable', 'Highlander Priest', 'Zoo Warlock']
-        level2 = ['Unbeatable', 'Dragon Priest', 'Tempo Rogue', 'Murloc Paladin']
+        #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
+        level1 = ['Tempo Rogue', 'Jade Druid', 'Highlander Priest', 'Token Shaman']
+        #level2 = ['Unbeatable', 'Dragon Priest', 'Tempo Rogue', 'Murloc Paladin']
         lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
 
         print "\n"
