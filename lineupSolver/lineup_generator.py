@@ -67,9 +67,9 @@ for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i i
 #my_lineup = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Zoo Warlock']
 #my_lineup = ['Big Druid', 'Big Priest', 'Tempo Rogue', 'Zoo Warlock']
 #my_lineup = level2
-my_lineup = ['Aggro-Token Druid', 'Midrange Hunter', 'Murloc Paladin', 'Secret Mage']
-#opp_lineup = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Control Mage']
-opp_lineup = level1_fake
+my_lineup = ['Aggro-Token Druid', 'Tempo Rogue', 'Murloc Paladin', 'Secret Mage']
+opp_lineup = ['Tempo Rogue', 'Big Druid', 'Razakus Priest', 'Murloc Paladin']
+#opp_lineup = level1_fake
 
 print my_lineup, "vs", opp_lineup
 win_rates_grid(my_lineup, opp_lineup, win_pcts)

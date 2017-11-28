@@ -1,43 +1,35 @@
-from json_win_rates import * 
+from parseWinRates import * 
+print archetypes 
 from conquest_utils import * 
 from shared_utils import *
 
-win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=200, min_game_count=100)
-print archetypes 
+lineups = []
 
 excluded = []
-excluded = ['Big Priest']
-#excluded = ['Murloc Paladin', 'Secret Mage', 'Exodia Mage', 'Aggro-Token Druid', 'Dragon Priest']
+excluded = ['Aggro-Token Druid']
 print "\n\nEXCLUDING:", excluded
 archetypes = [a for a in archetypes if a not in excluded]
 
-lineups = generate_lineups(archetypes)
-
-print "testing %s lineups" % len(lineups)
-
-#for a in archetypes:
-#    for b in archetypes:
-#        for c in archetypes:
-#            for d in archetypes:
-#                decks = tuple(sorted([a,b,c,d]))
-#                classes = [i.split(' ')[-1] for i in decks]
-#                if len(set(classes)) == 4:
-#                    #print decks
-#                    if decks not in lineups:
-#                        lineups.append(decks)
+for a in archetypes:
+    for b in archetypes:
+        for c in archetypes:
+            decks = tuple(sorted([a,b,c]))
+            classes = [i.split(' ')[-1] for i in decks]
+            if len(set(classes)) == 3:
+                #print decks
+                if decks not in lineups:
+                    lineups.append(decks)
 
 win_rates_against_good = {}
 
 #level1 = ['Tempo Rogue', 'Jade Druid', 'Razakus Priest', 'Murloc Paladin']
-#level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Murloc Paladin']
-level1 = ['Tempo Rogue', 'Unbeatable Druid', 'Highlander Priest', 'Murloc Paladin']
+level1 = ['Tempo Rogue', 'Jade Druid', 'Razakus Priest']
+level2 = ['Tempo Rogue', 'Big Druid', 'Big Priest']
+level3 = ['Tempo Rogue', 'Murloc Paladin', 'Zoo Warlock']
 #level1_shaman = ['Tempo Rogue', 'Jade Druid', 'Razakus Priest', 'Token Shaman']
 #level2_b = ['Big Druid', 'Big Priest', 'Tempo Rogue', 'Zoo Warlock']
 #level2 = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Murloc Paladin']
-level2 = ['Unbeatable', 'Dragon Priest', 'Tempo Rogue', 'Murloc Paladin']
-level3 = ['Murloc Paladin', 'Secret Mage', 'Tempo Rogue', 'Zoolock']
-#level4 = ['Big Priest', 'Corpsetaker Rogue', 'Murloc Paladin', 'Zoolock']
-level4 = ['Murloc Paladin', 'Pirate Warrior', 'Tempo Rogue', 'Zoolock']
+#level3 = ['Big Druid', 'Big Priest', 'Control Mage', 'Tempo Rogue']
 
 
 #new_god = ['Aggro-Token Druid', 'Big Priest', 'Murloc Paladin', 'Tempo Rogue']
@@ -46,11 +38,12 @@ level4 = ['Murloc Paladin', 'Pirate Warrior', 'Tempo Rogue', 'Zoolock']
 #
 #lineups_to_test = [level1, level1_b, level2]#, level3]
 #lineups_to_test = [level1, level1_b, level2, new_god]#, level3]
-#opp_lineup_1 = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Control Mage']
-#opp_lineup_2 = ['Tempo Rogue', 'Big Druid', 'Murloc Paladin', 'Razakus Priest']
-lineups_to_test = [level1, level2, level3, level4]
-#lineups_to_test = [level1]
-#lineups_to_test = [['Unbeatable', 'Unbeatable', 'Unbeatable', 'Tempo Rogue']]
+opp_lineup_1 = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Control Mage']
+opp_lineup_2 = ['Tempo Rogue', 'Big Druid', 'Murloc Paladin', 'Razakus Priest']
+#lineups_to_test = [level1,level2, level3]
+#lineups_to_test = [opp_lineup_1, opp_lineup_2]
+#lineups_to_test = [level1, level2_b, opp_lineup_2]
+lineups_to_test = [level1, level2, level3]
 
 print "\n"
 print "TESTING vs LINEUPS"
@@ -60,14 +53,14 @@ print "\n"
 
 for lineup in lineups:
     for lu_test in lineups_to_test:
-        win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts)]
+        win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [post_ban(list(lineup), lu_test, win_pcts)]
 
 for i,j in sorted(win_rates_against_good.items())[:3]:
     print i,j 
 
-for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
+for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i for i in x[1]]))[-10:]:
 #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
-    print "%-90s %s %s" % (i,j, round(sum([x[1] for x in j])/len(j),3))
+    print "%-90s %s %s" % (i,j, round(sum([x for x in j])/len(j),3))
 
 #my_lineup = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Zoo Warlock']
 #my_lineup = ['Big Druid', 'Big Priest', 'Tempo Rogue', 'Zoo Warlock']
@@ -79,7 +72,7 @@ for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i i
 #win_rates_grid(my_lineup, opp_lineup, win_pcts)
 #print win_rate(my_lineup, opp_lineup, win_pcts)
 #print pre_ban(my_lineup, opp_lineup, win_pcts)
-
+#
 #res = pre_ban_old(my_lineup,
 #                  opp_lineup,
 #                  win_pcts)

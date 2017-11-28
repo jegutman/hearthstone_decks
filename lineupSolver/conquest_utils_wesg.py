@@ -7,8 +7,6 @@
 # branch on both possible results
 
 def get_win_pct(a,b, win_pcts):
-    if a == 'Unbeatable': return 1
-    if b == 'Unbeatable': return 0
     if win_pcts == 'test':
         #return 0.6
         if b == 4:
@@ -19,7 +17,7 @@ def get_win_pct(a,b, win_pcts):
             value = 0.4
             print a,b, value
             return value
-    return win_pcts.get((a,b), 0)
+    return win_pcts[(a,b)]
 
 def pre_ban_old(decks_a, decks_b, win_pcts):
     ban_grid = {}
@@ -47,15 +45,7 @@ def pre_ban(decks_a, decks_b, win_pcts):
             mins[d2] = round(min(mins[d2], res), 3)
     return mins
 
-tested = {}
-
-def post_ban(decks_a, decks_b, win_pcts, useGlobal=True):
-    if useGlobal:
-        global tested
-        tuple_a = tuple(decks_a)
-        tuple_b = tuple(decks_b)
-        if (tuple_a, tuple_b) in tested:
-            return tested[(tuple_a, tuple_b)]
+def post_ban(decks_a, decks_b, win_pcts):
     if len(decks_b) == 0 and len(decks_a) > 0:
         return 0
     elif len(decks_a) == 0 and len(decks_b) > 0:
@@ -65,6 +55,4 @@ def post_ban(decks_a, decks_b, win_pcts, useGlobal=True):
         pct = get_win_pct(decks_a[0], decks_b[0], win_pcts)
         res += pct * post_ban(decks_a[1:], decks_b[:], win_pcts)
         res += (1-pct) * post_ban(decks_a[:], decks_b[1:], win_pcts)
-        if useGlobal:
-            tested[(tuple_a, tuple_b)] = res
         return res

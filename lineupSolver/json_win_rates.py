@@ -1,11 +1,11 @@
 import json
-filename = 'hsreplay1126.json'
+filename = 'hsreplay1127.json'
 print "using:", filename
 wr_file = open(filename)
 
 from get_archetypes import *
 
-def get_win_pcts(min_game_threshold=0):
+def get_win_pcts(min_game_threshold=0, min_game_count=0):
     # returns win_pcts, num_games, game_count, archetypes
     win_pcts = {}
     num_games = {}
@@ -24,7 +24,8 @@ def get_win_pcts(min_game_threshold=0):
             arch2 = get_archetype(a2)
             wr, total_games = wr_json['series']['data'][a1][a2]['win_rate'], wr_json['series']['data'][a1][a2]['total_games']
             if total_games >= min_game_threshold:
-                win_pcts[(arch1, arch2)] = wr
+                win_pcts[(arch1, arch2)] = wr / 100.
             num_games[(arch1, arch2)] = total_games
             game_count[arch1] += total_games
+    hsreplay_archetypes = [a for a in hsreplay_archetypes if game_count[a] > min_game_count]
     return win_pcts, num_games, game_count, hsreplay_archetypes

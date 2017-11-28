@@ -8,3 +8,19 @@ def win_rates_grid(decks_a, decks_b, win_pcts):
         for deck_b in decks_b:
             line += "%6s              " % round(win_pcts.get((deck, deck_b), 0) * 100, 1)
         print line
+
+def generate_lineups(archetypes):
+    #archetypes = sorted(archetypes)
+    lineups = []
+    for i in range(0, len(archetypes)):
+        for j in range(i+1, len(archetypes)):
+            for k in range(j+1, len(archetypes)):
+                for l in range(k+1, len(archetypes)):
+                    a, b, c, d = [archetypes[x] for x in [i,j,k,l]]
+                    decks = tuple(sorted([a,b,c,d]))
+                    classes = [x.split(' ')[-1] for x in decks]
+                    if len(set(classes)) == 4:
+                        #print decks
+                        if decks not in lineups:
+                            lineups.append(decks)
+    return lineups
