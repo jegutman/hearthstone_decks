@@ -7,11 +7,11 @@ from shared_utils import *
 # assume order doesn't matter
 # branch on both possible results
 
-def win_rate(decks_a, decks_b, win_pcts):
-    res = pre_ban(decks_a, decks_b, win_pcts)
+def win_rate(decks_a, decks_b, win_pcts,useGlobal=True):
+    res = pre_ban(decks_a, decks_b, win_pcts,useGlobal=useGlobal)
     return max(res.items(), key=lambda x:x[1])
 
-def pre_ban(decks_a, decks_b, win_pcts):
+def pre_ban(decks_a, decks_b, win_pcts,useGlobal=True):
     mins = {}
     for d2 in decks_b:
         #mins[d2] = []
@@ -21,23 +21,31 @@ def pre_ban(decks_a, decks_b, win_pcts):
             tmp_b = decks_b[:]
             tmp_a.remove(d1)
             tmp_b.remove(d2)
-            res = pre_pick_average(tmp_a,tmp_b, win_pcts)
+            res = pre_pick_average(tmp_a,tmp_b, win_pcts, useGlobal=useGlobal)
             #mins[d2].append(res)
             mins[d2] = round(min(mins[d2], res), 4)
     return mins
 
 
-def pre_pick_average(decks_a, decks_b, win_pcts):
+def pre_pick_average(decks_a, decks_b, win_pcts, useGlobal=True):
     all_res = []
     for i in decks_a:
         for j in decks_b:
             res = post_pick(decks_a,
                             decks_b,
-                            win_pcts, i, j)
+                            win_pcts, i, j,
+                            useGlobal=useGlobal)
             all_res.append(res)
     return sum(all_res) / len(all_res)
 
-def post_pick(decks_a, decks_b, win_pcts, a_pick=None, b_pick=None):
+tested = {}
+def post_pick(decks_a, decks_b, win_pcts, a_pick=None, b_pick=None, useGlobal=True):
+    if useGlobal:
+        global tested
+        tuple_a = tuple(decks_a)
+        tuple_b = tuple(decks_b)
+        if (tuple_a, tuple_b, a_pick, b_pick) in tested:
+            return tested[(tuple_a, tuple_b, a_pick, b_pick)]
     if len(decks_b) == 0 and len(decks_a) > 0:
         return 0
     elif len(decks_a) == 0 and len(decks_b) > 0:
@@ -67,4 +75,6 @@ def post_pick(decks_a, decks_b, win_pcts, a_pick=None, b_pick=None):
         # loss case
         tmp_a = [d for d in decks_a if d != a_pick]
         res += (1-pct) * max([post_pick(tmp_a, decks_b, win_pcts, a_pick=i, b_pick=b_pick) for i in tmp_a])
+        if useGlobal:
+            tested[(tuple_a, tuple_b, a_pick, b_pick)] = res
         return res
