@@ -62,7 +62,9 @@ for i,j in sorted(win_rates_against_good.items())[:3]:
 
 for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
 #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
-    print "%-90s %s %s" % (i,j, round(sum([x[1] for x in j])/len(j),3))
+    #print "%-90s %s %s" % (i,j, round(sum([x[1] for x in j])/len(j),3))
+    i = "    " + "".join(["%-20s" % x for x in i])
+    print "%-80s %s %s" % (i,j, round(sum([x[1] for x in j])/len(j),3))
 
 #my_lineup = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Zoo Warlock']
 #my_lineup = ['Big Druid', 'Big Priest', 'Tempo Rogue', 'Zoo Warlock']

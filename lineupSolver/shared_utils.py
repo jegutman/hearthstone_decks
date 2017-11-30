@@ -29,3 +29,11 @@ def get_win_pct(a,b, win_pcts):
     if a == 'Unbeatable': return 1
     if b == 'Unbeatable': return 0
     return win_pcts.get((a,b), 0)
+
+def sumproduct_normalize(a, b):
+    res = 0
+    for i,j in zip(a,b):
+        res += i * j
+    res = res / sum(b)
+    return res
+    

@@ -26,6 +26,17 @@ def pre_ban(decks_a, decks_b, win_pcts,useGlobal=True):
             mins[d2] = round(min(mins[d2], res), 4)
     return mins
 
+def pre_matrix(decks_a, decks_b, win_pcts,useGlobal=True):
+    cross = {}
+    for d2 in decks_b:
+        for d1 in decks_a:
+            tmp_a = decks_a[:]
+            tmp_b = decks_b[:]
+            tmp_a.remove(d1)
+            tmp_b.remove(d2)
+            res = pre_pick_average(tmp_a,tmp_b, win_pcts, useGlobal=useGlobal)
+            cross[(d2, d1)] = round(res, 4)
+    return cross
 
 def pre_pick_average(decks_a, decks_b, win_pcts, useGlobal=True):
     all_res = []
