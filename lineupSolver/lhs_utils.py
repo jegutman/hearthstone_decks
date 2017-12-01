@@ -49,6 +49,17 @@ def pre_pick_average(decks_a, decks_b, win_pcts, useGlobal=True):
             all_res.append(res)
     return sum(all_res) / len(all_res)
 
+def lead_matrix(decks_a, decks_b, win_pcts, useGlobal=True):
+    cross = {}
+    for i in decks_a:
+        for j in decks_b:
+            res = post_pick(decks_a,
+                            decks_b,
+                            win_pcts, i, j,
+                            useGlobal=useGlobal)
+            cross[(i,j)] = res
+    return cross
+
 tested = {}
 def post_pick(decks_a, decks_b, win_pcts, a_pick=None, b_pick=None, useGlobal=True):
     if useGlobal:
