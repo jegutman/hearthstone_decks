@@ -1,10 +1,10 @@
 import json
-import requests
+#import requests
 
-r = requests.get('https://hsreplay.net/api/v1/archetypes/')
-archetypes_json = json.loads(r.content)
+#r = requests.get('https://hsreplay.net/api/v1/archetypes/')
+#archetypes_json = json.loads(r.content)
 
-#archetypes_json = json.load(open('archetypes.json'))
+archetypes_json = json.load(open('archetypes.json'))
 
 archetype_names = {}
 archetype_ids = {}

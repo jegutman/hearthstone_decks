@@ -36,6 +36,7 @@ def lookup_card_name(card):
     if card.card_id is None: return "Unknown Card"
     return cards_by_raw_id[card.card_id]['name']
 
+
 standard_sets = [
     'OG', 
     'ICECROWN', 
@@ -56,3 +57,8 @@ wild_sets = [
     ]
 
 all_sets = standard_sets + wild_sets
+
+all_cards_standard = []
+for card in cards_json:
+    if 'dbfId' in card and 'set' in card and card.get('collectible', False) and card['set'] in standard_sets:
+        all_cards_standard.append(card)
