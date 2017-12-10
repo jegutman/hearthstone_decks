@@ -1,5 +1,13 @@
 import json
-filename = 'hsreplay1209.json'
+#filename = 'hsreplay1210.json'
+filename = 'hsreplay1210day.json'
+
+#import datetime, os
+#filename = 'hsreplay' + datetime.datetime.today().strftime("%m%d") + '.json'
+#url = 'https://hsreplay.net/analytics/query/head_to_head_archetype_matchups/?GameType=RANKED_STANDARD&RankRange=ONE_THROUGH_FIVE&Region=ALL&TimeRange=LAST_7_DAYS'
+#url = 'https://hsreplay.net/analytics/query/head_to_head_archetype_matchups/?GameType=RANKED_STANDARD&RankRange=ONE_THROUGH_FIVE&Region=ALL&TimeRange=LAST_3_DAYS'
+#os.system('curl -o %(filename)s %(url)s' % locals())
+
 print "using:", filename
 wr_file = open(filename)
 

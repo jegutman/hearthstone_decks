@@ -35,7 +35,7 @@ if __name__ == '__main__':
             print '%-18s %-18s %s' % (d1, d2, round(j,4))
 
     else:
-        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=200, min_game_count=100)
+        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=100, min_game_count=1000)
         print archetypes 
         excluded = []
         #excluded = ['Murloc Paladin', 'Secret Mage', 'Exodia Mage', 'Aggro-Token Druid', 'Dragon Priest']
@@ -47,10 +47,12 @@ if __name__ == '__main__':
         level1, level2, level3, level4, level5 = None, None, None, None, None
         #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Murloc Paladin']
         #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
-        level1 = ['Tempo Rogue', 'Murloc Paladin', 'Zoolock Warlock', 'Secret Mage']
+        level1 = ['Tempo Rogue', 'Dragon Priest', 'Zoolock Warlock', 'Unbeatable']
+        #level2 = 'Aggro Druid,Aggro Paladin,Princelock Warlock,Tempo Rogue'.split(',')
+        #level3 = "Demonlock Warlock,Dragon Priest,Spell Hunter,Tempo Rogue".split(',')
         #level2 = ['Tempo Rogue', 'Highlander Priest', 'Zoo Warlock', 'Big Druid']
-        #lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
-        lineups_to_test = [level1]
+        lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
+        #lineups_to_test = [level1]
 
         print "\n"
         print "TESTING vs LINEUPS"
@@ -68,5 +70,7 @@ if __name__ == '__main__':
         for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-20s" % x for x in i])
-            print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
+            #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
+            print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
+            print '         "' + ",".join(i) + '"'
 

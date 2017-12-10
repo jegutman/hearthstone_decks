@@ -1,8 +1,17 @@
 import json
-#import requests
+import requests
+
+#url = 'https://hsreplay.net/api/v1/archetypes/?format=json'
+#payload = json.load(open("request.json"))
+#headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
+#r = requests.post(url, data=json.dumps(payload), headers=headers)
+#r = requests.post(url, headers=headers)
 
 #r = requests.get('https://hsreplay.net/api/v1/archetypes/')
+#r = requests.get('https://hsreplay.net/api/v1/archetypes/?format=json')
 #archetypes_json = json.loads(r.content)
+import os
+os.system('curl https://hsreplay.net/api/v1/archetypes/?format=json > archetypes.json')
 
 archetypes_json = json.load(open('archetypes.json'))
 
