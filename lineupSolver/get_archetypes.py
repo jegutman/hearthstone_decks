@@ -19,7 +19,11 @@ resMap = {
 
 def get_archetype(arch_id):
     res = archetype_names.get(int(arch_id))
-    return resMap.get(res, res)
+    if res:
+        if res[-4:] == 'lock' and res.split(' ')[-1] != 'Warlock':
+            res += ' Warlock'
+    #return resMap.get(res, res)
+    return res
 
 vs_arch_map = {
     'Tempo Rogue'       : 'Tempo Rogue',

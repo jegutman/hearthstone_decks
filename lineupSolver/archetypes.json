@@ -14,7 +14,22 @@
         "player_class": 3,
         "player_class_name": "HUNTER",
         "url": "/archetypes/9/face-hunter",
-        "standard_ccp_signature_core": null,
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-07T08:38:57.235Z",
+            "format": 2,
+            "components": [
+                289,
+                559,
+                251,
+                445,
+                455,
+                42711,
+                39160,
+                1003,
+                39492,
+                40426
+            ]
+        },
         "wild_ccp_signature_core": null
     },
     {
@@ -131,7 +146,22 @@
         "player_class": 6,
         "player_class_name": "PRIEST",
         "url": "/archetypes/56/quest-priest",
-        "standard_ccp_signature_core": null,
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                41494,
+                45353,
+                38496,
+                41173,
+                41180,
+                420,
+                45195,
+                251,
+                42598,
+                43408
+            ]
+        },
         "wild_ccp_signature_core": null
     },
     {
@@ -141,19 +171,19 @@
         "player_class_name": "WARLOCK",
         "url": "/archetypes/134/zoolock",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                631,
-                974,
+                40391,
+                40393,
+                1142,
+                985,
                 1090,
+                974,
                 39740,
-                45340,
-                42790,
-                42395,
-                40465,
                 38452,
-                680
+                42790,
+                40465
             ]
         },
         "wild_ccp_signature_core": null
@@ -218,7 +248,22 @@
         "player_class": 5,
         "player_class_name": "PALADIN",
         "url": "/archetypes/79/quest-paladin",
-        "standard_ccp_signature_core": null,
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                41868,
+                45539,
+                41944,
+                38749,
+                1373,
+                39716,
+                943,
+                43373,
+                41866,
+                41864
+            ]
+        },
         "wild_ccp_signature_core": null
     },
     {
@@ -255,19 +300,19 @@
         "player_class_name": "MAGE",
         "url": "/archetypes/146/highlander-mage",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-07T08:38:57.235Z",
             "format": 2,
             "components": [
-                395,
-                749,
                 40408,
-                40496,
+                749,
                 41316,
-                41418,
-                45988,
-                77,
-                113,
-                138
+                40496,
+                40297,
+                138,
+                41878,
+                581,
+                39169,
+                621
             ]
         },
         "wild_ccp_signature_core": null
@@ -300,49 +345,25 @@
         "wild_ccp_signature_core": null
     },
     {
-        "id": 127,
-        "name": "Control Shaman",
-        "player_class": 8,
-        "player_class_name": "SHAMAN",
-        "url": "/archetypes/127/control-shaman",
-        "standard_ccp_signature_core": {
-            "as_of": "2017-10-04T23:10:06.214177Z",
-            "format": 2,
-            "components": [
-                40527,
-                40422,
-                41243,
-                629,
-                41159,
-                749,
-                42790,
-                766,
-                513,
-                38266
-            ]
-        },
-        "wild_ccp_signature_core": null
-    },
-    {
         "id": 128,
         "name": "Highlander Priest",
         "player_class": 6,
         "player_class_name": "PRIEST",
         "url": "/archetypes/128/highlander-priest",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
                 40323,
-                40408,
-                42992,
                 1659,
+                40408,
                 9,
-                749,
                 279,
-                41177,
+                42992,
                 545,
-                237
+                39442,
+                1362,
+                1014
             ]
         },
         "wild_ccp_signature_core": null
@@ -354,18 +375,18 @@
         "player_class_name": "PRIEST",
         "url": "/archetypes/130/dragon-priest",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                1037,
-                39554,
                 40378,
-                376,
-                1361,
-                41418,
+                45899,
+                39554,
                 42442,
-                42046,
-                39442,
+                1037,
+                46460,
+                40432,
+                613,
+                1650,
                 41176
             ]
         },
@@ -378,19 +399,19 @@
         "player_class_name": "PRIEST",
         "url": "/archetypes/176/breakfast-priest",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-07T08:38:57.235Z",
             "format": 2,
             "components": [
                 41259,
                 42574,
+                42790,
                 763,
                 420,
                 43051,
                 39941,
-                42790,
-                376,
-                1361,
-                42442
+                42442,
+                42818,
+                41316
             ]
         },
         "wild_ccp_signature_core": null
@@ -402,19 +423,19 @@
         "player_class_name": "PRIEST",
         "url": "/archetypes/131/silence-priest",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-07T08:38:57.235Z",
             "format": 2,
             "components": [
                 605,
                 38569,
                 39468,
                 41925,
+                41418,
                 376,
                 1361,
                 42046,
-                41418,
-                41316,
-                41176
+                613,
+                1189
             ]
         },
         "wild_ccp_signature_core": null
@@ -425,7 +446,22 @@
         "player_class": 9,
         "player_class_name": "WARLOCK",
         "url": "/archetypes/135/discard-warlock",
-        "standard_ccp_signature_core": null,
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-07T08:38:57.235Z",
+            "format": 2,
+            "components": [
+                39380,
+                38447,
+                40391,
+                41873,
+                592,
+                42642,
+                40393,
+                42442,
+                1090,
+                974
+            ]
+        },
         "wild_ccp_signature_core": null
     },
     {
@@ -435,7 +471,7 @@
         "player_class_name": "WARLOCK",
         "url": "/archetypes/132/handlock",
         "standard_ccp_signature_core": {
-            "as_of": "2017-10-04T23:10:06.214177Z",
+            "as_of": "2017-10-04T23:10:06.214Z",
             "format": 2,
             "components": [
                 950,
@@ -468,19 +504,19 @@
         "player_class_name": "WARLOCK",
         "url": "/archetypes/136/highlander-warlock",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-13T05:33:13.626004Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
                 40408,
+                950,
                 40537,
-                41418,
-                42818,
+                42658,
+                43133,
                 914,
-                1037,
-                1651,
-                41316,
-                754,
-                40496
+                138,
+                42818,
+                41683,
+                41243
             ]
         },
         "wild_ccp_signature_core": null
@@ -492,19 +528,19 @@
         "player_class_name": "WARRIOR",
         "url": "/archetypes/22/pirate-warrior",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                28,
-                304,
-                511,
-                654,
-                680,
-                724,
-                754,
-                878,
                 38914,
-                38920
+                28,
+                40465,
+                680,
+                654,
+                304,
+                38920,
+                724,
+                878,
+                45340
             ]
         },
         "wild_ccp_signature_core": null
@@ -525,7 +561,7 @@
         "player_class_name": "DRUID",
         "url": "/archetypes/149/taunt-druid",
         "standard_ccp_signature_core": {
-            "as_of": "2017-10-04T23:10:06.214177Z",
+            "as_of": "2017-10-04T23:10:06.214Z",
             "format": 2,
             "components": [
                 43022,
@@ -549,19 +585,19 @@
         "player_class_name": "SHAMAN",
         "url": "/archetypes/61/elemental-shaman",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-16T09:08:51.476451Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                189,
-                40527,
-                41260,
-                41316,
                 41331,
-                41410,
-                41418,
+                45995,
+                46432,
                 41928,
-                42818,
-                138
+                41323,
+                189,
+                41410,
+                41479,
+                40529,
+                40455
             ]
         },
         "wild_ccp_signature_core": null
@@ -600,19 +636,19 @@
         "player_class_name": "HUNTER",
         "url": "/archetypes/138/secret-hunter",
         "standard_ccp_signature_core": {
-            "as_of": "2017-10-04T23:10:06.214177Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                39160,
-                39492,
-                42525,
-                42563,
-                519,
                 158,
-                43398,
-                41263,
-                437,
-                296
+                455,
+                39492,
+                41358,
+                1003,
+                45707,
+                40426,
+                39481,
+                39160,
+                43363
             ]
         },
         "wild_ccp_signature_core": null
@@ -633,19 +669,19 @@
         "player_class_name": "HUNTER",
         "url": "/archetypes/139/deathrattle-hunter",
         "standard_ccp_signature_core": {
-            "as_of": "2017-10-04T23:10:06.214177Z",
+            "as_of": "2017-12-07T08:38:57.235Z",
             "format": 2,
             "components": [
                 41259,
-                41304,
                 42652,
-                763,
                 42790,
+                41304,
                 42442,
-                42707,
+                1261,
+                39481,
                 43398,
-                41316,
-                296
+                41358,
+                41316
             ]
         },
         "wild_ccp_signature_core": null
@@ -657,19 +693,19 @@
         "player_class_name": "HUNTER",
         "url": "/archetypes/137/midrange-hunter",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                296,
-                437,
+                42711,
+                1281,
+                41316,
+                42790,
+                41358,
                 1003,
                 1261,
-                1662,
                 40426,
-                41316,
-                41358,
-                42711,
-                1093
+                45707,
+                39481
             ]
         },
         "wild_ccp_signature_core": null
@@ -681,19 +717,19 @@
         "player_class_name": "MAGE",
         "url": "/archetypes/141/secret-mage",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
                 748,
-                40583,
-                195,
-                42790,
                 113,
-                614,
-                315,
+                40583,
+                43407,
+                43426,
+                40299,
                 405,
-                662,
-                39715
+                315,
+                39767,
+                195
             ]
         },
         "wild_ccp_signature_core": null
@@ -705,17 +741,17 @@
         "player_class_name": "ROGUE",
         "url": "/archetypes/151/mill-rogue",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-10T01:50:13.385640Z",
+            "as_of": "2017-12-07T08:38:57.235Z",
             "format": 2,
             "components": [
+                196,
                 138,
                 1016,
                 45338,
                 415,
                 42784,
-                45342,
-                39225,
-                196,
+                40696,
+                43392,
                 365,
                 461
             ]
@@ -729,19 +765,19 @@
         "player_class_name": "MAGE",
         "url": "/archetypes/144/control-mage",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                336,
                 581,
-                43419,
-                1004,
-                77,
                 42784,
-                39841,
+                315,
+                39767,
+                77,
                 41878,
-                40297,
-                192
+                39841,
+                405,
+                192,
+                43419
             ]
         },
         "wild_ccp_signature_core": null
@@ -753,19 +789,19 @@
         "player_class_name": "MAGE",
         "url": "/archetypes/145/elemental-mage",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-10T04:53:16.522555Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                41151,
                 41410,
+                41323,
                 41928,
+                43414,
+                41418,
                 41162,
                 395,
-                41418,
-                77,
-                1004,
-                39169,
-                40297
+                46541,
+                41154,
+                43419
             ]
         },
         "wild_ccp_signature_core": null
@@ -786,19 +822,19 @@
         "player_class_name": "DRUID",
         "url": "/archetypes/52/aggro-druid",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                503,
-                742,
+                40397,
                 38337,
+                503,
                 39350,
-                41094,
+                742,
                 41323,
+                40465,
                 42651,
                 997,
-                40465,
-                43025
+                41094
             ]
         },
         "wild_ccp_signature_core": null
@@ -810,7 +846,7 @@
         "player_class_name": "HUNTER",
         "url": "/archetypes/170/beast-hunter",
         "standard_ccp_signature_core": {
-            "as_of": "2017-10-04T23:10:06.214177Z",
+            "as_of": "2017-10-04T23:10:06.214Z",
             "format": 2,
             "components": [
                 1243,
@@ -834,7 +870,7 @@
         "player_class_name": "ROGUE",
         "url": "/archetypes/172/stealth-rogue",
         "standard_ccp_signature_core": {
-            "as_of": "2017-10-04T23:10:06.214177Z",
+            "as_of": "2017-10-04T23:10:06.214Z",
             "format": 2,
             "components": [
                 921,
@@ -858,19 +894,19 @@
         "player_class_name": "PRIEST",
         "url": "/archetypes/129/big-priest",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                38312,
                 42597,
-                42598,
                 42804,
+                39941,
+                38312,
+                42818,
+                40375,
+                1186,
                 38433,
                 40936,
-                1367,
-                39941,
-                40375,
-                1186
+                46307
             ]
         },
         "wild_ccp_signature_core": null
@@ -882,19 +918,19 @@
         "player_class_name": "ROGUE",
         "url": "/archetypes/169/tempo-rogue",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                559,
-                420,
-                42818,
-                42790,
-                365,
-                45340,
                 680,
                 42442,
+                42790,
+                45340,
                 268,
-                41418
+                559,
+                724,
+                41323,
+                1117,
+                365
             ]
         },
         "wild_ccp_signature_core": null
@@ -906,43 +942,19 @@
         "player_class_name": "WARLOCK",
         "url": "/archetypes/63/control-warlock",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-07T08:38:57.235Z",
             "format": 2,
             "components": [
-                1100,
-                41566,
-                42471,
-                42784,
-                859,
-                42658,
-                950,
-                749,
                 46103,
-                41567
-            ]
-        },
-        "wild_ccp_signature_core": null
-    },
-    {
-        "id": 167,
-        "name": "Mill Warrior",
-        "player_class": 10,
-        "player_class_name": "WARRIOR",
-        "url": "/archetypes/167/mill-warrior",
-        "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
-            "format": 2,
-            "components": [
-                1016,
-                43505,
-                636,
-                1023,
-                42766,
                 42784,
-                43423,
-                75,
-                400,
-                596
+                1100,
+                42471,
+                41566,
+                859,
+                950,
+                40541,
+                42658,
+                138
             ]
         },
         "wild_ccp_signature_core": null
@@ -954,19 +966,19 @@
         "player_class_name": "MAGE",
         "url": "/archetypes/142/exodia-mage",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                1016,
-                1080,
-                38418,
                 41168,
+                38418,
+                587,
+                1080,
                 41690,
+                1016,
                 284,
                 43193,
-                138,
-                587,
-                614
+                39169,
+                621
             ]
         },
         "wild_ccp_signature_core": null
@@ -978,19 +990,19 @@
         "player_class_name": "DRUID",
         "url": "/archetypes/173/miracle-druid",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
+                254,
+                39426,
+                932,
                 233,
                 467,
-                932,
-                39426,
-                38505,
-                1016,
-                254,
+                43483,
                 40372,
+                43288,
                 41081,
-                38318
+                42656
             ]
         },
         "wild_ccp_signature_core": null
@@ -1002,7 +1014,7 @@
         "player_class_name": "PRIEST",
         "url": "/archetypes/174/tempo-priest",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-11-29T02:36:38.780Z",
             "format": 2,
             "components": [
                 680,
@@ -1026,19 +1038,244 @@
         "player_class_name": "ROGUE",
         "url": "/archetypes/175/corpsetaker-rogue",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-07T08:38:57.235Z",
             "format": 2,
             "components": [
-                281,
-                41327,
                 46102,
-                41418,
+                41327,
+                281,
                 42442,
                 42790,
-                45340,
+                41323,
                 268,
-                42395,
+                45340,
+                724,
                 680
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 177,
+        "name": "Barnes Hunter",
+        "player_class": 3,
+        "player_class_name": "HUNTER",
+        "url": "/archetypes/177/barnes-hunter",
+        "standard_ccp_signature_core": null,
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 178,
+        "name": "Recruit Druid",
+        "player_class": 2,
+        "player_class_name": "DRUID",
+        "url": "/archetypes/178/recruit-druid",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                45828,
+                45835,
+                43304,
+                43284,
+                38496,
+                43288,
+                45945,
+                64,
+                1124,
+                42759
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 180,
+        "name": "Recruit Hunter",
+        "player_class": 3,
+        "player_class_name": "HUNTER",
+        "url": "/archetypes/180/recruit-hunter",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                46390,
+                1144,
+                41286,
+                43398,
+                1261,
+                1093,
+                39492,
+                585,
+                519,
+                43359
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 182,
+        "name": "Big Spell Mage",
+        "player_class": 4,
+        "player_class_name": "MAGE",
+        "url": "/archetypes/182/big-spell-mage",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                45269,
+                46499,
+                45271,
+                43483,
+                45590,
+                1659,
+                41878,
+                39841,
+                39169,
+                39715
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 184,
+        "name": "Kingsbane Rogue",
+        "player_class": 7,
+        "player_class_name": "ROGUE",
+        "url": "/archetypes/184/kingsbane-rogue",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                459,
+                47035,
+                43237,
+                42665,
+                667,
+                40437,
+                932,
+                43228,
+                45531,
+                461
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 186,
+        "name": "Princelock",
+        "player_class": 9,
+        "player_class_name": "WARLOCK",
+        "url": "/archetypes/186/princelock",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                45340,
+                42395,
+                680,
+                41323,
+                42773,
+                1090,
+                42790,
+                38452,
+                974,
+                39740
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 188,
+        "name": "Recruit Warrior",
+        "player_class": 10,
+        "player_class_name": "WARRIOR",
+        "url": "/archetypes/188/recruit-warrior",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                46058,
+                46077,
+                38312,
+                42998,
+                45775,
+                834,
+                42818,
+                1186,
+                338,
+                38943
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 189,
+        "name": "Shield Warrior",
+        "player_class": 10,
+        "player_class_name": "WARRIOR",
+        "url": "/archetypes/189/shield-warrior",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                42698,
+                38496,
+                46442,
+                41890,
+                46031,
+                46027,
+                1659,
+                546,
+                596,
+                400
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 167,
+        "name": "Fatigue Warrior",
+        "player_class": 10,
+        "player_class_name": "WARRIOR",
+        "url": "/archetypes/167/fatigue-warrior",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                1016,
+                42784,
+                41567,
+                43505,
+                636,
+                42766,
+                1659,
+                46031,
+                400,
+                596
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 127,
+        "name": "Overload Shaman",
+        "player_class": 8,
+        "player_class_name": "SHAMAN",
+        "url": "/archetypes/127/overload-shaman",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                43331,
+                42765,
+                1141,
+                43322,
+                404,
+                818,
+                46067,
+                38263,
+                41159,
+                629
             ]
         },
         "wild_ccp_signature_core": null
@@ -1050,19 +1287,19 @@
         "player_class_name": "DRUID",
         "url": "/archetypes/147/jade-druid",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                40527,
-                40596,
                 40797,
-                734,
-                754,
-                40372,
-                43417,
+                40596,
+                40527,
                 38318,
-                38718,
-                40397
+                40372,
+                734,
+                40523,
+                64,
+                42656,
+                38718
             ]
         },
         "wild_ccp_signature_core": null
@@ -1074,19 +1311,19 @@
         "player_class_name": "DRUID",
         "url": "/archetypes/148/big-druid",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                42818,
                 41929,
+                42818,
                 38312,
                 834,
-                581,
                 38943,
-                38718,
-                43417,
+                40416,
+                39841,
+                581,
                 41081,
-                40416
+                46107
             ]
         },
         "wild_ccp_signature_core": null
@@ -1098,19 +1335,19 @@
         "player_class_name": "ROGUE",
         "url": "/archetypes/153/elemental-rogue",
         "standard_ccp_signature_core": {
-            "as_of": "2017-10-04T23:10:06.214177Z",
+            "as_of": "2017-11-29T02:36:38.780Z",
             "format": 2,
             "components": [
-                41241,
                 41260,
                 41928,
-                43028,
-                42818,
-                38876,
+                41263,
+                559,
                 41418,
+                42790,
                 45340,
-                306,
-                1117
+                365,
+                680,
+                42395
             ]
         },
         "wild_ccp_signature_core": null
@@ -1122,19 +1359,19 @@
         "player_class_name": "ROGUE",
         "url": "/archetypes/25/miracle-rogue",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                667,
-                904,
-                932,
-                39426,
-                40437,
                 42011,
-                749,
+                43228,
+                40437,
                 461,
-                41218,
-                1158
+                667,
+                932,
+                1117,
+                45531,
+                749,
+                904
             ]
         },
         "wild_ccp_signature_core": null
@@ -1145,7 +1382,22 @@
         "player_class": 5,
         "player_class_name": "PALADIN",
         "url": "/archetypes/16/nzoth-paladin",
-        "standard_ccp_signature_core": null,
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                45930,
+                38496,
+                46258,
+                41567,
+                43382,
+                45287,
+                251,
+                38758,
+                46449,
+                1014
+            ]
+        },
         "wild_ccp_signature_core": null
     },
     {
@@ -1164,19 +1416,19 @@
         "player_class_name": "ROGUE",
         "url": "/archetypes/75/jade-rogue",
         "standard_ccp_signature_core": {
-            "as_of": "2017-10-04T23:10:06.214177Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                40527,
                 40596,
                 40697,
                 40698,
-                38393,
+                40527,
+                43392,
                 38876,
                 904,
-                41212,
-                1117,
-                42790
+                41217,
+                180,
+                39698
             ]
         },
         "wild_ccp_signature_core": null
@@ -1196,7 +1448,22 @@
         "player_class": 10,
         "player_class_name": "WARRIOR",
         "url": "/archetypes/161/enrage-warrior",
-        "standard_ccp_signature_core": null,
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-07T08:38:57.235Z",
+            "format": 2,
+            "components": [
+                338,
+                285,
+                42630,
+                42810,
+                654,
+                38738,
+                401,
+                400,
+                38530,
+                43423
+            ]
+        },
         "wild_ccp_signature_core": null
     },
     {
@@ -1215,19 +1482,19 @@
         "player_class_name": "WARRIOR",
         "url": "/archetypes/162/quest-warrior",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                38530,
-                39225,
-                40574,
-                41243,
-                41418,
                 41427,
+                41243,
+                40574,
+                41418,
+                38738,
                 41929,
-                42395,
-                42818,
-                41890
+                41890,
+                46027,
+                38530,
+                596
             ]
         },
         "wild_ccp_signature_core": null
@@ -1248,43 +1515,19 @@
         "player_class_name": "PALADIN",
         "url": "/archetypes/157/murloc-paladin",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                40803,
-                40531,
-                943,
-                475,
                 1063,
-                38227,
+                40531,
                 41245,
+                475,
                 41265,
-                42442,
-                39225
-            ]
-        },
-        "wild_ccp_signature_core": null
-    },
-    {
-        "id": 159,
-        "name": "Grimestreet Paladin",
-        "player_class": 5,
-        "player_class_name": "PALADIN",
-        "url": "/archetypes/159/grimestreet-paladin",
-        "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
-            "format": 2,
-            "components": [
-                559,
-                680,
-                40371,
-                40469,
-                40634,
-                40953,
-                41111,
-                41323,
-                42395,
-                42467
+                38227,
+                453,
+                510,
+                40803,
+                976
             ]
         },
         "wild_ccp_signature_core": null
@@ -1296,19 +1539,19 @@
         "player_class_name": "PALADIN",
         "url": "/archetypes/156/control-paladin",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                138,
+                43406,
                 476,
-                756,
-                1014,
                 1167,
-                1371,
-                1659,
-                38666,
-                38758,
-                41243
+                41243,
+                1014,
+                41139,
+                41864,
+                847,
+                756,
+                890
             ]
         },
         "wild_ccp_signature_core": null
@@ -1329,19 +1572,19 @@
         "player_class_name": "ROGUE",
         "url": "/archetypes/155/quest-rogue",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
+                41222,
+                40696,
+                415,
                 196,
                 284,
-                415,
+                45263,
                 648,
-                40696,
+                41212,
                 41111,
-                41222,
-                41926,
-                1016,
-                365
+                41926
             ]
         },
         "wild_ccp_signature_core": null
@@ -1362,19 +1605,19 @@
         "player_class_name": "PALADIN",
         "url": "/archetypes/72/pirate-murloc-paladin",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-11-29T02:36:38.780Z",
             "format": 2,
             "components": [
+                847,
                 878,
+                41316,
                 42818,
                 456,
                 475,
-                847,
                 1063,
                 38227,
                 40465,
-                41245,
-                41265
+                41139
             ]
         },
         "wild_ccp_signature_core": null
@@ -1386,7 +1629,7 @@
         "player_class_name": "PALADIN",
         "url": "/archetypes/158/murloc-aggro-paladin",
         "standard_ccp_signature_core": {
-            "as_of": "2017-10-04T23:10:06.214177Z",
+            "as_of": "2017-10-04T23:10:06.214Z",
             "format": 2,
             "components": [
                 453,
@@ -1410,19 +1653,19 @@
         "player_class_name": "PALADIN",
         "url": "/archetypes/171/aggro-paladin",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-10T01:50:13.385640Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                679,
-                724,
                 757,
                 40465,
+                724,
                 42773,
-                878,
-                70,
-                242,
-                40634,
-                847
+                1073,
+                559,
+                985,
+                679,
+                943,
+                45782
             ]
         },
         "wild_ccp_signature_core": null
@@ -1434,19 +1677,19 @@
         "player_class_name": "SHAMAN",
         "url": "/archetypes/30/token-shaman",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-09T00:17:39.663Z",
             "format": 2,
             "components": [
-                513,
-                1008,
-                1171,
+                42987,
                 38266,
-                39712,
-                40455,
-                40529,
                 40953,
-                41105,
-                41323
+                40422,
+                38267,
+                1008,
+                40529,
+                40455,
+                40527,
+                40596
             ]
         },
         "wild_ccp_signature_core": null
@@ -1458,7 +1701,7 @@
         "player_class_name": "WARRIOR",
         "url": "/archetypes/164/deathrattle-warrior",
         "standard_ccp_signature_core": {
-            "as_of": "2017-11-26T00:00:15.359123Z",
+            "as_of": "2017-12-07T08:38:57.235Z",
             "format": 2,
             "components": [
                 38496,
@@ -1467,10 +1710,154 @@
                 1023,
                 41890,
                 42766,
-                42784,
-                43423,
                 636,
-                400
+                42784,
+                596,
+                1074
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 179,
+        "name": "Spell Hunter",
+        "player_class": 3,
+        "player_class_name": "HUNTER",
+        "url": "/archetypes/179/spell-hunter",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                1047,
+                43369,
+                45546,
+                896,
+                141,
+                45537,
+                38377,
+                38727,
+                1093,
+                585
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 181,
+        "name": "Leyline Mage",
+        "player_class": 4,
+        "player_class_name": "MAGE",
+        "url": "/archetypes/181/leyline-mage",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                251,
+                1080,
+                587,
+                41690,
+                43193,
+                46541,
+                621,
+                284,
+                192,
+                1016
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 183,
+        "name": "Silver Hand Paladin",
+        "player_class": 5,
+        "player_class_name": "PALADIN",
+        "url": "/archetypes/183/silver-hand-paladin",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                41945,
+                38843,
+                41859,
+                45833,
+                45877,
+                41912,
+                38911,
+                46007,
+                476,
+                45782
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 159,
+        "name": "Handbuff Paladin",
+        "player_class": 5,
+        "player_class_name": "PALADIN",
+        "url": "/archetypes/159/handbuff-paladin",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                40469,
+                40371,
+                42395,
+                40953,
+                43127,
+                42790,
+                1167,
+                41243,
+                46263,
+                890
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 185,
+        "name": "Demonlock",
+        "player_class": 9,
+        "player_class_name": "WARLOCK",
+        "url": "/archetypes/185/demonlock",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                46449,
+                46103,
+                46040,
+                46299,
+                42471,
+                46056,
+                43272,
+                1092,
+                1100,
+                859
+            ]
+        },
+        "wild_ccp_signature_core": null
+    },
+    {
+        "id": 187,
+        "name": "Oakheart Warrior",
+        "player_class": 10,
+        "player_class_name": "WARRIOR",
+        "url": "/archetypes/187/oakheart-warrior",
+        "standard_ccp_signature_core": {
+            "as_of": "2017-12-09T00:17:39.663Z",
+            "format": 2,
+            "components": [
+                45309,
+                46449,
+                46557,
+                39433,
+                42766,
+                43494,
+                38530,
+                1186,
+                43505,
+                401
             ]
         },
         "wild_ccp_signature_core": null

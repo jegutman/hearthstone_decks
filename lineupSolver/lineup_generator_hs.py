@@ -8,7 +8,7 @@ if __name__ == '__main__':
     import sys
     args = sys.argv[1:]
     if len(args) > 0 and args[0] == 'sim':
-        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=0, min_game_count=0)
+        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=100, min_game_count=100)
         print archetypes 
         #my_lineup = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Zoo Warlock']
         #opp_lineup = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Control Mage']
@@ -47,9 +47,10 @@ if __name__ == '__main__':
         level1, level2, level3, level4, level5 = None, None, None, None, None
         #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Murloc Paladin']
         #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
-        level1 = ['Tempo Rogue', 'Highlander Priest', 'Zoo Warlock', 'Murloc Paladin']
-        level2 = ['Tempo Rogue', 'Highlander Priest', 'Zoo Warlock', 'Big Druid']
-        lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
+        level1 = ['Tempo Rogue', 'Murloc Paladin', 'Zoolock Warlock', 'Secret Mage']
+        #level2 = ['Tempo Rogue', 'Highlander Priest', 'Zoo Warlock', 'Big Druid']
+        #lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
+        lineups_to_test = [level1]
 
         print "\n"
         print "TESTING vs LINEUPS"

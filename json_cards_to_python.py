@@ -45,6 +45,7 @@ standard_sets = [
     'UNGORO', 
     'GANGS', 
     'KARA', 
+    'LOOTAPALOOZA',
 ]
 
 wild_sets = [
@@ -59,6 +60,29 @@ wild_sets = [
 all_sets = standard_sets + wild_sets
 
 all_cards_standard = []
+all_cards_wild = []
 for card in cards_json:
     if 'dbfId' in card and 'set' in card and card.get('collectible', False) and card['set'] in standard_sets:
         all_cards_standard.append(card)
+    if 'dbfId' in card and 'set' in card and card.get('collectible', False):
+        all_cards_wild.append(card)
+
+def get_cards_by_cost(cost, useStandard=True, minions_only=True):
+    fullset = all_cards_standard if useStandard else all_cards_wild
+    if minions_only:
+        return [c for c in fullset if c.get('cost', -1) == cost and c.get('type') == 'MINION']
+    else:
+        return [c for c in fullset if c.get('cost', -1) == cost]
+def get_minions_by_attack(attack, useStandard=True):
+    fullset = all_cards_standard if useStandard else all_cards_wild
+    return sorted([c for c in fullset if c.get('attack', -1) == attack and c.get('type') == 'MINION'], key=lambda x:x.get('cost'))
+
+def get_average_stats(cost, useStandard=True):
+    test_set = get_cards_by_cost(cost, useStandard)
+    attack, health, count = 0,0, 0
+    for i in test_set:
+        if i.get('type') == 'MINION':
+            attack += i.get('attack')
+            health += i.get('health')
+            count += 1
+    return (round(attack / float(count), 2), round(health / float(count), 2), count)

@@ -1,5 +1,5 @@
 import json
-filename = 'hsreplay1129.json'
+filename = 'hsreplay1209.json'
 print "using:", filename
 wr_file = open(filename)
 
