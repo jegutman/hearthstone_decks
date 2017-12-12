@@ -2,7 +2,7 @@ from json_win_rates import *
 from lhs_utils import * 
 from shared_utils import *
 
-win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=200, min_game_count=1000)
+win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=100, min_game_count=1000)
 if __name__ == '__main__':
     import sys
     args = sys.argv[1:]
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     else:
         for key in win_pcts.keys():
             i,j = key
-            bias = 0.03
+            bias = 0.00
             if i == 'Highlander Priest':
                 win_pcts[key] += bias
             if j == 'Highlander Priest':
@@ -70,18 +70,13 @@ if __name__ == '__main__':
 
         win_rates_against_good = {}
         level1, level2, level3, level4, level5 = None, None, None, None, None
-        #level1 = ['Unbeatable', 'Tempo Rogue', 'Quest Warrior', 'Zoo Warlock']
-        #level1 = ['Tempo Rogue', 'Jade Druid', 'Highlander Priest', 'Zoo Warlock']
-        #level1 = ['Tempo Rogue', 'Jade Druid', 'Highlander Priest', 'Murloc Paladin']
-        #level4 = ['Tempo Rogue', 'Jade Druid', 'Highlander Priest', 'Zoo Warlock']
-        #level2 = ['Tempo Rogue', 'Big Druid', 'Tempo Priest', 'Murloc Paladin']
-        #level3 = ['Tempo Rogue', 'Aggro Druid', 'Murloc Paladin', 'Zoo Warlock']
         # force ban druid
         #level1 = ['Tempo Rogue', 'Jade Druid', 'Highlander Priest', 'Murloc Paladin']
-        level1 = ['Big Priest', 'Control Mage', 'Jade Druid', 'Tempo Rogue']
-        level2 = ['Big Druid', 'Pirate Warrior', 'Tempo Priest', 'Tempo Rogue']
+        #level1 = ['Big Priest', 'Control Mage', 'Jade Druid', 'Tempo Rogue']
+        level1 = ['Big Druid', 'Dragon Priest', 'Zoo Warlock', 'Tempo Rogue']
+        level2 = ['Tempo Rogue', 'Secret Mage', 'Highlander Priest', 'Demon Warlock']
+        level3 = 'Tempo Rogue,Zoo Warlock,Murloc Paladin,Secret Mage'.split(',')
         #level4 = ['Tempo Rogue', 'Unbeatable', 'Highlander Priest', 'Zoo Warlock']
-        #level2 = ['Tempo Rogue', 'Unbeatable', 'Tempo Priest', 'Murloc Paladin']
         #level3 = ['Tempo Rogue', 'Unbeatable', 'Murloc Paladin', 'Zoo Warlock']
 
         lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
@@ -89,31 +84,6 @@ if __name__ == '__main__':
         #print lineups_to_test
         #lineups_to_test = [sorted(x.split(',')) for x in lineups.values()][:2]
         #print lineups_to_test
-        lineups_to_test = [
-            ['Murloc Paladin', 'Highlander Priest', 'Jade Druid', 'Tempo Rogue'],
-            ['Murloc Paladin', 'Highlander Priest', 'Aggro Druid', 'Tempo Rogue'],
-            ['Zoo Warlock', 'Tempo Rogue', 'Exodia Mage', 'Highlander Priest'],
-            ['Big Priest', 'Secret Mage', 'Jade Druid', 'Tempo Rogue'],
-            ['Tempo Rogue', 'Murloc Paladin', 'Dragon Priest', "C'Thun Druid"],
-            ['Control Mage', 'Big Priest', 'Tempo Rogue', 'Jade Druid'],
-            ['Big Druid', 'Midrange Hunter', 'Murloc Paladin', 'Miracle Rogue'],
-            ['Big Druid', 'Highlander Priest', 'Tempo Rogue', 'Quest Mage'],
-            ['Tempo Priest', 'Big Druid', 'Tempo Rogue', 'Zoo Warlock'],
-            ['Tempo Priest', 'Aggro Druid', 'Tempo Rogue', 'Murloc Paladin'],
-            ['Aggro Druid', 'Highlander Priest', 'Tempo Rogue', 'Zoo Warlock'],
-            ['Big Druid', 'Tempo Priest', 'Tempo Rogue', 'Pirate Warrior'],
-            ['Jade Druid', 'Exodia Mage', 'Tempo Rogue', 'Highlander Priest'],
-            ['Aggro Druid', 'Control Mage', 'Tempo Rogue', 'Zoo Warlock'],
-            ['Zoo Warlock', 'Highlander Priest', 'Tempo Rogue', 'Token Shaman'],
-            ['Murloc Paladin', 'Highlander Priest', 'Jade Druid', 'Tempo Rogue'],
-            ['Highlander Priest', 'Big Druid', 'Tempo Rogue', 'Control Mage'],
-            ['Zoo Warlock', 'Tempo Rogue', 'Tempo Priest', 'Big Druid'],
-            ['Zoo Warlock', 'Tempo Rogue', 'Jade Druid', 'Highlander Priest'],
-            ['Zoo Warlock', 'Tempo Rogue', 'Highlander Priest', 'Mid-Range Shaman'],
-            ['Big Priest', 'Big Druid', 'Tempo Rogue', 'Control Warlock'],
-            ['Highlander Priest', 'Zoo Warlock', 'Mill Warrior', 'Tempo Rogue'],
-            ['Highlander Priest', 'Jade Druid', 'Tempo Rogue', 'Control Warlock'],
-        ]
         tmp_weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         weights = [w for w,l in zip(tmp_weights, lineups_to_test) if l is not None]
 

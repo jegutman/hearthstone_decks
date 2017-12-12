@@ -1,6 +1,6 @@
 import json
-#filename = 'hsreplay1210.json'
-filename = 'hsreplay1210day.json'
+#filename = 'hsreplay1211.json'
+filename = 'hsreplay1211day.json'
 
 #import datetime, os
 #filename = 'hsreplay' + datetime.datetime.today().strftime("%m%d") + '.json'
