@@ -9,11 +9,11 @@ filename = 'hsreplay1210day.json'
 #os.system('curl -o %(filename)s %(url)s' % locals())
 
 print "using:", filename
-wr_file = open(filename)
 
 from get_archetypes import *
 
 def get_win_pcts(min_game_threshold=0, min_game_count=0):
+    wr_file = open(filename)
     # returns win_pcts, num_games, game_count, archetypes
     win_pcts = {}
     num_games = {}
@@ -36,6 +36,7 @@ def get_win_pcts(min_game_threshold=0, min_game_count=0):
             num_games[(arch1, arch2)] = total_games
             game_count[arch1] += total_games
     hsreplay_archetypes = [a for a in hsreplay_archetypes if game_count[a] > min_game_count]
+    wr_file.close()
     return win_pcts, num_games, game_count, hsreplay_archetypes
 
 if __name__ == "__main__":

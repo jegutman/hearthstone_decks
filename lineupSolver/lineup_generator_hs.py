@@ -47,9 +47,9 @@ if __name__ == '__main__':
         level1, level2, level3, level4, level5 = None, None, None, None, None
         #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Murloc Paladin']
         #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
-        level1 = ['Tempo Rogue', 'Dragon Priest', 'Zoolock Warlock', 'Unbeatable']
-        #level2 = 'Aggro Druid,Aggro Paladin,Princelock Warlock,Tempo Rogue'.split(',')
-        #level3 = "Demonlock Warlock,Dragon Priest,Spell Hunter,Tempo Rogue".split(',')
+        #level1 = ['Tempo Rogue', 'Dragon Priest', 'Zoolock Warlock', 'Jade Druid']
+        level2 = 'Tempo Rogue,Highlander Priest,Secret Mage,Demonlock Warlock'.split(',')
+        level3 = "Princelock Warlock,Tempo Rogue,Aggro Druid,Murloc Paladin".split(',')
         #level2 = ['Tempo Rogue', 'Highlander Priest', 'Zoo Warlock', 'Big Druid']
         lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
         #lineups_to_test = [level1]
