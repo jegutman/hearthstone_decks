@@ -36,25 +36,29 @@ if __name__ == '__main__':
             print '%-18s %-18s %s' % (d1, d2, round(j,4))
 
     else:
-        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=100, min_game_count=1000)
+        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=500, min_game_count=1000)
         print archetypes 
         excluded = []
         #excluded = ['Murloc Paladin', 'Secret Mage', 'Exodia Mage', 'Aggro-Token Druid', 'Dragon Priest']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded] + ['Unbeatable']
         lineups = generate_lineups(archetypes, unbeatable=True)
-        print "testing %s lineups" % len(lineups)
         win_rates_against_good = {}
         level1, level2, level3, level4, level5 = None, None, None, None, None
-        level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Murloc Paladin']
-        level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
-        level1 = ['Princelock Warlock', 'Tempo Rogue', 'Aggro Druid', 'Unbeatable']
-        level2 = ['Aggro Druid', 'Tempo Rogue', 'Zoolock Warlock', 'Unbeatable']
-        level3 = ['Demonlock Warlock', 'Big Priest', 'Big Druid', 'Unbeatable']
-        level4 = ['Murloc Paladin', 'Big Priest', 'Tempo Rogue', 'Unbeatable']
-        level5 = ['Murloc Paladin', 'Secret Mage', 'Tempo Rogue', 'Unbeatable']
+        #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Murloc Paladin']
+        #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
+        #level1 = ['Princelock Warlock', 'Tempo Rogue', 'Aggro Druid', 'Unbeatable']
+        #level2 = ['Aggro Druid', 'Tempo Rogue', 'Zoolock Warlock', 'Unbeatable']
+        #level3 = ['Demonlock Warlock', 'Big Priest', 'Big Druid', 'Unbeatable']
+        #level1 = "Aggro Hunter,Aggro Paladin,Demon Warlock,Unbeatable".split(',')
+        level2 = "Unbeatable,Big Priest,Zoo Warlock,Murloc Paladin".split(',')
+        level3 = "Aggro Paladin,Big Priest,Demon Warlock,Unbeatable".split(',')
+        level4 = "Aggro Paladin,Demon Warlock,Highlander Priest,Unbeatable".split(',')
+        #level5 = "Aggro Hunter,Aggro Paladin,Highlander Priest,Unbeatable".split(',')
         lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
+        assert all([len(x) == 4 for x in lineups_to_test])
         weights = [1 for l in [level1, level2, level3, level4, level5] if l is not None]
+        print "testing %s lineups" % len(lineups_to_test)
         #lineups_to_test = [level1]
         #lineup_01, weight_01 = ['Dragon Priest', 'Secret Mage ', 'Spell Hunter', 'Unbeatable'], 18.0
         #lineup_02, weight_02 = ['Dragon Priest', 'Secret Mage ', 'Tempo Rogue', 'Unbeatable'], 16.0
@@ -80,7 +84,7 @@ if __name__ == '__main__':
         #weights = [weight_01, weight_02, weight_03, weight_04, weight_05, weight_06, weight_07, weight_08, weight_09, weight_10, weight_11, weight_12, weight_13, weight_14, weight_15, weight_16, weight_17, weight_18, weight_19, weight_20]
 
         for i in lineups:
-            print i
+            #print i
             assert all([d in archetypes for d in i]), ([d in archetypes for d in i], i)
             
 

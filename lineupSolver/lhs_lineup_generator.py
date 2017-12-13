@@ -2,10 +2,10 @@ from json_win_rates import *
 from lhs_utils import * 
 from shared_utils import *
 
-win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=100, min_game_count=1000)
 if __name__ == '__main__':
     import sys
     args = sys.argv[1:]
+    win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=0, min_game_count=0)
     if len(args) > 0 and args[0] == 'sim':
         my_lineup = [d.strip() for d in args[1].split(',')]
         opp_lineup = [d.strip() for d in args[2].split(',')]
@@ -49,6 +49,7 @@ if __name__ == '__main__':
                 print '%-18s %-18s %s' % (d1, d2, round(j,4))
             
     else:
+        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=100, min_game_count=1500)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00
@@ -73,9 +74,10 @@ if __name__ == '__main__':
         # force ban druid
         #level1 = ['Tempo Rogue', 'Jade Druid', 'Highlander Priest', 'Murloc Paladin']
         #level1 = ['Big Priest', 'Control Mage', 'Jade Druid', 'Tempo Rogue']
-        level1 = ['Big Druid', 'Dragon Priest', 'Zoo Warlock', 'Tempo Rogue']
-        level2 = ['Tempo Rogue', 'Secret Mage', 'Highlander Priest', 'Demon Warlock']
-        level3 = 'Tempo Rogue,Zoo Warlock,Murloc Paladin,Secret Mage'.split(',')
+        #level1 = ['Big Druid', 'Dragon Priest', 'Zoo Warlock', 'Tempo Rogue']
+        #level2 = ['Tempo Rogue', 'Secret Mage', 'Highlander Priest', 'Demon Warlock']
+        level1 = ['Highlander Priest', 'Demon Warlock', 'Secret Mage', 'Tempo Rogue']
+        #level3 = 'Tempo Rogue,Zoo Warlock,Murloc Paladin,Secret Mage'.split(',')
         #level4 = ['Tempo Rogue', 'Unbeatable', 'Highlander Priest', 'Zoo Warlock']
         #level3 = ['Tempo Rogue', 'Unbeatable', 'Murloc Paladin', 'Zoo Warlock']
 

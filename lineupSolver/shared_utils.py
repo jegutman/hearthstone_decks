@@ -39,8 +39,9 @@ def generate_lineups(archetypes, unbeatable=False):
     return lineups
 
 def get_win_pct(a,b, win_pcts):
-    if a == 'Unbeatable': return 1
-    if b == 'Unbeatable': return 0
+    if a == 'Unbeatable' and b != 'Unbeatable': return 1
+    if b == 'Unbeatable' and a != 'Unbeatable': return 0
+    if a == b: return 0.5
     return win_pcts.get((a,b), 0)
 
 def sumproduct_normalize(a, b):
