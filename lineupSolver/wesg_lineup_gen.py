@@ -36,52 +36,36 @@ if __name__ == '__main__':
             print '%-18s %-18s %s' % (d1, d2, round(j,4))
 
     else:
-        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=500, min_game_count=1000)
+        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=50, min_game_count=200)
+        for key in win_pcts.keys():
+            i,j = key
+            bias = 0.00
+            if i == 'Highlander Priest':
+                win_pcts[key] += bias
+            if j == 'Highlander Priest':
+                win_pcts[key] -= bias
+        win_pcts[('Demon Warlock', 'Highlander Priest')] = 0.45
+        win_pcts[('Highlander Priest', 'Demon Warlock')] = 0.55
+        win_pcts[('Demon Warlock', 'Secret Mage')] = 0.50
+        win_pcts[('Secret Mage', 'Demon Warlock')] = 0.5
         print archetypes 
         excluded = []
-        #excluded = ['Murloc Paladin', 'Secret Mage', 'Exodia Mage', 'Aggro-Token Druid', 'Dragon Priest']
+        #excluded = ['Jade Druid']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded] + ['Unbeatable']
         lineups = generate_lineups(archetypes, unbeatable=True)
         win_rates_against_good = {}
         level1, level2, level3, level4, level5 = None, None, None, None, None
-        #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Murloc Paladin']
-        #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
-        #level1 = ['Princelock Warlock', 'Tempo Rogue', 'Aggro Druid', 'Unbeatable']
-        #level2 = ['Aggro Druid', 'Tempo Rogue', 'Zoolock Warlock', 'Unbeatable']
-        #level3 = ['Demonlock Warlock', 'Big Priest', 'Big Druid', 'Unbeatable']
-        #level1 = "Aggro Hunter,Aggro Paladin,Demon Warlock,Unbeatable".split(',')
-        level2 = "Unbeatable,Big Priest,Zoo Warlock,Murloc Paladin".split(',')
-        level3 = "Aggro Paladin,Big Priest,Demon Warlock,Unbeatable".split(',')
-        level4 = "Aggro Paladin,Demon Warlock,Highlander Priest,Unbeatable".split(',')
-        #level5 = "Aggro Hunter,Aggro Paladin,Highlander Priest,Unbeatable".split(',')
+        #level1 = "Recruit Warrior,Demon Warlock,Highlander Priest,Unbeatable".split(',')
+        level1 = "Demon Warlock,Highlander Priest,Tempo Rogue,Unbeatable".split(',')
+        level2 = "Tempo Rogue,Highlander Priest,Secret Mage,Unbeatable".split(',')
         lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
-        assert all([len(x) == 4 for x in lineups_to_test])
         weights = [1 for l in [level1, level2, level3, level4, level5] if l is not None]
+        #weights = [1 for l in lineups_to_test if l is not None]
+        #weights = [4, 4, 2]
+        #from canada_wesg import lineups_to_test, weights
+        assert all([len(x) == 4 for x in lineups_to_test])
         print "testing %s lineups" % len(lineups_to_test)
-        #lineups_to_test = [level1]
-        #lineup_01, weight_01 = ['Dragon Priest', 'Secret Mage ', 'Spell Hunter', 'Unbeatable'], 18.0
-        #lineup_02, weight_02 = ['Dragon Priest', 'Secret Mage ', 'Tempo Rogue', 'Unbeatable'], 16.0
-        #lineup_03, weight_03 = ['Dragon Priest', 'Secret Mage ', 'Unbeatable', 'Zoolock Warlock'], 14.0
-        #lineup_04, weight_04 = ['Secret Mage ', 'Spell Hunter', 'Tempo Rogue', 'Unbeatable'], 14.0
-        #lineup_05, weight_05 = ['Demonlock Warlock', 'Dragon Priest', 'Secret Mage ', 'Unbeatable'], 14.0
-        #lineup_06, weight_06 = ['Secret Mage ', 'Spell Hunter', 'Unbeatable', 'Zoolock Warlock'], 12.0
-        #lineup_07, weight_07 = ['Aggro Paladin', 'Dragon Priest', 'Secret Mage ', 'Unbeatable'], 12.0
-        #lineup_08, weight_08 = ['Demonlock Warlock', 'Secret Mage ', 'Spell Hunter', 'Unbeatable'], 12.0
-        #lineup_09, weight_09 = ['Highlander Priest', 'Secret Mage ', 'Spell Hunter', 'Unbeatable'], 12.0
-        #lineup_10, weight_10 = ['Secret Mage ', 'Tempo Rogue', 'Unbeatable', 'Zoolock Warlock'], 11.0
-        #lineup_11, weight_11 = ['Dragon Priest', 'Other Hunter', 'Secret Mage ', 'Unbeatable'], 11.0
-        #lineup_12, weight_12 = ['Demonlock Warlock', 'Secret Mage ', 'Tempo Rogue', 'Unbeatable'], 11.0
-        #lineup_13, weight_13 = ['Highlander Priest', 'Secret Mage ', 'Tempo Rogue', 'Unbeatable'], 11.0
-        #lineup_14, weight_14 = ['Big Priest', 'Secret Mage ', 'Spell Hunter', 'Unbeatable'], 11.0
-        #lineup_15, weight_15 = ['Aggro Paladin', 'Secret Mage ', 'Spell Hunter', 'Unbeatable'], 10.0
-        #lineup_16, weight_16 = ['Dragon Priest', 'Murloc Paladin', 'Secret Mage ', 'Unbeatable'], 10.0
-        #lineup_17, weight_17 = ['Dragon Priest', 'Spell Hunter', 'Tempo Rogue', 'Unbeatable'], 10.0
-        #lineup_18, weight_18 = ['Big Priest', 'Secret Mage ', 'Tempo Rogue', 'Unbeatable'], 9.0
-        #lineup_19, weight_19 = ['Highlander Priest', 'Secret Mage ', 'Unbeatable', 'Zoolock Warlock'], 9.0
-        #lineup_20, weight_20 = ['Aggro Paladin', 'Secret Mage ', 'Tempo Rogue', 'Unbeatable'], 9.0
-        #lineups_to_test = [lineup_01, lineup_02, lineup_03, lineup_04, lineup_05, lineup_06, lineup_07, lineup_08, lineup_09, lineup_10, lineup_11, lineup_12, lineup_13, lineup_14, lineup_15, lineup_16, lineup_17, lineup_18, lineup_19, lineup_20]
-        #weights = [weight_01, weight_02, weight_03, weight_04, weight_05, weight_06, weight_07, weight_08, weight_09, weight_10, weight_11, weight_12, weight_13, weight_14, weight_15, weight_16, weight_17, weight_18, weight_19, weight_20]
 
         for i in lineups:
             #print i
@@ -109,7 +93,7 @@ if __name__ == '__main__':
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
             lineup_string = ",".join(i)
-            lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3)))
+            lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(sumproduct_normalize([i[1] for i in j],weights),3),round(min([x[1] for x in j]),3)))
             print '         "' + lineup_string + '"'
-        for i,j in lu_strings:
-            print "".join(["%20s" % x for x in i.split(',')]), j
+        for i,j,k,l in lu_strings:
+            print "".join(["%20s" % x for x in i.split(',')]), j, k, l
