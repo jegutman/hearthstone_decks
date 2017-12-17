@@ -8,10 +8,8 @@ if __name__ == '__main__':
     import sys
     args = sys.argv[1:]
     if len(args) > 0 and args[0] == 'sim':
-        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=100, min_game_count=100)
+        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=0, min_game_count=0)
         print archetypes 
-        #my_lineup = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Zoo Warlock']
-        #opp_lineup = ['Tempo Rogue', 'Big Druid', 'Big Priest', 'Control Mage']
         my_lineup = [d.strip() for d in args[1].split(',')]
         opp_lineup = [d.strip() for d in args[2].split(',')]
         assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
@@ -57,7 +55,7 @@ if __name__ == '__main__':
         print "\n"
         print "TESTING vs LINEUPS"
         for l in lineups_to_test:
-            print "   ".join(l)
+            print "   ".join(l), '"' + ",".join(l) + '"'
         print "\n"
 
         for lineup in lineups:

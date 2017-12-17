@@ -55,18 +55,18 @@ class EasyDeck():
         deck = []
         for i,j in self.deck.cards:
             total += j
-            count, name, card_class, cost = j, cards[i]['name'], cards[i]['playerClass'], cards[i]['cost']
+            count, name, card_class, cost, card_set = j, cards[i]['name'], cards[i]['playerClass'], cards[i]['cost'], cards[i]['set']
             if card_class == 'NEUTRAL':
                 card_class = "ZZ_NEUTRAL"
-            deck.append([card_class, cost, name, count])
+            deck.append([card_class, cost, name, count, card_set])
         deck.sort()
         last_class = ""
-        for card_class, cost, name, count in deck:
+        for card_class, cost, name, count, card_set in deck:
             if card_class != last_class:
                 res += "\n"
                 res += card_class.replace('ZZ_', '') + "\n"
             last_class = card_class
-            res += "%-2s %-25s x%s" % (cost, name, count) + "\n"
+            res += "%-2s %-25s x%s %s" % (cost, name, count, card_set) + "\n"
         print(res)
 
     def get_distance(self, other_deck):
