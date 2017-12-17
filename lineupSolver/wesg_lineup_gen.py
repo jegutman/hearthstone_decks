@@ -8,7 +8,7 @@ if __name__ == '__main__':
     import sys
     args = sys.argv[1:]
     if len(args) > 0 and args[0] == 'sim':
-        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=100, min_game_count=100)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=100, min_game_count=100)
         #print archetypes 
         archetypes += ['Unbeatable']
         #my_lineup = ['Big Druid', 'Dragon Priest', 'Tempo Rogue', 'Zoo Warlock']
@@ -36,7 +36,7 @@ if __name__ == '__main__':
             print '%-18s %-18s %s' % (d1, d2, round(j,4))
 
     else:
-        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=50, min_game_count=200)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=200)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00

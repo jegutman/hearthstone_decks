@@ -5,7 +5,7 @@ from shared_utils import *
 if __name__ == '__main__':
     import sys
     args = sys.argv[1:]
-    win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=0, min_game_count=0)
+    win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
     if len(args) > 0 and args[0] == 'sim':
         my_lineup = [d.strip() for d in args[1].split(',')]
         opp_lineup = [d.strip() for d in args[2].split(',')]
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                 print '%-18s %-18s %s' % (d1, d2, round(j,4))
             
     else:
-        win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=100, min_game_count=1500)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=100, min_game_count=1500)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00

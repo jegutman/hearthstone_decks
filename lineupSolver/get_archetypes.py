@@ -21,17 +21,8 @@ for archetype in archetypes_json:
     archetype_names[archetype['id']] = archetype['name']
     archetype_ids[archetype['name']] = archetype['id']
 
-
-resMap = {
-    'Zoolock': 'Zoo Warlock',
-}
-
 def get_archetype(arch_id):
     res = archetype_names.get(int(arch_id))
-    #if res:
-    #    if res[-4:] == 'lock' and res.split(' ')[-1] != 'Warlock':
-    #        res += ' Warlock'
-    #return resMap.get(res, res)
     return res
 
 vs_arch_map = {

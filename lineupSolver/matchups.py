@@ -8,7 +8,7 @@ if __name__ == '__main__':
     import sys
     deck = " ".join(sys.argv[1:])
     print "TESTING: %s" % deck
-    win_pcts, num_games, game_count, archetypes = get_win_pcts(min_game_threshold=50, min_game_count=500)
+    win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=500)
     results = []
     for a in archetypes:
         results.append((round( 100 * get_win_pct(deck,a,win_pcts), 1), a))
