@@ -17,12 +17,11 @@ def generate_lineups(archetypes, unbeatable=False):
             for j in range(i+1, len(archetypes)):
                 for k in range(j+1, len(archetypes)):
                     a, b, c = [archetypes[x] for x in [i,j,k]]
-                    #d = 'Unbeatable'
-                    #decks = tuple(sorted([a,b,c,d]))
-                    decks = tuple(sorted([a,b,c]))
+                    d = 'Unbeatable'
+                    decks = tuple(sorted([a,b,c,d]))
+                    #decks = tuple(sorted([a,b,c]))
                     classes = [x.split(' ')[-1] for x in decks]
-                    #if len(set(classes)) == 4:
-                    if len(set(classes)) == 3:
+                    if len(set(classes)) == 4:
                         #print decks
                         if decks not in lineups:
                             lineups.append(decks)

@@ -44,21 +44,24 @@ if __name__ == '__main__':
                 win_pcts[key] += bias
             if j == 'Highlander Priest':
                 win_pcts[key] -= bias
-        win_pcts[('Demon Warlock', 'Highlander Priest')] = 0.45
-        win_pcts[('Highlander Priest', 'Demon Warlock')] = 0.55
-        win_pcts[('Demon Warlock', 'Secret Mage')] = 0.50
-        win_pcts[('Secret Mage', 'Demon Warlock')] = 0.5
+        #win_pcts[('Demon Warlock', 'Highlander Priest')] = 0.45
+        #win_pcts[('Highlander Priest', 'Demon Warlock')] = 0.55
+        #win_pcts[('Demon Warlock', 'Secret Mage')] = 0.50
+        #win_pcts[('Secret Mage', 'Demon Warlock')] = 0.5
         print archetypes 
         excluded = []
         #excluded = ['Jade Druid']
         print "\n\nEXCLUDING:", excluded
-        archetypes = [a for a in archetypes if a not in excluded] + ['Unbeatable']
+        archetypes = [a for a in archetypes if a not in excluded]
         lineups = generate_lineups(archetypes, unbeatable=True)
+        archetypes += ['Unbeatable']
         win_rates_against_good = {}
         level1, level2, level3, level4, level5 = None, None, None, None, None
         #level1 = "Recruit Warrior,Demon Warlock,Highlander Priest,Unbeatable".split(',')
         level1 = "Demon Warlock,Highlander Priest,Tempo Rogue,Unbeatable".split(',')
         level2 = "Tempo Rogue,Highlander Priest,Secret Mage,Unbeatable".split(',')
+        #level1 = "Tempo Rogue,Highlander Priest,Aggro Druid,Unbeatable".split(',')
+        #level2 = "Aggro Paladin,Highlander Priest,Aggro Druid,Unbeatable".split(',')
         lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
         weights = [1 for l in [level1, level2, level3, level4, level5] if l is not None]
         #weights = [1 for l in lineups_to_test if l is not None]

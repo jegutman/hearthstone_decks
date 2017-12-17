@@ -1,4 +1,5 @@
 from shared_utils import *
+import itertools
 # some assumptions on formating
 # whatever deck a player is forced to play should be listed first (for 3v2 and 2v2 scenarios, irrelevant otherwise)
 
@@ -35,7 +36,20 @@ def pre_ban(decks_a, decks_b, win_pcts):
 
 tested = {}
 
-def post_ban(decks_a, decks_b, win_pcts, useGlobal=True):
+def avg(x):
+    return sum(x) / float(len(x))
+
+def post_ban(decks_a, decks_b, win_pcts, useGlobal=True, start=True):
+    if start:
+        combos_a = list(itertools.permutations(range(0,len(decks_a))))
+        combos_b = list(itertools.permutations(range(0,len(decks_b))))
+        res = []
+        for x in combos_a:
+            for y in combos_b:
+                tmp_a = [decks_a[i] for i in x]
+                tmp_b = [decks_b[j] for j in y]
+                res.append(post_ban(tmp_a, tmp_b, win_pcts, useGlobal=useGlobal, start=False))
+        return avg(res)
     if useGlobal:
         global tested
         tuple_a = tuple(decks_a)
@@ -49,8 +63,8 @@ def post_ban(decks_a, decks_b, win_pcts, useGlobal=True):
     else:
         res = 0
         pct = get_win_pct(decks_a[0], decks_b[0], win_pcts)
-        res += pct * post_ban(decks_a[1:], decks_b[:], win_pcts)
-        res += (1-pct) * post_ban(decks_a[:], decks_b[1:], win_pcts)
+        res += pct * post_ban(decks_a[1:], decks_b[:], win_pcts, useGlobal=useGlobal, start=False)
+        res += (1-pct) * post_ban(decks_a[:], decks_b[1:], win_pcts, useGlobal=useGlobal, start=False)
         if useGlobal:
             tested[(tuple_a, tuple_b)] = res
         return res
