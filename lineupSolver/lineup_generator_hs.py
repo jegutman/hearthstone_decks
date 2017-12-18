@@ -9,7 +9,7 @@ if __name__ == '__main__':
     args = sys.argv[1:]
     if len(args) > 0 and args[0] == 'sim':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
-        print archetypes 
+        print sorted(archetypes)
         my_lineup = [d.strip() for d in args[1].split(',')]
         opp_lineup = [d.strip() for d in args[2].split(',')]
         assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
@@ -33,8 +33,8 @@ if __name__ == '__main__':
             print '%-18s %-18s %s' % (d1, d2, round(j,4))
 
     else:
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=2000)
-        print archetypes 
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=2000, min_win_pct=0.4)
+        print sorted(archetypes)
         excluded = []
         #excluded = ['Murloc Paladin', 'Secret Mage', 'Exodia Mage', 'Aggro-Token Druid', 'Dragon Priest']
         print "\n\nEXCLUDING:", excluded
@@ -43,7 +43,9 @@ if __name__ == '__main__':
         print "testing %s lineups" % len(lineups)
         win_rates_against_good = {}
         level1, level2, level3, level4, level5 = None, None, None, None, None
-        level1 = ['Tempo Rogue', 'Demon Warlock', 'Highlander Priest', 'Secret Mage']
+        #level1 = ['Tempo Rogue', 'Demon Warlock', 'Highlander Priest', 'Secret Mage']
+        level1 = "Highlander Priest,Demon Warlock,Jade Druid,Big Spell Mage".split(',')
+        level2 = "Highlander Priest,Pirate Warrior,Zoo Warlock,Secret Mage".split(',')
         #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
         #level1 = ['Tempo Rogue', 'Dragon Priest', 'Zoolock Warlock', 'Jade Druid']
         #level2 = 'Tempo Rogue,Highlander Priest,Secret Mage,Demonlock Warlock'.split(',')

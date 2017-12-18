@@ -39,14 +39,23 @@ def generate_lineups(archetypes, unbeatable=False):
     #                        if decks not in lineups:
     #                            lineups.append(decks)
     ############ NEW METHOD ##########
-    tmp_res = list(itertools.combinations(archetypes,4))
-    lineups = []
-    for decks in tmp_res:
-        classes = [x.split(' ')[-1] for x in decks]
-        if len(set(classes)) == 4:
-            #print decks
-            if decks not in lineups:
-                lineups.append(decks)
+    if unbeatable:
+        tmp_res = list(itertools.combinations(archetypes,3))
+        lineups = []
+        for decks in tmp_res:
+            classes = [x.split(' ')[-1] for x in decks]
+            if len(set(classes)) == 3:
+                if decks not in lineups:
+                    lineups.append(tuple(list(decks)+['Unbeatable']))
+    else:
+        tmp_res = list(itertools.combinations(archetypes,4))
+        lineups = []
+        for decks in tmp_res:
+            classes = [x.split(' ')[-1] for x in decks]
+            if len(set(classes)) == 4:
+                #print decks
+                if decks not in lineups:
+                    lineups.append(decks)
     return lineups
 
 def get_win_pct(a,b, win_pcts):

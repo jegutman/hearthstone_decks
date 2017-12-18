@@ -36,7 +36,7 @@ if __name__ == '__main__':
             print '%-18s %-18s %s' % (d1, d2, round(j,4))
 
     else:
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=200)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=200, min_win_pct=0.4)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00
