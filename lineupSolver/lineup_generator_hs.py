@@ -44,8 +44,9 @@ if __name__ == '__main__':
         win_rates_against_good = {}
         level1, level2, level3, level4, level5 = None, None, None, None, None
         #level1 = ['Tempo Rogue', 'Demon Warlock', 'Highlander Priest', 'Secret Mage']
-        level1 = "Highlander Priest,Demon Warlock,Jade Druid,Big Spell Mage".split(',')
-        level2 = "Highlander Priest,Pirate Warrior,Zoo Warlock,Secret Mage".split(',')
+        level1 = "Highlander Priest,Demon Warlock,Secret Mage,Tempo Rogue".split(',')
+        level2 = "Highlander Priest,Secret Mage,Aggro Druid,Aggro Paladin".split(',')
+        level3 = "Highlander Priest,Big Spell Mage,Demon Warlock,N'Zoth Warrior".split(',')
         #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
         #level1 = ['Tempo Rogue', 'Dragon Priest', 'Zoolock Warlock', 'Jade Druid']
         #level2 = 'Tempo Rogue,Highlander Priest,Secret Mage,Demonlock Warlock'.split(',')
