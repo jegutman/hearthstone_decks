@@ -10,6 +10,16 @@ def win_rates_grid(decks_a, decks_b, win_pcts):
             line += "%6s              " % round(win_pcts.get((deck, deck_b), 0) * 100, 1)
         print line
 
+def check_lineup(decks, archetype_map):
+    classes = [archetype_map.get(x, '').split(' ')[-1] for x in decks]
+    if len(set(classes)) == 4:
+        return True
+    else:
+        return False
+
+def get_lineup(decks, archetype_map):
+    return tuple([archetype_map[i] for i in decks])
+
 def generate_lineups(archetypes, unbeatable=False):
     #archetypes = sorted(archetypes)
     #lineups = []
@@ -40,28 +50,51 @@ def generate_lineups(archetypes, unbeatable=False):
     #                            lineups.append(decks)
     ############ NEW METHOD ##########
     if unbeatable:
+        archetypes_tmp = archetypes[:]
+        archetypes = archetypes_tmp
+        archetype_map = {}
+        for i in range(0, len(archetypes)):
+            archetype_map[i] = archetypes[i]
+        #keys = sorted(archetype_map.keys())
+        #tmp_res = list(itertools.combinations(keys,3))
         tmp_res = list(itertools.combinations(archetypes,3))
+        archetypes.append('Unbeatable')
+        archetype_map[archetypes.index('Unbeatable')] = 'Unbeatable'
         lineups = []
         for decks in tmp_res:
             classes = [x.split(' ')[-1] for x in decks]
             if len(set(classes)) == 3:
                 if decks not in lineups:
-                    lineups.append(tuple(list(decks)+['Unbeatable']))
+                    lineups.append(decks+('Unbeatable', ))
     else:
-        tmp_res = list(itertools.combinations(archetypes,4))
+        archetypes_tmp = archetypes[:]
+        archetypes = archetypes_tmp
+        archetype_map = {}
+        for i in range(0, len(archetypes)):
+            archetype_map[i] = archetypes[i]
+        keys = sorted(archetype_map.keys())
+        tmp_res = list(itertools.combinations(keys,4))
+        #tmp_res = list(itertools.combinations(archetypes,4))
         lineups = []
         for decks in tmp_res:
-            classes = [x.split(' ')[-1] for x in decks]
-            if len(set(classes)) == 4:
-                #print decks
-                if decks not in lineups:
-                    lineups.append(decks)
-    return lineups
+            #classes = [x.split(' ')[-1] for x in decks]
+            if check_lineup(decks, archetype_map):
+                #if decks not in lineups:
+                lineups.append(decks)
+            #if len(set(classes)) == 4:
+            #    #print decks
+            #    if decks not in lineups:
+            #        lineups.append(decks)
+    return lineups, archetype_map
 
 def get_win_pct(a,b, win_pcts):
     if a == 'Unbeatable' and b != 'Unbeatable': return 1
     if b == 'Unbeatable' and a != 'Unbeatable': return 0
     if a == b: return 0.5
+    res = win_pcts.get((a,b))
+    if res == None:
+        res = 0.5
+        #print "missing win rate for %s : %s" % (a,b)
     return win_pcts.get((a,b), 0)
 
 def sumproduct_normalize(a, b):
