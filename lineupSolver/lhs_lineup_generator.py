@@ -15,7 +15,7 @@ if __name__ == '__main__':
             if j == 'Highlander Priest':
                 win_pcts[key] -= bias
             #bias = 0.03
-            bias = 0.03
+            bias = 0.00
             if i == 'Jade Druid':
                 win_pcts[key] += bias
             if j == 'Jade Druid':
@@ -38,11 +38,16 @@ if __name__ == '__main__':
             print ""
             print my_lineup, "vs", opp_lineup
             print "bans"
-            print "%-18s %-18s" % ("p1_ban", "p2_ban")
+            print "%-27s %-27s" % ("p1_ban", "p2_ban")
             #for i, j in sorted(res.items(), key=lambda x:-x[1]):
             for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
                 d1, d2 = i
-                print '%-18s %-18s %s' % (d1, d2, round(j,4))
+                print '%-27s %-27s %s' % (d1, d2, round(j,4))
+            print "bans"
+            print "%-27s %-27s" % ("p1_ban", "p2_ban")
+            for i, j in sorted(res.items(), key=lambda x:(x[0][1], x[1])):
+                d1, d2 = i
+                print '%-27s %-27s %s' % (d1, d2, round(j,4))
         elif len(my_lineup) <= 3:
             print my_lineup, "vs", opp_lineup
             win_rates_grid(my_lineup, opp_lineup, win_pcts)
@@ -55,11 +60,11 @@ if __name__ == '__main__':
             print ""
             print my_lineup, "vs", opp_lineup
             print "leads"
-            print "%-18s %-18s" % ("p1_lead", "p2_lead")
+            print "%-27s %-27s" % ("p1_lead", "p2_lead")
             #for i, j in sorted(res.items(), key=lambda x:-x[1]):
             for i, j in sorted(res.items(), key=lambda x:(x[0][1], -x[1])):
                 d1, d2 = i
-                print '%-18s %-18s %s' % (d1, d2, round(j,4))
+                print '%-27s %-27s %s' % (d1, d2, round(j,4))
             
     else:
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=100, min_game_count=1000, min_win_pct=0.35)
@@ -71,18 +76,19 @@ if __name__ == '__main__':
             if j == 'Highlander Priest':
                 win_pcts[key] -= bias
             #bias = 0.03
-            bias = 0.03
+            bias = 0.00
             if i == 'Jade Druid':
                 win_pcts[key] += bias
             if j == 'Jade Druid':
                 win_pcts[key] -= bias
         win_pcts[('Cube Warlock', 'Highlander Priest')] = 0.50
         win_pcts[('Highlander Priest', 'Cube Warlock')] = 0.50
-        #win_pcts[('Demon Warlock', 'Secret Mage')] = 0.50
-        #win_pcts[('Secret Mage', 'Demon Warlock')] = 0.5
-        print len(archetypes), sorted(archetypes)
+        #win_pcts[('Cube Warlock', 'Secret Mage')] = 0.50
+        #win_pcts[('Secret Mage', 'Cube Warlock')] = 0.50
+        print len(archetypes), sorted(archetypes, key=class_sort)
 
         excluded = []
+        #excluded = ['Aggro Paladin', 'Murloc Paladin']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
 
@@ -94,8 +100,12 @@ if __name__ == '__main__':
         level1, level2, level3, level4, level5 = None, None, None, None, None
         # force ban druid
         level1 = ['Highlander Priest', 'Tempo Rogue', 'Secret Mage', 'Cube Warlock']
+        level2 = ['Highlander Priest', 'Aggro Druid', 'Aggro Paladin', 'Cube Warlock']
+        level3 = ['Highlander Priest', 'Jade Druid', 'Secret Mage', 'Cube Warlock']
         #level1 = ['Highlander Priest', 'Tempo Rogue', 'Secret Mage', 'Unbeatable'] # Warlock Ban
-        level3 = ['Dragon Priest', 'Aggro Hunter', 'Murloc Paladin', 'Zoo Warlock'] # xixo
+        #level2 = ['Spiteful Summoner Priest', 'Aggro Hunter', 'Murloc Paladin', 'Zoo Warlock'] # xixo
+        #level3 = "Highlander Priest,Tempo Rogue,Aggro Paladin,Cube Warlock".split(',')
+        #level1 = "Highalnder Priest,
         #level2 = "Highlander Priest,
         #level1 = "Aggro Druid,Highlander Priest,Tempo Rogue,Demon Warlock".split(',')
         #level1 = "Secret Mage,Highlander Priest,Tempo Rogue,Demon Warlock".replace('Demon Warlock', 'Unbeatable').split(',') 
@@ -120,21 +130,15 @@ if __name__ == '__main__':
             for lu_test in lineups_to_test:
                 win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts, useGlobal=True)]
 
-        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
-        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
-        ##for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
-        #    i_print = "    " + "".join(["%-23s" % x for x in i])
-        #    print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
-
         lu_strings = []
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
         for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
-            i_print = "    " + "".join(["%-23s" % x for x in i])
+            i_print = "    " + "".join(["%-27s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
             lineup_string = ",".join(i)
             lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(sumproduct_normalize([i[1] for i in j],weights),3),round(min([x[1] for x in j]),3)))
             print '         "' + lineup_string + '"'
         for i,j,k,l in lu_strings:
-            print "".join(["%23s" % x for x in i.split(',')]), j, k, l
+            print "".join(["%27s" % x for x in i.split(',')]), j, k, l

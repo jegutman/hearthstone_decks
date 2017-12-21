@@ -1,7 +1,7 @@
 import json
-#filename = 'hsreplay1220.json'
+filename = 'hsreplay1220.json'
 #filename = 'hsreplay1220day.json'
-filename = 'hsreplay1220legend.json'
+#filename = 'hsreplay1220legend.json'
 
 #import datetime, os
 #filename = 'hsreplay' + datetime.datetime.today().strftime("%m%d") + '.json'
@@ -12,6 +12,7 @@ filename = 'hsreplay1220legend.json'
 print "using:", filename
 
 from get_archetypes import *
+from shared_utils import class_sort
 
 def get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0):
     wr_file = open(filename)
@@ -39,6 +40,7 @@ def get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0):
             num_games[(arch1, arch2)] = total_games
             game_count[arch1] += total_games
     hsreplay_archetypes = [a for a in hsreplay_archetypes if game_count[a] > min_game_count and overall_wr[a] >= min_win_pct]
+    hsreplay_archetypes.sort(key=class_sort)
     wr_file.close()
     return win_pcts, num_games, game_count, hsreplay_archetypes, overall_wr
 

@@ -17,6 +17,10 @@ def check_lineup(decks, archetype_map):
     else:
         return False
 
+def class_sort(a):
+    tmp = a.split(' ' )
+    return (tmp[-1], tmp)
+
 def get_lineup(decks, archetype_map):
     return tuple([archetype_map[i] for i in decks])
 
