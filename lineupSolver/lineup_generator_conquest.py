@@ -56,8 +56,15 @@ if __name__ == '__main__':
         win_rates_against_good = {}
         level1, level2, level3, level4, level5 = None, None, None, None, None
         #level1 = ['Tempo Rogue', 'Demon Warlock', 'Highlander Priest', 'Secret Mage']
-        level1 = "Highlander Priest,Demon Warlock,Secret Mage,Tempo Rogue".replace('Highlander Priest', 'Unbeatable').split(',')
-        level2 = "Dragon Priest,Zoo Warlock,Tempo Rogue,Aggro Hunter".split(',')
+        #level1 = "Highlander Priest,Demon Warlock,Secret Mage,Tempo Rogue".replace('Highlander Priest', 'Unbeatable').split(',')
+        #level2 = "Dragon Priest,Zoo Warlock,Tempo Rogue,Aggro Hunter".split(',')
+        #level1 = ['Highlander Priest', 'Tempo Rogue', 'Secret Mage', 'Cube Warlock']
+        level1 = ['Highlander Priest', 'Tempo Rogue', 'Secret Mage', 'Cube Warlock']
+        level2 = ['Highlander Priest', 'Tempo Rogue', 'Aggro Paladin', 'Cube Warlock']
+        level4 = ['Highlander Priest', 'Tempo Rogue', 'Secret Mage', 'Cube Warlock']
+        level5 = ['Highlander Priest', 'Tempo Rogue', 'Aggro Paladin', 'Cube Warlock']
+        #level3 = ['Highlander Priest', 'Jade Druid', 'Tempo Rogue', 'Cube Warlock']
+        level3 = ['Spiteful Summoner Priest', 'Aggro Druid', 'Aggro Paladin', 'Tempo Rogue']
         #level3 = "Highlander Priest,Big Spell Mage,Demon Warlock,Deathrattle Warrior".split(',')
         #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
         #level1 = ['Tempo Rogue', 'Dragon Priest', 'Zoolock Warlock', 'Jade Druid']
@@ -81,8 +88,8 @@ if __name__ == '__main__':
         for i,j in sorted(win_rates_against_good.items())[:3]:
             print i,j 
 
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
-        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
+        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
+        for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
