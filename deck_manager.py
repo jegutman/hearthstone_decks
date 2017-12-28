@@ -94,6 +94,7 @@ class EasyDeck():
             2829 : 'Mage',
             39117: 'Mage',
             893  : 'Warlock',
+            47817: 'Warlock',
             31   : 'Hunter',
             930  : 'Rogue',
             40195: 'Rogue',

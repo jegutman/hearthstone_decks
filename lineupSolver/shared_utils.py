@@ -3,12 +3,19 @@ def win_rates_grid(decks_a, decks_b, win_pcts):
     top_line = "%-20s" % "x"
     for deck in decks_b:
         top_line += "%-20s" % deck
+    top_line += "%-20s" % 'average'
     print top_line
     for deck in decks_a:
         line = "%-20s" % deck
+        wrs = []
         for deck_b in decks_b:
-            line += "%6s              " % round(win_pcts.get((deck, deck_b), 0) * 100, 1)
+            wr = round(win_pcts.get((deck, deck_b), 0) * 100, 1)
+            wrs.append(wr)
+            line += "%6s              " % wr
+        avg = round(sum(wrs) / len(wrs), 1)    
+        line += "%6s              " % avg
         print line
+    
 
 def check_lineup(decks, archetype_map):
     classes = [archetype_map.get(x, '').split(' ')[-1] for x in decks]

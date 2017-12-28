@@ -26,14 +26,14 @@ if __name__ == '__main__':
         print ""
         print my_lineup, "vs", opp_lineup
         print "bans"
-        print "%-18s %-18s" % ("p1_ban", "p2_ban")
+        print "%-27s %-27s" % ("p1_ban", "p2_ban")
         #for i, j in sorted(res.items(), key=lambda x:-x[1]):
         for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
             d1, d2 = i
-            print '%-18s %-18s %s' % (d1, d2, round(j,4))
+            print '%-27s %-27s %s' % (d1, d2, round(j,4))
 
     else:
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=2000, min_win_pct=0.4)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=200, min_win_pct=0.4)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00
@@ -48,32 +48,27 @@ if __name__ == '__main__':
                 win_pcts[key] -= bias
         print sorted(archetypes)
         excluded = []
-        #excluded = ['Murloc Paladin', 'Secret Mage', 'Exodia Mage', 'Aggro-Token Druid', 'Dragon Priest']
+        #excluded = ['Exodia Mage', 'Quest Druid', 'Quest Rogue', 'Silver Hand Paladin', 'Secret Mage']
+        excluded = ['Murloc Paladin']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
         lineups, archetype_map = generate_lineups(archetypes)
         print "testing %s lineups" % len(lineups)
         win_rates_against_good = {}
         level1, level2, level3, level4, level5 = None, None, None, None, None
-        #level1 = ['Tempo Rogue', 'Demon Warlock', 'Highlander Priest', 'Secret Mage']
-        #level1 = "Highlander Priest,Demon Warlock,Secret Mage,Tempo Rogue".replace('Highlander Priest', 'Unbeatable').split(',')
-        #level2 = "Dragon Priest,Zoo Warlock,Tempo Rogue,Aggro Hunter".split(',')
-        #level1 = ['Highlander Priest', 'Tempo Rogue', 'Secret Mage', 'Cube Warlock']
-        level1 = ['Highlander Priest', 'Tempo Rogue', 'Secret Mage', 'Cube Warlock']
-        level2 = ['Highlander Priest', 'Tempo Rogue', 'Aggro Paladin', 'Cube Warlock']
-        level4 = ['Highlander Priest', 'Tempo Rogue', 'Secret Mage', 'Cube Warlock']
-        level5 = ['Highlander Priest', 'Tempo Rogue', 'Aggro Paladin', 'Cube Warlock']
-        #level3 = ['Highlander Priest', 'Jade Druid', 'Tempo Rogue', 'Cube Warlock']
-        level3 = ['Spiteful Summoner Priest', 'Aggro Druid', 'Aggro Paladin', 'Tempo Rogue']
-        #level3 = "Highlander Priest,Big Spell Mage,Demon Warlock,Deathrattle Warrior".split(',')
-        #level1 = ['Tempo Rogue', 'Big Druid', 'Highlander Priest', 'Zoo Warlock']
-        #level1 = ['Tempo Rogue', 'Dragon Priest', 'Zoolock Warlock', 'Jade Druid']
-        #level2 = 'Tempo Rogue,Highlander Priest,Secret Mage,Demonlock Warlock'.split(',')
-        #level3 = "Princelock Warlock,Tempo Rogue,Aggro Druid,Murloc Paladin".split(',')
-        #level2 = ['Tempo Rogue', 'Highlander Priest', 'Zoo Warlock', 'Big Druid']
-        lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
-        #lineups_to_test = [level1]
 
+        target_ban = 'No_ban'
+        #target_ban = 'Cube Warlock'
+
+        level1 = 'Highlander Priest,Demon Warlock,Secret Mage,Tempo Rogue'.split(',')
+        #level2 = "Jade Druid,Aggro Hunter,Dragon Priest,Cube Warlock".split(',')
+        lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
+        weights = [1 for l in [level1, level2, level3, level4, level5] if l is not None]
+        #weights = [2,2,1]
+        if len(args) > 0 and args[0] == 'target':
+            level1 = [i.strip() for i in args[1].split(',')]
+            weights = [1]
+            lineups_to_test = [level1]
         print "\n"
         print "TESTING vs LINEUPS"
         for l in lineups_to_test:
@@ -88,10 +83,15 @@ if __name__ == '__main__':
         for i,j in sorted(win_rates_against_good.items())[:3]:
             print i,j 
 
+        lu_strings = []
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
-            i_print = "    " + "".join(["%-20s" % x for x in i])
+        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
+        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
+            i_print = "    " + "".join(["%-27s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
-            print '         "' + ",".join(i) + '"'
-
+            lineup_string = ",".join(i)
+            lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(sumproduct_normalize([i[1] for i in j],weights),3), round(min([x[1] for x in j]),3)))
+            print '         "' + lineup_string + '"'
+        for i,j,k,l in lu_strings:
+            print "".join(["%-27s" % x for x in i.split(',')]), j, k, l, '    "%(i)s"' % locals()

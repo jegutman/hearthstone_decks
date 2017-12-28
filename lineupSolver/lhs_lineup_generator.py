@@ -118,7 +118,10 @@ if __name__ == '__main__':
         #print lineups_to_test
         tmp_weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         weights = [w for w,l in zip(tmp_weights, lineups_to_test) if l is not None]
-
+        if len(args) > 0 and args[0] == 'target':
+            level1 = [i.strip() for i in args[1].split(',')]
+            weights = [1]
+            lineups_to_test = [level1]
         print "\n"
         print "TESTING vs LINEUPS"
         for l in lineups_to_test:

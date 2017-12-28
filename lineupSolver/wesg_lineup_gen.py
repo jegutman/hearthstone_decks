@@ -99,4 +99,4 @@ if __name__ == '__main__':
             lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(sumproduct_normalize([i[1] for i in j],weights),3),round(min([x[1] for x in j]),3)))
             print '         "' + lineup_string + '"'
         for i,j,k,l in lu_strings:
-            print "".join(["%20s" % x for x in i.split(',')]), j, k, l
+            print "".join(["%20s" % x for x in i.split(',')]), j, k, l, i

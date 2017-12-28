@@ -6,7 +6,8 @@ from deck_manager import EasyDeck, print_side_by_side, print_side_by_side_diff
 #import requests
 #from euDecklistCodesSummer import decks as decklistToAnalyze
 #from apacDecklistCodesSummer import decks as decklistToAnalyze
-from naDecklistCodesSummer import na_decks as decklistToAnalyze
+#from naDecklistCodesSummer import na_decks as decklistToAnalyze
+from taiwan_1217 import decklists as decklistToAnalyze
 from archetypes import get_archetypes_by_class
 from archetype_labels import example_to_archetype, archetype_to_example
 
@@ -115,7 +116,7 @@ for name, lu in lineups.items():
     index = tuple(sorted(lineup_set))
     if len(index) != 4:
         assert False, name
-    lineup_indexes[index] = lineup_indexes.get(index, 0) + 1
+    lineup_indexes[index] = lineup_indexes.get(index, []) + [name]
 
 #lineup_indexes = {}
 #for lu in lineups.values():
@@ -136,13 +137,15 @@ res = ""
 for name in "Deck 1,Deck 2,Deck 3,Deck4".split(','):
     res += "%-25s" % name
 print("%85s" % str(res), "#")
-for lu, count in sorted(lineup_indexes.items(), key = lambda x:x[1], reverse=True):
+for lu, players in sorted(lineup_indexes.items(), key = lambda x:len(x[1]), reverse=True):
+    count = len(players)
     res = ""
     for name in lu:
         res += "%-25s" % name
     #print("%85s" % str(res), count)
     print("%85s" % str(res), end = "")
-    print(count)
+    print("%-4s" % count, end="")
+    print(players)
 
 # Find unique cards
 card_info = {}
