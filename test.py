@@ -6,9 +6,7 @@ from archetype_labels import example_to_archetype, archetype_to_example
 
 import sys
 
-if sys.argv[1]:
-    deck = EasyDeck(sys.argv[1])
-else:
-    deck = EasyDeck("AAECAf0ECMUE7QTtBewHuAi/CIivAtPFAguKAcABuwLJA6sEywSWBfsM17YCwcECmMQCAA==")
-deck.print_deck()
-print(deck.deck.heroes)
+decks = []
+for deckstring in sys.argv[1:]:
+    decks.append(EasyDeck(deckstring))
+print_side_by_side_diff(decks)
