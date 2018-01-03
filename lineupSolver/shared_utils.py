@@ -17,9 +17,9 @@ def win_rates_grid(decks_a, decks_b, win_pcts):
         print line
     
 
-def check_lineup(decks, archetype_map):
+def check_lineup(decks, archetype_map, num_classes=4):
     classes = [archetype_map.get(x, '').split(' ')[-1] for x in decks]
-    if len(set(classes)) == 4:
+    if len(set(classes)) == num_classes:
         return True
     else:
         return False
@@ -31,34 +31,7 @@ def class_sort(a):
 def get_lineup(decks, archetype_map):
     return tuple([archetype_map[i] for i in decks])
 
-def generate_lineups(archetypes, unbeatable=False):
-    #archetypes = sorted(archetypes)
-    #lineups = []
-    #if unbeatable:
-    #    for i in range(0, len(archetypes)):
-    #        for j in range(i+1, len(archetypes)):
-    #            for k in range(j+1, len(archetypes)):
-    #                a, b, c = [archetypes[x] for x in [i,j,k]]
-    #                d = 'Unbeatable'
-    #                decks = tuple(sorted([a,b,c,d]))
-    #                #decks = tuple(sorted([a,b,c]))
-    #                classes = [x.split(' ')[-1] for x in decks]
-    #                if len(set(classes)) == 4:
-    #                    #print decks
-    #                    if decks not in lineups:
-    #                        lineups.append(decks)
-    #else:
-    #    for i in range(0, len(archetypes)):
-    #        for j in range(i+1, len(archetypes)):
-    #            for k in range(j+1, len(archetypes)):
-    #                for l in range(k+1, len(archetypes)):
-    #                    a, b, c, d = [archetypes[x] for x in [i,j,k,l]]
-    #                    decks = tuple(sorted([a,b,c,d]))
-    #                    classes = [x.split(' ')[-1] for x in decks]
-    #                    if len(set(classes)) == 4:
-    #                        #print decks
-    #                        if decks not in lineups:
-    #                            lineups.append(decks)
+def generate_lineups(archetypes, unbeatable=False, num_classes=4):
     ############ NEW METHOD ##########
     if unbeatable:
         archetypes_tmp = archetypes[:]
@@ -84,15 +57,14 @@ def generate_lineups(archetypes, unbeatable=False):
         for i in range(0, len(archetypes)):
             archetype_map[i] = archetypes[i]
         keys = sorted(archetype_map.keys())
-        tmp_res = list(itertools.combinations(keys,4))
-        #tmp_res = list(itertools.combinations(archetypes,4))
+        tmp_res = list(itertools.combinations(keys,num_classes))
         lineups = []
         for decks in tmp_res:
             #classes = [x.split(' ')[-1] for x in decks]
-            if check_lineup(decks, archetype_map):
+            if check_lineup(decks, archetype_map, num_classes):
                 #if decks not in lineups:
                 lineups.append(decks)
-            #if len(set(classes)) == 4:
+            #if len(set(classes)) == num_classes:
             #    #print decks
             #    if decks not in lineups:
             #        lineups.append(decks)
