@@ -1,8 +1,8 @@
 import json
-#filename = 'win_rates/hsreplay1230.json'
-#filename = 'win_rates/hsreplay1230day.json'
-filename = 'win_rates/hsreplay1230legend.json'
-#filename = 'win_rates/hsreplay1230legend_day.json'
+filename = 'win_rates/hsreplay0104.json'
+#filename = 'win_rates/hsreplay0104day.json'
+#filename = 'win_rates/hsreplay0104legend.json'
+#filename = 'win_rates/hsreplay0104legend_day.json'
 
 #import datetime, os
 #filename = 'hsreplay' + datetime.datetime.today().strftime("%m%d") + '.json'
