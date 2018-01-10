@@ -68,7 +68,8 @@ if __name__ == '__main__':
         #target_ban = 'Cube Warlock'
 
         #level1 = 'Spiteful Summoner Priest,Zoo Warlock,Murloc Paladin,Tempo Rogue'.split(',')
-        level1 = 'Unbeatable,Cube Warlock,Murloc Paladin'.split(',')
+        #level1 = 'Unbeatable,Cube Warlock,Murloc Paladin'.split(',')
+        level1 = 'Highlander Priest,Cube Warlock,Jade Druid'.split(',')
         #level2 = "Highlander Priest,Tempo Rogue,Cube Warlock".split(',')
         #level3 = "Highlander Priest,Jade Druid,Cube Warlock".split(',')
         #level2 = "Highlander Priest,Jade Druid,Cube Warlock".split(',')
