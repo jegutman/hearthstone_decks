@@ -38,3 +38,26 @@ other = [
     'Quest Warrior',
     'Enrage Warrior',
 ]
+
+meta = [
+    'Evolve Shaman',
+    'Midrange Hunter',
+    'Secret Mage',
+    'Prince Rogue',
+    'Pirate Warrior',
+    #'Aggro Druid',
+    #'Zoolock',
+    #'Murloc Paladin',
+    #'Aggro Paladin',
+    'Highlander Priest',
+    #'Highlander Warlock',
+    'Quest Mage',
+    #'Control Mage',
+    #'Big Druid',
+    #'Demon Control Warlock',
+    'Resurrect Priest',
+    #'Dragon Priest',
+    'Handlock',
+    'Jade Druid',
+    #'Miracle Rogue',
+]

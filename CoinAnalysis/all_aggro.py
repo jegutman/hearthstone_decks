@@ -3,7 +3,6 @@ archetypes = []
 data = {}
 line_data = []
 
-
 with open('CoinData.csv') as f:
     for line in f:
         if line[0] == "#":
@@ -49,7 +48,6 @@ for i in archetypes:
 #for i, pct_1, pct_0, diff, min_g in sorted(overall, key=lambda x:x[-2], reverse=True):
 #    print("%-25s" % i, pct_1, pct_0, "%5.1f" % diff, "%6s" % min_g)
 
-i, pct_1, pct_0, diff, g_1, g_0 = "deck,1st ,2nd ,diff,g_1,g_2".split(',')
-print("%-25s" % i, pct_1, pct_0, "%5s" % diff, "%6s" % g_1, "%6s" % g_0)
 for i, pct_1, pct_0, diff, g_1, g_0 in sorted(overall, key=lambda x:x[3], reverse=True):
-    print("%-25s" % i, pct_1, pct_0, "%5.1f" % diff, "%6s" % g_1, "%6s" % g_0)
+    print("%-25s" % i.replace(' ', '_'), pct_1, pct_0, "%5.1f" % diff, "%6s" % g_1, "%6s" % g_0)
+    #print((i.replace(' ', '_'), pct_1, pct_0,diff,g_1,g_0))

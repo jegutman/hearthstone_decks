@@ -3,6 +3,7 @@ archetypes = []
 data = {}
 line_data = []
 
+decks = []
 
 with open('CoinData.csv') as f:
     for line in f:
@@ -10,7 +11,10 @@ with open('CoinData.csv') as f:
             continue
         tmp = line.strip().split(',')
         deck_a, deck_b, first, pct, games = tmp
-        if deck_a not in aggro or deck_b not in aggro: continue
+        if deck_a not in aggro or deck_b in aggro: continue
+        if deck_a not in decks:
+            decks.append(deck_a)
+            print(deck_a)
         for d in (deck_a, deck_b):
             if d not in archetypes:
                 assert d != '10', line
@@ -35,7 +39,7 @@ for deck_a, deck_b, first, pct, games in line_data:
     games_count[key] = games_count.get(key, 0) + games
 
 overall = []
-for i in archetypes:
+for i in decks:
     pct_1 = round(float(deck_stats[(i, 1)] / games_count[(i,1)]) * 100, 1)
     pct_0 = round(float(deck_stats[(i, 0)] / games_count[(i,0)]) * 100, 1)
     #min_g = min(games_count[(i,1)], games_count[(i,0)])
@@ -52,4 +56,4 @@ for i in archetypes:
 i, pct_1, pct_0, diff, g_1, g_0 = "deck,1st ,2nd ,diff,g_1,g_2".split(',')
 print("%-25s" % i, pct_1, pct_0, "%5s" % diff, "%6s" % g_1, "%6s" % g_0)
 for i, pct_1, pct_0, diff, g_1, g_0 in sorted(overall, key=lambda x:x[3], reverse=True):
-    print("%-25s" % i, pct_1, pct_0, "%5.1f" % diff, "%6s" % g_1, "%6s" % g_0)
+    print("%-25s" % i.replace(' ', '_'), pct_1, pct_0, "%5.1f" % diff, "%6s" % g_1, "%6s" % g_0)
