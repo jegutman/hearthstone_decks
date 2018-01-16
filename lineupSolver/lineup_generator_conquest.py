@@ -7,34 +7,53 @@ if __name__ == '__main__':
 
     import sys
     args = sys.argv[1:]
-    esports_arena = {
-        'fr0zen'        : "Cube Warlock,Shield Warrior,Highlander Priest,Quest Druid",
-        'HotMEOWTH'     : "Highlander Priest,Cube Warlock,Aggro Paladin,Aggro Druid",
-        'Zalae'         : "Tempo Rogue,Zoo Warlock,Aggro Paladin,Spiteful Summoner Priest",
-        'purple'        : "Jade Druid,Highlander Priest,Tempo Rogue,Cube Warlock",
-        'Chakki'        : "Murloc Paladin,Spiteful Summoner Priest,Tempo Rogue,Zoo Warlock",
-        'Pavel'         : "Spiteful Summoner Priest,Zoo Warlock,Tempo Rogue,Murloc Paladin",
-        'Reynad'        : "Jade Druid,Tempo Rogue,Highlander Priest,Cube Warlock",
-        'Astrogation'   : "Highlander Priest,Demon Warlock,Tempo Rogue,Aggro Druid",
-        'Odemian'       : "Exodia Mage,Cube Warlock,Highlander Priest,Jade Druid",
-        'Ant'           : "Tempo Rogue,Zoo Warlock,Aggro Paladin,Aggro Druid",
-        'Amnesiac'      : "Spiteful Summoner Priest,Tempo Rogue,Aggro Paladin,Zoo Warlock",
-        'Justsaiyan'    : "Aggro Druid,Tempo Rogue,Spiteful Summoner Priest,Murloc Paladin",
-        'Rdu'           : "Aggro Druid,Tempo Rogue,Highlander Priest,Cube Warlock",
-        'wtybill'       : "Jade Druid,Tempo Rogue,Demon Warlock,Highlander Priest",
-        'Muzzy'         : "Murloc Paladin,Spiteful Summoner Priest,Tempo Rogue,Zoo Warlock",
-        'navioot'       : "Jade Druid,Demon Warlock,Tempo Rogue,Highlander Priest",
+    worlds = {
+        "Sintolol"           : "Big Spell Mage,Demon Warlock,Dragon Priest,Jade Druid",
+        "Muzzy"              : "Aggro Druid,Cube Warlock,Highlander Priest,Tempo Rogue",
+        "Purple"             : "Aggro Druid,Demon Warlock,Highlander Priest,Tempo Rogue",
+        "tom60229"           : "Cube Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
+        "JasonZhou"          : "Aggro Druid,Demon Warlock,Highlander Priest,Tempo Rogue",
+        "Ant"                : "Aggro Druid,Spiteful Priest,Murloc Paladin,Tempo Rogue",
+        "SamuelTsao"         : "Aggro Druid,Highlander Priest,Tempo Rogue,Zoo Warlock",
+        "ShtanUdachi"        : "Cube Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
+        "Hoej"               : "Aggro Druid,Demon Warlock,Highlander Priest,Murloc Paladin",
+        "OmegaZero"          : "Aggro Druid,Demon Warlock,Highlander Priest,Murloc Paladin",
+        "Kolento"            : "Demon Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
+        "Orange"             : "Aggro Hunter,Demon Warlock,Highlander Priest,Tempo Rogue",
+        "Fr0zen"             : "Big Spell Mage,Cube Warlock,Highlander Priest,Jade Druid",
+        "Neirea"             : "Aggro Druid,Demon Warlock,Highlander Priest,Tempo Rogue",
+        "Surrender"          : "Aggro Druid,Cube Warlock,Highlander Priest,Tempo Rogue",
+        "Docpwn"             : "Cube Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
     }
     inverse = {}
-    for i,j in esports_arena.items():
+    for i,j in worlds.items():
         inverse[j] = i
-    if len(args) > 0 and args[0] == 'sim':
+    if len(args) > 0 and args[0] == 'worlds':
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
+        players = sorted(worlds.keys())
+        for p1 in players:
+            for p2 in players:
+                if p1 == p2: continue
+                deck_1 = worlds.get(p1)
+                deck_2 = worlds.get(p2)
+                my_lineup = [d.strip() for d in deck_1.split(',')]
+                opp_lineup = [d.strip() for d in deck_2.split(',')]
+                assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
+                assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
+
+                #a, b = my_lineup, opp_lineup
+                #print my_lineup, "vs", opp_lineup
+                #win_rates_grid(my_lineup, opp_lineup, win_pcts)
+                ban, win_pct = win_rate(my_lineup, opp_lineup, win_pcts)
+                print ",".join([str(i) for i in [p1, p2, ban, win_pct]])
+                #print pre_ban(my_lineup, opp_lineup, win_pcts)
+    elif len(args) > 0 and args[0] == 'sim':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
         print sorted(archetypes)
-        if args[1] in esports_arena.keys():
-            args[1] = esports_arena.get(args[1])
-        if args[2] in esports_arena.keys():
-            args[2] = esports_arena.get(args[2])
+        if args[1] in worlds.keys():
+            args[1] = worlds.get(args[1])
+        if args[2] in worlds.keys():
+            args[2] = worlds.get(args[2])
         my_lineup = [d.strip() for d in args[1].split(',')]
         opp_lineup = [d.strip() for d in args[2].split(',')]
         assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
@@ -92,8 +111,10 @@ if __name__ == '__main__':
         target_ban = 'No_ban'
         #target_ban = 'Cube Warlock'
 
-        level1 = 'Spiteful Summoner Priest,Zoo Warlock,Murloc Paladin,Tempo Rogue'.split(',')
-        level2 = "Highlander Priest,Tempo Rogue,Jade Druid,Cube Warlock".split(',')
+        #level1 = "Highlander Priest,Murloc Paladin,Tempo Rogue,Demon Warlock".split(',')
+        #level1 = "Highlander Priest,Murloc Paladin,Tempo Rogue,Unbeatable".split(',')
+        #level1 = "Highlander Priest,Murloc Paladin,Unbeatable,Demon Warlock".split(',')
+        #level1 = "Unbeatable,Murloc Paladin,Tempo Rogue,Demon Warlock".split(',')
         lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
         weights = [1 for l in [level1, level2, level3, level4, level5] if l is not None]
         
@@ -101,8 +122,8 @@ if __name__ == '__main__':
         #usingEsportsArena = True
         usingEsportsArena = False
         if usingEsportsArena:
-            lineups_to_test = [i.split(',') for i in esports_arena.values()]
-            weights = [1 for i in esports_arena.values()]
+            lineups_to_test = [i.split(',') for i in worlds.values()]
+            weights = [1 for i in worlds.values()]
             lineups = lineups_to_test
 
 
