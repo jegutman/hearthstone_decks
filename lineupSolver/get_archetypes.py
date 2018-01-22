@@ -10,8 +10,10 @@ import requests
 #r = requests.get('https://hsreplay.net/api/v1/archetypes/')
 #r = requests.get('https://hsreplay.net/api/v1/archetypes/?format=json')
 #archetypes_json = json.loads(r.content)
-import os
-os.system('curl https://hsreplay.net/api/v1/archetypes/?format=json > archetypes.json')
+importNew = True
+if importNew:
+    import os
+    os.system('curl https://hsreplay.net/api/v1/archetypes/?format=json > archetypes.json')
 
 archetypes_json = json.load(open('archetypes.json'))
 

@@ -1,5 +1,7 @@
 import itertools
-def win_rates_grid(decks_a, decks_b, win_pcts):
+import math
+
+def win_rates_grid(decks_a, decks_b, win_pcts,num_games=None):
     top_line = "%-20s" % "x"
     for deck in decks_b:
         top_line += "%-20s" % deck
@@ -11,10 +13,22 @@ def win_rates_grid(decks_a, decks_b, win_pcts):
         for deck_b in decks_b:
             wr = round(win_pcts.get((deck, deck_b), 0) * 100, 1)
             wrs.append(wr)
-            line += "%6s              " % wr
+            ng = num_games.get((deck, deck_b), "") if num_games else ""
+            line += "%6s (%5s)      " % (wr, ng)
         avg = round(sum(wrs) / len(wrs), 1)    
         line += "%6s              " % avg
         print line
+    
+def similarity(deck_a, deck_b, win_pcts, archetypes, debug=False):
+    tmp = [d for d in archetypes if d not in (deck_a,deck_b)]
+    sigma2 = 0
+    for i in tmp:
+        diff = win_pcts[(deck_a,i)] - win_pcts[(deck_b,i)]
+        if debug:
+            print "%-25s %s" % (i, diff)
+        sigma2 += diff ** 2
+    return math.sqrt(sigma2 / len(tmp))
+    
     
 
 def check_lineup(decks, archetype_map, num_classes=4):
@@ -73,10 +87,10 @@ def generate_lineups(archetypes, unbeatable=False, num_classes=4):
 def get_win_pct(a,b, win_pcts):
     if a == 'Unbeatable' and b != 'Unbeatable': return 1
     if b == 'Unbeatable' and a != 'Unbeatable': return 0
-    if a == b: return 0.5
+    #if a == b: return 0.5
     res = win_pcts.get((a,b))
     if res == None:
-        res = 0.5
+        res = 0.49999
         #print "missing win rate for %s : %s" % (a,b)
     return win_pcts.get((a,b), 0)
 

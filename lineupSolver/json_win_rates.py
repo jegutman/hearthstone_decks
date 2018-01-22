@@ -1,7 +1,8 @@
 import json
 
-date = '0109'
+date = '0122'
 filename = 'win_rates/hsreplay%(date)s.json' % locals()
+#filename = 'win_rates/hsreplay%(date)s_7day.json' % locals()
 #filename = 'win_rates/hsreplay%(date)sday.json' % locals()
 #filename = 'win_rates/hsreplay%(date)slegend.json' % locals()
 #filename = 'win_rates/hsreplay%(date)slegend_day.json' % locals()
@@ -17,7 +18,7 @@ print "using:", filename
 from get_archetypes import *
 from shared_utils import class_sort
 
-def get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0):
+def get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0, filename=filename,limitTop=1000):
     wr_file = open(filename)
     # returns win_pcts, num_games, game_count, archetypes
     overall_wr = {}
@@ -42,7 +43,8 @@ def get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0):
                 win_pcts[(arch1, arch2)] = wr / 100.
             num_games[(arch1, arch2)] = total_games
             game_count[arch1] += total_games
-    hsreplay_archetypes = [a for a in hsreplay_archetypes if game_count[a] > min_game_count and overall_wr[a] >= min_win_pct]
+    top_arch = sorted(game_count.keys(), key=lambda x:game_count[x], reverse=True)[:limitTop]
+    hsreplay_archetypes = [a for a in hsreplay_archetypes if game_count[a] > min_game_count and overall_wr[a] >= min_win_pct and a in top_arch]
     hsreplay_archetypes.sort(key=class_sort)
     wr_file.close()
     return win_pcts, num_games, game_count, hsreplay_archetypes, overall_wr
