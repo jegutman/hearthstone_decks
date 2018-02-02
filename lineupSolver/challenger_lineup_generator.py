@@ -7,7 +7,53 @@ if __name__ == '__main__':
 
     import sys
     args = sys.argv[1:]
-    if len(args) > 0 and args[0] == 'sim':
+    level1, level2, level3, level4, level5 = None, None, None, None, None
+
+    #level1 = 'Spiteful Summoner Priest,Zoo Warlock,Murloc Paladin,Tempo Rogue'.split(',')
+    #level1 = 'Unbeatable,Cube Warlock,Murloc Paladin'.split(',')
+    level1 = 'Highlander Priest,Demon Warlock,Jade Druid'.split(',')
+    level2 = 'Highlander Priest,Cube Warlock,Tempo Rogue'.split(',')
+    level4 = 'Tempo Rogue,Zoo Warlock,Aggro Druid'.split(',')
+    #level2 = "Highlander Priest,Tempo Rogue,Cube Warlock".split(',')
+    #level3 = "Highlander Priest,Jade Druid,Cube Warlock".split(',')
+    #level2 = "Highlander Priest,Jade Druid,Cube Warlock".split(',')
+    lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
+    weights = [1 for l in [level1, level2, level3, level4, level5] if l is not None]
+    
+    if len(args) > 0 and args[0] == 'target':
+        level1 = [i.strip() for i in args[1].split(',')]
+        weights = [1]
+        lineups_to_test = [level1]
+    if len(args) > 0 and args[0] == 'practice':
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
+        
+        my_lineup = [d.strip() for d in args[1].split(',')]
+        #opp_lineup = [d.strip() for d in deck_2.split(',')]
+        for opp_lineup in lineups_to_test:
+            assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
+            assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
+            ban, win_pct = win_rate(my_lineup, opp_lineup, win_pcts)
+            print ",".join([str(i) for i in [opp_lineup, ban, win_pct]])
+            print win_rate(my_lineup, opp_lineup, win_pcts)
+            print pre_ban(my_lineup, opp_lineup, win_pcts)
+            # BAN STUFF
+            showBans = False
+            if showBans:
+                print my_lineup, "vs", opp_lineup
+                win_rates_grid(my_lineup, opp_lineup, win_pcts, num_games)
+                res = pre_ban_old(my_lineup,
+                                  opp_lineup,
+                                  win_pcts)
+                print ""
+                print my_lineup, "vs", opp_lineup
+                print "bans"
+                print "%-20s %-20s" % ("p1_ban", "p2_ban")
+                #for i, j in sorted(res.items(), key=lambda x:-x[1]):
+                for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
+                    d1, d2 = i
+                    print '%-20s %-20s %s' % (d1, d2, round(j,4))
+                print "\n\n"
+    elif len(args) > 0 and args[0] == 'sim':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
         print sorted(archetypes)
         my_lineup = [d.strip() for d in args[1].split(',')]
@@ -17,7 +63,7 @@ if __name__ == '__main__':
 
         #a, b = my_lineup, opp_lineup
         print my_lineup, "vs", opp_lineup
-        win_rates_grid(my_lineup, opp_lineup, win_pcts)
+        win_rates_grid(my_lineup, opp_lineup, win_pcts, num_games)
         print win_rate(my_lineup, opp_lineup, win_pcts)
         print pre_ban(my_lineup, opp_lineup, win_pcts)
 
@@ -35,12 +81,12 @@ if __name__ == '__main__':
 
         my_lineup, opp_lineup = opp_lineup, my_lineup
         print my_lineup, "vs", opp_lineup
-        win_rates_grid(my_lineup, opp_lineup, win_pcts)
+        win_rates_grid(my_lineup, opp_lineup, win_pcts, num_games)
         print win_rate(my_lineup, opp_lineup, win_pcts)
         print pre_ban(my_lineup, opp_lineup, win_pcts)
 
     else:
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=200, min_win_pct=0.4)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=20, min_game_count=20, min_win_pct=0.42,limitTop=40)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00
@@ -55,6 +101,7 @@ if __name__ == '__main__':
                 win_pcts[key] -= bias
         print sorted(archetypes)
         excluded = []
+        excluded += ['Big Priest', 'Mill Rogue', 'Jade Druid']
         #excluded = ['Exodia Mage', 'Quest Druid', 'Quest Rogue', 'Silver Hand Paladin', 'Secret Mage']
         #excluded = ['Murloc Paladin']
         print "\n\nEXCLUDING:", excluded
@@ -62,24 +109,6 @@ if __name__ == '__main__':
         lineups, archetype_map = generate_lineups(archetypes,num_classes=3)
         print "testing %s lineups" % len(lineups)
         win_rates_against_good = {}
-        level1, level2, level3, level4, level5 = None, None, None, None, None
-
-        target_ban = 'No_ban'
-        #target_ban = 'Cube Warlock'
-
-        #level1 = 'Spiteful Summoner Priest,Zoo Warlock,Murloc Paladin,Tempo Rogue'.split(',')
-        #level1 = 'Unbeatable,Cube Warlock,Murloc Paladin'.split(',')
-        level1 = 'Highlander Priest,Cube Warlock,Jade Druid'.split(',')
-        #level2 = "Highlander Priest,Tempo Rogue,Cube Warlock".split(',')
-        #level3 = "Highlander Priest,Jade Druid,Cube Warlock".split(',')
-        #level2 = "Highlander Priest,Jade Druid,Cube Warlock".split(',')
-        lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
-        weights = [1 for l in [level1, level2, level3, level4, level5] if l is not None]
-        
-        if len(args) > 0 and args[0] == 'target':
-            level1 = [i.strip() for i in args[1].split(',')]
-            weights = [1]
-            lineups_to_test = [level1]
         print "\n"
         print "TESTING vs LINEUPS"
         for l in lineups_to_test:

@@ -31,12 +31,17 @@ if __name__ == '__main__':
 
     #level1 = "Highlander Priest,Murloc Paladin,Tempo Rogue,Demon Warlock".split(',')
     #level1 = "Highlander Priest,Demon Warlock,Tempo Rogue,Aggro Druid".split(',')
-    level1 = "Highlander Priest,Demon Warlock,Big Spell Mage,Tempo Rogue".split(',')
-    level2 = "Highlander Priest,Demon Warlock,Jade Druid,Big Spell Mage".split(',')
+    # FIRST PASS
+    level1 = "Highlander Priest,Demon Warlock,Big Spell Mage,Jade Druid".split(',')
+    level2 = "Highlander Priest,Demon Warlock,Big Spell Mage,N'Zoth Paladin".split(',')
     level3 = "Highlander Priest,Cube Warlock,Jade Druid,Tempo Rogue".split(',')
-    level4 = "Highlander Priest,Demon Warlock,Jade Druid,Tempo Rogue".split(',')
-    level5 = "Highlander Priest,Cube Warlock,Aggro Druid,Tempo Rogue".split(',')
-    level6 = "Jade Druid,Exodia Mage,Highlander Priest,Cube Warlock".split(',')
+    level4 = "Zoo Warlock,Aggro Druid,Murloc Paladin,Tempo Rogue".split(',')
+    #level6 = "Jade Druid,Exodia Mage,Highlander Priest,Cube Warlock".split(',')
+    # SECOND PASS
+    #level1 = "Highlander Priest,Demon Warlock,Tempo Rogue,Big Spell Mage".split(',')
+    #level2 = "Highlander Priest,Cube Warlock,Jade Druid,Tempo Rogue".split(',')
+    #level3 = "Highlander Priest,Cube Warlock,Jade Druid,Tempo Rogue".split(',')
+    #level1 = "Dragon Priest,Secret Mage,Tempo Rogue,Cube Warlock".split(',')
     lineups_to_test = [l for l in [level1, level2, level3, level4, level5, level6, level7] if l is not None]
     weights = [1 for l in [level1, level2, level3, level4, level5, level6, level7] if l is not None]
 
@@ -44,40 +49,44 @@ if __name__ == '__main__':
     import sys
     args = sys.argv[1:]
     worlds = {
-        "Ant"                : "Aggro Druid,Spiteful Priest,Murloc Paladin,Tempo Rogue",
-        "Docpwn"             : "Cube Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
-        "Fr0zen"             : "Big Spell Mage,Cube Warlock,Highlander Priest,Jade Druid",
-        "Hoej"               : "Aggro Druid,Demon Warlock,Highlander Priest,Murloc Paladin",
-        "JasonZhou"          : "Aggro Druid,Demon Warlock,Highlander Priest,Tempo Rogue",
-        "Kolento"            : "Demon Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
-        "Muzzy"              : "Aggro Druid,Cube Warlock,Highlander Priest,Tempo Rogue",
-        "Neirea"             : "Aggro Druid,Demon Warlock,Highlander Priest,Tempo Rogue",
-        "OmegaZero"          : "Aggro Druid,Demon Warlock,Highlander Priest,Murloc Paladin",
-        "Orange"             : "Aggro Hunter,Demon Warlock,Highlander Priest,Tempo Rogue",
-        "Purple"             : "Aggro Druid,Demon Warlock,Highlander Priest,Tempo Rogue",
-        "SamuelTsao"         : "Aggro Druid,Highlander Priest,Tempo Rogue,Zoo Warlock",
-        "ShtanUdachi"        : "Cube Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
-        "Sintolol"           : "Big Spell Mage,Demon Warlock,Dragon Priest,Jade Druid",
-        "Surrender"          : "Aggro Druid,Cube Warlock,Highlander Priest,Tempo Rogue",
-        "tom60229"           : "Cube Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
-    }
-    group_c = {
-        "Ant"                : "Aggro Druid,Spiteful Priest,Murloc Paladin,Tempo Rogue",
-        "Purple"             : "Aggro Druid,Demon Warlock,Highlander Priest,Tempo Rogue",
-        "ShtanUdachi"        : "Cube Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
-        "Sintolol"           : "Big Spell Mage,Demon Warlock,Dragon Priest,Jade Druid",
-    }
-    group_d = {
-        "Fr0zen"             : "Big Spell Mage,Cube Warlock,Highlander Priest,Jade Druid",
-        "Neirea"             : "Aggro Druid,Demon Warlock,Highlander Priest,Tempo Rogue",
-        "OmegaZero"          : "Aggro Druid,Demon Warlock,Highlander Priest,Murloc Paladin",
-        "Surrender"          : "Aggro Druid,Cube Warlock,Highlander Priest,Tempo Rogue",
+        "AnguiStar"         : "Aggro Druid,Big Spell Mage,Demon Warlock,Highlander Priest",
+        "Arreador"          : "Tempo Rogue,Big Spell Mage,Demon Warlock,Spiteful Priest",
+        "Astrogation"       : "Recruit Warrior,Spiteful Priest,Cube Warlock,Secret Mage",
+        "DacLue"            : "Jade Druid,Big Spell Mage,Cube Warlock,Highlander Priest",
+        "DiegoDias"         : "Fatigue Warrior,Big Spell Mage,Demon Warlock,Highlander Priest",
+        "DonAndres"         : "Big Priest,Demon Warlock,Jade Druid,Secret Mage",
+        "Fenom"             : "Cube Warlock,Highlander Priest,Exodia Mage,Quest Rogue",
+        "Gallon"            : "Spiteful Priest,Cube Warlock,Pirate Warrior,Tempo Rogue",
+        "Garifar"           : "Dragon Priest,Jade Druid,Tempo Rogue,Zoo Warlock",
+        "Gladen99"          : "Demon Warlock,Big Spell Mage,Highlander Priest,Jade Druid",
+        "Gutxi"             : "Aggro Druid,Highlander Priest,Murloc Paladin,Tempo Rogue",
+        "iamChapsgg"        : "Aggro Paladin,Big Spell Mage,Jade Druid,Tempo Rogue",
+        "Joaquin"           : "Cube Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
+        "Juristis"          : "Demon Warlock,Highlander Priest,Jade Druid,Quest Rogue",
+        "Kuonet"            : "Big Spell Mage,Cube Warlock,Highlander Priest,Jade Druid",
+        "LegolaS"           : "Big Spell Mage,Demon Warlock,Highlander Priest,Jade Druid",
+        "MixKokinho"        : "Big Spell Mage,Demon Warlock,Highlander Priest,Tempo Rogue",
+        "Mokranichile"      : "Demon Warlock,Highlander Priest,Jade Druid,Tempo Rogue",
+        "Monsanto"          : "Dragon Priest,Quest Druid,Exodia Mage,Quest Rogue",
+        "Neves"             : "Cube Warlock,Highlander Priest,Jade Druid,Miracle Rogue",
+        "Nourish"           : "Aggro Druid,Murloc Paladin,Secret Mage,Tempo Rogue",
+        "Perna"             : "Big Spell Mage,N'Zoth Paladin,Demon Warlock,Highlander Priest",
+        "Pinche"            : "Big Spell Mage,Cube Warlock,Highlander Priest,Jade Druid",
+        "Rase"              : "Big Spell Mage,N'Zoth Paladin,Demon Warlock,Highlander Priest",
+        "seohyun628"        : "Big Spell Mage,Fatigue Warrior,Highlander Priest,Demon Warlock",
+        "sid"               : "Cube Warlock,Highlander Priest,Jade Druid,Exodia Mage",
+        "thetrueasian"      : "Highlander Priest,Cube Warlock,Aggro Hunter,Aggro Paladin",
+        "tyler"             : "Highlander Priest,Cube Warlock,Quest Druid,Quest Rogue",
+        "Valash"            : "Highlander Priest,Demon Warlock,Jade Druid,Big Spell Mage",
+        "vny"               : "Highlander Priest,Demon Warlock,N'Zoth Paladin,Big Spell Mage",
+        "yinus"             : "Big Spell Mage,Cube Warlock,Jade Druid,Highlander Priest",
+        "zlsjs"             : "Big Spell Mage,Fatigue Warrior,Highlander Priest,Demon Warlock",
     }
     inverse = {}
     for i,j in worlds.items():
         inverse[j] = i
     if len(args) > 0 and args[0] == 'practice':
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=25)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
         
         my_lineup = [d.strip() for d in args[1].split(',')]
         #opp_lineup = [d.strip() for d in deck_2.split(',')]
@@ -86,6 +95,8 @@ if __name__ == '__main__':
             assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
             ban, win_pct = win_rate(my_lineup, opp_lineup, win_pcts)
             print ",".join([str(i) for i in [opp_lineup, ban, win_pct]])
+            print win_rate(my_lineup, opp_lineup, win_pcts)
+            print pre_ban(my_lineup, opp_lineup, win_pcts)
             # BAN STUFF
             showBans = False
             if showBans:
@@ -102,70 +113,9 @@ if __name__ == '__main__':
                 for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
                     d1, d2 = i
                     print '%-20s %-20s %s' % (d1, d2, round(j,4))
-            print "\n\n"
-    elif len(args) > 0 and args[0] == 'Fr0zen':
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=25)
-        players = sorted(worlds.keys())
-        p1 = 'Fr0zen'
-        
-        win_pcts[("Big Spell Mage","Murloc Paladin")] = 0.60
-        win_pcts[("Big Spell Mage","Aggro Druid")] = 0.60
-        win_pcts[("Big Spell Mage","Tempo Rogue")] = 0.67
-        win_pcts[("Big Spell Mage","Spiteful Priest")] = 0.31
-        win_pcts[("Big Spell Mage","Aggro Hunter")] = 0.50
-        win_pcts[("Big Spell Mage","Demon Warlock")] = 0.35
-        win_pcts[("Big Spell Mage","Cube Warlock")] = 0.15
-        win_pcts[("Jade Druid","Tempo Rogue")] = 0.55
-        win_pcts[("Jade Druid","Murloc Paladin")] = 0.40
-        win_pcts[("Jade Druid","Aggro Hunter")] = 0.45
-        win_pcts[("Jade Druid","Cube Warlock")] = 0.40
-        win_pcts[("Jade Druid","Demon Warlock")] = 0.40
-        win_pcts[("Jade Druid","Aggro Druid")] = 0.55
-        win_pcts[("Jade Druid","Spiteful Priest")] = 0.35
-        win_pcts[("Cube Warlock","Aggro Druid")] = 0.56
-        win_pcts[("Cube Warlock","Tempo Rogue")] = 0.60
-        win_pcts[("Cube Warlock","Jade Druid")] = 0.55
-        win_pcts[("Cube Warlock","Cube Warlock")] = 0.45
-        win_pcts[("Cube Warlock","Demon Warlock")] = 0.45
-        win_pcts[("Highlander Priest","Jade Druid")] = 0.42
-        
-        for p2 in players:
-            if p1 == p2: continue
-            if p2 in ["tom60229", "ShtanUdachi", "OmegaZero", "Neirea"]:
-                # Auctioneer
-                win_pcts[("Big Spell Mage","Highlander Priest")] = 0.60
-                win_pcts[("Cube Warlock","Highlander Priest")] = 0.40
-                win_pcts[("Jade Druid","Highlander Priest")] = 0.70
-            else:
-                # Lyra
-                win_pcts[("Big Spell Mage","Highlander Priest")] = 0.50
-                win_pcts[("Cube Warlock","Highlander Priest")] = 0.45
-                win_pcts[("Jade Druid","Highlander Priest")] = 0.60
-            deck_1 = worlds.get(p1)
-            deck_2 = worlds.get(p2)
-            my_lineup = [d.strip() for d in deck_1.split(',')]
-            opp_lineup = [d.strip() for d in deck_2.split(',')]
-            assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
-            assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
-            ban, win_pct = win_rate(my_lineup, opp_lineup, win_pcts)
-            print ",".join([str(i) for i in [p1, p2, ban, win_pct]])
-            print my_lineup, "vs", opp_lineup
-            win_rates_grid(my_lineup, opp_lineup, win_pcts, num_games)
-            # BAN STUFF
-            res = pre_ban_old(my_lineup,
-                              opp_lineup,
-                              win_pcts)
-            print ""
-            print my_lineup, "vs", opp_lineup
-            print "bans"
-            print "%-20s %-20s" % ("p1_ban", "p2_ban")
-            #for i, j in sorted(res.items(), key=lambda x:-x[1]):
-            for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
-                d1, d2 = i
-                print '%-20s %-20s %s' % (d1, d2, round(j,4))
-            print "\n\n"
+                print "\n\n"
     elif len(args) > 0 and args[0] == 'worlds':
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=25)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
         players = sorted(worlds.keys())
         for p1 in players:
             for p2 in players:
@@ -179,19 +129,24 @@ if __name__ == '__main__':
                 ban, win_pct = win_rate(my_lineup, opp_lineup, win_pcts)
                 print ",".join([str(i) for i in [p1, p2, ban, win_pct]])
     elif len(args) > 0 and args[0] == 'sim':
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=25)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
         print sorted(archetypes)
         archetypes.append('Unbeatable')
-        for a in archetypes:
-            if a != 'Fatigue Warrior':
-                win_pcts[('Fatigue Warrior',a)] = 0.4
-                win_pcts[(a,'Fatigue Warrior')] = 0.6
-            win_pcts[('Fatigue Warrior', 'Big Spell Mage')] = 0.6
-            win_pcts[('Fatigue Warrior', 'Tempo Rogue')] = 0.65
-            win_pcts[('Fatigue Warrior', 'Aggro Paladin')] = 0.50
-            win_pcts[('Big Spell Mage', 'Fatigue Warrior')] = 0.4
-            win_pcts[('Tempo Rogue', 'Fatigue Warrior')] = 0.35
-            win_pcts[('Aggro Paladin', 'Fatigue Warrior')] = 0.50
+        overrides = [
+                     ('Highlander Priest', 'Jade Druid', 0.45),
+                     #('Big Spell Mage', 'Highlander Priest', 0.6),
+                     #('Fatigue Warrior', 'Big Spell Mage',  0.8),
+                     #('Fatigue Warrior', 'Highlander Priest',  0.35),
+                     #('Fatigue Warrior', 'Tempo Rogue',  0.55),
+                     #('Fatigue Warrior', 'Demon Warlock', 0.25),
+                     #('Cube Warlock', 'Demon Warlock', 0.55),
+                    ]
+        #for a in archetypes:
+        #    if a != 'Fatigue Warrior':
+        #        win_pcts[('Fatigue Warrior',a)] = 0.4
+        #        win_pcts[(a,'Fatigue Warrior')] = 0.6
+        win_pcts = override_wr(overrides,win_pcts)
+        #win_pcts[('Big Spell Mage', 'Big Spell Mage')] = 0.4
         if args[1] in worlds.keys():
             args[1] = worlds.get(args[1])
         if args[2] in worlds.keys():
@@ -241,7 +196,7 @@ if __name__ == '__main__':
             print '%-20s %-20s %s' % (d1, d2, round(j,4))
 
     else:
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=20, min_game_count=20, min_win_pct=0.42,limitTop=25)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=20, min_game_count=20, min_win_pct=0.42,limitTop=40)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00
@@ -254,9 +209,11 @@ if __name__ == '__main__':
                 win_pcts[key] += bias
             if j == 'Aggro Paladin':
                 win_pcts[key] -= bias
+        win_pcts[('Highlander Priest', 'Jade Druid')] = 0.45
+        win_pcts[('Jade Druid', 'Highlander Priest')] = 0.55
         print sorted(archetypes)
-        excluded = []
-        excluded = ['Spiteful Priest', 'Secret Mage', 'Big Priest', 'Mill Rogue', 'Pirate Warrior', 'Spiteful Warrior', 'Miracle Rogue', 'Barnes Hunter', 'Jade Druid']
+        excluded = ['Elemental Priest']
+        excluded += ['Big Priest', 'Mill Rogue', 'Spiteful Priest', 'Jade Druid', 'OTK DK Paladin', 'Token Shaman', 'Spiteful Warrior']
         #excluded = ['Secret Mage', 'Barnes Hunter', 'Secret Hunter']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]

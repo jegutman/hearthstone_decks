@@ -1,11 +1,12 @@
 import json
 
-date = '0122'
+date = '0125'
 filename = 'win_rates/hsreplay%(date)s.json' % locals()
-#filename = 'win_rates/hsreplay%(date)s_7day.json' % locals()
-#filename = 'win_rates/hsreplay%(date)sday.json' % locals()
 #filename = 'win_rates/hsreplay%(date)slegend.json' % locals()
+#filename = 'win_rates/hsreplay%(date)sday.json' % locals()
 #filename = 'win_rates/hsreplay%(date)slegend_day.json' % locals()
+#filename = 'win_rates/hsreplay%(date)s_7day.json' % locals()
+#filename = 'win_rates/hsreplay%(date)slegend7.json' % locals()
 
 #import datetime, os
 #filename = 'hsreplay' + datetime.datetime.today().strftime("%m%d") + '.json'
@@ -17,6 +18,12 @@ print "using:", filename
 
 from get_archetypes import *
 from shared_utils import class_sort
+
+def override_wr(overrides, win_pcts):
+    for a, b, pct in overrides:
+        win_pcts[(a,b)] = pct
+        win_pcts[(b,a)] = 1 - pct
+    return win_pcts
 
 def get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0, filename=filename,limitTop=1000):
     wr_file = open(filename)
@@ -49,5 +56,30 @@ def get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0, filename
     wr_file.close()
     return win_pcts, num_games, game_count, hsreplay_archetypes, overall_wr
 
+def wr_to_csv(win_pcts, archetypes, scaling=1):
+    res = []
+    res.append(",".join([""] + archetypes))
+    for i in archetypes:
+        line = [i]
+        for j in archetypes:
+            line += [str(win_pcts.get((i,j), 0.4999) * scaling)]
+        res.append(",".join(line))
+    return "\n".join(res)
+
+def wr_from_csv(filename):
+    win_pcts = {}
+    csv = open(filename)
+    lines = []
+    for line in csv:
+        lines.append(line.strip())
+    archetypes_col = lines[0].split(',')[1:]
+    for line in lines[1:]:
+        tmp = line.split(',')
+        i = tmp[0]
+        for (j, pct) in zip(archetypes_col,tmp[1:]):
+            win_pcts[(i,j)] = float(pct)
+    return win_pcts
+
 if __name__ == "__main__":
-    win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100)
+    win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, limitTop=15)
+    print wr_from_csv('wr.csv')
