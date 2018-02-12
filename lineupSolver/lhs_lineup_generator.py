@@ -3,6 +3,11 @@ from lhs_utils import *
 from shared_utils import *
 
 if __name__ == '__main__':
+    level1, level2, level3, level4, level5 = None, None, None, None, None
+    level1 = "Highlander Priest,Tempo Rogue,Cube Warlock,Aggro Druid".split(',')
+    level2 = "Aggro Hunter,Aggro Paladin,Dragon Priest,Zoo Warlock".split(',')
+    level3 = "Highlander Priest,Jade Druid,Zoo Warlock,Tempo Rogue".split(',')
+
     import sys
     args = sys.argv[1:]
     if len(args) > 0 and args[0] == 'sim':
@@ -67,7 +72,7 @@ if __name__ == '__main__':
                 print '%-27s %-27s %s' % (d1, d2, round(j,4))
             
     else:
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=100, min_game_count=1000, min_win_pct=0.35)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=100, min_game_count=1000, min_win_pct=0.35,limitTop=30)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00
@@ -81,10 +86,6 @@ if __name__ == '__main__':
                 win_pcts[key] += bias
             if j == 'Jade Druid':
                 win_pcts[key] -= bias
-        win_pcts[('Cube Warlock', 'Highlander Priest')] = 0.50
-        win_pcts[('Highlander Priest', 'Cube Warlock')] = 0.50
-        #win_pcts[('Cube Warlock', 'Secret Mage')] = 0.50
-        #win_pcts[('Secret Mage', 'Cube Warlock')] = 0.50
         print len(archetypes), sorted(archetypes, key=class_sort)
 
         excluded = []
@@ -97,25 +98,8 @@ if __name__ == '__main__':
         print "testing %s lineups" % len(lineups)
 
         win_rates_against_good = {}
-        level1, level2, level3, level4, level5 = None, None, None, None, None
-        # force ban druid
-        level1 = ['Highlander Priest', 'Tempo Rogue', 'Secret Mage', 'Cube Warlock']
-        level2 = ['Highlander Priest', 'Aggro Druid', 'Aggro Paladin', 'Cube Warlock']
-        level3 = ['Highlander Priest', 'Jade Druid', 'Secret Mage', 'Cube Warlock']
-        #level1 = ['Highlander Priest', 'Tempo Rogue', 'Secret Mage', 'Unbeatable'] # Warlock Ban
-        #level2 = ['Spiteful Summoner Priest', 'Aggro Hunter', 'Murloc Paladin', 'Zoo Warlock'] # xixo
-        #level3 = "Highlander Priest,Tempo Rogue,Aggro Paladin,Cube Warlock".split(',')
-        #level1 = "Highalnder Priest,
-        #level2 = "Highlander Priest,
-        #level1 = "Aggro Druid,Highlander Priest,Tempo Rogue,Demon Warlock".split(',')
-        #level1 = "Secret Mage,Highlander Priest,Tempo Rogue,Demon Warlock".replace('Demon Warlock', 'Unbeatable').split(',') 
-        #level2 = "Highlander Priest,Tempo Rogue,Demon Warlock,Aggro Druid".replace('Demon Warlock', 'Unbeatable').split(',') 
 
         lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
-        #from lineups_from_1129 import lineups
-        #print lineups_to_test
-        #lineups_to_test = [sorted(x.split(',')) for x in lineups.values()][:2]
-        #print lineups_to_test
         tmp_weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         weights = [w for w,l in zip(tmp_weights, lineups_to_test) if l is not None]
         if len(args) > 0 and args[0] == 'target':
@@ -144,4 +128,4 @@ if __name__ == '__main__':
             lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(sumproduct_normalize([i[1] for i in j],weights),3),round(min([x[1] for x in j]),3)))
             print '         "' + lineup_string + '"'
         for i,j,k,l in lu_strings:
-            print "".join(["%27s" % x for x in i.split(',')]), j, k, l
+            print "".join(["%-27s" % x for x in i.split(',')]), j, k, l

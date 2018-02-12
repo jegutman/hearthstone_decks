@@ -13,6 +13,7 @@ if __name__ == '__main__':
     #level1 = 'Unbeatable,Cube Warlock,Murloc Paladin'.split(',')
     level1 = 'Highlander Priest,Demon Warlock,Jade Druid'.split(',')
     level2 = 'Highlander Priest,Cube Warlock,Tempo Rogue'.split(',')
+    level3 = 'Highlander Priest,Cube Warlock,Big Spell Mage'.split(',')
     level4 = 'Tempo Rogue,Zoo Warlock,Aggro Druid'.split(',')
     #level2 = "Highlander Priest,Tempo Rogue,Cube Warlock".split(',')
     #level3 = "Highlander Priest,Jade Druid,Cube Warlock".split(',')
@@ -21,9 +22,11 @@ if __name__ == '__main__':
     weights = [1 for l in [level1, level2, level3, level4, level5] if l is not None]
     
     if len(args) > 0 and args[0] == 'target':
-        level1 = [i.strip() for i in args[1].split(',')]
-        weights = [1]
-        lineups_to_test = [level1]
+        lineups_to_test = []
+        for x in args[1:]:
+            tmp = [i.strip() for i in x.split(',')]
+            lineups_to_test.append(tmp)
+        weights = [1 for i in lineups_to_test]
     if len(args) > 0 and args[0] == 'practice':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
         
@@ -101,7 +104,8 @@ if __name__ == '__main__':
                 win_pcts[key] -= bias
         print sorted(archetypes)
         excluded = []
-        excluded += ['Big Priest', 'Mill Rogue', 'Jade Druid']
+        excluded = ['Spell Hunter']
+        #excluded += ['Big Priest', 'Mill Rogue', 'Jade Druid', 'Spiteful Priest', 'Elemental Priest']
         #excluded = ['Exodia Mage', 'Quest Druid', 'Quest Rogue', 'Silver Hand Paladin', 'Secret Mage']
         #excluded = ['Murloc Paladin']
         print "\n\nEXCLUDING:", excluded
