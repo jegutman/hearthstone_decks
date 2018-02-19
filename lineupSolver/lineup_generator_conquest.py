@@ -2,32 +2,9 @@ from json_win_rates import *
 from conquest_utils import * 
 from shared_utils import *
 
-possible_playoff_decks = [
-    'Aggro Druid',
-    'Jade Druid',
-    'Quest Druid', # Combo Druid
-    'Aggro Hunter',
-    'Secret Mage',
-    'Big Spell Mage',
-    'Exodia Mage',
-    'Tempo Rogue',
-    'Quest Rogue',
-    'Aggro Paladin',
-    'Control Paladin',
-    'Murloc Paladin',
-    'Highlander Priest',
-    'Dragon Priest',
-    #'Spiteful Priest',
-    'Cube Warlock',
-    'Demon Warlock',
-    'Zoo Warlock',
-    #'Pirate Warrior',
-]
-
-
 if __name__ == '__main__':
 
-    level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14 = None, None, None, None, None, None, None, None, None, None, None, None, None, None
+    level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16 = None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
 
     #level1 = "Highlander Priest,Murloc Paladin,Tempo Rogue,Demon Warlock".split(',')
     #level1 = "Highlander Priest,Demon Warlock,Tempo Rogue,Aggro Druid".split(',')
@@ -43,42 +20,50 @@ if __name__ == '__main__':
     #level3 = "Highlander Priest,Cube Warlock,Jade Druid,Tempo Rogue".split(',')
     #level1 = "Dragon Priest,Secret Mage,Tempo Rogue,Cube Warlock".split(',')
     #HCT Europe
-    level1  = "Cube Warlock,Big Priest,Big Spell Mage,Murloc Paladin".split(',')
-    level2  = "Dragon Priest,Secret Mage,Murloc Paladin,Zoo Warlock".split(',')
-    level3  = "Dragon Priest,Control Warlock,Big Spell Mage,Control Paladin".split(',')
-    level4  = "Secret Mage,Dragon Priest,Murloc Paladin,Control Warlock".split(',')
-    level5  = "Dragon Priest,Big Spell Mage,Control Paladin,Control Warlock".split(',')
-    level6  = "Control Paladin,Dragon Priest,Tempo Rogue,Cube Warlock".split(',')
-    level7  = "Control Warlock,Control Paladin,Dragon Priest,Secret Mage".split(',')
-    level8  = "Dragon Priest,Murloc Paladin,Jade Druid,Cube Warlock".split(',')
-    level9  = "Zoo Warlock,Spiteful Priest,Secret Mage,Murloc Paladin".split(',')
-    level10 = "Dragon Priest,Murloc Paladin,Cube Warlock,Secret Mage".split(',')
-    level11 = "Murloc Paladin,Aggro Druid,Dragon Priest,Demon Warlock".split(',')
-    level12 = "Secret Mage,Dragon Priest,Murloc Paladin,Control Warlock".split(',')
-    lineups_to_test = [l for l in [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14] if l is not None]
-    weights = [1 for l in [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14] if l is not None]
+    #level1  = "Cube Warlock,Big Priest,Big Spell Mage,Murloc Paladin".split(',')
+    #level2  = "Dragon Priest,Secret Mage,Murloc Paladin,Zoo Warlock".split(',')
+    #level3  = "Dragon Priest,Control Warlock,Big Spell Mage,Control Paladin".split(',')
+    #level4  = "Secret Mage,Dragon Priest,Murloc Paladin,Control Warlock".split(',')
+    #level5  = "Dragon Priest,Big Spell Mage,Control Paladin,Control Warlock".split(',')
+    #level6  = "Control Paladin,Dragon Priest,Tempo Rogue,Cube Warlock".split(',')
+    #level7  = "Control Warlock,Control Paladin,Dragon Priest,Secret Mage".split(',')
+    #level8  = "Dragon Priest,Murloc Paladin,Jade Druid,Cube Warlock".split(',')
+    #level9  = "Zoo Warlock,Spiteful Priest,Secret Mage,Murloc Paladin".split(',')
+    #level10 = "Dragon Priest,Murloc Paladin,Cube Warlock,Secret Mage".split(',')
+    #level11 = "Murloc Paladin,Aggro Druid,Dragon Priest,Demon Warlock".split(',')
+    #level12 = "Secret Mage,Dragon Priest,Murloc Paladin,Control Warlock".split(',')
+    lineups_to_test = [l for l in [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16] if l is not None]
+    weights = [1 for l in [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16] if l is not None]
 
 
     import sys
     args = sys.argv[1:]
     worlds = {
-        "Bequiet"       : "Cube Warlock,Big Priest,Big Spell Mage,Murloc Paladin",
-        "Bozzton"       : "Dragon Priest,Secret Mage,Murloc Paladin,Zoo Warlock",
-        #"ChiakiNanami"  : "Cube Warlock,Big Spell Mage,Dragon Priest,Barnes Hunter",
-        "Glaser"        : "Dragon Priest,Control Warlock,Big Spell Mage,Control Paladin",
-        "Heki"          : "Secret Mage,Dragon Priest,Murloc Paladin,Control Warlock", #weird control warlock with giants
-        "Hunterace"     : "Dragon Priest,Big Spell Mage,Control Paladin,Control Warlock",
-        "J4CKIE"        : "Control Paladin,Dragon Priest,Tempo Rogue,Cube Warlock",
-        "Jarla"         : "Control Warlock,Control Paladin,Dragon Priest,Secret Mage",
-        #"Morrison"      : "Control Warlock,Spiteful Priest,Barnes Hunter,Murloc Paladin",
-        #"Odemian"       : "Control Warlock,Spiteful Priest,Recruit Warrior,Token Shaman", # Actually fatigue warrior
-        "Orange"        : "Dragon Priest,Murloc Paladin,Jade Druid,Cube Warlock",
-        "Perna"         : "Zoo Warlock,Spiteful Priest,Secret Mage,Murloc Paladin",
-        #"Riku97"        : "Zoo Warlock,Secret Mage,Murloc Paladin,Aggro Hunter",
-        "Silvors"       : "Dragon Priest,Murloc Paladin,Cube Warlock,Secret Mage",
-        "Superlubo"     : "Murloc Paladin,Aggro Druid,Dragon Priest,Demon Warlock",
-        "Zataro"        : "Secret Mage,Dragon Priest,Murloc Paladin,Control Warlock", #weird control warlock with giants
+        'Perna'      :   'Big Priest,Big Spell Mage,Control Paladin,Control Warlock',
+        'Rase'       :   'Big Priest,Big Spell Mage,Control Paladin,Control Warlock',
+        'Valash'     :   'Big Priest,Big Spell Mage,Control Paladin,Control Warlock',
+        'Kuonet'     :   'Big Spell Mage,Control Paladin,Control Warlock,Control Warrior',
+        'Seohyun628' :   'Big Spell Mage,Control Paladin,Control Warlock,Control Warrior',
+        'Neves'      :   'Big Spell Mage,Control Warlock,Dragon Priest,Murloc Paladin',
+        'Anguistar'  :   'Big Spell Mage,Control Warlock,Dragon Priest,Murloc Paladin',
+        'Arreador'   :   'Big Spell Mage,Cube Warlock,Murloc Paladin,Spiteful Priest',
+        'Garifar'    :   'Control Warlock,Secret Mage,Spell Hunter,Token Shaman',
+        'Daclue'     :   'Control Warlock,Secret Mage,Spiteful Priest,Tempo Druid',
+        'Iamchapsgg' :   'Big Spell Mage,Control Paladin,Dragon Priest,Cube Warlock',  #actually control priest
+        'SID'        :   'Big Spell Mage,Cube Warlock,Dragon Priest,Murloc Paladin',
+        'Pinche'     :   'Big Spell Mage,Control Warlock,OTK DK Paladin,Spiteful Priest',
+        'Gladen'     :   'Big Spell Mage,Control Paladin,Control Warlock,Spiteful Priest',
+        'Fenom'      :   'Cube Warlock,Quest Druid,Quest Mage,Quest Rogue',
+        'Yinus'      :   'Big Spell Mage,Control Warlock,Dragon Priest,Token Shaman',
     }
+    #useCopa = False
+    useCopa = True
+    if useCopa:
+        lineups_to_test = []
+        weights = []
+        for i in worlds.values():
+            lineups_to_test.append(i.split(','))
+            weights.append(1)
     inverse = {}
     for i,j in worlds.items():
         inverse[j] = i
@@ -113,6 +98,7 @@ if __name__ == '__main__':
                 print "\n\n"
     elif len(args) > 0 and args[0] == 'worlds':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
+        win_pcts[('Control Warrior', 'Control Warrior')] = 0.5
         players = sorted(worlds.keys())
         for p1 in players:
             for p2 in players:
@@ -131,7 +117,13 @@ if __name__ == '__main__':
         archetypes.append('Unbeatable')
         #archetypes.append('Fatigue Warrior')
         overrides = [
-                     ('Highlander Priest', 'Jade Druid', 0.45),
+                     ('Tempo Druid', 'Token Shaman', 0.45),
+                     ('Tempo Druid', 'Big Spell Mage', 0.60),
+                     ('Tempo Druid', 'Control Warlock', 0.60),
+                     ('Tempo Druid', 'Cube Warlock', 0.58),
+                     ('Tempo Druid', 'OTK DK Paladin', 0.45),
+                     ('Spiteful Priest', 'OTK DK Paladin', 0.40),
+                     #('Highlander Priest', 'Jade Druid', 0.45),
                      #('Big Spell Mage', 'Highlander Priest', 0.6),
                      #('Fatigue Warrior', 'Big Spell Mage',  0.8),
                      #('Fatigue Warrior', 'Highlander Priest',  0.35),
@@ -218,7 +210,7 @@ if __name__ == '__main__':
         print sorted(archetypes, key=lambda x:x.split(' ')[-1])
         excluded = ['Elemental Priest']
         #excluded = ['Control Hunter', 'Spell Hunter']
-        excluded = ['Tempo Druid', 'Pirate Warrior', 'Spell Hunter', 'Control Hunter', 'Aggro Hunter', 'Midrange Hunter']
+        #excluded = ['Tempo Druid', 'Pirate Warrior', 'Spell Hunter', 'Control Hunter', 'Aggro Hunter', 'Midrange Hunter']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
         win_rates_against_good = {}
@@ -230,8 +222,8 @@ if __name__ == '__main__':
     
         if usingEsportsArena:
             lineups_to_test = [i.split(',') for i in worlds.values()]
-            for my_lineup in lineups_to_test:
-                assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
+            #for my_lineup in lineups_to_test:
+            #    assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
             weights = [1 for i in worlds.values()]
             #for i in lineups_to_test:
             #    print i
@@ -241,14 +233,6 @@ if __name__ == '__main__':
 
         #weights = [2,2,1]
         if len(args) > 0 and args[0] == 'target':
-            lineups_to_test = []
-            for x in args[1:]:
-                tmp = [i.strip() for i in x.split(',')]
-                lineups_to_test.append(tmp)
-            weights = [1 for i in lineups_to_test]
-        elif len(args) > 0 and args[0] == 'playoff':
-            archetypes = possible_playoff_decks
-            lineups, archetype_map = generate_lineups(archetypes)
             lineups_to_test = []
             for x in args[1:]:
                 tmp = [i.strip() for i in x.split(',')]

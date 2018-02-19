@@ -1,8 +1,8 @@
 import json
 
-date = '0209'
-filename = 'win_rates/hsreplay%(date)s.json' % locals()
-#filename = 'win_rates/hsreplay%(date)slegend.json' % locals()
+date = '0218'
+#filename = 'win_rates/hsreplay%(date)s.json' % locals()
+filename = 'win_rates/hsreplay%(date)slegend.json' % locals()
 #filename = 'win_rates/hsreplay%(date)sday.json' % locals()
 #filename = 'win_rates/hsreplay%(date)slegend_day.json' % locals()
 #filename = 'win_rates/hsreplay%(date)s_7day.json' % locals()
