@@ -1,9 +1,10 @@
 import json
 
-date = '0218'
+date = '0306'
 #filename = 'win_rates/hsreplay%(date)s.json' % locals()
 filename = 'win_rates/hsreplay%(date)slegend.json' % locals()
 #filename = 'win_rates/hsreplay%(date)sday.json' % locals()
+#filename = 'win_rates/hsreplay%(date)slegend_day.json' % locals()
 #filename = 'win_rates/hsreplay%(date)slegend_day.json' % locals()
 #filename = 'win_rates/hsreplay%(date)s_7day.json' % locals()
 #filename = 'win_rates/hsreplay%(date)slegend7.json' % locals()
@@ -56,30 +57,32 @@ def get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0, filename
     wr_file.close()
     return win_pcts, num_games, game_count, hsreplay_archetypes, overall_wr
 
-def wr_to_csv(win_pcts, archetypes, scaling=1):
+def wr_to_csv(win_pcts, archetypes, scaling=1, default = 0.4999):
     res = []
     res.append(",".join([""] + archetypes))
     for i in archetypes:
         line = [i]
         for j in archetypes:
-            line += [str(win_pcts.get((i,j), 0.4999) * scaling)]
+            line += [str(win_pcts.get((i,j), default) * scaling)]
         res.append(",".join(line))
     return "\n".join(res)
 
-def wr_from_csv(filename):
+def wr_from_csv(filename, scaling=1):
     win_pcts = {}
     csv = open(filename)
     lines = []
     for line in csv:
         lines.append(line.strip())
     archetypes_col = lines[0].split(',')[1:]
+    archetypes = []
     for line in lines[1:]:
         tmp = line.split(',')
         i = tmp[0]
+        archetypes.append(i)
         for (j, pct) in zip(archetypes_col,tmp[1:]):
-            win_pcts[(i,j)] = float(pct)
-    return win_pcts
+            win_pcts[(i,j)] = float(pct) / float(scaling)
+    return win_pcts, archetypes
 
 if __name__ == "__main__":
-    win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, limitTop=15)
+    win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, limitTop=40)
     print wr_from_csv('wr.csv')
