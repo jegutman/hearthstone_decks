@@ -7,7 +7,8 @@ from deck_manager import EasyDeck, print_side_by_side, print_side_by_side_diff
 #from euDecklistCodesSummer import decks as decklistToAnalyze
 #from apacDecklistCodesSummer import decks as decklistToAnalyze
 #from naDecklistCodesSummer import na_decks as decklistToAnalyze
-from taiwan_1217 import decklists as decklistToAnalyze
+#from taiwan_1217 import decklists as decklistToAnalyze
+from copa0218 import decklists as decklistToAnalyze
 from archetypes import get_archetypes_by_class
 from archetype_labels import example_to_archetype, archetype_to_example
 
@@ -102,7 +103,7 @@ for deck_class in archetypes:
             #print("DIST", deck_class, at_deck.deck.heroes, deck_class, arch_deck.get_average_distance(at), label)
             #print(arch_deck.get_original_code())
             #arch_deck.print_deck()
-            print("DIST", deck_class, at_deck.deck.heroes, deck_class, problem_deck.get_average_distance(at), label)
+            #print("DIST", deck_class, at_deck.deck.heroes, deck_class, problem_deck.get_average_distance(at), label)
             print(problem_deck.get_original_code())
             problem_deck.print_deck()
         for at_deck in at:

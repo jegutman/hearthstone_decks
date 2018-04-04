@@ -30,8 +30,6 @@ def pre_ban(decks_a, decks_b, win_pcts, debug=False):
             tmp_a.remove(d1)
             tmp_b.remove(d2)
             res = post_ban(tmp_a, tmp_b, win_pcts)
-            if debug:
-                print "%0.6f" % res, sorted(tmp_a), sorted(tmp_b)
             #mins[d2].append(res)
             mins[d2] = round(min(mins[d2], res), 3)
     return mins

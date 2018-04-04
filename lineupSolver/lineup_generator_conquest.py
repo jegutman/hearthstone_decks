@@ -9,10 +9,21 @@ if __name__ == '__main__':
     #level1 = "Cube Warlock,Spiteful Priest,Murloc Paladin,Quest Rogue".split(',')
     #level2 = "Zoo Warlock,Spiteful Priest,Murloc Paladin,Secret Mage".split(',')
     #level3 = "Cube Warlock,Control Priest,Silver Hand Paladin,Token Shaman".split(',')
-    level1 = "Cube Warlock,Secret Mage,Combo Priest,Murloc Paladin".split(',')
-    level2 = "Cube Warlock,Control Priest,Token Shaman,Silver Hand Paladin".split(',')
-    level3 = "Cube Warlock,Quest Rogue,Spiteful Priest,Murloc Paladin".split(',')
-    level4 = "Zoo Warlock,Secret Mage,Spiteful Priest,Murloc Paladin".split(',')
+
+    #level1 = "Spell Hunter,Control Priest,Silver Hand Paladin,Cube Warlock".split(',')
+    #level2 = "Control Warrior,Control Priest,Control Warlock,Big Spell Mage".split(',')
+    #level3 = "Quest Rogue,Spiteful Priest,Murloc Paladin,Cube Warlock".split(',')
+    #level4 = "Zoo Warlock,Secret Mage,Combo Priest,Murloc Paladin".split(',')
+
+    #level1 = "Secret Mage,Big Priest,Cube Warlock,Murloc Paladin".split(',')
+    level2 = "Cube Warlock,Spell Hunter,Jade Druid,Silver Hand Paladin".split(',')
+    level3 = "Silver Hand Paladin,Spell Hunter,Cube Warlock,Combo Priest".split(',')
+    level4 = "Secret Hunter,Big Spell Mage,Combo Priest,Cube Warlock".split(',')
+
+    #level1 = "Cube Warlock,Secret Mage,Combo Priest,Murloc Paladin".split(',')
+    #level2 = "Cube Warlock,Control Priest,Token Shaman,Silver Hand Paladin".split(',')
+    #level3 = "Cube Warlock,Quest Rogue,Spiteful Priest,Murloc Paladin".split(',')
+    #level4 = "Zoo Warlock,Secret Mage,Spiteful Priest,Murloc Paladin".split(',')
     #level4 = "Spell Hunter,Zoo Warlock,Murloc Paladin,Token Shaman".split(',')
 
     #level1 = "Unbeatable,Spiteful Priest,Murloc Paladin,Quest Rogue".split(',')
@@ -21,6 +32,7 @@ if __name__ == '__main__':
 
     lineups_to_test = [l for l in [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16] if l is not None]
     weights = [1 for l in [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16] if l is not None]
+    #weights = [3,1,1,1]
 
 
     import sys
@@ -221,8 +233,10 @@ if __name__ == '__main__':
             win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, min_win_pct=0.40,limitTop=30)
         print sorted(archetypes, key=lambda x:x.split(' ')[-1])
         excluded = []
-        if False:
-            excluded += ['Spiteful Druid', 'Control Warrior', 'Spell Hunter']
+        if True:
+            excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
+            #excluded += ['Secret Mage']
+            #excluded += ['Silver Hand Paladin', 'Spell Hunter', 'Jade Druid', 'Big Spell Mage', 'OTK DK Paladin', 'Combo Priest', 'Control Warlock', 'Zoo Warlock', 'Control Priest', 'Cube Warlock', 'Control Warrior', 'Murloc Paladin', 'Secret Mage', 'Jade Shaman']
             #excluded += ['Jade Druid', 'Kingsbane Rogue', 'Big Priest']
             #excluded += ['Spell Hunter']
         #excluded = ['Control Hunter', 'Spell Hunter']
@@ -285,7 +299,7 @@ if __name__ == '__main__':
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
         for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
-        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 2 + min([i[1] for i in x[1]]))[-10:]:
+        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))

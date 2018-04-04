@@ -1,5 +1,5 @@
 import json
-cards_file = open('cards.json')
+cards_file = open('/Users/jgutman/workspace/hearthstone_decks/cards.json')
 cards_json = json.load(cards_file)
 
 cards_by_id = {}
@@ -48,6 +48,14 @@ standard_sets = [
     'LOOTAPALOOZA',
 ]
 
+rotation_sets = [
+    'ICECROWN', 
+    'CORE', 
+    'EXPERT1', 
+    'UNGORO', 
+    'LOOTAPALOOZA',
+]
+
 wild_sets = [
     'LOE', 
     'TGT', 
@@ -61,9 +69,12 @@ all_sets = standard_sets + wild_sets
 
 all_cards_standard = []
 all_cards_wild = []
+all_cards_rotation = []
 for card in cards_json:
     if 'dbfId' in card and 'set' in card and card.get('collectible', False) and card['set'] in standard_sets:
         all_cards_standard.append(card)
+    if 'dbfId' in card and 'set' in card and card.get('collectible', False) and card['set'] in rotation_sets:
+        all_cards_rotation.append(card)
     if 'dbfId' in card and 'set' in card and card.get('collectible', False):
         all_cards_wild.append(card)
 

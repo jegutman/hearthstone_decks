@@ -1,13 +1,14 @@
 import json
 
-date = '0306'
-#filename = 'win_rates/hsreplay%(date)s.json' % locals()
-filename = 'win_rates/hsreplay%(date)slegend.json' % locals()
-#filename = 'win_rates/hsreplay%(date)sday.json' % locals()
-#filename = 'win_rates/hsreplay%(date)slegend_day.json' % locals()
-#filename = 'win_rates/hsreplay%(date)slegend_day.json' % locals()
-#filename = 'win_rates/hsreplay%(date)s_7day.json' % locals()
-#filename = 'win_rates/hsreplay%(date)slegend7.json' % locals()
+date = '0330'
+base = '/Users/jgutman/workspace/hearthstone_decks/lineupSolver/'
+#filename = '%(base)swin_rates/hsreplay%(date)s.json' % locals()
+filename = '%(base)swin_rates/hsreplay%(date)slegend.json' % locals()
+#filename = '%(base)swin_rates/hsreplay%(date)sday.json' % locals()
+#filename = '%(base)swin_rates/hsreplay%(date)slegend_day.json' % locals()
+#filename = '%(base)swin_rates/hsreplay%(date)slegend_day.json' % locals()
+#filename = '%(base)swin_rates/hsreplay%(date)s_7day.json' % locals()
+#filename = '%(base)swin_rates/hsreplay%(date)slegend7.json' % locals()
 
 #import datetime, os
 #filename = 'hsreplay' + datetime.datetime.today().strftime("%m%d") + '.json'
@@ -15,7 +16,7 @@ filename = 'win_rates/hsreplay%(date)slegend.json' % locals()
 #url = 'https://hsreplay.net/analytics/query/head_to_head_archetype_matchups/?GameType=RANKED_STANDARD&RankRange=ONE_THROUGH_FIVE&Region=ALL&TimeRange=LAST_3_DAYS'
 #os.system('curl -o %(filename)s %(url)s' % locals())
 
-print "using:", filename
+print("using:", filename)
 
 from get_archetypes import *
 from shared_utils import class_sort
@@ -27,6 +28,7 @@ def override_wr(overrides, win_pcts):
     return win_pcts
 
 def get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0, filename=filename,limitTop=1000):
+    #from get_archetypes import get_archetype
     wr_file = open(filename)
     # returns win_pcts, num_games, game_count, archetypes
     overall_wr = {}
@@ -85,4 +87,4 @@ def wr_from_csv(filename, scaling=1):
 
 if __name__ == "__main__":
     win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, limitTop=40)
-    print wr_from_csv('wr.csv')
+    print(wr_from_csv('wr.csv'))

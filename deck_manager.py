@@ -49,7 +49,7 @@ class EasyDeck():
             res[(card_class, i)] = j
         return res
 
-    def print_deck(self):
+    def deck_print_lines(self):
         res = ""
         total = 0
         deck = []
@@ -66,8 +66,11 @@ class EasyDeck():
                 res += "\n"
                 res += card_class.replace('ZZ_', '') + "\n"
             last_class = card_class
-            res += "%-2s %-25s x%s %s" % (cost, name, count, card_set) + "\n"
-        print(res)
+            res += "%-2s %-26s x%s %s" % (cost, name, count, card_set) + "\n"
+        return res
+
+    def print_deck(self):
+        print(self.deck_print_lines())
 
     def get_distance(self, other_deck):
         s1 = self.card_set

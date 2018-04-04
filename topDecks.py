@@ -1,0 +1,17 @@
+legend_decks = {
+    'Zoo Warlock'               : 'AAECAf0GBJG8ApfBApfTApziAg0w9wSoBc4Hwgi0rAK8tgLrwgKbywL3zQKmzgLy0AL70wIA',
+    'Highlander Priest'         : 'AAECAa0GHgntAfsBlwKcAqEE5QTtBaQH9gelCdIK0wrWCtcK8gz7DJK0AoO7ArW7Ati7AvC7Auq/AtHBAtLBAtjBAtnBAvDPAujQApDTAgAA',
+    'Tempo Rogue'               : 'AAECAaIHBrICrwTyBZG8AsLOApziAgy0Ae0CqAXUBd0IkrYCgcIC68ICm8sCps4C+9MC2+MCAA==',
+    'Aggro Druid'               : 'AAECAZICAvIFkbwCDvcD5gXZB+UHwasCtrMCzbsChsECr8IC68ICm80CkdAC+9MCi+UCAA==',
+    'Jade Druid'                : 'AAECAZICBPIFrqsClL0CmdMCDUBf5Ai0uwLLvALdvgKgzQKHzgKU0gKY0gKe0gLb0wKE5gIA',
+    'Aggro Paladin'             : 'AAECAZ8FBK8E8gWRvAK5wQINpwXUBfUFrwfZB7EI2a4CuMcC48sClc4C+NIC+9MC1uUCAA==',
+    'Dragon Priest'             : 'AAECAa0GBvYHpQnSCtYKvsgC/OoCDPgC5QSNCNEK8gyCtQK1uwK6uwLwuwLRwQLYwQLL5gIA',
+    'Cube Warlock'              : 'AAECAf0GBPIFl9MCneIC2+kCDZME9wS2B+EHxAjexALnywLy0AL40AKI0gKL4QL85QLo5wIA',
+    'Spiteful Summoner Priest'  : 'AAECAa0GAo0I0OcCDgjyDIK1Arq7AvC7AtnBAsrDApnIAsrLAs7MAqbOAvvTAsvmAtfrAgA=',
+    'Aggro Hunter'              : 'AAECAR8ErwTyBdsJkbwCDagCtQOoBdQF2QfrB/4M6rsC5MICjsMC+9MC4eMCi+UCAA==',
+    'Murloc Paladin'            : 'AAECAZ8FArEIucECDsUD2wP+A6cFpwjTqgLTvAKzwQKdwgKxwgLjywL40gL70wLW5QIA',
+    'Demon Warlock'             : 'AAECAf0GBooHzAjgrAKgzgKX0wLY5wIM8gXbBrYHm8IC3sQC58sC980C8tACiNIC/OUC6uYC6OcCAA==',
+    'Secret Mage'               : 'AAECAf0EBMABvwijtgKi0wINcbsClQPmBJYF7AXXtgLrugKHvQLBwQKYxAKP0wL70wIA',
+    'Exodia Mage'               : 'AAECAf0EBO0EuAjQwQK50QINigHAAZwCyQOrBMsE5gT4B5KsAoGyAsHBApjEAtrFAgA=',
+    'Mill Rogue'                : 'AAECAaIHCLICqAipzQKxzgKA0wLQ4wLf4wK77wILigG0AcQB7QLLA80D+AeGCamvAuXRAtvjAgA=',
+}

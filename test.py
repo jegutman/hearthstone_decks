@@ -9,4 +9,7 @@ import sys
 decks = []
 for deckstring in sys.argv[1:]:
     decks.append(EasyDeck(deckstring))
-print_side_by_side_diff(decks)
+if len(decks) > 1:
+    print_side_by_side_diff(decks)
+else:
+    decks[0].print_deck()

@@ -2,11 +2,15 @@ import itertools
 import math
 
 def win_rates_grid(decks_a, decks_b, win_pcts,num_games=None):
+    print(win_rates_lines(decks_a, decks_b, win_pcts,num_games))
+    
+def win_rates_lines(decks_a, decks_b, win_pcts,num_games=None):
+    res = ""
     top_line = "%-20s" % "x"
     for deck in decks_b:
         top_line += "%-20s" % deck
     top_line += "%-20s" % 'average'
-    print top_line
+    res += top_line + '\n'
     for deck in decks_a:
         line = "%-20s" % deck
         wrs = []
@@ -17,7 +21,8 @@ def win_rates_grid(decks_a, decks_b, win_pcts,num_games=None):
             line += "%6s (%5s)      " % (wr, ng)
         avg = round(sum(wrs) / len(wrs), 1)    
         line += "%6s              " % avg
-        print line
+        res += line + '\n'
+    return res
     
 def similarity(deck_a, deck_b, win_pcts, archetypes, debug=False):
     tmp = [d for d in archetypes if d not in (deck_a,deck_b)]
@@ -25,7 +30,7 @@ def similarity(deck_a, deck_b, win_pcts, archetypes, debug=False):
     for i in tmp:
         diff = win_pcts[(deck_a,i)] - win_pcts[(deck_b,i)]
         if debug:
-            print "%-25s %s" % (i, diff)
+            print("%-25s %s" % (i, diff))
         sigma2 += diff ** 2
     return math.sqrt(sigma2 / len(tmp))
     
@@ -78,10 +83,6 @@ def generate_lineups(archetypes, unbeatable=False, num_classes=4):
             if check_lineup(decks, archetype_map, num_classes):
                 #if decks not in lineups:
                 lineups.append(decks)
-            #if len(set(classes)) == num_classes:
-            #    #print decks
-            #    if decks not in lineups:
-            #        lineups.append(decks)
     return lineups, archetype_map
 
 def get_win_pct(a,b, win_pcts):
@@ -91,7 +92,8 @@ def get_win_pct(a,b, win_pcts):
     res = win_pcts.get((a,b))
     if res == None:
         res = 0.49999
-        #print "missing win rate for %s : %s" % (a,b)
+    #if a == 'OTK DK Paladin':
+    #    return win_pcts.get((a,b), 0) + 0.03
     return win_pcts.get((a,b), 0)
 
 def sumproduct_normalize(a, b):

@@ -1,27 +1,30 @@
 archetype_to_example = {
-    "Aggro Druid"                   : 'AAECAZICAtkHkbwCDvcD5gXlB8GrArazAs27AobBAq/CAuTCAuvCApvNApHQAvvTAovlAgA=',
-    "Big Druid"                     : 'AAECAZICCsIGogmfsALguwLJxwLCzgKZ0wLm0wL94QLx6gIKQF/EBuQIvq4Cy7wC+cACoM0Ch84C3esCAA==',
-    "Jade Druid"                    : 'AAECAZICBpAHrqsCvq4C4LsClL0CmdMCDEBfxAbkCLS7Asu8As+8At2+AqDNAofOAqbOAvvTAgA=',
-    "Quest Druid"                   : 'AAECAZICBrQD4LsCi8ECmNICntICmdMCDEBf0wOTBMQG5AjLvAKgzQKHzgL70wKa5AKE5gIA',
+    "Quest Druid"                   : 'AAECAZICBrQDxQShtwLguwKLwQKb6AIMQF/pAdMDkwTkCMu8AvfMAofOAp7SAprkAoTmAgA=',
+    "Tempo Druid"                   : 'AAECAZICBq8EiK8Cws4CmdMCnOIC0OcCDPIFvq4CtrMCl8ECn8ICysMC3sQCm8sCyssCh84C+eYC1+sCAA==',
 
-    "Big Priest"                    : 'AAECAZ/HAgaiCaUJqKsChbgCws4CkNMCDNMK1wqhrAK3uwLovwLqvwLRwQLlzALmzAK0zgLo0ALj6QIA',
-    "Highlander Priest"             : 'AAECAZ/HAh4J7QH7AZcCnAKhBOUE7QWQB6QH9gelCdIK0wrWCtcK8gz7DJK0AoO7ArW7Ati7Auq/AtHBAtLBAtjBAtnBAvDPAujQApDTAgAA',
-    "Spiteful Summoner Priest"      : 'AAECAa0GAo0I0OcCDgjyDIK1Arq7AvC7AtnBAsrDApnIAsrLAs7MAqbOAvvTAsvmAtfrAgA=',
+    "Spell Hunter"                  : 'AAECAR8GgAfFCKirAoW4AunSAobTAgyNAagCtQPJBJcI2wn+DPixAt3SAt/SAuPSAuHjAgA=',
 
-    "Tempo Rogue"                   : 'AAECAYO6AgayAq8E1AWRvAKbywKc4gIMtAHtAqgF8gXdCJK2AoHCAuvCAsrLAqbOAvvTAtvjAgA=',
+    "Control Mage"                  : 'AAECAf0ECsABxQTsB/sMobcCwcECoM4Cm9MC29MCo+sCCk2KAckDo7YCysMC38QClscC1eEC1+ECluQCAA==',
+    "Quest Mage"                    : 'AAECAf0EArgI0MECDooBwAGcAskDqwTLBOYE+AeSrAKBsgLBwQKYxALaxQK50QIA',
+    "Secret Mage"                   : 'AAECAf0EBMABo7YC67oCotMCDXG7ApUDqwTmBJYF7AXXtgKHvQLBwQKYxALezQKP0wIA',
 
+    "Control Paladin"               : 'AAECAZ8FCqQD+gaPCfsM4KwC5q4CucECoM4CjtMC3tMCCvsB3AP0BfYH2a4Cm8IC38QCiMcC+NIC6uYCAA==',
+    "Murloc Paladin"                : 'AAECAZ8FBqcF474Cs8ECucECiMcC1uUCDMUD2wOvB6cIsQjTqgLZrgLTvAKdwgKxwgLjywL40gIA',
+    "OTK DK Paladin"                : 'AAECAZ8FCO0F8gXdCp29ArPBArnBAo7TAuPjAgv7AdwD9AX2B9muAvq/At/EAojHAuPLAu3SAvjSAgA=',
+    
+    "Big Priest"                    : 'AAECAZ/HAgiiCaUJqKsChbgCt7sC6r8Cws4C6NACC9IK0wrXCqGsAqesAui/AtHBAuXMAubMArTOAuPpAgA=',
+    "Control Priest"                : 'AAECAa0GBgiiCaqyAs/HAqDOApDTAgyKAZAC0wryDIK1Are7Arq7AuG/Auq/AtHBAsvmAvzqAgA=',
+    "Dragon Priest"                 : 'AAECAa0GBKEGogmlCbW7Ag34AuUEjQjRCvIMgrUCursC8LsC0cEC2MECysMCy+YC/OoCAA==',
+    "Spiteful Priest"               : 'AAECAa0GBOEEigfZwQLQ5wINCI0I8gyCtQK6uwLwuwLKwwKZyALKywLOzALL5gL86gLX6wIA',
+
+    "Quest Rogue"                   : 'AAECAaIHAobCAs/hAg7EAZwC7QKfA4gF1AXjBfgHhgn4vQKXwQL8wQLH0wLb4wIA',
+
+    "Token Evolve Shaman"           : 'AAECAfe5AgSTCYW4ApS9AuvPAg2BBPAH+qoC+6oCoLYCh7wC0bwC9r0C+b8CkcEC68IC+9MC3+kCAA==',
+
+    "Control Warlock"               : 'AAECAf0GCPIFzAjgrAKgzgL40AKX0wLq5gLY5wIL2wa2B8QIm8IC3sQC38QC58sC8tACiNIC/OUC6OcCAA==',
     "Cube Warlock"                  : 'AAECAcn1AgKX0wLb6QIOkwT3BPIFtgfhB8QI3sQC58sC8tAC+NACiNICi+EC/OUC6OcCAA==',
-    "Cube Demon Warlock"            : 'AAECAf0GCPIFigfECMwIycICl9MCl+gC2+kCC/cE2wa2B97EAufLAvLQAvjQAojSAovhAvzlAujnAgA=',
-    "Demon Warlock"                 : 'AAECAf0GBooH4KwCz8cCrs0Cl9MC2OcCDNsGtgfECMwIysMC3sQC58sC8tAC+NACiNIC/OUC6OcCAA==',
 
-    "Secret Mage"                   : 'AAECAf0EBsABqwS/CKO2AqLTAvvTAgxxuwKVA+YElgXsBde2Auu6Aoe9AsHBApjEAo/TAgA=',
-
-    "Aggro Hunter"                  : 'AAECAR8EjQGvBKgFkbwCDagCtQPUBdkH6wfbCf4M6rsCjsMC3dIC+9MC4eMCi+UCAA==',
-    "Summoner Hunter"               : 'AAECAR8EuwWRvALKywLQ5wINqAXUBdkH6wf+DMeuAuq7Ao7DAtfNAvvTAuHjAovlAtfrAgA=',
-
-    "Murloc Paladin"                : 'AAECAYsWBq8H2a4C474CucEC5MICps4CDMUD2wOnCNOqAtO8ArPBAp3CArHCAuPLAvjSAvvTAtblAgA=',
-    "Aggro Paladin"                 : 'AAECAZ8FBK8EzwaRvAK5wQINpwXUBfUFrwfZB7EI2a4CuMcC48sClc4C+NIC+9MC1uUCAA==',
-    "Summoner Aggro Paladin"        : 'AAECAZ8FBOO+ArPBArnBAsrLAg3bA6cIjwnTqgLZrgKqwQKdwgKxwgLjywKmzgL40gL70wLX6wIA',
+    "Control Warrior"               : 'AAECAQcIkAP8BJAHsgi+wwKOzgKgzgKf0wILS6IEkQb/B/sMgq0Cm8ICxsMCzM0Cz+UCz+cCAA==',
     
 }
 

@@ -11,13 +11,10 @@ if __name__ == '__main__':
 
     #level1 = 'Spiteful Summoner Priest,Zoo Warlock,Murloc Paladin,Tempo Rogue'.split(',')
     #level1 = 'Unbeatable,Cube Warlock,Murloc Paladin'.split(',')
-    level1 = 'Highlander Priest,Demon Warlock,Jade Druid'.split(',')
-    level2 = 'Highlander Priest,Cube Warlock,Tempo Rogue'.split(',')
-    level3 = 'Highlander Priest,Cube Warlock,Big Spell Mage'.split(',')
-    level4 = 'Tempo Rogue,Zoo Warlock,Aggro Druid'.split(',')
-    #level2 = "Highlander Priest,Tempo Rogue,Cube Warlock".split(',')
-    #level3 = "Highlander Priest,Jade Druid,Cube Warlock".split(',')
-    #level2 = "Highlander Priest,Jade Druid,Cube Warlock".split(',')
+    level1 = "Secret Mage,Control Priest,Cube Warlock".split(',')
+    level2 = "Zoo Warlock,Spiteful Priest,Secret Mage".split(',')
+    level3 = "Murloc Paladin,Control Priest,Control Warlock".split(',')
+    level4 = "Spiteful Priest,Cube Warlock,Quest Rogue".split(',')
     lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
     weights = [1 for l in [level1, level2, level3, level4, level5] if l is not None]
     
@@ -130,7 +127,8 @@ if __name__ == '__main__':
         lu_strings = []
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
+        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
+        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 2 + min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-27s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))

@@ -1,0 +1,34 @@
+{
+	"token":"NDMwMjEwNDY1NjMzNzk2MTE3.DaM4pg.Lg0_LH0T5tKdIguE8P7UOCKRct4",
+	"max_cards_private": 5,
+	"max_cards_public": 2,
+	"max_enum": 40,
+	"invite_url": "https://discordapp.com/oauth2/authorize?client_id=430210465633796117&scope=bot&permissions=101376",
+	"repos":[
+		{
+			"name": "HearthSim/Hearthstone-Deck-Tracker",
+			"prefixes": ["hdt"],
+			"channels": ["hdt"]
+		},
+		{
+			"name": "HearthSim/HSReplaynet",
+			"prefixes": ["hsreplay", "hsr"],
+			"channels": []
+		},
+		{
+			"name": "HearthSim/Joust",
+			"prefixes": ["joust"],
+			"channels": []
+		},
+		{
+			"name": "HearthSim/HSTracker",
+			"prefixes": ["hstracker", "hst"],
+			"channels": ["hstracker"]
+		},
+		{
+			"name": "HearthSim/hs-bugs",
+			"prefixes": ["bugs", "bug"],
+			"channels": []
+		}
+	]
+}
