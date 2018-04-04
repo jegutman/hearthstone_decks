@@ -17,7 +17,8 @@ if importNew:
     import os
     os.system('curl https://hsreplay.net/api/v1/archetypes/?format=json > archetypes.json')
 
-archetypes_json = json.load(open('archetypes.json'))
+from config import *
+archetypes_json = json.load(open(basedir + '/lineupSolver/archetypes.json'))
 
 archetype_names = {}
 archetype_ids = {}

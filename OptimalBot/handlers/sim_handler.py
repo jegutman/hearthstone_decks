@@ -1,9 +1,5 @@
 import re
 
-import sys
-sys.path
-#sys.path.append('/Users/jgutman/workspace/hearthstone_decks/lineupSolver')
-sys.path.append('/root/workspace/hearthstone_decks/lineupSolver')
 from sim_matchup import *
 from target_utils import *
 

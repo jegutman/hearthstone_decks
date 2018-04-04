@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 
+import sys
+#sys.path.append('/root/workspace/hearthstone_decks/lineupSolver')
+sys.path.append('../')
+from config import basedir
+sys.path.append(basedir)
+sys.path.append(basedir + '/lineupSolver')
+
 import argparse
 import json
 import subprocess
