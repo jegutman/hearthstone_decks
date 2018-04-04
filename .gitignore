@@ -1,6 +1,7 @@
 *.pyc
 *.swp
 *config*.json
+*config*.py
 lineupSolver/win_rates
 *.zip
 *tmp*
