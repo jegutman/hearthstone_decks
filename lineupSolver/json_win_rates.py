@@ -1,7 +1,8 @@
 import json
+from config import basedir
 
 date = '0330'
-base = '/Users/jgutman/workspace/hearthstone_decks/lineupSolver/'
+base = basedir
 #filename = '%(base)swin_rates/hsreplay%(date)s.json' % locals()
 filename = '%(base)swin_rates/hsreplay%(date)slegend.json' % locals()
 #filename = '%(base)swin_rates/hsreplay%(date)sday.json' % locals()
