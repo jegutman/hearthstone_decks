@@ -32,7 +32,7 @@ def get_all_filename(ranks, time):
     ranks, time = name_map[ranks], name_map[time]
     datestr = datetime.datetime.now().strftime("%Y%m%d")
     hourstr = datetime.datetime.now().strftime("%H%M%S")
-    return basedir + '/lineupSolver/win_rates/hsreplay%(datestr)s_%(ranks)s_%(time)s_%(hourstr)s.json' % vars()
+    return basedir + '/lineupSolver/all_wrs/hsreplay%(datestr)s_%(ranks)s_%(time)s_%(hourstr)s.json' % vars()
     
 
 
