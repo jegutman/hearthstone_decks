@@ -24,19 +24,7 @@ CMD_ENUM = "!enum "
 CMD_CHANNEL = "!channel"
 
 USAGE = """
-HearthBot v%s
-Type `!card <search>` in public channels or PM to search for a Hearthstone card.
-
-Example queries:
-* `!card Charge` -> Search for all cards with Charge in the name.
-* `!card "Charge"` -> Search for all cards with the exact name `Charge`.
-* `!card CS2_103` -> Search for a card by ID (exact match - CS2_103 is Charge).
-* `!card 344` -> Search for a card by ID (exact match - 344 is Charge).
-
-Extra arguments (advanced):
-* `!card "Charge" --lang=frFR` -> Output the results in French.
-* `!card "Charge" --reqs` -> List the Play Requirements for the card.
-* `!card "Charge" --tags` -> List the GameTags for the card.
+OptimalBot v0.1
 
 Pro tip: Typo'd your search? Edit it and I will edit my response. :)
 """.strip() % (__version__)
