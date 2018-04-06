@@ -13,8 +13,14 @@ win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_
 
 def sim(my_lineup, opp_lineup):
     res = ""
-    assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
-    assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
+    #assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
+    for d in my_lineup:
+        if d not in archetypes:
+            return 'Could not recognize archetype: "%s"' % d
+    for d in opp_lineup:
+        if d not in archetypes:
+            return 'Could not recognize archetype: "%s"' % d
+    #assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
 
     res += str(my_lineup) +  " vs " + str(opp_lineup) + '\n'
     res += cq_win_rates_lines(my_lineup, opp_lineup, win_pcts,num_games) + '\n'

@@ -1,6 +1,6 @@
+from shared_utils import *
 from json_win_rates import * 
 from conquest_utils import * 
-from shared_utils import *
 
 if __name__ == '__main__':
 

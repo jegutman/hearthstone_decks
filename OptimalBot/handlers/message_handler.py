@@ -14,6 +14,7 @@ __version__ = "1.0.1"
 
 CMD_CARD = "!card "
 CMD_DECK = "!deck "
+CMD_DATA = "!data"
 CMD_TARGET = "!target "
 CMD_SIM = "!sim "
 CMD_SIM_LHS = "!simlhs "
@@ -92,6 +93,10 @@ class MessageHandler:
             await self.handle_deck(message, CMD_DECK, my_message)
             return True
 
+        if message.content.startswith(CMD_DATA):
+            await self.data_check(message, CMD_DATA, my_message)
+            return True
+
         if message.content.startswith(CMD_SIM):
             if not message.channel.is_private:
                 return True
@@ -131,24 +136,32 @@ class MessageHandler:
         await self.check_edit(message, my_message)
 
     async def handle_sim(self, message, cmd, my_message, is_conquest=True):
-        if cmd == CMD_TARGET:
-            response = self.sim_handler.handle_target(
-                message.content[len(cmd):], is_conquest
-            )
-            await self.respond(message, response, my_message)
-        
-            async def handle_sim(self, message, cmd, my_message):
-                response = self.sim_handler.handle_target(message.content[len(cmd):], is_conquest)
-                await self.respond(message, response, my_message)
-        else:
-            response = self.sim_handler.handle(
-                message.content[len(cmd):], is_conquest
-            )
+        #if cmd == CMD_TARGET:
+        #    response = self.sim_handler.handle_target(
+        #        message.content[len(cmd):], is_conquest
+        #    )
+        #    await self.respond(message, response, my_message)
+        #
+        #    async def handle_sim(self, message, cmd, my_message):
+        #        response = self.sim_handler.handle_target(message.content[len(cmd):], is_conquest)
+        #        await self.respond(message, response, my_message)
+        #else:
+        response = self.sim_handler.handle(
+            message.content[len(cmd):], is_conquest
+        )
+        await self.respond(message, response, my_message)
+
+        async def handle_sim(self, message, cmd, my_message):
+            response = self.sim_handler.handle(message.content[len(cmd):], is_conquest)
             await self.respond(message, response, my_message)
 
-            async def handle_sim(self, message, cmd, my_message):
-                response = self.sim_handler.handle(message.content[len(cmd):], is_conquest)
-                await self.respond(message, response, my_message)
+    async def data_check(self, message, cmd, my_message):
+        response = self.sim_handler.data_check()
+        await self.respond(message, response, my_message)
+
+        async def data_check(self, message, cmd, my_message):
+            response = self.sim_handler.data_check()
+            await self.respond(message, response, my_message)
 
     async def handle_deck(self, message, cmd, my_message, collectible=None):
         response = self.deck_handler.handle(

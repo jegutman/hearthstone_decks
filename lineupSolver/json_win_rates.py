@@ -1,15 +1,16 @@
 import json
 from config import basedir
 
-date = '0330'
+date = '0406'
 base = basedir
-#filename = '%(base)swin_rates/hsreplay%(date)s.json' % locals()
-filename = '%(base)swin_rates/hsreplay%(date)slegend.json' % locals()
-#filename = '%(base)swin_rates/hsreplay%(date)sday.json' % locals()
-#filename = '%(base)swin_rates/hsreplay%(date)slegend_day.json' % locals()
-#filename = '%(base)swin_rates/hsreplay%(date)slegend_day.json' % locals()
-#filename = '%(base)swin_rates/hsreplay%(date)s_7day.json' % locals()
-#filename = '%(base)swin_rates/hsreplay%(date)slegend7.json' % locals()
+#filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s.json' % locals()
+#filename = '%(base)slineupSolver/win_rates/hsreplay%(date)slegend.json' % locals()
+filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_7DAYS.json' % locals()
+#filename = '%(base)slineupSolver/win_rates/hsreplay%(date)sday.json' % locals()
+#filename = '%(base)slineupSolver/win_rates/hsreplay%(date)slegend_day.json' % locals()
+#filename = '%(base)slineupSolver/win_rates/hsreplay%(date)slegend_day.json' % locals()
+#filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_7day.json' % locals()
+#filename = '%(base)slineupSolver/win_rates/hsreplay%(date)slegend7.json' % locals()
 
 #import datetime, os
 #filename = 'hsreplay' + datetime.datetime.today().strftime("%m%d") + '.json'

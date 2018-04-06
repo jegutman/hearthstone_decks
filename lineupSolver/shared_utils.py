@@ -1,5 +1,10 @@
 import itertools
 import math
+import sys
+sys.path.append('../')
+from config import basedir
+sys.path.append(basedir)
+
 
 def win_rates_grid(decks_a, decks_b, win_pcts,num_games=None):
     print(win_rates_lines(decks_a, decks_b, win_pcts,num_games))
