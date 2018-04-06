@@ -1,7 +1,7 @@
 import json
 from config import basedir
 
-date = '0406'
+date = '20180406'
 base = basedir
 #filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s.json' % locals()
 #filename = '%(base)slineupSolver/win_rates/hsreplay%(date)slegend.json' % locals()

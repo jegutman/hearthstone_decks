@@ -25,8 +25,14 @@ name_map = {
 
 def get_filename(ranks, time):
     ranks, time = name_map[ranks], name_map[time]
-    datestr = datetime.datetime.now().strftime("%m%d")
+    datestr = datetime.datetime.now().strftime("%Y%m%d")
     return basedir + '/lineupSolver/win_rates/hsreplay%(datestr)s_%(ranks)s_%(time)s.json' % vars()
+
+def get_all_filename(ranks, time):
+    ranks, time = name_map[ranks], name_map[time]
+    datestr = datetime.datetime.now().strftime("%Y%m%d")
+    hourstr = datetime.datetime.now().strftime("%H%M%S")
+    return basedir + '/lineupSolver/win_rates/hsreplay%(datestr)s_%(ranks)s_%(time)s_%(hourstr)s.json' % vars()
     
 
 
@@ -44,4 +50,7 @@ for ranks, time_range in downloads:
     output = open(filename, 'w')
     output.write(htmlContent.text)
     print("writing %(filename)s" % locals())
+    output.close()
+    output = open(get_all_filename(ranks, time_range), 'w')
+    output.write(htmlContent.text)
     output.close()
