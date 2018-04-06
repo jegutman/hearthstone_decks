@@ -1,5 +1,7 @@
 import json
-cards_file = open('/Users/jgutman/workspace/hearthstone_decks/cards.json')
+from config import *
+#cards_file = open('/Users/jgutman/workspace/hearthstone_decks/cards.json')
+cards_file = open(basedir + 'cards.json')
 cards_json = json.load(cards_file)
 
 cards_by_id = {}

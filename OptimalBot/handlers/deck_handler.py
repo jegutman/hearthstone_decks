@@ -12,4 +12,7 @@ class DeckHandler():
             pass
 
 	def handle(self, input, collectible=None):
-            return '`' + EasyDeck(input).deck_print_lines() + '`'
+            try:
+                return '`' + EasyDeck(input).deck_print_lines() + '`'
+            except:
+                return '`%s`' % "Error: Bad deckstring"
