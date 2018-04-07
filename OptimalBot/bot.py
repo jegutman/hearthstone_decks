@@ -31,7 +31,7 @@ def main():
 
     @client.event
     async def on_message(message):
-                await message_handler.handle(message)
+        await message_handler.handle(message)
 
     client.run(config["token"])
 
