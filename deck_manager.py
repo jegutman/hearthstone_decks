@@ -148,13 +148,10 @@ def print_side_by_side_diff(list_of_decks):
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
-    sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['playerClass'].replace('NEUTRAL', 'ZZ_NEUTRAL'), cards[x[1]]['cost'], cards[x[1]]['name']))
-    last_class = ""
+    #sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['playerClass'].replace('NEUTRAL', 'ZZ_NEUTRAL'), cards[x[1]]['cost'], cards[x[1]]['name']))
+    # dont sort player class
+    sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['cost'], cards[x[1]]['name']))
     for card_class, card_number in sorted_card_set:
-        if card_class != last_class:
-            print("")
-            print(card_class.replace('ZZ_', ''))
-            last_class = card_class
         card_name = cards[card_number]['name']
         print("%-5s" % cards[card_number]['cost'], end = "")
         for dl in deck_cards_to_print:
@@ -167,21 +164,14 @@ def print_side_by_side_diff(list_of_decks):
 
 def side_by_side_diff_lines(list_of_decks):
     list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
-    #get_cards_to_print
     deck_cards_to_print = [d.get_cards_to_print() for d in list_of_decks]
+    diffs = []
     res = []
-    #for dl in list_of_decks:
-    #    print("     %-20s     " % (dl.name), end = "")
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
-    sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['playerClass'].replace('NEUTRAL', 'ZZ_NEUTRAL'), cards[x[1]]['cost'], cards[x[1]]['name']))
-    last_class = ""
+    sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['cost'], cards[x[1]]['name']))
     for card_class, card_number in sorted_card_set:
-        if card_class != last_class:
-            res.append("")
-            res.append(card_class.replace('ZZ_', ''))
-            last_class = card_class
         card_name = cards[card_number]['name']
         line = ""
         line += "%-5s" % cards[card_number]['cost']
