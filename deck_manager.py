@@ -162,7 +162,6 @@ def side_by_side_diff_lines(list_of_decks):
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
     sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['cost'], cards[x[1]]['name']))
-    print(sorted_card_set)
     for card_class, card_number in sorted_card_set:
         card_name = cards[card_number]['name']
         diffs[card_name] = 0
