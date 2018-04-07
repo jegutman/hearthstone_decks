@@ -55,12 +55,7 @@ class EasyDeck():
                 card_class = "ZZ_NEUTRAL"
             deck.append([card_class, cost, name, count, card_set])
         deck.sort(key=lambda x:x[1:])
-        last_class = ""
         for card_class, cost, name, count, card_set in deck:
-            if card_class != last_class:
-                res += "\n"
-                res += card_class.replace('ZZ_', '') + "\n"
-            last_class = card_class
             res += "%-2s %-26s x%s %s" % (cost, name, count, card_set) + "\n"
         return res
 
