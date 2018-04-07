@@ -45,7 +45,7 @@ class EasyDeck():
         return res
 
     def deck_print_lines(self):
-        res = ""
+        res = "\n"
         total = 0
         deck = []
         for i,j in self.deck.cards:
