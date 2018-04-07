@@ -1,15 +1,23 @@
+import sys
+sys.path.append('../')
+from config import basedir
+from shared_utils import *
 from json_win_rates import *
 
 #hs_win_pcts, num_games, game_count, archetypes = get_win_pcts()
 
 date = '0118'
-file1 = 'win_rates/hsreplay%(date)slegend.json' % locals()
-#file1 = 'win_rates/hsreplay%(date)s.json' % locals()
-#date = '0118'
-file2 = 'win_rates/hsreplay%(date)s.json' % locals()
+if len(sys.argv) == 1:
+    file1 = 'win_rates/hsreplay%(date)slegend.json' % locals()
+    #file1 = 'win_rates/hsreplay%(date)s.json' % locals()
+    #date = '0118'
+    file2 = 'win_rates/hsreplay%(date)s.json' % locals()
+else:
+    file1 = sys.argv[1]
+    file2 = sys.argv[2]
 
-win_pcts_1, num_games_1, game_count_1, hsreplay_archetypes_1, overall_wr_1 = get_win_pcts(filename=file1)
-win_pcts_2, num_games_2, game_count_2, hsreplay_archetypes_2, overall_wr_2 = get_win_pcts(filename=file2)
+win_pcts_1, num_games_1, game_count_1, hsreplay_archetypes_1, overall_wr_1 = get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0, filename=file1,limitTop=40)
+win_pcts_2, num_games_2, game_count_2, hsreplay_archetypes_2, overall_wr_2 = get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0, filename=file2,limitTop=40)
 
 top_archetypes_1 = sorted(game_count_1.keys(),key=lambda x:game_count_1.get(x,0), reverse=True)[:8]
 top_archetypes_2 = sorted(game_count_2.keys(),key=lambda x:game_count_2.get(x,0), reverse=True)[:12]
