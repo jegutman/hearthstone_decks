@@ -6,7 +6,6 @@ from datetime import datetime
 from .sim_handler import SimHandler
 from .deck_handler import DeckHandler
 from .card_handler import CardHandler
-from .issue_handler import IssueHandler
 
 
 __version__ = "1.0.1"
@@ -20,7 +19,6 @@ CMD_SIM = "!sim "
 CMD_SIM_LHS = "!simlhs "
 CMD_HELP = "!help"
 CMD_TAG = "!tag "
-CMD_ENUM = "!enum "
 CMD_CHANNEL = "!channel"
 
 USAGE = """
@@ -40,7 +38,6 @@ def log_message(message):
 class MessageHandler:
     def __init__(self, config, client):
         self.client = client
-        self.issue_handler = IssueHandler(config["repos"])
         self.card_handler = CardHandler()
         self.deck_handler = DeckHandler()
         self.sim_handler = SimHandler()
@@ -55,14 +52,6 @@ class MessageHandler:
             return
         if await self.handle_cmd(message):
             return
-
-        matches = re.findall(r"(?<!<)(\w+)?#(\d+)($|\s|[^\w])", message.content)
-        for match in matches:
-            prefix = match[0]
-            issue = match[1]
-            response = self.issue_handler.handle(message.channel.name, prefix, issue)
-            if response is not None:
-                await self.client.send_message(message.channel, response)
 
     async def handle_cmd(self, message, my_message=None):
         ALLOWED_CHANNELS = ["decklists"]

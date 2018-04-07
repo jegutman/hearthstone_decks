@@ -86,6 +86,22 @@ def get_cards_by_cost(cost, useStandard=True, minions_only=True):
         return [c for c in fullset if c.get('cost', -1) == cost and c.get('type') == 'MINION']
     else:
         return [c for c in fullset if c.get('cost', -1) == cost]
+
+def get_cards_filtered(cost=None, class_filter=None, card_set=None, minions_only=False):
+    if card_set is None:
+        fullset = all_cards_standard
+    else:
+        fullset = card_set
+    res_tmp = [c for c in fullset]
+    if cost:
+        res_tmp = [c for c in res_tmp if c.get('cost') == cost]
+    if minions_only:
+        res_tmp = [c for c in res_tmp if c.get('type') == 'MINION']
+    if class_filter:
+        res_tmp = [c for c in res_tmp if c.get('cardClass') in class_filter]
+    return res_tmp
+
+
 def get_minions_by_attack(attack, useStandard=True):
     fullset = all_cards_standard if useStandard else all_cards_wild
     return sorted([c for c in fullset if c.get('attack', -1) == attack and c.get('type') == 'MINION'], key=lambda x:x.get('cost'))
