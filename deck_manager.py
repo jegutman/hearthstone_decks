@@ -166,7 +166,7 @@ def side_by_side_diff_lines(list_of_decks):
     list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
     deck_cards_to_print = [d.get_cards_to_print() for d in list_of_decks]
     diffs = []
-    res = []
+    res = [""]
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
