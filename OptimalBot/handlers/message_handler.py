@@ -27,7 +27,7 @@ USAGE = """
 OptimalBot v0.1
 
 Pro tip: Typo'd your search? Edit it and I will edit my response. :)
-""".strip() % (__version__)
+""".strip()
 
 def log_message(message):
     timestamp = datetime.now().isoformat()
