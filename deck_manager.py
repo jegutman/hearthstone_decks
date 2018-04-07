@@ -41,7 +41,6 @@ class EasyDeck():
             count, name, card_class, cost = j, cards[i]['name'], cards[i]['playerClass'], cards[i]['cost']
             if card_class == 'NEUTRAL':
                 card_class = "ZZ_NEUTRAL"
-            res[(card_class, i)] = j
         return res
 
     def deck_print_lines(self):
@@ -176,18 +175,19 @@ def side_by_side_diff_lines(list_of_decks):
             else:
                 card_count = "  "
             if isFirst:
-                diffs[card_name] += card_count_tmp
+                diffs[card_name] -= card_count_tmp
                 line += "%-27s %2s  " % (card_name, card_count)
                 isFirst = False
             else:
-                diffs[card_name] -= card_count_tmp
+                diffs[card_name] += card_count_tmp
                 line += " %2s  " % (card_count)
         res.append(line)
     res.append("")
-    for card_name in sorted(diffs, key=lambda x:(diffs[x], cost[x])):
-        if diffs[card_name] != 0:
-            diff = diffs[card_name]
-            if diff > 0:
-                diff = "+%s" % diff
-            res.append("    %2s %s" % (diff, card_name))
+    if len(list_of_decks) == 2:
+        for card_name in sorted(diffs, key=lambda x:(diffs[x], cost[x])):
+            if diffs[card_name] != 0:
+                diff = diffs[card_name]
+                if diff > 0:
+                    diff = "+%s" % diff
+                res.append("    %2s %s" % (diff, card_name))
     return '\n'.join(res)
