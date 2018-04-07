@@ -59,7 +59,7 @@ class EasyDeck():
             if card_class == 'NEUTRAL':
                 card_class = "ZZ_NEUTRAL"
             deck.append([card_class, cost, name, count, card_set])
-        deck.sort()
+        deck.sort(key=lambda x:x[1:])
         last_class = ""
         for card_class, cost, name, count, card_set in deck:
             if card_class != last_class:
