@@ -1,3 +1,4 @@
+from shared_utils import *
 from json_win_rates import * 
 from conquest_utils import win_rates_lines as cq_win_rates_lines
 from conquest_utils import post_ban as cq_post_ban
@@ -7,7 +8,6 @@ from conquest_utils import pre_ban_old as cq_pre_ban_old
 from lhs_utils import win_rates_lines as lhs_win_rates_lines
 from lhs_utils import win_rate as lhs_win_rate
 from lhs_utils import pre_ban as lhs_pre_ban
-from shared_utils import *
 
 win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
 

@@ -16,7 +16,7 @@ CMD_DATA = "!data"
 CMD_SIM = "!sim "
 CMD_SIM_LHS = "!simlhs "
 CMD_HELP = "!help"
-CMD_CHANNEL = "!channel"
+#CMD_CHANNEL = "!channel"
 #CMD_OWNER = "!owner"
 
 USAGE = """
@@ -76,8 +76,8 @@ class MessageHandler:
             await self.handle_sim(message, CMD_SIM_LHS, my_message, is_conquest=False)
             return True
 
-        if message.content.startswith(CMD_CHANNEL):
-            await self.respond(message, str(message.channel.name))
+        #if message.content.startswith(CMD_CHANNEL):
+        #    await self.respond(message, str(message.channel.name))
 
         #if message.content.startswith(CMD_OWNER):
         #    await self.respond_image(message, basedir + 'drlight.jpeg')
