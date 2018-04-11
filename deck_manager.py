@@ -26,7 +26,7 @@ class EasyDeck():
         deck = []
         for i,j in self.deck.cards:
             total += j
-            count, name, card_class, cost = j, cards[i]['name'], cards[i]['playerClass'], cards[i]['cost']
+            count, name, card_class, cost = j, cards[i]['name'], cards[i]['cardClass'], cards[i]['cost']
             if card_class == 'NEUTRAL':
                 card_class = "ZZ_NEUTRAL"
             deck.append([card_class, cost, name, count])
@@ -38,7 +38,7 @@ class EasyDeck():
     def get_cards_to_print(self): 
         res = {}
         for i,j in self.deck.cards:
-            count, name, card_class, cost = j, cards[i]['name'], cards[i]['playerClass'], cards[i]['cost']
+            count, name, card_class, cost = j, cards[i]['name'], cards[i]['cardClass'], cards[i]['cost']
             if card_class == 'NEUTRAL':
                 card_class = "ZZ_NEUTRAL"
             res[(card_class, i)] = j
@@ -50,7 +50,7 @@ class EasyDeck():
         deck = []
         for i,j in self.deck.cards:
             total += j
-            count, name, card_class, cost, card_set = j, cards[i]['name'], cards[i]['playerClass'], cards[i]['cost'], cards[i]['set']
+            count, name, card_class, cost, card_set = j, cards[i]['name'], cards[i]['cardClass'], cards[i]['cost'], cards[i]['set']
             if card_class == 'NEUTRAL':
                 card_class = "ZZ_NEUTRAL"
             deck.append([card_class, cost, name, count, card_set])
@@ -138,7 +138,7 @@ def print_side_by_side_diff(list_of_decks):
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
-    #sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['playerClass'].replace('NEUTRAL', 'ZZ_NEUTRAL'), cards[x[1]]['cost'], cards[x[1]]['name']))
+    #sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['cardClass'].replace('NEUTRAL', 'ZZ_NEUTRAL'), cards[x[1]]['cost'], cards[x[1]]['name']))
     # dont sort player class
     sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['cost'], cards[x[1]]['name']))
     for card_class, card_number in sorted_card_set:
