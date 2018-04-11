@@ -16,4 +16,4 @@ def even(cardClass):
 
 def print_res(cards):
     for i in sorted(cards, key=lambda x:x.get('cost')):
-        print "%2s %s" % (i.get('cost'), i.get('name'))
+        print("%2s %s" % (i.get('cost'), i.get('name')))

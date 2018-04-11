@@ -40,14 +40,12 @@ def lookup_card_name(card):
 
 
 standard_sets = [
-    'OG', 
     'ICECROWN', 
     'CORE', 
     'EXPERT1', 
     'UNGORO', 
-    'GANGS', 
-    'KARA', 
     'LOOTAPALOOZA',
+    'GILNEAS',
 ]
 
 rotation_sets = [
