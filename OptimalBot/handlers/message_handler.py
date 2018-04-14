@@ -41,7 +41,7 @@ class MessageHandler:
         self.invite_url = config.get("invite_url", "")
 
     async def handle(self, message):
-        ALLOWED_CHANNELS_BASIC = ["decklists"]
+        ALLOWED_CHANNELS_BASIC = ["decklists", "spooky"]
         if str(message.channel.name) not in ALLOWED_CHANNELS_BASIC:
             if not message.channel.is_private:
                 return True
@@ -51,7 +51,7 @@ class MessageHandler:
             return
 
     async def handle_cmd(self, message, my_message=None):
-        ALLOWED_CHANNELS = ["decklists"]
+        ALLOWED_CHANNELS = ["decklists", "spooky"]
 
         if message.content.startswith(CMD_DECK):
             if str(message.channel.name) not in ALLOWED_CHANNELS:
