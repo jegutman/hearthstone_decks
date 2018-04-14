@@ -39,7 +39,6 @@ class MessageHandler:
         self.client = client
         self.deck_handler = DeckHandler()
         self.sim_handler = SimHandler()
-        self.invite_url = config.get("invite_url", "")
         self.logger = BotLogger()
         self.deckstring_re = re.compile('(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}){12,}')
 
@@ -55,6 +54,10 @@ class MessageHandler:
 
     async def handle_cmd(self, message, my_message=None):
         ALLOWED_CHANNELS = ["decklists", "spooky"]
+    
+        deckstring_match = self.deckstring_re.search(message.content)
+        if deckstring_match:
+            self.logger.info_log('\n    %s\n    %s\n    MATCH: %s' % (message.author, message.content, deckstring_match.group()))
 
         if message.content.startswith(CMD_DECK):
             if str(message.channel.name) not in ALLOWED_CHANNELS:
@@ -78,10 +81,6 @@ class MessageHandler:
                 return True
             await self.handle_sim(message, CMD_SIM_LHS, my_message, is_conquest=False)
             return True
-    
-        deckstring_match = self.deckstring_re.search(message.content)
-        if deckstring_match:
-            self.logger.log_info('%s\n    %s') % (message.content, deckstring_match.group())
             
 
         #if message.content.startswith(CMD_CHANNEL):
