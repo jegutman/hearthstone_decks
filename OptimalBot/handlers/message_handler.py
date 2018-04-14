@@ -3,6 +3,7 @@ import asyncio
 import re
 import sys
 from datetime import datetime
+from bot_logger import BotLogger
 
 from .sim_handler import SimHandler
 from .deck_handler import DeckHandler
@@ -39,6 +40,8 @@ class MessageHandler:
         self.deck_handler = DeckHandler()
         self.sim_handler = SimHandler()
         self.invite_url = config.get("invite_url", "")
+        self.logger = BotLogger()
+        self.deckstring_re = re.compile('(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}){12,}')
 
     async def handle(self, message):
         ALLOWED_CHANNELS_BASIC = ["decklists", "spooky"]
@@ -75,6 +78,11 @@ class MessageHandler:
                 return True
             await self.handle_sim(message, CMD_SIM_LHS, my_message, is_conquest=False)
             return True
+    
+        deckstring_match = self.deckstring_re.search(message.content)
+        if deckstring_match:
+            self.logger.log_info('%s\n    %s') % (message.content, deckstring_match.group())
+            
 
         #if message.content.startswith(CMD_CHANNEL):
         #    await self.respond(message, str(message.channel.name))
