@@ -74,6 +74,7 @@ class EasyDeck():
     def get_class(self):
         class_map = {
             274  : 'Druid',
+            50484: 'Druid',
             671  : 'Paladin',
             2827 : 'Paladin',
             46116: 'Paladin',
