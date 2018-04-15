@@ -3,13 +3,12 @@ import asyncio
 import re
 import sys
 from datetime import datetime
+from deck_db import DeckDBHandler
 from bot_logger import BotLogger
 
 from .sim_handler import SimHandler
 from .deck_handler import DeckHandler
 
-
-__version__ = "1.0.1"
 
 
 CMD_DECK = "!deck "
@@ -40,6 +39,7 @@ class MessageHandler:
         self.deck_handler = DeckHandler()
         self.sim_handler = SimHandler()
         self.logger = BotLogger()
+        self.deck_db_handler = DeckDBHandler(self.logger)
         self.deckstring_re = re.compile('(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}){12,}')
 
     async def handle(self, message):
@@ -57,7 +57,9 @@ class MessageHandler:
     
         deckstring_match = self.deckstring_re.search(message.content)
         if deckstring_match:
-            self.logger.info_log('\n    %s\n    %s\n    MATCH: %s' % (message.author, message.content, deckstring_match.group()))
+            deck_code = deckstring_match.group()
+            self.logger.info_log('\n    %s\n    %s\n    MATCH: %s' % (message.author, message.content, deck_code))
+            self.deck_db_handler.process_deck(message, deck_code)
 
         if message.content.startswith(CMD_DECK):
             if str(message.channel.name) not in ALLOWED_CHANNELS:
