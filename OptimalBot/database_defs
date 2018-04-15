@@ -1,0 +1,36 @@
+time, date, server, user, deck_id (auto-generated), deck_name, deck_class, deck_code
+
+
+seperate database with cards?
+
+database with just code to deck_id?
+
+time, date, server, user, deck_id (auto-generated), deck_name, deck_class, deck_code
+
+CREATE TABLE decks
+(
+    deck_id        int(11) NOT NULL auto_increment,
+    time           int(32) NOT NULL, 
+    date           varchar(10) NOT NULL,
+    server         varchar(32) NOT NULL,
+    user           varchar(32) NOT NULL,
+    deck_name      varchar(32),
+    deck_archetype varchar(32),
+    deck_class     varchar(8) NOT NULL,
+    deck_code      varchar(128) NOT NULL,
+    PRIMARY KEY(deck_id)
+)
+
+CREATE TABLE deck_ids
+(
+    deck_id        int(11),
+    deck_code      varchar(128) NOT NULL,
+    PRIMARY KEY(deck_id)
+)
+
+CREATE TABLE deck_to_cards
+(
+    deck_id        int(11),
+    card_id        int(11),
+    PRIMARY KEY(deck_id, card_id)
+)
