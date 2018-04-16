@@ -12,6 +12,7 @@ RANGE = ['LAST_1_DAY', 'LAST_3_DAYS', 'LAST_7_DAYS']
 
 downloads = [
     ('LEGEND_ONLY', 'LAST_1_DAY'),
+    ('LEGEND_ONLY', 'LAST_3_DAYS'),
     ('LEGEND_ONLY', 'LAST_7_DAYS'),
     ('LEGEND_THROUGH_FIVE', 'LAST_7_DAYS'),
 ]
