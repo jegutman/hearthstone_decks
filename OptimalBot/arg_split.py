@@ -19,4 +19,11 @@ def get_args(string_to_parse):
         i += 1
     if tmp_res:
         res.append(tmp_res)
-    return res
+    args = []
+    flags = {}
+    for i in res:
+        if len(i) == 1:
+            args.append(i[0])
+        else:
+            flags[i[0].replace('--', '')] = " ".join(i[1:])
+    return args, flags
