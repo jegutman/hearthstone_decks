@@ -55,10 +55,6 @@ class MessageHandler:
     async def handle_cmd(self, message, my_message=None):
         ALLOWED_CHANNELS = ["decklists", "spooky"]
     
-        deckstring_matches = self.deckstring_re.findall(message.content)
-        for deck_code in deckstring_matches:
-            self.logger.info_log('\n    %s\n    %s\n    MATCH: %s' % (message.author, message.content, deck_code))
-            self.deck_db_handler.process_deck(message, deck_code)
 
         if message.content.startswith(CMD_DECK):
             if str(message.channel.name) not in ALLOWED_CHANNELS:
@@ -66,6 +62,11 @@ class MessageHandler:
                     return True
             await self.handle_deck(message, CMD_DECK, my_message)
             return True
+        else:
+            deckstring_matches = self.deckstring_re.findall(message.content)
+            for deck_code in deckstring_matches:
+                self.logger.info_log('\n    %s\n    %s\n    MATCH: %s' % (message.author, message.content, deck_code))
+                self.deck_db_handler.process_deck(message, deck_code)
 
         if message.content.startswith(CMD_DATA):
             await self.data_check(message, CMD_DATA, my_message)
@@ -123,13 +124,11 @@ class MessageHandler:
             await self.respond(message, response, my_message)
 
     async def handle_deck(self, message, cmd, my_message, collectible=None):
-        response = self.deck_handler.handle(
-            message.content[len(cmd):]
-        )
+        response = self.deck_handler.handle(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
 
         async def handle_deck(self, message, cmd, my_message):
-            response = self.deck_handler.handle(message.content[len(cmd):], self.max_resposne(message))
+            response = self.deck_handler.handle(message.content[len(cmd):], message, self.deck_db_handler)
             await self.respond(message, response, my_message)
 
     async def check_edit(self, message, sent):
