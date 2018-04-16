@@ -8,11 +8,8 @@ except ImportError:
 from twitter import Twitter, OAuth, TwitterHTTPError, TwitterStream
 
 # Variables that contains the user credentials to access Twitter API 
-ACCESS_TOKEN = '985948149444472832-sJzKoJORmel0ufUOjbPVwVTWqgpIAb1'
-ACCESS_SECRET = 'bQKvb0129wSVC9MWHgOv6ATr2vTBkFcPfA0nYdTeavvua'
-CONSUMER_KEY = '6vVZjk67PKMQzuG3obxbFw7YA'
-CONSUMER_SECRET = 'h24LP0XBmfeuFpTxyK0sCoYLKcIpTO6c7tfLZpeiVlEfDCAeYI'
 
+from twitter_config import *
 oauth = OAuth(ACCESS_TOKEN, ACCESS_SECRET, CONSUMER_KEY, CONSUMER_SECRET)
 
 # Initiate the connection to Twitter Streaming API
