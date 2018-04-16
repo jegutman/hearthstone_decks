@@ -28,14 +28,16 @@ class DeckDBHandler():
         self.logger = logger
         self.query_dc = "SELECT * FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
         
-    def process_deck(self, message, deck_code, name=None):
+    def process_deck(self, message, deck_code, name=None, archetype=None):
         # TODO: Check the deck not already in database
         db, table = 'deckstrings,decks'.split(',')
+
+        deck_code      = deck_code
+
         self.cursor.execute(self.query_dc % locals())
         if self.cursor.fetchone():
             self.logger.error_log('Deck Code already in DB: %s' % deck_code)
             return False
-        deck_code      = deck_code
         try:
             deck = EasyDeck(deck_code)
         except:
@@ -50,7 +52,7 @@ class DeckDBHandler():
         deck_class     = deck.get_class()
         #deck_archetype varchar(32),
         #deck_name      varchar(32),
-        return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class)
+        return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
         
     def insert_cards(self, deck, deck_id):
         db = 'deckstrings'

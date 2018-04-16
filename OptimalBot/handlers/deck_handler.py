@@ -8,20 +8,19 @@ class DeckHandler():
     def __init__(self):
             pass
 
-    def handle(self, arguments, collectible=None):
-        args = get_args(arguments)
-        deckstrings = []
-        flags = {}
-        for i in args:
-            if len(args) == 1:
-                deckstrings.append(i)
-            else:
-                flags[i[0].replace('--', '')] = " ".join(i[1:])
-        try:
-            deckstrings = deckstrings.split(' ')
-            if len(deckstrings) == 1:
+    def handle(self, args, message, deck_db_handler):
+        deckstrings, flags = get_args(args)
+        if len(deckstrings) == 1:
+            deck_code = deckstrings[0]
+            deck_name = flags.get('name')
+            deck_archetype = flags.get('archetype')
+            deck_db_handler.process_deck(message, deck_code, name=deck_name, archetype=deck_archetype)
+            try:
                 return '`' + EasyDeck(deckstrings[0]).deck_print_lines() + '`'
-            else:
+            except:
+                return '`%s`' % "Error: Bad deckstring"
+        else:
+            try:
                 return '`' + side_by_side_diff_lines([EasyDeck(i) for i in deckstrings]) +'`'
-        except:
-            return '`%s`' % "Error: Bad deckstring"
+            except:
+                return '`%s`' % "Error: Bad deckstring"
