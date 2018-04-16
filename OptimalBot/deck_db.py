@@ -52,9 +52,19 @@ class DeckDBHandler():
         #deck_name      varchar(32),
         return self.insert_deck(time, date, server, user, is_private, deck_code, deck_class)
         
+    def insert_cards(self, deck, deck_id):
+        db = 'deckstrings'
+        try:
+            for card_id, quantity in deck.deck.cards:
+                self.cursor.execute("INSERT INTO %(db)s.deck_to_cards (deck_id, card_id, quantity) VALUES (%(deck_id)s, %(card_id)s, %(quantity)s)" % locals())
+            self.connection.commit()
+        except:
+            self.logger.error_log('Failed INSERT into deck_to_cards: %(deck_id)s' % locals())
+            return False
+        return True
     
-    def insert_deck(self, time, date, server, user, is_private, deck_code, deck_class, deck_archetype = None, deck_name = None):
-        db, table = 'deckstrings,decks'.split(',')
+    def insert_deck(self, deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype = None, deck_name = None):
+        db = 'deckstrings'
         if deck_archetype: 
             deck_archetype = "'%s'" % deck_archetype
         else:
@@ -63,9 +73,24 @@ class DeckDBHandler():
             deck_name = "'%s'" % deck_name
         else:
             deck_name = 'null'
-        #sys.stdout.write("""INSERT INTO %(db)s.%(table)s       (time, date, server, user, is_private, deck_code, deck_class, deck_archetype, deck_name)
-        #               VALUES (%(time)s, '%(date)s', '%(server)s', '%(user)s', %(is_private)s, '%(deck_code)s', '%(deck_class)s', %(deck_archetype)s, %(deck_name)s)""" % locals())
-        self.cursor.execute("""INSERT INTO %(db)s.%(table)s      (time, date, server, user, is_private, deck_code, deck_class, deck_archetype, deck_name)
-                               VALUES (%(time)s, '%(date)s', '%(server)s', '%(user)s', %(is_private)s, '%(deck_code)s', '%(deck_class)s', %(deck_archetype)s, %(deck_name)s)""" % locals())
-        self.connection.commit()
+        try:
+            self.cursor.execute("""INSERT INTO %(db)s.decks (time, date, server, user, is_private, deck_code, deck_class, deck_archetype, deck_name)
+                                   VALUES (%(time)s, '%(date)s', '%(server)s', '%(user)s', %(is_private)s, '%(deck_code)s', '%(deck_class)s', %(deck_archetype)s, %(deck_name)s)""" % locals())
+            self.connection.commit()
+        except:
+            self.logger.error_log('Insert Failed: %(deck_code)s' % locals())
+            return False
+        try:
+            self.cursor.execute("SELECT deck_id FROM %(db)s.decks WHERE deck_code = '%(deck_code)s'" % locals())
+            deck_id = self.cursor.fetchone()[0]
+        except:
+            self.logger.error_log('Could not find code: %(deck_code)s' % locals())
+            return False
+        try:
+            self.cursor.execute("INSERT INTO %(db)s.deck_ids (deck_id, deck_code) VALUES (%(deck_id)s, '%(deck_code)s')" % locals())
+            self.connection.commit()
+        except:
+            self.logger.error_log('Failed Insert Into deck_ids: %(deck_id)s %(deck_code)s' % locals())
+            return False
+        self.insert_cards(deck, deck_id)
         return True
