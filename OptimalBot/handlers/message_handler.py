@@ -55,9 +55,8 @@ class MessageHandler:
     async def handle_cmd(self, message, my_message=None):
         ALLOWED_CHANNELS = ["decklists", "spooky"]
     
-        deckstring_match = self.deckstring_re.search(message.content)
-        if deckstring_match:
-            deck_code = deckstring_match.group()
+        deckstring_matches = self.deckstring_re.findall(message.content)
+        for deck_code in deckstring_matches:
             self.logger.info_log('\n    %s\n    %s\n    MATCH: %s' % (message.author, message.content, deck_code))
             self.deck_db_handler.process_deck(message, deck_code)
 
