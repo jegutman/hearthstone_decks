@@ -50,7 +50,7 @@ class DeckDBHandler():
         deck_class     = deck.get_class()
         #deck_archetype varchar(32),
         #deck_name      varchar(32),
-        return self.insert_deck(time, date, server, user, is_private, deck_code, deck_class)
+        return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class)
         
     def insert_cards(self, deck, deck_id):
         db = 'deckstrings'
