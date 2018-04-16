@@ -31,11 +31,13 @@ class DeckDBHandler():
     def process_deck(self, message, deck_code, name=None):
         # TODO: Check the deck not already in database
         db, table = 'deckstrings,decks'.split(',')
+
+        deck_code      = deck_code
+
         self.cursor.execute(self.query_dc % locals())
         if self.cursor.fetchone():
             self.logger.error_log('Deck Code already in DB: %s' % deck_code)
             return False
-        deck_code      = deck_code
         try:
             deck = EasyDeck(deck_code)
         except:

@@ -13,12 +13,15 @@ class DeckHandler():
         deckstrings = []
         flags = {}
         for i in args:
-            if len(args) == 1:
-                deckstrings.append(i)
+            if len(i) == 1:
+                deckstrings.append(i[0])
             else:
                 flags[i[0].replace('--', '')] = " ".join(i[1:])
+
+        #deckstrings = arguments
+        #deckstrings = deckstrings.split(' ')
+
         try:
-            deckstrings = deckstrings.split(' ')
             if len(deckstrings) == 1:
                 return '`' + EasyDeck(deckstrings[0]).deck_print_lines() + '`'
             else:
