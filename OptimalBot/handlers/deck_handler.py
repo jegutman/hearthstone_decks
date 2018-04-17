@@ -24,3 +24,14 @@ class DeckHandler():
                 return '`' + side_by_side_diff_lines([EasyDeck(i) for i in deckstrings]) +'`'
             except:
                 return '`%s`' % "Error: Bad deckstring"
+    
+    def handle_update(self, args, message, deck_db_handler):
+        deckstrings, flags = get_args(args)
+        deck_code = deckstrings[0]
+        deck_name = flags.get('name')
+        deck_archetype = flags.get('archetype')
+        if deck_db_handler.update_deck_label(message, deck_code, name=deck_name, archetype=deck_archetype):
+            return '`SUCCESS`'
+        else:
+            return '`UPDATE FAILED`'
+        

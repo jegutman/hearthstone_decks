@@ -12,6 +12,7 @@ from .deck_handler import DeckHandler
 
 
 CMD_DECK = "!deck "
+CMD_UPDATE = "!update "
 CMD_DATA = "!data"
 CMD_SIM = "!sim "
 CMD_SIM_LHS = "!simlhs "
@@ -55,6 +56,12 @@ class MessageHandler:
     async def handle_cmd(self, message, my_message=None):
         ALLOWED_CHANNELS = ["decklists", "spooky"]
     
+        if message.content.startswith(CMD_UPDATE):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_deck_update(message, CMD_UPDATE, my_message)
+            return True
 
         if message.content.startswith(CMD_DECK):
             if str(message.channel.name) not in ALLOWED_CHANNELS:
@@ -129,6 +136,14 @@ class MessageHandler:
 
         async def handle_deck(self, message, cmd, my_message):
             response = self.deck_handler.handle(message.content[len(cmd):], message, self.deck_db_handler)
+            await self.respond(message, response, my_message)
+
+    async def handle_deck_update(self, message, cmd, my_message, collectible=None):
+        response = self.deck_handler.handle_update(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message)
+
+        async def handle_deck_update(self, message, cmd, my_message):
+            response = self.deck_handler.handle_update(message.content[len(cmd):], message, self.deck_db_handler)
             await self.respond(message, response, my_message)
 
     async def check_edit(self, message, sent):

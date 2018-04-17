@@ -22,7 +22,7 @@ import datetime
 
 class DeckDBHandler():
     def __init__(self, logger):
-        self.connection = MySQLdb.connect(host='localhost', user='loader', passwd=db_passwd)
+        self.connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
         self.cursor = self.connection.cursor()
         self.logger = logger
         self.query_dc = "SELECT * FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
@@ -56,8 +56,37 @@ class DeckDBHandler():
 
     def update_deck_label(self, message, deck_code, name=None, archetype=None):
         db, table = 'deckstrings,decks'.split(',')
+        deck_name = name
+        deck_archetype = archetype
+        if deck_archetype: 
+            deck_archetype = "'%s'" % deck_archetype
+        else:
+            deck_archetype = 'null'
+        if deck_name: 
+            deck_name = "'%s'" % deck_name
+        else:
+            deck_name = 'null'
 
-        deck_code      = deck_code
+        updates = []
+        archetype_update = 'deck_archetype = %(deck_archetype)s' if archetype else ''
+        if archetype_update:
+            updates.append(archetype_update % locals())
+        name_update = 'deck_name = %(deck_name)s' if name else ''
+        if name_update:
+            updates.append(name_update % locals())
+        update_string = ", ".join(updates)
+        if not update_string:
+            return False
+
+        update_query = "UPDATE %(db)s.%(table)s set %(update_string)s WHERE deck_code = '%(deck_code)s'"
+        try:
+            self.cursor.execute(update_query % locals())
+            self.connection.commit()
+        except:
+            self.logger.error_log('Update Failed: %(deck_code)s' % locals())
+            return False
+        return True
+        
         
     def insert_cards(self, deck, deck_id):
         db = 'deckstrings'
