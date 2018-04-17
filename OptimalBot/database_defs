@@ -20,14 +20,14 @@ CREATE TABLE decks
     deck_code      varchar(128) NOT NULL,
     is_private     boolean,
     PRIMARY KEY(deck_id)
-)
+);
 
 CREATE TABLE deck_ids
 (
     deck_id        int(11),
     deck_code      varchar(128) NOT NULL,
     PRIMARY KEY(deck_id)
-)
+);
 
 CREATE TABLE deck_to_cards
 (
@@ -35,11 +35,11 @@ CREATE TABLE deck_to_cards
     card_id        int(11) NOT NULL,
     quantity       int,
     PRIMARY KEY(deck_id, card_id)
-)
+);
 
 CREATE TABLE dbfid_to_card
 (
     dbfid          int,
     card_name      varchar(32),
     PRIMARY KEY(dbfid)
-)
+);

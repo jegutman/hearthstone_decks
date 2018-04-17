@@ -5,7 +5,6 @@ import sys
 
 import MySQLdb
 import datetime
-#MySQLdb.connect(host='localhost', user='loader', passwd='bhtrader')
 
 #CREATE TABLE decks
 #(
@@ -23,10 +22,11 @@ import datetime
 
 class DeckDBHandler():
     def __init__(self, logger):
-        self.connection = MySQLdb.connect(host='localhost', user='loader', passwd='bhtrader')
+        self.connection = MySQLdb.connect(host='localhost', user='loader', passwd=db_passwd)
         self.cursor = self.connection.cursor()
         self.logger = logger
         self.query_dc = "SELECT * FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
+        self.query_label = "SELECT deck_code, deck_name, deck_archetype FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
         
     def process_deck(self, message, deck_code, name=None, archetype=None):
         # TODO: Check the deck not already in database
@@ -53,6 +53,11 @@ class DeckDBHandler():
         #deck_archetype varchar(32),
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
+
+    def update_deck_label(self, message, deck_code, name=None, archetype=None):
+        db, table = 'deckstrings,decks'.split(',')
+
+        deck_code      = deck_code
         
     def insert_cards(self, deck, deck_id):
         db = 'deckstrings'
