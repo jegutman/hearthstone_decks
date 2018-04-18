@@ -1,3 +1,9 @@
+import sys
+sys.path.append('../')
+from config import basedir
+sys.path.append(basedir)
+sys.path.append(basedir + '/lineupSolver')
+
 from shared_utils import *
 from json_win_rates import * 
 from conquest_utils import * 
@@ -233,14 +239,8 @@ if __name__ == '__main__':
             win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, min_win_pct=0.40,limitTop=30)
         print sorted(archetypes, key=lambda x:x.split(' ')[-1])
         excluded = []
-        if True:
+        if False:
             excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
-            #excluded += ['Secret Mage']
-            #excluded += ['Silver Hand Paladin', 'Spell Hunter', 'Jade Druid', 'Big Spell Mage', 'OTK DK Paladin', 'Combo Priest', 'Control Warlock', 'Zoo Warlock', 'Control Priest', 'Cube Warlock', 'Control Warrior', 'Murloc Paladin', 'Secret Mage', 'Jade Shaman']
-            #excluded += ['Jade Druid', 'Kingsbane Rogue', 'Big Priest']
-            #excluded += ['Spell Hunter']
-        #excluded = ['Control Hunter', 'Spell Hunter']
-        #excluded = ['Tempo Druid', 'Pirate Warrior', 'Spell Hunter', 'Control Hunter', 'Aggro Hunter', 'Midrange Hunter']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
         win_rates_against_good = {}

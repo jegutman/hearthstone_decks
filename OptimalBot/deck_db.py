@@ -1,6 +1,7 @@
 from shared_utils import *
 from config import *
 from deck_manager import EasyDeck
+from arg_split import get_args
 import sys
 
 import MySQLdb
@@ -54,6 +55,10 @@ class DeckDBHandler():
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
 
+    def search(self, message, args):
+        args, flags = get_args(args)
+
+
     def update_deck_label(self, message, deck_code, name=None, archetype=None):
         db, table = 'deckstrings,decks'.split(',')
         deck_name = name
@@ -80,6 +85,7 @@ class DeckDBHandler():
 
         update_query = "UPDATE %(db)s.%(table)s set %(update_string)s WHERE deck_code = '%(deck_code)s'"
         try:
+            print(update_query % locals())
             self.cursor.execute(update_query % locals())
             self.connection.commit()
         except:

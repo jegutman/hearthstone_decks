@@ -1,3 +1,9 @@
+import sys
+sys.path.append('../')
+from config import basedir
+sys.path.append(basedir)
+sys.path.append(basedir + '/lineupSolver')
+
 import json
 from config import basedir
 

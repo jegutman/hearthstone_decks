@@ -3,12 +3,20 @@ import sys
 from arg_split import get_args
 from deck_manager import EasyDeck, print_side_by_side, print_side_by_side_diff, side_by_side_diff_lines
 
+helpstring = """`Help:
+To insert a deck: !deck <deckstring> --name <deck_name> --archetype <archetype>
+    (name and archetype flags are optional, but helpful)
+To update a deck: !update <deckstring> --name <deck_name> --archetype <archetype>
+`
+"""
 
 class DeckHandler():
     def __init__(self):
-            pass
+        pass
 
     def handle(self, args, message, deck_db_handler):
+        if 'help' in args.split(' ')[0]:
+            return helpstring
         deckstrings, flags = get_args(args)
         if len(deckstrings) == 1:
             deck_code = deckstrings[0]
@@ -34,4 +42,3 @@ class DeckHandler():
             return '`SUCCESS`'
         else:
             return '`UPDATE FAILED`'
-        
