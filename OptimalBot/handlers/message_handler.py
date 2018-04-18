@@ -21,9 +21,15 @@ CMD_HELP = "!help"
 #CMD_OWNER = "!owner"
 
 USAGE = """
-OptimalBot v0.1
+OptimalBot:
+Commands:
+!deck
+!update
+!data
+!search (coming soon)
 
-Pro tip: Typo'd your search? Edit it and I will edit my response. :)
+!help
+
 """.strip()
 
 def log_message(message):
