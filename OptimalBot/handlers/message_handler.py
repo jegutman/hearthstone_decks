@@ -20,7 +20,7 @@ CMD_HELP = "!help"
 #CMD_CHANNEL = "!channel"
 #CMD_OWNER = "!owner"
 
-USAGE = """
+USAGE = """`
 OptimalBot:
 Commands:
 !deck
@@ -29,7 +29,7 @@ Commands:
 !search (coming soon)
 
 !help
-
+`
 """.strip()
 
 def log_message(message):
@@ -83,6 +83,10 @@ class MessageHandler:
 
         if message.content.startswith(CMD_DATA):
             await self.data_check(message, CMD_DATA, my_message)
+            return True
+
+        if message.content.startswith(CMD_HELP):
+            await self.respond(message, USAGE)
             return True
 
         if message.content.startswith(CMD_SIM):
