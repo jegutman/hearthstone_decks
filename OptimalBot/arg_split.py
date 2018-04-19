@@ -6,7 +6,7 @@ def get_args(string_to_parse):
     startFlags = False
     tmp_res = []
     while i < max_item:
-        if '--' in pieces[i]:
+        if '-' in pieces[i]:
             if tmp_res:
                 res.append(tmp_res)
             tmp_res = [pieces[i]]
@@ -25,5 +25,5 @@ def get_args(string_to_parse):
         if len(i) == 1:
             args.append(i[0])
         else:
-            flags[i[0].replace('--', '')] = " ".join(i[1:])
+            flags[i[0].replace('-', '')] = " ".join(i[1:])
     return args, flags
