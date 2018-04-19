@@ -30,7 +30,6 @@ class DeckDBHandler():
         self.query_label = "SELECT deck_code, deck_name, deck_archetype FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
         
     def process_deck(self, message, deck_code, name=None, archetype=None):
-        # TODO: Check the deck not already in database
         db, table = 'deckstrings,decks'.split(',')
 
         deck_code      = deck_code

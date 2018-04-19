@@ -83,9 +83,17 @@ class MessageHandler:
             return True
         else:
             deckstring_matches = self.deckstring_re.findall(message.content)
+            deck_name = None
+            tmp_split = message.content.split('\n')
+            for line in tmp_split:
+                if line[:3] == '###':
+                    deck_name = " ".join(line.split(' ')[1:])
+                    break
             for deck_code in deckstring_matches:
                 self.logger.info_log('\n    %s\n    %s\n    MATCH: %s' % (message.author, message.content, deck_code))
-                self.deck_db_handler.process_deck(message, deck_code)
+                if deck_name:
+                    self.logger.info_log('\nFound deck name: %s' % deck_name)
+                self.deck_db_handler.process_deck(message, deck_code, name=deck_name)
 
         if message.content.startswith(CMD_DATA):
             await self.data_check(message, CMD_DATA, my_message)
