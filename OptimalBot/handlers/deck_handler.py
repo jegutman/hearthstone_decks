@@ -63,5 +63,5 @@ class DeckHandler():
             allow_private = True
         else:
             allow_private = False
-        return deck_db_handler.search(flags, allow_private)
+        return deck_db_handler.search(args,flags, allow_private)
         
