@@ -50,8 +50,7 @@ class MessageHandler:
         self.deckstring_re = re.compile('(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}){12,}')
 
     async def handle(self, message):
-        ALLOWED_CHANNELS_BASIC = ["decklists", "spooky"]
-        if str(message.channel.name) not in ALLOWED_CHANNELS_BASIC:
+        if str(message.channel.name) not in ALLOWED_CHANNELS:
             if not message.channel.is_private:
                 return True
         if message.author.id == self.client.user.id:
@@ -60,8 +59,6 @@ class MessageHandler:
             return
 
     async def handle_cmd(self, message, my_message=None):
-        ALLOWED_CHANNELS = ["decklists", "spooky"]
-    
         if message.content.startswith(CMD_UPDATE):
             if str(message.channel.name) not in ALLOWED_CHANNELS:
                 if not message.channel.is_private:

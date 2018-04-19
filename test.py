@@ -7,6 +7,7 @@ from archetype_labels import example_to_archetype, archetype_to_example
 import sys
 
 decks = []
+print("")
 for deckstring in sys.argv[1:]:
     decks.append(EasyDeck(deckstring))
 if len(decks) > 1:

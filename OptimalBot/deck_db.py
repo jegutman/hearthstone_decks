@@ -48,7 +48,7 @@ class DeckDBHandler():
         date           = datetime.datetime.now().strftime('%Y_%m_%d')
         server         = str(message.server) + '_' + str(message.channel)
         user           = str(message.author)
-        is_private     = 1 if (message.channel.name in ['spooky'] or message.server.name == 'R N G') else 0
+        is_private     = 1 if (message.channel.name in PRIVATE_CHANNELS or message.server.name in PRIVATE_SERVERS) else 0
         
         deck_class     = deck.get_class()
         #deck_archetype varchar(32),
