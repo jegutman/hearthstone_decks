@@ -1,4 +1,5 @@
 from shared_utils import *
+from config import *
 import asyncio
 import re
 import sys
@@ -12,6 +13,7 @@ from .deck_handler import DeckHandler
 
 
 CMD_DECK = "!deck "
+CMD_SEARCH = "!search "
 CMD_UPDATE = "!update "
 CMD_DATA = "!data"
 CMD_SIM = "!sim "
@@ -64,6 +66,13 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_deck_update(message, CMD_UPDATE, my_message)
+            return True
+        
+        if message.content.startswith(CMD_SEARCH):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_deck_search(message, CMD_SEARCH, my_message)
             return True
 
         if message.content.startswith(CMD_DECK):
@@ -151,6 +160,14 @@ class MessageHandler:
 
         async def handle_deck_update(self, message, cmd, my_message):
             response = self.deck_handler.handle_update(message.content[len(cmd):], message, self.deck_db_handler)
+            await self.respond(message, response, my_message)
+
+    async def handle_deck_search(self, message, cmd, my_message):
+        response = self.deck_handler.handle_search(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message)
+
+        async def handle_deck_search(self, message, cmd, my_message):
+            response = self.deck_handler.handle_search(message.content[len(cmd):], message, self.deck_db_handler)
             await self.respond(message, response, my_message)
 
     async def check_edit(self, message, sent):

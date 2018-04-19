@@ -55,8 +55,31 @@ class DeckDBHandler():
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
 
-    def search(self, message, args):
-        args, flags = get_args(args)
+    def search(self, flags, allow_private):
+        #-name
+        #-class
+        #-archetype
+        archetype_str = "deck_archetype like '%%%s%%'" % flags.get('archetype').replace('.*', '%') if flags.get('archetype') else ''
+        class_str = "deck_class like '%%%s%%'" % flags.get('class').replace('.*', '%') if flags.get('class') else ''
+        name_str = "deck_name like '%%%s%%'" % flags.get('name').replace('.*', '%') if flags.get('name') else ''
+        private_str = "" if allow_private else "is_private = 0"
+        query_str = []
+        for i in [archetype_str, class_str, name_str, private_str]:
+            if i: query_str.append(i)
+        query_str = " and ".join(query_str)
+        sys.stdout.write("SELECT date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())
+        sys.stdout.flush()
+        self.cursor.execute("SELECT date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())
+        res = []
+        for date, user, deck_name, deck_class, deck_code in self.cursor.fetchall():
+            res.append((date, user.split('\#')[0], deck_name, deck_class, deck_code))
+        res_str = "`"
+        for date, user, deck_name, deck_class, deck_code in res:
+            user = user.split('#')[0]
+            res_str += "%10s %-20s %-32s %-10s \n        %s\n" % (date, user, deck_name, deck_class, deck_code)
+        res_str += '`'
+        return res_str
+        
 
 
     def update_deck_label(self, message, deck_code, name=None, archetype=None):
