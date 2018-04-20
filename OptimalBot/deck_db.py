@@ -63,7 +63,7 @@ class DeckDBHandler():
         name_str = "deck_name like '%%%s%%'" % flags.get('name').replace('.*', '%') if flags.get('name') else ''
         user_str = "user like '%%%s%%'" % flags.get('user').replace('.*', '%') if flags.get('user') else ''
         date_str = "date like '%%%s%%'" % flags.get('date').replace('.*', '%') if flags.get('date') else ''
-        private_str = "" if allow_private else "is_private = 0"
+        private_str = "" if allow_private else " and is_private = 0"
         query_str = []
         for i in [archetype_str, class_str, name_str, private_str, user_str]:
             if i: query_str.append(i)
@@ -73,20 +73,21 @@ class DeckDBHandler():
             query_str = "(deck_archetype like '%%%s%%' or deck_name like '%%%s%%' or deck_class like '%%%s%%' or user like '%%%s%%' or date like '%%%s%%')" % (kw, kw, kw, kw, kw)
             if not allow_private:
                 query_str += private_str 
-        sys.stdout.write("SELECT date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())
+        sys.stdout.write("SELECT deck_id, date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())
         sys.stdout.flush()
-        self.cursor.execute("SELECT date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())
+        self.cursor.execute("SELECT deck_id, date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())
         res = []
         count = 0
-        for date, user, deck_name, deck_class, deck_code in self.cursor.fetchall():
+        for deck_id, date, user, deck_name, deck_class, deck_code in self.cursor.fetchall():
             count += 1
-            res.append((date, user.split('\#')[0], deck_name, deck_class, deck_code))
+            res.append((deck_id, date, user.split('\#')[0], deck_name, deck_class, deck_code))
         if count == 0:
             return '`No results`'
         res_str = "`"
-        for date, user, deck_name, deck_class, deck_code in res[-10:]:
+        res_str += "#%-5s %-10s %-16s %-24s %-10s \n#        %s\n" % ('id', 'date', 'user', 'deck_name', 'class', 'deck_code')
+        for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:
             user = user.split('#')[0]
-            res_str += "%10s %-16s %-24s %-10s \n        %s\n" % (date, user, deck_name, deck_class, deck_code)
+            res_str += "%-6s %10s %-16s %-24s %-10s \n        %s\n" % (deck_id, date, user, deck_name, deck_class, deck_code)
         if len(res) > 7:
             res_str += '*Limited to 10 most recent results'
         res_str += '`'
