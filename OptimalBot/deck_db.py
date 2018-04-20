@@ -70,10 +70,9 @@ class DeckDBHandler():
         query_str = " and ".join(query_str)
         if not flags and args:
             kw = args
-            if allow_private:
-                query_str = "(deck_archetype like '%%%s%%' or deck_name like '%%%s%%' or deck_class like '%%%s%%')" % (kw, kw, kw)
-            else:
-                query_str = "(deck_archetype like '%%%s%%' or deck_name like '%%%s%%' or deck_class like '%%%s%%' or user like '%%%s%%' or date like '%%%s%%') and " % (kw, kw, kw, kw, kw) + private_str 
+            query_str = "(deck_archetype like '%%%s%%' or deck_name like '%%%s%%' or deck_class like '%%%s%%' or user like '%%%s%%' or date like '%%%s%%')" % (kw, kw, kw, kw, kw)
+            if not allow_private:
+                query_str += private_str 
         sys.stdout.write("SELECT date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())
         sys.stdout.flush()
         self.cursor.execute("SELECT date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())
