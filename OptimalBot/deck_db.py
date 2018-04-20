@@ -28,8 +28,17 @@ class DeckDBHandler():
         self.logger = logger
         self.query_dc = "SELECT * FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
         self.query_label = "SELECT deck_code, deck_name, deck_archetype FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
+
+    def check_cursor(self):
+        try:
+            cursor.execute("SELECT 1")
+        except:
+            self.connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
+            self.cursor = self.connection.cursor()
+            
         
     def process_deck(self, message, deck_code, name=None, archetype=None):
+        self.check_cursor()
         db, table = 'deckstrings,decks'.split(',')
 
         deck_code      = deck_code
@@ -55,6 +64,7 @@ class DeckDBHandler():
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
 
     def search(self, args, flags, allow_private):
+        self.check_cursor()
         #-name
         #-class
         #-archetype
@@ -96,6 +106,7 @@ class DeckDBHandler():
 
 
     def update_deck_label(self, message, deck_code, name=None, archetype=None):
+        self.check_cursor()
         db, table = 'deckstrings,decks'.split(',')
         deck_name = name
         deck_archetype = archetype
@@ -131,6 +142,7 @@ class DeckDBHandler():
         
         
     def insert_cards(self, deck, deck_id):
+        self.check_cursor()
         db = 'deckstrings'
         try:
             for card_id, quantity in deck.deck.cards:
@@ -142,6 +154,7 @@ class DeckDBHandler():
         return True
     
     def insert_deck(self, deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype = None, deck_name = None):
+        self.check_cursor()
         db = 'deckstrings'
         if deck_archetype: 
             deck_archetype = "'%s'" % deck_archetype
