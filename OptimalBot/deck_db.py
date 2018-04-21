@@ -75,9 +75,12 @@ class DeckDBHandler():
         date_str = "date like '%%%s%%'" % flags.get('date').replace('.*', '%') if flags.get('date') else ''
         private_str = "" if allow_private else " and is_private = 0"
         query_str = []
-        for i in [archetype_str, class_str, name_str, private_str, user_str]:
+        for i in [archetype_str, class_str, name_str, user_str]:
             if i: query_str.append(i)
-        query_str = " and ".join(query_str)
+        # make sure private str is last
+        query_str = '(' + " and ".join(query_str) + ')'
+        if private_str:
+            query_str += private_str
         if not flags and args:
             kw = args
             query_str = "(deck_archetype like '%%%s%%' or deck_name like '%%%s%%' or deck_class like '%%%s%%' or user like '%%%s%%' or date like '%%%s%%')" % (kw, kw, kw, kw, kw)
