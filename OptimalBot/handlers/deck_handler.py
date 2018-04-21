@@ -64,4 +64,14 @@ class DeckHandler():
         else:
             allow_private = False
         return deck_db_handler.search(args,flags, allow_private)
-        
+
+    def handle_compare(self, args, message, deck_db_handler):
+        deckstrings, flags = get_args(args)
+        deckstrings_to_compare = []
+        for d in deckstrings:
+            if re.match('[0-9]+', d):
+                deckstrings_to_compare.append(deck_db_handler.get_deck_from_id(d))
+            else:
+                deckstrings_to_compare.append(d)
+        args = " ".join(deckstrings_to_compare)
+        return self.handle(args, message, deck_db_handler)

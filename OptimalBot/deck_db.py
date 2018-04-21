@@ -36,6 +36,12 @@ class DeckDBHandler():
             self.connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
             self.cursor = self.connection.cursor()
             
+    def get_deck_from_id(self, deck_id):
+        self.check_cursor()
+        db, table = 'deckstrings,decks'.split(',')
+
+        self.cursor.execute("SELECT deck_code FROM %(db)s.%(table)s WHERE deck_id = %(deck_id)s" % locals())
+        return self.cursor.fetchone()[0]
         
     def process_deck(self, message, deck_code, name=None, archetype=None):
         self.check_cursor()
