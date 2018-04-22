@@ -40,8 +40,11 @@ class DeckHandler():
             except:
                 return '`%s`' % "Error: Bad deckstring"
         else:
+            decks = [EasyDeck(i) for i in deckstrings]
+            if not len(set([i.get_class() for i in decks])) == 1:
+                return '`cannot compare decks from different classes`'
             try:
-                return '`' + side_by_side_diff_lines([EasyDeck(i) for i in deckstrings]) +'`'
+                return '`' + side_by_side_diff_lines(decks) +'`'
             except:
                 return '`%s`' % "Error: Bad deckstring"
     
