@@ -15,6 +15,7 @@ from .deck_handler import DeckHandler
 CMD_DECK = "!deck "
 CMD_SEARCH = "!search "
 CMD_COMPARE = "!compare "
+CMD_SIMILAR = "!similar "
 CMD_UPDATE = "!update "
 CMD_DATA = "!data"
 CMD_SIM = "!sim "
@@ -28,6 +29,7 @@ OptimalBot:
 Commands:
 !deck
 !compare
+!similar
 !update
 !data
 !search
@@ -82,6 +84,13 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_compare(message, CMD_COMPARE, my_message)
+            return True
+
+        if message.content.startswith(CMD_SIMILAR):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_similar(message, CMD_SIMILAR, my_message)
             return True
 
         if message.content.startswith(CMD_DECK):
@@ -193,6 +202,14 @@ class MessageHandler:
 
         async def handle_compare(self, message, cmd, my_message):
             response = self.deck_handler.handle_compare(message.content[len(cmd):], message, self.deck_db_handler)
+            await self.respond(message, response, my_message)
+
+    async def handle_similar(self, message, cmd, my_message):
+        response = self.deck_handler.handle_similar(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message)
+
+        async def handle_similar(self, message, cmd, my_message):
+            response = self.deck_handler.handle_similar(message.content[len(cmd):], message, self.deck_db_handler)
             await self.respond(message, response, my_message)
 
     async def check_edit(self, message, sent):

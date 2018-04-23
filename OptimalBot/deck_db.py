@@ -42,7 +42,14 @@ class DeckDBHandler():
 
         self.cursor.execute("SELECT deck_code FROM %(db)s.%(table)s WHERE deck_id = %(deck_id)s" % locals())
         return self.cursor.fetchone()[0]
-        
+
+    def get_decks_by_class(self, deck_class):
+        self.check_cursor()
+        db, table = 'deckstrings,decks'.split(',')
+
+        self.cursor.execute("SELECT deck_id, deck_code FROM %(db)s.%(table)s WHERE deck_class = '%(deck_class)s'" % locals())
+        return [(i,j) for (i,j) in self.cursor.fetchall()]
+    
     def process_deck(self, message, deck_code, name=None, archetype=None):
         self.check_cursor()
         db, table = 'deckstrings,decks'.split(',')
@@ -79,6 +86,7 @@ class DeckDBHandler():
         name_str = "deck_name like '%%%s%%'" % flags.get('name').replace('.*', '%') if flags.get('name') else ''
         user_str = "user like '%%%s%%'" % flags.get('user').replace('.*', '%') if flags.get('user') else ''
         date_str = "date like '%%%s%%'" % flags.get('date').replace('.*', '%') if flags.get('date') else ''
+        deck_code_str = "deck_code like '%%%s%%'" % flags.get('deck_code').replace('.*', '%') if flags.get('deck_code') else ''
         private_str = "" if allow_private else " and is_private = 0"
         query_str = []
         for i in [archetype_str, class_str, name_str, user_str]:
@@ -89,7 +97,7 @@ class DeckDBHandler():
             query_str += private_str
         if not flags and args:
             kw = args
-            query_str = "(deck_archetype like '%%%s%%' or deck_name like '%%%s%%' or deck_class like '%%%s%%' or user like '%%%s%%' or date like '%%%s%%')" % (kw, kw, kw, kw, kw)
+            query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or user like '%%%(kw)s%%' or date like '%%%(kw)s%%' or deck_code like '%%%(kw)s%%')" % locals()
             if not allow_private:
                 query_str += private_str 
         sys.stdout.write("SELECT deck_id, date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())

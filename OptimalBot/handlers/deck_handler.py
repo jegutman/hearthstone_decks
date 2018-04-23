@@ -58,6 +58,32 @@ class DeckHandler():
         else:
             return '`UPDATE FAILED`'
 
+    def handle_similar(self, args, message, deck_db_handler):
+        deckstrings, flags = get_args(args)
+        ds = deckstrings[0]
+        if re.match('[0-9]+', ds):
+            deck = EasyDeck(deck_db_handler.get_deck_from_id(ds))
+        else:
+            deck = EasyDeck(ds)
+        deck_class = deck.get_class()
+        max_results = flags.get('limit', 5)
+        max_dist = flags.get('max_dist', 6)
+        to_compare = deck_db_handler.get_decks_by_class(deck_class)
+        res = []
+        for deck_id, deck_code in to_compare:
+            tmp_deck = EasyDeck(deck_code)
+            distance = deck.get_distance(tmp_deck)
+            res.append((distance, deck_id, deck_code))
+        res_final = sorted([i for i in res if i[0] <= max_dist][:max_results])
+        if len(res_final) == 0:
+            return '`No deck within %(max_dist)s cards of deck`' % locals()
+        print_res = '`'
+        print_res += "%-7s %-7s %-s" % ('deck_id', 'dist', 'deck_code') + '\n'
+        for distance, deck_id, deck_code in res_final:
+            print_res += "%(deck_id)-7s %(distance)-7s %(deck_code)-s" % locals() + '\n'
+        print_res += '`'
+        return print_res
+
     def handle_search(self, args, message, deck_db_handler):
         deckstrings, flags = get_args(args)
         if 'help' in args.split(' ')[0]:
