@@ -115,7 +115,7 @@ class DeckDBHandler():
         for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:
             user = user.split('#')[0]
             res_str += "%-6s %10s %-16s %-24s %-10s \n        %s\n" % (deck_id, date, user, deck_name, deck_class, deck_code)
-        if len(res) > 7:
+        if len(res) > 10:
             res_str += '*Limited to 10 most recent results'
         res_str += '`'
         return res_str
