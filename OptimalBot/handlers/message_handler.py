@@ -15,12 +15,14 @@ from .deck_handler import DeckHandler
 CMD_DECK = "!deck "
 CMD_SEARCH = "!search "
 CMD_COMPARE = "!compare "
+CMD_COMPARE_ALL = "!compareall "
 CMD_SIMILAR = "!similar "
 CMD_UPDATE = "!update "
 CMD_DATA = "!data"
 CMD_SIM = "!sim "
 CMD_SIM_LHS = "!simlhs "
 CMD_HELP = "!help"
+CMD_UPTIME = "!uptime"
 #CMD_CHANNEL = "!channel"
 #CMD_OWNER = "!owner"
 
@@ -54,6 +56,7 @@ class MessageHandler:
         self.logger = BotLogger()
         self.deck_db_handler = DeckDBHandler(self.logger)
         self.deckstring_re = re.compile('(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}){12,}')
+        self.start_time = datetime.now()
 
     async def handle(self, message):
         if str(message.channel.name) not in ALLOWED_CHANNELS:
@@ -84,6 +87,13 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_compare(message, CMD_COMPARE, my_message)
+            return True
+
+        if message.content.startswith(CMD_COMPARE_ALL):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_compare_all(message, CMD_COMPARE_ALL, my_message)
             return True
 
         if message.content.startswith(CMD_SIMILAR):
@@ -119,6 +129,10 @@ class MessageHandler:
 
         if message.content.startswith(CMD_HELP):
             await self.respond(message, USAGE)
+            return True
+
+        if message.content.startswith(CMD_UPTIME):
+            await self.respond(message, str(datetime.now() - self.start_time).split('.')[0])
             return True
 
         if message.content.startswith(CMD_SIM):
@@ -178,6 +192,10 @@ class MessageHandler:
 
     async def handle_compare(self, message, cmd, my_message):
         response = self.deck_handler.handle_compare(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_compare_all(self, message, cmd, my_message):
+        response = self.deck_handler.handle_compare_all(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
 
     async def handle_similar(self, message, cmd, my_message):

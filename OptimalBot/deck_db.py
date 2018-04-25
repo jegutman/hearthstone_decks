@@ -76,11 +76,8 @@ class DeckDBHandler():
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
 
-    def search(self, args, flags, allow_private):
+    def search_helper(self, args, flags, allow_private):
         self.check_cursor()
-        #-name
-        #-class
-        #-archetype
         archetype_str = "deck_archetype like '%%%s%%'" % flags.get('archetype').replace('.*', '%') if flags.get('archetype') else ''
         class_str = "deck_class like '%%%s%%'" % flags.get('class').replace('.*', '%') if flags.get('class') else ''
         name_str = "deck_name like '%%%s%%'" % flags.get('name').replace('.*', '%') if flags.get('name') else ''
@@ -108,8 +105,10 @@ class DeckDBHandler():
         for deck_id, date, user, deck_name, deck_class, deck_code in self.cursor.fetchall():
             count += 1
             res.append((deck_id, date, user.split('\#')[0], deck_name, deck_class, deck_code))
-        if count == 0:
-            return '`No results`'
+        return res
+
+    def search(self, args, flags, allow_private):
+        res = self.search_helper(args, flags, allow_private)
         res_str = "`"
         res_str += "#%-5s %-10s %-16s %-24s %-10s \n#        %s\n" % ('id', 'date', 'user', 'deck_name', 'class', 'deck_code')
         for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:
@@ -119,8 +118,6 @@ class DeckDBHandler():
             res_str += '*Limited to 10 most recent results'
         res_str += '`'
         return res_str
-        
-
 
     def update_deck_label(self, message, deck_code, name=None, archetype=None):
         self.check_cursor()

@@ -94,6 +94,17 @@ class DeckHandler():
             allow_private = False
         return deck_db_handler.search(args,flags, allow_private)
 
+    def handle_compare_all(self, args, message, deck_db_handler):
+        deckstrings, flags = get_args(args)
+        if message.channel.name in PRIVATE_CHANNELS or message.server.name in PRIVATE_SERVERS:
+            allow_private = True
+        else:
+            allow_private = False
+        decks = deck_db_handler.search_helper(args,flags, allow_private)
+        deckstrings_to_compare = [i[-1] for i in decks]
+        args = " ".join(deckstrings_to_compare)
+        return self.handle(args, message, deck_db_handler)
+
     def handle_compare(self, args, message, deck_db_handler):
         deckstrings, flags = get_args(args)
         deckstrings_to_compare = []
