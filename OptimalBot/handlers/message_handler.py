@@ -160,57 +160,29 @@ class MessageHandler:
         )
         await self.respond(message, response, my_message)
 
-        async def handle_sim(self, message, cmd, my_message):
-            response = self.sim_handler.handle(message.content[len(cmd):], is_conquest)
-            await self.respond(message, response, my_message)
-
     async def data_check(self, message, cmd, my_message):
         response = self.sim_handler.data_check()
         await self.respond(message, response, my_message)
-
-        async def data_check(self, message, cmd, my_message):
-            response = self.sim_handler.data_check()
-            await self.respond(message, response, my_message)
 
     async def handle_deck(self, message, cmd, my_message, collectible=None):
         response = self.deck_handler.handle(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
 
-        async def handle_deck(self, message, cmd, my_message):
-            response = self.deck_handler.handle(message.content[len(cmd):], message, self.deck_db_handler)
-            await self.respond(message, response, my_message)
-
     async def handle_deck_update(self, message, cmd, my_message):
         response = self.deck_handler.handle_update(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
-
-        async def handle_deck_update(self, message, cmd, my_message):
-            response = self.deck_handler.handle_update(message.content[len(cmd):], message, self.deck_db_handler)
-            await self.respond(message, response, my_message)
 
     async def handle_deck_search(self, message, cmd, my_message):
         response = self.deck_handler.handle_search(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
 
-        async def handle_deck_search(self, message, cmd, my_message):
-            response = self.deck_handler.handle_search(message.content[len(cmd):], message, self.deck_db_handler)
-            await self.respond(message, response, my_message)
-
     async def handle_compare(self, message, cmd, my_message):
         response = self.deck_handler.handle_compare(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
 
-        async def handle_compare(self, message, cmd, my_message):
-            response = self.deck_handler.handle_compare(message.content[len(cmd):], message, self.deck_db_handler)
-            await self.respond(message, response, my_message)
-
     async def handle_similar(self, message, cmd, my_message):
         response = self.deck_handler.handle_similar(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
-
-        async def handle_similar(self, message, cmd, my_message):
-            response = self.deck_handler.handle_similar(message.content[len(cmd):], message, self.deck_db_handler)
-            await self.respond(message, response, my_message)
 
     async def check_edit(self, message, sent):
         original_content = message.content
