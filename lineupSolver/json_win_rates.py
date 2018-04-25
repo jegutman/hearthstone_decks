@@ -7,7 +7,7 @@ sys.path.append(basedir + '/lineupSolver')
 import json
 from config import basedir
 
-date = '20180420'
+date = '20180425'
 base = basedir
 #filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_7DAYS.json' % locals()
 #filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_1DAY.json' % locals()
