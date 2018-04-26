@@ -1,5 +1,5 @@
 def get_args(string_to_parse):
-    pieces = string_to_parse.split(' ')
+    pieces = string_to_parse.split()
     max_item = len(pieces)
     i = 0
     res = []

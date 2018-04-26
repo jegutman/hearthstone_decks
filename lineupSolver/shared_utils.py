@@ -42,14 +42,14 @@ def similarity(deck_a, deck_b, win_pcts, archetypes, debug=False):
     
 
 def check_lineup(decks, archetype_map, num_classes=4):
-    classes = [archetype_map.get(x, '').split(' ')[-1] for x in decks]
+    classes = [archetype_map.get(x, '').split()[-1] for x in decks]
     if len(set(classes)) == num_classes:
         return True
     else:
         return False
 
 def class_sort(a):
-    tmp = a.split(' ' )
+    tmp = a.split()
     return (tmp[-1], tmp)
 
 def get_lineup(decks, archetype_map):
@@ -70,7 +70,7 @@ def generate_lineups(archetypes, unbeatable=False, num_classes=4):
         archetype_map[archetypes.index('Unbeatable')] = 'Unbeatable'
         lineups = []
         for decks in tmp_res:
-            classes = [x.split(' ')[-1] for x in decks]
+            classes = [x.split()[-1] for x in decks]
             if len(set(classes)) == 3:
                 if decks not in lineups:
                     lineups.append(decks+('Unbeatable', ))
@@ -84,7 +84,7 @@ def generate_lineups(archetypes, unbeatable=False, num_classes=4):
         tmp_res = list(itertools.combinations(keys,num_classes))
         lineups = []
         for decks in tmp_res:
-            #classes = [x.split(' ')[-1] for x in decks]
+            #classes = [x.split()[-1] for x in decks]
             if check_lineup(decks, archetype_map, num_classes):
                 #if decks not in lineups:
                 lineups.append(decks)

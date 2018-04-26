@@ -101,7 +101,7 @@ if __name__ == '__main__':
     elif len(args) > 0 and args[0] == 'sim':
         
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
-        print sorted(archetypes, key=lambda x:x.split(' ')[-1])
+        print sorted(archetypes, key=lambda x:x.split()[-1])
         archetypes.append('Unbeatable')
         #archetypes.append('Fatigue Warrior')
         overrides = [
@@ -175,7 +175,7 @@ if __name__ == '__main__':
             win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, min_win_pct=0.40,limitTop=100)
         else:
             win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, min_win_pct=0.40,limitTop=30)
-        print sorted(archetypes, key=lambda x:x.split(' ')[-1])
+        print sorted(archetypes, key=lambda x:x.split()[-1])
         excluded = []
         if False:
             excluded += ['Spiteful Druid', 'Control Warrior', 'Spell Hunter']

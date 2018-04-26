@@ -115,7 +115,7 @@ class MessageHandler:
             tmp_split = message.content.split('\n')
             for line in tmp_split:
                 if line[:3] == '###':
-                    deck_name = " ".join(line.split(' ')[1:])
+                    deck_name = " ".join(line.split()[1:])
                     break
             for deck_code in deckstring_matches:
                 self.logger.info_log('\n    %s\n    %s\n    MATCH: %s' % (message.author, message.content, deck_code))

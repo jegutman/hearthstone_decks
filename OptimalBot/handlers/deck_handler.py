@@ -27,7 +27,7 @@ class DeckHandler():
         pass
 
     def handle(self, args, message, deck_db_handler):
-        if 'help' in args.split(' ')[0]:
+        if 'help' in args.split()[0]:
             return helpstring
         deckstrings, flags = get_args(args)
         if len(deckstrings) == 1:
@@ -86,7 +86,7 @@ class DeckHandler():
 
     def handle_search(self, args, message, deck_db_handler):
         deckstrings, flags = get_args(args)
-        if 'help' in args.split(' ')[0]:
+        if 'help' in args.split()[0]:
             return helpstring_search
         if message.channel.name in PRIVATE_CHANNELS or message.server.name in PRIVATE_SERVERS:
             allow_private = True

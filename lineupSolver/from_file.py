@@ -139,7 +139,7 @@ if __name__ == '__main__':
         
         #win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
         win_pcts, archetypes = wr_from_csv('input_wr.csv', scaling=100)
-        print sorted(archetypes, key=lambda x:x.split(' ')[-1])
+        print sorted(archetypes, key=lambda x:x.split()[-1])
         archetypes.append('Unbeatable')
         #archetypes.append('Fatigue Warrior')
         overrides = [
@@ -196,7 +196,7 @@ if __name__ == '__main__':
         
         #win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
         win_pcts, archetypes = wr_from_csv('input_wr.csv', scaling=100)
-        print sorted(archetypes, key=lambda x:x.split(' ')[-1])
+        print sorted(archetypes, key=lambda x:x.split()[-1])
         archetypes.append('Unbeatable')
         #archetypes.append('Fatigue Warrior')
         overrides = [
@@ -259,7 +259,7 @@ if __name__ == '__main__':
         else:
             #win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, min_win_pct=0.40,limitTop=30)
             win_pcts, archetypes = wr_from_csv('input_wr.csv', scaling=100)
-        print sorted(archetypes, key=lambda x:x.split(' ')[-1])
+        print sorted(archetypes, key=lambda x:x.split()[-1])
         excluded = []
         if True:
             excluded += ['Spiteful Druid', 'Control Warrior', 'Spell Hunter']
