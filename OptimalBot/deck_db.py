@@ -48,10 +48,10 @@ class DeckDBHandler():
         db, table = 'deckstrings,decks'.split(',')
 
         self.cursor.execute("SELECT deck_name FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'" % locals())
-        res = self.cursor.fetchone()[0]
+        res = self.cursor.fetchone()
         if not res:
             return ''
-        return res
+        return res[0]
 
     def get_decks_by_class(self, deck_class):
         self.check_cursor()
