@@ -47,7 +47,7 @@ class EasyDeck():
     def deck_print_lines(self):
         res = "" + self.get_class() + '\n'
         if self.name:
-            res = "" + self.name + '\n'
+            res += "" + self.name + '\n'
         total = 0
         deck = []
         for i,j in self.deck.cards:
@@ -95,7 +95,7 @@ class EasyDeck():
             930  : 'Rogue',
             40195: 'Rogue',
         }
-        return class_map[self.deck.heroes[0]]
+        return class_map.get(self.deck.heroes[0], "Unknown Hero")
     
     def get_original_code(self):
         return self.deckstring
