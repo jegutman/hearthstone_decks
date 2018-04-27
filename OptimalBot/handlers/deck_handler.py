@@ -34,13 +34,18 @@ class DeckHandler():
             deck_code = deckstrings[0]
             deck_name = flags.get('name')
             deck_archetype = flags.get('archetype')
+            if not deck_name:
+                deck_name = deck_db_handler.get_name_from_code(deck_code)
             deck_db_handler.process_deck(message, deck_code, name=deck_name, archetype=deck_archetype)
             try:
-                return '`' + EasyDeck(deckstrings[0]).deck_print_lines() + '`'
+                return '`' + EasyDeck(deckstrings[0], deck_name).deck_print_lines() + '`'
             except:
                 return '`%s`' % "Error: Bad deckstring"
         else:
-            decks = [EasyDeck(i) for i in deckstrings]
+            decks = []
+            for i in deckstrings:
+                deck_name = deck_db_handler.get_name_from_code(i)
+                decks.append(EasyDeck(i, deck_name))
             if not len(set([i.get_class() for i in decks])) == 1:
                 return '`cannot compare decks from different classes`'
             try:
@@ -62,7 +67,8 @@ class DeckHandler():
         deckstrings, flags = get_args(args)
         ds = deckstrings[0]
         if re.match('[0-9]+', ds):
-            deck = EasyDeck(deck_db_handler.get_deck_from_id(ds))
+            deck_code, deck_name = deck_db_handler.get_deck_from_id(ds)
+            deck = EasyDeck(deck_code, deck_name)
         else:
             deck = EasyDeck(ds)
         deck_class = deck.get_class()
@@ -110,7 +116,8 @@ class DeckHandler():
         deckstrings_to_compare = []
         for d in deckstrings:
             if re.match('[0-9]+', d):
-                deckstrings_to_compare.append(deck_db_handler.get_deck_from_id(d))
+                deck_code, deck_name = deck_db_handler.get_deck_from_id(d)
+                deckstrings_to_compare.append(deck_code)
             else:
                 deckstrings_to_compare.append(d)
         args = " ".join(deckstrings_to_compare)

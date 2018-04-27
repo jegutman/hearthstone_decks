@@ -46,6 +46,8 @@ class EasyDeck():
 
     def deck_print_lines(self):
         res = "" + self.get_class() + '\n'
+        if self.name:
+            res = "" + self.name + '\n'
         total = 0
         deck = []
         for i,j in self.deck.cards:
@@ -159,6 +161,7 @@ def side_by_side_diff_lines(list_of_decks):
     diffs = {}
     cost = {}
     res = ["" + list_of_decks[0].get_class()]
+    res += [" | ".join([i.name for i in list_of_decks])]
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))

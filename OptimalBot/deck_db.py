@@ -40,8 +40,18 @@ class DeckDBHandler():
         self.check_cursor()
         db, table = 'deckstrings,decks'.split(',')
 
-        self.cursor.execute("SELECT deck_code FROM %(db)s.%(table)s WHERE deck_id = %(deck_id)s" % locals())
-        return self.cursor.fetchone()[0]
+        self.cursor.execute("SELECT deck_code, deck_name FROM %(db)s.%(table)s WHERE deck_id = %(deck_id)s" % locals())
+        return self.cursor.fetchone()
+
+    def get_name_from_code(self, deck_code):
+        self.check_cursor()
+        db, table = 'deckstrings,decks'.split(',')
+
+        self.cursor.execute("SELECT deck_name FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'" % locals())
+        res = self.cursor.fetchone()[0]
+        if not res:
+            return ''
+        return res
 
     def get_decks_by_class(self, deck_class):
         self.check_cursor()
