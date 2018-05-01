@@ -106,7 +106,7 @@ class DeckHandler():
             allow_private = True
         else:
             allow_private = False
-        decks = deck_db_handler.search_helper(args,flags, allow_private)
+        decks = deck_db_handler.search_helper(args,flags, allow_private, limit=6)
         deckstrings_to_compare = [i[-1] for i in decks]
         args = " ".join(deckstrings_to_compare)
         return self.handle(args, message, deck_db_handler)
