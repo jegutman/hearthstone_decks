@@ -92,10 +92,11 @@ class EasyDeck():
             893  : 'Warlock',
             47817: 'Warlock',
             31   : 'Hunter',
+            2826 : 'Hunter',
             930  : 'Rogue',
             40195: 'Rogue',
         }
-        return class_map.get(self.deck.heroes[0], "Unknown Hero")
+        return class_map.get(self.deck.heroes[0], "Unknown Hero:" + str(self.deck.heroes[0]))
     
     def get_original_code(self):
         return self.deckstring
