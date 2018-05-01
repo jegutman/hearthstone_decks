@@ -32,6 +32,23 @@ def sim(my_lineup, opp_lineup):
     #                         win_pcts)
     return res
 
+def cq_bans(my_lineup, opp_lineup):
+    res = ""
+    for d in my_lineup:
+        if d not in archetypes:
+            return 'Could not recognize archetype: "%s"' % d
+    for d in opp_lineup:
+        if d not in archetypes:
+            return 'Could not recognize archetype: "%s"' % d
+    res += "bans" + '\n'
+    res += "%-20s %-20s" % ("p1_ban", "p2_ban") + '\n'
+    #for i, j in sorted(res.items(), key=lambda x:-x[1]):
+    for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
+        d1, d2 = i
+        res += '%-20s %-20s %s' % (d1, d2, round(j,4)) + '\n'
+    return res
+
+
 def sim_lhs(my_lineup, opp_lineup):
     res = ""
     assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
