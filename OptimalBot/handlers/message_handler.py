@@ -22,6 +22,7 @@ CMD_DATA = "!data"
 CMD_SIM = "!sim "
 CMD_SIM_LHS = "!simlhs "
 CMD_HELP = "!help"
+CMD_COUNTDOWN = "!countdown"
 CMD_UPTIME = "!uptime"
 #CMD_CHANNEL = "!channel"
 #CMD_OWNER = "!owner"
@@ -131,6 +132,35 @@ class MessageHandler:
             await self.respond(message, USAGE)
             return True
 
+        if message.content.startswith(CMD_COUNTDOWN):
+            season_end = "06-01-2018 02:00:00"
+            season_end_asia = "05-31-2018 11:00:00"
+            season_end_eu = "05-31-2018 18:00:00"
+            tmp = message.content.split(' ')
+            if len(tmp) == 1:
+                end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
+            elif tmp[1].lower() == 'na':
+                end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
+            elif tmp[1].lower() == 'eu':
+                end_time = datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S")
+            elif tmp[1].lower() == 'asia':
+                end_time = datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S")
+            elif tmp[1].lower() == 'all':
+                t1 = str(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
+                t2 = str(datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
+                t3 = str(datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
+                res = '`'
+                res += 'NA:   ' + t1 + '\n'
+                res += 'EU:   ' + t2 + '\n'
+                res += 'APAC: ' + t3 + '\n'
+                res += '`'
+                await self.respond(message, res)
+                return True
+
+            await self.respond(message, '`' + str(end_time - datetime.now()).split('.')[0] + ' left in season`')
+
+            return True
+
         if message.content.startswith(CMD_UPTIME):
             await self.respond(message, str(datetime.now() - self.start_time).split('.')[0])
             return True
@@ -156,8 +186,14 @@ class MessageHandler:
         
         return False
 
+    def wrap_response(response):
+        return '`' + response + '`'
+
     async def respond(self, message, response, my_message=None):
         log_message(message)
+        if len(response) > 2000:
+            sys.stdout.write('response is very long: ' + str(len(response)) + '\n')
+            sys.stdout.flush()
         if my_message is None:
             my_message = await self.client.send_message(message.channel, response)
         else:

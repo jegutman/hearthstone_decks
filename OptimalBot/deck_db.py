@@ -86,7 +86,7 @@ class DeckDBHandler():
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
 
-    def search_helper(self, args, flags, allow_private):
+    def search_helper(self, args, flags, allow_private, limit=0):
         self.check_cursor()
         archetype_str = "deck_archetype like '%%%s%%'" % flags.get('archetype').replace('.*', '%') if flags.get('archetype') else ''
         class_str = "deck_class like '%%%s%%'" % flags.get('class').replace('.*', '%') if flags.get('class') else ''
@@ -115,6 +115,8 @@ class DeckDBHandler():
         for deck_id, date, user, deck_name, deck_class, deck_code in self.cursor.fetchall():
             count += 1
             res.append((deck_id, date, user.split('\#')[0], deck_name, deck_class, deck_code))
+        if limit:
+            res = res[-limit:]
         return res
 
     def search(self, args, flags, allow_private):
