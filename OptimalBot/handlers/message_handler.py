@@ -166,13 +166,6 @@ class MessageHandler:
             await self.respond(message, str(datetime.now() - self.start_time).split('.')[0])
             return True
 
-        if message.content.startswith(CMD_SIM):
-            if str(message.channel.name).lower() not in ['sims']:
-                if not message.channel.is_private:
-                    return True
-            await self.handle_sim(message, CMD_SIM, my_message)
-            return True
-
         if message.content.startswith(CMD_BANS):
             if str(message.channel.name).lower() not in ['sims']:
                 if not message.channel.is_private:
@@ -180,9 +173,17 @@ class MessageHandler:
             await self.handle_bans(message, CMD_BANS, my_message)
             return True
 
+        if message.content.startswith(CMD_SIM):
+            if str(message.channel.name).lower() not in ['sims']:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_sim(message, CMD_SIM, my_message)
+            return True
+
         if message.content.startswith(CMD_SIM_LHS):
-            if not message.channel.is_private:
-                return True
+            if str(message.channel.name).lower() not in ['sims']:
+                if not message.channel.is_private:
+                    return True
             await self.handle_sim(message, CMD_SIM_LHS, my_message, is_conquest=False)
             return True
             
