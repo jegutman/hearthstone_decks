@@ -9,8 +9,8 @@ class SimHandler():
     def __init__(self):
             pass
 
-    def handle(self, input, is_conquest=True):
-        lineup_a, lineup_b = input.split('" "')
+    def handle(self, commands, is_conquest=True):
+        lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
@@ -25,6 +25,24 @@ class SimHandler():
         else:
             #print('`' + sim_lhs(lineup_a,lineup_b) + '`')
             return '`' + sim_lhs(lineup_a,lineup_b) + '`'
+
+    def handle_bans(self, commands, is_conquest=True):
+        lineup_a, lineup_b = commands.split('" "')
+        lineup_a = lineup_a.replace('"', '')
+        lineup_b = lineup_b.replace('"', '')
+        lineup_a = lineup_a.split(',')
+        lineup_b = lineup_b.split(',')
+        lineup_a = [i.strip() for i in lineup_a]
+        lineup_b = [i.strip() for i in lineup_b]
+        #return str(lineup_a) + str(lineup_b)
+    
+        if is_conquest:
+            #print('`' + sim(lineup_a,lineup_b) + '`')
+            return '`' + cq_bans(lineup_a,lineup_b) + '`'
+        else:
+            #print('`' + sim_lhs(lineup_a,lineup_b) + '`')
+            #return '`' + sim_lhs(lineup_a,lineup_b) + '`'
+            return '`LHS not supported yet`'
 
     #def handle_target(self, input, is_conquest=True):
     #    target_lineups = input.split('" "')

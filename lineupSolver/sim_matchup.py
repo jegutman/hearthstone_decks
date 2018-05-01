@@ -43,7 +43,10 @@ def cq_bans(my_lineup, opp_lineup):
     res += "bans" + '\n'
     res += "%-20s %-20s" % ("p1_ban", "p2_ban") + '\n'
     #for i, j in sorted(res.items(), key=lambda x:-x[1]):
-    for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
+    res_ban = cq_pre_ban_old(my_lineup,
+                             opp_lineup,
+                             win_pcts)
+    for i, j in sorted(res_ban.items(), key=lambda x:(x[0][0], x[1])):
         d1, d2 = i
         res += '%-20s %-20s %s' % (d1, d2, round(j,4)) + '\n'
     return res
