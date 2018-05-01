@@ -152,9 +152,9 @@ class MessageHandler:
                 res = '`'
                 res += 'NA:   ' + t1 + '\n'
                 res += 'EU:   ' + t2 + '\n'
-                res += 'APAC: ' + t2 + '\n'
+                res += 'APAC: ' + t3 + '\n'
                 res += '`'
-                return res
+                await self.respond(message, res)
 
             await self.respond(message, '`' + str(end_time - datetime.now()).split('.')[0] + ' left in season`')
 
