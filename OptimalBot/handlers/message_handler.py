@@ -134,9 +134,20 @@ class MessageHandler:
 
         if message.content.startswith(CMD_COUNTDOWN):
             season_end = "05-01-2018 02:00:00"
-            end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
+            season_end_asia = "05-31-2018 11:00:00"
+            season_end_eu = "05-31-2018 18:00:00"
+            tmp = message.content.split(' ')
+            if len(tmp) == 1:
+                end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
+            elif tmp[1].lower() == 'na':
+                end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
+            elif tmp[1].lower() == 'eu':
+                end_time = datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S")
+            elif tmp[1].lower() == 'asia':
+                end_time = datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S")
 
             await self.respond(message, '`' + str(end_time - datetime.now()).split('.')[0] + ' left in season`')
+
             return True
 
         if message.content.startswith(CMD_UPTIME):
