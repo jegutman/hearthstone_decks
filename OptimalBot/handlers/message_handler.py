@@ -146,15 +146,16 @@ class MessageHandler:
             elif tmp[1].lower() == 'asia':
                 end_time = datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S")
             elif tmp[1].lower() == 'all':
-                t1 = str(datetime.now() - datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")).split('.')[0] + ' left in season'
-                t2 = str(datetime.now() - datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S")).split('.')[0] + ' left in season'
-                t3 = str(datetime.now() - datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S")).split('.')[0] + ' left in season'
+                t1 = str(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
+                t2 = str(datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
+                t3 = str(datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
                 res = '`'
                 res += 'NA:   ' + t1 + '\n'
                 res += 'EU:   ' + t2 + '\n'
                 res += 'APAC: ' + t3 + '\n'
                 res += '`'
                 await self.respond(message, res)
+                return True
 
             await self.respond(message, '`' + str(end_time - datetime.now()).split('.')[0] + ' left in season`')
 
