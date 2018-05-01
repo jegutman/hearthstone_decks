@@ -133,7 +133,7 @@ class MessageHandler:
             return True
 
         if message.content.startswith(CMD_COUNTDOWN):
-            season_end = "05-01-2018 02:00:00"
+            season_end = "06-01-2018 02:00:00"
             season_end_asia = "05-31-2018 11:00:00"
             season_end_eu = "05-31-2018 18:00:00"
             tmp = message.content.split(' ')
