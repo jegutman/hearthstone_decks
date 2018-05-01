@@ -22,6 +22,7 @@ CMD_DATA = "!data"
 CMD_SIM = "!sim "
 CMD_SIM_LHS = "!simlhs "
 CMD_HELP = "!help"
+CMD_COUNTDOWN = "!countdown"
 CMD_UPTIME = "!uptime"
 #CMD_CHANNEL = "!channel"
 #CMD_OWNER = "!owner"
@@ -129,6 +130,13 @@ class MessageHandler:
 
         if message.content.startswith(CMD_HELP):
             await self.respond(message, USAGE)
+            return True
+
+        if message.content.startswith(CMD_COUNTDOWN):
+            season_end = "05-01-2018 02:00:00"
+            end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
+
+            await self.respond(message, '`' + str(end_time - datetime.now()).split('.')[0] + ' left in season`')
             return True
 
         if message.content.startswith(CMD_UPTIME):
