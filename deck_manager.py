@@ -182,11 +182,11 @@ def side_by_side_diff_lines(list_of_decks):
                 card_count = "  "
             if isFirst:
                 diffs[card_name] -= card_count_tmp
-                line += "%-27s %2s  " % (card_name, card_count)
+                line += "%-27s %2s " % (card_name, card_count)
                 isFirst = False
             else:
                 diffs[card_name] += card_count_tmp
-                line += " %2s  " % (card_count)
+                line += " %2s " % (card_count)
         res.append(line)
     res.append("")
     if len(list_of_decks) == 2:
