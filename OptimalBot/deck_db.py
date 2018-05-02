@@ -88,6 +88,7 @@ class DeckDBHandler():
 
     def search_helper(self, args, flags, allow_private, limit=0, use_playoffs=False):
         self.check_cursor()
+        playoff_str = "playoff_region = 'None'"
         archetype_str = "deck_archetype like '%%%s%%'" % flags.get('archetype').replace('.*', '%') if flags.get('archetype') else ''
         class_str = "deck_class like '%%%s%%'" % flags.get('class').replace('.*', '%') if flags.get('class') else ''
         name_str = "deck_name like '%%%s%%'" % flags.get('name').replace('.*', '%') if flags.get('name') else ''
@@ -112,9 +113,9 @@ class DeckDBHandler():
                 query_str += private_str 
         
         if use_playoffs:
-            sql_string = "SELECT deck_id, date, deck_name, deck_class, deck_code from deckstrings.playoffs where %(query_str)s"
+            sql_string = "SELECT deck_id, date, deck_name, deck_class, deck_code from deckstrings.playoffs where %(playoff_str)s and %(query_str)s"
         else:
-            sql_string = "SELECT deck_id, date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s"
+            sql_string = "SELECT deck_id, date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(playoff_str)s and %(query_str)s"
         sys.stdout.write(sql_string % locals())
         sys.stdout.flush()
         self.cursor.execute(sql_string % locals())
