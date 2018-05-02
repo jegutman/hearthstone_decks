@@ -107,4 +107,12 @@ def sumproduct_normalize(a, b):
         res += i * j
     res = res / sum(b)
     return res
+
+def geometric_mean(a, b):
+    res = 1.0
+    for i,j in zip(a,b):
+        res *= (i ** j)
+    res = res ** (1.0 / sum(b))
+    return res
+    
     
