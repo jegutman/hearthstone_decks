@@ -45,6 +45,8 @@ class DeckHandler():
             decks = []
             for i in deckstrings:
                 deck_name = deck_db_handler.get_name_from_code(i)
+                if not deck_name:
+                    deck_name = ''
                 decks.append(EasyDeck(i, deck_name))
             if not len(set([i.get_class() for i in decks])) == 1:
                 return '`cannot compare decks from different classes`'
