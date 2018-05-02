@@ -86,7 +86,7 @@ class DeckDBHandler():
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
 
-    def search_helper(self, args, flags, allow_private, limit=0):
+    def search_helper(self, args, flags, allow_private, limit=0, use_playoffs=False):
         self.check_cursor()
         archetype_str = "deck_archetype like '%%%s%%'" % flags.get('archetype').replace('.*', '%') if flags.get('archetype') else ''
         class_str = "deck_class like '%%%s%%'" % flags.get('class').replace('.*', '%') if flags.get('class') else ''
@@ -104,23 +104,36 @@ class DeckDBHandler():
             query_str += private_str
         if not flags and args:
             kw = args
-            query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or user like '%%%(kw)s%%' or date like '%%%(kw)s%%' or deck_code like '%%%(kw)s%%')" % locals()
+            if use_playoffs:
+                query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or date like '%%%(kw)s%%' or deck_code like '%%%(kw)s%%')" % locals()
+            else:
+                query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or user like '%%%(kw)s%%' or date like '%%%(kw)s%%' or deck_code like '%%%(kw)s%%')" % locals()
             if not allow_private:
                 query_str += private_str 
-        sys.stdout.write("SELECT deck_id, date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())
+        
+        if use_playoffs:
+            sql_string = "SELECT deck_id, date, deck_name, deck_class, deck_code from deckstrings.playoffs where %(query_str)s"
+        else:
+            sql_string = "SELECT deck_id, date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s"
+        sys.stdout.write(sql_string % locals())
         sys.stdout.flush()
-        self.cursor.execute("SELECT deck_id, date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(query_str)s" % locals())
+        self.cursor.execute(sql_string % locals())
         res = []
         count = 0
-        for deck_id, date, user, deck_name, deck_class, deck_code in self.cursor.fetchall():
-            count += 1
-            res.append((deck_id, date, user.split('\#')[0], deck_name, deck_class, deck_code))
+        if use_playoffs:
+            for deck_id, date, deck_name, deck_class, deck_code in self.cursor.fetchall():
+                count += 1
+                res.append((deck_id, date, 'Playoffs', deck_name, deck_class, deck_code))
+        else:
+            for deck_id, date, user, deck_name, deck_class, deck_code in self.cursor.fetchall():
+                count += 1
+                res.append((deck_id, date, user.split('\#')[0], deck_name, deck_class, deck_code))
         if limit:
             res = res[-limit:]
         return res
 
-    def search(self, args, flags, allow_private):
-        res = self.search_helper(args, flags, allow_private)
+    def search(self, args, flags, allow_private, use_playoffs=False):
+        res = self.search_helper(args, flags, allow_private, use_playoffs=use_playoffs)
         res_str = "`"
         res_str += "#%-5s %-10s %-16s %-24s %-10s \n#        %s\n" % ('id', 'date', 'user', 'deck_name', 'class', 'deck_code')
         for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:

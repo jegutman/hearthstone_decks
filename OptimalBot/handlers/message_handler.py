@@ -14,6 +14,7 @@ from .deck_handler import DeckHandler
 
 CMD_DECK = "!deck "
 CMD_SEARCH = "!search "
+CMD_SEARCH_PLAYOFF = "!searchplayoff "
 CMD_COMPARE = "!compare "
 CMD_COMPARE_ALL = "!compareall "
 CMD_SIMILAR = "!similar "
@@ -82,6 +83,13 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_deck_search(message, CMD_SEARCH, my_message)
+            return True
+
+        if message.content.startswith(CMD_SEARCH_PLAYOFF):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_deck_search(message, CMD_SEARCH_PLAYOFF, my_message)
             return True
 
         if message.content.startswith(CMD_COMPARE):
@@ -239,7 +247,10 @@ class MessageHandler:
         await self.respond(message, response, my_message)
 
     async def handle_deck_search(self, message, cmd, my_message):
-        response = self.deck_handler.handle_search(message.content[len(cmd):], message, self.deck_db_handler)
+        use_playoffs = False
+        if cmd == CMD_SEARCH_PLAYOFF:
+            use_playoffs = True
+        response = self.deck_handler.handle_search(message.content[len(cmd):], message, self.deck_db_handler, use_playoffs=use_playoffs)
         await self.respond(message, response, my_message)
 
     async def handle_compare(self, message, cmd, my_message):

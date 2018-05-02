@@ -92,7 +92,7 @@ class DeckHandler():
         print_res += '`'
         return print_res
 
-    def handle_search(self, args, message, deck_db_handler):
+    def handle_search(self, args, message, deck_db_handler, use_playoffs=False):
         deckstrings, flags = get_args(args)
         if 'help' in args.split()[0]:
             return helpstring_search
@@ -100,7 +100,7 @@ class DeckHandler():
             allow_private = True
         else:
             allow_private = False
-        return deck_db_handler.search(args,flags, allow_private)
+        return deck_db_handler.search(args,flags, allow_private, use_playoffs=use_playoffs)
 
     def handle_compare_all(self, args, message, deck_db_handler):
         deckstrings, flags = get_args(args)
