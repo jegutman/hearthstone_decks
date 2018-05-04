@@ -197,3 +197,38 @@ def side_by_side_diff_lines(list_of_decks):
                     diff = "+%s" % diff
                 res.append("    %2s %s" % (diff, card_name))
     return '\n'.join(res)
+
+def side_by_side_diff_csv(list_of_decks):
+    #list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
+    deck_cards_to_print = [d.get_cards_to_print() for d in list_of_decks]
+    diffs = {}
+    cost = {}
+    res = []
+    #res += ["" + list_of_decks[0].get_class()]
+    res += [",," + ",".join(["'%s'" % i.name for i in list_of_decks])]
+    card_set = set()
+    for cl in deck_cards_to_print:
+        card_set = card_set.union(set(cl.keys()))
+    sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['cost'], cards[x[1]]['name']))
+    for card_class, card_number in sorted_card_set:
+        card_name = cards[card_number]['name']
+        diffs[card_name] = 0
+        cost[card_name] = cards[card_number]['cost']
+        line = []
+        line += ["%s" % (cards[card_number]['cost'])]
+        isFirst = True
+        for dl in deck_cards_to_print:
+            card_count_tmp = dl.get((card_class, card_number), 0)
+            if card_count_tmp:
+                card_count = "%1s" % card_count_tmp
+            else:
+                card_count = "  "
+            if isFirst:
+                diffs[card_name] -= card_count_tmp
+                line += ['"%s",%s' % (card_name, card_count)]
+                isFirst = False
+            else:
+                diffs[card_name] += card_count_tmp
+                line += ["%s" % (card_count)]
+        res.append(",".join(line))
+    return '\n'.join(res)
