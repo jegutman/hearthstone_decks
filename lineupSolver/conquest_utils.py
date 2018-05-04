@@ -82,7 +82,11 @@ def group_scores(scores):
     groups = []
     group = []
     lastScore = 99999
-    for player, score in sorted(scores.items(), key=lambda x:x[1], reverse=True):
+    randomize = {}
+    for player in scores:
+        randomize[player] = random.random()
+        
+    for player, score in sorted(scores.items(), key=lambda x:(x[1], randomize[x[0]]), reverse=True):
         if score != lastScore:
             lastScore = score
             if group:
@@ -98,28 +102,47 @@ def group_scores(scores):
 
 def simulate_matchup(l1, l2, win_pcts):
     pct = calculate_win_rate(l1, l2, win_pcts)
-    if random.random() > pct:
+    if random.random() < pct:
         return 1
     return 0
 
-def simulate_round(decks, scores, win_pcts):
+def get_sim_matchup(decks, win_pcts):
+    lineups = list(set([tuple(i) for i in decks.values()]))
+    mu_pcts = {}
+    for i in range(0, len(lineups)-1):
+        for j in range(i, len(lineups)):
+            l1 = tuple(lineups[i])
+            l2 = tuple(lineups[j])
+            sim_res = calculate_win_rate(list(l1), list(l2), win_pcts)
+            mu_pcts[(l1, l2)] = sim_res
+            mu_pcts[(l2, l1)] = 1 - sim_res
+
+    def sim_matchup(l1, l2, win_pcts):
+        pct = mu_pcts[(tuple(l1), tuple(l2))]
+        if random.random() < pct:
+            return 1
+        return 0
+    return sim_matchup, mu_pcts
+
+def simulate_round(decks, scores, win_pcts, simulate_matchup=simulate_matchup):
     groups = group_scores(scores)
     for group in groups:
         if len(group) % 2 == 1:
             scores[group[-1][0]] += 1
             group = group[:-1]
         group_size = len(group)
-        for i in range(0, group_size / 2):
+        for i in range(0, int(group_size / 2)):
             p1 = group[i][0]
-            p2 = group[i + group_size / 2][0]
+            p2 = group[i + int(group_size / 2)][0]
             match = simulate_matchup(decks[p1], decks[p2], win_pcts)
             scores[p1] += match
             scores[p2] += (1 - match)
 
-def simulate_tournament(decks, rounds, scores=None, win_pcts={}):
+def simulate_tournament(decks, rounds, scores=None, win_pcts={},simulate_matchup=simulate_matchup):
     if scores == None:
-        for d in decks:
-            scores[d.name] = 0
+        scores = {}
+        for d in decks.keys():
+            scores[d] = 0
     for i in range(0, rounds):
-        simulate_round(decks, scores, win_pcts)
+        simulate_round(decks, scores, win_pcts, simulate_matchup=simulate_matchup)
     return scores
