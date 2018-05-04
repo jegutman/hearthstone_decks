@@ -205,7 +205,7 @@ def side_by_side_diff_csv(list_of_decks):
     cost = {}
     res = []
     #res += ["" + list_of_decks[0].get_class()]
-    res += [",," + ",".join(["'%s'" % i.name for i in list_of_decks])]
+    res += [",," + ",".join(['"%s"' % i.name for i in list_of_decks])]
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
