@@ -109,7 +109,7 @@ def simulate_matchup(l1, l2, win_pcts):
 def get_sim_matchup(decks, win_pcts):
     lineups = list(set([tuple(i) for i in decks.values()]))
     mu_pcts = {}
-    for i in range(0, len(lineups)-1):
+    for i in range(0, len(lineups)):
         for j in range(i, len(lineups)):
             l1 = tuple(lineups[i])
             l2 = tuple(lineups[j])
