@@ -15,8 +15,9 @@ cursor = connection.cursor()
 date = '2018_05_01'
 
 def make_archetype_sheet(archetype):
+    archetype_print = archetype.replace(' ', '')
     region = 'EU'
-    output_file = open('EU_sheets/%(archetype)s.csv' % locals(), 'w')
+    output_file = open('EU_sheets/%(archetype_print)s.csv' % locals(), 'w')
     decks = []
     deckstrings = []
     cursor.execute("SELECT deck_name, deck_id, deck_code FROM deckstrings.decks WHERE deck_archetype = '%(archetype)s' and playoff_region = '%(region)s'" % locals())
@@ -28,7 +29,39 @@ def make_archetype_sheet(archetype):
     compare = decks[0]
     for i in range(0, len(decks)):
         decks = decks[:i+1] + sorted(decks[i+1:], key=lambda x:x.get_distance(decks[i]))
-    print(side_by_side_diff_csv(decks))
-    print(len(set(deckstrings)), len(deckstrings))
+    output_file.write(side_by_side_diff_csv(decks))
+    output_file.close()
+    #print(len(set(deckstrings)), len(deckstrings))
 
-make_archetype_sheet('Spiteful Druid')
+def make_lineups_sheet():
+    output_file = open('EU_sheets/Lineups.csv', 'w')
+    region = 'EU'
+    cursor.execute("SELECT deck_name, deck_archetype FROM deckstrings.decks WHERE playoff_region = '%(region)s'" % locals())
+    player_decks = {}
+    output_file.write("Player,Deck1,Deck2,Deck3,Deck4\n")
+    for deck_name, deck_archetype in cursor.fetchall():
+        if deck_name not in player_decks:
+            player_decks[deck_name] = []
+        player_decks[deck_name].append('"' + deck_archetype + '"')
+
+    for i in player_decks:
+        player_decks[i].sort(key=lambda x:x.split(' ')[-1])
+
+    lineups = {}
+    for i, j in sorted(player_decks.items(), key=lambda x:x[0].lower()):
+        lineups[tuple(j)] = lineups.get(tuple(j), []) + [i]
+        output_file.write('"' + i + '",')
+        output_file.write(",".join(j))
+        output_file.write("\n")
+    output_file.write('\n\n')
+    num_players = len(player_decks.keys())
+    output_file.write("Deck1,Deck2,Deck3,Deck4,Percent of Field,,Players\n")
+    for lu, players in sorted(lineups.items(), key=lambda x:len(x[1]), reverse=True):
+        output_file.write(",".join(list(lu)) + "," + str(round(len(players) / float(num_players) * 100, 1)) + ",," + ",".join(players) + '\n')
+
+make_lineups_sheet()
+
+region = 'EU'
+cursor.execute("SELECT distinct deck_archetype FROM deckstrings.decks WHERE playoff_region = '%(region)s'" % locals())
+for (archetype,) in cursor.fetchall():
+    make_archetype_sheet(archetype)

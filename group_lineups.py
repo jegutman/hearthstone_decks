@@ -15,8 +15,6 @@ cursor = connection.cursor()
 date = '2018_05_01'
 region = 'EU'
 
-archetype = " ".join(sys.argv[1:])
-
 cursor.execute("SELECT deck_name, deck_archetype FROM deckstrings.playoffs" % locals())
 player_decks = {}
 for deck_name, deck_archetype in cursor.fetchall():
@@ -32,11 +30,6 @@ for i, j in player_decks.items():
     j = tuple(j)
     if j not in lineups: lineups[j] = []
     lineups[j].append(i)
-
-#for i,j in sorted(lineups.items(), key=lambda x:len(x[1]), reverse=True):
-#    #print(len(j), i)
-#    print(",".join(list(i)), end="")
-#    print(',' + " ".join(list(j)))
 
 for i,j in sorted(lineups.items(), key=lambda x:len(x[1]), reverse=True):
     print('"' + ",".join(list(i)) + '"')
