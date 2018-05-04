@@ -12,7 +12,62 @@ from deck_manager import *
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
-date = '2018_05_01'
+tech_cards = [
+    #Weapon Hate
+    'Acidic Swamp Ooze',
+    'Gluttonous Ooze',
+    'Harrison Jones',
+    'Corrosive Sludge',
+
+    #Silence
+    'Keeper of the Grove',
+    'Spellbreaker',
+    'Ironbeak Owl',
+    'Silence',
+    'Mass Dispel',
+
+    #Doomsayer
+    'Doomsayer',
+
+    #Anti-tech
+    'Crazed Alchemist',
+
+    #Geist
+    'Skulking Geist',
+
+
+    #Hard Removal
+    'Big Game Hunter',
+    'Tinkmaster Overspark',
+    'Humgry Crab',
+    'Voodoo Doll',
+    'Sacrificial Pact',
+
+    # Neutral AOE
+    'Mossy Horror',
+
+    # Neutral Value / Defensive
+    'Baleful Banker',
+    'Azalina Soulthief',
+    'Prince Taldaram',
+    'Elise the Trailblazer',
+    'Tar Creeper',
+    'Stonehill Defender',
+
+    # Neutral Optional Minions
+    'Mindbreaker',
+    'Plated Beetle',
+
+    #Class Specific Choices
+    'Mortal Coil',
+    'Evasion',
+    'Shadow Madness',
+    'Vivid Nightmare',
+    'Archbishop Benedictus',
+    'Mind Control',
+    'Cabal Shadow Priest',
+    'Dinosize',
+]
 
 def make_archetype_sheet(archetype):
     archetype_print = archetype.replace(' ', '')
@@ -59,9 +114,29 @@ def make_lineups_sheet():
     for lu, players in sorted(lineups.items(), key=lambda x:len(x[1]), reverse=True):
         output_file.write(",".join(list(lu)) + "," + str(round(len(players) / float(num_players) * 100, 1)) + ",," + ",".join(players) + '\n')
 
+def archetype_percents():
+    output_file = open('EU_sheets/Archetypes.csv', 'w')
+    output_file.write("Archetype,Number,Percentage of Decks\n")
+    region = 'EU'
+    total = 0
+    cursor.execute("select deck_archetype, deck_class, count(deck_archetype) as total FROM deckstrings.decks WHERE playoff_region = '%(region)s' group by deck_archetype, deck_class order by deck_class, total desc" % locals())
+    archetypes = []
+    for i,j,k in cursor.fetchall():
+        i = '"' + i + '"'
+        k = int(k)
+        archetypes.append((i,k))
+        total += k
+    for i,j in archetypes:
+        output_file.write(",".join([i, str(j), str(round(j/float(total) * 100, 1))]) + '\n')
+
+archetype_percents()
+    
+
 make_lineups_sheet()
 
 region = 'EU'
 cursor.execute("SELECT distinct deck_archetype FROM deckstrings.decks WHERE playoff_region = '%(region)s'" % locals())
 for (archetype,) in cursor.fetchall():
     make_archetype_sheet(archetype)
+
+
