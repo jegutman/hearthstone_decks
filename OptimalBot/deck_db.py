@@ -113,7 +113,7 @@ class DeckDBHandler():
                 query_str += private_str 
         
         if use_playoffs:
-            sql_string = "SELECT deck_id, date, deck_name, deck_class, deck_code from deckstrings.playoffs where %(playoff_str)s and %(query_str)s"
+            sql_string = "SELECT deck_id, date, deck_name, deck_class, deck_code from deckstrings.playoffs where %(query_str)s"
         else:
             sql_string = "SELECT deck_id, date, user, deck_name, deck_class, deck_code from deckstrings.decks where %(playoff_str)s and %(query_str)s"
         sys.stdout.write(sql_string % locals())
