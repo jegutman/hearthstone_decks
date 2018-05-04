@@ -2,6 +2,7 @@ from shared_utils import *
 import itertools
 # some assumptions on formating
 # whatever deck a player is forced to play should be listed first (for 3v2 and 2v2 scenarios, irrelevant otherwise)
+import random
 
 # branching calcs
 # 16 x ban phase
@@ -18,6 +19,10 @@ def pre_ban_old(decks_a, decks_b, win_pcts):
 def win_rate(decks_a, decks_b, win_pcts):
     res = pre_ban(decks_a, decks_b, win_pcts)
     return max(res.items(), key=lambda x:x[1])
+
+def calculate_win_rate(decks_a, decks_b, win_pcts):
+    res = pre_ban(decks_a, decks_b, win_pcts)
+    return max(res.items(), key=lambda x:x[1])[1]
 
 def pre_ban(decks_a, decks_b, win_pcts, debug=False):
     mins = {}
@@ -72,3 +77,49 @@ def post_ban(decks_a, decks_b, win_pcts, useGlobal=True, start=True):
         if useGlobal:
             tested[(tuple_a, tuple_b)] = res
         return res
+
+def group_scores(scores):
+    groups = []
+    group = []
+    lastScore = 99999
+    for player, score in sorted(scores.items(), key=lambda x:x[1], reverse=True):
+        if score != lastScore:
+            lastScore = score
+            if group:
+                groups.append(group)
+                group = []
+        group.append((player, score))
+    groups.append(group)
+    for i in range(0, len(groups)-1):
+        if len(groups[i]) % 2 == 1:
+            groups[i] = groups[i] + groups[i+1][:1]
+            groups[i+1] = groups[i+1][1:]
+    return groups
+
+def simulate_matchup(l1, l2, win_pcts):
+    pct = calculate_win_rate(l1, l2, win_pcts)
+    if random.random() > pct:
+        return 1
+    return 0
+
+def simulate_round(decks, scores, win_pcts):
+    groups = group_scores(scores)
+    for group in groups:
+        if len(group) % 2 == 1:
+            scores[group[-1][0]] += 1
+            group = group[:-1]
+        group_size = len(group)
+        for i in range(0, group_size / 2):
+            p1 = group[i][0]
+            p2 = group[i + group_size / 2][0]
+            match = simulate_matchup(decks[p1], decks[p2], win_pcts)
+            scores[p1] += match
+            scores[p2] += (1 - match)
+
+def simulate_tournament(decks, rounds, scores=None, win_pcts={}):
+    if scores == None:
+        for d in decks:
+            scores[d.name] = 0
+    for i in range(0, rounds):
+        simulate_round(decks, scores, win_pcts)
+    return scores

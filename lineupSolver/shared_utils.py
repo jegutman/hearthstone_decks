@@ -114,5 +114,4 @@ def geometric_mean(a, b):
         res *= (i ** j)
     res = res ** (1.0 / sum(b))
     return res
-    
-    
+
