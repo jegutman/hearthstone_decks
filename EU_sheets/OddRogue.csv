@@ -1,23 +1,23 @@
-,,"Juristis#2130","greensheep#2290","ElMachico#2287","Bozzzton#2511"
-1,"Argent Squire",2,2,2,2
-1,"Cold Blood",2,2,2,2
-1,"Deadly Poison",2,2,2,2
-1,"Dire Mole",2,2,2,2
-1,"Fire Fly",2,2,2,2
-1,"Southsea Deckhand",2,2,2,2
-3,"Blink Fox",1,2,2,2
-3,"Face Collector",1,  ,  ,  
-3,"Hench-Clan Thug",2,2,2,2
-3,"Ironbeak Owl",2,1,2,2
-3,"Kobold Apprentice",  ,  ,  ,1
-3,"SI:7 Agent",2,2,2,2
-3,"Tar Creeper",2,2,1,  
-3,"Vicious Fledgling",2,2,2,2
-3,"Wolfrider",  ,  ,  ,1
-5,"Bittertide Hydra",  ,  ,  ,2
-5,"Captain Greenskin",  ,  ,1,1
-5,"Cobalt Scalebane",1,1,  ,  
-5,"Fungalmancer",1,2,2,1
-5,"Leeroy Jenkins",1,1,1,1
-5,"Vilespine Slayer",2,2,2,  
-9,"Baku the Mooneater",1,1,1,1
+,,,,,"Juristis#2130","greensheep#2290","ElMachico#2287","Bozzzton#2511"
+1,"Argent Squire",8,100.0%,,2,2,2,2
+1,"Cold Blood",8,100.0%,,2,2,2,2
+1,"Deadly Poison",8,100.0%,,2,2,2,2
+1,"Dire Mole",8,100.0%,,2,2,2,2
+1,"Fire Fly",8,100.0%,,2,2,2,2
+1,"Southsea Deckhand",8,100.0%,,2,2,2,2
+3,"Blink Fox",7,87.5%,,1,2,2,2
+3,"Face Collector",1,25.0%,,1,,,
+3,"Hench-Clan Thug",8,100.0%,,2,2,2,2
+3,"Ironbeak Owl",7,87.5%,,2,1,2,2
+3,"Kobold Apprentice",1,25.0%,,,,,1
+3,"SI:7 Agent",8,100.0%,,2,2,2,2
+3,"Tar Creeper",5,62.5%,,2,2,1,
+3,"Vicious Fledgling",8,100.0%,,2,2,2,2
+3,"Wolfrider",1,25.0%,,,,,1
+5,"Bittertide Hydra",2,25.0%,,,,,2
+5,"Captain Greenskin",2,50.0%,,,,1,1
+5,"Cobalt Scalebane",2,50.0%,,1,1,,
+5,"Fungalmancer",6,75.0%,,1,2,2,1
+5,"Leeroy Jenkins",4,100.0%,,1,1,1,1
+5,"Vilespine Slayer",6,75.0%,,2,2,2,
+9,"Baku the Mooneater",4,100.0%,,1,1,1,1

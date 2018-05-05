@@ -205,30 +205,28 @@ def side_by_side_diff_csv(list_of_decks):
     cost = {}
     res = []
     #res += ["" + list_of_decks[0].get_class()]
-    res += [",," + ",".join(['"%s"' % i.name for i in list_of_decks])]
+    res += [",,,,," + ",".join(['"%s"' % i.name for i in list_of_decks])]
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
     sorted_card_set = sorted(card_set, key=lambda x:(cards[x[1]]['cost'], cards[x[1]]['name']))
     for card_class, card_number in sorted_card_set:
+        card_stats = []
         card_name = cards[card_number]['name']
         diffs[card_name] = 0
         cost[card_name] = cards[card_number]['cost']
         line = []
         line += ["%s" % (cards[card_number]['cost'])]
+        line += ['"%s"' % card_name]
         isFirst = True
         for dl in deck_cards_to_print:
             card_count_tmp = dl.get((card_class, card_number), 0)
+            card_stats.append(card_count_tmp)
             if card_count_tmp:
                 card_count = "%1s" % card_count_tmp
             else:
-                card_count = "  "
-            if isFirst:
-                diffs[card_name] -= card_count_tmp
-                line += ['"%s",%s' % (card_name, card_count)]
-                isFirst = False
-            else:
-                diffs[card_name] += card_count_tmp
-                line += ["%s" % (card_count)]
-        res.append(",".join(line))
+                card_count = ""
+            line += ["%s" % (card_count)]
+        line = line[:2] + [sum(card_stats), "%s" % round(float(sum(card_stats)) / (max(card_stats) * len(card_stats)) * 100., 1) + '%', ''] + line[2:]
+        res.append(",".join([str(i) for i in line]))
     return '\n'.join(res)

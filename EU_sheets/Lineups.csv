@@ -1,12 +1,13 @@
 Player,Deck1,Deck2,Deck3,Deck4
 "A83650#2106","Spiteful Druid","Murloc Paladin","Control Priest","Control Warlock"
-"anduriel#21364","Spiteful Druid","Tempo Mage","Quest Rogue","Cube Warlock"
+"anduriel#21364","Tempo Mage","Quest Rogue","Cube Warlock"
 "Babon#21904","Spiteful Druid","Control Priest","Cube Warlock","Odd Quest Warrior"
 "bequiet#2179","Tempo Mage","Even Paladin","Quest Rogue","Cube Warlock"
 "BoarControl#2986","Spiteful Druid","Tempo Mage","Even Paladin","Cube Warlock"
 "Bozzzton#2511","Tempo Mage","Murloc Paladin","Odd Rogue","Cube Warlock"
 "Bunnyhoppor#2897","Spiteful Druid","Tempo Mage","Even Paladin","Cube Warlock"
 "Casie#2884","Taunt Druid","Control Priest","Miracle Rogue","Cube Warlock"
+"Control Warlock","Control Warlock","Control Warlock"
 "Crane333#2314","Big Spell Mage","Control Paladin","Cube Warlock","Odd Warrior"
 "dawido#2832","Spiteful Druid","Murloc Paladin","Control Priest","Control Warlock"
 "Duarte#21328","Token Druid","Spell Hunter","Odd Paladin","Odd Warrior"
@@ -32,16 +33,17 @@ Player,Deck1,Deck2,Deck3,Deck4
 "Leta#21458","Spiteful Druid","Tempo Mage","Quest Rogue","Cube Warlock"
 "martim#2226","Spiteful Druid","Control Priest","Quest Rogue","Control Warlock"
 "Maur1#2225","Control Priest","Miracle Rogue","Cube Warlock","Odd Quest Warrior"
-"Maverick#2233","Taunt Druid","Control Priest","Control Warlock","Control Warrior"
+"Maverick#2233","Taunt Druid","Control Priest","Control Warrior"
 "Meati#2841","Spiteful Druid","Tempo Mage","Even Paladin","Quest Rogue"
 "MM78#2809","Taunt Druid","Control Priest","Control Warlock","Odd Warrior"
 "Mryagut#2306","Taunt Druid","Control Priest","Quest Rogue","Cube Warlock"
 "Nicslay#2567","Spiteful Druid","Murloc Paladin","Control Priest","Control Warlock"
 "NoName#13139","Even Paladin","Control Priest","Cube Warlock","Control Warrior"
 "ntR#1799","Taunt Druid","Even Paladin","Control Priest","Control Warlock"
-"Odemian#2999","Taunt Druid","Control Priest","Control Warlock","Control Warrior"
+"Odemian#2999","Taunt Druid","Control Priest","Control Warrior"
 "Orange#2309","Tempo Mage","Even Paladin","Control Priest","Cube Warlock"
-"pokrovac#2638","Spiteful Druid","Control Priest","Quest Rogue","Control Warlock"
+"pokrovac#2638","Control Priest","Control Warlock"
+"Quest Rogue One Fan","Quest Rogue"
 "Raena#2283","Control Priest","Shudderwock Shaman","Control Warlock","Control Warrior"
 "Rdu#2340","Spiteful Druid","Tempo Mage","Quest Rogue","Cube Warlock"
 "RENMEN#2291","Spiteful Druid","Spell Hunter","Control Warlock","Quest Warrior"
@@ -54,6 +56,7 @@ Player,Deck1,Deck2,Deck3,Deck4
 "ShtanUdachi#2202","Spiteful Druid","Spell Hunter","Control Warlock","Quest Warrior"
 "Sintolol#2775","Spiteful Druid","Murloc Paladin","Control Priest","Control Warlock"
 "SpaDj#2732","Taunt Druid","Even Paladin","Control Priest","Cube Warlock"
+"Spiteful Druid","Spiteful Druid","Spiteful Druid"
 "Springy#2781","Spiteful Druid","Big Spell Mage","Even Paladin","Cube Warlock"
 "Swidz#2563","Togwaggle Druid","Big Spell Mage","Control Warlock","Control Warrior"
 "tanaka#21918","Taunt Druid","Spell Hunter","Big Spell Mage","Cube Warlock"
@@ -75,46 +78,51 @@ Player,Deck1,Deck2,Deck3,Deck4
 
 
 Deck1,Deck2,Deck3,Deck4,Percent of Field,,Players
-"Spiteful Druid","Murloc Paladin","Control Priest","Control Warlock",6.8,,A83650#2106,dawido#2832,Nicslay#2567,Seiko#2721,Sintolol#2775
-"Spiteful Druid","Tempo Mage","Quest Rogue","Cube Warlock",6.8,,anduriel#21364,Hypno#22145,Leta#21458,Rdu#2340,ThijsNL#2223
-"Taunt Druid","Even Paladin","Control Priest","Control Warlock",5.5,,Faeli#2572,hunterace#2217,Jarla#21553,ntR#1799
-"Taunt Druid","Control Priest","Quest Rogue","Cube Warlock",5.5,,Mryagut#2306,SCACC#2315,Tyler#2449,Zuhex#21312
-"Spiteful Druid","Tempo Mage","Even Paladin","Cube Warlock",4.1,,BoarControl#2986,Bunnyhoppor#2897,fenomeno#21327
-"Spiteful Druid","Control Priest","Quest Rogue","Control Warlock",4.1,,Findan#2596,martim#2226,pokrovac#2638
-"Spiteful Druid","Even Paladin","Control Priest","Control Warlock",4.1,,Glaser#2196,xBlyzes#2682,Zhym#2678
-"Taunt Druid","Combo Priest","Quest Rogue","Control Warlock",4.1,,KalÃ xz#2721,Windello#2498,yogg#2768
-"Taunt Druid","Control Priest","Control Warlock","Odd Warrior",4.1,,MM78#2809,Scruffy#2659,Twink#21785
-"Tempo Mage","Even Paladin","Quest Rogue","Cube Warlock",2.7,,bequiet#2179,Turna#2738
-"Taunt Druid","Control Priest","Miracle Rogue","Cube Warlock",2.7,,Casie#2884,Viper#23812
-"Odd Hunter","Tempo Mage","Murloc Paladin","Odd Rogue",2.7,,greensheep#2290,Juristis#2130
-"Even Paladin","Control Priest","Control Warlock","Odd Warrior",2.7,,Kalas#2638,Trec#2878
-"Taunt Druid","Control Priest","Control Warlock","Control Warrior",2.7,,Maverick#2233,Odemian#2999
-"Spiteful Druid","Spell Hunter","Control Warlock","Quest Warrior",2.7,,RENMEN#2291,ShtanUdachi#2202
-"Spiteful Druid","Control Priest","Cube Warlock","Odd Quest Warrior",1.4,,Babon#21904
-"Tempo Mage","Murloc Paladin","Odd Rogue","Cube Warlock",1.4,,Bozzzton#2511
-"Big Spell Mage","Control Paladin","Cube Warlock","Odd Warrior",1.4,,Crane333#2314
-"Token Druid","Spell Hunter","Odd Paladin","Odd Warrior",1.4,,Duarte#21328
-"Taunt Druid","Control Priest","Control Warlock","Quest Warrior",1.4,,eilic#2496
-"Tempo Mage","Even Paladin","Odd Rogue","Cube Warlock",1.4,,ElMachico#2287
-"Quest Druid","Control Priest","Quest Rogue","Cube Warlock",1.4,,esteban#2504
-"Big Spell Mage","Control Priest","Control Warlock","Odd Quest Warrior",1.4,,Fox#29320
-"Taunt Druid","Big Spell Mage","Quest Rogue","Control Warlock",1.4,,ignite#21733
-"Spiteful Druid","Control Priest","Quest Rogue","Cube Warlock",1.4,,iNS4NE#21840
-"Taunt Druid","Even Paladin","Control Warlock","Odd Warrior",1.4,,Kolento#2266
-"Spiteful Druid","Even Paladin","Cube Warlock","Odd Warrior",1.4,,kolmari#2701
-"Control Priest","Miracle Rogue","Cube Warlock","Odd Quest Warrior",1.4,,Maur1#2225
-"Spiteful Druid","Tempo Mage","Even Paladin","Quest Rogue",1.4,,Meati#2841
-"Even Paladin","Control Priest","Cube Warlock","Control Warrior",1.4,,NoName#13139
-"Tempo Mage","Even Paladin","Control Priest","Cube Warlock",1.4,,Orange#2309
-"Control Priest","Shudderwock Shaman","Control Warlock","Control Warrior",1.4,,Raena#2283
-"Spiteful Druid","Big Spell Mage","Cube Warlock","Quest Warrior",1.4,,Rikitikitavi#2184
-"Taunt Druid","Control Priest","Quest Rogue","Control Warlock",1.4,,riku97#2895
-"Spiteful Druid","Tempo Mage","Control Warlock","Odd Warrior",1.4,,Ronnie#2895
-"Taunt Druid","Even Paladin","Control Priest","Cube Warlock",1.4,,SpaDj#2732
-"Spiteful Druid","Big Spell Mage","Even Paladin","Cube Warlock",1.4,,Springy#2781
-"Togwaggle Druid","Big Spell Mage","Control Warlock","Control Warrior",1.4,,Swidz#2563
-"Taunt Druid","Spell Hunter","Big Spell Mage","Cube Warlock",1.4,,tanaka#21918
-"Tempo Mage","Even Paladin","Combo Priest","Cube Warlock",1.4,,Thiddi#2854
-"Quest Druid","Control Priest","Quest Rogue","Control Warlock",1.4,,Warma#2764
-"Taunt Druid","Tempo Mage","Control Priest","Control Warlock",1.4,,Zuka#2978
-"Even Paladin","Control Priest","Control Warlock","Quest Warrior",1.4,,zumpp#2702
+"Spiteful Druid","Murloc Paladin","Control Priest","Control Warlock",6.6,,A83650#2106,dawido#2832,Nicslay#2567,Seiko#2721,Sintolol#2775
+"Taunt Druid","Even Paladin","Control Priest","Control Warlock",5.3,,Faeli#2572,hunterace#2217,Jarla#21553,ntR#1799
+"Spiteful Druid","Tempo Mage","Quest Rogue","Cube Warlock",5.3,,Hypno#22145,Leta#21458,Rdu#2340,ThijsNL#2223
+"Taunt Druid","Control Priest","Quest Rogue","Cube Warlock",5.3,,Mryagut#2306,SCACC#2315,Tyler#2449,Zuhex#21312
+"Spiteful Druid","Tempo Mage","Even Paladin","Cube Warlock",3.9,,BoarControl#2986,Bunnyhoppor#2897,fenomeno#21327
+"Spiteful Druid","Even Paladin","Control Priest","Control Warlock",3.9,,Glaser#2196,xBlyzes#2682,Zhym#2678
+"Taunt Druid","Combo Priest","Quest Rogue","Control Warlock",3.9,,KalÃ xz#2721,Windello#2498,yogg#2768
+"Taunt Druid","Control Priest","Control Warlock","Odd Warrior",3.9,,MM78#2809,Scruffy#2659,Twink#21785
+"Tempo Mage","Even Paladin","Quest Rogue","Cube Warlock",2.6,,bequiet#2179,Turna#2738
+"Taunt Druid","Control Priest","Miracle Rogue","Cube Warlock",2.6,,Casie#2884,Viper#23812
+"Spiteful Druid","Control Priest","Quest Rogue","Control Warlock",2.6,,Findan#2596,martim#2226
+"Odd Hunter","Tempo Mage","Murloc Paladin","Odd Rogue",2.6,,greensheep#2290,Juristis#2130
+"Even Paladin","Control Priest","Control Warlock","Odd Warrior",2.6,,Kalas#2638,Trec#2878
+"Taunt Druid","Control Priest","Control Warrior",2.6,,Maverick#2233,Odemian#2999
+"Spiteful Druid","Spell Hunter","Control Warlock","Quest Warrior",2.6,,RENMEN#2291,ShtanUdachi#2202
+"Tempo Mage","Quest Rogue","Cube Warlock",1.3,,anduriel#21364
+"Spiteful Druid","Control Priest","Cube Warlock","Odd Quest Warrior",1.3,,Babon#21904
+"Tempo Mage","Murloc Paladin","Odd Rogue","Cube Warlock",1.3,,Bozzzton#2511
+"Control Warlock","Control Warlock",1.3,,Control Warlock
+"Big Spell Mage","Control Paladin","Cube Warlock","Odd Warrior",1.3,,Crane333#2314
+"Token Druid","Spell Hunter","Odd Paladin","Odd Warrior",1.3,,Duarte#21328
+"Taunt Druid","Control Priest","Control Warlock","Quest Warrior",1.3,,eilic#2496
+"Tempo Mage","Even Paladin","Odd Rogue","Cube Warlock",1.3,,ElMachico#2287
+"Quest Druid","Control Priest","Quest Rogue","Cube Warlock",1.3,,esteban#2504
+"Big Spell Mage","Control Priest","Control Warlock","Odd Quest Warrior",1.3,,Fox#29320
+"Taunt Druid","Big Spell Mage","Quest Rogue","Control Warlock",1.3,,ignite#21733
+"Spiteful Druid","Control Priest","Quest Rogue","Cube Warlock",1.3,,iNS4NE#21840
+"Taunt Druid","Even Paladin","Control Warlock","Odd Warrior",1.3,,Kolento#2266
+"Spiteful Druid","Even Paladin","Cube Warlock","Odd Warrior",1.3,,kolmari#2701
+"Control Priest","Miracle Rogue","Cube Warlock","Odd Quest Warrior",1.3,,Maur1#2225
+"Spiteful Druid","Tempo Mage","Even Paladin","Quest Rogue",1.3,,Meati#2841
+"Even Paladin","Control Priest","Cube Warlock","Control Warrior",1.3,,NoName#13139
+"Tempo Mage","Even Paladin","Control Priest","Cube Warlock",1.3,,Orange#2309
+"Control Priest","Control Warlock",1.3,,pokrovac#2638
+"Quest Rogue",1.3,,Quest Rogue One Fan
+"Control Priest","Shudderwock Shaman","Control Warlock","Control Warrior",1.3,,Raena#2283
+"Spiteful Druid","Big Spell Mage","Cube Warlock","Quest Warrior",1.3,,Rikitikitavi#2184
+"Taunt Druid","Control Priest","Quest Rogue","Control Warlock",1.3,,riku97#2895
+"Spiteful Druid","Tempo Mage","Control Warlock","Odd Warrior",1.3,,Ronnie#2895
+"Taunt Druid","Even Paladin","Control Priest","Cube Warlock",1.3,,SpaDj#2732
+"Spiteful Druid","Spiteful Druid",1.3,,Spiteful Druid
+"Spiteful Druid","Big Spell Mage","Even Paladin","Cube Warlock",1.3,,Springy#2781
+"Togwaggle Druid","Big Spell Mage","Control Warlock","Control Warrior",1.3,,Swidz#2563
+"Taunt Druid","Spell Hunter","Big Spell Mage","Cube Warlock",1.3,,tanaka#21918
+"Tempo Mage","Even Paladin","Combo Priest","Cube Warlock",1.3,,Thiddi#2854
+"Quest Druid","Control Priest","Quest Rogue","Control Warlock",1.3,,Warma#2764
+"Taunt Druid","Tempo Mage","Control Priest","Control Warlock",1.3,,Zuka#2978
+"Even Paladin","Control Priest","Control Warlock","Quest Warrior",1.3,,zumpp#2702
