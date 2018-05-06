@@ -11,12 +11,13 @@ from conquest_utils import *
 
 from random import shuffle
 
+from hct_europe_pairings import *
+
 decks = {
     'AA_TEST'            : ['Spiteful Druid', 'Even Paladin', 'Quest Rogue', 'Cube Warlock'],
     'AA_TEST2'           : ['Spiteful Druid','Murloc Paladin','Quest Rogue','Cube Warlock'],
     'AA_TEST3'           : ['Spiteful Druid','Murloc Paladin','Tempo Mage','Cube Warlock'],
-    'AA_TEST4'           : "Taunt Druid,Control Priest,Quest Rogue,Cube Warlock".split(','),
-    'AA_TEST5'           : "Taunt Druid,Tempo Mage,Quest Rogue,Cube Warlock".split(','),
+    'AA_TEST4'           : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
     'A83650#2106'        : ['Spiteful Druid', 'Murloc Paladin', 'Control Priest', 'Control Warlock'],
     'Babon#21904'        : ['Spiteful Druid', 'Control Priest', 'Cube Warlock', 'Odd Quest Warrior'],
     'BoarControl#2986'   : ['Spiteful Druid', 'Tempo Mage', 'Even Paladin', 'Cube Warlock'],
@@ -96,33 +97,39 @@ win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_
 
 tops = {}
 
-#def simulate_tournament(decks, rounds, scores=None, win_pcts={}):
-#    if scores == None:
-#        for d in decks:
-#            scores[d.name] = 0
-#    for i in range(0, rounds):
-#        simulate_round(decks, scores, win_pcts)
-#    return scores
-total_points = {}
+threshold = 0.6
+inverse = 1 - threshold
+upsets = 0
+total = 0
+expected_score = {}
+for p1, p2, s1, s2 in round1 + round2 + round3 + round4 + round5 + round6:
+    wr = calculate_win_rate(decks[p1], decks[p2], win_pcts)
+    expected_score[p1] = expected_score.get(p1, 0) + wr
+    expected_score[p2] = expected_score.get(p2, 0) + (1-wr)
+    if wr > threshold and s1 < s2 or wr < inverse and s1 > s2:
+        print(wr, p1, p2, wr, s1, s2, "UPSET")
+        upsets += 1
+        total += 1
+    elif wr > threshold or wr < inverse:
+        print(wr, p1, p2, wr, s1, s2, "")
+        total += 1
+print(upsets, total, total - upsets, round(float(total - upsets) / total * 100, 1))
 
-sim_matchup, mu_pcts = get_sim_matchup(decks,win_pcts)
-num_sims = 100000
-for x in range(0, num_sims):
-    randomize = {}
-    tmp_players = list(decks.keys())
-    shuffle(tmp_players)
-    for Y in tmp_players:
-        randomize[Y] = decks[Y]
-    decks = randomize
-    results = simulate_tournament(decks, rounds=7, win_pcts=win_pcts, simulate_matchup=sim_matchup)
-    top8 = sorted(results.items(), key=lambda x:x[1])[-8:]
-    for i, j in results.items():
-        total_points[i] = total_points.get(i, 0) + j
-    for i, j in top8:
-        tops[i] = tops.get(i, 0) + 1
-    if x % 50 == 0 and x > 0:
-        print("sim %s" % x)
+#for p1, p2, s1, s2 in round1 + round2 + round3 + round4 + round5 + round6:
+#    wr = calculate_win_rate(decks[p1], decks[p2], win_pcts)
+#    if (wr > threshold and wr < threshold + 0.05 and s1 < s2) or (wr < inverse and wr > inverse - 0.05 and s1 > s2):
+#        print(wr, p1, p2, wr, s1, s2, "UPSET")
+#        upsets += 1
+#        total += 1
+#    elif (wr > threshold and wr < threshold + 0.05) or (wr < inverse and wr > inverse - 0.05):
+#        print(wr, p1, p2, wr, s1, s2, "")
+#        total += 1
+#print(upsets, total, total - upsets, round(float(total - upsets) / total * 100, 1))
 
-for i,j in sorted(tops.items(), key=lambda x:x[1], reverse=True):
-    avg_points = round(float(total_points[i]) / num_sims, 1)
-    print("%-20s %6s %5s %5s %s" % (i,j, avg_points, (str(round(float(j) / num_sims * 100., 1)) + '%'), str(decks[i])))
+#for i, j in sorted(expected_score.items(), key=lambda x:x[1], reverse=True):
+#    print(round(j,1),i)
+for i,j in round6_standings:
+    print i, j, expected_score.get(i), j - expected_score.get(i), decks[i]
+
+for i,j in round6_standings[:16]:
+    print('"' + ",".join(decks[i]) + '"')

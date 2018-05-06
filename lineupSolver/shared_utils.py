@@ -97,8 +97,8 @@ def get_win_pct(a,b, win_pcts):
     res = win_pcts.get((a,b))
     if res == None:
         res = 0.49999
-    #if a == 'OTK DK Paladin':
-    #    return win_pcts.get((a,b), 0) + 0.03
+    #if a == 'Spiteful Druid':
+    #    return win_pcts.get((a,b), 0) - 0.03
     return win_pcts.get((a,b), 0)
 
 def sumproduct_normalize(a, b):
