@@ -148,7 +148,7 @@ if __name__ == '__main__':
                 print ""
                 print my_lineup, "vs", opp_lineup
                 print "bans"
-                print "%-20s %-20s" % ("p1_ban", "p2_ban")
+                print "%-20s %-20s" % ("p1_ban", "p2_ban", "p1_win_%")
                 #for i, j in sorted(res.items(), key=lambda x:-x[1]):
                 for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
                     d1, d2 = i
@@ -259,7 +259,7 @@ if __name__ == '__main__':
             print ""
             print my_lineup, "vs", opp_lineup
             print "bans"
-            print "%-20s %-20s" % ("p1_ban", "p2_ban")
+            print "%-20s %-20s %s" % ("p1_ban", "p2_ban", "p1_win_%")
             #for i, j in sorted(res.items(), key=lambda x:-x[1]):
             for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
                 d1, d2 = i
@@ -277,7 +277,7 @@ if __name__ == '__main__':
         print ""
         print my_lineup, "vs", opp_lineup
         print "bans"
-        print "%-20s %-20s" % ("p1_ban", "p2_ban")
+        print "%-20s %-20s %s" % ("p1_ban", "p2_ban", "p1_win_%")
         #for i, j in sorted(res.items(), key=lambda x:-x[1]):
         for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
             d1, d2 = i
