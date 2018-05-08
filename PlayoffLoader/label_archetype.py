@@ -12,9 +12,17 @@ from deck_manager import *
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
-filename = 'lineupSolver/2018_HCT_Europe_Summer_Playoffs.csv'
+filename = '2018_HCT_Americas_Summer_Playoffs.csv'
 
 file = open(filename)
+
+flags = {}
+
+def get_decks_by_class(deck_class):
+    db, table = 'deckstrings,decks'.split(',')
+
+    cursor.execute("SELECT deck_id, deck_archetype, deck_code FROM %(db)s.%(table)s WHERE deck_class = '%(deck_class)s' and deck_archetype is not null" % locals())
+    return [(i,j,k) for (i,j,k) in cursor.fetchall()]
 
 for line in file:
     deck_name, deck_class, deck_code = line.strip().split(',')
@@ -37,6 +45,5 @@ for line in file:
     else:
         print("%-25s %-10s %-15s %2s %s" % (deck_name, deck_class, res_final[0][2], res_final[0][0], deck_code))
         deck_archetype = res_final[0][2]
-        cursor.execute("UPDATE deckstrings.playoffs set deck_archetype = '%(deck_archetype)s' WHERE deck_code = '%(deck_code)s'" % locals())
-
-connection.commit()
+        #print(deck_archetype)
+        #cursor.execute("UPDATE deckstrings.playoffs set deck_archetype = '%(deck_archetype)s' WHERE deck_code = '%(deck_code)s'" % locals())
