@@ -4,9 +4,9 @@ from shared_utils import *
 
 if __name__ == '__main__':
     level1, level2, level3, level4, level5 = None, None, None, None, None
-    level1 = "Cube Warlock,Murloc Paladin,Combo Priest,Big Spell Mage".split(',')
-    level2 = "Zoo Warlock,Murloc Paladin,Spiteful Priest,Secret Mage".split(',')
-    level3 = "Cube Warlock,Combo Priest,Silver Hand Paladin,Quest Rogue".split(',')
+    level1 = "Cube Warlock,Even Paladin,Control Priest,Odd Rogue".split(',')
+    #level2 = "Zoo Warlock,Murloc Paladin,Spiteful Priest,Secret Mage".split(',')
+    #level3 = "Cube Warlock,Combo Priest,Silver Hand Paladin,Quest Rogue".split(',')
 
     lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
     tmp_weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
@@ -160,12 +160,13 @@ if __name__ == '__main__':
         lu_strings = []
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
+        for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
+        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
             lineup_string = ",".join(i)
-            lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(sumproduct_normalize([i[1] for i in j],weights),3), round(min([x[1] for x in j]),3)))
+            lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(geometric_mean([i[1] for i in j],weights),3), round(min([x[1] for x in j]),3)))
             print '         "' + lineup_string + '"'
         for i,j,k,l in lu_strings:
             print "".join(["%-20s" % x for x in i.split(',')]), j, k, l, '    "%(i)s"' % locals()

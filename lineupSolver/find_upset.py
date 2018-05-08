@@ -102,7 +102,7 @@ inverse = 1 - threshold
 upsets = 0
 total = 0
 expected_score = {}
-for p1, p2, s1, s2 in round1 + round2 + round3 + round4 + round5 + round6:
+for p1, p2, s1, s2 in round1 + round2 + round3 + round4 + round5 + round6 + round7:
     wr = calculate_win_rate(decks[p1], decks[p2], win_pcts)
     expected_score[p1] = expected_score.get(p1, 0) + wr
     expected_score[p2] = expected_score.get(p2, 0) + (1-wr)

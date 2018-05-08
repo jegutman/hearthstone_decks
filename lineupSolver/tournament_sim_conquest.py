@@ -126,3 +126,4 @@ for x in range(0, num_sims):
 for i,j in sorted(tops.items(), key=lambda x:x[1], reverse=True):
     avg_points = round(float(total_points[i]) / num_sims, 1)
     print("%-20s %6s %5s %5s %s" % (i,j, avg_points, (str(round(float(j) / num_sims * 100., 1)) + '%'), str(decks[i])))
+

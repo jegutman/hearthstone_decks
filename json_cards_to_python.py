@@ -5,7 +5,8 @@ cards_json = json.load(cards_file)
 
 cards_by_id = {}
 for card in cards_json:
-    if 'dbfId' in card and 'set' in card and card.get('collectible', False):
+    #if 'dbfId' in card and 'set' in card and card.get('collectible', False):
+    if 'dbfId' in card and card.get('collectible', False):
         cards_by_id[card['dbfId']] = card
 
 cards_by_raw_id = {}

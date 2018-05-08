@@ -39,52 +39,77 @@ if __name__ == '__main__':
     #lineups_to_test = [l for l in [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16] if l is not None]
     #weights = [1 for l in [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16] if l is not None]
     lineups_to_test = [
-        "Spiteful Druid,Murloc Paladin,Control Priest,Control Warlock",
-        "Spiteful Druid,Tempo Mage,Quest Rogue,Cube Warlock",
-        "Taunt Druid,Control Priest,Quest Rogue,Cube Warlock",
         "Taunt Druid,Even Paladin,Control Priest,Control Warlock",
-        "Spiteful Druid,Control Priest,Quest Rogue,Control Warlock",
-        "Taunt Druid,Combo Priest,Quest Rogue,Control Warlock",
-        "Taunt Druid,Control Priest,Control Warlock,Odd Warrior",
+        "Spiteful Druid,Murloc Paladin,Control Priest,Control Warlock",
         "Spiteful Druid,Tempo Mage,Even Paladin,Cube Warlock",
-        "Spiteful Druid,Even Paladin,Control Priest,Control Warlock",
-        "Tempo Mage,Even Paladin,Quest Rogue,Cube Warlock",
-        "Taunt Druid,Control Priest,Control Warlock,Odd Warrior",
-        "Odd Hunter,Tempo Mage,Murloc Paladin,Odd Rogue",
-        "Even Paladin,Control Priest,Control Warlock,Odd Warrior",
-        "Spiteful Druid,Spell Hunter,Control Warlock,Quest Warrior",
-        "Taunt Druid,Control Priest,Miracle Rogue,Cube Warlock",
-        "Big Spell Mage,Even Paladin,Cube Warlock,Odd Warrior",
-        "Spiteful Druid,Tempo Mage,Control Warlock,Odd Warrior",
-        "Even Paladin,Control Priest,Control Warlock,Quest Warrior",
-        "Taunt Druid,Tempo Mage,Control Priest,Control Warlock",
-        "Spiteful Druid,Even Paladin,Cube Warlock,Odd Warrior",
-        "Even Paladin,Control Priest,Cube Warlock,Odd Warrior",
-        "Spiteful Druid,Big Spell Mage,Cube Warlock,Quest Warrior",
-        "Spiteful Druid,Big Spell Mage,Even Paladin,Cube Warlock",
-        "Tempo Mage,Murloc Paladin,Odd Rogue,Cube Warlock",
-        "Taunt Druid,Big Spell Mage,Control Warlock,Odd Warrior",
-        "Spiteful Druid,Tempo Mage,Even Paladin,Quest Rogue",
-        "Control Priest,Shudderwock Shaman,Control Warlock,Odd Warrior",
-        "Taunt Druid,Big Spell Mage,Quest Rogue,Control Warlock",
-        "Tempo Mage,Even Paladin,Control Priest,Cube Warlock",
-        "Tempo Mage,Even Paladin,Odd Rogue,Cube Warlock",
-        "Spiteful Druid,Control Priest,Quest Rogue,Cube Warlock",
         "Taunt Druid,Control Priest,Quest Rogue,Control Warlock",
+        "Spiteful Druid,Control Priest,Quest Rogue,Control Warlock",
+        "Taunt Druid,Control Priest,Miracle Rogue,Cube Warlock",
+        "Spiteful Druid,Spell Hunter,Control Warlock,Quest Warrior",
+        "Taunt Druid,Control Priest,Control Warlock,Odd Warrior",
+        "Even Paladin,Control Priest,Control Warlock,Quest Warrior",
+        "Tempo Mage,Even Paladin,Quest Rogue,Cube Warlock",
         "Taunt Druid,Even Paladin,Control Warlock,Odd Warrior",
-        "Control Priest,Miracle Rogue,Cube Warlock,Odd Quest Warrior",
-        "Taunt Druid,Control Priest,Control Warlock,Quest Warrior",
-        "Quest Druid,Control Priest,Quest Rogue,Cube Warlock",
-        "Taunt Druid,Even Paladin,Control Priest,Cube Warlock",
-        "Token Druid,Spell Hunter,Odd Paladin,Odd Warrior",
+        "Tempo Mage,Even Paladin,Odd Rogue,Cube Warlock",
+        "Even Paladin,Control Priest,Control Warlock,Odd Warrior",
+        "Spiteful Druid,Murloc Paladin,Control Priest,Control Warlock",
         "Quest Druid,Control Priest,Quest Rogue,Control Warlock",
-        "Big Spell Mage,Control Priest,Control Warlock,Odd Quest Warrior",
-        "Taunt Druid,Spell Hunter,Big Spell Mage,Cube Warlock",
-        "Spiteful Druid,Control Priest,Cube Warlock,Odd Quest Warrior",
-        "Tempo Mage,Even Paladin,Combo Priest,Cube Warlock",
+        "Taunt Druid,Tempo Mage,Control Priest,Control Warlock",
+        "Spiteful Druid,Even Paladin,Odd Rogue,Cube Warlock",
+        "Spiteful Druid,Even Paladin,Odd Rogue,Even Shaman",
+
+        #"Spiteful Druid,Murloc Paladin,Control Priest,Control Warlock",
+        #"Spiteful Druid,Tempo Mage,Quest Rogue,Cube Warlock",
+        #"Taunt Druid,Control Priest,Quest Rogue,Cube Warlock",
+        #"Taunt Druid,Even Paladin,Control Priest,Control Warlock",
+        #"Spiteful Druid,Control Priest,Quest Rogue,Control Warlock",
+        #"Taunt Druid,Combo Priest,Quest Rogue,Control Warlock",
+        #"Taunt Druid,Control Priest,Control Warlock,Odd Warrior",
+        #"Spiteful Druid,Tempo Mage,Even Paladin,Cube Warlock",
+        #"Spiteful Druid,Even Paladin,Control Priest,Control Warlock",
+        #"Tempo Mage,Even Paladin,Quest Rogue,Cube Warlock",
+        #"Taunt Druid,Control Priest,Control Warlock,Odd Warrior",
+        #"Odd Hunter,Tempo Mage,Murloc Paladin,Odd Rogue",
+        #"Even Paladin,Control Priest,Control Warlock,Odd Warrior",
+        #"Spiteful Druid,Spell Hunter,Control Warlock,Quest Warrior",
+        #"Taunt Druid,Control Priest,Miracle Rogue,Cube Warlock",
+        #"Big Spell Mage,Even Paladin,Cube Warlock,Odd Warrior",
+        #"Spiteful Druid,Tempo Mage,Control Warlock,Odd Warrior",
+        #"Even Paladin,Control Priest,Control Warlock,Quest Warrior",
+        #"Taunt Druid,Tempo Mage,Control Priest,Control Warlock",
+        #"Spiteful Druid,Even Paladin,Cube Warlock,Odd Warrior",
+        #"Even Paladin,Control Priest,Cube Warlock,Odd Warrior",
+        #"Spiteful Druid,Big Spell Mage,Cube Warlock,Quest Warrior",
+        #"Spiteful Druid,Big Spell Mage,Even Paladin,Cube Warlock",
+        #"Tempo Mage,Murloc Paladin,Odd Rogue,Cube Warlock",
+        #"Taunt Druid,Big Spell Mage,Control Warlock,Odd Warrior",
+        #"Spiteful Druid,Tempo Mage,Even Paladin,Quest Rogue",
+        #"Control Priest,Shudderwock Shaman,Control Warlock,Odd Warrior",
+        #"Taunt Druid,Big Spell Mage,Quest Rogue,Control Warlock",
+        #"Tempo Mage,Even Paladin,Control Priest,Cube Warlock",
+        #"Tempo Mage,Even Paladin,Odd Rogue,Cube Warlock",
+        #"Spiteful Druid,Control Priest,Quest Rogue,Cube Warlock",
+        #"Taunt Druid,Control Priest,Quest Rogue,Control Warlock",
+        #"Taunt Druid,Even Paladin,Control Warlock,Odd Warrior",
+        #"Control Priest,Miracle Rogue,Cube Warlock,Odd Quest Warrior",
+        #"Taunt Druid,Control Priest,Control Warlock,Quest Warrior",
+        #"Quest Druid,Control Priest,Quest Rogue,Cube Warlock",
+        #"Taunt Druid,Even Paladin,Control Priest,Cube Warlock",
+        #"Token Druid,Spell Hunter,Odd Paladin,Odd Warrior",
+        #"Quest Druid,Control Priest,Quest Rogue,Control Warlock",
+        #"Big Spell Mage,Control Priest,Control Warlock,Odd Quest Warrior",
+        #"Taunt Druid,Spell Hunter,Big Spell Mage,Cube Warlock",
+        #"Spiteful Druid,Control Priest,Cube Warlock,Odd Quest Warrior",
+        #"Tempo Mage,Even Paladin,Combo Priest,Cube Warlock",
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
-    weights = [5,5,4,4,3,3,3,3,3,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    #weights = [5,5,4,4,3,3,3,3,3,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    weights = []
+    for i in range(0,16):
+        weights.append(1)
+    weights.append(10)
+    weights.append(10)
+    #assert len(weights) == len(lineups_to_test) == 17, "size not 17 %s %s" % (len(weights), len(lineups_to_test))
 
     #weights = [3,1,1,1]
 
@@ -288,25 +313,26 @@ if __name__ == '__main__':
         #usingEsportsArena = True
         usingEsportsArena = False
         if usingEsportsArena:
-            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, min_win_pct=0.40,limitTop=100)
+            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.40,limitTop=100)
         else:
-            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, min_win_pct=0.40,limitTop=30)
+            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.40,limitTop=30)
         print sorted(archetypes, key=lambda x:x.split()[-1])
         excluded = []
-        if False:
-            excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
+        if True:
+            #excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
+            excluded += ['Odd Paladin']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
         win_rates_against_good = {}
 
         lineups, archetype_map = generate_lineups(archetypes)
         # FILTER LINEUPS
-        filterLineups = False
+        filterLineups = True
         if filterLineups:
             tmp = []
             for lineup in lineups:
                 lineup_tmp = get_lineup(lineup, archetype_map)
-                if 'Cube Warlock' in lineup_tmp and 'Murloc Paladin' in lineup_tmp and 'Spiteful Priest' in lineup_tmp:
+                if 'Cube Warlock' in lineup_tmp or 'Control Warlock' in lineup_tmp:
                     tmp.append(lineup)
             lineups = tmp
         

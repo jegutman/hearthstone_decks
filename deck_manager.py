@@ -52,7 +52,7 @@ class EasyDeck():
         deck = []
         for i,j in self.deck.cards:
             total += j
-            count, name, card_class, cost, card_set = j, cards[i]['name'], cards[i]['cardClass'], cards[i]['cost'], cards[i]['set']
+            count, name, card_class, cost, card_set = j, cards[i]['name'], cards[i]['cardClass'], cards[i]['cost'], cards[i].get('set', '')
             if card_class == 'NEUTRAL':
                 card_class = "ZZ_NEUTRAL"
             deck.append([card_class, cost, name, count, card_set])
