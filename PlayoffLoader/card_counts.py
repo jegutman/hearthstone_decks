@@ -24,6 +24,6 @@ ORDER BY total desc
 cursor.execute(query % locals())
 for card_name, card_id, total in cursor.fetchall():
     card = cards_by_id[card_id]
-    line = [card_name, total, card.get('rarity'), card.get('set')]
+    line = [card_name, total, card.get('cardClass'), card.get('rarity'), card.get('set')]
     print(",".join([str(i) for i in line]))
     #print("%-25s %s" % (card_name, total))
