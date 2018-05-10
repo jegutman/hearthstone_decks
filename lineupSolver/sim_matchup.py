@@ -22,7 +22,7 @@ overrides = [
     ('Zoo Warlock', 'Cube Warlock', .30),
     ('Zoo Warlock', 'Control Warlock', .30),
     ('Zoo Warlock', 'Quest Rogue', .65),
-    ('Zoo Warlock', 'Control Priest', .35),
+    ('Zoo Warlock', 'Control Priest', .42),
     ('Zoo Warlock', 'Murloc Paladin', .50),
     ('Zoo Warlock', 'Taunt Druid', .55),
     ('Zoo Warlock', 'Odd Warrior', .30),

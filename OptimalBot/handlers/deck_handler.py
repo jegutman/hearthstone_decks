@@ -78,7 +78,7 @@ class DeckHandler():
         max_dist = flags.get('max_dist', 6)
         to_compare = deck_db_handler.get_decks_by_class(deck_class)
         res = []
-        for deck_id, deck_code in to_compare:
+        for deck_id, deck_archetype, deck_code in to_compare:
             tmp_deck = EasyDeck(deck_code)
             distance = deck.get_distance(tmp_deck)
             res.append((distance, deck_id, deck_code))
