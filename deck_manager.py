@@ -21,7 +21,8 @@ class EasyDeck():
         return EasyDeck(self.deckstring, new_name)
 
     def get_print_lines(self): 
-        res = ['   ' + self.get_class()]
+        #res = ['   ' + self.get_class()]
+        res = []
         total = 0
         deck = []
         for i,j in self.deck.cards:
@@ -32,7 +33,7 @@ class EasyDeck():
             deck.append([cost, name, count])
         deck.sort()
         for cost, name, count in deck:
-            res += ["%-2s %-25s x%s" % (cost, name, count)] 
+            res += ["%-2s %-20s x%s" % (cost, name, count)] 
         return res
 
     def get_cards_to_print(self): 
@@ -132,7 +133,10 @@ def print_side_by_side(list_of_decks):
     for i in range(0, max(lengths)):
         res.append("")
         for dpl in deck_print_lines:
-            res[-1] += "%-35s" % dpl[i]
+            if len(res[-1]) > 0:
+                res[-1] += ' '
+            res[-1] += "%-26s" % dpl[i]
+            
     return res
 
 def print_side_by_side_diff(list_of_decks):

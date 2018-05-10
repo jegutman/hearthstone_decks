@@ -15,6 +15,7 @@ from .deck_handler import DeckHandler
 CMD_DECK = "!deck "
 CMD_SEARCH = "!search "
 CMD_SEARCH_PLAYOFF = "!searchplayoff "
+CMD_LINEUP = "!lineup "
 CMD_COMPARE = "!compare "
 CMD_COMPARE_ALL = "!compareall "
 CMD_SIMILAR = "!similar "
@@ -29,7 +30,8 @@ CMD_UPTIME = "!uptime"
 #CMD_CHANNEL = "!channel"
 #CMD_OWNER = "!owner"
 
-USAGE = """`
+#USAGE = """`
+USAGE = """
 OptimalBot:
 Commands:
 !deck
@@ -40,8 +42,9 @@ Commands:
 !search
 
 !help
-`
 """.strip()
+#`
+#""".strip()
 
 def log_message(message):
     timestamp = datetime.now().isoformat()
@@ -90,6 +93,13 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_deck_search(message, CMD_SEARCH_PLAYOFF, my_message)
+            return True
+
+        if message.content.startswith(CMD_LINEUP):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_deck_search(message, CMD_LINEUP, my_message)
             return True
 
         if message.content.startswith(CMD_COMPARE):
@@ -158,15 +168,17 @@ class MessageHandler:
                 t1 = str(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
                 t2 = str(datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
                 t3 = str(datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
-                res = '`'
+                #res = '`'
+                res = ''
                 res += 'NA:   ' + t1 + '\n'
                 res += 'EU:   ' + t2 + '\n'
                 res += 'APAC: ' + t3 + '\n'
-                res += '`'
+                #res += '`'
                 await self.respond(message, res)
                 return True
 
-            await self.respond(message, '`' + str(end_time - datetime.now()).split('.')[0] + ' left in season`')
+            #await self.respond(message, '`' + str(end_time - datetime.now()).split('.')[0] + ' left in season`')
+            await self.respond(message, str(end_time - datetime.now()).split('.')[0] + ' left in season')
 
             return True
 
@@ -205,17 +217,19 @@ class MessageHandler:
         return False
 
     def wrap_response(response):
-        return '`' + response + '`'
+        return '```\n' + response + '```'
 
     async def respond(self, message, response, my_message=None):
         log_message(message)
         if len(response) > 2000:
             sys.stdout.write('response is very long: ' + str(len(response)) + '\n')
             sys.stdout.flush()
+            response = 'Unfortunately response is too long'
         if my_message is None:
-            my_message = await self.client.send_message(message.channel, response)
+            #my_message = await self.client.send_message(message.channel, wrap_response(response))
+            my_message = await self.client.send_message(message.channel, '```\n' + response + '```')
         else:
-            await self.client.edit_message(my_message, response)
+            await self.client.edit_message(my_message, '```\n' + response + '```')
         await self.check_edit(message, my_message)
 
     async def respond_image(self, message, response, my_message=None):
@@ -248,10 +262,14 @@ class MessageHandler:
 
     async def handle_deck_search(self, message, cmd, my_message):
         use_playoffs = False
-        if cmd == CMD_SEARCH_PLAYOFF:
-            use_playoffs = True
-        response = self.deck_handler.handle_search(message.content[len(cmd):], message, self.deck_db_handler, use_playoffs=use_playoffs)
-        await self.respond(message, response, my_message)
+        if cmd == CMD_LINEUP:
+            response = self.deck_handler.handle_lineup(message.content[len(cmd):], message, self.deck_db_handler)
+            await self.respond(message, response, my_message)
+        else:
+            if cmd == CMD_SEARCH_PLAYOFF:
+                use_playoffs = True
+            response = self.deck_handler.handle_search(message.content[len(cmd):], message, self.deck_db_handler, use_playoffs=use_playoffs)
+            await self.respond(message, response, my_message)
 
     async def handle_compare(self, message, cmd, my_message):
         response = self.deck_handler.handle_compare(message.content[len(cmd):], message, self.deck_db_handler)

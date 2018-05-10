@@ -1,6 +1,6 @@
 from shared_utils import *
 from config import *
-from deck_manager import EasyDeck
+from deck_manager import EasyDeck, print_side_by_side
 from arg_split import get_args
 import sys
 
@@ -35,6 +35,22 @@ class DeckDBHandler():
         except:
             self.connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
             self.cursor = self.connection.cursor()
+
+    def guess_archetype(self, deck):
+        deck_class = deck.get_class()
+        max_results = 5
+        max_dist = 5
+        to_compare = self.get_decks_by_class(deck_class)
+        res = []
+        for deck_id, deck_archetype, deck_code_tmp in to_compare:
+            tmp_deck = EasyDeck(deck_code_tmp)
+            distance = deck.get_distance(tmp_deck)
+            res.append((distance, deck_id, deck_archetype, deck_code_tmp))
+        res_final = sorted([i for i in res if i[0] <= max_dist][:max_results])
+        if len(res_final) == 0:
+            return None
+        else:
+            return res_final[0][2]
             
     def get_deck_from_id(self, deck_id):
         self.check_cursor()
@@ -57,8 +73,8 @@ class DeckDBHandler():
         self.check_cursor()
         db, table = 'deckstrings,decks'.split(',')
 
-        self.cursor.execute("SELECT deck_id, deck_code FROM %(db)s.%(table)s WHERE deck_class = '%(deck_class)s'" % locals())
-        return [(i,j) for (i,j) in self.cursor.fetchall()]
+        self.cursor.execute("SELECT deck_id, deck_archetype, deck_code FROM %(db)s.%(table)s WHERE deck_class = '%(deck_class)s'" % locals())
+        return [(i,j,k) for (i,j,k) in self.cursor.fetchall()]
     
     def process_deck(self, message, deck_code, name=None, archetype=None):
         self.check_cursor()
@@ -82,6 +98,8 @@ class DeckDBHandler():
         is_private     = 1 if (message.channel.name in PRIVATE_CHANNELS or message.server.name in PRIVATE_SERVERS) else 0
         
         deck_class     = deck.get_class()
+        if not archetype:
+            archetype = self.guess_archetype(deck)
         #deck_archetype varchar(32),
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
@@ -90,7 +108,7 @@ class DeckDBHandler():
         self.check_cursor()
         playoff_str = "playoff_region = 'None'"
         if use_playoffs:
-            playoff_str = "playoff_region = 'NA'"
+            playoff_str = "playoff_region in ('NA', 'EU', 'APAC')"
         archetype_str = "deck_archetype like '%%%s%%'" % flags.get('archetype').replace('.*', '%') if flags.get('archetype') else ''
         class_str = "deck_class like '%%%s%%'" % flags.get('class').replace('.*', '%') if flags.get('class') else ''
         name_str = "deck_name like '%%%s%%'" % flags.get('name').replace('.*', '%') if flags.get('name') else ''
@@ -138,14 +156,23 @@ class DeckDBHandler():
 
     def search(self, args, flags, allow_private, use_playoffs=False):
         res = self.search_helper(args, flags, allow_private, use_playoffs=use_playoffs)
-        res_str = "`"
+        #res_str = "`"
+        res_str = ""
         res_str += "#%-5s %-10s %-16s %-24s %-10s \n#        %s\n" % ('id', 'date', 'user', 'deck_name', 'class', 'deck_code')
         for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:
             user = user.split('#')[0]
             res_str += "%-6s %10s %-16s %-24s %-10s \n        %s\n" % (deck_id, date, user, deck_name, deck_class, deck_code)
         if len(res) > 10:
             res_str += '*Limited to 10 most recent results'
-        res_str += '`'
+        #res_str += '`'
+        return res_str
+
+    def lineup(self, args, flags, allow_private, use_playoffs=False):
+        res = self.search_helper(args, flags, allow_private, use_playoffs=use_playoffs)
+        all_decks = []
+        for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:
+            all_decks.append(EasyDeck(deck_code))
+        res_str = "\n".join(print_side_by_side(all_decks))
         return res_str
 
     def update_deck_label(self, message, deck_code, name=None, archetype=None):

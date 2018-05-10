@@ -5,22 +5,26 @@ import sys
 from arg_split import get_args
 from deck_manager import EasyDeck, print_side_by_side, print_side_by_side_diff, side_by_side_diff_lines
 
-helpstring = """`Deck:
+#helpstring = """`Deck:
+helpstring = """Deck:
 To insert a deck: !deck <deckstring> --name <deck_name> --archetype <archetype>
     (name and archetype flags are optional, but helpful)
 To update a deck: !update <deckstring> --name <deck_name> --archetype <archetype>
-`
 """
+#`
+#"""
 
-helpstring_search = """`Search:
+#helpstring_search = """`Search:
+helpstring_search = """Search:
 Flags that can be used for search:
 -name
 -class
 -archetype
 -date (format YYYY_MM_DD)
 all of these accept .* as a wildcard
-`
 """
+#`
+#"""
 
 class DeckHandler():
     def __init__(self):
@@ -38,9 +42,11 @@ class DeckHandler():
                 deck_name = deck_db_handler.get_name_from_code(deck_code)
             deck_db_handler.process_deck(message, deck_code, name=deck_name, archetype=deck_archetype)
             try:
-                return '`' + EasyDeck(deckstrings[0], deck_name).deck_print_lines() + '`'
+                #return '`' + EasyDeck(deckstrings[0], deck_name).deck_print_lines() + '`'
+                return EasyDeck(deckstrings[0], deck_name).deck_print_lines()
             except:
-                return '`%s`' % "Error: Bad deckstring"
+                #return '`%s`' % "Error: Bad deckstring"
+                return '%s' % "Error: Bad deckstring"
         else:
             decks = []
             for i in deckstrings:
@@ -49,11 +55,14 @@ class DeckHandler():
                     deck_name = ''
                 decks.append(EasyDeck(i, deck_name))
             if not len(set([i.get_class() for i in decks])) == 1:
-                return '`cannot compare decks from different classes`'
+                #return '`cannot compare decks from different classes`'
+                return 'cannot compare decks from different classes'
             try:
-                return '`' + side_by_side_diff_lines(decks) +'`'
+                #return '`' + side_by_side_diff_lines(decks) +'`'
+                return side_by_side_diff_lines(decks)
             except:
-                return '`%s`' % "Error: Bad deckstring"
+                #return '`%s`' % "Error: Bad deckstring"
+                return '%s' % "Error: Bad deckstring"
     
     def handle_update(self, args, message, deck_db_handler):
         deckstrings, flags = get_args(args)
@@ -61,9 +70,11 @@ class DeckHandler():
         deck_name = flags.get('name')
         deck_archetype = flags.get('archetype')
         if deck_db_handler.update_deck_label(message, deck_code, name=deck_name, archetype=deck_archetype):
-            return '`SUCCESS`'
+            #return '`SUCCESS`'
+            return 'SUCCESS'
         else:
-            return '`UPDATE FAILED`'
+            #return '`UPDATE FAILED`'
+            return 'UPDATE FAILED'
 
     def handle_similar(self, args, message, deck_db_handler):
         deckstrings, flags = get_args(args)
@@ -84,12 +95,13 @@ class DeckHandler():
             res.append((distance, deck_id, deck_code))
         res_final = sorted([i for i in res if i[0] <= max_dist][:max_results])
         if len(res_final) == 0:
-            return '`No deck within %(max_dist)s cards of deck`' % locals()
-        print_res = '`'
+            return 'No deck within %(max_dist)s cards of deck' % locals()
+        #print_res = '`'
+        print_res = ''
         print_res += "%-7s %-7s %-s" % ('deck_id', 'dist', 'deck_code') + '\n'
         for distance, deck_id, deck_code in res_final:
             print_res += "%(deck_id)-7s %(distance)-7s %(deck_code)-s" % locals() + '\n'
-        print_res += '`'
+        #print_res += '`'
         return print_res
 
     def handle_search(self, args, message, deck_db_handler, use_playoffs=False):
@@ -101,6 +113,16 @@ class DeckHandler():
         else:
             allow_private = False
         return deck_db_handler.search(args,flags, allow_private, use_playoffs=use_playoffs)
+
+    def handle_lineup(self, args, message, deck_db_handler, use_playoffs=True):
+        deckstrings, flags = get_args(args)
+        if 'help' in args.split()[0]:
+            return helpstring_search
+        if message.channel.name in PRIVATE_CHANNELS or message.server.name in PRIVATE_SERVERS:
+            allow_private = True
+        else:
+            allow_private = False
+        return deck_db_handler.lineup(args,flags, allow_private, use_playoffs=use_playoffs)
 
     def handle_compare_all(self, args, message, deck_db_handler):
         deckstrings, flags = get_args(args)
