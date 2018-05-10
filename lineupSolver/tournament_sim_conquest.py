@@ -189,35 +189,30 @@ tops = {}
 total_points = {}
 
 overrides = [
-    #('Zoo Warlock', 'Even Paladin', .48),
-    #('Zoo Warlock', 'Tempo Mage', .60),
-    #('Zoo Warlock', 'Odd Rogue', .55),
-    #('Zoo Warlock', 'Spiteful Druid', .60),
-    ('Zoo Warlock', 'Even Paladin', .44),
+    ('Zoo Warlock', 'Even Paladin', .47),
     ('Zoo Warlock', 'Tempo Mage', .55),
-    ('Zoo Warlock', 'Odd Rogue', .40),
-    ('Zoo Warlock', 'Spiteful Druid', .55),
+    ('Zoo Warlock', 'Odd Rogue', .42),
+    ('Zoo Warlock', 'Spiteful Druid', .50),
     ('Zoo Warlock', 'Cube Warlock', .30),
     ('Zoo Warlock', 'Control Warlock', .30),
-    #('Zoo Warlock', 'Quest Rogue', .65),
-    ('Zoo Warlock', 'Quest Rogue', .55),
-    ('Zoo Warlock', 'Control Priest', .35),
+    ('Zoo Warlock', 'Quest Rogue', .65),
+    ('Zoo Warlock', 'Control Priest', .43),
     ('Zoo Warlock', 'Murloc Paladin', .50),
     ('Zoo Warlock', 'Taunt Druid', .55),
-    ('Zoo Warlock', 'Odd Warrior', .30),
-    ('Zoo Warlock', 'Miracle Rogue', .60),
-    ('Zoo Warlock', 'Spell Hunter', .50),
-    ('Zoo Warlock', 'Even Shaman', .50),
+    ('Zoo Warlock', 'Odd Warrior', .50),
+    ('Zoo Warlock', 'Miracle Rogue', .55),
+    ('Zoo Warlock', 'Spell Hunter', .43),
+    ('Zoo Warlock', 'Even Shaman', .47),
     ('Zoo Warlock', 'Quest Warrior', .45),
     ('Zoo Warlock', 'Quest Druid', .65),
     ('Zoo Warlock', 'Zoo Warlock', .50),
-    ('Even Shaman', 'Tempo Mage', .60),
+    ('Even Shaman', 'Tempo Mage', .70),
     ('Even Shaman', 'Quest Rogue', .60),
-    ('Even Shaman', 'Murloc Paladin', .60),
+    ('Even Shaman', 'Murloc Paladin', .62),
             ]
 win_pcts = override_wr(overrides,win_pcts)
 sim_matchup, mu_pcts = get_sim_matchup(decks,win_pcts)
-num_sims = 100000
+num_sims = 10000
 for x in range(0, num_sims):
     randomize = {}
     tmp_players = list(decks.keys())

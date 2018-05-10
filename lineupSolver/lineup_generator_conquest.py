@@ -125,26 +125,36 @@ if __name__ == '__main__':
     if len(args) > 0 and args[0] == 'practice':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
         overrides = [
-            ('Zoo Warlock', 'Even Paladin', .48),
-            ('Zoo Warlock', 'Tempo Mage', .60),
+            #('Zoo Warlock', 'Even Paladin', .48),
+            #('Zoo Warlock', 'Tempo Mage', .60),
+            #('Zoo Warlock', 'Odd Rogue', .55),
+            #('Zoo Warlock', 'Spiteful Druid', .60),
+            ('Zoo Warlock', 'Even Paladin', .47),
+            ('Zoo Warlock', 'Tempo Mage', .55),
+            ('Zoo Warlock', 'Odd Rogue', .42),
+            ('Zoo Warlock', 'Spiteful Druid', .50),
             ('Zoo Warlock', 'Cube Warlock', .30),
             ('Zoo Warlock', 'Control Warlock', .30),
+            #('Zoo Warlock', 'Quest Rogue', .65),
             ('Zoo Warlock', 'Quest Rogue', .65),
-            ('Zoo Warlock', 'Control Priest', .35),
-            ('Zoo Warlock', 'Odd Rogue', .55),
-            ('Zoo Warlock', 'Spiteful Druid', .60),
+            ('Zoo Warlock', 'Control Priest', .43),
             ('Zoo Warlock', 'Murloc Paladin', .50),
             ('Zoo Warlock', 'Taunt Druid', .55),
-            ('Zoo Warlock', 'Odd Warrior', .30),
-            ('Zoo Warlock', 'Miracle Rogue', .60),
-            ('Zoo Warlock', 'Spell Hunter', .50),
-            ('Zoo Warlock', 'Even Shaman', .50),
+            ('Zoo Warlock', 'Odd Warrior', .50),
+            ('Zoo Warlock', 'Miracle Rogue', .55),
+            ('Zoo Warlock', 'Spell Hunter', .43),
+            ('Zoo Warlock', 'Even Shaman', .47),
             ('Zoo Warlock', 'Quest Warrior', .45),
             ('Zoo Warlock', 'Quest Druid', .65),
             ('Zoo Warlock', 'Zoo Warlock', .50),
-            ('Even Shaman', 'Tempo Mage', .60),
+            ('Even Shaman', 'Tempo Mage', .70),
             ('Even Shaman', 'Quest Rogue', .60),
-            ('Even Shaman', 'Murloc Paladin', .60),
+            ('Even Shaman', 'Murloc Paladin', .62),
+
+            ('Control Priest', 'Quest Rogue', .42),
+            ('Control Priest', 'Spiteful Druid', .40),
+            ('Tempo Mage', 'Quest Rogue', 0.63),
+            ('Even Paladin', 'Quest Rogue', 0.63),
                     ]
         win_pcts = override_wr(overrides,win_pcts)
         
@@ -155,16 +165,20 @@ if __name__ == '__main__':
             assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
             assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
             ban, win_pct = win_rate(my_lineup, opp_lineup, win_pcts)
+            #second_ban = sorted(win_rate(my_lineup, opp_lineup, win_pcts).items())[-2][0]
             if win_pct > 0:
                 count += weight
                 total *= win_pct ** weight
             
-            print ",".join([str(i) for i in [win_pct, opp_lineup, ban, win_pct, "weight", weight]])
-            #print win_rate(my_lineup, opp_lineup, win_pcts)
+            opp_ban, opp_win_pct = win_rate(opp_lineup, my_lineup, win_pcts)
+            #print ",".join([str(i) for i in [win_pct, opp_lineup, ban, win_pct, "weight", weight]])
+            print "%-80s %-7s %-20s %-7s %-s" % (opp_lineup, win_pct, ban, opp_win_pct, opp_ban)
+            #print "    ", win_rate(my_lineup, opp_lineup, win_pcts)
             tmp_war = ''
             warlock = [i for i in opp_lineup if 'Warlock' in i]
             if warlock: tmp_war = warlock[0]
             #print "    ",pre_ban(my_lineup, opp_lineup, win_pcts).get(tmp_war, win_pct) - win_pct
+            print "    ",pre_ban(my_lineup, opp_lineup, win_pcts), "\n"
             # BAN STUFF
             showBans = False
             if showBans:
@@ -266,26 +280,32 @@ if __name__ == '__main__':
             #('Zoo Warlock', 'Tempo Mage', .60),
             #('Zoo Warlock', 'Odd Rogue', .55),
             #('Zoo Warlock', 'Spiteful Druid', .60),
-            ('Zoo Warlock', 'Even Paladin', .44),
+            ('Zoo Warlock', 'Even Paladin', .47),
             ('Zoo Warlock', 'Tempo Mage', .55),
-            ('Zoo Warlock', 'Odd Rogue', .40),
-            ('Zoo Warlock', 'Spiteful Druid', .55),
+            ('Zoo Warlock', 'Odd Rogue', .42),
+            ('Zoo Warlock', 'Spiteful Druid', .50),
             ('Zoo Warlock', 'Cube Warlock', .30),
             ('Zoo Warlock', 'Control Warlock', .30),
+            #('Zoo Warlock', 'Quest Rogue', .65),
             ('Zoo Warlock', 'Quest Rogue', .65),
-            ('Zoo Warlock', 'Control Priest', .35),
+            ('Zoo Warlock', 'Control Priest', .43),
             ('Zoo Warlock', 'Murloc Paladin', .50),
             ('Zoo Warlock', 'Taunt Druid', .55),
-            ('Zoo Warlock', 'Odd Warrior', .30),
-            ('Zoo Warlock', 'Miracle Rogue', .60),
-            ('Zoo Warlock', 'Spell Hunter', .50),
-            ('Zoo Warlock', 'Even Shaman', .50),
+            ('Zoo Warlock', 'Odd Warrior', .50),
+            ('Zoo Warlock', 'Miracle Rogue', .55),
+            ('Zoo Warlock', 'Spell Hunter', .43),
+            ('Zoo Warlock', 'Even Shaman', .47),
             ('Zoo Warlock', 'Quest Warrior', .45),
             ('Zoo Warlock', 'Quest Druid', .65),
             ('Zoo Warlock', 'Zoo Warlock', .50),
-            ('Even Shaman', 'Tempo Mage', .60),
+            ('Even Shaman', 'Tempo Mage', .70),
             ('Even Shaman', 'Quest Rogue', .60),
-            ('Even Shaman', 'Murloc Paladin', .60),
+            ('Even Shaman', 'Murloc Paladin', .62),
+
+            ('Control Priest', 'Quest Rogue', .42),
+            ('Control Priest', 'Spiteful Druid', .40),
+            ('Tempo Mage', 'Quest Rogue', 0.63),
+            ('Even Paladin', 'Quest Rogue', 0.63),
                     ]
         win_pcts = override_wr(overrides,win_pcts)
         if args[1] in custom.keys():

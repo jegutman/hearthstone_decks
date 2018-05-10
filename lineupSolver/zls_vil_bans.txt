@@ -1,0 +1,78 @@
+0.455,['Spiteful Druid', 'Tempo Mage', 'Even Paladin', 'Cube Warlock'],Tempo Mage,0.455,weight,11
+     {'Spiteful Druid': 0.39, 'Tempo Mage': 0.455, 'Even Paladin': 0.4, 'Cube Warlock': 0.366}
+0.455,['Spiteful Druid', 'Even Paladin', 'Quest Rogue', 'Cube Warlock'],Quest Rogue,0.455,weight,6
+     {'Spiteful Druid': 0.447, 'Even Paladin': 0.423, 'Quest Rogue': 0.455, 'Cube Warlock': 0.413}
+0.423,['Spiteful Druid', 'Tempo Mage', 'Quest Rogue', 'Cube Warlock'],Tempo Mage,0.423,weight,4
+     {'Spiteful Druid': 0.391, 'Tempo Mage': 0.423, 'Quest Rogue': 0.4, 'Cube Warlock': 0.353}
+0.418,['Spiteful Druid', 'Tempo Mage', 'Murloc Paladin', 'Cube Warlock'],Tempo Mage,0.418,weight,4
+     {'Spiteful Druid': 0.358, 'Tempo Mage': 0.418, 'Murloc Paladin': 0.4, 'Cube Warlock': 0.326}
+0.455,['Spiteful Druid', 'Even Paladin', 'Odd Rogue', 'Cube Warlock'],Odd Rogue,0.455,weight,3
+     {'Spiteful Druid': 0.435, 'Even Paladin': 0.441, 'Odd Rogue': 0.455, 'Cube Warlock': 0.413}
+0.497,['Spiteful Druid', 'Tempo Mage', 'Even Paladin', 'Control Priest'],Tempo Mage,0.497,weight,3
+     {'Spiteful Druid': 0.402, 'Tempo Mage': 0.497, 'Even Paladin': 0.448, 'Control Priest': 0.366}
+0.471,['Spiteful Druid', 'Control Priest', 'Quest Rogue', 'Cube Warlock'],Spiteful Druid,0.471,weight,3
+     {'Spiteful Druid': 0.471, 'Control Priest': 0.423, 'Quest Rogue': 0.466, 'Cube Warlock': 0.45}
+0.47,['Taunt Druid', 'Control Priest', 'Control Warlock', 'Odd Warrior'],Odd Warrior,0.47,weight,3
+     {'Taunt Druid': 0.412, 'Control Priest': 0.453, 'Control Warlock': 0.416, 'Odd Warrior': 0.47}
+0.547,['Spiteful Druid', 'Murloc Paladin', 'Odd Rogue', 'Control Warlock'],Murloc Paladin,0.547,weight,2
+     {'Spiteful Druid': 0.497, 'Murloc Paladin': 0.547, 'Odd Rogue': 0.496, 'Control Warlock': 0.375}
+0.509,['Spell Hunter', 'Control Priest', 'Control Warlock', 'Odd Warrior'],Odd Warrior,0.509,weight,2
+     {'Spell Hunter': 0.412, 'Control Priest': 0.503, 'Control Warlock': 0.472, 'Odd Warrior': 0.509}
+0.468,['Even Paladin', 'Odd Rogue', 'Even Shaman', 'Zoo Warlock'],Even Paladin,0.468,weight,2
+     {'Even Paladin': 0.468, 'Odd Rogue': 0.442, 'Even Shaman': 0.419, 'Zoo Warlock': 0.416}
+0.547,['Spiteful Druid', 'Even Paladin', 'Odd Rogue', 'Control Warlock'],Even Paladin,0.547,weight,2
+     {'Spiteful Druid': 0.518, 'Even Paladin': 0.547, 'Odd Rogue': 0.534, 'Control Warlock': 0.413}
+0.534,['Spiteful Druid', 'Even Paladin', 'Control Priest', 'Control Warlock'],Control Priest,0.534,weight,2
+     {'Spiteful Druid': 0.488, 'Even Paladin': 0.464, 'Control Priest': 0.534, 'Control Warlock': 0.497}
+0.5,['Token Druid', 'Even Paladin', 'Odd Rogue', 'Cube Warlock'],Even Paladin,0.5,weight,2
+     {'Token Druid': 0.435, 'Even Paladin': 0.5, 'Odd Rogue': 0.496, 'Cube Warlock': 0.482}
+0.529,['Spiteful Druid', 'Spell Hunter', 'Miracle Rogue', 'Cube Warlock'],Miracle Rogue,0.529,weight,1
+     {'Spiteful Druid': 0.524, 'Spell Hunter': 0.421, 'Miracle Rogue': 0.529, 'Cube Warlock': 0.484}
+0.549,['Spiteful Druid', 'Even Paladin', 'Spiteful Priest', 'Control Warlock'],Spiteful Druid,0.549,weight,1
+     {'Spiteful Druid': 0.549, 'Even Paladin': 0.51, 'Spiteful Priest': 0.534, 'Control Warlock': 0.488}
+0.37,['Spiteful Druid', 'Tempo Mage', 'Murloc Paladin', 'Quest Rogue'],Tempo Mage,0.37,weight,1
+     {'Spiteful Druid': 0.315, 'Tempo Mage': 0.37, 'Murloc Paladin': 0.353, 'Quest Rogue': 0.326}
+0.464,['Spiteful Druid', 'Control Priest', 'Control Warlock', 'Odd Warrior'],Odd Warrior,0.464,weight,1
+     {'Spiteful Druid': 0.412, 'Control Priest': 0.447, 'Control Warlock': 0.41, 'Odd Warrior': 0.464}
+0.541,['Even Paladin', 'Control Priest', 'Quest Rogue', 'Control Warlock'],Control Priest,0.541,weight,1
+     {'Even Paladin': 0.472, 'Control Priest': 0.541, 'Quest Rogue': 0.488, 'Control Warlock': 0.492}
+0.29,['Odd Hunter', 'Tempo Mage', 'Murloc Paladin', 'Odd Rogue'],Odd Hunter,0.29,weight,1
+     {'Odd Hunter': 0.29, 'Tempo Mage': 0.289, 'Murloc Paladin': 0.266, 'Odd Rogue': 0.231}
+0.497,['Spiteful Druid', 'Even Paladin', 'Control Priest', 'Cube Warlock'],Cube Warlock,0.497,weight,1
+     {'Spiteful Druid': 0.465, 'Even Paladin': 0.466, 'Control Priest': 0.455, 'Cube Warlock': 0.497}
+0.447,['Tempo Mage', 'Even Paladin', 'Quest Rogue', 'Cube Warlock'],Tempo Mage,0.447,weight,1
+     {'Tempo Mage': 0.447, 'Even Paladin': 0.391, 'Quest Rogue': 0.39, 'Cube Warlock': 0.356}
+0.513,['Spiteful Druid', 'Tempo Mage', 'Control Priest', 'Control Warlock'],Control Priest,0.513,weight,1
+     {'Spiteful Druid': 0.496, 'Tempo Mage': 0.464, 'Control Priest': 0.513, 'Control Warlock': 0.448}
+0.45,['Big Spell Mage', 'Control Priest', 'Control Warlock', 'Odd Warrior'],Odd Warrior,0.45,weight,1
+     {'Big Spell Mage': 0.412, 'Control Priest': 0.447, 'Control Warlock': 0.414, 'Odd Warrior': 0.45}
+0.536,['Big Spell Mage', 'Even Paladin', 'Control Priest', 'Cube Warlock'],Control Priest,0.536,weight,1
+     {'Big Spell Mage': 0.465, 'Even Paladin': 0.468, 'Control Priest': 0.536, 'Cube Warlock': 0.493}
+0.54,['Taunt Druid', 'Even Paladin', 'Control Priest', 'Control Warlock'],Control Priest,0.54,weight,1
+     {'Taunt Druid': 0.488, 'Even Paladin': 0.47, 'Control Priest': 0.54, 'Control Warlock': 0.504}
+0.33,['Odd Hunter', 'Tempo Mage', 'Even Paladin', 'Odd Rogue'],Odd Hunter,0.33,weight,1
+     {'Odd Hunter': 0.33, 'Tempo Mage': 0.326, 'Even Paladin': 0.266, 'Odd Rogue': 0.271}
+0.534,['Spiteful Druid', 'Even Paladin', 'Miracle Rogue', 'Control Warlock'],Miracle Rogue,0.534,weight,1
+     {'Spiteful Druid': 0.527, 'Even Paladin': 0.477, 'Miracle Rogue': 0.534, 'Control Warlock': 0.413}
+0.483,['Taunt Druid', 'Control Priest', 'Quest Rogue', 'Cube Warlock'],Control Priest,0.483,weight,1
+     {'Taunt Druid': 0.471, 'Control Priest': 0.483, 'Quest Rogue': 0.472, 'Cube Warlock': 0.457}
+0.496,['Taunt Druid', 'Control Priest', 'Quest Rogue', 'Control Warlock'],Control Priest,0.496,weight,1
+     {'Taunt Druid': 0.472, 'Control Priest': 0.496, 'Quest Rogue': 0.47, 'Control Warlock': 0.457}
+0.492,['Even Paladin', 'Control Priest', 'Quest Rogue', 'Cube Warlock'],Cube Warlock,0.492,weight,1
+     {'Even Paladin': 0.471, 'Control Priest': 0.447, 'Quest Rogue': 0.465, 'Cube Warlock': 0.492}
+0.522,['Taunt Druid', 'Murloc Paladin', 'Control Priest', 'Control Warlock'],Control Priest,0.522,weight,1
+     {'Taunt Druid': 0.477, 'Murloc Paladin': 0.47, 'Control Priest': 0.522, 'Control Warlock': 0.487}
+0.413,['Spiteful Druid', 'Tempo Mage', 'Even Paladin', 'Odd Rogue'],Tempo Mage,0.413,weight,1
+     {'Spiteful Druid': 0.33, 'Tempo Mage': 0.413, 'Even Paladin': 0.355, 'Odd Rogue': 0.366}
+0.531,['Taunt Druid', 'Even Paladin', 'Control Priest', 'Cube Warlock'],Control Priest,0.531,weight,1
+     {'Taunt Druid': 0.465, 'Even Paladin': 0.472, 'Control Priest': 0.531, 'Cube Warlock': 0.504}
+0.49,['Even Paladin', 'Odd Rogue', 'Even Shaman', 'Cube Warlock'],Even Paladin,0.49,weight,1
+     {'Even Paladin': 0.49, 'Odd Rogue': 0.458, 'Even Shaman': 0.435, 'Cube Warlock': 0.416}
+0.551,['Taunt Druid', 'Spell Hunter', 'Control Warlock', 'Odd Warrior'],Odd Warrior,0.551,weight,1
+     {'Taunt Druid': 0.503, 'Spell Hunter': 0.453, 'Control Warlock': 0.496, 'Odd Warrior': 0.551}
+0.496,['Tempo Mage', 'Even Paladin', 'Control Priest', 'Control Warlock'],Even Paladin,0.496,weight,1
+     {'Tempo Mage': 0.488, 'Even Paladin': 0.496, 'Control Priest': 0.483, 'Control Warlock': 0.402}
+0.531,['Taunt Druid', 'Even Paladin', 'Quest Rogue', 'Cube Warlock'],Quest Rogue,0.531,weight,1
+     {'Taunt Druid': 0.447, 'Even Paladin': 0.483, 'Quest Rogue': 0.531, 'Cube Warlock': 0.49}
+average: 0.470941710833
+
