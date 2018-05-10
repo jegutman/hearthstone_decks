@@ -11,12 +11,12 @@ from conquest_utils import *
 
 from random import shuffle
 
-decks = {
-    'AA_TEST'            : ['Spiteful Druid', 'Even Paladin', 'Quest Rogue', 'Cube Warlock'],
-    'AA_TEST2'           : ['Spiteful Druid','Murloc Paladin','Quest Rogue','Cube Warlock'],
-    'AA_TEST3'           : ['Spiteful Druid','Murloc Paladin','Tempo Mage','Cube Warlock'],
-    'AA_TEST4'           : "Taunt Druid,Control Priest,Quest Rogue,Cube Warlock".split(','),
-    'AA_TEST5'           : "Taunt Druid,Tempo Mage,Quest Rogue,Cube Warlock".split(','),
+eu_decks = {
+    #'AA_TEST'            : ['Spiteful Druid', 'Even Paladin', 'Quest Rogue', 'Cube Warlock'],
+    #'AA_TEST2'           : ['Spiteful Druid','Murloc Paladin','Quest Rogue','Cube Warlock'],
+    #'AA_TEST3'           : ['Spiteful Druid','Murloc Paladin','Tempo Mage','Cube Warlock'],
+    #'AA_TEST4'           : "Taunt Druid,Control Priest,Quest Rogue,Cube Warlock".split(','),
+    #'AA_TEST5'           : "Taunt Druid,Tempo Mage,Quest Rogue,Cube Warlock".split(','),
     'A83650#2106'        : ['Spiteful Druid', 'Murloc Paladin', 'Control Priest', 'Control Warlock'],
     'Babon#21904'        : ['Spiteful Druid', 'Control Priest', 'Cube Warlock', 'Odd Quest Warrior'],
     'BoarControl#2986'   : ['Spiteful Druid', 'Tempo Mage', 'Even Paladin', 'Cube Warlock'],
@@ -92,9 +92,92 @@ decks = {
     'zumpp#2702'         : ['Even Paladin', 'Control Priest', 'Control Warlock', 'Quest Warrior'],
 }
 
+decks = {
+    #'TEST_1'                  : "Spiteful Druid,Murloc Paladin,Odd Rogue,Cube Warlock".split(','),
+    'Alan870806#1754'         : ['Spiteful Druid','Spell Hunter','Miracle Rogue','Cube Warlock'],
+    'amnesiac#11705'          : ['Spiteful Druid','Murloc Paladin','Odd Rogue','Control Warlock'],
+    'AnguiStar#1109'          : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'Ant#1974'                : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'Apxvoid#11872'           : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'bloodyface#1414'         : ['Spiteful Druid','Even Paladin','Odd Rogue','Cube Warlock'],
+    'chosenone#1133'          : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'cthulukitty#1446'        : ['Spiteful Druid','Tempo Mage','Quest Rogue','Cube Warlock'],
+    #'Deathsie#1201'           : ['Spiteful Druid','Even Paladin','Spiteful Priest','Control Warlock'],
+    'Deathsie#1201'           : ['Spiteful Druid','Even Paladin','Spiteful Druid','Control Warlock'],
+    'docpwn#1485'             : ['Spiteful Druid','Tempo Mage','Murloc Paladin','Quest Rogue'],
+    'dog#1593'                : ['Spiteful Druid','Control Priest','Control Warlock','Odd Warrior'],
+    'DrJikininki#1889'        : ['Spiteful Druid','Tempo Mage','Murloc Paladin','Cube Warlock'],
+    'ETC#11729'               : ['Even Paladin','Control Priest','Quest Rogue','Control Warlock'],
+    #'fibonacci#1545'          : ['Spell Hunter','Control Priest','Control Warlock','Recruit Warrior'],
+    #'fr0zen#1184'             : ['Spell Hunter','Control Priest','Control Warlock','Recruit Warrior'],
+    'fibonacci#1545'          : ['Spell Hunter','Control Priest','Control Warlock','Odd Warrior'],
+    'fr0zen#1184'             : ['Spell Hunter','Control Priest','Control Warlock','Odd Warrior'],
+    'Gallon#11212'            : ['Spiteful Druid','Tempo Mage','Even Paladin','Control Priest'],
+    'garifar#1898'            : ['Odd Hunter','Tempo Mage','Murloc Paladin','Odd Rogue'],
+    'Gladen#11397'            : ['Spiteful Druid','Tempo Mage','Quest Rogue','Cube Warlock'],
+    'Greed#12707'             : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'Guiyze#1681'             : ['Even Paladin','Odd Rogue','Even Shaman','Zoo Warlock'],
+    'Houdinii#1378'           : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'IrvinG#1619'             : ['Spiteful Druid','Even Paladin','Control Priest','Cube Warlock'],
+    'Joaquin#1259'            : ['Tempo Mage','Even Paladin','Quest Rogue','Cube Warlock'],
+    'Justine#1262'            : ['Spiteful Druid','Tempo Mage','Control Priest','Control Warlock'],
+    'justsaiyan#1493'         : ['Spiteful Druid','Even Paladin','Odd Rogue','Control Warlock'],
+    'killinallday#1537'       : ['Spiteful Druid','Even Paladin','Quest Rogue','Cube Warlock'],
+    'klei#11805'              : ['Spiteful Druid','Even Paladin','Control Priest','Control Warlock'],
+    'korextron#1532'          : ['Spiteful Druid','Even Paladin','Control Priest','Control Warlock'],
+    'lnguagehackr#1412'       : ['Big Spell Mage','Control Priest','Control Warlock','Odd Warrior'],
+    'Lucas#12819'             : ['Spiteful Druid','Tempo Mage','Quest Rogue','Cube Warlock'],
+    'magkey#1730'             : ['Big Spell Mage','Even Paladin','Control Priest','Cube Warlock'],
+    'maxtheripper#1454'       : ['Spiteful Druid','Tempo Mage','Murloc Paladin','Cube Warlock'],
+    'Monsanto#1657'           : ['Spiteful Druid','Control Priest','Quest Rogue','Cube Warlock'],
+    #'muzzy#1105'              : ['Token Druid','Even Paladin','Odd Rogue','Cube Warlock'],
+    'muzzy#1105'              : ['Spiteful Druid','Even Paladin','Odd Rogue','Cube Warlock'],
+    'N0lan#11919'             : ['Taunt Druid','Even Paladin','Control Priest','Control Warlock'],
+    'Nalguidan#1733'          : ['Spiteful Druid','Even Paladin','Quest Rogue','Cube Warlock'],
+    'noblord#1509'            : ['Spiteful Druid','Even Paladin','Odd Rogue','Control Warlock'],
+    'PapaJason#1186'          : ['Spiteful Druid','Even Paladin','Odd Rogue','Cube Warlock'],
+    'Perna#1691'              : ['Spiteful Druid','Even Paladin','Quest Rogue','Cube Warlock'],
+    'Pinche#11361'            : ['Odd Hunter','Tempo Mage','Even Paladin','Odd Rogue'],
+    'Pizza#1279'              : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'Pksnow#1547'             : ['Spiteful Druid','Even Paladin','Miracle Rogue','Control Warlock'],
+    'PNC#1102'                : ['Spiteful Druid','Even Paladin','Quest Rogue','Cube Warlock'],
+    'Purple#1567'             : ['Spiteful Druid','Tempo Mage','Even Paladin','Control Priest'],
+    'Quiros2211#1746'         : ['Taunt Druid','Control Priest','Quest Rogue','Cube Warlock'],
+    'Rase#1355'               : ['Spiteful Druid','Even Paladin','Quest Rogue','Cube Warlock'],
+    'rayC#11391'              : ['Spiteful Druid','Tempo Mage','Murloc Paladin','Cube Warlock'],
+    'RealTerror#1827'         : ['Taunt Druid','Control Priest','Control Warlock','Odd Warrior'],
+    'Ryuuzu#1203'             : ['Taunt Druid','Control Priest','Quest Rogue','Control Warlock'],
+    'SATANCURSEYO#1263'       : ['Spiteful Druid','Murloc Paladin','Odd Rogue','Control Warlock'],
+    'seiger#1577'             : ['Even Paladin','Control Priest','Quest Rogue','Cube Warlock'],
+    'seohyun628#1679'         : ['Taunt Druid','Control Priest','Control Warlock','Odd Warrior'],
+    'SilentStorm#13722'       : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'Sneakyche#1872'          : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'SnipedAgain#1736'        : ['Taunt Druid','Murloc Paladin','Control Priest','Control Warlock'],
+    'strifecro#1914'          : ['Spiteful Druid','Tempo Mage','Even Paladin','Odd Rogue'],
+    'SwaggyG#1193'            : ['Even Paladin','Odd Rogue','Even Shaman','Zoo Warlock'],
+    'T4COTASTIC#1121'         : ['Taunt Druid','Even Paladin','Control Priest','Cube Warlock'],
+    'Tarei#11497'             : ['Spiteful Druid','Even Paladin','Quest Rogue','Cube Warlock'],
+    'Terrencem#1843'          : ['Even Paladin','Odd Rogue','Even Shaman','Cube Warlock'],
+    'TheJordude#1239'         : ['Taunt Druid','Spell Hunter','Control Warlock','Odd Warrior'],
+    'TheMaverick#1720'        : ['Tempo Mage','Even Paladin','Control Priest','Control Warlock'],
+    'Tuliowz#1870'            : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'UchihaSaske#11453'       : ['Taunt Druid','Control Priest','Control Warlock','Odd Warrior'],
+    'ute1234#1252'            : ['Spiteful Druid','Tempo Mage','Murloc Paladin','Cube Warlock'],
+    'villain#1999'            : ['Spiteful Druid','Control Priest','Quest Rogue','Cube Warlock'],
+    'wabeka#1626'             : ['Spiteful Druid','Even Paladin','Odd Rogue','Cube Warlock'],
+    'wiz#11841'               : ['Spiteful Druid','Tempo Mage','Quest Rogue','Cube Warlock'],
+    'XisBau5e#1825'           : ['Spiteful Druid','Tempo Mage','Even Paladin','Cube Warlock'],
+    'yinus#1258'              : ['Taunt Druid','Even Paladin','Quest Rogue','Cube Warlock'],
+    #'yoitsflo#1202'           : ['Token Druid','Even Paladin','Odd Rogue','Cube Warlock'],
+    'yoitsflo#1202'           : ['Spiteful Druid','Even Paladin','Odd Rogue','Cube Warlock'],
+    'zalae#1766'              : ['Spiteful Druid','Tempo Mage','Even Paladin','Control Priest'],
+    'zlsjs#1181'              : ['Spiteful Druid','Control Priest','Quest Rogue','Cube Warlock'],
+}
+
 win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
 
 tops = {}
+
 
 #def simulate_tournament(decks, rounds, scores=None, win_pcts={}):
 #    if scores == None:
@@ -105,6 +188,34 @@ tops = {}
 #    return scores
 total_points = {}
 
+overrides = [
+    #('Zoo Warlock', 'Even Paladin', .48),
+    #('Zoo Warlock', 'Tempo Mage', .60),
+    #('Zoo Warlock', 'Odd Rogue', .55),
+    #('Zoo Warlock', 'Spiteful Druid', .60),
+    ('Zoo Warlock', 'Even Paladin', .44),
+    ('Zoo Warlock', 'Tempo Mage', .55),
+    ('Zoo Warlock', 'Odd Rogue', .40),
+    ('Zoo Warlock', 'Spiteful Druid', .55),
+    ('Zoo Warlock', 'Cube Warlock', .30),
+    ('Zoo Warlock', 'Control Warlock', .30),
+    #('Zoo Warlock', 'Quest Rogue', .65),
+    ('Zoo Warlock', 'Quest Rogue', .55),
+    ('Zoo Warlock', 'Control Priest', .35),
+    ('Zoo Warlock', 'Murloc Paladin', .50),
+    ('Zoo Warlock', 'Taunt Druid', .55),
+    ('Zoo Warlock', 'Odd Warrior', .30),
+    ('Zoo Warlock', 'Miracle Rogue', .60),
+    ('Zoo Warlock', 'Spell Hunter', .50),
+    ('Zoo Warlock', 'Even Shaman', .50),
+    ('Zoo Warlock', 'Quest Warrior', .45),
+    ('Zoo Warlock', 'Quest Druid', .65),
+    ('Zoo Warlock', 'Zoo Warlock', .50),
+    ('Even Shaman', 'Tempo Mage', .60),
+    ('Even Shaman', 'Quest Rogue', .60),
+    ('Even Shaman', 'Murloc Paladin', .60),
+            ]
+win_pcts = override_wr(overrides,win_pcts)
 sim_matchup, mu_pcts = get_sim_matchup(decks,win_pcts)
 num_sims = 100000
 for x in range(0, num_sims):
