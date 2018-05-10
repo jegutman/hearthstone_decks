@@ -27,8 +27,7 @@ CMD_SIM_LHS = "!simlhs "
 CMD_HELP = "!help"
 CMD_COUNTDOWN = "!countdown"
 CMD_UPTIME = "!uptime"
-#CMD_CHANNEL = "!channel"
-#CMD_OWNER = "!owner"
+CMD_OWNER = "!owner"
 
 #USAGE = """`
 USAGE = """
@@ -207,12 +206,8 @@ class MessageHandler:
             await self.handle_sim(message, CMD_SIM_LHS, my_message, is_conquest=False)
             return True
             
-
-        #if message.content.startswith(CMD_CHANNEL):
-        #    await self.respond(message, str(message.channel.name))
-
-        #if message.content.startswith(CMD_OWNER):
-        #    await self.respond_image(message, basedir + 'drlight.jpeg')
+        if message.content.startswith(CMD_OWNER):
+            await self.respond_image(message, basedir + 'drlight.jpeg')
         
         return False
 
@@ -223,7 +218,11 @@ class MessageHandler:
             sys.stdout.flush()
             response = 'Unfortunately response is too long'
         if my_message is None:
-            my_message = await self.client.send_message(message.channel, '```\n' + response + '```')
+            if isinstance(response, list):
+                for tmp_response in response:
+                    my_message = await self.client.send_message(message.channel, '```\n' + tmp_response + '```')
+            else:
+                my_message = await self.client.send_message(message.channel, '```\n' + response + '```')
         else:
             await self.client.edit_message(my_message, '```\n' + response + '```')
         await self.check_edit(message, my_message)

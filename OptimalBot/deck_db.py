@@ -170,9 +170,14 @@ class DeckDBHandler():
     def lineup(self, args, flags, allow_private, use_playoffs=False):
         res = self.search_helper(args, flags, allow_private, use_playoffs=use_playoffs)
         all_decks = []
+        res_str = []
+        #for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:
+        #    res_str.append("\n".join(print_side_by_side([EasyDeck(deck_code)])))
         for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:
             all_decks.append(EasyDeck(deck_code))
-        res_str = "\n".join(print_side_by_side(all_decks))
+        res_str.append("\n".join(print_side_by_side(all_decks[:int(len(all_decks)/2)])))
+        res_str.append("\n".join(print_side_by_side(all_decks[int(len(all_decks)/2):])))
+        #res_str = "\n".join(print_side_by_side(all_decks))
         return res_str
 
     def update_deck_label(self, message, deck_code, name=None, archetype=None):
