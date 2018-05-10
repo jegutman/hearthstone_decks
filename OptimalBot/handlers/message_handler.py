@@ -216,9 +216,6 @@ class MessageHandler:
         
         return False
 
-    def wrap_response(response):
-        return '```\n' + response + '```'
-
     async def respond(self, message, response, my_message=None):
         log_message(message)
         if len(response) > 2000:
@@ -226,7 +223,6 @@ class MessageHandler:
             sys.stdout.flush()
             response = 'Unfortunately response is too long'
         if my_message is None:
-            #my_message = await self.client.send_message(message.channel, wrap_response(response))
             my_message = await self.client.send_message(message.channel, '```\n' + response + '```')
         else:
             await self.client.edit_message(my_message, '```\n' + response + '```')
