@@ -45,13 +45,6 @@ Commands:
 #`
 #""".strip()
 
-def log_message(message):
-    timestamp = datetime.now().isoformat()
-    sys.stdout.write("[%s] [%s] [%s] [%s] %s\n" % (
-        timestamp, message.server, message.channel, message.author, message.content)
-    )
-    self.logger.info_log("command_log: [%s] [%s] [%s] [%s] %s\n" % (timestamp, message.server, message.channel, message.author, message.content))
-    sys.stdout.flush()
 
 
 class MessageHandler:
@@ -63,6 +56,14 @@ class MessageHandler:
         self.deck_db_handler = DeckDBHandler(self.logger)
         self.deckstring_re = re.compile('(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}){12,}')
         self.start_time = datetime.now()
+    
+    def log_message(self, message):
+        timestamp = datetime.now().isoformat()
+        sys.stdout.write("[%s] [%s] [%s] [%s] %s\n" % (
+            timestamp, message.server, message.channel, message.author, message.content)
+        )
+        self.logger.info_log("command_log: [%s] [%s] [%s] [%s] %s\n" % (timestamp, message.server, message.channel, message.author, message.content))
+        sys.stdout.flush()
 
     async def handle(self, message):
         if str(message.channel.name) not in ALLOWED_CHANNELS:
@@ -213,7 +214,7 @@ class MessageHandler:
         return False
 
     async def respond(self, message, response, my_message=None):
-        log_message(message)
+        self.log_message(message)
         if len(response) > 2000:
             sys.stdout.write('response is very long: ' + str(len(response)) + '\n')
             sys.stdout.flush()
@@ -229,7 +230,7 @@ class MessageHandler:
         await self.check_edit(message, my_message)
 
     async def respond_image(self, message, response, my_message=None):
-        log_message(message)
+        self.log_message(message)
         my_message = await self.client.send_file(message.channel, response)
 
     async def handle_sim(self, message, cmd, my_message, is_conquest=True):
