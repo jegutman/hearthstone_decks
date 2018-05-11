@@ -161,6 +161,8 @@ if __name__ == '__main__':
         my_lineup = [d.strip() for d in args[1].split(',')]
         #opp_lineup = [d.strip() for d in deck_2.split(',')]
         count, total = 0, 1.0
+        line = ['deck1', 'deck2', 'deck3', 'deck4', 'win_pct', 'ban', 'opp_win_pct', 'opp_ban', 'ban_details->']
+        print(",".join([str(i) for i in line]))
         for opp_lineup, weight in zip(lineups_to_test, weights):
             assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
             assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
@@ -172,13 +174,23 @@ if __name__ == '__main__':
             
             opp_ban, opp_win_pct = win_rate(opp_lineup, my_lineup, win_pcts)
             #print ",".join([str(i) for i in [win_pct, opp_lineup, ban, win_pct, "weight", weight]])
-            print "%-80s %-7s %-20s %-7s %-s" % (opp_lineup, win_pct, ban, opp_win_pct, opp_ban)
-            #print "    ", win_rate(my_lineup, opp_lineup, win_pcts)
-            tmp_war = ''
-            warlock = [i for i in opp_lineup if 'Warlock' in i]
-            if warlock: tmp_war = warlock[0]
-            #print "    ",pre_ban(my_lineup, opp_lineup, win_pcts).get(tmp_war, win_pct) - win_pct
-            print "    ",pre_ban(my_lineup, opp_lineup, win_pcts), "\n"
+            printCsv = True
+            if not printCsv:
+                print "%-80s %-7s %-20s %-7s %-s" % (opp_lineup, win_pct, ban, opp_win_pct, opp_ban)
+                print "    ", win_rate(my_lineup, opp_lineup, win_pcts)
+                print "    ",pre_ban(my_lineup, opp_lineup, win_pcts), "\n"
+            else:
+                line = []
+                for l in opp_lineup:
+                    line.append(l)
+                line.append(win_pct)
+                line.append(ban)
+                line.append(opp_win_pct)
+                line.append(opp_ban)
+                for i, j in sorted(pre_ban(my_lineup, opp_lineup, win_pcts).items(), key=lambda x:x[1], reverse=True):
+                    line.append(i)
+                    line.append(j)
+                print(",".join([str(i) for i in line]))
             # BAN STUFF
             showBans = False
             if showBans:

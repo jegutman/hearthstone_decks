@@ -209,10 +209,17 @@ overrides = [
     ('Even Shaman', 'Tempo Mage', .70),
     ('Even Shaman', 'Quest Rogue', .60),
     ('Even Shaman', 'Murloc Paladin', .62),
+
+    ('Control Priest', 'Quest Rogue', .42),
+    ('Control Priest', 'Spiteful Druid', .40),
+    ('Tempo Mage', 'Quest Rogue', 0.63),
+    ('Even Paladin', 'Quest Rogue', 0.63),
             ]
 win_pcts = override_wr(overrides,win_pcts)
 sim_matchup, mu_pcts = get_sim_matchup(decks,win_pcts)
-num_sims = 10000
+num_sims = 100000
+both = 0
+one = 0
 for x in range(0, num_sims):
     randomize = {}
     tmp_players = list(decks.keys())
@@ -222,6 +229,11 @@ for x in range(0, num_sims):
     decks = randomize
     results = simulate_tournament(decks, rounds=7, win_pcts=win_pcts, simulate_matchup=sim_matchup)
     top8 = sorted(results.items(), key=lambda x:x[1])[-8:]
+    top8_players = [i for (i,j) in top8]
+    if 'Guiyze#1681' in top8_players or 'Terrencem#1843' in top8_players:
+        one += 1
+    if 'Guiyze#1681' in top8_players and 'Terrencem#1843' in top8_players:
+        both += 1
     for i, j in results.items():
         total_points[i] = total_points.get(i, 0) + j
     for i, j in top8:
@@ -233,3 +245,5 @@ for i,j in sorted(tops.items(), key=lambda x:x[1], reverse=True):
     avg_points = round(float(total_points[i]) / num_sims, 1)
     print("%-20s %6s %5s %5s %s" % (i,j, avg_points, (str(round(float(j) / num_sims * 100., 1)) + '%'), str(decks[i])))
 
+print("ONE:",str(round(float(one) / num_sims * 100., 1)))
+print("BOTH:",str(round(float(both) / num_sims * 100., 1)))
