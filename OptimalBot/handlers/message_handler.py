@@ -50,6 +50,7 @@ def log_message(message):
     sys.stdout.write("[%s] [%s] [%s] [%s] %s\n" % (
         timestamp, message.server, message.channel, message.author, message.content)
     )
+    self.logger.info_log("command_log: [%s] [%s] [%s] [%s] %s\n" % (timestamp, message.server, message.channel, message.author, message.content))
     sys.stdout.flush()
 
 

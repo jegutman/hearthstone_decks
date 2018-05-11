@@ -22,6 +22,15 @@ CREATE TABLE decks
     PRIMARY KEY(deck_id)
 );
 
+CREATE TABLE standards
+(
+    deck_id        int(11) NOT NULL auto_increment,
+    date           varchar(10) NOT NULL,
+    deck_archetype varchar(32),
+    deck_code      varchar(128) NOT NULL,
+    PRIMARY KEY(deck_id)
+);
+
 CREATE TABLE playoffs
 (
     deck_id        int(11) NOT NULL auto_increment,

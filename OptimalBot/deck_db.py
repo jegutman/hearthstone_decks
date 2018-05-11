@@ -173,8 +173,8 @@ class DeckDBHandler():
         res_str = []
         #for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:
         #    res_str.append("\n".join(print_side_by_side([EasyDeck(deck_code)])))
-        for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:
-            all_decks.append(EasyDeck(deck_code))
+        for deck_id, date, user, deck_name, deck_class, deck_code in sorted(res[-10:], key=lambda x:x[-2]):
+            all_decks.append(EasyDeck(deck_code, deck_name))
         res_str.append("\n".join(print_side_by_side(all_decks[:int(len(all_decks)/2)])))
         res_str.append("\n".join(print_side_by_side(all_decks[int(len(all_decks)/2):])))
         #res_str = "\n".join(print_side_by_side(all_decks))
