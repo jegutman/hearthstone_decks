@@ -104,7 +104,7 @@ class DeckDBHandler():
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
 
-    def search_helper(self, args, flags, allow_private, limit=0, use_playoffs=False):
+    def search_helper(self, args, flags, allow_private, limit=0, use_playoffs=False, tags=None):
         self.check_cursor()
         playoff_str = "playoff_region = 'None'"
         if use_playoffs:
@@ -128,7 +128,10 @@ class DeckDBHandler():
             #if use_playoffs:
             #    query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or date like '%%%(kw)s%%' or deck_code like '%%%(kw)s%%')" % locals()
             #else:
-            query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or user like '%%%(kw)s%%' or date like '%%%(kw)s%%' or deck_code like '%%%(kw)s%%')" % locals()
+            if tags == 'lineup':
+                query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or user like '%%%(kw)s%%' or date like '%%%(kw)s%%')" % locals()
+            else:
+                query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or user like '%%%(kw)s%%' or date like '%%%(kw)s%%' or deck_code like '%%%(kw)s%%')" % locals()
             if not allow_private:
                 query_str += private_str 
         
@@ -168,7 +171,7 @@ class DeckDBHandler():
         return res_str
 
     def lineup(self, args, flags, allow_private, use_playoffs=False):
-        res = self.search_helper(args, flags, allow_private, use_playoffs=use_playoffs)
+        res = self.search_helper(args, flags, allow_private, use_playoffs=use_playoffs, tags='lineup')
         all_decks = []
         res_str = []
         #for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:
