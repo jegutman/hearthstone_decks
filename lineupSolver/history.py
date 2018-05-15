@@ -21,6 +21,7 @@ file_type = 'LONLY_' + time_range
 
 print("\n%s\n" % file_type)
 
+all_samples = []
 for i in sorted(os.listdir('win_rates/')):
     if '2018' in i and file_type in i:
         try:
@@ -29,6 +30,17 @@ for i in sorted(os.listdir('win_rates/')):
             #hsreplay20180509_LONLY_7DAYS.json
             date = i.replace('hsreplay', '').replace('_%s.json' % file_type, '')
             date = date[:4] + '_' + date[4:6] + '_' + date[6:]
+            all_samples.append((date, 100 * get_win_pct(deck_a,deck_b,win_pcts), num_games[(deck_a,deck_b)]))
             print("%10s   %4.1f   %s" % (date, 100 * get_win_pct(deck_a,deck_b,win_pcts), num_games[(deck_a,deck_b)]))
         except:
             pass
+
+total = 0
+total_pct = 0
+for i in range(0, 12, 3):
+    date, pct, games = all_samples[-i]
+    total_pct += pct * games
+    total += games
+    #print pct, games
+
+print("%2.2f %s" % (total_pct / total, total))
