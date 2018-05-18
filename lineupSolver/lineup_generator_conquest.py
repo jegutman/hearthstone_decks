@@ -12,75 +12,44 @@ if __name__ == '__main__':
 
     level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16 = None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
 
-    #level1 = "Cube Warlock,Spiteful Priest,Murloc Paladin,Quest Rogue".split(',')
-    #level2 = "Zoo Warlock,Spiteful Priest,Murloc Paladin,Secret Mage".split(',')
-    #level3 = "Cube Warlock,Control Priest,Silver Hand Paladin,Token Shaman".split(',')
-
-    #level1 = "Spell Hunter,Control Priest,Silver Hand Paladin,Cube Warlock".split(',')
-    #level2 = "Control Warrior,Control Priest,Control Warlock,Big Spell Mage".split(',')
-    #level3 = "Quest Rogue,Spiteful Priest,Murloc Paladin,Cube Warlock".split(',')
-    #level4 = "Zoo Warlock,Secret Mage,Combo Priest,Murloc Paladin".split(',')
-
     #level1 = "Secret Mage,Big Priest,Cube Warlock,Murloc Paladin".split(',')
     level2 = "Cube Warlock,Spell Hunter,Jade Druid,Silver Hand Paladin".split(',')
     level3 = "Silver Hand Paladin,Spell Hunter,Cube Warlock,Combo Priest".split(',')
     level4 = "Secret Hunter,Big Spell Mage,Combo Priest,Cube Warlock".split(',')
 
-    #level1 = "Cube Warlock,Secret Mage,Combo Priest,Murloc Paladin".split(',')
-    #level2 = "Cube Warlock,Control Priest,Token Shaman,Silver Hand Paladin".split(',')
-    #level3 = "Cube Warlock,Quest Rogue,Spiteful Priest,Murloc Paladin".split(',')
-    #level4 = "Zoo Warlock,Secret Mage,Spiteful Priest,Murloc Paladin".split(',')
-    #level4 = "Spell Hunter,Zoo Warlock,Murloc Paladin,Token Shaman".split(',')
-
-    #level1 = "Unbeatable,Spiteful Priest,Murloc Paladin,Quest Rogue".split(',')
-    #level2 = "Zoo Warlock,Spiteful Priest,Murloc Paladin,Secret Mage".split(',')
-    #level3 = "Unbeatable,Control Priest,Silver Hand Paladin,Token Shaman".split(',')
-
-    #lineups_to_test = [l for l in [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16] if l is not None]
-    #weights = [1 for l in [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16] if l is not None]
     lineups_to_test = [
-        "Spiteful Druid,Tempo Mage,Even Paladin,Cube Warlock",
         "Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock",
-        "Spiteful Druid,Tempo Mage,Quest Rogue,Cube Warlock",
-        "Spiteful Druid,Tempo Mage,Murloc Paladin,Cube Warlock",
         "Spiteful Druid,Even Paladin,Odd Rogue,Cube Warlock",
-        "Spiteful Druid,Tempo Mage,Even Paladin,Control Priest",
-        "Spiteful Druid,Control Priest,Quest Rogue,Cube Warlock",
-        "Taunt Druid,Control Priest,Control Warlock,Odd Warrior",
-        "Spiteful Druid,Murloc Paladin,Odd Rogue,Control Warlock",
-        "Spell Hunter,Control Priest,Control Warlock,Odd Warrior",
-        "Even Paladin,Odd Rogue,Even Shaman,Zoo Warlock",
-        "Spiteful Druid,Even Paladin,Odd Rogue,Control Warlock",
-        "Spiteful Druid,Even Paladin,Control Priest,Control Warlock",
-        "Token Druid,Even Paladin,Odd Rogue,Cube Warlock",
-        "Spiteful Druid,Spell Hunter,Miracle Rogue,Cube Warlock",
-        "Spiteful Druid,Even Paladin,Spiteful Priest,Control Warlock",
-        "Spiteful Druid,Tempo Mage,Murloc Paladin,Quest Rogue",
-        "Spiteful Druid,Control Priest,Control Warlock,Odd Warrior",
-        "Even Paladin,Control Priest,Quest Rogue,Control Warlock",
-        "Odd Hunter,Tempo Mage,Murloc Paladin,Odd Rogue",
-        "Spiteful Druid,Even Paladin,Control Priest,Cube Warlock",
-        "Tempo Mage,Even Paladin,Quest Rogue,Cube Warlock",
-        "Spiteful Druid,Tempo Mage,Control Priest,Control Warlock",
-        "Big Spell Mage,Control Priest,Control Warlock,Odd Warrior",
-        "Big Spell Mage,Even Paladin,Control Priest,Cube Warlock",
-        "Taunt Druid,Even Paladin,Control Priest,Control Warlock",
-        "Odd Hunter,Tempo Mage,Even Paladin,Odd Rogue",
-        "Spiteful Druid,Even Paladin,Miracle Rogue,Control Warlock",
-        "Taunt Druid,Control Priest,Quest Rogue,Cube Warlock",
-        "Taunt Druid,Control Priest,Quest Rogue,Control Warlock",
-        "Even Paladin,Control Priest,Quest Rogue,Cube Warlock",
-        "Taunt Druid,Murloc Paladin,Control Priest,Control Warlock",
-        "Spiteful Druid,Tempo Mage,Even Paladin,Odd Rogue",
-        "Taunt Druid,Even Paladin,Control Priest,Cube Warlock",
         "Even Paladin,Odd Rogue,Even Shaman,Cube Warlock",
-        "Taunt Druid,Spell Hunter,Control Warlock,Odd Warrior",
-        "Tempo Mage,Even Paladin,Control Priest,Control Warlock",
-        "Taunt Druid,Even Paladin,Quest Rogue,Cube Warlock",
+        "Spiteful Druid,Even Paladin,Control Priest,Control Warlock",
+        "Spiteful Druid,Even Paladin,Control Warlock,Odd Warrior",
+        "Spiteful Druid,Tempo Mage,Even Paladin,Cube Warlock",
+        "Odd Hunter,Tempo Mage,Even Paladin,Odd Rogue",
+        "Even Paladin,Control Priest,Control Warlock,Odd Warrior",
+        "Spiteful Druid,Tempo Mage,Even Paladin,Odd Rogue",
+        "Even Paladin,Control Priest,Even Shaman,Control Warlock",
+        "Aggro Hunter,Even Paladin,Odd Rogue,Even Shaman",
+        "Spiteful Druid,Control Priest,Control Warlock,Odd Warrior",
+        "Spiteful Druid,Spell Hunter,Even Paladin,Cube Warlock",
+        "Even Paladin,Quest Rogue,Even Shaman,Cube Warlock",
+        "Tempo Mage,Even Paladin,Odd Rogue,Cube Warlock",
+        "Spiteful Druid,Tempo Mage,Even Paladin,Control Priest",
+        "Spiteful Druid,Even Paladin,Miracle Rogue,Cube Warlock",
+        "Big Spell Mage,Even Paladin,Control Priest,Control Warlock",
+        "Spiteful Druid,Even Paladin,Control Priest,Cube Warlock",
+        "Even Paladin,Shudderwock Shaman,Control Warlock,Odd Warrior",
+        "Tempo Mage,Even Paladin,Quest Rogue,Cube Warlock",
+        "Spiteful Druid,Even Paladin,Odd Rogue,Even Shaman",
+        "Even Paladin,Control Priest,Quest Rogue,Control Warlock",
+        "Spiteful Druid,Even Paladin,Control Priest,Odd Rogue",
+        "Spiteful Druid,Tempo Mage,Even Paladin,Quest Rogue",
+        "Even Paladin,Control Priest,Quest Rogue,Cube Warlock",
+        "Spiteful Druid,Control Priest,Quest Rogue,Control Warlock",
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
-    #weights = [5,5,4,4,3,3,3,3,3,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-    weights = [11, 6, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    #weights = [5, 5, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    #weights = [11, 6, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    weights = [18, 6, 6, 5, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]
     #weights = []
     #for i in range(0,16):
     #    weights.append(1)
@@ -378,8 +347,9 @@ if __name__ == '__main__':
         print sorted(archetypes, key=lambda x:x.split()[-1])
         excluded = []
         if True:
+            excluded += []
             #excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
-            excluded += ['Odd Paladin']
+            #excluded += ['Odd Paladin', 'Big Spell Mage', 'Quest Rogue']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
         win_rates_against_good = {}
@@ -438,8 +408,8 @@ if __name__ == '__main__':
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
-        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
+        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
+        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))

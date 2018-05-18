@@ -191,7 +191,7 @@ if __name__ == '__main__':
                 print '%-27s %-27s %s' % (d1, d2, round(j,4))
             
     else:
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=100, min_game_count=1000, min_win_pct=0.35,limitTop=30)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=10, min_game_count=10, min_win_pct=0.44,limitTop=30)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00
@@ -208,7 +208,8 @@ if __name__ == '__main__':
         print len(archetypes), sorted(archetypes, key=class_sort)
 
         excluded = []
-        excluded = ['Spiteful Druid', 'Spiteful Priest', 'Miracle Rogue', 'Pirate Warrior']
+        #excluded = ['Spiteful Druid', 'Spiteful Priest', 'Miracle Rogue', 'Pirate Warrior']
+        #excluded = ['Aggro Hunter', 'Combo Priest', 'Rush Warrior', 'Odd Hunter', 'Odd Paladin']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
 
