@@ -118,7 +118,9 @@ class DeckHandler():
         deckstrings, flags = get_args(args)
         if 'help' in args.split()[0]:
             return helpstring_search
-        if message.channel.name in PRIVATE_CHANNELS or message.server.name in PRIVATE_SERVERS:
+        if message.channel.name in PRIVATE_CHANNELS:
+            allow_private = True
+        elif message.server is not None and message.server.name in PRIVATE_SERVERS:
             allow_private = True
         else:
             allow_private = False
