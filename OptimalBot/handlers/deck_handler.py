@@ -93,7 +93,7 @@ class DeckHandler():
             tmp_deck = EasyDeck(deck_code)
             distance = deck.get_distance(tmp_deck)
             res.append((distance, deck_id, deck_code))
-        res_final = sorted([i for i in res if i[0] <= max_dist])[:max_results]
+        res_final = sorted([i for i in res if i[0] <= max_dist], key=lambda x:(x[0],-x[1],x[2]))[:max_results]
         if len(res_final) == 0:
             return 'No deck within %(max_dist)s cards of deck' % locals()
         #print_res = '`'
