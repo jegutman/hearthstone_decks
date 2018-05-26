@@ -15,6 +15,7 @@ downloads = [
     ('LEGEND_ONLY', 'LAST_3_DAYS'),
     ('LEGEND_ONLY', 'LAST_7_DAYS'),
     ('LEGEND_THROUGH_FIVE', 'LAST_7_DAYS'),
+    ('LEGEND_THROUGH_FIVE', 'LAST_3_DAYS'),
 ]
 
 name_map = {
