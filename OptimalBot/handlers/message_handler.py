@@ -3,6 +3,8 @@ from config import *
 import asyncio
 import re
 import sys
+import os
+os.environ['TZ'] = 'America/Chicago'
 from datetime import datetime
 from deck_db import DeckDBHandler
 from bot_logger import BotLogger
