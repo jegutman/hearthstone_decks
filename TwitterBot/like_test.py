@@ -33,7 +33,11 @@ logfile = open('output.txt', 'w')
 
 res = []
 def like_posts(uid):
-    posts = api.user_timeline(uid,count=50, tweet_mode='extended')
+    try:
+        posts = api.user_timeline(uid,count=50, tweet_mode='extended')
+    except:
+        print("Could not see timeline: %s" % uid)
+        return
     for i in posts:
         #test_text = "".join(i.full_text.split('\n'))
         test_text = i.full_text
