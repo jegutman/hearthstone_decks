@@ -18,7 +18,7 @@ import json
 #archetypes_json = json.loads(r.content)
 #NOTE FIGURE OUT A WAY TO KEEP CLEAN
 
-importNew = False
+importNew = True
 if importNew:
     import os
     os.system('curl https://hsreplay.net/api/v1/archetypes/?format=json > archetypes.json')

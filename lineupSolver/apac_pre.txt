@@ -1,4 +1,4 @@
-Kribo#3588            18609   4.0 18.6% ['Even Paladin', 'Control Priest', 'Control Warlock', 'Odd Warrior']
+ribo#3588            18609   4.0 18.6% ['Even Paladin', 'Control Priest', 'Control Warlock', 'Odd Warrior']
 Sooni#31863           18551   4.0 18.6% ['Even Paladin', 'Control Priest', 'Control Warlock', 'Odd Warrior']
 Rolle#1797            18524   4.0 18.5% ['Even Paladin', 'Control Priest', 'Control Warlock', 'Odd Warrior']
 DacRyvius#3965        17999   3.9 18.0% ['Big Spell Mage', 'Even Paladin', 'Control Priest', 'Control Warlock']
