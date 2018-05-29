@@ -10,50 +10,16 @@ if __name__ == '__main__':
 
     lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
     tmp_weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-    weights = [w for w,l in zip(tmp_weights, lineups_to_test) if l is not None]
     lineups_to_test = [
-        "Spiteful Druid,Tempo Mage,Even Paladin,Cube Warlock",
-        "Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock",
-        "Spiteful Druid,Tempo Mage,Quest Rogue,Cube Warlock",
-        "Spiteful Druid,Tempo Mage,Murloc Paladin,Cube Warlock",
-        "Spiteful Druid,Even Paladin,Odd Rogue,Cube Warlock",
-        "Spiteful Druid,Tempo Mage,Even Paladin,Control Priest",
-        "Spiteful Druid,Control Priest,Quest Rogue,Cube Warlock",
-        "Taunt Druid,Control Priest,Control Warlock,Odd Warrior",
-        "Spiteful Druid,Murloc Paladin,Odd Rogue,Control Warlock",
-        "Spell Hunter,Control Priest,Control Warlock,Odd Warrior",
-        "Even Paladin,Odd Rogue,Even Shaman,Zoo Warlock",
-        "Spiteful Druid,Even Paladin,Odd Rogue,Control Warlock",
-        "Spiteful Druid,Even Paladin,Control Priest,Control Warlock",
-        "Token Druid,Even Paladin,Odd Rogue,Cube Warlock",
-        "Spiteful Druid,Spell Hunter,Miracle Rogue,Cube Warlock",
-        "Spiteful Druid,Even Paladin,Spiteful Priest,Control Warlock",
-        "Spiteful Druid,Tempo Mage,Murloc Paladin,Quest Rogue",
-        "Spiteful Druid,Control Priest,Control Warlock,Odd Warrior",
-        "Even Paladin,Control Priest,Quest Rogue,Control Warlock",
-        "Odd Hunter,Tempo Mage,Murloc Paladin,Odd Rogue",
-        "Spiteful Druid,Even Paladin,Control Priest,Cube Warlock",
-        "Tempo Mage,Even Paladin,Quest Rogue,Cube Warlock",
-        "Spiteful Druid,Tempo Mage,Control Priest,Control Warlock",
-        "Big Spell Mage,Control Priest,Control Warlock,Odd Warrior",
-        "Big Spell Mage,Even Paladin,Control Priest,Cube Warlock",
-        "Taunt Druid,Even Paladin,Control Priest,Control Warlock",
-        "Odd Hunter,Tempo Mage,Even Paladin,Odd Rogue",
-        "Spiteful Druid,Even Paladin,Miracle Rogue,Control Warlock",
-        "Taunt Druid,Control Priest,Quest Rogue,Cube Warlock",
-        "Taunt Druid,Control Priest,Quest Rogue,Control Warlock",
-        "Even Paladin,Control Priest,Quest Rogue,Cube Warlock",
-        "Taunt Druid,Murloc Paladin,Control Priest,Control Warlock",
-        "Spiteful Druid,Tempo Mage,Even Paladin,Odd Rogue",
-        "Taunt Druid,Even Paladin,Control Priest,Cube Warlock",
-        "Even Paladin,Odd Rogue,Even Shaman,Cube Warlock",
-        "Taunt Druid,Spell Hunter,Control Warlock,Odd Warrior",
-        "Tempo Mage,Even Paladin,Control Priest,Control Warlock",
-        "Taunt Druid,Even Paladin,Quest Rogue,Cube Warlock",
+        "Token Druid,Spell Hunter,Odd Rogue,Even Warlock",
+        "Token Druid,Big Spell Mage,Shudderwock Shaman,Miracle Rogue",
+        "Even Shaman,Spell Hunter,Even Warlock,Odd Rogue",
+        "Even Warlock,Spell Hunter,Token Druid,Quest Warrior",
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
+    weights = [1 for l in lineups_to_test if l is not None]
     #weights = [5,5,4,4,3,3,3,3,3,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-    weights = [11, 6, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    #weights = [11, 6, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
     import sys
     args = sys.argv[1:]
@@ -127,19 +93,7 @@ if __name__ == '__main__':
         print("average: %s" % (total ** (1./count)))
     elif len(args) > 0 and args[0] == 'sim':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
-        for key in win_pcts.keys():
-            i,j = key
-            bias = 0.00
-            if i == 'Highlander Priest':
-                win_pcts[key] += bias
-            if j == 'Highlander Priest':
-                win_pcts[key] -= bias
-            #bias = 0.03
-            bias = 0.00
-            if i == 'Jade Druid':
-                win_pcts[key] += bias
-            if j == 'Jade Druid':
-                win_pcts[key] -= bias
+        print len(archetypes), sorted(archetypes, key=class_sort)
         my_lineup = [d.strip() for d in args[1].split(',')]
         opp_lineup = [d.strip() for d in args[2].split(',')]
         assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
@@ -191,7 +145,7 @@ if __name__ == '__main__':
                 print '%-27s %-27s %s' % (d1, d2, round(j,4))
             
     else:
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=10, min_game_count=10, min_win_pct=0.44,limitTop=30)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=40, min_game_count=20, min_win_pct=0.44,limitTop=30)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00
@@ -210,6 +164,7 @@ if __name__ == '__main__':
         excluded = []
         #excluded = ['Spiteful Druid', 'Spiteful Priest', 'Miracle Rogue', 'Pirate Warrior']
         #excluded = ['Aggro Hunter', 'Combo Priest', 'Rush Warrior', 'Odd Hunter', 'Odd Paladin']
+        #excluded = ['Odd Paladin', 'Cube Warlock', 'Control Warlock']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
 
@@ -243,13 +198,13 @@ if __name__ == '__main__':
         lu_strings = []
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
-        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
+        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
+        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
             lineup_string = ",".join(i)
-            lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(geometric_mean([i[1] for i in j],weights),3), round(min([x[1] for x in j]),3)))
+            lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(sumproduct_normalize([i[1] for i in j],weights),3), round(min([x[1] for x in j]),3)))
             print '         "' + lineup_string + '"'
         for i,j,k,l in lu_strings:
             print "".join(["%-20s" % x for x in i.split(',')]), j, k, l, '    "%(i)s"' % locals()

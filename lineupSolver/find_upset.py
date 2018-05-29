@@ -12,7 +12,86 @@ from conquest_utils import *
 from random import shuffle
 
 #from hct_europe_pairings import *
-from hct_americas_pairings import *
+#from hct_americas_pairings import *
+from hct_apac_pairings import *
+
+decks_apac = {
+    'ABS0L#3333'  :  'Spiteful Druid,Spell Hunter,Even Paladin,Cube Warlock',
+    'ahqRoger#4889'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'ahqShaxy#4711'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'Akumaker#1705'  :  'Even Paladin,Quest Rogue,Even Shaman,Cube Warlock',
+    'Alkaiser#11377'  :  'Tempo Mage,Even Paladin,Odd Rogue,Cube Warlock',
+    'aqua#1699'  :  'Spiteful Druid,Even Paladin,Control Warlock,Odd Warrior',
+    'Asura#41638'  :  'Spiteful Druid,Even Paladin,Control Priest,Control Warlock',
+    'b787#1808'  :  'Even Paladin,Control Priest,Even Shaman,Control Warlock',
+    'blitzchung#3549'  :  'Spiteful Druid,Tempo Mage,Even Paladin,Control Priest',
+    'CitizenNappa#11460'  :  'Aggro Hunter,Even Paladin,Odd Rogue,Even Shaman',
+    'cocosasa#3734'  :  'Spiteful Druid,Even Paladin,Odd Rogue,Cube Warlock',
+    'DacCarp#3361'  :  'Even Paladin,Odd Rogue,Even Shaman,Cube Warlock',
+    'DacGyong#3539'  :  'Spiteful Druid,Even Paladin,Miracle Rogue,Cube Warlock',
+    'DacMalza#3886'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'DacRyvius#3965'  :  'Big Spell Mage,Even Paladin,Control Priest,Control Warlock',
+    'Disdai#11979'  :  'Spiteful Druid,Even Paladin,Control Priest,Control Warlock',
+    'Ender#14201'  :  'Aggro Hunter,Even Paladin,Odd Rogue,Even Shaman',
+    'fire#3966'  :  'Spiteful Druid,Even Paladin,Control Priest,Cube Warlock',
+    #'FroStee#6472'  :  'Even Paladin,Shudderwock Shaman,Control Warlock,Recruit Warrior',
+    'FroStee#11712'  :  'Even Paladin,Shudderwock Shaman,Control Warlock,Odd Warrior',
+    'Garchomp#1185'  :  'Spiteful Druid,Tempo Mage,Even Paladin,Cube Warlock',
+    'GingaNinja#12351'  :  'Tempo Mage,Even Paladin,Quest Rogue,Cube Warlock',
+    'glory#1145'  :  'Even Paladin,Control Priest,Even Shaman,Control Warlock',
+    'gogongsing#31127'  :  'Odd Hunter,Tempo Mage,Even Paladin,Odd Rogue',
+    'GundamFlame#1892'  :  'Spiteful Druid,Tempo Mage,Even Paladin,Cube Warlock',
+    'Hearthstoner#11575'  :  'Spiteful Druid,Even Paladin,Control Priest,Control Warlock',
+    'Heaven#12517'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'horo#1775'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'js5#3234'  :  'Spiteful Druid,Even Paladin,Control Priest,Control Warlock',
+    'kin0531#3693'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'KiRu#31619'  :  'Spiteful Druid,Even Paladin,Odd Rogue,Cube Warlock',
+    'Kribo#3588'  :  'Even Paladin,Control Priest,Control Warlock,Odd Warrior',
+    'livevil#3366'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'Machamp#1278'  :  'Even Paladin,Odd Rogue,Even Shaman,Cube Warlock',
+    'Mage#11585'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'MATSURI#1423'  :  'Spiteful Druid,Even Paladin,Control Priest,Control Warlock',
+    'matuko#1900'  :  'Spiteful Druid,Tempo Mage,Even Paladin,Odd Rogue',
+    'MegaGliscor#1122'  :  'Spiteful Druid,Control Priest,Control Warlock,Odd Warrior',
+    'Mogumi#1641'  :  'Spiteful Druid,Tempo Mage,Even Paladin,Odd Rogue',
+    'NAGON#1609'  :  'Spiteful Druid,Even Paladin,Odd Rogue,Even Shaman',
+    'Nickname#1199'  :  'Even Paladin,Odd Rogue,Even Shaman,Cube Warlock',
+    'Nickname#31169'  :  'Spiteful Druid,Even Paladin,Odd Rogue,Cube Warlock',
+    'Nickname#31486'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'Nickname#3381'  :  'Even Paladin,Odd Rogue,Even Shaman,Cube Warlock',
+    'Nickname#3550'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'Nickname#3759'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'Nickname#3844'  :  'Even Paladin,Control Priest,Quest Rogue,Control Warlock',
+    'Nickname#3924'  :  'Spiteful Druid,Control Priest,Control Warlock,Odd Warrior',
+    'Nickname#3999'  :  'Spiteful Druid,Even Paladin,Odd Rogue,Cube Warlock',
+    'Nickname#4797'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'nukesaku#1872'  :  'Spiteful Druid,Even Paladin,Control Warlock,Odd Warrior',
+    'Ohdollar#3512'  :  'Spiteful Druid,Even Paladin,Control Priest,Odd Rogue',
+    'okasinnsuke#1294'  :  'Spiteful Druid,Tempo Mage,Even Paladin,Quest Rogue',
+    'oyatsu#11568'  :  'Spiteful Druid,Tempo Mage,Even Paladin,Cube Warlock',
+    'patoyao#11218'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'Piyobot#1837'  :  'Spiteful Druid,Even Paladin,Odd Rogue,Cube Warlock',
+    'posesi#1277'  :  'Even Paladin,Odd Rogue,Even Shaman,Cube Warlock',
+    'reall#3914'  :  'Odd Hunter,Tempo Mage,Even Paladin,Odd Rogue',
+    'Rolle#1797'  :  'Even Paladin,Control Priest,Control Warlock,Odd Warrior',
+    'Sequinox#11887'  :  'Even Paladin,Control Priest,Quest Rogue,Cube Warlock',
+    'Sooni#31863'  :  'Even Paladin,Control Priest,Control Warlock,Odd Warrior',
+    'Srouc#11224'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'Staz#11796'  :  'Even Paladin,Odd Rogue,Even Shaman,Cube Warlock',
+    'Steelo#31585'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'strikeright#3969'  :  'Spiteful Druid,Control Priest,Quest Rogue,Control Warlock',
+    'Surrender#31359'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'Tansoku#1289'  :  'Spiteful Druid,Even Paladin,Control Warlock,Odd Warrior',
+    'tom60229#3684'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+    'trahison#11389'  :  'Spiteful Druid,Tempo Mage,Even Paladin,Odd Rogue',
+    'Tredsred#1762'  :  'Odd Hunter,Tempo Mage,Even Paladin,Odd Rogue',
+    'XiaoDai#3807'  :  'Spiteful Druid,Even Paladin,Odd Rogue,Cube Warlock',
+    'Zyx#3505'  :  'Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock',
+}
+
+for i in decks_apac:
+    decks_apac[i] = decks_apac[i].split(',')
 
 eu_decks = {
     'AA_TEST'            : ['Spiteful Druid', 'Even Paladin', 'Quest Rogue', 'Cube Warlock'],
@@ -175,7 +254,7 @@ decks_na = {
     'zalae#1766'              : ['Spiteful Druid','Tempo Mage','Even Paladin','Control Priest'],
     'zlsjs#1181'              : ['Spiteful Druid','Control Priest','Quest Rogue','Cube Warlock'],
 }
-decks = decks_na
+decks = decks_apac
 
 win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
 overrides = [
@@ -217,7 +296,7 @@ expected_score = {}
 total_wr = 0.0
 scores = {}
 games = {}
-for p1, p2, s1, s2 in round1 + round2 + round3 + round4 + round5 + round6 + round7:
+for p1, p2, s1, s2 in round1 + round2 + round3 + round4 + round5 + round6:# + round7:
     if p1 not in scores: 
         scores[p1] = 0
         games[p1] = 0
@@ -412,8 +491,84 @@ pre_tournament = {
     'Alan870806#1754'      : 3.3,
     'Justine#1262'         : 3.3,
 }
-#for p in expected_score.keys():
-#    practice = float(expected_score[p]) / games[p]
-#    pre = pre_tournament[p] / 7.
-#    calc = round(practice / pre, 4)
-#    print(p, calc, round(practice, 2))
+
+pre_tournament_apac = {
+    'Kribo#3588'           : 4.0,
+    'Sooni#31863'          : 4.0,
+    'Rolle#1797'           : 4.0,
+    'DacRyvius#3965'       : 3.9,
+    'glory#1145'           : 3.9,
+    'b787#1808'            : 3.9,
+    'MegaGliscor#1122'     : 3.7,
+    'Nickname#3924'        : 3.7,
+    'Asura#41638'          : 3.7,
+    'Hearthstoner#11575'   : 3.7,
+    'MATSURI#1423'         : 3.7,
+    'Disdai#11979'         : 3.7,
+    'js5#3234'             : 3.7,
+    'Nickname#3844'        : 3.6,
+    'aqua#1699'            : 3.6,
+    'nukesaku#1872'        : 3.6,
+    'Tansoku#1289'         : 3.6,
+    'CitizenNappa#11460'   : 3.6,
+    'Ender#14201'          : 3.6,
+    'Nickname#3999'        : 3.6,
+    'NAGON#1609'           : 3.6,
+    'KiRu#31619'           : 3.6,
+    'cocosasa#3734'        : 3.6,
+    'Nickname#1199'        : 3.6,
+    'Staz#11796'           : 3.6,
+    'fire#3966'            : 3.6,
+    'Nickname#3381'        : 3.6,
+    'DacCarp#3361'         : 3.6,
+    'Piyobot#1837'         : 3.6,
+    'Machamp#1278'         : 3.6,
+    'XiaoDai#3807'         : 3.6,
+    'posesi#1277'          : 3.6,
+    'Nickname#31169'       : 3.6,
+    'Sequinox#11887'       : 3.5,
+    'horo#1775'            : 3.5,
+    'FroStee#11712'        : 3.5,
+    'Surrender#31359'      : 3.5,
+    'Nickname#3759'        : 3.5,
+    'kin0531#3693'         : 3.5,
+    'Nickname#4797'        : 3.5,
+    'Steelo#31585'         : 3.5,
+    'Nickname#3550'        : 3.5,
+    'strikeright#3969'     : 3.5,
+    'livevil#3366'         : 3.5,
+    'Mage#11585'           : 3.5,
+    'Zyx#3505'             : 3.5,
+    'Nickname#31486'       : 3.5,
+    'ahqShaxy#4711'        : 3.5,
+    'Heaven#12517'         : 3.5,
+    'patoyao#11218'        : 3.5,
+    'Ohdollar#3512'        : 3.5,
+    'DacMalza#3886'        : 3.5,
+    'ahqRoger#4889'        : 3.5,
+    'tom60229#3684'        : 3.5,
+    'Srouc#11224'          : 3.5,
+    'ABS0L#3333'           : 3.4,
+    'DacGyong#3539'        : 3.4,
+    'Akumaker#1705'        : 3.4,
+    'trahison#11389'       : 3.4,
+    'Mogumi#1641'          : 3.4,
+    'Garchomp#1185'        : 3.4,
+    'matuko#1900'          : 3.4,
+    'GundamFlame#1892'     : 3.4,
+    'oyatsu#11568'         : 3.4,
+    'gogongsing#31127'     : 3.4,
+    'Alkaiser#11377'       : 3.4,
+    'blitzchung#3549'      : 3.4,
+    'reall#3914'           : 3.4,
+    'Tredsred#1762'        : 3.4,
+    'GingaNinja#12351'      : 3.3,
+    'okasinnsuke#1294'     : 3.3,
+}
+pre_tournament = pre_tournament_apac
+
+for p in expected_score.keys():
+    practice = float(expected_score[p]) / games[p]
+    pre = pre_tournament[p] / 7.
+    calc = round(practice / pre, 4)
+    print("%-20s %0.4f %0.2f" % (p, calc, round(practice, 2)))
