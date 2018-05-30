@@ -41,7 +41,8 @@ class SimHandler():
             return cq_bans(lineup_a,lineup_b)
         else:
             #return '`LHS not supported yet`'
-            return 'LHS not supported yet'
+            #return 'LHS not supported yet'
+            return lhs_bans(lineup_a,lineup_b)
 
 
     def data_check(self):

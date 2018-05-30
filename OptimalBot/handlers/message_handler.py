@@ -25,6 +25,7 @@ CMD_UPDATE = "!update "
 CMD_DATA = "!data"
 CMD_SIM = "!sim "
 CMD_BANS = "!bans "
+CMD_BANS_LHS = "!banslhs "
 CMD_SIM_LHS = "!simlhs "
 CMD_HELP = "!help"
 CMD_COUNTDOWN = "!countdown"
@@ -194,6 +195,13 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_bans(message, CMD_BANS, my_message)
+            return True
+
+        if message.content.startswith(CMD_BANS_LHS):
+            if str(message.channel.name).lower() not in ['sims']:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_bans(message, CMD_BANS_LHS, my_message, is_conquest=False)
             return True
 
         if message.content.startswith(CMD_SIM):
