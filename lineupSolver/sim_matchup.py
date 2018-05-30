@@ -8,6 +8,7 @@ from conquest_utils import pre_ban_old as cq_pre_ban_old
 from lhs_utils import win_rates_lines as lhs_win_rates_lines
 from lhs_utils import win_rate as lhs_win_rate
 from lhs_utils import pre_ban as lhs_pre_ban
+from lhs_utils import pre_ban_old as lhs_pre_ban_old
 
 win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
 overrides = [
@@ -80,7 +81,7 @@ def cq_bans(my_lineup, opp_lineup):
 
 def lhs_bans(my_lineup, opp_lineup):
     res = ""
-    res_ban = pre_ban_old(my_lineup,
+    res_ban = lhs_pre_ban_old(my_lineup,
                       opp_lineup,
                       win_pcts)
     res += "bans" + '\n'
