@@ -8,34 +8,10 @@ from conquest_utils import pre_ban_old as cq_pre_ban_old
 from lhs_utils import win_rates_lines as lhs_win_rates_lines
 from lhs_utils import win_rate as lhs_win_rate
 from lhs_utils import pre_ban as lhs_pre_ban
-from lhs_utils import pre_ban_old as lhs_pre_ban_old
+from lhs_utils import pre_matrix
 
 win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
 overrides = [
-    #('Zoo Warlock', 'Even Paladin', .48),
-    #('Zoo Warlock', 'Tempo Mage', .60),
-    #('Zoo Warlock', 'Odd Rogue', .55),
-    #('Zoo Warlock', 'Spiteful Druid', .60),
-    ('Zoo Warlock', 'Even Paladin', .44),
-    ('Zoo Warlock', 'Tempo Mage', .55),
-    ('Zoo Warlock', 'Odd Rogue', .40),
-    ('Zoo Warlock', 'Spiteful Druid', .55),
-    ('Zoo Warlock', 'Cube Warlock', .30),
-    ('Zoo Warlock', 'Control Warlock', .30),
-    ('Zoo Warlock', 'Quest Rogue', .65),
-    ('Zoo Warlock', 'Control Priest', .42),
-    ('Zoo Warlock', 'Murloc Paladin', .50),
-    ('Zoo Warlock', 'Taunt Druid', .55),
-    ('Zoo Warlock', 'Odd Warrior', .30),
-    ('Zoo Warlock', 'Miracle Rogue', .60),
-    ('Zoo Warlock', 'Spell Hunter', .50),
-    ('Zoo Warlock', 'Even Shaman', .50),
-    ('Zoo Warlock', 'Quest Warrior', .45),
-    ('Zoo Warlock', 'Quest Druid', .65),
-    ('Zoo Warlock', 'Zoo Warlock', .50),
-    ('Even Shaman', 'Tempo Mage', .60),
-    ('Even Shaman', 'Quest Rogue', .60),
-    ('Even Shaman', 'Murloc Paladin', .60),
             ]
 win_pcts = override_wr(overrides,win_pcts)
 
@@ -81,7 +57,7 @@ def cq_bans(my_lineup, opp_lineup):
 
 def lhs_bans(my_lineup, opp_lineup):
     res = ""
-    res_ban = lhs_pre_ban_old(my_lineup,
+    res_ban = pre_matrix(my_lineup,
                       opp_lineup,
                       win_pcts)
     res += "bans" + '\n'
