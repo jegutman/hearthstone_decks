@@ -28,7 +28,7 @@ for i in range(0, len(top_archetypes_1)):
         a, b = top_archetypes_1[i], top_archetypes_1[j]
         wr1 = round(win_pcts_1.get((a,b),0) * 100, 1)
         wr2 = round(win_pcts_2.get((a,b),0) * 100, 1)
-        diff = round(wr1 - wr2,1)
+        diff = round(wr2 - wr1,1)
         ng1 = num_games_1[(a,b)]
         ng2 = num_games_2[(a,b)]
         res.append((a,b, wr1, wr2, diff, ng1, ng2))
