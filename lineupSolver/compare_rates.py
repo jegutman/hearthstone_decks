@@ -6,12 +6,15 @@ from json_win_rates import *
 
 #hs_win_pcts, num_games, game_count, archetypes = get_win_pcts()
 
-date = sys.argv[1]
+#date = sys.argv[1]
 #file1 = 'win_rates/hsreplay%(date)slegend.json' % locals()
+date = '20180529'
 file1 = 'win_rates/hsreplay%(date)s_LONLY_3DAYS.json' % locals()
 #file1 = 'win_rates/hsreplay%(date)s.json' % locals()
 #date = '0118'
-file2 = 'win_rates/hsreplay%(date)s_L5_3DAYS.json' % locals()
+date = '20180531'
+#file2 = 'win_rates/hsreplay%(date)s_L5_3DAYS.json' % locals()
+file2 = 'win_rates/hsreplay%(date)s_LONLY_3DAYS.json' % locals()
 
 win_pcts_1, num_games_1, game_count_1, hsreplay_archetypes_1, overall_wr_1 = get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0, filename=file1,limitTop=40)
 win_pcts_2, num_games_2, game_count_2, hsreplay_archetypes_2, overall_wr_2 = get_win_pcts(min_game_threshold=0, min_game_count=0, min_win_pct=0, filename=file2,limitTop=40)
