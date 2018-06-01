@@ -10,6 +10,7 @@ class SimHandler():
             pass
 
     def handle(self, commands, is_conquest=True):
+        commands = commands.replace('“', '"').replace('”', '"')
         lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
         lineup_b = lineup_b.replace('"', '')

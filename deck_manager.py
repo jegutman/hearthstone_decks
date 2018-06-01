@@ -126,7 +126,7 @@ def print_side_by_side(list_of_decks):
     #list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
     res = []
     deck_print_lines = [d.get_print_lines() for d in list_of_decks]
-    lengths = [len(dpl) for dpl in deck_print_lines]
+    lengths = [0] + [len(dpl) for dpl in deck_print_lines]
     for dpl in deck_print_lines:
         if len(dpl) < max(lengths):
             dpl += [""] * (max(lengths) - len(dpl))

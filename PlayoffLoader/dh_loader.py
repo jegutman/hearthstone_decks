@@ -121,8 +121,12 @@ def get_decks_by_class(deck_class):
 for line in file:
     tmp = line.strip().split(',')
     deck_name = tmp[0]
+    deck_name = deck_name.split('|')[-1].strip()
     for deck_code in tmp[1:]:
-        deck = EasyDeck(deck_code)
+        try:
+            deck = EasyDeck(deck_code)
+        except:
+            assert False, deck_name
         deck_class = deck.get_class()
         max_results = flags.get('limit', 5)
         max_dist = flags.get('max_dist', 5)
@@ -136,8 +140,8 @@ for line in file:
         if len(res_final) == 0:
             print('No deck within %(max_dist)s cards of deck' % locals())
             print("%-25s %-10s %s" % (deck_name, deck_class, deck_code))
+            deck.print_deck()
         else:
             print("%-25s %-10s %-15s %2s %s" % (deck_name, deck_class, res_final[0][2], res_final[0][0], deck_code))
             deck_archetype = res_final[0][2]
-            deck_id += 1
-            #process_deck(deck_code, deck_class, deck_name, deck_archetype, deck_id=deck_id)
+            process_deck(deck_code, deck_class, deck_name, deck_archetype)
