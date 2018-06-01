@@ -75,29 +75,10 @@ class EasyDeck():
         return total / float(len(other_decks))
 
     def get_class(self):
-        class_map = {
-            274  : 'Druid',
-            50484: 'Druid',
-            671  : 'Paladin',
-            2827 : 'Paladin',
-            46116: 'Paladin',
-            813  : 'Priest',
-            41887: 'Priest',
-            7    : 'Warrior',
-            2828 : 'Warrior',
-            1066 : 'Shaman',
-            40183: 'Shaman',
-            637  : 'Mage',
-            2829 : 'Mage',
-            39117: 'Mage',
-            893  : 'Warlock',
-            47817: 'Warlock',
-            31   : 'Hunter',
-            2826 : 'Hunter',
-            930  : 'Rogue',
-            40195: 'Rogue',
-        }
-        return class_map.get(self.deck.heroes[0], "Unknown Hero:" + str(self.deck.heroes[0]))
+        try:
+            return cards.get(self.deck.heroes[0])['cardClass'].capitalize()
+        except:
+            return "Unknown Hero:" + str(self.deck.heroes[0])
     
     def get_original_code(self):
         return self.deckstring
