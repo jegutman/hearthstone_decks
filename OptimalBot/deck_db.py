@@ -108,7 +108,8 @@ class DeckDBHandler():
         self.check_cursor()
         playoff_str = "playoff_region = 'None'"
         if use_playoffs:
-            playoff_str = "playoff_region in ('NA', 'EU', 'APAC')"
+            #playoff_str = "playoff_region in ('NA', 'EU', 'APAC', 'DHATX')"
+            playoff_str = "playoff_region in ('DHATX')"
         archetype_str = "deck_archetype like '%%%s%%'" % flags.get('archetype').replace('.*', '%') if flags.get('archetype') else ''
         class_str = "deck_class like '%%%s%%'" % flags.get('class').replace('.*', '%') if flags.get('class') else ''
         name_str = "deck_name like '%%%s%%'" % flags.get('name').replace('.*', '%') if flags.get('name') else ''
