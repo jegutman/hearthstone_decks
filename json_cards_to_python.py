@@ -9,6 +9,12 @@ for card in cards_json:
     if 'dbfId' in card and card.get('collectible', False):
         cards_by_id[card['dbfId']] = card
 
+card_id_to_dbfId = {}
+for card in cards_json:
+    #if 'dbfId' in card and 'set' in card and card.get('collectible', False):
+    if 'dbfId' in card and card.get('collectible', False):
+        card_id_to_dbfId[card['id']] = card['dbfId']
+
 cards_by_raw_id = {}
 for card in cards_json:
     #if 'id' in card and 'set' in card and card.get('collectible', False):
