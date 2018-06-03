@@ -14,6 +14,10 @@ from hearthstone import *
 def convert(cards):
     res = {}
     for card in cards:
+        if card[-2] == 't':
+            card = card[:-2]
+        if card[-1] == 't':
+            card = card[:-1]
         dbfId = card_id_to_dbfId[card]
         res[dbfId] = res.get(dbfId,0) + 1
     cards = [(i,j) for i,j in res.items()]
