@@ -22,6 +22,30 @@ CREATE TABLE decks
     PRIMARY KEY(deck_id)
 );
 
+CREATE TABLE hsreplay
+(
+    game_id        varchar(22) NOT NULL,
+    time           int(32) NOT NULL, 
+    date           varchar(10) NOT NULL,
+    server         varchar(6),
+    p1             varchar(32) NOT NULL,
+    p2             varchar(32) NOT NULL,
+    archetype1     varchar(32),
+    archetype2     varchar(32),
+    first          boolean NOT NULL,
+    result         varchar(1) NOT NULL,
+    PRIMARY KEY(game_id)
+);
+
+CREATE TABLE hsreplay_decks
+(
+    game_id        varchar(22) NOT NULL,
+    p1_deck_code   varchar(128) NOT NULL,
+    p2_deck_code   varchar(128) NOT NULL,
+    PRIMARY KEY(game_id)
+
+);
+
 CREATE TABLE standards
 (
     deck_id        int(11) NOT NULL auto_increment,

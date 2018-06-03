@@ -12,7 +12,7 @@ deck_b = sys.argv[2]
 if len(sys.argv) > 3:
     time_range = sys.argv[3]
 else:
-    time_range = '7DAYS'
+    time_range = '1DAY'
 
 print(deck_a, deck_b)
 first_date = '2018_04_15'
