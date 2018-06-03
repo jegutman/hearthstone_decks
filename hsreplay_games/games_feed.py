@@ -44,7 +44,6 @@ offset = 0
 game_ids = []
 count = 0
 game_count = 0
-game_infos = {}
 while True:
     count += 1
     print("COUNT :", count)
@@ -65,8 +64,6 @@ while True:
         p1_l_rank    = game['player1_legend_rank']
         p2_l_rank    = game['player2_legend_rank']
 
-        
-        
         p1_won       = game['player1_won']
         p2_won       = game['player2_won']
         archetype1   = get_archetype(game['player1_archetype'])
@@ -97,6 +94,8 @@ while True:
                 p1 = game_info['friendly_player']['name']
                 p2 = game_info['opposing_player']['name']
 
+                p1_deckstring = ''
+                p2_deckstring = ''
                 try:
                     friendly_cards = []
                     if game_info['friendly_deck']['cards']: friendly_cards += game_info['friendly_deck']['cards']
@@ -133,7 +132,8 @@ while True:
                     result = 'L' if result == 'W' else 'W'
                     first = 1 - first
                     #friendly_deckstring, opposing_deckstring = opposing_deckstring, friendly_deckstring
-                print(game_id, friendly_deckstring,opposing_deckstring)
+                    p1_deckstring, p2_deckstring = p2_deckstring, p1_deckstring
+                print(game_id, p1_deckstring, p2_deckstring)
                 
                 num_turns = game_info['global_game']['num_turns']
                 ladder_season = game_info['global_game']['ladder_season']
@@ -141,7 +141,7 @@ while True:
                 cursor.execute("""INSERT INTO hsreplay.hsreplay (game_id, time, date, p1, p2, archetype1, archetype2, p1_rank, p2_rank, num_turns, ladder_season, format, first, result)
                                   VALUES ('%(game_id)s', %(game_time)s, '%(game_date)s', '%(p1)s', '%(p2)s', '%(archetype1)s',' %(archetype2)s', '%(p1_insert_rank)s', '%(p2_insert_rank)s', %(num_turns)s, 
                                            %(ladder_season)s, %(game_format)s, %(first)s, '%(result)s')""" % locals())
-                cursor.execute("""INSERT INTO hsreplay.hsreplay_decks (game_id, p1_deck_code, p2_deck_code) VALUES ('%(game_id)s', '%(friendly_deckstring)s', '%(opposing_deckstring)s')""" % locals())
+                cursor.execute("""INSERT INTO hsreplay.hsreplay_decks (game_id, p1_deck_code, p2_deck_code) VALUES ('%(game_id)s', '%(p1_deckstring)s', '%(p2_deckstring)s')""" % locals())
                 connection.commit()
                 print("INSERTED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s" % locals())
                 
