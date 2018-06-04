@@ -125,6 +125,7 @@ def print_side_by_side_diff(list_of_decks):
     deck_cards_to_print = [d.get_cards_to_print() for d in list_of_decks]
     for dl in list_of_decks:
         print("     %-20s     " % (dl.name), end = "")
+    print("")
     card_set = set()
     for cl in deck_cards_to_print:
         card_set = card_set.union(set(cl.keys()))
