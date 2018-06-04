@@ -16,18 +16,19 @@ game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
+#cursor.execute("SELECT time, p1, p2, archetype1, archetype2, first, result FROM hsreplay.hsreplay WHERE p1_rank like 'L%' or p2_rank like 'L%' ")
 cursor.execute("SELECT time, p1, p2, archetype1, archetype2, first, result FROM hsreplay.hsreplay")
-games = []
+#games = []
 win_rates = {}
-win_rates_first = {}
+win_rates_first = {'overall' : [0,0]}
 win_rates_second = {}
 for game_time, p1, p2, archetype1, archetype2, first, result in cursor.fetchall():
     archetype1 = archetype1.strip()
     archetype2 = archetype2.strip()
-    if (game_time, p1, p2) in games or (game_time, p2, p1) in games:
-        continue
-    games.append((game_time, p1, p2))
-    games.append((game_time, p2, p1))
+    #if (game_time, p1, p2) in games or (game_time, p2, p1) in games:
+    #    continue
+    #games.append((game_time, p1, p2))
+    #games.append((game_time, p2, p1))
     pair = (archetype1, archetype2)
     opp = (archetype2, archetype1)
     if pair not in win_rates:
@@ -45,9 +46,11 @@ for game_time, p1, p2, archetype1, archetype2, first, result in cursor.fetchall(
         win_rates[opp][0] += 1
     if first:
         win_rates_first[pair][1] += 1
+        win_rates_first['overall'][1] += 1
         win_rates_second[opp][1] += 1
         if result == 'W':
             win_rates_first[pair][0] += 1
+            win_rates_first['overall'][0] += 1
         else:
             win_rates_second[opp][0] += 1
     else:
@@ -58,7 +61,18 @@ for game_time, p1, p2, archetype1, archetype2, first, result in cursor.fetchall(
         else:
             win_rates_first[opp][0] += 1
             
+min_games = 10
 for i,j in sorted(win_rates.items(), key=lambda x:x[1][1]):
     wr = round(100 * float(j[0]) / float(j[1]), 1)
-    if wr > 79 or wr < 20:
-        print(i,j, wr)
+    #if wr > 79 or wr < 20:
+    a1, a2 = i
+    wins, total = j
+    if total < min_games:
+        continue
+    first_win, first_total = win_rates_first[i]
+    wr_first = round(100 * float(first_win) / float(max(first_total, 1)), 1)
+    diff = round(wr_first - wr, 1)
+    if True:
+        a1 = a1.replace(' ', '_')
+        a2 = a2.replace(' ', '_')
+        print("%-22s %-22s %5s %5s %5s %5s %5s %5s %5s" % (a1, a2, wins, total, wr, first_win, first_total, wr_first, diff))

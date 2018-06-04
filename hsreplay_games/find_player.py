@@ -17,7 +17,7 @@ game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
-sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, result, p1_deck_code, p2_deck_code
+sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
          WHERE p1 like '%(player_search)s' or p2 like '%(player_search)s'
          ORDER BY time
@@ -29,7 +29,7 @@ total = 0
 wins = 0
 total_by_arch = {}
 wins_by_arch = {}
-for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, result, p1_deck_code, p2_deck_code in cursor.fetchall():
+for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code in cursor.fetchall():
     game_time = datetime.fromtimestamp(time)
     time_string = game_time.strftime("%H:%M:%S")
     game_id = game_id.strip()
@@ -41,9 +41,10 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, resul
     archetype1 = archetype1.strip()
     archetype2 = archetype2.strip()
     result = result.strip()
+    num_turns = int(num_turns)
     p1_deck_code = p1_deck_code.strip()
     p2_deck_code = p2_deck_code.strip()
-    if p2.lower() == player_search.lower():
+    if p2.lower() == player_search.lower() or player_search.replace('%', '').lower() in p2.lower():
         p1, p2 = p2, p1
         p1_rank, p2_rank = p2_rank, p1_rank
         archetype1, archetype2 = archetype2, archetype1
@@ -55,7 +56,7 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, resul
     total += 1
     total_by_arch[archetype1] = total_by_arch.get(archetype1, 0) + 1
     #print("%22s %10s     %-25s %-25s %-25s %-25s %s\n    %-80s\n    %-80s" % (game_id, date, p1, p2, archetype1, archetype2, result, p1_deck_code, p2_deck_code))
-    print("%22s %10s %s    %-25s %-25s %-5s %-5s %-25s %-25s %s" % (game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, result))
+    print("%22s %10s %s    %-25s %-25s %-5s %-5s %-25s %-25s %2s %s" % (game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result))
     
 if total > 0:
     print("\n\n")
