@@ -142,6 +142,8 @@ while True:
                 num_turns = game_info['global_game']['num_turns']
                 ladder_season = game_info['global_game']['ladder_season']
                 game_format = game_info['global_game']['format']
+                archetype1 = archetype1.strip()
+                archetype2 = archetype2.strip()
                 cursor.execute("""INSERT INTO hsreplay.hsreplay (game_id, time, date, p1, p2, archetype1, archetype2, p1_rank, p2_rank, num_turns, ladder_season, format, first, result)
                                   VALUES ('%(game_id)s', %(game_time)s, '%(game_date)s', '%(p1)s', '%(p2)s', '%(archetype1)s',' %(archetype2)s', '%(p1_insert_rank)s', '%(p2_insert_rank)s', %(num_turns)s, 
                                            %(ladder_season)s, %(game_format)s, %(first)s, '%(result)s')""" % locals())
