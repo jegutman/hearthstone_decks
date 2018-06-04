@@ -12,7 +12,7 @@ class EasyDeck():
         self.name = name
         self.deckstring = deckstring
         self.card_set = self.get_card_codes_long_set()
-        assert sum([c[1] for c in self.deck.cards]) == 30, self.deck.cards
+        #assert sum([c[1] for c in self.deck.cards]) == 30, self.deck.cards
 
     def __repr__(self):
         return str(self.name) + ' ' + self.get_class() + ' ' + str(self.deckstring)
