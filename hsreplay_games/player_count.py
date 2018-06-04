@@ -19,6 +19,7 @@ cursor = connection.cursor()
 
 sql = """SELECT %(player)s, result, count(game_id)
          FROM hsreplay.hsreplay
+         WHERE p1_rank like 'L%%' or p2_rank like 'L%%'
          GROUP by %(player)s, result
 """
 
@@ -42,9 +43,9 @@ for player in ['p1', 'p2']:
             else:
                 p_losses[p] = p_losses.get(p, 0) + count
 
-for p, count in sorted(p_count.items(), key=lambda x:x[1], reverse=True):
+for p, count in sorted(p_count.items(), key=lambda x:x[1], reverse=True)[:200]:
     wr = round(100 * float(p_wins.get(p, 0)) / (p_wins.get(p, 0) + p_losses.get(p, 0)), 1)
     total_games = p_wins.get(p, 0) + p_losses.get(p, 0)
     #if wr > 55 and total_games >= 20:
-    if wr > 55 and total_games >= 20:
+    if True:
         print("%-5s %-25s %3s - %3s    %s" % (count, p, p_wins.get(p, 0), p_losses.get(p, 0), wr))

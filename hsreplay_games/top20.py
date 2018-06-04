@@ -19,12 +19,11 @@ cursor = connection.cursor()
 
 sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
-         WHERE (p1 like '%(player_search)s' or p2 like '%(player_search)s')
-         #    AND (p1_rank like 'L%%' or p2_rank like 'L%%')
+         WHERE (p1_rank rlike '^L1?[0-9]$' or p2_rank rlike '^L1?[0-9]$')
          ORDER BY time
 """
 
-player_search  = sys.argv[1]
+player_search  = ''
 cursor.execute(sql % locals())
 total = 0
 wins = 0
@@ -52,26 +51,20 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
         result = 'L' if result == 'W' else 'W'
         p1_deck_code, p2_deck_code = p2_deck_code, p1_deck_code
     if result == 'W':
-        wins += 1
         wins_by_arch[archetype1] = wins_by_arch.get(archetype1, 0) + 1
-    total += 1
+    else:
+        wins_by_arch[archetype2] = wins_by_arch.get(archetype2, 0) + 1
+    total +=1
     total_by_arch[archetype1] = total_by_arch.get(archetype1, 0) + 1
+    total_by_arch[archetype2] = total_by_arch.get(archetype2, 0) + 1
     #print("%22s %10s     %-25s %-25s %-25s %-25s %s\n    %-80s\n    %-80s" % (game_id, date, p1, p2, archetype1, archetype2, result, p1_deck_code, p2_deck_code))
     print("%22s %10s %s    %-25s %-25s %-5s %-5s %-25s %-25s %2s %s" % (game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result))
     
-if total > 0:
-    print("\n\n")
-    for archetype, a_total in sorted(total_by_arch.items(), key=lambda x:x[1], reverse=True):
-        a_wins = wins_by_arch.get(archetype, 0)
-        a_losses = a_total - a_wins
-        wr = round(100 * float(a_wins) / a_total, 1)
-        wl = "%s - %s" % (a_wins, a_losses)
-        print("%-25s: %8s : %s" % (archetype, wl, wr))
-    wr = round(100 * float(wins) / total, 1)
-    losses = total - wins
-    wl = "%s - %s" % (wins, losses)
-    print("%-25s: %8s : %s" % ('Total', wl, wr))
-    #print("%-25s: %s - %s     : %s" % ('Total', wins, losses, wr))
-        
-else:
-    print("Did not find games for: %s" % player_search)
+print("\n\n")
+for archetype, a_total in sorted(total_by_arch.items(), key=lambda x:x[1], reverse=True):
+    a_wins = wins_by_arch.get(archetype, 0)
+    a_losses = a_total - a_wins
+    wr = round(100 * float(a_wins) / a_total, 1)
+    wl = "%s - %s" % (a_wins, a_losses)
+    print("%-25s: %8s : %s" % (archetype, wl, wr))
+print("TOTAL:", total)
