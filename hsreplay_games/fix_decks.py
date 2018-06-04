@@ -36,7 +36,10 @@ def check_update(game_id, total):
     game_url = 'https://hsreplay.net/api/v1/games/%(game_id)s/?format=json'
     game_info = requests.get(game_url % locals()).json()
 
-    first = 1 if game_info['friendly_player']['is_first'] else 0
+    try:
+        first = 1 if game_info['friendly_player']['is_first'] else 0
+    except:
+        return
 
     #game_infos[game_id] = game_info
     p1 = game_info['friendly_player']['name']
@@ -91,8 +94,8 @@ game_ids_decks = []
 
 to_update = [i for i in game_ids if i not in game_ids_decks]
 
-total = len(to_update)
+total = len(to_update[13714:])
 print("UPDATING:", len(to_update))
 
-for game_id in to_update:
+for game_id in to_update[13714:]:
     check_update(game_id, total)
