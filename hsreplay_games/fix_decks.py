@@ -48,7 +48,9 @@ def check_update(game_id, total):
     #try:
     if True:
         friendly_cards = []
+        known_friendly_cards = []
         if game_info['friendly_deck']['cards']: friendly_cards += game_info['friendly_deck']['cards']
+        if game_info['friendly_deck']['cards']: known_friendly_cards += game_info['friendly_deck']['cards']
         if game_info['friendly_deck']['predicted_cards']: friendly_cards = game_info['friendly_deck']['predicted_cards']
         friendly_heroes = [card_id_to_dbfId[game_info['friendly_player']['hero_id']]]
         
@@ -58,13 +60,22 @@ def check_update(game_id, total):
         friendly_deck.format = 2
         friendly_deckstring = friendly_deck.as_deckstring
         p1_deckstring = friendly_deckstring
+
+        known_friendly_deck = deckstrings.Deck()
+        known_friendly_deck.cards = convert(known_friendly_cards)
+        known_friendly_deck.heroes = friendly_heroes
+        known_friendly_deck.format = 2
+        known_friendly_deckstring = friendly_deck.as_deckstring
+        known_p1_deckstring = known_friendly_deckstring
     #except:
     #    p1_deckstring = ''
         
     #try:
     if True:
         opposing_cards = []
+        known_opposing_cards = []
         if game_info['opposing_deck']['cards']: opposing_cards += game_info['opposing_deck']['cards']
+        if game_info['friendly_deck']['cards']: known_opposing_cards += game_info['friendly_deck']['cards']
         if game_info['opposing_deck']['predicted_cards']: opposing_cards = game_info['opposing_deck']['predicted_cards']
         opposing_heroes = [card_id_to_dbfId[game_info['opposing_player']['hero_id']]]
 
@@ -74,28 +85,38 @@ def check_update(game_id, total):
         opposing_deck.format = 2
         opposing_deckstring = opposing_deck.as_deckstring
         p2_deckstring = opposing_deckstring
+
+        known_opposing_deck = deckstrings.Deck()
+        known_opposing_deck.cards = convert(known_opposing_cards)
+        known_opposing_deck.heroes = opposing_heroes
+        known_opposing_deck.format = 2
+        known_opposing_deckstring = opposing_deck.as_deckstring
+        known_p2_deckstring = known_opposing_deckstring
     #except:
     #    p2_deckstring = ''
 
-    #if game_info['friendly_player']['player_id'] != 1:
-    if True:
+    if game_info['friendly_player']['player_id'] != 1:
         p1_deckstring, p2_deckstring = p2_deckstring, p1_deckstring
+        known_p1_deckstring, known_p2_deckstring = known_p2_deckstring, known_p1_deckstring
         #cursor.execute("""INSERT INTO hsreplay.hsreplay_decks (game_id, p1_deck_code, p2_deck_code) VALUES ('%(game_id)s', '%(p1_deckstring)s', '%(p2_deckstring)s')""" % locals())
-        cursor.execute("""UPDATE hsreplay.hsreplay_decks SET p1_deck_code = '%(p1_deckstring)s', p2_deck_code = '%(p2_deckstring)s' WHERE game_id = '%(game_id)s'""" % locals())
-        connection.commit()
+    cursor.execute("""UPDATE hsreplay.hsreplay_decks 
+                      SET p1_deck_code = '%(p1_deckstring)s', p2_deck_code = '%(p2_deckstring)s',
+                          known_p1_deck_code = '%(known_p1_deckstring)s', known_p2_deck_code = '%(known_p2_deckstring)s' 
+                      WHERE game_id = '%(game_id)s'""" % locals())
+    connection.commit()
 
 
 cursor.execute("SELECT game_id FROM hsreplay.hsreplay")
 game_ids = [i for (i,) in cursor.fetchall()]
 
-cursor.execute("SELECT game_id FROM hsreplay.hsreplay_decks")
-#game_ids_decks = [i for (i,) in cursor.fetchall()]
-game_ids_decks = []
+cursor.execute("SELECT game_id FROM hsreplay.hsreplay_decks WHERE known_p1_deck_code is not null")
+game_ids_decks = [i for (i,) in cursor.fetchall()]
+#game_ids_decks = []
 
 to_update = [i for i in game_ids if i not in game_ids_decks]
 
-total = len(to_update[13714:])
+total = len(to_update)
 print("UPDATING:", len(to_update))
 
-for game_id in to_update[13714:]:
+for game_id in to_update:
     check_update(game_id, total)

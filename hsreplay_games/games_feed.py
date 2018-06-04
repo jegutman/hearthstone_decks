@@ -100,9 +100,13 @@ while True:
 
                 p1_deckstring = ''
                 p2_deckstring = ''
+                known_p1_deckstring = ''
+                known_p2_deckstring = ''
                 try:
                     friendly_cards = []
+                    known_friendly_cards = []
                     if game_info['friendly_deck']['cards']: friendly_cards += game_info['friendly_deck']['cards']
+                    if game_info['friendly_deck']['cards']: known_friendly_cards += game_info['friendly_deck']['cards']
                     if game_info['friendly_deck']['predicted_cards']: friendly_cards = game_info['friendly_deck']['predicted_cards']
                     friendly_heroes = [card_id_to_dbfId[game_info['friendly_player']['hero_id']]]
                     
@@ -112,12 +116,22 @@ while True:
                     friendly_deck.format = 2
                     friendly_deckstring = friendly_deck.as_deckstring
                     p1_deckstring = friendly_deckstring
+
+                    known_friendly_deck = deckstrings.Deck()
+                    known_friendly_deck.cards = convert(known_friendly_cards)
+                    known_friendly_deck.heroes = friendly_heroes
+                    known_friendly_deck.format = 2
+                    known_friendly_deckstring = friendly_deck.as_deckstring
+                    known_p1_deckstring = known_friendly_deckstring
                 except:
                     p1_deckstring = ''
+                    known_p1_deckstring = ''
                     
                 try:
                     opposing_cards = []
+                    known_opposing_cards = []
                     if game_info['opposing_deck']['cards']: opposing_cards += game_info['opposing_deck']['cards']
+                    if game_info['friendly_deck']['cards']: known_opposing_cards += game_info['friendly_deck']['cards']
                     if game_info['opposing_deck']['predicted_cards']: opposing_cards = game_info['opposing_deck']['predicted_cards']
                     opposing_heroes = [card_id_to_dbfId[game_info['opposing_player']['hero_id']]]
 
@@ -127,8 +141,16 @@ while True:
                     opposing_deck.format = 2
                     opposing_deckstring = opposing_deck.as_deckstring
                     p2_deckstring = opposing_deckstring
+
+                    known_opposing_deck = deckstrings.Deck()
+                    known_opposing_deck.cards = convert(known_opposing_cards)
+                    known_opposing_deck.heroes = opposing_heroes
+                    known_opposing_deck.format = 2
+                    known_opposing_deckstring = opposing_deck.as_deckstring
+                    known_p2_deckstring = known_opposing_deckstring
                 except:
                     p2_deckstring = ''
+                    known_p2_deckstring = ''
 
                 if game_info['friendly_player']['player_id'] != 1:
                     print("Swapped")
@@ -137,6 +159,7 @@ while True:
                     first = 1 - first
                     #friendly_deckstring, opposing_deckstring = opposing_deckstring, friendly_deckstring
                     p1_deckstring, p2_deckstring = p2_deckstring, p1_deckstring
+                    known_p1_deckstring, known_p2_deckstring = known_p2_deckstring, known_p1_deckstring
                 print(game_id, p1_deckstring, p2_deckstring)
                 
                 num_turns = game_info['global_game']['num_turns']
@@ -147,10 +170,10 @@ while True:
                 cursor.execute("""INSERT INTO hsreplay.hsreplay (game_id, time, date, p1, p2, archetype1, archetype2, p1_rank, p2_rank, num_turns, ladder_season, format, first, result)
                                   VALUES ('%(game_id)s', %(game_time)s, '%(game_date)s', '%(p1)s', '%(p2)s', '%(archetype1)s',' %(archetype2)s', '%(p1_insert_rank)s', '%(p2_insert_rank)s', %(num_turns)s, 
                                            %(ladder_season)s, %(game_format)s, %(first)s, '%(result)s')""" % locals())
-                cursor.execute("""INSERT INTO hsreplay.hsreplay_decks (game_id, p1_deck_code, p2_deck_code) VALUES ('%(game_id)s', '%(p1_deckstring)s', '%(p2_deckstring)s')""" % locals())
+                cursor.execute("""INSERT INTO hsreplay.hsreplay_decks (game_id, p1_deck_code, p2_deck_code, known_p1_deck_code, known_p2_deck_code) 
+                                  VALUES ('%(game_id)s', '%(p1_deckstring)s', '%(p2_deckstring)s', '%(known_p1_deckstring)s', '%(known_p2_deckstring)s')""" % locals())
                 connection.commit()
                 print("INSERTED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s" % locals())
-                
             except:
                 print("SOMETHING FAILED")
                 continue

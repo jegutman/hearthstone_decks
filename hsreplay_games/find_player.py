@@ -43,6 +43,7 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, resul
     p2_deck_code = p2_deck_code.strip()
     if p2.lower() == player_search.lower():
         p1, p2 = p2, p1
+        p1_rank, p2_rank = p2_rank, p1_rank
         archetype1, archetype2 = archetype2, archetype1
         result = 'L' if result == 'W' else 'W'
         p1_deck_code, p2_deck_code = p2_deck_code, p1_deck_code
