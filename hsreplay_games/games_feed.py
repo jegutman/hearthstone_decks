@@ -168,7 +168,7 @@ while True:
                 archetype1 = archetype1.strip()
                 archetype2 = archetype2.strip()
                 cursor.execute("""INSERT INTO hsreplay.hsreplay (game_id, time, date, p1, p2, archetype1, archetype2, p1_rank, p2_rank, num_turns, ladder_season, format, first, result)
-                                  VALUES ('%(game_id)s', %(game_time)s, '%(game_date)s', '%(p1)s', '%(p2)s', '%(archetype1)s',' %(archetype2)s', '%(p1_insert_rank)s', '%(p2_insert_rank)s', %(num_turns)s, 
+                                  VALUES ('%(game_id)s', %(game_time)s, '%(game_date)s', '%(p1)s', '%(p2)s', '%(archetype1)s', '%(archetype2)s', '%(p1_insert_rank)s', '%(p2_insert_rank)s', %(num_turns)s, 
                                            %(ladder_season)s, %(game_format)s, %(first)s, '%(result)s')""" % locals())
                 cursor.execute("""INSERT INTO hsreplay.hsreplay_decks (game_id, p1_deck_code, p2_deck_code, known_p1_deck_code, known_p2_deck_code) 
                                   VALUES ('%(game_id)s', '%(p1_deckstring)s', '%(p2_deckstring)s', '%(known_p1_deckstring)s', '%(known_p2_deckstring)s')""" % locals())
