@@ -174,8 +174,9 @@ while True:
                                   VALUES ('%(game_id)s', '%(p1_deckstring)s', '%(p2_deckstring)s', '%(known_p1_deckstring)s', '%(known_p2_deckstring)s')""" % locals())
                 connection.commit()
                 print("INSERTED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s" % locals())
-            except:
+            except Exception as e:
                 print("SOMETHING FAILED")
+                print(e)
                 continue
     time.sleep(5)
 
