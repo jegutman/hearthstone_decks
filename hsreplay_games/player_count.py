@@ -45,5 +45,6 @@ for player in ['p1', 'p2']:
 for p, count in sorted(p_count.items(), key=lambda x:x[1], reverse=True):
     wr = round(100 * float(p_wins.get(p, 0)) / (p_wins.get(p, 0) + p_losses.get(p, 0)), 1)
     total_games = p_wins.get(p, 0) + p_losses.get(p, 0)
-    if wr > 55 and total_games >= 10:
+    #if wr > 55 and total_games >= 20:
+    if wr > 55 and total_games >= 20:
         print("%-5s %-25s %3s - %3s    %s" % (count, p, p_wins.get(p, 0), p_losses.get(p, 0), wr))
