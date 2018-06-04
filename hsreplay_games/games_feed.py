@@ -23,6 +23,10 @@ def convert(cards):
     cards = [(i,j) for i,j in res.items()]
     return cards
 
+name_overrides = {
+    'ШтанУдачи' : 'ShtanUdachi',
+}
+
 url = "https://hsreplay.net/api/v1/live/replay_feed/?format=json&offset=%(offset)s"
 game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 
@@ -96,7 +100,11 @@ while True:
 
                 #game_infos[game_id] = game_info
                 p1 = game_info['friendly_player']['name']
+                if p1 in name_overrides:
+                    p1 = name_overrides[p1]
                 p2 = game_info['opposing_player']['name']
+                if p2 in name_overrides:
+                    p2 = name_overrides[p2]
 
                 p1_deckstring = ''
                 p2_deckstring = ''
@@ -108,6 +116,7 @@ while True:
                     if game_info['friendly_deck']['cards']: friendly_cards += game_info['friendly_deck']['cards']
                     if game_info['friendly_deck']['cards']: known_friendly_cards += game_info['friendly_deck']['cards']
                     if game_info['friendly_deck']['predicted_cards']: friendly_cards = game_info['friendly_deck']['predicted_cards']
+                    assert False
                     friendly_heroes = [card_id_to_dbfId[game_info['friendly_player']['hero_id']]]
                     
                     friendly_deck = deckstrings.Deck()
@@ -121,7 +130,7 @@ while True:
                     known_friendly_deck.cards = convert(known_friendly_cards)
                     known_friendly_deck.heroes = friendly_heroes
                     known_friendly_deck.format = 2
-                    known_friendly_deckstring = friendly_deck.as_deckstring
+                    known_friendly_deckstring = known_friendly_deck.as_deckstring
                     known_p1_deckstring = known_friendly_deckstring
                 except:
                     p1_deckstring = ''
@@ -131,7 +140,7 @@ while True:
                     opposing_cards = []
                     known_opposing_cards = []
                     if game_info['opposing_deck']['cards']: opposing_cards += game_info['opposing_deck']['cards']
-                    if game_info['friendly_deck']['cards']: known_opposing_cards += game_info['friendly_deck']['cards']
+                    if game_info['opposing_deck']['cards']: known_opposing_cards += game_info['opposing_deck']['cards']
                     if game_info['opposing_deck']['predicted_cards']: opposing_cards = game_info['opposing_deck']['predicted_cards']
                     opposing_heroes = [card_id_to_dbfId[game_info['opposing_player']['hero_id']]]
 
@@ -146,7 +155,7 @@ while True:
                     known_opposing_deck.cards = convert(known_opposing_cards)
                     known_opposing_deck.heroes = opposing_heroes
                     known_opposing_deck.format = 2
-                    known_opposing_deckstring = opposing_deck.as_deckstring
+                    known_opposing_deckstring = known_opposing_deck.as_deckstring
                     known_p2_deckstring = known_opposing_deckstring
                 except:
                     p2_deckstring = ''

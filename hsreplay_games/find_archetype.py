@@ -19,12 +19,12 @@ cursor = connection.cursor()
 
 sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
-         WHERE (p1 like '%(player_search)s' or p2 like '%(player_search)s')
-         #    AND (p1_rank like 'L%%' or p2_rank like 'L%%')
+         WHERE (archetype1 like '%(archetype)s' or archetype2 like '%(archetype)s')
+             AND (p1_rank rlike '^L[0-9]?[0-9]$' or p2_rank rlike '^L[0-9]?[0-9]$')
          ORDER BY time
 """
 
-player_search  = sys.argv[1]
+archetype  = " ".join(sys.argv[1:])
 cursor.execute(sql % locals())
 total = 0
 wins = 0
@@ -45,7 +45,7 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
     num_turns = int(num_turns)
     p1_deck_code = p1_deck_code.strip()
     p2_deck_code = p2_deck_code.strip()
-    if p2.lower() == player_search.lower() or player_search.replace('%', '').lower() in p2.lower():
+    if archetype2.lower() == archetype.lower() or archetype.replace('%', '').lower() in archetype2.lower():
         p1, p2 = p2, p1
         p1_rank, p2_rank = p2_rank, p1_rank
         archetype1, archetype2 = archetype2, archetype1

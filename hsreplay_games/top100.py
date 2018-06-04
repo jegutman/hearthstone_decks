@@ -30,7 +30,7 @@ wins = 0
 total_by_arch = {}
 wins_by_arch = {}
 for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code in cursor.fetchall():
-    game_time = datetime.fromtimestamp(time)
+    game_time = datetime.fromtimestamp(time - 3600 * 5)
     time_string = game_time.strftime("%H:%M:%S")
     game_id = game_id.strip()
     date = date.strip()

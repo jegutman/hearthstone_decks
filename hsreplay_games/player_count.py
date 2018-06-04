@@ -43,9 +43,12 @@ for player in ['p1', 'p2']:
             else:
                 p_losses[p] = p_losses.get(p, 0) + count
 
+max_output = 40
 for p, count in sorted(p_count.items(), key=lambda x:x[1], reverse=True)[:200]:
     wr = round(100 * float(p_wins.get(p, 0)) / (p_wins.get(p, 0) + p_losses.get(p, 0)), 1)
     total_games = p_wins.get(p, 0) + p_losses.get(p, 0)
     #if wr > 55 and total_games >= 20:
     if True:
-        print("%-5s %-25s %3s - %3s    %s" % (count, p, p_wins.get(p, 0), p_losses.get(p, 0), wr))
+        if max_output > 0:
+            print("%-5s %-25s %3s - %3s    %s" % (count, p, p_wins.get(p, 0), p_losses.get(p, 0), wr))
+            max_output -= 1

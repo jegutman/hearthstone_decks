@@ -17,14 +17,14 @@ game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
-sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code
+sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, known_p1_deck_code, known_p2_deck_code
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
-         WHERE (p1 like '%(player_search)s' or p2 like '%(player_search)s')
-         #    AND (p1_rank like 'L%%' or p2_rank like 'L%%')
+         WHERE (p1 like '%(player_search)s' AND archetype1 like '%(archetype)s') or (p2 like '%(player_search)s' AND archetype2 like '%(archetype)s')
          ORDER BY time
 """
 
 player_search  = sys.argv[1]
+archetype = " ".join(sys.argv[2:])
 cursor.execute(sql % locals())
 total = 0
 wins = 0
