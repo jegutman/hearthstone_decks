@@ -11,6 +11,6 @@ print("")
 for deckstring in sys.argv[1:]:
     decks.append(EasyDeck(deckstring))
 if len(decks) > 1:
-    print_side_by_side_diff(decks)
+    print(side_by_side_diff_lines(decks))
 else:
     decks[0].print_deck()
