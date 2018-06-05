@@ -17,9 +17,14 @@ game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
+check_date = '2018_05_22'
+if len(sys.argv) > 1:
+    check_date = sys.argv[1]
+
 sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
          WHERE (p1_rank rlike '^L1?[0-9]$' or p2_rank rlike '^L1?[0-9]$')
+             AND date >= '%(check_date)s'
          ORDER BY time
 """
 

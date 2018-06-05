@@ -17,9 +17,14 @@ game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
+check_date = '2018_05_22'
+if len(sys.argv) > 1:
+    check_date = sys.argv[1]
+
 sql = """SELECT %(player)s, result, count(game_id)
          FROM hsreplay.hsreplay
-         WHERE p1_rank like 'L%%' or p2_rank like 'L%%'
+         WHERE (p1_rank like 'L%%' or p2_rank like 'L%%')
+            and date >= '%(check_date)s'
          GROUP by %(player)s, result
 """
 

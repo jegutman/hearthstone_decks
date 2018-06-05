@@ -19,12 +19,13 @@ cursor = connection.cursor()
 
 sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
-         WHERE (archetype1 like '%(archetype)s' or archetype2 like '%(archetype)s')
+         WHERE ((archetype1 like '%(qry_archetype1)s' AND archetype2 like '%(qry_archetype2)s') OR (archetype1 like '%(qry_archetype2)s' AND archetype2 like '%(qry_archetype1)s'))
              AND (p1_rank rlike '^L[0-9]?[0-9]$' or p2_rank rlike '^L[0-9]?[0-9]$')
          ORDER BY time
 """
 
-archetype  = " ".join(sys.argv[1:])
+qry_archetype1  = sys.argv[1]
+qry_archetype2  = sys.argv[2]
 cursor.execute(sql % locals())
 total = 0
 wins = 0
@@ -45,7 +46,7 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
     num_turns = int(num_turns)
     p1_deck_code = p1_deck_code.strip()
     p2_deck_code = p2_deck_code.strip()
-    if archetype2.lower() == archetype.lower() or archetype.replace('%', '').lower() in archetype2.lower():
+    if archetype2.lower() == qry_archetype1.lower() or qry_archetype1.replace('%', '').lower() in archetype2.lower():
         p1, p2 = p2, p1
         p1_rank, p2_rank = p2_rank, p1_rank
         archetype1, archetype2 = archetype2, archetype1
@@ -60,18 +61,16 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
     print("%22s %10s %s    %-25s %-25s %-5s %-5s %-25s %-25s %2s %s" % (game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result))
     
 if total > 0:
-    print("\n\n")
-    for p, a_total in sorted(total_by_player.items(), key=lambda x:x[1], reverse=True):
-        a_wins = wins_by_player.get(p, 0)
-        a_losses = a_total - a_wins
-        wr = round(100 * float(a_wins) / a_total, 1)
-        wl = "%s - %s" % (a_wins, a_losses)
-        print("%-25s: %8s : %s" % (p, wl, wr))
+#    print("\n\n")
+#    for p, a_total in sorted(total_by_player.items(), key=lambda x:x[1], reverse=True):
+#        a_wins = wins_by_player.get(p, 0)
+#        a_losses = a_total - a_wins
+#        wr = round(100 * float(a_wins) / a_total, 1)
+#        wl = "%s - %s" % (a_wins, a_losses)
+#        print("%-25s: %8s : %s" % (p, wl, wr))
     wr = round(100 * float(wins) / total, 1)
     losses = total - wins
     wl = "%s - %s" % (wins, losses)
     print("%-25s: %8s : %s" % ('Total', wl, wr))
-    #print("%-25s: %s - %s     : %s" % ('Total', wins, losses, wr))
+#    #print("%-25s: %s - %s     : %s" % ('Total', wins, losses, wr))
         
-else:
-    print("Did not find games for: %s" % player_search)

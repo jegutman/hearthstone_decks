@@ -30,7 +30,9 @@ total = 0
 wins = 0
 total_by_arch = {}
 wins_by_arch = {}
-for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code in cursor.fetchall():
+decks = []
+strings = []
+for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, known_p1_deck_code, known_p2_deck_code in cursor.fetchall():
     game_time = datetime.fromtimestamp(time - 3600 * 5)
     time_string = game_time.strftime("%H:%M:%S")
     game_id = game_id.strip()
@@ -43,35 +45,50 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
     archetype2 = archetype2.strip()
     result = result.strip()
     num_turns = int(num_turns)
-    p1_deck_code = p1_deck_code.strip()
-    p2_deck_code = p2_deck_code.strip()
+    known_p1_deck_code = known_p1_deck_code.strip()
+    known_p2_deck_code = known_p2_deck_code.strip()
+    if not known_p1_deck_code: continue
     if p2.lower() == player_search.lower() or player_search.replace('%', '').lower() in p2.lower():
         p1, p2 = p2, p1
         p1_rank, p2_rank = p2_rank, p1_rank
         archetype1, archetype2 = archetype2, archetype1
         result = 'L' if result == 'W' else 'W'
-        p1_deck_code, p2_deck_code = p2_deck_code, p1_deck_code
-    if result == 'W':
-        wins += 1
-        wins_by_arch[archetype1] = wins_by_arch.get(archetype1, 0) + 1
-    total += 1
-    total_by_arch[archetype1] = total_by_arch.get(archetype1, 0) + 1
-    #print("%22s %10s     %-25s %-25s %-25s %-25s %s\n    %-80s\n    %-80s" % (game_id, date, p1, p2, archetype1, archetype2, result, p1_deck_code, p2_deck_code))
-    print("%22s %10s %s    %-25s %-25s %-5s %-5s %-25s %-25s %2s %s" % (game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result))
-    
-if total > 0:
-    print("\n\n")
-    for archetype, a_total in sorted(total_by_arch.items(), key=lambda x:x[1], reverse=True):
-        a_wins = wins_by_arch.get(archetype, 0)
-        a_losses = a_total - a_wins
-        wr = round(100 * float(a_wins) / a_total, 1)
-        wl = "%s - %s" % (a_wins, a_losses)
-        print("%-25s: %8s : %s" % (archetype, wl, wr))
-    wr = round(100 * float(wins) / total, 1)
-    losses = total - wins
-    wl = "%s - %s" % (wins, losses)
-    print("%-25s: %8s : %s" % ('Total', wl, wr))
-    #print("%-25s: %s - %s     : %s" % ('Total', wins, losses, wr))
-        
-else:
-    print("Did not find games for: %s" % player_search)
+        known_p1_deck_code, known_p2_deck_code = known_p2_deck_code, known_p1_deck_code
+
+    print("found deck:", known_p1_deck_code)
+    try:
+        d = EasyDeck(known_p1_deck_code, debug=False)
+        if d.card_count() == 30 and known_p1_deck_code not in strings:
+            d.print_deck()
+            strings.append(known_p1_deck_code)
+        if d.get_class().capitalize() != archetype.split(' ')[-1]: continue
+        decks.append(d)
+    except:
+        print("skipped")
+        continue
+
+cards = {}
+for deck in decks:
+    for card, qty in deck.deck.cards:
+        cards[card] = max(cards.get(card, 0), qty)
+
+res = {}
+total = 0
+for i,j in cards.items():
+    count, name, card_class, cost = j, cards_by_id[i]['name'], cards_by_id[i]['cardClass'], cards_by_id[i]['cost']
+    if card_class == 'NEUTRAL':
+        card_class = "ZZ_NEUTRAL"
+    res[(cost, name)] = j
+    total += j
+
+
+for i,j in sorted(res.items()):
+    a, b = i
+    print("%2s %-25s %s" % (a,b, j))
+print("total:", total)
+#friendly_deck = deckstrings.Deck()
+#friendly_deck.cards = convert(friendly_cards)
+#friendly_deck.heroes = friendly_heroes
+#friendly_deck.format = 2
+#friendly_deckstring = friendly_deck.as_deckstring
+#p1_deckstring = friendly_deckstring

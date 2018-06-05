@@ -14,6 +14,8 @@ from hearthstone import *
 def convert(cards):
     res = {}
     for card in cards:
+        if card == 'GAME_005':
+            continue
         if card[-2] == 't':
             card = card[:-2]
         if card[-1] == 't':
@@ -22,8 +24,6 @@ def convert(cards):
         res[dbfId] = res.get(dbfId,0) + 1
     cards = [(i,j) for i,j in res.items()]
     return cards
-
-max_time = 1528073209
 
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
@@ -111,7 +111,7 @@ def check_update(game_id, total):
     connection.commit()
 
 
-cursor.execute("SELECT game_id FROM hsreplay.hsreplay")
+cursor.execute("SELECT game_id FROM hsreplay.hsreplay order by time")
 game_ids = [i for (i,) in cursor.fetchall()]
 
 #cursor.execute("SELECT game_id FROM hsreplay.hsreplay_decks WHERE known_p1_deck_code is not null")

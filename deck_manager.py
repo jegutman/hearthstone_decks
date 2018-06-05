@@ -7,7 +7,8 @@ from json_cards_to_python import cards_by_id as cards
 
 class EasyDeck():
 
-    def __init__(self, deckstring, name = ""):
+    def __init__(self, deckstring, name = "", debug=False):
+        if debug: print(deckstring)
         self.deck = Deck.from_deckstring(deckstring)
         self.name = name
         self.deckstring = deckstring
@@ -19,6 +20,9 @@ class EasyDeck():
 
     def get_copy(self, new_name):
         return EasyDeck(self.deckstring, new_name)
+
+    def card_count(self):
+        return sum([j for i,j in self.deck.cards])
 
     def get_print_lines(self): 
         res = ['   ' + self.get_class()]
