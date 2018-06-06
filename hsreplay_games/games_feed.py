@@ -10,6 +10,7 @@ sys.path.append(basedir + '/lineupSolver')
 from json_cards_to_python import *
 from deck_manager import *
 from hearthstone import *
+import random
 
 def convert(cards):
     res = {}
@@ -23,6 +24,17 @@ def convert(cards):
     cards = [(i,j) for i,j in res.items()]
     return cards
 
+name_counter = 0
+def unknown_name(name):
+    global name_counter
+    global name_overrides
+    name_counter += 1
+    res_name = "unknownuser%s" % name_counter
+    name_overrides[name] = res_name
+    print("NAME_OVERRIDES", name_overrides)
+    return res_name
+
+
 name_overrides = {
     'ШтанУдачи' : 'ShtanUdachi',
 }
@@ -31,7 +43,11 @@ url = "https://hsreplay.net/api/v1/live/replay_feed/?format=json&offset=%(offset
 game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
+#connection.set_character_set('utf8')
 cursor = connection.cursor()
+#cursor.execute('SET NAMES utf8;')
+#cursor.execute('SET CHARACTER SET utf8;')
+#cursor.execute('SET character_set_connection=utf8;')
 
 archetypes_url = 'https://hsreplay.net/api/v1/archetypes/?format=json'
 archetypes_json = requests.get(archetypes_url).json()
@@ -100,11 +116,26 @@ while True:
 
                 #game_infos[game_id] = game_info
                 p1 = game_info['friendly_player']['name']
+                    
                 if p1 in name_overrides:
                     p1 = name_overrides[p1]
+                else:
+                    if (len(str(p1_insert_rank)) <= 3 and str(p1_insert_rank)[0] == 'L') or (len(str(p2_insert_rank)) <= 3 and str(p2_insert_rank)[0] == 'L'):
+                        try:
+                            p1.encode("iso-8859-1")
+                        except:
+                            p1 = unknown_name(p1)
+                        
+                
                 p2 = game_info['opposing_player']['name']
                 if p2 in name_overrides:
                     p2 = name_overrides[p2]
+                else:
+                    if (len(str(p1_insert_rank)) <= 3 and str(p1_insert_rank)[0] == 'L') or (len(str(p2_insert_rank)) <= 3 and str(p2_insert_rank)[0] == 'L'):
+                        try:
+                            p2.encode("iso-8859-1")
+                        except:
+                            p2 = unknown_name(p2)
 
                 p1_deckstring = ''
                 p2_deckstring = ''
@@ -176,14 +207,18 @@ while True:
                 game_format = game_info['global_game']['format']
                 archetype1 = archetype1.strip()
                 archetype2 = archetype2.strip()
-                cursor.execute("""INSERT INTO hsreplay.hsreplay (game_id, time, date, p1, p2, archetype1, archetype2, p1_rank, p2_rank, num_turns, ladder_season, format, first, result)
+                cursor.execute("""INSERT INTO hsreplay.hsreplay (game_id, time, date, p1, p2, archetype1, archetype2, p1_rank, p2_rank, num_turns, ladder_season, format, first, result, processed)
                                   VALUES ('%(game_id)s', %(game_time)s, '%(game_date)s', '%(p1)s', '%(p2)s', '%(archetype1)s', '%(archetype2)s', '%(p1_insert_rank)s', '%(p2_insert_rank)s', %(num_turns)s, 
-                                           %(ladder_season)s, %(game_format)s, %(first)s, '%(result)s')""" % locals())
+                                           %(ladder_season)s, %(game_format)s, %(first)s, '%(result)s', 0)""" % locals())
                 cursor.execute("""INSERT INTO hsreplay.hsreplay_decks (game_id, p1_deck_code, p2_deck_code, known_p1_deck_code, known_p2_deck_code) 
                                   VALUES ('%(game_id)s', '%(p1_deckstring)s', '%(p2_deckstring)s', '%(known_p1_deckstring)s', '%(known_p2_deckstring)s')""" % locals())
                 connection.commit()
-                print("INSERTED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s" % locals())
+                print("INSERTED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s %(p1_insert_rank)-10s %(p2_insert_rank)-10s" % locals())
             except Exception as e:
+                try:
+                    print("FAILED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s %(p1_insert_rank)-10s %(p2_insert_rank)-10s" % locals())
+                except:
+                    pass
                 print("SOMETHING FAILED")
                 print(e)
                 continue
