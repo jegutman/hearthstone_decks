@@ -33,10 +33,10 @@ wins_by_arch = {}
 decks = []
 strings = []
 for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, known_p1_deck_code, known_p2_deck_code in cursor.fetchall():
-    game_time = datetime.fromtimestamp(time - 3600 * 5)
-    time_string = game_time.strftime("%H:%M:%S")
     game_id = game_id.strip()
-    date = date.strip()
+    game_time = datetime.fromtimestamp(time - 3600 * 5)
+    time_string = game_time.strftime("%Y_%m_%d %H:%M:%S")
+    date, time_string = time_string.split(' ')
     p1 = p1.strip()
     p2 = p2.strip()
     p1_rank = p1_rank.strip()

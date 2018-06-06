@@ -43,7 +43,14 @@ CREATE TABLE hsreplay_decks
     p1_deck_code   varchar(128) NOT NULL,
     p2_deck_code   varchar(128) NOT NULL,
     PRIMARY KEY(game_id)
+);
 
+CREATE TABLE reference_archetypes
+(
+    card_class     varchar(128) NOT NULL,
+    archetype      varchar(128) NOT NULL,
+    deck_code      varchar(128) NOT NULL,
+    PRIMARY KEY(deck_code)
 );
 
 CREATE TABLE standards

@@ -16,8 +16,14 @@ game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
+start_date = '2018_05_22'
+if len(sys.argv) > 1:
+    start_date = sys.argv[1]
+
+print("Start Date:", start_date)
+
 #cursor.execute("SELECT time, p1, p2, archetype1, archetype2, first, result FROM hsreplay.hsreplay WHERE p1_rank like 'L%' or p2_rank like 'L%' ")
-cursor.execute("SELECT time, p1, p2, archetype1, archetype2, first, result FROM hsreplay.hsreplay")
+cursor.execute("SELECT time, p1, p2, archetype1, archetype2, first, result FROM hsreplay.hsreplay where date >= '%(start_date)s'" % locals())
 #games = []
 win_rates = {}
 win_rates_first = {'overall' : [0,0]}
@@ -73,6 +79,6 @@ for i,j in sorted(win_rates.items(), key=lambda x:x[1][1]):
     wr_first = round(100 * float(first_win) / float(max(first_total, 1)), 1)
     diff = round(wr_first - wr, 1)
     if True:
-        a1 = a1.replace(' ', '_')
-        a2 = a2.replace(' ', '_')
+        #a1 = a1.replace(' ', '_')
+        #a2 = a2.replace(' ', '_')
         print("%-22s %-22s %5s %5s %5s %5s %5s %5s %5s" % (a1, a2, wins, total, wr, first_win, first_total, wr_first, diff))
