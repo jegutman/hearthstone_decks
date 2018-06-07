@@ -108,8 +108,10 @@ while True:
                 game_count += 1
                 game_info = requests.get(game_url % locals()).json()
                 time_info = game_info['global_game']['match_start']
+                end_time_info = game_info['global_game']['match_end']
 
                 game_time = datetime.strptime(time_info[:19], "%Y-%m-%dT%H:%M:%S").strftime("%s")
+                end_time = datetime.strptime(end_time_info[:19], "%Y-%m-%dT%H:%M:%S").strftime("%s")
                 game_date = time_info[:10].replace('-', '_')
                 first = 1 if game_info['friendly_player']['is_first'] else 0
                 result = 'W' if game_info['won'] else 'L'
@@ -207,16 +209,18 @@ while True:
                 archetype1 = archetype1.strip()
                 archetype2 = archetype2.strip()
                 cursor.execute("""INSERT INTO hsreplay.hsreplay (game_id, time, date, p1, p2, archetype1, archetype2, p1_rank, p2_rank, num_turns, ladder_season, format, first, result, processed)
-                                  VALUES ('%(game_id)s', %(game_time)s, '%(game_date)s', '%(p1)s', '%(p2)s', '%(archetype1)s', '%(archetype2)s', '%(p1_insert_rank)s', '%(p2_insert_rank)s', %(num_turns)s, 
+                                  VALUES ('%(game_id)s', %(end_time)s, '%(game_date)s', '%(p1)s', '%(p2)s', '%(archetype1)s', '%(archetype2)s', '%(p1_insert_rank)s', '%(p2_insert_rank)s', %(num_turns)s, 
                                            %(ladder_season)s, %(game_format)s, %(first)s, '%(result)s', 0)""" % locals())
                 cursor.execute("""INSERT INTO hsreplay.hsreplay_decks (game_id, p1_deck_code, p2_deck_code, known_p1_deck_code, known_p2_deck_code) 
                                   VALUES ('%(game_id)s', '%(p1_deckstring)s', '%(p2_deckstring)s', '%(known_p1_deckstring)s', '%(known_p2_deckstring)s')""" % locals())
                 connection.commit()
-                time_string = datetime.now().strftime("%Y_%m_%d %H:%M:%S")
+                #time_string = datetime.now().strftime("%Y_%m_%d %H:%M:%S")
+                time_string = datetime.strptime(time_info[:19], "%Y-%m-%dT%H:%M:%S").strftime("%Y_%m_%d %H:%M:%S")
                 print("%(time_string)s INSERTED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s %(p1_insert_rank)-10s %(p2_insert_rank)-10s" % locals())
             except Exception as e:
                 try:
-                    time_string = datetime.now().strftime("%Y_%m_%d %H:%M:%S")
+                    #time_string = datetime.now().strftime("%Y_%m_%d %H:%M:%S")
+                    time_string = datetime.strptime(time_info[:19], "%Y-%m-%dT%H:%M:%S").strftime("%Y_%m_%d %H:%M:%S")
                     print("%(time_string)s FAILED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s %(p1_insert_rank)-10s %(p2_insert_rank)-10s" % locals())
                 except:
                     pass
