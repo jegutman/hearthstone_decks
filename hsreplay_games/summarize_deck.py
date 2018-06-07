@@ -23,8 +23,20 @@ sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, arche
          ORDER BY time
 """
 
+class_map = {
+    'Warrior' : 7,
+    'Shaman' : 1066,
+    'Rogue' : 930,
+    'Paladin' : 671,
+    'Hunter' : 31,
+    'Druid' : 274,
+    'Warlock' : 893,
+    'Mage' : 637,
+    'Priest' : 813,
+}
+
 player_search  = sys.argv[1]
-archetype = " ".join(sys.argv[2:])
+archetype = " ".join([i.capitalize() for i in sys.argv[2:]])
 cursor.execute(sql % locals())
 total = 0
 wins = 0
@@ -47,7 +59,7 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
     num_turns = int(num_turns)
     known_p1_deck_code = known_p1_deck_code.strip()
     known_p2_deck_code = known_p2_deck_code.strip()
-    if not known_p1_deck_code: continue
+    #if not known_p1_deck_code: continue
     if p2.lower() == player_search.lower() or player_search.replace('%', '').lower() in p2.lower():
         p1, p2 = p2, p1
         p1_rank, p2_rank = p2_rank, p1_rank
@@ -56,36 +68,53 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
         known_p1_deck_code, known_p2_deck_code = known_p2_deck_code, known_p1_deck_code
 
     print("found deck:", known_p1_deck_code)
-    try:
+    #try:
+    if True:
         d = EasyDeck(known_p1_deck_code, debug=False)
         if d.card_count() == 30 and known_p1_deck_code not in strings:
             d.print_deck()
             strings.append(known_p1_deck_code)
         if d.get_class().capitalize() != archetype.split(' ')[-1]: continue
+        #print("Hello")
         decks.append(d)
-    except:
-        print("skipped")
-        continue
+    #except:
+    #    print("skipped")
+    #    continue
 
 cards = {}
+#print(decks)
 for deck in decks:
     for card, qty in deck.deck.cards:
         cards[card] = max(cards.get(card, 0), qty)
 
+#print(cards)
 res = {}
 total = 0
+card_list = []
 for i,j in cards.items():
+    card_list.append((i,j))
     count, name, card_class, cost = j, cards_by_id[i]['name'], cards_by_id[i]['cardClass'], cards_by_id[i]['cost']
     if card_class == 'NEUTRAL':
         card_class = "ZZ_NEUTRAL"
     res[(cost, name)] = j
     total += j
 
-
-for i,j in sorted(res.items()):
-    a, b = i
-    print("%2s %-25s %s" % (a,b, j))
-print("total:", total)
+print("\n\n")
+if total == 30:
+    result_deck = deckstrings.Deck()
+    result_deck.cards = card_list
+    result_deck.heroes = [class_map[archetype.split(' ')[-1]]]
+    result_deck.format = 2
+    deckstring = result_deck.as_deckstring
+    print("Final Deck")
+    EasyDeck(deckstring).print_deck()
+    print("Summary Deckstring:", deckstring)
+else:
+    for i,j in sorted(res.items()):
+        a, b = i
+        print("%2s %-25s %s" % (a,b, j))
+    print("Total cards is not 30")
+    print("total:", total)
 #friendly_deck = deckstrings.Deck()
 #friendly_deck.cards = convert(friendly_cards)
 #friendly_deck.heroes = friendly_heroes

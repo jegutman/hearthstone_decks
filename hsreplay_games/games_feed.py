@@ -28,7 +28,7 @@ name_counter = 0
 def unknown_name(name):
     global name_counter
     global name_overrides
-    name_counter += 1
+    name_counter = random.randint(1, 999)
     res_name = "unknownuser%s" % name_counter
     name_overrides[name] = res_name
     print("NAME_OVERRIDES", name_overrides)
@@ -75,7 +75,7 @@ while True:
         tmp_games = requests.get(url % locals()).json()['data']
     except:
         print("Failed to connect")
-        time.sleep(120)
+        time.sleep(60)
         continue
     for game in tmp_games:
         game_id      = game['id']
@@ -120,7 +120,7 @@ while True:
                 if p1 in name_overrides:
                     p1 = name_overrides[p1]
                 else:
-                    if (len(str(p1_insert_rank)) <= 3 and str(p1_insert_rank)[0] == 'L') or (len(str(p2_insert_rank)) <= 3 and str(p2_insert_rank)[0] == 'L'):
+                    if (len(str(p1_insert_rank)) <= 4 and str(p1_insert_rank)[0] == 'L') or (len(str(p2_insert_rank)) <= 4 and str(p2_insert_rank)[0] == 'L'):
                         try:
                             p1.encode("iso-8859-1")
                         except:
@@ -131,7 +131,7 @@ while True:
                 if p2 in name_overrides:
                     p2 = name_overrides[p2]
                 else:
-                    if (len(str(p1_insert_rank)) <= 3 and str(p1_insert_rank)[0] == 'L') or (len(str(p2_insert_rank)) <= 3 and str(p2_insert_rank)[0] == 'L'):
+                    if (len(str(p1_insert_rank)) <= 4 and str(p1_insert_rank)[0] == 'L') or (len(str(p2_insert_rank)) <= 4 and str(p2_insert_rank)[0] == 'L'):
                         try:
                             p2.encode("iso-8859-1")
                         except:
@@ -147,7 +147,6 @@ while True:
                     if game_info['friendly_deck']['cards']: friendly_cards += game_info['friendly_deck']['cards']
                     if game_info['friendly_deck']['cards']: known_friendly_cards += game_info['friendly_deck']['cards']
                     if game_info['friendly_deck']['predicted_cards']: friendly_cards = game_info['friendly_deck']['predicted_cards']
-                    assert False
                     friendly_heroes = [card_id_to_dbfId[game_info['friendly_player']['hero_id']]]
                     
                     friendly_deck = deckstrings.Deck()
@@ -213,10 +212,12 @@ while True:
                 cursor.execute("""INSERT INTO hsreplay.hsreplay_decks (game_id, p1_deck_code, p2_deck_code, known_p1_deck_code, known_p2_deck_code) 
                                   VALUES ('%(game_id)s', '%(p1_deckstring)s', '%(p2_deckstring)s', '%(known_p1_deckstring)s', '%(known_p2_deckstring)s')""" % locals())
                 connection.commit()
-                print("INSERTED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s %(p1_insert_rank)-10s %(p2_insert_rank)-10s" % locals())
+                time_string = datetime.now().strftime("%Y_%m_%d %H:%M:%S")
+                print("%(time_string)s INSERTED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s %(p1_insert_rank)-10s %(p2_insert_rank)-10s" % locals())
             except Exception as e:
                 try:
-                    print("FAILED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s %(p1_insert_rank)-10s %(p2_insert_rank)-10s" % locals())
+                    time_string = datetime.now().strftime("%Y_%m_%d %H:%M:%S")
+                    print("%(time_string)s FAILED: %(p1)-25s %(p2)-25s %(result)s %(archetype1)-25s %(archetype2)-25s %(p1_insert_rank)-10s %(p2_insert_rank)-10s" % locals())
                 except:
                     pass
                 print("SOMETHING FAILED")

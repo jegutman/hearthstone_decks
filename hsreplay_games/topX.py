@@ -40,7 +40,11 @@ total_by_arch = {}
 wins_by_arch = {}
 total_by_player = {}
 wins_by_player = {}
+games = []
 for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code in cursor.fetchall():
+    if (p1, p2, time) in games or (p2, p1, time) in games:
+        continue
+    games.append((p1, p2, time))
     game_id = game_id.strip()
     game_time = datetime.fromtimestamp(time - 3600 * 5)
     time_string = game_time.strftime("%Y_%m_%d %H:%M:%S")

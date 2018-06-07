@@ -14,3 +14,4 @@ if len(decks) > 1:
     print(side_by_side_diff_lines(decks))
 else:
     decks[0].print_deck()
+    print(sum([j for i,j in decks[0].deck.cards]))

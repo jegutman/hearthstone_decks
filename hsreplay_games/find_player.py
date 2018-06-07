@@ -30,9 +30,13 @@ total = 0
 wins = 0
 total_by_arch = {}
 wins_by_arch = {}
-game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result = "game_id, date, time, p1, p2, r1, r2, archetype1, archetype2, turns, result".split(', ')
-print("%22s %10s %8s    %-25s %-25s %-5s %-5s %-25s %-25s %-5s %s" % (game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result))
+games = []
+game_id, date, time_string, p1, p2, p1_rank, result, p2_rank, archetype1, archetype2, num_turns = "game_id, date, time, p1, res, p2, r1, r2, archetype1, archetype2, turns".split(', ')
+print("%22s %10s %8s    %-25s %-5s %-25s %-5s %-5s %-25s %-25s %-5s" % (game_id, date, time_string, p1, result, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns))
 for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code in cursor.fetchall():
+    if (p1, p2, time) in games or (p2, p1, time) in games:
+        continue
+    games.append((p1, p2, time))
     game_id = game_id.strip()
     game_time = datetime.fromtimestamp(time - 3600 * 5)
     time_string = game_time.strftime("%Y_%m_%d %H:%M:%S")
@@ -59,7 +63,8 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
     total += 1
     total_by_arch[archetype1] = total_by_arch.get(archetype1, 0) + 1
     #print("%22s %10s     %-25s %-25s %-25s %-25s %s\n    %-80s\n    %-80s" % (game_id, date, p1, p2, archetype1, archetype2, result, p1_deck_code, p2_deck_code))
-    print("%22s %10s %s    %-25s %-25s %-5s %-5s %-25s %-25s %5s %s" % (game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result))
+    #print("%22s %10s %s    %-25s %-25s %-5s %-5s %-25s %-25s %5s %s" % (game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result))
+    print("%22s %10s %8s    %-25s %-5s %-25s %-5s %-5s %-25s %-25s %-5s" % (game_id, date, time_string, p1, result, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns))
     
 if total > 0:
     print("\n\n")
