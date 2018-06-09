@@ -11,6 +11,7 @@ from json_cards_to_python import *
 from deck_manager import *
 from hearthstone import *
 import random
+from label_archetype
 
 def convert(cards):
     res = {}
@@ -208,6 +209,18 @@ while True:
                 game_format = game_info['global_game']['format']
                 archetype1 = archetype1.strip()
                 archetype2 = archetype2.strip()
+                try:
+                    if p1_deckstring:
+                        archetype1 = label_archetype(EasyDeck(p1_deckstring), old_archetype=archetype1)
+                except Exception as e:
+                    print(e)
+                    pass
+                try:
+                    if p2_deckstring:
+                        archetype2 = label_archetype(EasyDeck(p2_deckstring), old_archetype=archetype2)
+                except Exception as e:
+                    print(e)
+                    pass
                 cursor.execute("""INSERT INTO hsreplay.hsreplay (game_id, time, date, p1, p2, archetype1, archetype2, p1_rank, p2_rank, num_turns, ladder_season, format, first, result, processed)
                                   VALUES ('%(game_id)s', %(end_time)s, '%(game_date)s', '%(p1)s', '%(p2)s', '%(archetype1)s', '%(archetype2)s', '%(p1_insert_rank)s', '%(p2_insert_rank)s', %(num_turns)s, 
                                            %(ladder_season)s, %(game_format)s, %(first)s, '%(result)s', 0)""" % locals())

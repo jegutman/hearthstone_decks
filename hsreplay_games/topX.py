@@ -17,7 +17,7 @@ game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
-topX = 5
+topX = 10
 if len(sys.argv) > 1:
     topX = int(sys.argv[1])
 check_date = '2018_05_22'

@@ -11,7 +11,7 @@ from json_cards_to_python import *
 from deck_manager import *
 from hearthstone import *
 
-from get_archetype import *
+from label_archetype import *
 
 def convert(cards):
     res = {}
@@ -67,7 +67,8 @@ def count_similar(reference_deck):
     return success
 
 cursor.execute("""SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) 
-                  WHERE processed = 0 
+                  WHERE archetype1 like '%%Priest' or archetype2 like '%%Priest'
+                  #WHERE processed = 0
                   ORDER BY time""")
 test_id = 'q9CHmr6s7GywMUWytMVreK'
 #cursor.execute("""SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) 
@@ -77,7 +78,11 @@ success = 0
 total = 0
 new = {}
 updates = {}
-for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank in cursor.fetchall():
+count = 0
+to_update = cursor.fetchall()
+for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank in to_update:
+    count += 1
+    print(count, '/', len(to_update))
     if p1_deck_code:
         processed = True
         try:
@@ -92,16 +97,16 @@ for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_ran
         except:
             processed = False
         if processed:
-            new_arch1 = get_archetype(tmp_deck, old_archetype=archetype1)
-            new_arch2 = get_archetype(tmp_deck2, old_archetype=archetype2)
+            new_arch1 = label_archetype(tmp_deck, old_archetype=archetype1)
+            new_arch2 = label_archetype(tmp_deck2, old_archetype=archetype2)
             if archetype1 != new_arch1:
-                if (archetype1, new_arch1) not in [('Elemental Shaman', 'Shudderwock Shaman'), ('Recruit Hunter', 'Cube Hunter'), ('Shudderwock Shaman', 'Murmuring Shudderwock Shaman'),
-                                                   ('Combo Priest', 'Dragon Combo Priest')]:
-                    print(game_id, archetype1, new_arch1)
+                #if (archetype1, new_arch1) not in [('Elemental Shaman', 'Shudderwock Shaman'), ('Recruit Hunter', 'Cube Hunter'), ('Shudderwock Shaman', 'Murmuring Shudderwock Shaman'),
+                #                                   ('Combo Priest', 'Dragon Combo Priest')]:
+                print(game_id, archetype1, new_arch1)
             if archetype2 != new_arch2:
-                if (archetype2, new_arch2) not in [('Elemental Shaman', 'Shudderwock Shaman'), ('Recruit Hunter', 'Cube Hunter'), ('Shudderwock Shaman', 'Murmuring Shudderwock Shaman'),
-                                                   ('Combo Priest', 'Dragon Combo Priest')]:
-                    print(game_id, archetype2, new_arch2)
+                #if (archetype2, new_arch2) not in [('Elemental Shaman', 'Shudderwock Shaman'), ('Recruit Hunter', 'Cube Hunter'), ('Shudderwock Shaman', 'Murmuring Shudderwock Shaman'),
+                #                                   ('Combo Priest', 'Dragon Combo Priest')]:
+                print(game_id, archetype2, new_arch2)
 
             cursor.execute("""UPDATE hsreplay.hsreplay
                               SET archetype1 = '%(new_arch1)s', archetype2 = '%(new_arch2)s', processed = 1

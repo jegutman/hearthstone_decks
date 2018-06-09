@@ -11,7 +11,7 @@ from json_cards_to_python import *
 from deck_manager import *
 from hearthstone import *
 
-from get_archetype import *
+from label_archetype import *
 
 url = "https://hsreplay.net/api/v1/live/replay_feed/?format=json&offset=%(offset)s"
 game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
@@ -32,7 +32,7 @@ for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code in cursor.fetcha
     try:
         deck1 = EasyDeck(p1_deck_code)
         if archetype1.split(' ')[-1] != deck1.get_class():
-            new_arch  = get_archetype(deck1, old_archetype = 'Other ' + deck1.get_class(), threshold=10)
+            new_arch  = label_archetype(deck1, old_archetype = 'Other ' + deck1.get_class(), threshold=10)
             print("%s %s %-10s %-25s %-25s" % (game_id, 1, deck1.get_class(), archetype1, new_arch))
             count += 1
             cursor.execute("""UPDATE hsreplay.hsreplay
@@ -44,8 +44,8 @@ for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code in cursor.fetcha
     try:
         deck2 = EasyDeck(p2_deck_code)
         if archetype2.split(' ')[-1] != deck2.get_class():
-            new_arch  = get_archetype(deck2, old_archetype = 'Other ' + deck2.get_class(), threshold=10)
-            print("%s %s %-10s %-25s %-25s" % (game_id, 2, deck2.get_class(), archetype2, get_archetype(deck2, old_archetype = 'Other ' + deck2.get_class(), threshold=10)))
+            new_arch  = label_archetype(deck2, old_archetype = 'Other ' + deck2.get_class(), threshold=10)
+            print("%s %s %-10s %-25s %-25s" % (game_id, 2, deck2.get_class(), archetype2, new_arch))
             count += 1
             cursor.execute("""UPDATE hsreplay.hsreplay
                               SET archetype2 = '%(new_arch)s'

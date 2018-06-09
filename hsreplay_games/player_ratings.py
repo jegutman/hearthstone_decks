@@ -40,10 +40,10 @@ for p1, p2, result in cursor.fetchall():
     else:
         rating[p2], rating[p1] = rate_1vs1(rating[p2], rating[p1])
 
-top_players = [i for i in sorted(rating.items(), key = lambda x:expose(x[1]), reverse=True) if games[i[0]] >= 15]
-print("%-15s %-5s %s" % ('Player', 'rEst', 'games'))
+top_players = [i for i in sorted(rating.items(), key = lambda x:expose(x[1]), reverse=True) if games[i[0]] >= 20]
+print("   %-15s %-5s %-5ss" % ('Player', 'rEst', 'games'))
 index = 0
-for p, r in top_players[:40]:
+for p, r in top_players[:50]:
     index += 1
     print("%2s %-15s %-5.2f %s" % (index, p, expose(r), games[p]))
 
