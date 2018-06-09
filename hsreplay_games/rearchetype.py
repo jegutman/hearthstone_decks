@@ -11,6 +11,8 @@ from json_cards_to_python import *
 from deck_manager import *
 from hearthstone import *
 
+from get_archetype import *
+
 def convert(cards):
     res = {}
     for card in cards:
@@ -64,33 +66,46 @@ def count_similar(reference_deck):
                     success += 1
     return success
 
-cursor.execute("SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) WHERE processed = 0 ORDER BY time desc")
+cursor.execute("""SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) 
+                  WHERE processed = 0 
+                  ORDER BY time""")
+test_id = 'q9CHmr6s7GywMUWytMVreK'
+#cursor.execute("""SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) 
+#                  WHERE game_id = 'q9CHmr6s7GywMUWytMVreK'
+#                  ORDER BY time""")
 success = 0
 total = 0
 new = {}
 updates = {}
-for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank in cursor.fetchall():
+for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank in cursor.fetchall()[-2000:]:
     if p1_deck_code:
         processed = True
         try:
             tmp_deck = EasyDeck(p1_deck_code, game_id + '_p1')
             tmp_deck2 = EasyDeck(p2_deck_code, game_id + '_p1')
-            if tmp_deck.card_count() < 26:
-                assert False
-            if tmp_deck2.card_count() < 26:
-                assert False
+            #tmp_deck.print_deck()
+            #print(archetype1)
+            #if tmp_deck.card_count() < 26:
+            #    assert False
+            #if tmp_deck2.card_count() < 26:
+            #    assert False
         except:
             processed = False
         if processed:
             total += 1
             reference_class = tmp_deck.get_class().capitalize()
+            #print(reference_class)
             distances = sorted([(d.get_distance(tmp_deck), d) for d in reference_decks[reference_class]], key=lambda x:x[0])
+            #print(distances)
+            new_arch1 = archetype1
+            new_arch2 = archetype2
             if distances[0][0] <= 6:
                 success += 1
                 #tmp_deck.print_deck()
                 #print(side_by_side_diff_lines([tmp_deck, distances[0][1]]))
                 #print(distances[0][1].name, distances[0][0])
                 new_arch1 = distances[0][1].name
+                #print('test', new_arch1)
                 if archetype1 != new_arch1:
                     if (archetype1, new_arch1) not in [('Elemental Shaman', 'Shudderwock Shaman'), ('Recruit Hunter', 'Cube Hunter'), ('Shudderwock Shaman', 'Murmuring Shudderwock Shaman'),
                                                       ('Combo Priest', 'Dragon Combo Priest')]:
