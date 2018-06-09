@@ -45,9 +45,11 @@ for game_time, p1, p2, archetype1, archetype2, first, result in cursor.fetchall(
     if overall not in win_rates:
         win_rates[overall]        = [0,0]
         win_rates_first[overall]  = [0,0]
+        win_rates_second[overall]  = [0,0]
     if opp_overall not in win_rates:
         win_rates[opp_overall]         = [0,0]
         win_rates_first[opp_overall]   = [0,0]
+        win_rates_second[opp_overall]   = [0,0]
     if pair not in win_rates:
         win_rates[pair]        = [0,0]
         win_rates[opp]         = [0,0]
@@ -70,18 +72,22 @@ for game_time, p1, p2, archetype1, archetype2, first, result in cursor.fetchall(
         win_rates_first[overall][1] += 1
         win_rates_first['overall'][1] += 1
         win_rates_second[opp][1] += 1
+        win_rates_second[opp_overall][1] += 1
         if result == 'W':
             win_rates_first[pair][0] += 1
             win_rates_first[overall][0] += 1
             win_rates_first['overall'][0] += 1
         else:
             win_rates_second[opp][0] += 1
+            win_rates_second[opp_overall][0] += 1
     else:
         win_rates_second[pair][1] += 1
+        win_rates_second[overall][1] += 1
         win_rates_first[opp][1] += 1
         win_rates_first[opp_overall][1] += 1
         if result == 'W':
             win_rates_second[pair][0] += 1
+            win_rates_second[overall][0] += 1
         else:
             win_rates_first[opp][0] += 1
             win_rates_first[opp_overall][0] += 1
@@ -94,10 +100,12 @@ for i,j in sorted(win_rates.items(), key=lambda x:x[1][1]):
     wins, total = j
     if total < min_games:
         continue
-    first_win, first_total = win_rates_first[i]
+    first_win, first_total = win_rates_first.get(i, (0,0))
     wr_first = round(100 * float(first_win) / float(max(first_total, 1)), 1)
-    diff = round(wr_first - wr, 1)
+    second_win, second_total = win_rates_second.get(i, (0,0))
+    wr_second = round(100 * float(second_win) / float(max(second_total, 1)), 1)
+    diff = round(wr_first - wr_second, 1)
     if True:
         #a1 = a1.replace(' ', '_')
         #a2 = a2.replace(' ', '_')
-        print("%-22s %-22s %5s %5s %5s %5s %5s %5s %5s" % (a1, a2, wins, total, wr, first_win, first_total, wr_first, diff))
+        print("%-22s %-22s %5s %5s %5s %5s %5s %5s %5s" % (a1, a2, first_win, first_total, wr_first, second_win, second_total, wr_second, diff))

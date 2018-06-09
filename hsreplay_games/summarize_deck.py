@@ -82,7 +82,7 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
     #    continue
 
 cards = {}
-#print(decks)
+#print(side_by_side_diff_lines(decks))
 for deck in decks:
     for card, qty in deck.deck.cards:
         cards[card] = max(cards.get(card, 0), qty)
@@ -100,6 +100,11 @@ for i,j in cards.items():
     total += j
 
 print("\n\n")
+if len(strings) > 1:
+    print(side_by_side_diff_lines([EasyDeck(d, str(i)) for d, i in zip(strings, range(1, len(strings)+1))]))
+
+for d, i in zip(strings, range(1, len(strings)+1)):
+    print(i,d)
 if total == 30:
     result_deck = deckstrings.Deck()
     result_deck.cards = card_list

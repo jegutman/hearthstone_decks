@@ -19,7 +19,8 @@ cursor = connection.cursor()
 
 sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
-         WHERE (known_p1_deck_code like '%(player_search)s' or known_p2_deck_code like '%(player_search)s')
+         WHERE (known_p1_deck_code like '%(player_search)s' or known_p2_deck_code like '%(player_search)s' or
+                p1_deck_code like '%(player_search)s' or p2_deck_code like '%(player_search)s')
          #    AND (p1_rank like 'L%%' or p2_rank like 'L%%')
          ORDER BY time
 """

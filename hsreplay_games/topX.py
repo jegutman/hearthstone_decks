@@ -22,10 +22,14 @@ if len(sys.argv) > 1:
     topX = int(sys.argv[1])
 check_date = '2018_05_22'
 if len(sys.argv) > 2:
-    check_date = sys.argv[2]
+    if len(sys.argv[2]) < 3:
+        check_date = (datetime.now() - timedelta(days=int(sys.argv[2]))).strftime("%Y_%m_%d")
+    else:
+        check_date = sys.argv[2]
+print(check_date)
 
 
-sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code
+sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code, first
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
          WHERE (p1_rank rlike '^L[0-9]?[0-9]$' or p2_rank rlike '^L[0-9]?[0-9]$')
              AND date >= '%(check_date)s'
@@ -41,7 +45,7 @@ wins_by_arch = {}
 total_by_player = {}
 wins_by_player = {}
 games = []
-for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code in cursor.fetchall():
+for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code, first in cursor.fetchall():
     if (p1, p2, time) in games or (p2, p1, time) in games:
         continue
     games.append((p1, p2, time))
@@ -81,6 +85,7 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
         archetype1, archetype2 = archetype2, archetype1
         result = 'L' if result == 'W' else 'W'
         p1_deck_code, p2_deck_code = p2_deck_code, p1_deck_code
+        first = 1 - first
     if result == 'W':
         wins_by_arch[archetype1] = wins_by_arch.get(archetype1, 0) + 1
         wins_by_player[p1] = wins_by_player.get(p1, 0) + 1
@@ -96,10 +101,10 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
         total_by_arch[archetype2] = total_by_arch.get(archetype2, 0) + 1
         total_by_player[p2] = total_by_player.get(p2, 0) + 1
     #print("%22s %10s     %-25s %-25s %-25s %-25s %s\n    %-80s\n    %-80s" % (game_id, date, p1, p2, archetype1, archetype2, result, p1_deck_code, p2_deck_code))
-    print("%22s %10s %s    %-25s %-25s %-5s %-5s %-25s %-25s %2s %s" % (game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result))
+    print("%22s %10s %s    %-25s %-5s %-25s %-5s %-5s %-25s %-25s %2s %s" % (game_id, date, time_string, p1, result, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, first))
     
 print("\n\n")
-for player, a_total in sorted(total_by_player.items(), key=lambda x:x[1], reverse=True)[:10]:
+for player, a_total in sorted(total_by_player.items(), key=lambda x:wins_by_player.get(x[0], 0), reverse=True)[:10]:
     a_wins = wins_by_player.get(player, 0)
     a_losses = a_total - a_wins
     wr = round(100 * float(a_wins) / a_total, 1)
@@ -108,7 +113,7 @@ for player, a_total in sorted(total_by_player.items(), key=lambda x:x[1], revers
 print("TOTAL:", total)
 
 print("\n\n")
-for archetype, a_total in sorted(total_by_arch.items(), key=lambda x:x[1], reverse=True)[:10]:
+for archetype, a_total in sorted(total_by_arch.items(), key=lambda x:wins_by_arch.get(x[0], 0), reverse=True)[:20]:
     a_wins = wins_by_arch.get(archetype, 0)
     a_losses = a_total - a_wins
     wr = round(100 * float(a_wins) / a_total, 1)

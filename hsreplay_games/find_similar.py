@@ -58,11 +58,6 @@ for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code in res:
                 #print(side_by_side_diff_lines([tmp_deck, distances[0][1]]))
                 #print(distances[0][1].name, distances[0][0])
                 #print(archetype1, distances[0][1].name)
-            elif distance <= 10:
-                success10 += 1
-                #print(distance, p1_deck_code)
-                #print(just_diff_lines([reference_deck,tmp_deck]))
         
 print(success, total, total - success)
-print(success10)
         

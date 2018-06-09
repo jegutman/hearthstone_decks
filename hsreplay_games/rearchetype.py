@@ -77,7 +77,7 @@ success = 0
 total = 0
 new = {}
 updates = {}
-for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank in cursor.fetchall()[-2000:]:
+for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank in cursor.fetchall():
     if p1_deck_code:
         processed = True
         try:
@@ -92,55 +92,17 @@ for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_ran
         except:
             processed = False
         if processed:
-            total += 1
-            reference_class = tmp_deck.get_class().capitalize()
-            #print(reference_class)
-            distances = sorted([(d.get_distance(tmp_deck), d) for d in reference_decks[reference_class]], key=lambda x:x[0])
-            #print(distances)
-            new_arch1 = archetype1
-            new_arch2 = archetype2
-            if distances[0][0] <= 6:
-                success += 1
-                #tmp_deck.print_deck()
-                #print(side_by_side_diff_lines([tmp_deck, distances[0][1]]))
-                #print(distances[0][1].name, distances[0][0])
-                new_arch1 = distances[0][1].name
-                #print('test', new_arch1)
-                if archetype1 != new_arch1:
-                    if (archetype1, new_arch1) not in [('Elemental Shaman', 'Shudderwock Shaman'), ('Recruit Hunter', 'Cube Hunter'), ('Shudderwock Shaman', 'Murmuring Shudderwock Shaman'),
-                                                      ('Combo Priest', 'Dragon Combo Priest')]:
-                        print(game_id, archetype1, new_arch1)
-                    updates[(archetype1, new_arch1)] = updates.get((archetype1, new_arch1), 0) + 1
-            elif distances[0][0] > 10:
-                pass
-                #tmp = [d for d in reference_decks[reference_class] if d.name == archetype1]
-                #similar_count = count_similar(tmp_deck)
-                #if similar_count > 10:
-                #    print("SIMILAR COUNT:", similar_count, p1_deck_code)
-                #    print(distances[0][0],' ', p1_deck_code, archetype1)
-                #    reference_decks[reference_class].append(tmp_deck)
-                #if len(tmp) > 0:
-                #    print(side_by_side_diff_lines([tmp[0], tmp_deck]))
-            else:
-                #print(distances[0][0], p1_deck_code)
-                #tmp_deck.print_deck()
-                pass
+            new_arch1 = get_archetype(tmp_deck, old_archetype=archetype1)
+            new_arch2 = get_archetype(tmp_deck2, old_archetype=archetype2)
+            if archetype1 != new_arch1:
+                if (archetype1, new_arch1) not in [('Elemental Shaman', 'Shudderwock Shaman'), ('Recruit Hunter', 'Cube Hunter'), ('Shudderwock Shaman', 'Murmuring Shudderwock Shaman'),
+                                                   ('Combo Priest', 'Dragon Combo Priest')]:
+                    print(game_id, archetype1, new_arch1)
+            if archetype2 != new_arch2:
+                if (archetype2, new_arch2) not in [('Elemental Shaman', 'Shudderwock Shaman'), ('Recruit Hunter', 'Cube Hunter'), ('Shudderwock Shaman', 'Murmuring Shudderwock Shaman'),
+                                                   ('Combo Priest', 'Dragon Combo Priest')]:
+                    print(game_id, archetype2, new_arch2)
 
-            #2nd deck
-            total += 1
-            reference_class = tmp_deck2.get_class().capitalize()
-            distances = sorted([(d.get_distance(tmp_deck2), d) for d in reference_decks[reference_class]], key=lambda x:x[0])
-            if distances[0][0] <= 6:
-                success += 1
-                #tmp_deck2.print_deck()
-                #print(side_by_side_diff_lines([tmp_deck2, distances[0][1]]))
-                #print(distances[0][1].name, distances[0][0])
-                new_arch2 = distances[0][1].name
-                if archetype2 != new_arch2:
-                    if (archetype2, new_arch2) not in [('Elemental Shaman', 'Shudderwock Shaman'), ('Recruit Hunter', 'Cube Hunter'), ('Shudderwock Shaman', 'Murmuring Shudderwock Shaman'),
-                                                      ('Combo Priest', 'Dragon Combo Priest')]:
-                        print(game_id, archetype2, new_arch2)
-                    updates[(archetype2, new_arch2)] = updates.get((archetype2, new_arch2), 0) + 1
             cursor.execute("""UPDATE hsreplay.hsreplay
                               SET archetype1 = '%(new_arch1)s', archetype2 = '%(new_arch2)s', processed = 1
                               WHERE game_id = '%(game_id)s'""" % locals())
