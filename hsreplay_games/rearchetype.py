@@ -33,44 +33,12 @@ cursor.execute("SELECT card_class, archetype, deck_code from hsreplay.reference_
 for card_class, archetype, deck_code in cursor.fetchall():
     reference_decks[card_class] = reference_decks.get(card_class, []) + [EasyDeck(deck_code, archetype)]
 
-times_run = 0
-def count_similar(reference_deck):
-    global times_run, total
-    times_run += 1
-    print("Times Run:", times_run, total)
-    card_class = reference_deck.get_class().capitalize()
-
-    cursor.execute("""SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code 
-                      FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) 
-                      WHERE archetype1 like '%%%(card_class)s' or archetype2 like '%%%(card_class)s'
-                      #    AND p1_rank like 'L%%' or p2_rank like 'L%%'
-        """ % locals())
-    res = cursor.fetchall()
-    success = 0
-    threshold = 6
-    for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code in res:
-        if archetype2.split(' ')[-1] == card_class and archetype1.split(' ')[-1] != card_class:
-            archetype1, archetype2 = archetype2, archetype1
-            p1_deck_code, p2_deck_code = p2_deck_code, p1_deck_code
-        if p1_deck_code:
-            processed = True
-            try:
-                tmp_deck = EasyDeck(p1_deck_code, game_id + '_p1')
-                if tmp_deck.card_count() < 28:
-                    assert False
-            except:
-                processed = False
-            if processed:
-                distance = reference_deck.get_distance(tmp_deck)
-                if distance <= threshold:
-                    success += 1
-    return success
-
 cursor.execute("""SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) 
-                  WHERE archetype1 like '%%Priest' or archetype2 like '%%Priest'
+                  #WHERE archetype1 like '%%Priest' or archetype2 like '%%Priest'
                   #WHERE processed = 0
+                  #    or (archetype1 like 'Other%%' or archetype2 like 'Other%%')
+                  WHERE (archetype1 like '%%Hunter' or archetype2 like '%%Hunter')
                   ORDER BY time""")
-test_id = 'q9CHmr6s7GywMUWytMVreK'
 #cursor.execute("""SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) 
 #                  WHERE game_id = 'q9CHmr6s7GywMUWytMVreK'
 #                  ORDER BY time""")

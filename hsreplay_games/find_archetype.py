@@ -74,4 +74,4 @@ if total > 0:
     #print("%-25s: %s - %s     : %s" % ('Total', wins, losses, wr))
         
 else:
-    print("Did not find games for: %s" % player_search)
+    print("Did not find games for: %s" % archetype)

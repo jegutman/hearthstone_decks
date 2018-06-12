@@ -17,14 +17,18 @@ game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
-check_date = '2018_05_22'
+start_date = '2018_05_22'
 if len(sys.argv) > 1:
-    check_date = sys.argv[1]
+    if len(sys.argv[1]) < 3:
+        start_date = (datetime.now() - timedelta(days=int(sys.argv[1]))).strftime("%Y_%m_%d")
+    else:
+        start_date = sys.argv[1]
+print(start_date)
 
 sql = """SELECT %(player)s, result, count(game_id)
          FROM hsreplay.hsreplay
          WHERE (p1_rank like 'L%%' or p2_rank like 'L%%')
-            and date >= '%(check_date)s'
+            and date >= '%(start_date)s'
          GROUP by %(player)s, result
 """
 
@@ -49,7 +53,7 @@ for player in ['p1', 'p2']:
                 p_losses[p] = p_losses.get(p, 0) + count
 
 max_output = 40
-for p, count in sorted(p_count.items(), key=lambda x:x[1], reverse=True)[:200]:
+for p, count in sorted(p_count.items(), key=lambda x:p_wins.get(x[0], 0), reverse=True)[:200]:
     wr = round(100 * float(p_wins.get(p, 0)) / (p_wins.get(p, 0) + p_losses.get(p, 0)), 1)
     total_games = p_wins.get(p, 0) + p_losses.get(p, 0)
     #if wr > 55 and total_games >= 20:

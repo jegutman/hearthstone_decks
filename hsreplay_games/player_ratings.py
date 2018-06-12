@@ -17,9 +17,18 @@ cursor = connection.cursor()
 
 start_date = '2018_05_22'
 if len(sys.argv) > 1:
-    start_date = sys.argv[1]
+    if len(sys.argv[1]) < 3:
+        start_date = (datetime.now() - timedelta(days=int(sys.argv[1]))).strftime("%Y_%m_%d")
+    else:
+        start_date = sys.argv[1]
+print(start_date)
 
-cursor.execute("SELECT p1, p2, result FROM hsreplay.hsreplay WHERE date >= '%(start_date)s' ORDER BY time" % locals())
+cursor.execute("""SELECT p1, p2, result FROM hsreplay.hsreplay 
+                  WHERE date >= '%(start_date)s' 
+                     #and (p1_rank like 'L%%' or p2_rank like 'L%%')
+                     and (p1_rank like 'L%%' or p2_rank like 'L%%' or p1_rank <= 1 or p2_rank <= 1)
+                  ORDER BY time
+               """ % locals())
 rating = {}
 games = {}
 for p1, p2, result in cursor.fetchall():
@@ -40,8 +49,8 @@ for p1, p2, result in cursor.fetchall():
     else:
         rating[p2], rating[p1] = rate_1vs1(rating[p2], rating[p1])
 
-top_players = [i for i in sorted(rating.items(), key = lambda x:expose(x[1]), reverse=True) if games[i[0]] >= 20]
-print("   %-15s %-5s %-5ss" % ('Player', 'rEst', 'games'))
+top_players = [i for i in sorted(rating.items(), key = lambda x:expose(x[1]), reverse=True) if games[i[0]] >= 15]
+print("   %-15s %-5s %-5s" % ('Player', 'rEst', 'games'))
 index = 0
 for p, r in top_players[:50]:
     index += 1

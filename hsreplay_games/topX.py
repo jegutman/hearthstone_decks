@@ -20,19 +20,19 @@ cursor = connection.cursor()
 topX = 10
 if len(sys.argv) > 1:
     topX = int(sys.argv[1])
-check_date = '2018_05_22'
+start_date = '2018_05_22'
 if len(sys.argv) > 2:
     if len(sys.argv[2]) < 3:
-        check_date = (datetime.now() - timedelta(days=int(sys.argv[2]))).strftime("%Y_%m_%d")
+        start_date = (datetime.now() - timedelta(days=int(sys.argv[2]))).strftime("%Y_%m_%d")
     else:
-        check_date = sys.argv[2]
-print(check_date)
+        start_date = sys.argv[2]
+print(start_date)
 
 
 sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code, first
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
          WHERE (p1_rank rlike '^L[0-9]?[0-9]$' or p2_rank rlike '^L[0-9]?[0-9]$')
-             AND date >= '%(check_date)s'
+             AND date >= '%(start_date)s'
          ORDER BY time
 """
 
@@ -104,7 +104,7 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
     print("%22s %10s %s    %-25s %-5s %-25s %-5s %-5s %-25s %-25s %2s %s" % (game_id, date, time_string, p1, result, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, first))
     
 print("\n\n")
-for player, a_total in sorted(total_by_player.items(), key=lambda x:wins_by_player.get(x[0], 0), reverse=True)[:10]:
+for player, a_total in sorted(total_by_player.items(), key=lambda x:wins_by_player.get(x[0], 0), reverse=True)[:15]:
     a_wins = wins_by_player.get(player, 0)
     a_losses = a_total - a_wins
     wr = round(100 * float(a_wins) / a_total, 1)

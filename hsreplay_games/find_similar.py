@@ -30,7 +30,9 @@ test_deck = sys.argv[1]
 reference_deck = EasyDeck(test_deck)
 card_class = reference_deck.get_class().capitalize()
 
-cursor.execute("SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) WHERE archetype1 like '%%%(card_class)s'" % locals())
+cursor.execute("""SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) 
+                  WHERE archetype1 like '%%%(card_class)s' and (p1_rank like 'L%%' or p2_rank like 'L%%')
+              """ % locals())
 success = 0
 success10 = 0
 total = 0

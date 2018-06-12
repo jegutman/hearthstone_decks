@@ -20,8 +20,9 @@ cursor = connection.cursor()
 sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
          WHERE ((archetype1 like '%(qry_archetype1)s' AND archetype2 like '%(qry_archetype2)s') OR (archetype1 like '%(qry_archetype2)s' AND archetype2 like '%(qry_archetype1)s'))
-             #AND (p1_rank rlike '^L[0-9]?[0-9]$' or p2_rank rlike '^L[0-9]?[0-9]$')
-             AND (p1_rank like 'L%%' and p2_rank like 'L%%')
+             AND (p1_rank rlike '^L[0-9]?[0-9]$' or p2_rank rlike '^L[0-9]?[0-9]$')
+             #AND (p1_rank like 'L%%' and p2_rank like 'L%%')
+             #AND (p1_rank like 'L%%' and p2_rank like 'L%%')
          ORDER BY time
 """
 
