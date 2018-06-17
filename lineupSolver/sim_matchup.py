@@ -77,7 +77,7 @@ def lhs_leads(my_lineup, opp_lineup):
     res += "%-20s %-20s" % ("p1_lead", "p2_lead") + '\n'
     for i, j in sorted(res_lead.items(), key=lambda x:(x[0][1], -x[1])):
         d1, d2 = i
-        res += '%-27s %-27s %s' % (d1, d2, round(j,4))
+        res += '%-20s %-20s %s' % (d1, d2, round(j,4)) + '\n'
     return res
 
 def sim_lhs(my_lineup, opp_lineup):
