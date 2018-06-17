@@ -11,10 +11,57 @@ if __name__ == '__main__':
     lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
     tmp_weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     lineups_to_test = [
-        "Token Druid,Spell Hunter,Odd Rogue,Even Warlock",
-        "Token Druid,Big Spell Mage,Shudderwock Shaman,Miracle Rogue",
-        "Even Shaman,Spell Hunter,Even Warlock,Odd Rogue",
-        "Even Warlock,Spell Hunter,Token Druid,Quest Warrior",
+        'Cube Warlock,Spell Hunter,Big Spell Mage,Recruit Warrior',
+        'Cube Warlock,Token Druid,Spell Hunter,Tempo Mage',
+        'Malygos Druid,Even Warlock,Miracle Rogue,Spell Hunter',
+        'Miracle Rogue,Control Priest,Token Druid,Even Warlock',
+        'Miracle Rogue,Cube Warlock,Token Druid,Quest Warrior',
+        'Murloc Paladin,Token Druid,Control Priest,Shudderwock Shaman',
+        'Odd Paladin,Token Druid,Cube Warlock,Recruit Warrior',
+        'Odd Paladin,Token Druid,Miracle Rogue,Even Warlock',
+        'Odd Paladin,Token Druid,Spell Hunter,Cube Warlock',
+        'Token Druid,Quest Priest,Odd Paladin,Zoo Warlock',
+        'Quest Priest,Taunt Druid,Recruit Warrior,Cube Warlock',
+        'Quest Warrior,Even Warlock,Even Shaman,Token Druid',
+        'Quest Warrior,Malygos Druid,Miracle Rogue,Even Warlock',
+        'Quest Warrior,Odd Rogue,Cube Warlock,Tempo Mage',
+        'Quest Warrior,Spell Hunter,Token Druid,Cube Warlock',
+        'Quest Warrior,Token Druid,Cube Hunter,Cube Warlock',
+        'Recruit Warrior,Token Druid,Spell Hunter,Cube Warlock',
+        'Shudderwock Shaman,Cube Warlock,Quest Warrior,Token Druid',
+        'Shudderwock Shaman,Recruit Warrior,Cube Warlock,Spell Hunter',
+        'Shudderwock Shaman,Spell Hunter,Tempo Mage,Quest Warrior',
+        'Shudderwock Shaman,Spell Hunter,Token Druid,Quest Rogue',
+        'Spell Hunter,Miracle Rogue,Cube Warlock,Taunt Druid',
+        'Spell Hunter,Tempo Mage,Cube Warlock,Miracle Rogue',
+        'Spell Hunter,Token Druid,Cube Warlock,Quest Warrior',
+        'Spell Hunter,Token Druid,Miracle Rogue,Even Warlock',
+        'Spiteful Druid,Big Spell Mage,Miracle Rogue,Spell Hunter',
+        'Spiteful Druid,Big Spell Mage,Spell Hunter,Miracle Rogue',
+        'Taunt Druid,Big Spell Mage,Even Warlock,Quest Warrior',
+        'Taunt Druid,Miracle Rogue,Cube Warlock,Recruit Warrior',
+        'Taunt Druid,Odd Rogue,Spell Hunter,Cube Warlock',
+        'Taunt Druid,Quest Rogue,Shudderwock Shaman,Cube Warlock',
+        'Tempo Mage,Odd Rogue,Cube Warlock,Quest Warrior',
+        'Token Druid,Combo Priest,Miracle Rogue,Cube Warlock',
+        'Token Druid,Even Shaman,Even Warlock,Odd Warrior',
+        'Token Druid,Even Shaman,Even Warlock,Quest Warrior',
+        'Token Druid,Even Warlock,Quest Warrior,Big Spell Mage',
+        'Token Druid,Miracle Rogue,Cube Warlock,Quest Warrior',
+        'Token Druid,Miracle Rogue,Cube Warlock,Quest Warrior',
+        'Token Druid,Miracle Rogue,Cube Warlock,Quest Warrior',
+        'Token Druid,Miracle Rogue,Shudderwock Shaman,Cube Warlock',
+        'Token Druid,Miracle Rogue,Shudderwock Shaman,Cube Warlock',
+        'Token Druid,Odd Paladin,Quest Warrior,Cube Warlock',
+        'Token Druid,Odd Rogue,Even Shaman,Even Warlock',
+        'Token Druid,Recruit Hunter,Cube Warlock,Quest Warrior',
+        'Token Druid,Shudderwock Shaman,Cube Warlock,Control Warrior',
+        'Token Druid,Shudderwock Shaman,Cube Warlock,Rush Warrior',
+        'Token Druid,Shudderwock Shaman,Cube Warlock,Tempo Mage',
+        'Token Druid,Spell Hunter,Miracle Rogue,Cube Warlock',
+        'Token Druid,Spell Hunter,Miracle Rogue,Even Warlock',
+        'Token Druid,Spell Hunter,Shudderwock Shaman,Recruit Warrior',
+        'Zoo Warlock,Token Druid,Odd Rogue,Tempo Mage',
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
     weights = [1 for l in lineups_to_test if l is not None]
@@ -26,37 +73,7 @@ if __name__ == '__main__':
     if len(args) > 0 and args[0] == 'practice':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
         overrides = [
-            #('Zoo Warlock', 'Even Paladin', .48),
-            #('Zoo Warlock', 'Tempo Mage', .60),
-            #('Zoo Warlock', 'Odd Rogue', .55),
-            #('Zoo Warlock', 'Spiteful Druid', .60),
-            ('Zoo Warlock', 'Even Paladin', .47),
-            ('Zoo Warlock', 'Tempo Mage', .55),
-            ('Zoo Warlock', 'Odd Rogue', .42),
-            ('Zoo Warlock', 'Spiteful Druid', .50),
-            ('Zoo Warlock', 'Cube Warlock', .30),
-            ('Zoo Warlock', 'Control Warlock', .30),
-            #('Zoo Warlock', 'Quest Rogue', .65),
-            ('Zoo Warlock', 'Quest Rogue', .65),
-            ('Zoo Warlock', 'Control Priest', .43),
-            ('Zoo Warlock', 'Murloc Paladin', .50),
-            ('Zoo Warlock', 'Taunt Druid', .55),
-            ('Zoo Warlock', 'Odd Warrior', .50),
-            ('Zoo Warlock', 'Miracle Rogue', .55),
-            ('Zoo Warlock', 'Spell Hunter', .43),
-            ('Zoo Warlock', 'Even Shaman', .47),
-            ('Zoo Warlock', 'Quest Warrior', .45),
-            ('Zoo Warlock', 'Quest Druid', .65),
-            ('Zoo Warlock', 'Zoo Warlock', .50),
-            ('Even Shaman', 'Tempo Mage', .70),
-            ('Even Shaman', 'Quest Rogue', .60),
-            ('Even Shaman', 'Murloc Paladin', .62),
-
-            ('Control Priest', 'Quest Rogue', .42),
-            ('Control Priest', 'Spiteful Druid', .40),
-            ('Tempo Mage', 'Quest Rogue', 0.63),
-            ('Even Paladin', 'Quest Rogue', 0.63),
-                    ]
+        ]
         win_pcts = override_wr(overrides,win_pcts)
         
         my_lineup = [d.strip() for d in args[1].split(',')]
@@ -199,6 +216,7 @@ if __name__ == '__main__':
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
+        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
         for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'

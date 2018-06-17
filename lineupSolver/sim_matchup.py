@@ -67,6 +67,17 @@ def lhs_bans(my_lineup, opp_lineup):
         res += '%-20s %-20s %s' % (d1, d2, round(j,4)) + '\n'
     return res
 
+def lhs_leads(my_lineup, opp_lineup):
+    res = ""
+    res_lead = lead_matrix(my_lineup,
+                      opp_lineup,
+                      win_pcts)
+    res += "leads" + '\n'
+    res += "%-20s %-20s" % ("p1_lead", "p2_lead") + '\n'
+    for i, j in sorted(res_lead.items(), key=lambda x:(x[0][1], -x[1])):
+        d1, d2 = i
+        res += '%-27s %-27s %s' % (d1, d2, round(j,4))
+
 def sim_lhs(my_lineup, opp_lineup):
     res = ""
     assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
