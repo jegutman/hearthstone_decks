@@ -18,38 +18,27 @@ if __name__ == '__main__':
     level4 = "Secret Hunter,Big Spell Mage,Combo Priest,Cube Warlock".split(',')
 
     lineups_to_test = [
-        "Spiteful Druid,Even Paladin,Quest Rogue,Cube Warlock",
-        "Spiteful Druid,Even Paladin,Odd Rogue,Cube Warlock",
-        "Even Paladin,Odd Rogue,Even Shaman,Cube Warlock",
-        "Spiteful Druid,Even Paladin,Control Priest,Control Warlock",
-        "Spiteful Druid,Even Paladin,Control Warlock,Odd Warrior",
-        "Spiteful Druid,Tempo Mage,Even Paladin,Cube Warlock",
-        "Odd Hunter,Tempo Mage,Even Paladin,Odd Rogue",
-        "Even Paladin,Control Priest,Control Warlock,Odd Warrior",
-        "Spiteful Druid,Tempo Mage,Even Paladin,Odd Rogue",
-        "Even Paladin,Control Priest,Even Shaman,Control Warlock",
-        "Aggro Hunter,Even Paladin,Odd Rogue,Even Shaman",
-        "Spiteful Druid,Control Priest,Control Warlock,Odd Warrior",
-        "Spiteful Druid,Spell Hunter,Even Paladin,Cube Warlock",
-        "Even Paladin,Quest Rogue,Even Shaman,Cube Warlock",
-        "Tempo Mage,Even Paladin,Odd Rogue,Cube Warlock",
-        "Spiteful Druid,Tempo Mage,Even Paladin,Control Priest",
-        "Spiteful Druid,Even Paladin,Miracle Rogue,Cube Warlock",
-        "Big Spell Mage,Even Paladin,Control Priest,Control Warlock",
-        "Spiteful Druid,Even Paladin,Control Priest,Cube Warlock",
-        "Even Paladin,Shudderwock Shaman,Control Warlock,Odd Warrior",
-        "Tempo Mage,Even Paladin,Quest Rogue,Cube Warlock",
-        "Spiteful Druid,Even Paladin,Odd Rogue,Even Shaman",
-        "Even Paladin,Control Priest,Quest Rogue,Control Warlock",
-        "Spiteful Druid,Even Paladin,Control Priest,Odd Rogue",
-        "Spiteful Druid,Tempo Mage,Even Paladin,Quest Rogue",
-        "Even Paladin,Control Priest,Quest Rogue,Cube Warlock",
-        "Spiteful Druid,Control Priest,Quest Rogue,Control Warlock",
+        "Even Warlock,Control Priest,Malygos Druid,Recruit Warrior",
+        "Shudderwock Shaman,Quest Warrior,Token Druid,Cube Warlock",
+        "Even Warlock,Shudderwock Shaman,Quest Warrior,Control Priest",
+        "Recruit Hunter,Miracle Rogue,Even Warlock,Taunt Druid",
+        "Cube Warlock,Spell Hunter,Token Druid,Even Shaman",
+        "Tempo Mage,Odd Paladin,Even Shaman,Spell Hunter",
+        "Recruit Warrior,Even Warlock,Spiteful Druid,Even Shaman",
+        "Recruit Hunter,Even Warlock,Taunt Druid,Even Shaman",
+        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
+        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
+        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
+        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
+    weights = [1 for l in lineups_to_test]
+    #lineups_to_test.append("Token Druid,Odd Paladin,Shudderwock Shaman,Cube Warlock".split(','))
+    #weights.append(5)
+    
     #weights = [5, 5, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     #weights = [11, 6, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    weights = [18, 6, 6, 5, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]
+    #weights = [18, 6, 6, 5, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]
     #weights = []
     #for i in range(0,16):
     #    weights.append(1)
@@ -348,6 +337,7 @@ if __name__ == '__main__':
         excluded = []
         if True:
             excluded += []
+            #excluded += ['Cube Warlock']
             #excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
             #excluded += ['Odd Paladin', 'Big Spell Mage', 'Quest Rogue']
         print "\n\nEXCLUDING:", excluded

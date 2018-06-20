@@ -9,6 +9,7 @@ from lhs_utils import win_rates_lines as lhs_win_rates_lines
 from lhs_utils import win_rate as lhs_win_rate
 from lhs_utils import pre_ban as lhs_pre_ban
 from lhs_utils import pre_matrix
+from lhs_utils import lead_matrix
 
 win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
 overrides = [
@@ -65,6 +66,26 @@ def lhs_bans(my_lineup, opp_lineup):
     for i, j in sorted(res_ban.items(), key=lambda x:(x[0][0], x[1])):
         d1, d2 = i
         res += '%-20s %-20s %s' % (d1, d2, round(j,4)) + '\n'
+    return res
+
+def lhs_leads(my_lineup, opp_lineup):
+    res = ""
+    res_lead = lead_matrix(my_lineup,
+                      opp_lineup,
+                      win_pcts)
+    res += "leads" + '\n'
+    res += "%-20s %-20s" % ("p1_lead", "p2_lead") + '\n'
+    totals = {}
+    counts = {}
+    for i, j in sorted(res_lead.items(), key=lambda x:(x[0][1], -x[1])):
+        d1, d2 = i
+        totals[d1] = totals.get(d1, 0) + j
+        counts[d1] = counts.get(d1, 0) + 1
+        res += '%-20s %-20s %s' % (d1, d2, round(j,4)) + '\n'
+    res += '\n' + 'averages:' + '\n'
+    for d in sorted(totals, key=lambda x:totals[x], reverse=True):
+        res += '%-20s : %s'  % (d, round(totals[d] / counts[d], 4)) + '\n'
+    #print(my_lineup, opp_lineup, res)
     return res
 
 def sim_lhs(my_lineup, opp_lineup):
