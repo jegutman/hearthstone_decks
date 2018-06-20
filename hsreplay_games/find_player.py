@@ -17,14 +17,18 @@ game_url = "https://hsreplay.net/api/v1/games/%(game_id)s/?format=json"
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
-sql = """SELECT game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code, first
+sql = """SELECT game_id, date, time, region, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code, first
          FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id)
          WHERE (p1 like '%(player_search)s' or p2 like '%(player_search)s')
+              AND region like '%(region)s'
          #    AND (p1_rank like 'L%%' or p2_rank like 'L%%')
          ORDER BY time
 """
 
 player_search  = sys.argv[1]
+region = '%'
+if len(sys.argv) > 2:
+    region = sys.argv[2]
 cursor.execute(sql % locals())
 total = 0
 wins = 0
@@ -32,8 +36,9 @@ total_by_arch = {}
 wins_by_arch = {}
 games = []
 game_id, date, time_string, p1, p2, p1_rank, result, p2_rank, archetype1, archetype2, num_turns, first = "game_id, date, time, p1, res, p2, r1, r2, archetype1, archetype2, turns, first".split(', ')
-print("%22s %10s %8s    %-25s %-5s %-25s %-5s %-5s %-25s %-25s %-5s %-5s" % (game_id, date, time_string, p1, result, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, first))
-for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code, first in cursor.fetchall():
+region = 'LC'
+print("%22s %10s %8s    %2s %-25s %-5s %-25s %-5s %-5s %-25s %-25s %-5s %-5s" % (game_id, date, time_string, region, p1, result, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, first))
+for game_id, date, time, region, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code, first in cursor.fetchall():
     if (p1, p2, time) in games or (p2, p1, time) in games:
         continue
     games.append((p1, p2, time))
@@ -66,7 +71,7 @@ for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_t
     total_by_arch[archetype1] = total_by_arch.get(archetype1, 0) + 1
     #print("%22s %10s     %-25s %-25s %-25s %-25s %s\n    %-80s\n    %-80s" % (game_id, date, p1, p2, archetype1, archetype2, result, p1_deck_code, p2_deck_code))
     #print("%22s %10s %s    %-25s %-25s %-5s %-5s %-25s %-25s %5s %s" % (game_id, date, time_string, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result))
-    print("%22s %10s %8s    %-25s %-5s %-25s %-5s %-5s %-25s %-25s %-5s %-5s" % (game_id, date, time_string, p1, result, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, first))
+    print("%22s %10s %8s    %2s %-25s %-5s %-25s %-5s %-5s %-25s %-25s %-5s %-5s" % (game_id, date, time_string, region, p1, result, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, first))
     
 if total > 0:
     print("\n\n")

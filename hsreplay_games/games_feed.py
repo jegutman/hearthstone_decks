@@ -11,7 +11,7 @@ from json_cards_to_python import *
 from deck_manager import *
 from hearthstone import *
 import random
-from label_archetype
+from label_archetype import *
 
 def convert(cards):
     res = {}
@@ -62,6 +62,16 @@ for archetype in archetypes_json:
 def get_archetype(arch_id):
     res = archetype_names.get(int(arch_id))
     return res
+
+def get_region(acct_hi):
+    region_map = {
+        144115188075855872 : 'AI',
+        144115193835963207 : 'US',
+        144115198130930503 : 'EU',
+        144115202425897799 : 'KR',
+        144115211015832391 : 'CN',
+    }
+    return region_map.get(acct_hi, '')
 
 games = []
 #max_game = 200
@@ -118,6 +128,8 @@ while True:
                 result = 'W' if game_info['won'] else 'L'
 
                 #game_infos[game_id] = game_info
+                game_region = get_region(game_info['friendly_player']['account_hi'])
+                
                 p1 = game_info['friendly_player']['name']
                     
                 if p1 in name_overrides:
@@ -221,9 +233,9 @@ while True:
                 except Exception as e:
                     print(e)
                     pass
-                cursor.execute("""INSERT INTO hsreplay.hsreplay (game_id, time, date, p1, p2, archetype1, archetype2, p1_rank, p2_rank, num_turns, ladder_season, format, first, result, processed)
+                cursor.execute("""INSERT INTO hsreplay.hsreplay (game_id, time, date, p1, p2, archetype1, archetype2, p1_rank, p2_rank, num_turns, ladder_season, format, first, result, processed, region)
                                   VALUES ('%(game_id)s', %(end_time)s, '%(game_date)s', '%(p1)s', '%(p2)s', '%(archetype1)s', '%(archetype2)s', '%(p1_insert_rank)s', '%(p2_insert_rank)s', %(num_turns)s, 
-                                           %(ladder_season)s, %(game_format)s, %(first)s, '%(result)s', 0)""" % locals())
+                                           %(ladder_season)s, %(game_format)s, %(first)s, '%(result)s', 0, '%(game_region)s')""" % locals())
                 cursor.execute("""INSERT INTO hsreplay.hsreplay_decks (game_id, p1_deck_code, p2_deck_code, known_p1_deck_code, known_p2_deck_code) 
                                   VALUES ('%(game_id)s', '%(p1_deckstring)s', '%(p2_deckstring)s', '%(known_p1_deckstring)s', '%(known_p2_deckstring)s')""" % locals())
                 connection.commit()
