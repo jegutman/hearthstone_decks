@@ -5,6 +5,8 @@
 lineupSolver/win_rates
 *.zip
 *tmp*
+*.*~
+/venv/
 lineupSolver/.DS_Store
 lineupSolver/Copa_latam.csv
 lineupSolver/SeasonFinishes/
