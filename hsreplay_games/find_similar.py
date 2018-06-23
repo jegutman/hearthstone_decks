@@ -30,7 +30,8 @@ test_deck = sys.argv[1]
 reference_deck = EasyDeck(test_deck)
 card_class = reference_deck.get_class().capitalize()
 
-cursor.execute("""SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) 
+cursor.execute("""SELECT game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank
+                  FROM hsreplay.hsreplay join hsreplay.hsreplay_decks using(game_id) 
                   WHERE archetype1 like '%%%(card_class)s' and (p1_rank like 'L%%' or p2_rank like 'L%%')
               """ % locals())
 success = 0
@@ -41,7 +42,7 @@ close = []
 res = cursor.fetchall()
 print(len(res))
 threshold = 6
-for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code in res:
+for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code, p1_rank, p2_rank in res:
     if p1_deck_code:
         processed = True
         try:
@@ -55,6 +56,7 @@ for game_id, archetype1, archetype2, p1_deck_code, p2_deck_code in res:
             distance = reference_deck.get_distance(tmp_deck)
             if distance <= threshold:
                 success += 1
+                print(game_id, p1_rank, p2_rank)
                 print(just_diff_lines([reference_deck,tmp_deck]))
                 #tmp_deck.print_deck()
                 #print(side_by_side_diff_lines([tmp_deck, distances[0][1]]))

@@ -31,7 +31,9 @@ total = 0
 wins = 0
 total_by_arch = {}
 wins_by_arch = {}
+game_count = 0
 for game_id, date, time, p1, p2, p1_rank, p2_rank, archetype1, archetype2, num_turns, result, p1_deck_code, p2_deck_code in cursor.fetchall():
+    game_count += 1
     game_id = game_id.strip()
     game_time = datetime.fromtimestamp(time - 3600 * 5)
     time_string = game_time.strftime("%Y_%m_%d %H:%M:%S")
@@ -76,3 +78,4 @@ if total > 0:
         
 else:
     print("Did not find games for: %s" % player_search)
+print("Game Count:", game_count)
