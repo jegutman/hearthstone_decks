@@ -7,11 +7,11 @@ sys.path.append(basedir + '/lineupSolver')
 import json
 from config import basedir
 
-date = '20180531'
+date = '20180621'
 base = basedir
-#filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_7DAYS.json' % locals()
+filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_7DAYS.json' % locals()
 #filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_1DAY.json' % locals()
-filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_3DAYS.json' % locals()
+#filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_3DAYS.json' % locals()
 #filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_3DAYS.json' % locals()
 #filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_7DAYS.json' % locals()
 #filename = '%(base)slineupSolver/win_rates/hsreplay%(date)sday.json' % locals()
@@ -96,5 +96,5 @@ def wr_from_csv(filename, scaling=1):
     return win_pcts, archetypes
 
 if __name__ == "__main__":
-    win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, limitTop=40)
-    print(wr_from_csv('wr.csv'))
+    win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=200, min_game_count=100, limitTop=40, min_win_pct=0.44)
+    #print(wr_from_csv('wr.csv'))

@@ -18,18 +18,22 @@ if __name__ == '__main__':
     level4 = "Secret Hunter,Big Spell Mage,Combo Priest,Cube Warlock".split(',')
 
     lineups_to_test = [
-        "Even Warlock,Control Priest,Malygos Druid,Recruit Warrior",
-        "Shudderwock Shaman,Quest Warrior,Token Druid,Cube Warlock",
-        "Even Warlock,Shudderwock Shaman,Quest Warrior,Control Priest",
-        "Recruit Hunter,Miracle Rogue,Even Warlock,Taunt Druid",
-        "Cube Warlock,Spell Hunter,Token Druid,Even Shaman",
-        "Tempo Mage,Odd Paladin,Even Shaman,Spell Hunter",
-        "Recruit Warrior,Even Warlock,Spiteful Druid,Even Shaman",
-        "Recruit Hunter,Even Warlock,Taunt Druid,Even Shaman",
-        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
-        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
-        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
-        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
+        'Taunt Druid,Control Priest,Miracle Rogue,Cube Warlock',
+        'Taunt Druid,Recruit Hunter,Shudderwock Shaman,Even Warlock',
+        'Big Spell Mage,Miracle Rogue,Shudderwock Shaman,Even Warlock',
+        'Taunt Druid,Combo Priest,Shudderwock Shaman,Even Warlock',
+        'Taunt Druid,Miracle Rogue,Shudderwock Shaman,Cube Warlock',
+        'Big Spell Mage,Control Priest,Miracle Rogue,Even Warlock',
+        'Token Druid,Odd Paladin,Even Shaman,Even Warlock',
+        'Token Druid,Odd Paladin,Shudderwock Shaman,Cube Warlock',
+        'Taunt Druid,Recruit Hunter,Miracle Rogue,Shudderwock Shaman',
+        'Taunt Druid,Big Spell Mage,Shudderwock Shaman,Quest Warrior',
+        'Taunt Druid,Big Spell Mage,Control Priest,Even Warlock',
+        'Taunt Druid,Recruit Hunter,Miracle Rogue,Even Warlock',
+        'Token Druid,Odd Paladin,Even Shaman,Even Warlock',
+        'Big Spell Mage,Miracle Rogue,Shudderwock Shaman,Even Warlock',
+        'Spiteful Druid,Recruit Hunter,Miracle Rogue,Even Warlock',
+        'Taunt Druid,Miracle Rogue,Even Shaman,Even Warlock',
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
     weights = [1 for l in lineups_to_test]
@@ -399,7 +403,7 @@ if __name__ == '__main__':
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
+        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 2 + min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
