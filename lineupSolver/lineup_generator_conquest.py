@@ -334,9 +334,9 @@ if __name__ == '__main__':
         #usingEsportsArena = True
         usingEsportsArena = False
         if usingEsportsArena:
-            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.40,limitTop=100)
+            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.44,limitTop=100)
         else:
-            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.40,limitTop=30)
+            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.44,limitTop=30)
         print sorted(archetypes, key=lambda x:x.split()[-1])
         excluded = []
         if True:
@@ -350,7 +350,7 @@ if __name__ == '__main__':
 
         lineups, archetype_map = generate_lineups(archetypes)
         # FILTER LINEUPS
-        filterLineups = True
+        filterLineups = False
         if filterLineups:
             tmp = []
             for lineup in lineups:
