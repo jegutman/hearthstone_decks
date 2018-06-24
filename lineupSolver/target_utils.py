@@ -4,7 +4,7 @@ from conquest_utils import *
 
 def target(lineups_to_test, weights = None, archetypes = None, lineups = None, archetype_map = None):
     res = ""
-    win_pcts, num_games, game_count, archetypes_tmp, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0, limitTop=30)
+    win_pcts, num_games, game_count, archetypes_tmp, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.44,limitTop=30)
     if not archetypes:
         archetypes = archetypes_tmp
     if not weights:

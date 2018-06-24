@@ -8,6 +8,11 @@ from shared_utils import *
 from json_win_rates import * 
 from conquest_utils import * 
 
+import datetime
+
+def print_time():
+    print(datetime.datetime.now())
+
 if __name__ == '__main__':
 
     level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16 = None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
@@ -348,7 +353,9 @@ if __name__ == '__main__':
         archetypes = [a for a in archetypes if a not in excluded]
         win_rates_against_good = {}
 
+        print_time()
         lineups, archetype_map = generate_lineups(archetypes)
+        print_time()
         # FILTER LINEUPS
         filterLineups = False
         if filterLineups:
@@ -403,6 +410,7 @@ if __name__ == '__main__':
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
+        print_time()
         for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 2 + min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
