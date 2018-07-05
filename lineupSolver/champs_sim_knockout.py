@@ -53,46 +53,19 @@ def sim_group(decks, win_pcts, simulate_matchup):
 total_points = {}
 
 overrides = [
-    ('Big Spell Mage', 'Even Warlock', 0.67),
-    ('Big Spell Mage', 'Taunt Druid', 0.7),
-    ('Miracle Rogue', 'Even Warlock', 0.62),
-    ('Shudderwock Shaman', 'Even Warlock', 0.6),
             ]
 win_pcts = override_wr(overrides,win_pcts)
 sim_matchup, mu_pcts = get_sim_matchup(decks,win_pcts)
-num_sims = 100000
+num_sims = 300000
 firsts = {}
 seconds = {}
 for x in range(0, num_sims):
     #bracket = []
-    bracket = [0, 0, 0, 0, 0, 0, 0, 0]
-    for y in range(0, 4):
-        #print(y)
-        tmp_decks = {}
-        tmp_group = groups[y]
-        for player in (tmp_group[0], tmp_group[2], tmp_group[1], tmp_group[3]):
-            tmp_decks[player] = decks[player]
-        first, second = sim_group(tmp_decks, win_pcts=win_pcts, simulate_matchup=sim_matchup)
-        if y == 0:
-            bracket[0] = first
-            bracket[5] = second
-        elif y == 1:
-            bracket[1] = first
-            bracket[4] = second
-        elif y == 2:
-            bracket[2] = first
-            bracket[7] = second
-        elif y == 3:
-            bracket[3] = first
-            bracket[6] = second
-        #print(y)
-        #bracket.append(first)
-        #bracket.append(second)
-    #print(bracket)
+    bracket = ['A83650', 'killinallday', 'Viper', 'Bunnyhoppor']
     tmp_decks = {}
     for player in bracket:
         tmp_decks[player] = decks[player]
-    bracket_res = simulate_tournament(tmp_decks, rounds=3, win_pcts=win_pcts, simulate_matchup=sim_matchup)
+    bracket_res = simulate_tournament_ko(tmp_decks, rounds=2, win_pcts=win_pcts, simulate_matchup=sim_matchup)
     bracket_res = [i[0] for i in sorted(bracket_res.items(), key=lambda x:x[1])]
     first = bracket_res[-1]
     firsts[first] = firsts.get(first, 0) + 1

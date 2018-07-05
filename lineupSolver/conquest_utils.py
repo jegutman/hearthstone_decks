@@ -78,6 +78,15 @@ def post_ban(decks_a, decks_b, win_pcts, useGlobal=True, start=True):
             tested[(tuple_a, tuple_b)] = res
         return res
 
+def intra_match(decks_a, decks_b, win_pcts):
+    #if start==False:
+    #    assert False, (decks_a, decks_b)
+    res = 0
+    pct = get_win_pct(decks_a[0], decks_b[0], win_pcts)
+    res += pct * post_ban(decks_a[1:], decks_b[:], win_pcts, useGlobal=False, start=True)
+    res += (1-pct) * post_ban(decks_a[:], decks_b[1:], win_pcts, useGlobal=False, start=True)
+    return res
+
 
 def group_scores(scores):
     groups = []
@@ -139,6 +148,23 @@ def simulate_round(decks, scores, win_pcts, simulate_matchup=simulate_matchup):
             scores[p1] += match
             scores[p2] += (1 - match)
 
+def simulate_round_ko(decks, scores, win_pcts, simulate_matchup=simulate_matchup):
+    groups = group_scores(scores)
+    for group in groups:
+        group_size = len(group)
+        for i in range(0, group_size, 2):
+            p1 = group[i][0]
+            p2 = group[i + 1][0]
+            match = simulate_matchup(decks[p1], decks[p2], win_pcts)
+            scores[p1] += match
+            scores[p2] += (1 - match)
+    to_remove = []
+    for i in scores.keys():
+        if scores[i] == 0:
+            to_remove.append(i)
+    for i in to_remove:
+        scores.pop(i)
+
 def simulate_group(decks, group, win_pcts, simuate_matchup=simulate_matchup):
     
     # odds player wins group =
@@ -153,4 +179,13 @@ def simulate_tournament(decks, rounds, scores=None, win_pcts={},simulate_matchup
             scores[d] = 0
     for i in range(0, rounds):
         simulate_round(decks, scores, win_pcts, simulate_matchup=simulate_matchup)
+    return scores
+
+def simulate_tournament_ko(decks, rounds, scores=None, win_pcts={},simulate_matchup=simulate_matchup):
+    if scores == None:
+        scores = {}
+        for d in decks.keys():
+            scores[d] = 0
+    for i in range(0, rounds):
+        simulate_round_ko(decks, scores, win_pcts, simulate_matchup=simulate_matchup)
     return scores
