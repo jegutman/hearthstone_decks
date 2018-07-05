@@ -23,6 +23,7 @@ lineupSolver/middle.py
 lineupSolver/popular.py
 lineupSolver/sim_matchup.py
 lineupSolver/worlds
+lineupSolver/venv/
 HearthstoneJSON/
 .DS_Store
 Decklists_Copa_Finals/
