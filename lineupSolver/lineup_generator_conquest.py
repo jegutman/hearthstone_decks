@@ -346,9 +346,7 @@ if __name__ == '__main__':
         excluded = []
         if True:
             excluded += []
-            #excluded += ['Cube Warlock']
             #excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
-            #excluded += ['Odd Paladin', 'Big Spell Mage', 'Quest Rogue']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
         win_rates_against_good = {}
@@ -367,8 +365,6 @@ if __name__ == '__main__':
             lineups = tmp
         
         print "testing %s lineups" % len(lineups)
-
-        
     
         if usingEsportsArena:
             lineups_to_test = [i.split(',') for i in custom.values()]
@@ -379,7 +375,6 @@ if __name__ == '__main__':
             #    print i
             #assert False
             lineups = lineups_to_test
-
 
         #weights = [2,2,1]
         if len(args) > 0 and args[0] == 'target':
@@ -402,8 +397,8 @@ if __name__ == '__main__':
             for lu_test in lineups_to_test:
                 win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts)]
 
-        for i,j in sorted(win_rates_against_good.items())[:3]:
-            print i,j 
+        for lineup_txt, winrates in sorted(win_rates_against_good.items(), key=lambda x: x[1][0][1], reverse=True)[:3]:
+            print lineup_txt, winrates
 
         lu_strings = []
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
