@@ -1,1 +1,4 @@
+fake_useragent
 hearthstone
+pycookiecheat==0.3.5
+requests
