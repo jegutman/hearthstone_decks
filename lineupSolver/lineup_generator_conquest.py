@@ -8,6 +8,11 @@ from shared_utils import *
 from json_win_rates import * 
 from conquest_utils import * 
 
+import datetime
+
+def print_time():
+    print(datetime.datetime.now())
+
 if __name__ == '__main__':
 
     level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16 = None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
@@ -18,18 +23,22 @@ if __name__ == '__main__':
     level4 = "Secret Hunter,Big Spell Mage,Combo Priest,Cube Warlock".split(',')
 
     lineups_to_test = [
-        "Even Warlock,Control Priest,Malygos Druid,Recruit Warrior",
-        "Shudderwock Shaman,Quest Warrior,Token Druid,Cube Warlock",
-        "Even Warlock,Shudderwock Shaman,Quest Warrior,Control Priest",
-        "Recruit Hunter,Miracle Rogue,Even Warlock,Taunt Druid",
-        "Cube Warlock,Spell Hunter,Token Druid,Even Shaman",
-        "Tempo Mage,Odd Paladin,Even Shaman,Spell Hunter",
-        "Recruit Warrior,Even Warlock,Spiteful Druid,Even Shaman",
-        "Recruit Hunter,Even Warlock,Taunt Druid,Even Shaman",
-        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
-        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
-        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
-        "Odd Paladin,Odd Rogue,Even Shaman,Cube Warlock",
+        'Taunt Druid,Control Priest,Miracle Rogue,Cube Warlock',
+        'Taunt Druid,Recruit Hunter,Shudderwock Shaman,Even Warlock',
+        'Big Spell Mage,Miracle Rogue,Shudderwock Shaman,Even Warlock',
+        'Taunt Druid,Combo Priest,Shudderwock Shaman,Even Warlock',
+        'Taunt Druid,Miracle Rogue,Shudderwock Shaman,Cube Warlock',
+        'Big Spell Mage,Control Priest,Miracle Rogue,Even Warlock',
+        'Token Druid,Odd Paladin,Even Shaman,Even Warlock',
+        'Token Druid,Odd Paladin,Shudderwock Shaman,Cube Warlock',
+        'Taunt Druid,Recruit Hunter,Miracle Rogue,Shudderwock Shaman',
+        'Taunt Druid,Big Spell Mage,Shudderwock Shaman,Quest Warrior',
+        'Taunt Druid,Big Spell Mage,Control Priest,Even Warlock',
+        'Taunt Druid,Recruit Hunter,Miracle Rogue,Even Warlock',
+        'Token Druid,Odd Paladin,Even Shaman,Even Warlock',
+        'Big Spell Mage,Miracle Rogue,Shudderwock Shaman,Even Warlock',
+        'Spiteful Druid,Recruit Hunter,Miracle Rogue,Even Warlock',
+        'Taunt Druid,Miracle Rogue,Even Shaman,Even Warlock',
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
     weights = [1 for l in lineups_to_test]
@@ -330,9 +339,9 @@ if __name__ == '__main__':
         #usingEsportsArena = True
         usingEsportsArena = False
         if usingEsportsArena:
-            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.40,limitTop=100)
+            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.44,limitTop=100)
         else:
-            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.40,limitTop=30)
+            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.44,limitTop=30)
         print sorted(archetypes, key=lambda x:x.split()[-1])
         excluded = []
         if True:
@@ -344,9 +353,11 @@ if __name__ == '__main__':
         archetypes = [a for a in archetypes if a not in excluded]
         win_rates_against_good = {}
 
+        print_time()
         lineups, archetype_map = generate_lineups(archetypes)
+        print_time()
         # FILTER LINEUPS
-        filterLineups = True
+        filterLineups = False
         if filterLineups:
             tmp = []
             for lineup in lineups:
@@ -399,7 +410,8 @@ if __name__ == '__main__':
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
+        print_time()
+        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 2 + min([i[1] for i in x[1]]))[-10:]:
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))

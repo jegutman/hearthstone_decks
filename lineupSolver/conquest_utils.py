@@ -78,6 +78,7 @@ def post_ban(decks_a, decks_b, win_pcts, useGlobal=True, start=True):
             tested[(tuple_a, tuple_b)] = res
         return res
 
+
 def group_scores(scores):
     groups = []
     group = []
@@ -137,6 +138,13 @@ def simulate_round(decks, scores, win_pcts, simulate_matchup=simulate_matchup):
             match = simulate_matchup(decks[p1], decks[p2], win_pcts)
             scores[p1] += match
             scores[p2] += (1 - match)
+
+def simulate_group(decks, group, win_pcts, simuate_matchup=simulate_matchup):
+    
+    # odds player wins group =
+    # % win first game * ( % win one of 2nd game or 3rd game)
+    # + % lose first game * % win 2nd game and 3rd game
+    pass
 
 def simulate_tournament(decks, rounds, scores=None, win_pcts={},simulate_matchup=simulate_matchup):
     if scores == None:

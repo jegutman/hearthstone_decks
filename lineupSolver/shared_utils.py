@@ -55,39 +55,57 @@ def class_sort(a):
 def get_lineup(decks, archetype_map):
     return tuple([archetype_map[i] for i in decks])
 
+def get_class_decks(archetypes, deck_class):
+    return [i for i in archetypes if i.split(' ')[-1] == deck_class]
+
 def generate_lineups(archetypes, unbeatable=False, num_classes=4):
     ############ NEW METHOD ##########
-    if unbeatable:
-        archetypes_tmp = archetypes[:]
-        archetypes = archetypes_tmp
-        archetype_map = {}
-        for i in range(0, len(archetypes)):
-            archetype_map[i] = archetypes[i]
-        #keys = sorted(archetype_map.keys())
-        #tmp_res = list(itertools.combinations(keys,3))
-        tmp_res = list(itertools.combinations(archetypes,3))
-        archetypes.append('Unbeatable')
-        archetype_map[archetypes.index('Unbeatable')] = 'Unbeatable'
-        lineups = []
-        for decks in tmp_res:
-            classes = [x.split()[-1] for x in decks]
-            if len(set(classes)) == 3:
-                if decks not in lineups:
-                    lineups.append(decks+('Unbeatable', ))
+    if num_classes < 9:
+        if unbeatable:
+            archetypes_tmp = archetypes[:]
+            archetypes = archetypes_tmp
+            archetype_map = {}
+            for i in range(0, len(archetypes)):
+                archetype_map[i] = archetypes[i]
+            #keys = sorted(archetype_map.keys())
+            #tmp_res = list(itertools.combinations(keys,3))
+            tmp_res = list(itertools.combinations(archetypes,3))
+            archetypes.append('Unbeatable')
+            archetype_map[archetypes.index('Unbeatable')] = 'Unbeatable'
+            lineups = []
+            for decks in tmp_res:
+                classes = [x.split()[-1] for x in decks]
+                if len(set(classes)) == 3:
+                    if decks not in lineups:
+                        lineups.append(decks+('Unbeatable', ))
+        else:
+            archetypes_tmp = archetypes[:]
+            archetypes = archetypes_tmp
+            archetype_map = {}
+            for i in range(0, len(archetypes)):
+                archetype_map[i] = archetypes[i]
+            keys = sorted(archetype_map.keys())
+            tmp_res = list(itertools.combinations(keys,num_classes))
+            lineups = []
+            for decks in tmp_res:
+                #classes = [x.split()[-1] for x in decks]
+                if check_lineup(decks, archetype_map, num_classes):
+                    #if decks not in lineups:
+                    lineups.append(decks)
     else:
-        archetypes_tmp = archetypes[:]
-        archetypes = archetypes_tmp
-        archetype_map = {}
-        for i in range(0, len(archetypes)):
-            archetype_map[i] = archetypes[i]
-        keys = sorted(archetype_map.keys())
-        tmp_res = list(itertools.combinations(keys,num_classes))
-        lineups = []
-        for decks in tmp_res:
-            #classes = [x.split()[-1] for x in decks]
-            if check_lineup(decks, archetype_map, num_classes):
-                #if decks not in lineups:
-                lineups.append(decks)
+        classes = ['Druid', 'Mage', 'Shaman', 'Priest', 'Hunter', 'Paladin', 'Rogue', 'Warrior', 'Warlock']
+        res = []
+        for a in get_class_decks(archetypes, 'Druid'):
+            for b in get_class_decks(archetypes, 'Hunter'):
+                for c in get_class_decks(archetypes, 'Mage'):
+                    for d in get_class_decks(archetypes, 'Paladin'):
+                        for e in get_class_decks(archetypes, 'Priest'):
+                            for f in get_class_decks(archetypes, 'Rogue'):
+                                for g in get_class_decks(archetypes, 'Shaman'):
+                                    for h in get_class_decks(archetypes, 'Warlock'):
+                                        for i in get_class_decks(archetypes, 'Warrior'):
+                                            res.append([a,b,c,d,e,f,g,h,i])
+        return res
     return lineups, archetype_map
 
 def get_win_pct(a,b, win_pcts):
