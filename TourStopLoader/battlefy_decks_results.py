@@ -20,12 +20,6 @@ def print_player(player):
         for j in i[-1]:
             print('    ',j)
 
-
-def write_to_csv(deck_dict, code_dest):
-    with open(code_dest, 'w') as f:
-        for name in deck_dict:
-            f.write('{},{}\n'.format(name, ','.join(deck_dict[name])))
-
 def parse_deck(text):
     for i in range(3):
         try:
@@ -38,10 +32,7 @@ def parse_deck(text):
 player_decks = {}
 seeds = {}
 
-def matches_from_battlefy(battlefy_url, dest, ordered=False, code_dest=None):
-    if ordered:
-        setup_dirs(dest)
-    deck_dict = {}
+def matches_from_battlefy(battlefy_url, code_dest=None):
     valid = re.compile(r"^(?:https://)?\/?battlefy.com\/([^:/\s]+)/([^:\/\s]+)/([\w\d]+)/stage/([\w\d]+)/bracket/(\d*)$")
     bracketf= 'https://dtmwra1jsgyb0.cloudfront.net/stages/{}/matches'
     matchf = 'https://dtmwra1jsgyb0.cloudfront.net/matches/{}?extend%5Btop.team%5D%5Bplayers%5D%5Buser%5D=true&extend%5Bbottom.team%5D%5Bplayers%5D%5Buser%5D=true'
@@ -52,12 +43,9 @@ def matches_from_battlefy(battlefy_url, dest, ordered=False, code_dest=None):
     groups = matches.groups()
     org = groups[0]
     event = groups[1]
-    eventcode = groups[2]
     stagecode = groups[3]
-    roundNum = groups[4]
     bracket_url = bracketf.format(stagecode)
     data = json.loads(requests.get(bracket_url).text)
-    deck_dict = {}
 
     return data
 
@@ -120,20 +108,26 @@ def parse_match(match):
             if not p1_decks:
                 team = matchdata[0]['top']
                 if 'team' in team:
-                    decks = team['team']['players'][0]['gameAttributes']['deckStrings']
-                    for decklist in decks:
-                        deck = parse_deck(decklist)
-                        if deck!=None:
-                            p1_decks.append(deck.as_deckstring)
+                    try:
+                        decks = team['team']['players'][0]['gameAttributes']['deckStrings']
+                        for decklist in decks:
+                            deck = parse_deck(decklist)
+                            if deck!=None:
+                                p1_decks.append(deck.as_deckstring)
+                    except:
+                        pass
                 player_decks[p1] = p1_decks
             if not p2_decks:
                 team = matchdata[0]['bottom']
                 if 'team' in team:
-                    decks = team['team']['players'][0]['gameAttributes']['deckStrings']
-                    for decklist in decks:
-                        deck = parse_deck(decklist)
-                        if deck!=None:
-                            p2_decks.append(deck.as_deckstring)
+                    try:
+                        decks = team['team']['players'][0]['gameAttributes']['deckStrings']
+                        for decklist in decks:
+                            deck = parse_deck(decklist)
+                            if deck!=None:
+                                p2_decks.append(deck.as_deckstring)
+                    except:
+                        pass
                 player_decks[p2] = p2_decks
 
     if 'bannedClass' in match['top']:
@@ -161,41 +155,20 @@ def parse_match(match):
     
     return (date, round_number, p1, p2, result, p1_score, p2_score, games)
         
-#bracket_url = 'https://battlefy.com/hct-tokyo-tour-stop/hct-tokyo-tour-stop-global-open-qualifier-1-america-server/5acf16cb5afa0d034c3cfcf2/stage/5b2dabb7a11aa6039e8032a5/bracket/'
-#bracket_url = 'https://battlefy.com/hct-tokyo-tour-stop/hct-tokyo-tour-stop-global-qualifier-2-america-server/5ad6fb258fbdcf0355517c35/stage/5b36e2299a4af103b49bff0d/bracket/'
-#bracket_url = 'https://battlefy.com/blizzardzhtw/hct-tour-stop-taipei-global-open-qualifier-america-server/5aa883a4e20b840351ff2fa7/stage/5ac074da60cd4803480a2f79/bracket/'
-#bracket_url = 'https://battlefy.com/hearthstone-esports/2018-hct-asia-pacific-summer-playoffs/5acfd7384f598e034a21c245/stage/5aff76a9a22b3a03b613041f/bracket/'
-#bracket_url = 'https://battlefy.com/esl-brasil/hearthstone-copa-america-summer-season-global-qualifier/5a4e71173b5ae7038a45d8b4/stage/5a57b4d5f3eae5035dee3642/bracket/'
-#bracket_url = 'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-global-qualifier/5b3507da2c185e0397195db8/stage/5b4382bdd4facf039b6922f5/bracket/'
-bracket_url = 'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-global-qualifier/5b3507da2c185e0397195db8/stage/5b35088373abf503c89a2351/bracket/'
-#bracket_urls = [
-#    'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-global-qualifier/5b3507da2c185e0397195db8/stage/5b43836852891c03e07ea9ea/bracket/', 
-#    'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-global-qualifier/5b3507da2c185e0397195db8/stage/5b35088373abf503c89a2351/bracket/',
-#    'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-global-qualifier/5b3507da2c185e0397195db8/stage/5b4382bdd4facf039b6922f5/bracket/',
-#    'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-global-qualifier/5b3507da2c185e0397195db8/stage/5b4383c4439a3803c73d7040/bracket/',
-#    ]
-#bracket_urls = [
-#    'https://battlefy.com/evox/hct-tour-stop-italy-powered-by-zotac/5aa7d09f0b25e50393914521/stage/5aa7d0ba0f99cf034ea52f06/bracket/9',
-#]
-bracket_urls = [
-    'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-1/5b350c75b36e6203a5e2eb02/stage/5b45420e13c25703b3834359/bracket/',
-    'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-1/5b350c75b36e6203a5e2eb02/stage/5b454207b394d103b9bad75a/bracket/',
-    'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-1/5b350c75b36e6203a5e2eb02/stage/5b45422ae2eb9603ba9a99da/bracket/',
-    'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-1/5b350c75b36e6203a5e2eb02/stage/5b4542678c67fb03e0534cb5/bracket/',
-    ]
-matches = []
-failed = []
-count = 0
-player_matches = {}
-for bracket_url in bracket_urls:
-    data = matches_from_battlefy(bracket_url, 'decks.csv',ordered=False,code_dest='decks.csv')
+def process_battlefy_url(bracket_url):
+    matches = []
+    failed = []
+    count = 0
+    player_matches = {}
+
+    #for bracket_url in bracket_urls:
+
+    data = matches_from_battlefy(bracket_url)
 
     for i in data:
         count += 1
-        print(count)
         match = parse_match(i)
         if not match:
-            print('failed')
             failed.append(i)
         else:
             matches.append(match)
@@ -204,13 +177,14 @@ for bracket_url in bracket_urls:
             p2 = p2.split('#')[0].strip()
             player_matches[p1] = player_matches.get(p1, []) + [match]
             player_matches[p2] = player_matches.get(p2, []) + [match]
+    return decks, matches, player_matches
             
         #try:
         #    p1 = i['top']['team']['name']
         #    p2 = i['bottom']['team']['name']
         #    try:
         #        seeds[i['top']['seedNumber']] = p1
-        #        seeds[i['bottom']['seedNumber']] = p1
+        #        seeds[i['bottom']['seedNumber']] = p2
         #    except:
         #        pass
         #    result = 'W' if i['top']['winner'] else 'L'
@@ -218,13 +192,37 @@ for bracket_url in bracket_urls:
         #    failed.append(i)
         #    continue
         #matches.append((p1,p2,result))
-wins = {}
-losses = {}
-for x in player_matches.keys():
-    total_losses = sum([1-i[4] if i[2] == x else i[4] for i in player_matches[x]])
-    total_wins = sum([i[4] if i[2] == x else 1-i[4] for i in player_matches[x]])
-    wins[x] = total_wins
-    losses[x] = total_losses
-    if total_losses == 0 and total_wins >5:
-        print(x)
+    #wins = {}
+    #losses = {}
+    #for x in player_matches.keys():
+    #    total_losses = sum([1-i[4] if i[2] == x else i[4] for i in player_matches[x]])
+    #    total_wins = sum([i[4] if i[2] == x else 1-i[4] for i in player_matches[x]])
+    #    wins[x] = total_wins
+    #    losses[x] = total_losses
+    #    if total_losses == 0 and total_wins >5:
+    #        print(x)
 
+if __name__ == '__main__':
+    urls = [
+        'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-2/5b3510362c185e0397195e3f/stage/5b4702bbdd778603c8007db6/bracket/',
+        'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-2/5b3510362c185e0397195e3f/stage/5b4702ce5dbd8c03a02a0dd1/bracket/',
+        'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-2/5b3510362c185e0397195e3f/stage/5b4702dd1c4aa703a671d690/bracket/',
+        'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-2/5b3510362c185e0397195e3f/stage/5b4702fddc22e303aad293e9/bracket/',
+    ]
+    player_matches = {}
+    decks = {}
+    for url in urls:
+        tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(url)
+        # this is not quite right because could be lists to append to
+        player_matches.update(tmp_player_matches)
+        decks.update(tmp_decks)
+
+    wins = {}
+    losses = {}
+    for x in player_matches.keys():
+        total_losses = sum([1-i[4] if i[2] == x else i[4] for i in player_matches[x]])
+        total_wins = sum([i[4] if i[2] == x else 1-i[4] for i in player_matches[x]])
+        wins[x] = total_wins
+        losses[x] = total_losses
+        if total_losses == 0:
+            print(x)
