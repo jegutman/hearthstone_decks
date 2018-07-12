@@ -33,6 +33,10 @@ def get_filename(ranks, time):
     datestr = datetime.datetime.now().strftime("%Y%m%d")
     return basedir + '/lineupSolver/win_rates/hsreplay%(datestr)s_%(ranks)s_%(time)s.json' % vars()
 
+def get_archetype_filename():
+    datestr = datetime.datetime.now().strftime("%Y%m%d")
+    return basedir + '/lineupSolver/win_rates/archetypes_%(datestr)s.json' % vars()
+
 def get_all_filename(ranks, time):
     ranks, time = name_map[ranks], name_map[time]
     datestr = datetime.datetime.now().strftime("%Y%m%d")
@@ -45,6 +49,15 @@ url = 'https://hsreplay.net/analytics/query/head_to_head_archetype_matchups/?Gam
 url_base = 'http://hsreplay.net'
 
 ua = UserAgent()
+
+archetypes_url = 'https://hsreplay.net/api/v1/archetypes/?format=json'
+htmlContent = requests.get(archetypes_url)
+filename = get_archetype_filename()
+output = open(filename, 'w')
+output.write(htmlContent.text)
+print("writing %(filename)s" % locals())
+output.close()
+
 
 #s = requests.Session()
 header = {'User-Agent':str(ua.chrome)}
