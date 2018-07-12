@@ -154,6 +154,54 @@ def parse_match(match):
     p2_score = match['bottom']['score']
     
     return (date, round_number, p1, p2, result, p1_score, p2_score, games)
+
+def get_decks(match):
+    p1_decks = []
+    p2_decks = []
+    matchf = 'https://dtmwra1jsgyb0.cloudfront.net/matches/{}?extend%5Btop.team%5D%5Bplayers%5D%5Buser%5D=true&extend%5Bbottom.team%5D%5Bplayers%5D%5Buser%5D=true'
+    if 'isComplete' not in match.keys():
+        return None
+    elif match['isBye']:
+        return None
+    if not match['top'] or not match['bottom']:
+        return None
+    if 'team' not in match['top']:
+        return None
+    if 'team' not in match['bottom']:
+        return None
+    try:
+        for field in match['top']['team']['customFields']:
+            deck_match = deckstring_re.findall(field['value'])
+            if deck_match:
+                p1_decks.append(deck_match[0])
+        for field in match['bottom']['team']['customFields']:
+            deck_match = deckstring_re.findall(field['value'])
+            if deck_match:
+                p2_decks.append(deck_match[0])
+    except:
+        r = requests.get(matchf.format(match['_id']))
+        matchdata = json.loads(r.text)
+        team = matchdata[0]['top']
+        if 'team' in team:
+            try:
+                decks = team['team']['players'][0]['gameAttributes']['deckStrings']
+                for decklist in decks:
+                    deck = parse_deck(decklist)
+                    if deck!=None:
+                        p1_decks.append(deck.as_deckstring)
+            except:
+                pass
+        team = matchdata[0]['bottom']
+        if 'team' in team:
+            try:
+                decks = team['team']['players'][0]['gameAttributes']['deckStrings']
+                for decklist in decks:
+                    deck = parse_deck(decklist)
+                    if deck!=None:
+                        p2_decks.append(deck.as_deckstring)
+            except:
+                pass
+    return p1_decks, p2_decks
         
 def process_battlefy_url(bracket_url):
     matches = []
@@ -164,12 +212,13 @@ def process_battlefy_url(bracket_url):
     #for bracket_url in bracket_urls:
 
     data = matches_from_battlefy(bracket_url)
+    decks = {}
 
-    for i in data:
+    for match_data in data:
         count += 1
-        match = parse_match(i)
+        match = parse_match(match_data)
         if not match:
-            failed.append(i)
+            failed.append(match_data)
         else:
             matches.append(match)
             p1, p2 = match[2], match[3]
@@ -177,6 +226,11 @@ def process_battlefy_url(bracket_url):
             p2 = p2.split('#')[0].strip()
             player_matches[p1] = player_matches.get(p1, []) + [match]
             player_matches[p2] = player_matches.get(p2, []) + [match]
+            if p1 not in decks or p2 not in decks:
+                p1_decks, p2_decks = get_decks(match_data)
+                decks[p1] = p1_decks
+                decks[p2] = p2_decks
+                
     return decks, matches, player_matches
             
         #try:
