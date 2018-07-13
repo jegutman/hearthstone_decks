@@ -11,6 +11,8 @@ import json
 import subprocess
 
 import discord
+import logging
+
 from handlers.message_handler import MessageHandler
 
 
@@ -23,6 +25,11 @@ def main():
         config = json.load(f)
 
     client = discord.Client()
+    logger = logging.getLogger('discord')
+    logger.setLevel(logging.DEBUG)
+    handler = logging.FileHandler(filename='logs/discord.log', encoding='utf-8', mode='w')
+    handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+    logger.addHandler(handler)
     message_handler = MessageHandler(config, client)
 
     @client.event

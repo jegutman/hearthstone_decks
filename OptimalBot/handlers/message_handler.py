@@ -157,9 +157,9 @@ class MessageHandler:
             return True
 
         if message.content.startswith(CMD_COUNTDOWN):
-            season_end = "07-01-2018 02:00:00"
-            season_end_asia = "06-30-2018 11:00:00"
-            season_end_eu = "06-30-2018 18:00:00"
+            season_end = "08-01-2018 02:00:00"
+            season_end_asia = "07-31-2018 11:00:00"
+            season_end_eu = "07-31-2018 18:00:00"
             tmp = message.content.split(' ')
             if len(tmp) == 1:
                 end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
@@ -267,6 +267,7 @@ class MessageHandler:
         response = self.sim_handler.handle_lead(
             message.content[len(cmd):], is_conquest
         )
+        await self.respond(message, response, my_message)
 
     async def data_check(self, message, cmd, my_message):
         response = self.sim_handler.data_check()
