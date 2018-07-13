@@ -91,6 +91,7 @@ def parse_smash_tournament(tournament_name):
     bracket_url = 'https://api.smash.gg/phase_group/%(bracket_id)s?expand[]=entrants&expand[]=sets'
     tournament_data = json.loads(requests.get(tournament_url % locals()).text)
     phase_map = {}
+    player_matches = {}
     url_slug = 'https://smash.gg/' + tournament_data['entities']['event'][0]['slug'].replace('event', 'events') + '/brackets/%(phase_id)s'
     for phase_data in tournament_data['entities']['phase']:
         phase_map[phase_data['id']] = phase_data['name']
@@ -118,10 +119,11 @@ def parse_smash_tournament(tournament_name):
             #game_time = datetime.fromtimestamp(set_data['completedAt'])
             #date = game_time.strftime("%Y_%m_%d %H:%M:%S")
             round_num = set_data['round']
-            match_res = (game_time, bracket_name, round_num, p1, p2, p1_score, p2_score)
+            games = []
+            match_res = (game_time, bracket_name, round_num, p1, p2, p1_score, p2_score, games)
             matches.append(match_res)
             #print(match_res)
-    return decks, matches
+    return decks, matches, player_matches
 
             # entrant1Id, entrant2Id, entrant1Score,entrant2Score, date
 

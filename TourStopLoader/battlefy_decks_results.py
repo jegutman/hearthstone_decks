@@ -5,12 +5,15 @@ sys.path.append(basedir)
 sys.path.append(basedir + '/lineupSolver')
 #from backports import csv
 from hearthstone.deckstrings import Deck
-from hearthstone.deckstrings import FormatType
 import json
 from deck_manager import *
 import re
 import requests
-from html.parser import HTMLParser
+from label_archetype import label_archetype
+from conquest_utils import calculate_win_rate
+from json_win_rates import *
+
+win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
 
 deckstring_re = re.compile('(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}){12,}')
 
@@ -265,11 +268,14 @@ if __name__ == '__main__':
     ]
     player_matches = {}
     decks = {}
+    archetypes = {}
+    all_matches = []
     for url in urls:
         tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(url)
         # this is not quite right because could be lists to append to
         player_matches.update(tmp_player_matches)
         decks.update(tmp_decks)
+        all_matches += tmp_matches
 
     wins = {}
     losses = {}
@@ -280,3 +286,27 @@ if __name__ == '__main__':
         losses[x] = total_losses
         if total_losses == 0:
             print(x)
+    for player, lineup in decks.items():
+        archetypes[player] = []
+        for deck in lineup:
+            tmp = EasyDeck(deck)
+            label = label_archetype(tmp)
+            if label:
+                archetypes[player].append(label)
+    for date, round_number, p1, p2, result, p1_score, p2_score, games in all_matches:
+        p1_lineup = archetypes[p1]
+        p2_lineup = archetypes[p2]
+        if len(p1_lineup) == 4 and len(p2_lineup) == 4:
+            print(",".join([str(i) for i in [p1, p2, calculate_win_rate(p1_lineup, p2_lineup, win_pcts), p1_score, p2_score]]))
+
+    for date, round_number, p1, p2, result, p1_score, p2_score, games in all_matches:
+        p1_lineup = archetypes[p1]
+        p2_lineup = archetypes[p2]
+        if len(p1_lineup) == 4 and len(p2_lineup) == 4:
+            wr = calculate_win_rate(p1_lineup, p2_lineup, win_pcts)
+            if wr > 0.65 or wr < 0.35 and wr != 0 and wr != 1:
+                res = 'W' if p1_score > p2_score else 'L'
+                upset = ''
+                if res == 'W' and wr < 0.5: upset = 'UPSET'
+                if res == 'L' and wr > 0.5: upset = 'UPSET'
+                print(",".join([str(i) for i in [p1, p2, wr, res, upset]]))
