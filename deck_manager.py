@@ -80,6 +80,8 @@ class EasyDeck():
 
     def get_class(self):
         try:
+            if self.deck.heroes[0] == 1325: 
+                return 'Mage'
             return cards.get(self.deck.heroes[0])['cardClass'].capitalize()
         except:
             return "Unknown Hero:" + str(self.deck.heroes[0])
