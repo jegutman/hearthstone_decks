@@ -136,7 +136,6 @@ if __name__ == '__main__':
         "Malygos Druid,Odd Rogue,Shudderwock Shaman,Even Warlock",
         "Spiteful Druid,Tempo Mage,Odd Rogue,Even Shaman",
         "Malygos Druid,Big Spell Mage,Even Warlock,Recruit Warrior",
-        "Token Druid,Even Shaman,Even Warlock",
         "Token Druid,Odd Paladin,Odd Rogue,Zoo Warlock",
         "Big Druid,Odd Paladin,Odd Rogue,Zoo Warlock",
         "Odd Paladin,Odd Rogue,Big Spell Mage,Even Warlock",
@@ -150,8 +149,6 @@ if __name__ == '__main__':
         "Recruit Hunter,Odd Rogue,Even Shaman,Zoo Warlock",
         "Malygos Druid,Miracle Rogue,Big Spell Mage,Even Warlock",
         "Big Druid,Quest Rogue,Shudderwock Shaman,Even Warlock",
-        "Taunt Druid,Shudderwock Shaman,Even Warlock",
-        "Spiteful Druid,Spell Hunter,Zoo Warlock",
         "Odd Paladin,Shudderwock Shaman,Zoo Warlock,Quest Warrior",
         "Token Druid,Odd Paladin,Odd Rogue,Zoo Warlock",
         "Token Druid,Odd Paladin,Even Shaman,Cube Warlock",
@@ -419,7 +416,13 @@ if __name__ == '__main__':
         win_rates_against_good = {}
 
         print_time()
-        lineups, archetype_map = generate_lineups(archetypes)
+        additional_archetypes = []
+        for lu_test in lineups_to_test:
+            for a in lu_test:
+                if a not in archetypes:
+                    print("Rare Archetypes: %s" % a)
+                    additional_archetypes.append(a)
+        lineups, archetype_map = generate_lineups(archetypes, additional_archetypes=additional_archetypes)
         inverse_map = {}
         for i,j in archetype_map.items():
             inverse_map[j] = i
