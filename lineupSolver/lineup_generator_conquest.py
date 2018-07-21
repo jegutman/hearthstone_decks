@@ -17,85 +17,143 @@ if __name__ == '__main__':
 
     level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16 = None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
 
-    #level1 = "Secret Mage,Big Priest,Cube Warlock,Murloc Paladin".split(',')
-    level2 = "Cube Warlock,Spell Hunter,Jade Druid,Silver Hand Paladin".split(',')
-    level3 = "Silver Hand Paladin,Spell Hunter,Cube Warlock,Combo Priest".split(',')
-    level4 = "Secret Hunter,Big Spell Mage,Combo Priest,Cube Warlock".split(',')
-
     lineups_to_test = [
-        "Big Spell Mage,Even Warlock,Shudderwock Shaman,Taunt Druid",
-        "Big Spell Mage,Malygos Druid,Shudderwock Shaman,Quest Warrior",
-        "Big Spell Mage,Miracle Rogue,Token Druid,Even Warlock",
-        "Big Spell Mage,Odd Paladin,Odd Rogue,Malygos Druid",
-        "Big Spell Mage,Taunt Druid,Quest Priest,Shudderwock Shaman",
-        "Combo Priest,Even Shaman,Token Druid,Cube Warlock",
-        "Combo Priest,Even Warlock,Miracle Rogue,Taunt Druid",
-        "Combo Priest,Taunt Druid,Miracle Rogue,Even Warlock",
-        "Control Priest,Even Warlock,Taunt Druid,Miracle Rogue",
-        "Control Warlock,Quest Warrior,Malygos Druid,Control Priest",
-        "Cube Warlock,Malygos Druid,Miracle Rogue,Control Priest",
-        "Cube Warlock,Miracle Rogue,Shudderwock Shaman,Taunt Druid",
-        "Even Shaman,Even Warlock,Token Druid,Odd Paladin",
-        "Even Shaman,Miracle Rogue,Spiteful Druid,Cube Hunter",
-        "Even Shaman,Token Druid,Even Warlock,Odd Paladin",
-        "Even Shaman,Token Druid,Even Warlock,Odd Paladin",
-        "Even Warlock,Miracle Rogue,Recruit Hunter,Even Shaman",
-        "Even Warlock,Quest Rogue,Spiteful Druid,Shudderwock Shaman",
-        "Even Warlock,Quest Warrior,Malygos Druid,Control Priest",
-        "Even Warlock,Shudderwock Shaman,Big Spell Mage,Miracle Rogue",
-        "Even Warlock,Token Druid,Big Spell Mage,Even Shaman",
-        "Even Warlock,Token Druid,Even Shaman,Odd Paladin",
-        "Malygos Druid,Big Spell Mage,Even Warlock,Shudderwock Shaman",
-        "Malygos Druid,Big Spell Mage,Odd Paladin,Odd Rogue",
-        "Malygos Druid,Control Priest,Even Warlock,Recruit Warrior",
-        "Malygos Druid,Control Priest,Odd Paladin,Odd Rogue",
-        "Malygos Druid,Even Shaman,Odd Paladin,Odd Rogue",
-        "Malygos Druid,Odd Rogue,Control Priest,Odd Paladin",
-        "Malygos Druid,Odd Rogue,Midrange Hunter,Odd Paladin",
-        "Malygos Druid,Odd Rogue,Odd Paladin,Big Spell Mage",
-        "Malygos Druid,Odd Rogue,Odd Paladin,Midrange Hunter",
-        "Midrange Hunter,Odd Rogue,Malygos Druid,Odd Paladin",
-        "Miracle Rogue,Big Spell Mage,Recruit Hunter,Quest Druid",
-        "Miracle Rogue,Even Warlock,Shudderwock Shaman,Spiteful Druid",
-        "Miracle Rogue,Recruit Hunter,Even Warlock,Even Shaman",
-        "Miracle Rogue,Taunt Druid,Shudderwock Shaman,Even Warlock",
-        "Odd Hunter,Odd Paladin,Tempo Mage,Odd Rogue",
-        "Odd Hunter,Tempo Mage,Even Paladin,Odd Rogue",
-        "Odd Paladin,Even Shaman,Odd Rogue,Token Druid",
-        "Odd Paladin,Even Shaman,Token Druid,Even Warlock",
-        "Odd Paladin,Even Shaman,Token Druid,Odd Rogue",
-        "Odd Paladin,Odd Rogue,Even Shaman,Token Druid",
-        "Odd Paladin,Token Druid,Even Shaman,Even Warlock",
-        "Odd Paladin,Token Druid,Odd Rogue,Even Shaman",
-        "Odd Paladin,Token Druid,Odd Rogue,Even Shaman",
-        "Odd Rogue,Odd Paladin,Control Priest,Malygos Druid",
-        "Odd Rogue,Odd Paladin,Spell Hunter,Mill Druid",
-        "Odd Rogue,Tempo Mage,Odd Hunter,Even Paladin",
-        "Odd Warrior,Even Warlock,Control Priest,Malygos Druid",
-        "Quest Warrior,Control Priest,Token Druid,Even Warlock",
-        "Quest Warrior,Even Warlock,Big Spell Mage,Taunt Druid",
-        "Shudderwock Shaman,Cube Warlock,Combo Priest,Taunt Druid",
-        "Shudderwock Shaman,Even Warlock,Recruit Hunter,Taunt Druid",
-        "Shudderwock Shaman,Malygos Druid,Control Priest,Miracle Rogue",
-        "Shudderwock Shaman,Recruit Hunter,Taunt Druid,Even Warlock",
-        "Shudderwock Shaman,Taunt Druid,Recruit Hunter,Cube Warlock",
-        "Spiteful Druid,Cube Warlock,Tempo Rogue,Recruit Hunter",
-        "Spiteful Druid,Miracle Rogue,Even Warlock,Shudderwock Shaman",
-        "Taunt Druid,Control Priest,Cube Warlock,Miracle Rogue",
-        "Taunt Druid,Control Warlock,Control Priest,Quest Warrior",
-        "Taunt Druid,Even Warlock,Control Priest,Tempo Rogue",
-        "Taunt Druid,Even Warlock,Miracle Rogue,Shudderwock Shaman",
-        "Taunt Druid,Even Warlock,Shudderwock Shaman,Big Spell Mage",
-        "Taunt Druid,Quest Rogue,Shudderwock Shaman,Cube Warlock",
-        "Taunt Druid,Shudderwock Shaman,Even Warlock,Combo Priest",
-        "Taunt Druid,Shudderwock Shaman,Miracle Rogue,Big Spell Mage",
-        "Tempo Mage,Midrange Hunter,Even Paladin,Odd Rogue",
-        "Tempo Mage,Miracle Rogue,Shudderwock Shaman,Spiteful Druid",
-        "Tempo Mage,Recruit Hunter,Miracle Rogue,Spiteful Druid",
-        "Token Druid,Even Shaman,Odd Paladin,Even Warlock",
-        "Token Druid,Even Warlock,Even Shaman,Odd Paladin",
-        "Token Druid,Even Warlock,Odd Paladin,Even Shaman",
-        "Token Druid,Quest Warrior,Even Warlock,Control Priest",
+        "Malygos Druid,Quest Rogue,Shudderwock Shaman,Cube Warlock",
+        "Malygos Druid,Control Priest,Shudderwock Shaman,Even Warlock",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Taunt Druid,Shudderwock Shaman,Cube Warlock,Quest Warrior",
+        "Token Druid,Odd Paladin,Odd Rogue,Even Warlock",
+        "Malygos Druid,Big Spell Mage,Even Warlock,Quest Warrior",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Big Druid,Deathrattle Hunter,Miracle Rogue,Even Warlock",
+        "Token Druid,Murloc Paladin,Zoo Warlock,Quest Warrior",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Malygos Druid,Odd Paladin,Control Priest,Odd Rogue",
+        "Malygos Druid,Quest Rogue,Shudderwock Shaman,Even Warlock",
+        "Malygos Druid,Odd Paladin,Odd Rogue,Quest Warrior",
+        "Malygos Druid,Deathrattle Hunter,Shudderwock Shaman,Even Warlock",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Control Priest,Shudderwock Shaman,Control Warlock,Quest Warrior",
+        "Malygos Druid,Deathrattle Hunter,Big Spell Mage,Even Warlock",
+        "Big Druid,Deathrattle Hunter,Murloc Mage,Zoo Warlock",
+        "Token Druid,Shudderwock Shaman,Cube Warlock,Quest Warrior",
+        "Midrange Hunter,Odd Rogue,Even Shaman,Even Warlock",
+        "Big Druid,Miracle Rogue,Shudderwock Shaman,Even Warlock",
+        "Spell Hunter,Murloc Mage,Miracle Rogue,Cube Warlock",
+        "Taunt Druid,Control Priest,Shudderwock Shaman,Cube Warlock",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Big Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Big Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Deathrattle Hunter,Tempo Mage,Odd Rogue,Even Warlock",
+        "Big Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Malygos Druid,Control Priest,Shudderwock Shaman,Even Warlock",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Control Priest,Shudderwock Shaman,Control Warlock,Recruit Warrior",
+        "Malygos Druid,Elemental Mage,Tempo Rogue,Overload Shaman",
+        "Combo Priest,Miracle Rogue,Big Spell Mage,Zoo Warlock",
+        "Malygos Druid,Control Priest,Shudderwock Shaman,Even Warlock",
+        "Token Druid,Miracle Rogue,Shudderwock Shaman,Even Warlock",
+        "Spell Hunter,Odd Paladin,Even Shaman,Quest Warrior",
+        "Token Druid,Shudderwock Shaman,Cube Warlock,Quest Warrior",
+        "Malygos Druid,Control Priest,Shudderwock Shaman,Even Warlock",
+        "Malygos Druid,Miracle Rogue,Big Spell Mage,Even Warlock",
+        "Token Druid,Even Shaman,Cube Warlock,Quest Warrior",
+        "Deathrattle Hunter,Odd Paladin,Big Spell Mage,Even Warlock",
+        "Token Druid,Shudderwock Shaman,Even Warlock,Quest Warrior",
+        "Malygos Druid,Shudderwock Shaman,Even Warlock,Quest Warrior",
+        "Big Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Malygos Druid,Odd Rogue,Even Warlock,Quest Warrior",
+        "Malygos Druid,Resurrect Priest,Miracle Rogue,Cube Warlock",
+        "Malygos Druid,Combo Priest,Miracle Rogue,Even Warlock",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Malygos Druid,Odd Paladin,Control Priest,Odd Rogue",
+        "Big Druid,Miracle Rogue,Shudderwock Shaman,Cube Warlock",
+        "Token Druid,Odd Rogue,Shudderwock Shaman,Even Warlock",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Token Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Token Druid,Odd Paladin,Even Shaman,Even Warlock",
+        "Control Priest,Tempo Rogue,Big Spell Mage,Control Warlock",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Taunt Druid,Control Priest,Shudderwock Shaman,Cube Warlock",
+        "Big Druid,Spell Hunter,Miracle Rogue,Cube Warlock",
+        "Token Druid,Odd Rogue,Even Shaman,Cube Warlock",
+        "Malygos Druid,Control Priest,Cube Warlock,Quest Warrior",
+        "Malygos Druid,Deathrattle Hunter,Big Spell Mage,Even Warlock",
+        "Token Druid,Odd Paladin,Odd Rogue,Zoo Warlock",
+        "Malygos Druid,Control Priest,Shudderwock Shaman,Cube Warlock",
+        "Token Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Taunt Druid,Control Priest,Cube Warlock,Quest Warrior",
+        "Malygos Druid,Elemental Mage,Control Priest,Quest Warrior",
+        "Malygos Druid,Odd Paladin,Control Priest,Odd Rogue",
+        "Token Druid,Odd Rogue,Even Warlock,Quest Warrior",
+        "Malygos Druid,Odd Paladin,Odd Rogue,Big Spell Mage",
+        "Taunt Druid,Shudderwock Shaman,Big Spell Mage,Even Warlock",
+        "Taunt Druid,Shudderwock Shaman,Cube Warlock,Quest Warrior",
+        "Malygos Druid,Odd Paladin,Odd Rogue,Shudderwock Shaman",
+        "Malygos Druid,Big Spell Mage,Even Warlock,Quest Warrior",
+        "Token Druid,Odd Paladin,Big Spell Mage,Even Warlock",
+        "Malygos Druid,Control Priest,Shudderwock Shaman,Quest Warrior",
+        "Malygos Druid,Odd Rogue,Big Spell Mage,Even Warlock",
+        "Malygos Druid,Big Spell Mage,Even Warlock,Quest Warrior",
+        "Token Druid,Odd Paladin,Even Shaman,Zoo Warlock",
+        "Token Druid,Tempo Mage,Control Warlock,Quest Warrior",
+        "Malygos Druid,Miracle Rogue,Shudderwock Shaman,Cube Warlock",
+        "Big Druid,Even Shaman,Big Spell Mage,Cube Warlock",
+        "Taunt Druid,Odd Rogue,Big Spell Mage,Zoo Warlock",
+        "Malygos Druid,Control Priest,Even Shaman,Even Warlock",
+        "Spiteful Druid,Recruit Hunter,Miracle Rogue,Even Warlock",
+        "Control Priest,Big Spell Mage,Even Warlock,Quest Warrior",
+        "Token Druid,Big Spell Mage,Zoo Warlock,Quest Warrior",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Token Druid,Miracle Rogue,Big Spell Mage,Even Warlock",
+        "Mill Druid,Shudderwock Shaman,Big Spell Mage,Quest Warrior",
+        "Malygos Druid,Control Priest,Even Warlock,Odd Warrior",
+        "Malygos Druid,Recruit Hunter,Odd Paladin,Quest Warrior",
+        "Token Druid,Big Spell Mage,Even Warlock,Quest Warrior",
+        "Big Druid,Control Priest,Shudderwock Shaman,Cube Warlock",
+        "Big Druid,Deathrattle Hunter,Murloc Mage,Miracle Rogue",
+        "Malygos Druid,Odd Paladin,Control Priest,Zoo Warlock",
+        "Midrange Hunter,Miracle Rogue,Even Shaman,Zoo Warlock",
+        "Taunt Druid,Control Priest,Big Spell Mage,Cube Warlock",
+        "Token Druid,Odd Paladin,Odd Rogue,Zoo Warlock",
+        "Taunt Druid,Odd Paladin,Shudderwock Shaman,Even Warlock",
+        "Malygos Druid,Control Priest,Big Spell Mage,Quest Warrior",
+        "Big Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Recruit Hunter,Tempo Mage,Murloc Paladin,Miracle Rogue",
+        "Big Druid,Control Priest,Miracle Rogue,Zoo Warlock",
+        "Mill Druid,Control Priest,Shudderwock Shaman,Quest Warrior",
+        "Control Priest,Big Spell Mage,Even Warlock,Quest Warrior",
+        "Malygos Druid,Odd Paladin,Odd Rogue,Zoo Warlock",
+        "Malygos Druid,Big Spell Mage,Cube Warlock,Quest Warrior",
+        "Token Druid,Control Priest,Even Warlock,Quest Warrior",
+        "Token Druid,Odd Paladin,Odd Rogue,Even Warlock",
+        "Malygos Druid,Control Priest,Big Spell Mage,Even Warlock",
+        "Malygos Druid,Odd Paladin,Control Priest,Odd Rogue",
+        "Control Priest,Shudderwock Shaman,Big Spell Mage,Cube Warlock",
+        "Malygos Druid,Odd Rogue,Even Warlock,Quest Warrior",
+        "Malygos Druid,Shudderwock Shaman,Big Spell Mage,Even Warlock",
+        "Odd Paladin,Control Priest,Miracle Rogue,Even Warlock",
+        "Malygos Druid,Odd Rogue,Shudderwock Shaman,Even Warlock",
+        "Spiteful Druid,Tempo Mage,Odd Rogue,Even Shaman",
+        "Malygos Druid,Big Spell Mage,Even Warlock,Recruit Warrior",
+        "Token Druid,Odd Paladin,Odd Rogue,Zoo Warlock",
+        "Big Druid,Odd Paladin,Odd Rogue,Zoo Warlock",
+        "Odd Paladin,Odd Rogue,Big Spell Mage,Even Warlock",
+        "Token Druid,Odd Paladin,Odd Rogue,Zoo Warlock",
+        "Big Druid,Combo Priest,Miracle Rogue,Big Spell Mage",
+        "Token Druid,Tempo Mage,Odd Rogue,Zoo Warlock",
+        "Taunt Druid,Spell Hunter,Even Shaman,Big Spell Mage",
+        "Odd Paladin,Even Shaman,Big Spell Mage,Even Warlock",
+        "Token Druid,Control Priest,Even Shaman,Even Warlock",
+        "Taunt Druid,Miracle Rogue,Big Spell Mage,Even Warlock",
+        "Recruit Hunter,Odd Rogue,Even Shaman,Zoo Warlock",
+        "Malygos Druid,Miracle Rogue,Big Spell Mage,Even Warlock",
+        "Big Druid,Quest Rogue,Shudderwock Shaman,Even Warlock",
+        "Odd Paladin,Shudderwock Shaman,Zoo Warlock,Quest Warrior",
+        "Token Druid,Odd Paladin,Odd Rogue,Zoo Warlock",
+        "Token Druid,Odd Paladin,Even Shaman,Cube Warlock",
+        "Token Druid,Odd Paladin,Even Warlock,Quest Warrior",
+        "Malygos Druid,Control Priest,Even Warlock,Quest Warrior",
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
     weights = [1 for l in lineups_to_test]
@@ -155,16 +213,20 @@ if __name__ == '__main__':
         my_lineup = [d.strip() for d in args[1].split(',')]
         #opp_lineup = [d.strip() for d in deck_2.split(',')]
         count, total = 0, 1.0
+        values = []
+        bans = {}
         line = ['deck1', 'deck2', 'deck3', 'deck4', 'win_pct', 'ban', 'opp_win_pct', 'opp_ban', 'ban_details->']
         print(",".join([str(i) for i in line]))
         for opp_lineup, weight in zip(lineups_to_test, weights):
             assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
             assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
             ban, win_pct = win_rate(my_lineup, opp_lineup, win_pcts)
+            bans[ban] = bans.get(ban, 0) + 1
             #second_ban = sorted(win_rate(my_lineup, opp_lineup, win_pcts).items())[-2][0]
             if win_pct > 0:
                 count += weight
-                total *= win_pct ** weight
+                total += win_pct * weight
+                values.append(win_pct)
             
             opp_ban, opp_win_pct = win_rate(opp_lineup, my_lineup, win_pcts)
             #print ",".join([str(i) for i in [win_pct, opp_lineup, ban, win_pct, "weight", weight]])
@@ -175,6 +237,8 @@ if __name__ == '__main__':
                 print "    ",pre_ban(my_lineup, opp_lineup, win_pcts), "\n"
             else:
                 line = []
+                line.append(ban)
+                line.append('     ')
                 for l in opp_lineup:
                     line.append(l)
                 line.append(win_pct)
@@ -202,7 +266,9 @@ if __name__ == '__main__':
                     d1, d2 = i
                     print '%-20s %-20s %s' % (d1, d2, round(j,4))
                 print "\n\n"
-        print("average: %s" % (total ** (1./count)))
+        print("average: %s" % (total / count))
+        print("min: %s" % min(values))
+        print("bans: %s" % sorted(bans.items(), key=lambda x:x[1], reverse=True))
     elif len(args) > 0 and args[0] == 'custom':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
         win_pcts[('Control Warrior', 'Control Warrior')] = 0.5
@@ -282,36 +348,6 @@ if __name__ == '__main__':
         archetypes.append('Unbeatable')
         #archetypes.append('Fatigue Warrior')
         overrides = [
-            #('Zoo Warlock', 'Even Paladin', .48),
-            #('Zoo Warlock', 'Tempo Mage', .60),
-            #('Zoo Warlock', 'Odd Rogue', .55),
-            #('Zoo Warlock', 'Spiteful Druid', .60),
-            ('Zoo Warlock', 'Even Paladin', .47),
-            ('Zoo Warlock', 'Tempo Mage', .55),
-            ('Zoo Warlock', 'Odd Rogue', .42),
-            ('Zoo Warlock', 'Spiteful Druid', .50),
-            ('Zoo Warlock', 'Cube Warlock', .30),
-            ('Zoo Warlock', 'Control Warlock', .30),
-            #('Zoo Warlock', 'Quest Rogue', .65),
-            ('Zoo Warlock', 'Quest Rogue', .65),
-            ('Zoo Warlock', 'Control Priest', .43),
-            ('Zoo Warlock', 'Murloc Paladin', .50),
-            ('Zoo Warlock', 'Taunt Druid', .55),
-            ('Zoo Warlock', 'Odd Warrior', .50),
-            ('Zoo Warlock', 'Miracle Rogue', .55),
-            ('Zoo Warlock', 'Spell Hunter', .43),
-            ('Zoo Warlock', 'Even Shaman', .47),
-            ('Zoo Warlock', 'Quest Warrior', .45),
-            ('Zoo Warlock', 'Quest Druid', .65),
-            ('Zoo Warlock', 'Zoo Warlock', .50),
-            ('Even Shaman', 'Tempo Mage', .70),
-            ('Even Shaman', 'Quest Rogue', .60),
-            ('Even Shaman', 'Murloc Paladin', .62),
-
-            ('Control Priest', 'Quest Rogue', .42),
-            ('Control Priest', 'Spiteful Druid', .40),
-            ('Tempo Mage', 'Quest Rogue', 0.63),
-            ('Even Paladin', 'Quest Rogue', 0.63),
                     ]
         win_pcts = override_wr(overrides,win_pcts)
         if args[1] in custom.keys():
@@ -368,42 +404,37 @@ if __name__ == '__main__':
         if usingEsportsArena:
             win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.44,limitTop=100)
         else:
-            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.44,limitTop=30)
+            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=20, min_win_pct=0.44,limitTop=40)
         print sorted(archetypes, key=lambda x:x.split()[-1])
         excluded = []
-        if True:
+        if False:
             excluded += []
+            #excluded += ['Tempo Mage', 'Tempo Rogue', 'Murloc Mage', 'Recruit Hunter']
             #excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
         win_rates_against_good = {}
 
         print_time()
-        lineups, archetype_map = generate_lineups(archetypes)
+        additional_archetypes = []
+        for lu_test in lineups_to_test:
+            for a in lu_test:
+                if a not in archetypes:
+                    print("Rare Archetypes: %s" % a)
+                    additional_archetypes.append(a)
+        lineups, archetype_map = generate_lineups(archetypes, additional_archetypes=additional_archetypes)
+        inverse_map = {}
+        for i,j in archetype_map.items():
+            inverse_map[j] = i
+        win_pcts_int = {}
+        for i,a in archetype_map.items():
+            for j,b in archetype_map.items():
+                if (a,b) in win_pcts:
+                    win_pcts_int[(i,j)] = win_pcts[(a,b)]
         print_time()
-        # FILTER LINEUPS
-        filterLineups = False
-        if filterLineups:
-            tmp = []
-            for lineup in lineups:
-                lineup_tmp = get_lineup(lineup, archetype_map)
-                if 'Cube Warlock' in lineup_tmp or 'Control Warlock' in lineup_tmp:
-                    tmp.append(lineup)
-            lineups = tmp
         
         print "testing %s lineups" % len(lineups)
     
-        if usingEsportsArena:
-            lineups_to_test = [i.split(',') for i in custom.values()]
-            #for my_lineup in lineups_to_test:
-            #    assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
-            weights = [1 for i in custom.values()]
-            #for i in lineups_to_test:
-            #    print i
-            #assert False
-            lineups = lineups_to_test
-
-        #weights = [2,2,1]
         if len(args) > 0 and args[0] == 'target':
             lineups_to_test = []
             for x in args[1:]:
@@ -416,13 +447,17 @@ if __name__ == '__main__':
             print "%-80s" % ("   ".join(l)), '"' + ",".join(l) + '"'
         print "\n"
 
+        #for lineup in lineups:
+        #    if not usingEsportsArena:
+        #        lineup = get_lineup(lineup, archetype_map)
+        #    else:
+        #        lineup = tuple(lineup)
+        #    for lu_test in lineups_to_test:
+        #        win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts)]
         for lineup in lineups:
-            if not usingEsportsArena:
-                lineup = get_lineup(lineup, archetype_map)
-            else:
-                lineup = tuple(lineup)
             for lu_test in lineups_to_test:
-                win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts)]
+                lu_test = list(get_lineup(lu_test, inverse_map))
+                win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts_int)]
 
         for lineup_txt, winrates in sorted(win_rates_against_good.items(), key=lambda x: x[1][0][1], reverse=True)[:3]:
             print lineup_txt, winrates
@@ -434,6 +469,7 @@ if __name__ == '__main__':
         print_time()
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 2 + min([i[1] for i in x[1]]))[-10:]:
         for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-40:]:
+            i = get_lineup(i, archetype_map)
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
             print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))

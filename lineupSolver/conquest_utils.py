@@ -44,7 +44,46 @@ tested = {}
 def avg(x):
     return sum(x) / float(len(x))
 
-def post_ban(decks_a, decks_b, win_pcts, useGlobal=True, start=True):
+def post_ban(decks_a, decks_b, win_pcts, useGlobal=True, start=True, return_list=False):
+    if start:
+        combos_a = list(itertools.permutations(range(0,len(decks_a))))
+        combos_b = list(itertools.permutations(range(0,len(decks_b))))
+        res = []
+        for x in combos_a:
+            for y in combos_b:
+                #tmp_a = [decks_a[0]] + [decks_a[i] for i in x]
+                tmp_a = [decks_a[i] for i in x]
+                tmp_b = [decks_b[j] for j in y]
+                res.append(post_ban(tmp_a, tmp_b, win_pcts, useGlobal=useGlobal, start=False))
+        if not return_list:
+            return avg(res)
+        else:
+            return avg(res), res
+    if useGlobal:
+        global tested
+        tuple_a = tuple(decks_a)
+        tuple_b = tuple(decks_b)
+        if (tuple_a, tuple_b) in tested:
+            return tested[(tuple_a, tuple_b)]
+    if len(decks_b) == 0 and len(decks_a) > 0:
+        return 0
+    elif len(decks_a) == 0 and len(decks_b) > 0:
+        return 1
+    else:
+        res = 0
+        pct = get_win_pct(decks_a[0], decks_b[0], win_pcts)
+        res += pct * post_ban(decks_a[1:], decks_b[:], win_pcts, useGlobal=useGlobal, start=False)
+        res += (1-pct) * post_ban(decks_a[:], decks_b[1:], win_pcts, useGlobal=useGlobal, start=False)
+        if useGlobal:
+            tested[(tuple_a, tuple_b)] = res
+        return res
+
+def post_ban_single(decks_a, decks_b, win_pcts):
+    possible_wins = list(itertools.permutations(range(0, len(deck_a) + len(decks_b) - 1)))
+    for i in range(0, possible_wins):
+        tmp = possible_wins[i]
+        while tmp[-1] == 0:
+            tmp = tmp[:-1]
     #if start==False:
     #    assert False, (decks_a, decks_b)
     if start:
@@ -58,7 +97,10 @@ def post_ban(decks_a, decks_b, win_pcts, useGlobal=True, start=True):
                 tmp_a = [decks_a[i] for i in x]
                 tmp_b = [decks_b[j] for j in y]
                 res.append(post_ban(tmp_a, tmp_b, win_pcts, useGlobal=useGlobal, start=False))
-        return avg(res)
+        if not return_list:
+            return avg(res)
+        else:
+            return avg(res), res
     if useGlobal:
         global tested
         tuple_a = tuple(decks_a)

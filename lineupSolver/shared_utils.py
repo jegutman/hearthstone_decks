@@ -58,7 +58,7 @@ def get_lineup(decks, archetype_map):
 def get_class_decks(archetypes, deck_class):
     return [i for i in archetypes if i.split(' ')[-1] == deck_class]
 
-def generate_lineups(archetypes, unbeatable=False, num_classes=4):
+def generate_lineups_old(archetypes, unbeatable=False, num_classes=4):
     ############ NEW METHOD ##########
     if num_classes < 9:
         if unbeatable:
@@ -107,6 +107,31 @@ def generate_lineups(archetypes, unbeatable=False, num_classes=4):
                                             res.append([a,b,c,d,e,f,g,h,i])
         return res
     return lineups, archetype_map
+
+def generate_lineups(archetypes, unbeatable=False, num_classes=4):
+    archetype_map = {}
+    a_count = 0
+    for a in sorted(archetypes, key=lambda x:x.split(' ')[-1]):
+        archetype_map[a_count] = a
+        a_count += 1
+    classes = ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior']
+    if unbeatable:
+        archetypes.append('Unbeatable')
+        classes.append('Unbeatable')
+    class_arch = {}
+    for index, a in archetype_map.items():
+        tmp = a.split(' ')[-1]
+        class_arch[classes.index(tmp)] = class_arch.get(classes.index(tmp), []) + [index]
+    class_sets = list(itertools.combinations(range(0, len(classes)), num_classes))
+    lineups = []
+    for class_set in class_sets:
+        count = 0
+        tmp = []
+        for i in class_set:
+            tmp.append(class_arch[i])
+        lineups += itertools.product(*tmp)
+    return lineups, archetype_map
+
 
 def get_win_pct(a,b, win_pcts):
     if a == 'Unbeatable' and b != 'Unbeatable': return 1
