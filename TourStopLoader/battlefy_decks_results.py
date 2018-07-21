@@ -19,9 +19,15 @@ deckstring_re = re.compile('(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-
 
 def print_player(player):
     for i in player_matches[player]:
-        print(i[2], i[3], i[5], i[6])
-        for j in i[-1]:
-            print('    ',j)
+        if i[2] == player:
+            print(i[2], i[3], i[5], i[6])
+            for j in i[-1]:
+                print('    ',j)
+        else:
+            print(i[3], i[2], i[6], i[5])
+            for j in i[-1]:
+                j = (j[1], j[0], 1-j[2])
+                print('    ',j)
 
 def parse_deck(text):
     for i in range(3):
@@ -261,10 +267,12 @@ def process_battlefy_url(bracket_url):
 
 if __name__ == '__main__':
     urls = [
-        'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-2/5b3510362c185e0397195e3f/stage/5b4702bbdd778603c8007db6/bracket/',
-        'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-2/5b3510362c185e0397195e3f/stage/5b4702ce5dbd8c03a02a0dd1/bracket/',
-        'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-2/5b3510362c185e0397195e3f/stage/5b4702dd1c4aa703a671d690/bracket/',
-        'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-2/5b3510362c185e0397195e3f/stage/5b4702fddc22e303aad293e9/bracket/',
+        #'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-3/5b3511182c185e0397195e61/stage/5b4c500dee3d0303d602e337/bracket/',
+        #'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-3/5b3511182c185e0397195e61/stage/5b4c5032bd99a703aa907fb7/bracket/',
+        #'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-3/5b3511182c185e0397195e61/stage/5b4c501fbd99a703aa907eb6/bracket/',
+        #'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-3/5b3511182c185e0397195e61/stage/5b4c503d4f4bb503a14b2352/bracket/',
+        #'https://battlefy.com/evox/hct-tour-stop-italy-powered-by-zotac/5aa7d09f0b25e50393914521/stage/5aa7d0ba0f99cf034ea52f06/bracket/',
+        #'https://battlefy.com/hearthstone-global-games-2018/hearthstone-global-games-2018/5b3ccaa722962f03ce590019/stage/5b3ccb149a4af103b49c2aa6/bracket/1',
     ]
     player_matches = {}
     decks = {}
@@ -284,8 +292,7 @@ if __name__ == '__main__':
         total_wins = sum([i[4] if i[2] == x else 1-i[4] for i in player_matches[x]])
         wins[x] = total_wins
         losses[x] = total_losses
-        if total_losses == 0:
-            print(x)
+
     for player, lineup in decks.items():
         archetypes[player] = []
         for deck in lineup:
@@ -293,20 +300,27 @@ if __name__ == '__main__':
             label = label_archetype(tmp)
             if label:
                 archetypes[player].append(label)
-    for date, round_number, p1, p2, result, p1_score, p2_score, games in all_matches:
-        p1_lineup = archetypes[p1]
-        p2_lineup = archetypes[p2]
-        if len(p1_lineup) == 4 and len(p2_lineup) == 4:
-            print(",".join([str(i) for i in [p1, p2, calculate_win_rate(p1_lineup, p2_lineup, win_pcts), p1_score, p2_score]]))
+        if wins[player] >= 7:
+            print(",".join(sorted(archetypes[player], key=lambda x:x.split(' ')[1])))
 
-    for date, round_number, p1, p2, result, p1_score, p2_score, games in all_matches:
-        p1_lineup = archetypes[p1]
-        p2_lineup = archetypes[p2]
-        if len(p1_lineup) == 4 and len(p2_lineup) == 4:
-            wr = calculate_win_rate(p1_lineup, p2_lineup, win_pcts)
-            if wr > 0.65 or wr < 0.35 and wr != 0 and wr != 1:
-                res = 'W' if p1_score > p2_score else 'L'
-                upset = ''
-                if res == 'W' and wr < 0.5: upset = 'UPSET'
-                if res == 'L' and wr > 0.5: upset = 'UPSET'
-                print(",".join([str(i) for i in [p1, p2, wr, res, upset]]))
+    for i,j in archetypes.items():
+        if len(j) >0 and len(j) != 4:
+            if i in wins: 
+                print(losses.get(i, 0), wins[i], i, j)
+    #for date, round_number, p1, p2, result, p1_score, p2_score, games in all_matches:
+    #    p1_lineup = archetypes[p1]
+    #    p2_lineup = archetypes[p2]
+    #    if len(p1_lineup) == 4 and len(p2_lineup) == 4:
+    #        print(",".join([str(i) for i in [p1, p2, calculate_win_rate(p1_lineup, p2_lineup, win_pcts), p1_score, p2_score]]))
+
+    #for date, round_number, p1, p2, result, p1_score, p2_score, games in all_matches:
+    #    p1_lineup = archetypes[p1]
+    #    p2_lineup = archetypes[p2]
+    #    if len(p1_lineup) == 4 and len(p2_lineup) == 4:
+    #        wr = calculate_win_rate(p1_lineup, p2_lineup, win_pcts)
+    #        if wr > 0.65 or wr < 0.35 and wr != 0 and wr != 1:
+    #            res = 'W' if p1_score > p2_score else 'L'
+    #            upset = ''
+    #            if res == 'W' and wr < 0.5: upset = 'UPSET'
+    #            if res == 'L' and wr > 0.5: upset = 'UPSET'
+    #            print(",".join([str(i) for i in [p1, p2, wr, res, upset]]))
