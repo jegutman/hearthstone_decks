@@ -192,9 +192,9 @@ class MessageHandler:
             #    return True
             local_tz = pytz.timezone('America/Chicago')
             current_time = local_tz.localize(datetime.now())
-            t1 = str(na_end - current_time)
-            t2 = str(eu_end - current_time)
-            t3 = str(asia_end - current_time)
+            t1 = str(na_end - current_time).split('.')[0] + ' left in season'
+            t2 = str(eu_end - current_time).split('.')[0] + ' left in season'
+            t3 = str(asia_end - current_time).split('.')[0] + ' left in season'
             res = ''
             res += 'NA:   ' + t1 + '\n'
             res += 'EU:   ' + t2 + '\n'
