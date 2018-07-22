@@ -1,4 +1,5 @@
 from shared_utils import *
+import pytz
 from config import *
 import asyncio
 import re
@@ -157,35 +158,51 @@ class MessageHandler:
             return True
 
         if message.content.startswith(CMD_COUNTDOWN):
-            season_end = "08-01-2018 02:00:00"
-            season_end_asia = "07-31-2018 11:00:00"
-            season_end_eu = "07-31-2018 18:00:00"
-            tmp = message.content.split(' ')
-            if len(tmp) == 1:
-                end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
-            elif tmp[1].lower() == 'na':
-                end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
-            elif tmp[1].lower() == 'eu':
-                end_time = datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S")
-            elif tmp[1].lower() == 'asia':
-                end_time = datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S")
-            elif tmp[1].lower() == 'all':
-                t1 = str(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
-                t2 = str(datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
-                t3 = str(datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
-                #res = '`'
-                res = ''
-                res += 'NA:   ' + t1 + '\n'
-                res += 'EU:   ' + t2 + '\n'
-                res += 'APAC: ' + t3 + '\n'
-                #res += '`'
-                await self.respond(message, res)
-                return True
+            #season_end = "08-01-2018 02:00:00"
+            #season_end_asia = "07-31-2018 11:00:00"
+            #season_end_eu = "07-31-2018 17:00:00"
+            #tmp = message.content.split(' ')
+            
+            na_tz = pytz.timezone('America/Los_Angeles')
+            eu_tz = pytz.timezone('CET')
+            asia_tz = pytz.timezone('Hongkong')
+            season_end = "08-01-2018 00:00:00"
+            na_end = na_tz.localize(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S"))
+            eu_end = eu_tz.localize(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S"))
+            asia_end = asia_tz.localize(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S"))
+            #if len(tmp) == 1:
+            #    end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
+            #elif tmp[1].lower() == 'na':
+            #    end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
+            #elif tmp[1].lower() == 'eu':
+            #    end_time = datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S")
+            #elif tmp[1].lower() == 'asia':
+            #    end_time = datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S")
+            #elif tmp[1].lower() == 'all':
+            #    t1 = str(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
+            #    t2 = str(datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
+            #    t3 = str(datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
+            #    #res = '`'
+            #    res = ''
+            #    res += 'NA:   ' + t1 + '\n'
+            #    res += 'EU:   ' + t2 + '\n'
+            #    res += 'APAC: ' + t3 + '\n'
+            #    #res += '`'
+            #    await self.respond(message, res)
+            #    return True
+            local_tz = pytz.timezone('America/Chicago')
+            current_time = local_tz.localize(datetime.now())
+            t1 = str(na_end - current_time)
+            t2 = str(eu_end - current_time)
+            t3 = str(asia_end - current_time)
+            res = ''
+            res += 'NA:   ' + t1 + '\n'
+            res += 'EU:   ' + t2 + '\n'
+            res += 'APAC: ' + t3 + '\n'
+            await self.respond(message, res)
+            return True
 
             #await self.respond(message, '`' + str(end_time - datetime.now()).split('.')[0] + ' left in season`')
-            await self.respond(message, str(end_time - datetime.now()).split('.')[0] + ' left in season')
-
-            return True
 
         if message.content.startswith(CMD_UPTIME):
             await self.respond(message, str(datetime.now() - self.start_time).split('.')[0])
