@@ -5,41 +5,57 @@ win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_
 
 
 #Team,Week,Druid,Hunter,Mage,Paladin,Priest,Rogue,Shaman,Warlock,Warrior,Banned 1,Pick 1,Pick 1,Banned 2,Banned 2,Pick 2,Pick 2,Banned 3,Pick 3
-filename = 'week1_lineups.csv'
+#filename = 'week2_lineups.csv'
+#week_file = open(filename)
+#lines = [line.strip() for line in week_file]
+#team_lineups = {}
+#team_played = {}
+#team_pick_ban = {}
+#archetypes = []
+#for line in lines:
+#    tmp = line.split(',')
+#    team, week = tmp[:2]
+#    lineup = tmp[2:11]
+#    for l in lineup:
+#        if l not in archetypes:
+#            archetypes.append(l)
+#    ban1, pick1, pick2, ban2, ban3, pick3, pick4, ban4, pick5 = tmp[11:]
+#    team_lineups[team] = lineup
+#    played = [l for l in lineup if l not in [ban1, ban2, ban3, ban4]]
+#    team_played[team] = played
+#    team_pick_ban[team] = [ban1, pick1, pick2, ban2, ban3, pick3, pick4, ban4, pick5]
+
+# NEW FORMAT
+filename = 'week2_lineups.csv'
 week_file = open(filename)
 lines = [line.strip() for line in week_file]
 team_lineups = {}
-team_played = {}
-team_pick_ban = {}
 archetypes = []
 for line in lines:
     tmp = line.split(',')
-    team, week = tmp[:2]
-    lineup = tmp[2:11]
+    team = tmp[0]
+    lineup = tmp[1:10]
     for l in lineup:
         if l not in archetypes:
             archetypes.append(l)
-    ban1, pick1, pick2, ban2, ban3, pick3, pick4, ban4, pick5 = tmp[11:]
     team_lineups[team] = lineup
-    played = [l for l in lineup if l not in [ban1, ban2, ban3, ban4]]
-    team_played[team] = played
-    team_pick_ban[team] = [ban1, pick1, pick2, ban2, ban3, pick3, pick4, ban4, pick5]
 
-#for i,j in round1:
-#    l1 = team_lineups[i]
-#    l2 = team_lineups[j]
-#    mu = HGG_Matchup(l1, l2, win_pcts=win_pcts, clear_initialize=True)
-#    calc = mu.calculate()
-#    res = [i,j, calc]
-#    print(",".join([str(x) for x in res]))
-
-for i,j in round1:
-    l1 = team_lineups[j]
-    l2 = team_lineups[i]
+for i,j in round2:
+    
+    l1 = team_lineups[i]
+    l2 = team_lineups[j]
     mu = HGG_Matchup(l1, l2, win_pcts=win_pcts, clear_initialize=True)
     calc = mu.calculate()
-    res = [j,i, calc]
+    res = [i,j, calc]
     print(",".join([str(x) for x in res]))
+
+#for i,j in round1:
+#    l1 = team_lineups[j]
+#    l2 = team_lineups[i]
+#    mu = HGG_Matchup(l1, l2, win_pcts=win_pcts, clear_initialize=True)
+#    calc = mu.calculate()
+#    res = [j,i, calc]
+#    print(",".join([str(x) for x in res]))
 
 # CODE FOR PRE vs POST-QUEUE
 #for i,j in round1:

@@ -222,3 +222,202 @@ round1_scores = {
     ('Sweden', 'Japan')    : (3,2),
     ('Belgium', 'Poland')    : (1,3),
 }
+
+
+round2 = [
+    ('New Zealand', 'Sweden'),
+    ('Belarus', 'Finland'),
+    ('Spain', 'Slovakia'),
+    ('Greece', 'Brazil'),
+    ('Indonesia', 'Czech Republic'),
+    ('Italy', 'Bulgaria'),
+    ('Germany', 'Romania'),
+    ('Poland', 'South Korea'),
+    ('China', 'France'),
+    ('Thailand', 'Taiwan'),
+    ('Chile', 'Ukraine'),
+    ('Singapore', 'Peru'),
+    ('Norway', 'Israel'),
+    ('Hungary', 'Russian Federation'),
+    ('United Kingdom', 'United States'),
+    ('Croatia', 'Belgium'),
+    ('Malaysia', 'Hong Kong'),
+    ('Austria', 'Switzerland'),
+    ('Philippines', 'Vietnam'),
+    ('Turkey', 'Netherlands'),
+    ('Denmark', 'Argentina'),
+    ('Japan', 'Portugal'),
+    ('Kazakhstan', 'Mexico'),
+    ('Canada', 'Australia'),
+]
+
+round2_final_order = {
+    ('New Zealand', 'Sweden') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Belarus', 'Finland') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Spain', 'Slovakia') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Greece', 'Brazil') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Indonesia', 'Czech Republic') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Italy', 'Bulgaria') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Germany', 'Romania') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Poland', 'South Korea') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('China', 'France') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Thailand', 'Taiwan') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Chile', 'Ukraine') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Singapore', 'Peru') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Norway', 'Israel') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Hungary', 'Russian Federation') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('United Kingdom', 'United States') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Croatia', 'Belgium') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Malaysia', 'Hong Kong') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Austria', 'Switzerland') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Philippines', 'Vietnam') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Turkey', 'Netherlands') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Denmark', 'Argentina') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Japan', 'Portugal') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Kazakhstan', 'Mexico') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+    ('Canada', 'Australia') : [
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere'),
+        ('FillInHere', 'FillInHere')
+    ],
+}
