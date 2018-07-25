@@ -99,6 +99,56 @@ def decks_from_smashgg_api(event_id, entrants, entrant_name_to_id):
         res[name] = decks
     return res
 
+def parse_set_new(set_info, entrants, bracket_name):
+    #set_url = 'https://api.smash.gg/set/%(match_id)s'
+    #set_data = json.loads(requests.get(set_url % locals()).text)
+    #set_info = set_data['entities']['sets']
+    print("parsing %s" % set_info['id'])
+    games = []
+    round_number = set_info['round']
+    game_time = set_info['updatedAt']
+    p1_id = set_info['entrant1Id']
+    p2_id = set_info['entrant2Id']
+    if not p1_id or not p2_id:
+        return []
+    p1 = entrants[p1_id]
+    p2 = entrants[p2_id]
+    p1_classes = []
+    p2_classes = []
+    p1_score = set_info['entrant1Score']
+    p2_score = set_info['entrant2Score']
+    if p1_score is not None:
+        p1_score = int(p1_score)
+    if p2_score is not None:
+        p2_score = int(p2_score)
+
+    if p1_score is not None and p2_score is not None:
+        result = 1 if p1_score > p2_score else 0
+    else:
+        result = -1
+    match_res = [game_time, bracket_name, round_number, p1, p2, result, p1_score, p2_score]
+    try:
+    #if True:
+        for game in set_info['games']:
+            #p1_class = smashgg_hero_map[game['selections'][p1_id]['character'][0]['selectionValue']]
+            #p2_class = smashgg_hero_map[game['selections'][p2_id]['character'][0]['selectionValue']]
+            #game_result = 1 if game['winnerId'] == p1_id else 0
+            #games.append((p1_class, p2_class, game_result))
+            for pid in game['selections'].keys():
+                if pid == str(p1_id):
+                    p1_classes.append(smashgg_hero_map[game['selections'][pid]['character'][0]['selectionValue']])
+                elif pid == str(p2_id):
+                    p2_classes.append(smashgg_hero_map[game['selections'][pid]['character'][0]['selectionValue']])
+            game_result = 1 if str(game['winnerId']) == str(p1_id) else 0
+            games.append((p1_classes[-1], p2_classes[-1], game_result))
+        match_res.append(games)
+        #print(match_res)
+    except:
+        pass
+    if len(match_res) == 8:
+        match_res.append([])
+    return match_res
+
 def parse_set(match_id, entrants, bracket_name):
     print("parsing %s" % match_id)
     set_url = 'https://api.smash.gg/set/%(match_id)s'
@@ -160,7 +210,9 @@ def parse_smash_tournament(tournament_name):
     decks = {}
     matches = []
     tournament_url = 'https://api.smash.gg/tournament/%(tournament_name)s?expand[]=phase&expand[]=groups&expand[]=event'
-    bracket_url = 'https://api.smash.gg/phase_group/%(bracket_id)s?expand[]=entrants&expand[]=sets'
+    #bracket_url = 'https://api.smash.gg/phase_group/%(bracket_id)s?expand[]=entrants&expand[]=sets'
+    bracket_url = 'https://api.smash.gg/phase_group/%(bracket_id)s?expand[]=entrants&expand[]=seeds&expand[]=sets'
+    # TODO: use https://api.smash.gg/phase_group/589463?expand%5B%5D=entrants&expand%5B%5D=seeds&expand%5B%5D=sets for games
     tournament_data = json.loads(requests.get(tournament_url % locals()).text)
     data = tournament_data
     event_id = data['entities']['event'][0]['id']
@@ -213,7 +265,8 @@ def parse_smash_tournament(tournament_name):
             #player_matches[p2] = player_matches.get(p2, []) + [match_res]
             #matches.append(match_res)
             ##print(match_res)
-            match_res = parse_set(match_id, entrants, bracket_name)
+            #match_res = parse_set(match_id, entrants, bracket_name)
+            match_res = parse_set_new(set_data, entrants, bracket_name)
             if match_res:
                 p1, p2 = match_res[3], match_res[4]
                 print(id_count,max_ids,'  ', end='')
@@ -250,8 +303,8 @@ def get_stats(decks, matches, player_matches, player_filter=None):
     a_games = {}
     a_wins = {}
     for game_time, bracket_name, round_number, p1, p2, result, p1_score, p2_score, games in sorted(matches, key=lambda x:x[2]):
-        if wins.get(p1, 0) < 4 or wins.get(p2, 0) < 4:
-            continue
+        #if wins.get(p1, 0) < 4 or wins.get(p2, 0) < 4:
+        #    continue
         for c1, c2, res in games:
             a1 = class_archetypes[p1].get(c1)
             a2 = class_archetypes[p2].get(c2)
@@ -272,7 +325,7 @@ def get_stats(decks, matches, player_matches, player_filter=None):
     return a_games, a_wins
 
 def print_stats(a_games, a_wins):
-    for i, j in sorted(a_games.items(), key=lambda x:x[1]):
+    for i, j in sorted(a_games.items(), key=lambda x:x[1], reverse=True):
         if len(i) == 2 and i[0] < i[1]:
             print("%-20s %-20s %s-%s" % (i[0], i[1],a_wins.get(i,0),j-a_wins.get(i,0)))
 
@@ -363,3 +416,6 @@ if __name__ == '__main__':
             #count += 1
             #print("%2s %-15s %s %s" % (count, player, score, calc_tiebreak(player, player_matches)))
             print('"' + ",".join(archetypes[player]) + '", #' + player)
+
+    a_games, a_wins = get_stats(decks, matches, player_matches)
+    print_stats(a_games, a_wins)

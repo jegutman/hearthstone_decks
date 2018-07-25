@@ -33,6 +33,7 @@ CMD_HELP = "!help"
 CMD_COUNTDOWN = "!countdown"
 CMD_UPTIME = "!uptime"
 CMD_OWNER = "!owner"
+CMD_NEXTCARD = "!nextcard"
 
 #USAGE = """`
 USAGE = """
@@ -100,6 +101,75 @@ class MessageHandler:
                     return True
             await self.handle_deck_search(message, CMD_SEARCH_PLAYOFF, my_message)
             return True
+
+        if message.content.startswith(CMD_NEXTCARD):
+            if str(message.channel.name) not in ['new-cards']:
+                if not message.channel.is_private:
+                    return True
+                
+            reveal_times = [ 
+                # Times in PDT 
+                "2018_07_23 12:00:00", 
+                "2018_07_23 23:00:00", 
+                "2018_07_24 05:00:00", 
+                "2018_07_24 06:00:00", 
+                "2018_07_24 07:00:00", 
+                "2018_07_24 12:00:00", 
+                "2018_07_24 20:00:00", 
+                "2018_07_24 21:00:00", 
+                "2018_07_24 23:00:00", 
+                "2018_07_25 07:00:00", 
+                "2018_07_25 12:00:00", 
+                "2018_07_25 17:15:00", 
+                "2018_07_25 18:00:00", 
+                "2018_07_25 20:00:00", 
+                "2018_07_25 23:00:00", 
+                "2018_07_26 02:00:00", 
+                "2018_07_26 05:00:00", 
+                "2018_07_26 07:00:00", 
+                "2018_07_26 12:00:00", 
+                "2018_07_26 23:00:00", 
+                "2018_07_27 02:00:00", 
+                "2018_07_27 07:00:00", 
+                "2018_07_27 08:00:00", 
+                "2018_07_27 12:00:00", 
+                "2018_07_27 20:00:00", 
+                "2018_07_27 23:00:00", 
+                "2018_07_28 07:00:00", 
+                "2018_07_28 12:00:00", 
+                "2018_07_28 20:00:00", 
+                "2018_07_28 23:00:00", 
+                "2018_07_29 07:00:00", 
+                "2018_07_29 11:00:00", 
+                "2018_07_29 12:00:00", 
+                "2018_07_29 20:00:00", 
+                "2018_07_29 23:00:00", 
+                "2018_07_30 02:00:00", 
+                "2018_07_30 05:00:00", 
+                "2018_07_30 07:00:00", 
+                "2018_07_30 12:00:00", 
+                "2018_07_30 18:00:00", 
+                "2018_07_30 20:00:00", 
+                "2018_07_30 23:00:00", 
+                "2018_07_31 05:00:00", 
+                "2018_07_31 06:00:00", 
+                "2018_07_31 07:00:00", 
+                "2018_07_31 12:00:00", 
+                "2018_07_31 21:00:00", 
+                "2018_07_31 23:00:00", 
+            ]
+            na_tz = pytz.timezone('America/Los_Angeles')
+            local_tz = pytz.timezone('America/Chicago')
+            current_time = datetime.now(tz=local_tz)
+            card_times = []
+            for timestamp in reveal_times:
+                card_time = na_tz.localize(datetime.strptime(timestamp, "%Y_%m_%d %H:%M:%S"))
+                if card_time > current_time:
+                    break
+            res = "Next Card Reveal in " + str(card_time - current_time).split('.')[0] + ' at ' + '%s PDT' % (card_time.strftime("%H:%M:%S"))
+            await self.respond(message, res)
+            return True
+
 
         if message.content.startswith(CMD_LINEUP):
             if str(message.channel.name) not in ALLOWED_CHANNELS:
@@ -170,28 +240,9 @@ class MessageHandler:
             na_end = na_tz.localize(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S"))
             eu_end = eu_tz.localize(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S"))
             asia_end = asia_tz.localize(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S"))
-            #if len(tmp) == 1:
-            #    end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
-            #elif tmp[1].lower() == 'na':
-            #    end_time = datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S")
-            #elif tmp[1].lower() == 'eu':
-            #    end_time = datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S")
-            #elif tmp[1].lower() == 'asia':
-            #    end_time = datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S")
-            #elif tmp[1].lower() == 'all':
-            #    t1 = str(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
-            #    t2 = str(datetime.strptime(season_end_eu, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
-            #    t3 = str(datetime.strptime(season_end_asia, "%m-%d-%Y %H:%M:%S") - datetime.now()).split('.')[0] + ' left in season'
-            #    #res = '`'
-            #    res = ''
-            #    res += 'NA:   ' + t1 + '\n'
-            #    res += 'EU:   ' + t2 + '\n'
-            #    res += 'APAC: ' + t3 + '\n'
-            #    #res += '`'
-            #    await self.respond(message, res)
-            #    return True
             local_tz = pytz.timezone('America/Chicago')
-            current_time = local_tz.localize(datetime.now())
+            #current_time = local_tz.localize(datetime.now())
+            current_time = datetime.now(tz=local_tz)
             t1 = str(na_end - current_time).split('.')[0] + ' left in season'
             t2 = str(eu_end - current_time).split('.')[0] + ' left in season'
             t3 = str(asia_end - current_time).split('.')[0] + ' left in season'
