@@ -68,4 +68,15 @@ class SimHandler():
 
     def data_check(self):
         #return '`using: %s`' % wr_filename.split('/')[-1]
-        return 'using: %s' % wr_filename.split('/')[-1]
+        name_info = wr_filename.split('/')[-1].split('.')[0]
+        name_info = name_info.replace('hsreplay', '')
+        date, skill, period = name_info.split('_')
+        date = date[:4] + '_' + date[4:6] + '_' + date[6:]
+        if skill == 'LONLY':
+            skill = 'L Only'
+        elif skill == 'L5':
+            skill = 'L-5'
+        period = period[:1] + ' ' + period[1:]
+        combined = "%s from %s for %s" % (skill, date, period)
+        return 'using: %s' % combined
+        #return 'using: %s' % wr_filename.split('/')[-1]
