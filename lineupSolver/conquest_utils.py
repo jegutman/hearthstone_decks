@@ -45,17 +45,20 @@ def avg(x):
     return sum(x) / float(len(x))
 
 def post_ban(decks_a, decks_b, win_pcts, useGlobal=True, start=True, return_list=False):
+    if useGlobal:
+        global tested
+        tuple_a = tuple(list(decks_a) + ['start'])
+        tuple_b = tuple(list(decks_b) + ['start'])
+        if (tuple_a, tuple_b) in tested:
+            return tested[(tuple_a, tuple_b)]
     if start:
-        combos_a = list(itertools.permutations(range(0,len(decks_a))))
-        combos_b = list(itertools.permutations(range(0,len(decks_b))))
+        combos_a = list(itertools.permutations(decks_a))
         res = []
         for x in combos_a:
-            for y in combos_b:
-                #tmp_a = [decks_a[0]] + [decks_a[i] for i in x]
-                tmp_a = [decks_a[i] for i in x]
-                tmp_b = [decks_b[j] for j in y]
-                res.append(post_ban(tmp_a, tmp_b, win_pcts, useGlobal=useGlobal, start=False))
+            res.append(post_ban(x, decks_b, win_pcts, useGlobal=useGlobal, start=False))
         if not return_list:
+            if useGlobal:
+                tested[(tuple_a, tuple_b)] = avg(res)
             return avg(res)
         else:
             return avg(res), res

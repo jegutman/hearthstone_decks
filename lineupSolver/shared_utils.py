@@ -108,7 +108,7 @@ def generate_lineups_old(archetypes, unbeatable=False, num_classes=4):
         return res
     return lineups, archetype_map
 
-def generate_lineups(archetypes, unbeatable=False, num_classes=4):
+def generate_lineups(archetypes, unbeatable=False, num_classes=4, additional_archetypes=[]):
     archetype_map = {}
     a_count = 0
     for a in sorted(archetypes, key=lambda x:x.split(' ')[-1]):
@@ -130,19 +130,30 @@ def generate_lineups(archetypes, unbeatable=False, num_classes=4):
         for i in class_set:
             tmp.append(class_arch[i])
         lineups += itertools.product(*tmp)
+    for a in additional_archetypes:
+        archetype_map[a_count] = a
+        a_count += 1
     return lineups, archetype_map
 
 
+missing_wr = []
 def get_win_pct(a,b, win_pcts):
+    global missing_wr
     if a == 'Unbeatable' and b != 'Unbeatable': return 1
     if b == 'Unbeatable' and a != 'Unbeatable': return 0
     #if a == b: return 0.5
     res = win_pcts.get((a,b))
+    if (a,b) not in missing_wr:
+        missing_wr.append((a,b))
     if res == None:
         res = 0.49999
     #if a == 'Spiteful Druid':
     #    return win_pcts.get((a,b), 0) - 0.03
     return win_pcts.get((a,b), 0)
+
+def missing_wrs():
+    global missing_wr
+    return missing_wr
 
 def sumproduct_normalize(a, b):
     res = 0

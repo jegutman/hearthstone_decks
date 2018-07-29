@@ -11,36 +11,38 @@ if __name__ == '__main__':
     lineups_to_test = [l for l in [level1, level2, level3, level4, level5] if l is not None]
     tmp_weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     lineups_to_test = [
-        "Token Druid,Odd Rogue,Even Warlock,Odd Warrior", #Furyhunter
-        "Token Druid,Odd Rogue,Shudderwock Shaman,Even Warlock", #PenhaDani
-        "Token Druid,Big Spell Mage,Cube Warlock,Quest Warrior", #AKAWonder
-        "Odd Paladin,Combo Priest,Even Warlock,Quest Warrior", #Pool8
-        "Token Druid,Odd Paladin,Even Shaman,Cube Warlock", #GreenSheep
-        "Token Druid,Shudderwock Shaman,Big Spell Mage,Cube Warlock", #Faeli
-        "Taunt Druid,Odd Paladin,Shudderwock Shaman,Cube Warlock", #Twink
-        "Combo Priest,Miracle Rogue,Even Warlock", #TechnoGoose
-        "Taunt Druid,Combo Priest,Miracle Rogue,Even Warlock", #Leta
-        "Taunt Druid,Odd Paladin,Shudderwock Shaman,Even Warlock", #Albrigtsen
-        "Taunt Druid,Recruit Hunter,Miracle Rogue,Even Warlock", #BoarControl
-        "Control Priest,Miracle Rogue,Shudderwock Shaman,Even Warlock", #casie
-        "Taunt Druid,Control Priest,Miracle Rogue,Even Warlock", #Janetzky
-        "Taunt Druid,Recruit Hunter,Miracle Rogue,Even Warlock", #Muzzy
-        "Taunt Druid,Odd Rogue,Even Shaman,Even Warlock", #sjow
-        "Even Shaman,Even Warlock,Quest Warrior", #Zorkthar
-        "Token Druid,Even Shaman,Cube Warlock,Quest Warrior", #Nuko
-        "Miracle Rogue,Shudderwock Shaman,Even Warlock,Quest Warrior", #threatii
-        "Taunt Druid,Miracle Rogue,Even Shaman,Cube Warlock", #Seiko
-        "Taunt Druid,Combo Priest,Miracle Rogue,Even Warlock", #Felkeine
-        "Taunt Druid,Control Priest,Odd Quest Warrior,Cube Warlock", #DragonAlbert
-        "Taunt Druid,Recruit Hunter,Miracle Rogue,Even Warlock", #Justsaiyan
-        "Taunt Druid,Odd Rogue,Even Shaman,Cube Warlock", #Turna
-        "Malygos Druid,Even Shaman,Even Warlock,Quest Warrior", #Deathboose
-        "Taunt Druid,Odd Rogue,Even Shaman,Cube Warlock", #SCACC
-        "Spiteful Druid,Miracle Rogue,Even Warlock,Quest Warrior", #Thomm
-        "Recruit Hunter,Even Shaman,Even Warlock,Quest Warrior", #TheRabbin
-        "Control Priest,Miracle Rogue,Shudderwock Shaman,Even Warlock", #Viper
-        "Taunt Druid,Recruit Hunter,Miracle Rogue,Even Warlock", #Glaser
-        "Odd Paladin,Even Shaman,Cube Warlock,Quest Warrior", #Matty
+        "Deathrattle Hunter,Token Druid,Quest Rogue,Odd Paladin", # Zoo Warlock
+        "Malygos Druid,Zoo Warlock,Shudderwock Shaman,Quest Rogue", # Deathrattle Hunter
+        "Malygos Druid,Even Warlock,Odd Rogue,Deathrattle Hunter", # Shudderwock Shaman
+        "Zoo Warlock,Shudderwock Shaman,Deathrattle Hunter,Token Druid", # Fatigue Warrior
+        "Deathrattle Hunter,Miracle Rogue,Taunt Druid,Even Warrior", # Shudderwock Shaman
+        "Midrange Hunter,Miracle Rogue,Malygos Druid,Shudderwock Shaman", # Control Priest
+        "Malygos Druid,Deathrattle Hunter,Miracle Rogue,Cube Warlock", # Odd Paladin
+        "Odd Paladin,Token Druid,Even Warlock,Deathrattle Hunter", # Quest Warrior
+        "Shudderwock Shaman,Control Priest,Cube Warlock,Malygos Druid", # Odd Warrior
+        "Big Druid,Even Warlock,Odd Paladin,Deathrattle Hunter", # Shudderwock Shaman
+        "Token Driud,Big Spell Mage,Overload Shaman,Zoo Warlock", # Recruit Hunter
+        "Malygos Druid,Zoo Warlock,Odd Rogue,Deathrattle Hunter", # Odd Paladin
+        "Odd Paladin,Token Druid,Even Warlock,Deathrattle Hunter", # Odd Rogue
+        "Tempo Mage,Even Warlock,Odd Hunter,Malygos Druid", # Control Priest
+        "Big Druid,Shudderwock Shaman,Even Warlock,Miracle Rogue", # Deathrattle Hunter
+        "Shudderwock Shaman,Malygos Druid,Control Priest,Odd Rogue", # Even Warlock
+        "Deathrattle Hunter,Shudderwock Shaman,Zoo Warlock,Odd Rogue", # Token Druid
+        "Control Priest,Shudderwock Shaman,Quest Warrior,Taunt Druid", # Cube Warlock
+        "Shudderwock Shaman,Quest Rogue,Big Druid,Cube Warlock", # Control Priest
+        "Malygos Druid,Even Warlock,Odd Rogue,Deathrattle Hunter", # Shudderwock Shaman
+        "Odd Paladin,Zoo Warlock,Deathrattle Hunter,Token Druid", # Combo Priest
+        "Odd Rogue,Zoo Warlock,Malygos Druid,Deathrattle Hunter", # Shudderwock Shaman
+        "Malygos Druid,Odd Rogue,Shudderwock Shaman,Quest Warrior", # Cube Warlock
+        "Taunt Druid,Even Warlock,Miracle Rogue,Shudderwock Shaman", # Deathrattle Hunter
+        "Deathrattle Hunter,Scavenger Druid,Odd Rogue,Zoo Warlock", # Shudderwock Shaman
+        "Deathrattle Hunter,Quest Rogue,Big Druid,Murloc Mage", # Odd Paladin
+        "Cube Warlock,Control Priest,Miracle Rogue,Shudderwock Shaman", # Malygos Druid
+        "Token Druid,Deathrattle Hunter,Shudderwock Shaman,Zoo Warlock", # Odd Rogue
+        "Token Druid,Deathrattle Hunter,Cube Warlock,Shudderwock Shaman", # Odd Paladin
+        "Big Druid,Deathrattle Hunter,Miracle Rogue,Even Warlock", # Shudderwock Shaman
+        "Shudderwock Shaman,Even Warlock,Taunt Druid,Big Spell Mage", # Quest Warrior
+        "Even Warlock,Deathrattle Hunter,Miracle Rogue,Big Druid", # Big Spell Mage
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
     weights = [1 for l in lineups_to_test if l is not None]
@@ -147,7 +149,7 @@ if __name__ == '__main__':
                 print '%-27s %-27s %s' % (d1, d2, round(j,4))
             
     else:
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=40, min_game_count=20, min_win_pct=0.44,limitTop=30)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=40, min_game_count=20, min_win_pct=0.44,limitTop=35)
         for key in win_pcts.keys():
             i,j = key
             bias = 0.00
@@ -164,6 +166,7 @@ if __name__ == '__main__':
         print len(archetypes), sorted(archetypes, key=class_sort)
 
         excluded = []
+        #excluded += ['Odd Rogue']
         #excluded = ['Spiteful Druid', 'Spiteful Priest', 'Miracle Rogue', 'Pirate Warrior']
         #excluded = ['Aggro Hunter', 'Combo Priest', 'Rush Warrior', 'Odd Hunter', 'Odd Paladin']
         #excluded = ['Odd Paladin', 'Cube Warlock', 'Control Warlock']
@@ -216,7 +219,14 @@ if __name__ == '__main__':
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:min([i[1] for i in x[1]]))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-10:]:
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-40:]:
+        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 3 + min([i[1] for i in x[1]]))[-40:]:
+        final = sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))
+        for i,j in final[-40:]:
+            tmp = []
+            for x in j:
+                tmp_sub = tuple([archetype_map[x[0]]] + list(x[1:]))
+                tmp.append(tmp_sub)
+            j = tmp
             i = get_lineup(i, archetype_map)
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
@@ -224,6 +234,7 @@ if __name__ == '__main__':
             lineup_string = ",".join(i)
             lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(sumproduct_normalize([i[1] for i in j],weights),3), round(min([x[1] for x in j]),3)))
             print '         "' + lineup_string + '"'
+    
         for i,j,k,l in lu_strings:
             print "".join(["%-20s" % x for x in i.split(',')]), j, k, l, '    "%(i)s"' % locals()
 
