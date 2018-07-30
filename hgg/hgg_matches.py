@@ -238,7 +238,7 @@ round2 = [
     ('Chile', 'Ukraine'),
     ('Singapore', 'Peru'),
     ('Norway', 'Israel'),
-    ('Hungary', 'Russian Federation'),
+    ('Hungary', 'Russia'),
     ('United Kingdom', 'United States'),
     ('Croatia', 'Belgium'),
     ('Malaysia', 'Hong Kong'),
@@ -252,6 +252,20 @@ round2 = [
 ]
 
 round2_final_order = {
+    ('Norway', 'Israel') : [
+        ('Hunter', 'Shaman'),
+        ('Priest', 'Druid'),
+        ('Druid', 'Hunter'),
+        ('Shaman', 'Priest'),
+        ('Mage', 'Warlock')
+    ],
+    ('Denmark', 'Argentina') : [
+        ('Rogue', 'Rogue'),
+        ('Druid', 'Shaman'),
+        ('Warrior', 'Paladin'),
+        ('Mage', 'Mage'),
+        ('Hunter', 'Warrior')
+    ],
     ('New Zealand', 'Sweden') : [
         ('FillInHere', 'FillInHere'),
         ('FillInHere', 'FillInHere'),
@@ -260,11 +274,11 @@ round2_final_order = {
         ('FillInHere', 'FillInHere')
     ],
     ('Belarus', 'Finland') : [
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere')
+        ('Shaman', 'Paladin'),
+        ('Mage', 'Warrior'),
+        ('Hunter', 'Hunter'),
+        ('Warlock', 'Rogue'),
+        ('Warrior', 'Shaman')
     ],
     ('Spain', 'Slovakia') : [
         ('FillInHere', 'FillInHere'),
@@ -274,25 +288,25 @@ round2_final_order = {
         ('FillInHere', 'FillInHere')
     ],
     ('Greece', 'Brazil') : [
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere')
+        ('Hunter', 'Mage'),
+        ('Priest', 'Shaman'),
+        ('Paladin', 'Warrior'),
+        ('Rogue', 'Paladin'),
+        ('Warrior', 'Hunter')
     ],
     ('Indonesia', 'Czech Republic') : [
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere')
+        ('Rogue', 'Priest'),
+        ('Mage', 'Rogue'),
+        ('Paladin', 'Warlock'),
+        ('Druid', 'Warrior'),
+        ('Warrior', 'Shaman')
     ],
     ('Italy', 'Bulgaria') : [
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere')
+        ('Warlock', 'Priest'),
+        ('Priest', 'Warrior'),
+        ('Paladin', 'Paladin'),
+        ('Druid', 'Hunter'),
+        ('Hunter', 'Mage')
     ],
     ('Germany', 'Romania') : [
         ('FillInHere', 'FillInHere'),
@@ -336,19 +350,12 @@ round2_final_order = {
         ('FillInHere', 'FillInHere'),
         ('FillInHere', 'FillInHere')
     ],
-    ('Norway', 'Israel') : [
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere')
-    ],
-    ('Hungary', 'Russian Federation') : [
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere')
+    ('Hungary', 'Russia') : [
+        ('Paladin', 'Shaman'),
+        ('Warrior', 'Rogue'),
+        ('Rogue', 'Hunter'),
+        ('Priest', 'Warlock'),
+        ('Mage', 'Priest')
     ],
     ('United Kingdom', 'United States') : [
         ('FillInHere', 'FillInHere'),
@@ -372,11 +379,11 @@ round2_final_order = {
         ('FillInHere', 'FillInHere')
     ],
     ('Austria', 'Switzerland') : [
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere')
+        ('Priest', 'Druid'),
+        ('Mage', 'Priest'),
+        ('Warlock', 'Warrior'),
+        ('Rogue', 'Paladin'),
+        ('Shaman', 'Warlock')
     ],
     ('Philippines', 'Vietnam') : [
         ('FillInHere', 'FillInHere'),
@@ -386,13 +393,6 @@ round2_final_order = {
         ('FillInHere', 'FillInHere')
     ],
     ('Turkey', 'Netherlands') : [
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere'),
-        ('FillInHere', 'FillInHere')
-    ],
-    ('Denmark', 'Argentina') : [
         ('FillInHere', 'FillInHere'),
         ('FillInHere', 'FillInHere'),
         ('FillInHere', 'FillInHere'),
@@ -420,4 +420,31 @@ round2_final_order = {
         ('FillInHere', 'FillInHere'),
         ('FillInHere', 'FillInHere')
     ],
+}
+
+round2_scores = {
+    ('New Zealand', 'Sweden')         : (3,2),
+    ('Belarus', 'Finland')         : (3,1),
+    ('Spain', 'Slovakia')         : (3,2),
+    ('Greece', 'Brazil')         : (1,3),
+    ('Indonesia', 'Czech Republic')         : (2,3),
+    ('Italy', 'Bulgaria')         : (3,1),
+    ('Germany', 'Romania')         : (2,3),
+    ('Poland', 'South Korea')         : (3,2),
+    ('China', 'France')         : (3,2),
+    ('Thailand', 'Taiwan')         : (3,2),
+    ('Chile', 'Ukraine')         : (0,3),
+    ('Singapore', 'Peru')         : (3,1),
+    ('Norway', 'Israel')         : (3,0),
+    ('Hungary', 'Russia')         : (0,3),
+    ('United Kingdom', 'United States')         : (3,1),
+    ('Croatia', 'Belgium')         : (1,3),
+    ('Malaysia', 'Hong Kong')         : (2,3),
+    ('Austria', 'Switzerland')         : (0,3),
+    ('Philippines', 'Vietnam')         : (1,3),
+    ('Turkey', 'Netherlands')         : (1,3),
+    ('Denmark', 'Argentina')         : (3,0),
+    ('Japan', 'Portugal')         : (1,3),
+    ('Kazakhstan', 'Mexico')         : (3,2),
+    ('Canada', 'Australia')         : (3,1),
 }

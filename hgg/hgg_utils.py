@@ -9,8 +9,8 @@ from pprint import pprint
 
 class HGG_Matchup():
     def __init__(self, l1, l2, decksA=[], decksB=[], win_pcts = None, clear_initialize=False):
-        self.poolA = l1
-        self.poolB = l2
+        self.poolA = list(l1)
+        self.poolB = list(l2)
         self.decksA = decksA
         self.decksB = decksB
         if not win_pcts:
@@ -206,7 +206,7 @@ def ban3(pool_a, pool_b, decks_a, decks_b, win_pcts):
         bans1.append((min(bans2), p1_ban))
     global debug
     res = max(bans1)
-    print(bans1)
+    #print(bans1)
     return res[0][0], res
 
 def pick2(pool_a, pool_b, decks_a, decks_b, win_pcts):
@@ -367,15 +367,18 @@ if __name__ == '__main__':
     from json_win_rates import *
     #l1 = ['Malygos Druid', 'Recruit Hunter', 'Tempo Mage', 'Odd Paladin', 'Control Priest', 'Miracle Rogue', 'Shudderwock Shaman', 'Cube Warlock', 'Quest Warrior']
     #l2 = ['Malygos Druid', 'Spell Hunter', 'Big Spell Mage', 'Odd Paladin', 'Control Priest', 'Odd Rogue', 'Shudderwock Shaman', 'Cube Warlock', 'Quest Warrior']
-    l1 = "Shudderwock Shaman,Odd Paladin,Mill Druid,Murloc Mage,Zoo Warlock,Combo Priest,Odd Rogue,Deathrattle Hunter,Quest Warrior".split(',')
-    l2 = "Quest Warrior,Control Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter".split(',')
-    debug = True
+    #l1 = "Shudderwock Shaman,Odd Paladin,Mill Druid,Murloc Mage,Zoo Warlock,Combo Priest,Odd Rogue,Deathrattle Hunter,Quest Warrior".split(',')
+    #l2 = "Quest Warrior,Control Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter".split(',')
+    l1 = "Quest Warrior,Quest Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Murloc Mage,Token Druid,Deathrattle Hunter".split(',')
+    l2 = "Quest Warrior,Control Priest,Even Shaman,Zoo Warlock,Odd Paladin,Miracle Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter".split(',')
+    #debug = True
     mu = HGG_Matchup(l1, l2)
-    mu.add_ban(['Mill Druid'], ['Even Warlock'])
-    mu.add_picks(['Deathrattle Hunter', 'Shudderwock Shaman'], ['Odd Paladin', 'Control Priest'])
-    mu.add_ban(['Combo Priest', 'Quest Warrior'], ['Odd Rogue', 'Deathrattle Hunter'])
-    mu.add_picks(['Odd Paladin', 'Zoo Warlock'], ['Malygos Druid', 'Shudderwock Shaman'])
+    mu.add_ban(['Zoo Warlock'], ['Odd Paladin'])
+    #mu.add_picks(['Deathrattle Hunter', 'Shudderwock Shaman'], ['Odd Paladin', 'Control Priest'])
+    #mu.add_ban(['Combo Priest', 'Quest Warrior'], ['Odd Rogue', 'Deathrattle Hunter'])
+    #mu.add_picks(['Odd Paladin', 'Zoo Warlock'], ['Malygos Druid', 'Shudderwock Shaman'])
     #mu.add_picks(['Murloc Mage', 'Zoo Warlock'], ['Quest Warrior', 'Shudderwock Shaman'])
     #mu.add_ban(['Malygos Druid'], ['Malygos Druid'])
     tmp = mu.calculate(isGoofy=True)
+    #tmp = mu.calculate()
     print('\n', tmp)
