@@ -40,16 +40,15 @@ for line in lines:
             archetypes.append(l)
     team_lineups[team] = lineup
 
-for i,j in round2:
-    
-    l1 = team_lineups[i]
-    l2 = team_lineups[j]
-    mu = HGG_Matchup(l1, l2, win_pcts=win_pcts, clear_initialize=True)
-    calc = mu.calculate()
-    res = [i,j, calc]
-    print(",".join([str(x) for x in res]))
+#for i,j in round2:
+#    l1 = team_lineups[i]
+#    l2 = team_lineups[j]
+#    mu = HGG_Matchup(l1, l2, win_pcts=win_pcts, clear_initialize=True)
+#    calc = mu.calculate()
+#    res = [i,j, calc]
+#    print(",".join([str(x) for x in res]))
 
-#for i,j in round1:
+#for i,j in round2[-2:]:
 #    l1 = team_lineups[j]
 #    l2 = team_lineups[i]
 #    mu = HGG_Matchup(l1, l2, win_pcts=win_pcts, clear_initialize=True)
@@ -58,29 +57,28 @@ for i,j in round2:
 #    print(",".join([str(x) for x in res]))
 
 # CODE FOR PRE vs POST-QUEUE
-#for i,j in round1:
-#    #print(i,'-', j)
-#    order = round1_final_order[(i,j)]
-#    l1_order, l2_order = list(zip(*order))
-#    l1_order = list(l1_order)
-#    l2_order = list(l2_order)
-#    l1_played = team_played[i]
-#    l2_played = team_played[j]
-#    #print(l1_played)
-#    #print(l2_played)
-#    l1 = sorted(team_played[i], key=lambda x:l1_order.index(x.split(' ')[-1]))
-#    l2 = sorted(team_played[j], key=lambda x:l2_order.index(x.split(' ')[-1]))
-#    #print(l1, l2)
-#    final = round(eval_one(l1, l2, win_pcts) * 100, 1)
-#    pre_order = round(eval_final_calc(l1, l2, win_pcts) * 100, 1)
-#    diff = round(final - pre_order, 1)
-#    s1, s2 = round1_scores[(i,j)]
-#    res = [i,j, s1, s2, pre_order, final, diff]
-#    print(",".join([str(x) for x in res]))
-#    #print("%-15s" % abs(diff), i,'-', j, pre_order, final, diff)
-#    #print(i, ':', ",".join(team_played[i]))
-#    #print(j, ':', ",".join(team_played[j]))
-#    #print(i, ':', ",".join(team_lineups[i]))
-#    #print(j, ':', ",".join(team_lineups[j]))
-#    #print('')
+for i,j in round2:
+    #print(i,'-', j)
+    order = round2_final_order[(i,j)]
+    l1_order, l2_order = list(zip(*order))
+    if l1_order[0] == 'FillInHere': continue
+    l1_order = list(l1_order)
+    l2_order = list(l2_order)
+    #l1 = sorted(l1_played, key=lambda x:l1_order.index(x.split(' ')[-1]))
+    #l2 = sorted(team_played[j], key=lambda x:l2_order.index(x.split(' ')[-1]))
+    l1 = [d for d in team_lineups[i] if d.split(' ')[-1] in l1_order]
+    l2 = [d for d in team_lineups[j] if d.split(' ')[-1] in l2_order]
+    #print(l1, l2)
+    final = round(eval_one(l1, l2, win_pcts) * 100, 1)
+    pre_order = round(eval_final_calc(l1, l2, win_pcts) * 100, 1)
+    diff = round(final - pre_order, 1)
+    s1, s2 = round2_scores[(i,j)]
+    res = [i,j, s1, s2, pre_order, final, diff]
+    print(",".join([str(x) for x in res]))
+    #print("%-15s" % abs(diff), i,'-', j, pre_order, final, diff)
+    #print(i, ':', ",".join(team_played[i]))
+    #print(j, ':', ",".join(team_played[j]))
+    #print(i, ':', ",".join(team_lineups[i]))
+    #print(j, ':', ",".join(team_lineups[j]))
+    #print('')
 
