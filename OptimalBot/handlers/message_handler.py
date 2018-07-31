@@ -33,6 +33,7 @@ CMD_HELP = "!help"
 CMD_COUNTDOWN = "!countdown"
 CMD_UPTIME = "!uptime"
 CMD_OWNER = "!owner"
+CMD_MECHATHUN = "!mechathun"
 CMD_NEXTCARD = "!nextcard"
 
 #USAGE = """`
@@ -296,6 +297,9 @@ class MessageHandler:
             
         if message.content.startswith(CMD_OWNER):
             await self.respond_image(message, basedir + 'drlight.jpeg')
+
+        if message.content.startswith(CMD_MECHATHUN):
+            await self.respond_image(message, basedir + 'OptimalBot/Assets/mechathun.png')
         
         return False
 
