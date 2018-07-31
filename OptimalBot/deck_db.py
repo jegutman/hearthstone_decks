@@ -117,7 +117,7 @@ class DeckDBHandler():
         date_str = "date like '%%%s%%'" % flags.get('date').replace('.*', '%') if flags.get('date') else ''
         deck_code_str = "deck_code like '%%%s%%'" % flags.get('deck_code').replace('.*', '%') if flags.get('deck_code') else ''
         private_str = "" if allow_private else " and is_private = 0"
-        if not private_str:
+        if all_private:
             private_str = "and (is_private = 0 or (is_private = 1 and server like '%%%s%%))" % query_channel
         query_str = []
         for i in [archetype_str, class_str, name_str, user_str]:
@@ -135,8 +135,9 @@ class DeckDBHandler():
                 query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or user like '%%%(kw)s%%' or date like '%%%(kw)s%%')" % locals()
             else:
                 query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or user like '%%%(kw)s%%' or date like '%%%(kw)s%%' or deck_code like '%%%(kw)s%%')" % locals()
-            if not allow_private:
-                query_str += private_str 
+            #if not allow_private:
+            #    query_str += private_str 
+            query_str += private_str 
         
         #if use_playoffs:
         #    sql_string = "SELECT deck_id, date, deck_name, deck_class, deck_code from deckstrings.playoffs where %(query_str)s"
