@@ -46,19 +46,19 @@ class HGG_Matchup():
         assert len(poolA) == len(poolB), "pools must be equal in size"
         assert len(decksA) == len(decksB), "decks must be equal in size"
         if len(poolA) == 9:
-            print("ban1")
+            if debug: print("ban1")
             return ban1_int(poolA, poolB, self.win_pcts)
         elif len(poolA) == 8:
-            print("pick1")
+            if debug: print("pick1")
             return pick1_int(poolA, poolB, self.win_pcts)
         elif len(poolA) == 6 and len(decksA) == 2:
-            print("ban2")
+            if debug: print("ban2")
             return ban2(poolA, poolB, decksA, decksB, self.win_pcts)
         elif len(poolA) == 4 and len(decksA) == 2:
-            print("pick2")
+            if debug: print("pick2")
             return pick2(poolA, poolB, decksA, decksB, self.win_pcts)
         elif len(poolA) == 2 and len(decksA) == 4:
-            print("ban3")
+            if debug: print("ban3")
             return ban3(poolA, poolB, decksA, decksB, self.win_pcts)
         else:
             return "Unexpected State"
@@ -110,7 +110,7 @@ eval_final = None
 win_rates_init = {}
 def initialize(decks_a, decks_b, win_pcts, debug=False):
     global win_rates_init
-    print(decks_a, decks_b)
+    #print(decks_a, decks_b)
     res = {}
     #decks_a = sorted(decks_a, key=lambda x:x.split(' ')[-1])
     #decks_b = sorted(decks_b, key=lambda x:x.split(' ')[-1])
@@ -119,8 +119,8 @@ def initialize(decks_a, decks_b, win_pcts, debug=False):
     all_l1 = list(itertools.combinations(decks_a, 5))
     all_l2 = list(itertools.combinations(decks_b, 5))
     count = 0
-    print("Initializing", len(all_l1) * len(all_l2))
-    print("len", len(list(all_l1)), len(list(all_l2)))
+    #print("Initializing", len(all_l1) * len(all_l2))
+    #print("len", len(list(all_l1)), len(list(all_l2)))
     for l1 in all_l1:
         for l2 in all_l2:
             count += 1
@@ -136,7 +136,7 @@ def initialize(decks_a, decks_b, win_pcts, debug=False):
         decks_b = sorted(decks_b)
         return round(res[(tuple(decks_a), tuple(decks_b))], 6)
     global eval_final
-    print("Done Initializing")
+    #print("Done Initializing")
     eval_final = eval_final_tmp
 
 def eval_final_calc(decks_a, decks_b, win_pcts, give_range=False):
@@ -341,7 +341,7 @@ def ban1(pool_a, pool_b, win_pcts):
     pool_b = sorted(pool_b, key=lambda x:avg_win_pct(x, pool_a, win_pcts), reverse=True)
     possible_bans_from_b = pool_b
     possible_bans_from_a = pool_a
-    print(possible_bans_from_a, possible_bans_from_b)
+    #print(possible_bans_from_a, possible_bans_from_b)
     count = 0
     prune = 0
     for p_b in possible_bans_from_b:
@@ -353,10 +353,10 @@ def ban1(pool_a, pool_b, win_pcts):
                 #print(min(bans_from_a)[0], max(bans_from_b)[0][0])
                 if min(bans_from_a)[0] < max(bans_from_b)[0][0]:
                     prune += 1
-                    print(prune, "pruned")
+                    #print(prune, "pruned")
                     continue
             count += 1
-            print(count, 'ban1', p_a, p_b)
+            #print(count, 'ban1', p_a, p_b)
             tmp_pool_a = list(pool_a)
             tmp_pool_a.remove(p_a)
             bans_from_a.append((pick1(tmp_pool_a, tmp_pool_b, win_pcts)[0], p_a))
