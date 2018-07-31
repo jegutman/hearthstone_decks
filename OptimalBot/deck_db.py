@@ -104,7 +104,7 @@ class DeckDBHandler():
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
 
-    def search_helper(self, args, flags, allow_private, limit=0, use_playoffs=False, tags=None):
+    def search_helper(self, args, flags, allow_private, query_channel, limit=0, use_playoffs=False, tags=None):
         self.check_cursor()
         playoff_str = "playoff_region = 'None'"
         if use_playoffs:
@@ -117,6 +117,8 @@ class DeckDBHandler():
         date_str = "date like '%%%s%%'" % flags.get('date').replace('.*', '%') if flags.get('date') else ''
         deck_code_str = "deck_code like '%%%s%%'" % flags.get('deck_code').replace('.*', '%') if flags.get('deck_code') else ''
         private_str = "" if allow_private else " and is_private = 0"
+        if not private_str:
+            private_str = "and (is_private = 0 or (is_private = 1 and server like '%%%s%%))" % query_channel
         query_str = []
         for i in [archetype_str, class_str, name_str, user_str]:
             if i: query_str.append(i)
@@ -158,8 +160,8 @@ class DeckDBHandler():
             res = res[-limit:]
         return res
 
-    def search(self, args, flags, allow_private, use_playoffs=False):
-        res = self.search_helper(args, flags, allow_private, use_playoffs=use_playoffs)
+    def search(self, args, flags, allow_private, query_channel, use_playoffs=False):
+        res = self.search_helper(args, flags, allow_private, query_channel, use_playoffs=use_playoffs)
         #res_str = "`"
         res_str = ""
         res_str += "#%-5s %-10s %-16s %-24s %-10s \n#        %s\n" % ('id', 'date', 'user', 'deck_name', 'class', 'deck_code')
@@ -171,7 +173,7 @@ class DeckDBHandler():
         #res_str += '`'
         return res_str
 
-    def lineup(self, args, flags, allow_private, use_playoffs=False):
+    def lineup(self, args, flags, allow_private, query_channel, use_playoffs=False):
         res = self.search_helper(args, flags, allow_private, use_playoffs=use_playoffs, tags='lineup')
         all_decks = []
         res_str = []

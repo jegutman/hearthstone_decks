@@ -112,7 +112,7 @@ class DeckHandler():
             allow_private = True
         else:
             allow_private = False
-        return deck_db_handler.search(args,flags, allow_private, use_playoffs=use_playoffs)
+        return deck_db_handler.search(args,flags, allow_private, message.channel.name, use_playoffs=use_playoffs)
 
     def handle_lineup(self, args, message, deck_db_handler, use_playoffs=True):
         deckstrings, flags = get_args(args)
@@ -124,7 +124,7 @@ class DeckHandler():
             allow_private = True
         else:
             allow_private = False
-        return deck_db_handler.lineup(args,flags, allow_private, use_playoffs=use_playoffs)
+        return deck_db_handler.lineup(args,flags, allow_private, message.channel.name, use_playoffs=use_playoffs)
 
     def handle_compare_all(self, args, message, deck_db_handler):
         deckstrings, flags = get_args(args)
@@ -132,7 +132,7 @@ class DeckHandler():
             allow_private = True
         else:
             allow_private = False
-        decks = deck_db_handler.search_helper(args,flags, allow_private, limit=6)
+        decks = deck_db_handler.search_helper(args,flags, allow_private, message.channel.name, limit=6)
         deckstrings_to_compare = [i[-1] for i in decks]
         args = " ".join(deckstrings_to_compare)
         return self.handle(args, message, deck_db_handler)
