@@ -73,10 +73,10 @@ class SimHandler():
         date, skill, period = name_info.split('_')
         date = date[:4] + '_' + date[4:6] + '_' + date[6:]
         if skill == 'LONLY':
-            skill = 'L Only'
+            skill = 'Lengend only data'
         elif skill == 'L5':
-            skill = 'L-5'
+            skill = 'L-5 data'
         period = period[:1] + ' ' + period[1:]
-        combined = "%s from %s for %s" % (skill, date, period)
+        combined = "%s from %s for the previous %s" % (skill, date, period)
         return 'using: %s' % combined
         #return 'using: %s' % wr_filename.split('/')[-1]
