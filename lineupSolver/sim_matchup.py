@@ -1,5 +1,6 @@
 from shared_utils import *
 from json_win_rates import * 
+tested = {}
 from conquest_utils import tested
 from conquest_utils import win_rates_lines as cq_win_rates_lines
 from conquest_utils import post_ban as cq_post_ban
