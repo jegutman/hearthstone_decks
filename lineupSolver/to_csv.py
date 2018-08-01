@@ -16,15 +16,15 @@ archetypes.sort(key=lambda x:x.split(' ')[-1])
 #l1 = "Malygos Druid,Even Warlock,Shudderwock Shaman,Odd Rogue,Deathrattle Hunter,Odd Paladin,Quest Warrior,Control Priest,Big Spell Mage".split(',')
 #l2 = "Recruit Hunter,Quest Warrior,Odd Paladin,Taunt Druid,Control Priest,Even Warlock,Shudderwock Shaman,Big Spell Mage,Miracle Rogue".split(',')
 #l2 = "Shudderwock Shaman,Odd Paladin,Mill Druid,Murloc Mage,Zoo Warlock,Combo Priest,Odd Rogue,Deathrattle Hunter,Quest Warrior".split(',')
-l1 = "Quest Warrior,Quest Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Murloc Mage,Token Druid,Deathrattle Hunter".split(',')
-l2 = "Quest Warrior,Control Priest,Even Shaman,Zoo Warlock,Odd Paladin,Miracle Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter".split(',')
+l2 = "Quest Warrior,Quest Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Murloc Mage,Token Druid,Deathrattle Hunter".split(',')
+l1 = "Quest Warrior,Control Priest,Even Shaman,Zoo Warlock,Odd Paladin,Miracle Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter".split(',')
 
 output = open(output_file, 'w')
 #archetypes = archetypes_allowed
 #archetypes = sorted(archetypes, key=lambda x:game_count.get(x, 0), reverse=True)
 archetypes.sort(key=lambda x:x.split(' ')[-1])
 #res = wr_to_csv(win_pcts, archetypes, 100)
-res = wr_to_csv(win_pcts, l1, l2, 100)
+res = wr_to_csv(win_pcts, l1, other_archetypes=l2, scaling=100)
 print(res)
 for line in res:
     output.write(line)
