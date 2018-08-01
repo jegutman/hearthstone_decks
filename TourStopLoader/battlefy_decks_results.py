@@ -68,10 +68,10 @@ games in  game['stats']
     ['top']['class']
     ['top']['winner']
 """
-def parse_match(match):
+def parse_match(match, only_finished=True):
     global player_decks, seeds
     matchf = 'https://dtmwra1jsgyb0.cloudfront.net/matches/{}?extend%5Btop.team%5D%5Bplayers%5D%5Buser%5D=true&extend%5Bbottom.team%5D%5Bplayers%5D%5Buser%5D=true'
-    if 'isComplete' not in match.keys():
+    if 'isComplete' not in match.keys() and only_finished:
         return None
     elif match['isBye']:
         return None
@@ -81,7 +81,10 @@ def parse_match(match):
         return None
     if 'team' not in match['bottom']:
         return None
-    date = match['updatedAt'][:10].replace('-', '_')
+    if only_finished:
+        date = match['completedAt'][:10].replace('-', '_')
+    else:
+        date = match['createdAt'][:10].replace('-', '_')
     round_number = match['roundNumber']
     p1 = match['top']['team']['name'].replace(' \#', '#').split(' ')[0].split('(')[0]
     p1 = p1.split('#')[0]
@@ -159,8 +162,8 @@ def parse_match(match):
             tmp_result = 1 if game['stats']['top']['winner'] else 0
             games.append((p1_tmp_class, p2_tmp_class, tmp_result))
 
-    p1_score = match['top']['score']
-    p2_score = match['bottom']['score']
+    p1_score = match['top'].get('score', 0)
+    p2_score = match['bottom'].get('score', 0)
     
     return (date, round_number, p1, p2, result, p1_score, p2_score, games)
 
@@ -169,15 +172,15 @@ def get_decks(match):
     p2_decks = []
     matchf = 'https://dtmwra1jsgyb0.cloudfront.net/matches/{}?extend%5Btop.team%5D%5Bplayers%5D%5Buser%5D=true&extend%5Bbottom.team%5D%5Bplayers%5D%5Buser%5D=true'
     if 'isComplete' not in match.keys():
-        return None
+        return [], []
     elif match['isBye']:
-        return None
+        return [], []
     if not match['top'] or not match['bottom']:
-        return None
+        return [], []
     if 'team' not in match['top']:
-        return None
+        return [], []
     if 'team' not in match['bottom']:
-        return None
+        return [], []
     try:
         for field in match['top']['team']['customFields']:
             deck_match = deckstring_re.findall(field['value'])
@@ -212,7 +215,8 @@ def get_decks(match):
                 pass
     return p1_decks, p2_decks
         
-def process_battlefy_url(bracket_url):
+data = None
+def process_battlefy_url(bracket_url, only_finished=True):
     matches = []
     failed = []
     count = 0
@@ -221,11 +225,12 @@ def process_battlefy_url(bracket_url):
     #for bracket_url in bracket_urls:
 
     data = matches_from_battlefy(bracket_url)
+    print(len(str(data)), bracket_url)
     decks = {}
 
     for match_data in data:
         count += 1
-        match = parse_match(match_data)
+        match = parse_match(match_data, only_finished)
         if not match:
             failed.append(match_data)
         else:
@@ -239,6 +244,7 @@ def process_battlefy_url(bracket_url):
                 p1_decks, p2_decks = get_decks(match_data)
                 decks[p1] = p1_decks
                 decks[p2] = p2_decks
+    print(decks)
                 
     return decks, matches, player_matches
             
@@ -267,19 +273,18 @@ def process_battlefy_url(bracket_url):
 
 if __name__ == '__main__':
     urls = [
-        #'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-3/5b3511182c185e0397195e61/stage/5b4c500dee3d0303d602e337/bracket/',
-        #'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-3/5b3511182c185e0397195e61/stage/5b4c5032bd99a703aa907fb7/bracket/',
-        #'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-3/5b3511182c185e0397195e61/stage/5b4c501fbd99a703aa907eb6/bracket/',
-        #'https://battlefy.com/take-tv/hct-germany-a-taketv-tour-stop-european-qualifier-3/5b3511182c185e0397195e61/stage/5b4c503d4f4bb503a14b2352/bracket/',
-        #'https://battlefy.com/evox/hct-tour-stop-italy-powered-by-zotac/5aa7d09f0b25e50393914521/stage/5aa7d0ba0f99cf034ea52f06/bracket/',
-        #'https://battlefy.com/hearthstone-global-games-2018/hearthstone-global-games-2018/5b3ccaa722962f03ce590019/stage/5b3ccb149a4af103b49c2aa6/bracket/1',
+        'https://battlefy.com/hct-tokyo-tour-stop/hct-tokyo-tour-stop-offline/5b52a7bb8497d0039f21cb6e/stage/5b582201a6ea1903a67fad1c/bracket/',
+        'https://battlefy.com/hct-tokyo-tour-stop/hct-tokyo-tour-stop-offline/5b52a7bb8497d0039f21cb6e/stage/5b582234a4033403cc07e07b/bracket/',
+        'https://battlefy.com/hct-tokyo-tour-stop/hct-tokyo-tour-stop-offline/5b52a7bb8497d0039f21cb6e/stage/5b5822698d8fc603e0638582/bracket/',
+        'https://battlefy.com/hct-tokyo-tour-stop/hct-tokyo-tour-stop-offline/5b52a7bb8497d0039f21cb6e/stage/5b58227f8d8fc603e063858b/bracket/',
     ]
     player_matches = {}
     decks = {}
     archetypes = {}
     all_matches = []
     for url in urls:
-        tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(url)
+        #tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(url)
+        tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(url, only_finished=False)
         # this is not quite right because could be lists to append to
         player_matches.update(tmp_player_matches)
         decks.update(tmp_decks)
