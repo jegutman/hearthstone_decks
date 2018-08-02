@@ -8,7 +8,7 @@ import math
 import json
 from config import basedir
 
-date = '20180712'
+date = '20180725'
 #date = '20180710'
 base = basedir
 #filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_7DAYS.json' % locals()
@@ -110,12 +110,14 @@ def get_win_pcts_old(min_game_threshold=0, min_game_count=0, min_win_pct=0, file
     wr_file.close()
     return win_pcts, num_games, game_count, hsreplay_archetypes, overall_wr
 
-def wr_to_csv(win_pcts, archetypes, scaling=1, default = 0.4999):
+def wr_to_csv(win_pcts, archetypes, other_archetypes = None, scaling=1, default = 0.4999):
     res = []
-    res.append(",".join([""] + archetypes))
+    if other_archetypes is None:
+        other_archetypes = archetypes
+    res.append(",".join([""] + other_archetypes))
     for i in archetypes:
         line = [i]
-        for j in archetypes:
+        for j in other_archetypes:
             line += [str(round(win_pcts.get((i,j), default) * scaling, int(4-math.log(scaling, 10))))]
         res.append(",".join(line))
     return "\n".join(res)
