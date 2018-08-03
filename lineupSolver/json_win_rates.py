@@ -8,7 +8,7 @@ import math
 import json
 from config import basedir
 
-date = '20180725'
+date = '20180731'
 #date = '20180710'
 base = basedir
 #filename = '%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_7DAYS.json' % locals()
