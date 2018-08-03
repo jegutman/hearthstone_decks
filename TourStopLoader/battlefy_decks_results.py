@@ -153,6 +153,10 @@ def parse_match(match, only_finished=True):
     
 
     result = 1 if match['top']['winner'] else 0
+    #if 'winner' in match['top']:
+    #    result = 1 if match['top']['winner'] else 0
+    #else:
+    #    result = -1
     
     games = []
     if 'stats' in match.keys():
@@ -167,7 +171,9 @@ def parse_match(match, only_finished=True):
     
     return (date, round_number, p1, p2, result, p1_score, p2_score, games)
 
+matchdata = None
 def get_decks(match):
+    global matchdata
     p1_decks = []
     p2_decks = []
     matchf = 'https://dtmwra1jsgyb0.cloudfront.net/matches/{}?extend%5Btop.team%5D%5Bplayers%5D%5Buser%5D=true&extend%5Bbottom.team%5D%5Bplayers%5D%5Buser%5D=true'
@@ -190,27 +196,39 @@ def get_decks(match):
             deck_match = deckstring_re.findall(field['value'])
             if deck_match:
                 p2_decks.append(deck_match[0])
+        if len(p1_decks) == 0 or len(p2_decks) == 0:
+            assert False
     except:
         r = requests.get(matchf.format(match['_id']))
         matchdata = json.loads(r.text)
         team = matchdata[0]['top']
+        #if 'uzzy' in team['team']['name']:
+        #    assert False
         if 'team' in team:
             try:
                 decks = team['team']['players'][0]['gameAttributes']['deckStrings']
                 for decklist in decks:
-                    deck = parse_deck(decklist)
-                    if deck!=None:
-                        p1_decks.append(deck.as_deckstring)
+                    decklist = decklist.strip()
+                    decklist = max(decklist.split(' '), key=lambda x:len(x))
+                    #deck = parse_deck(decklist)
+                    #if deck!=None:
+                    #    p1_decks.append(deck.as_deckstring)
+                    p1_decks.append(decklist.strip())
             except:
                 pass
         team = matchdata[0]['bottom']
+        #if 'uzzy' in team['team']['name']:
+        #    assert False
         if 'team' in team:
             try:
                 decks = team['team']['players'][0]['gameAttributes']['deckStrings']
                 for decklist in decks:
-                    deck = parse_deck(decklist)
-                    if deck!=None:
-                        p2_decks.append(deck.as_deckstring)
+                    decklist = decklist.strip()
+                    decklist = max(decklist.split(' '), key=lambda x:len(x))
+                    #deck = parse_deck(decklist)
+                    #if deck!=None:
+                    #    p2_decks.append(deck.as_deckstring)
+                    p2_decks.append(decklist.strip())
             except:
                 pass
     return p1_decks, p2_decks
@@ -240,11 +258,11 @@ def process_battlefy_url(bracket_url, only_finished=True):
             p2 = p2.split('#')[0].strip()
             player_matches[p1] = player_matches.get(p1, []) + [match]
             player_matches[p2] = player_matches.get(p2, []) + [match]
-            if p1 not in decks or p2 not in decks:
+            if p1 not in decks or p2 not in decks or not decks[p1] or not decks[p2]:
                 p1_decks, p2_decks = get_decks(match_data)
                 decks[p1] = p1_decks
                 decks[p2] = p2_decks
-    print(decks)
+    #print(decks)
                 
     return decks, matches, player_matches
             
@@ -273,10 +291,8 @@ def process_battlefy_url(bracket_url, only_finished=True):
 
 if __name__ == '__main__':
     urls = [
-        'https://battlefy.com/hct-tokyo-tour-stop/hct-tokyo-tour-stop-offline/5b52a7bb8497d0039f21cb6e/stage/5b582201a6ea1903a67fad1c/bracket/',
-        'https://battlefy.com/hct-tokyo-tour-stop/hct-tokyo-tour-stop-offline/5b52a7bb8497d0039f21cb6e/stage/5b582234a4033403cc07e07b/bracket/',
-        'https://battlefy.com/hct-tokyo-tour-stop/hct-tokyo-tour-stop-offline/5b52a7bb8497d0039f21cb6e/stage/5b5822698d8fc603e0638582/bracket/',
-        'https://battlefy.com/hct-tokyo-tour-stop/hct-tokyo-tour-stop-offline/5b52a7bb8497d0039f21cb6e/stage/5b58227f8d8fc603e063858b/bracket/',
+        'https://battlefy.com/blizzardzhtw/hct-taichung-tour-stop/5b3688a83e794e03b5d6a98e/stage/5b368952dbd70603ca28b946/bracket/',
+        #'https://battlefy.com/promo-arena/hearthstone-copa-america-winter-season-american-qualifier-1/5b05d26ac49a3303c65ebe03/stage/5b1c32d4ed91af03c1a8e66b/bracket/',
     ]
     player_matches = {}
     decks = {}
@@ -286,8 +302,13 @@ if __name__ == '__main__':
         #tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(url)
         tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(url, only_finished=False)
         # this is not quite right because could be lists to append to
-        player_matches.update(tmp_player_matches)
-        decks.update(tmp_decks)
+        for i,j in tmp_player_matches.items():
+            player_matches[i] = player_matches.get(i, []) + j
+        #player_matches.update(tmp_player_matches)
+        for i,j in tmp_decks.items():
+            if len(j) > len(decks.get(i, [])):
+                decks[i] = j
+        #decks.update(tmp_decks)
         all_matches += tmp_matches
 
     wins = {}
@@ -301,7 +322,10 @@ if __name__ == '__main__':
     for player, lineup in decks.items():
         archetypes[player] = []
         for deck in lineup:
-            tmp = EasyDeck(deck)
+            try:
+                tmp = EasyDeck(deck)
+            except:
+                print(deck)
             label = label_archetype(tmp)
             if label:
                 archetypes[player].append(label)
