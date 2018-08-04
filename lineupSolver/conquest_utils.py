@@ -103,12 +103,6 @@ def post_ban_single(decks_a, decks_b, win_pcts):
             return avg(res)
         else:
             return avg(res), res
-    if useGlobal:
-        global tested
-        tuple_a = tuple(decks_a)
-        tuple_b = tuple(decks_b)
-        if (tuple_a, tuple_b) in tested:
-            return tested[(tuple_a, tuple_b)]
     if len(decks_b) == 0 and len(decks_a) > 0:
         return 0
     elif len(decks_a) == 0 and len(decks_b) > 0:
