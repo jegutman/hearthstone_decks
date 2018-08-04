@@ -52,6 +52,7 @@ standard_sets = [
     'UNGORO', 
     'LOOTAPALOOZA',
     'GILNEAS',
+    'BOOMSDAY',
 ]
 
 rotation_sets = [
