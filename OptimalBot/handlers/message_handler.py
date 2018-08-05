@@ -110,7 +110,7 @@ class MessageHandler:
                 
             reveal_times = [ 
                 # Times in PDT 
-                "2018_11_21 12:00:00", 
+                "2018_11_20 12:00:00", 
             ]
             na_tz = pytz.timezone('America/Los_Angeles')
             local_tz = pytz.timezone('America/Chicago')

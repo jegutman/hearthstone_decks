@@ -73,7 +73,7 @@ class SimHandler():
         date, skill, period = name_info.split('_')
         date = date[:4] + '_' + date[4:6] + '_' + date[6:]
         if skill == 'LONLY':
-            skill = 'Lengend only data'
+            skill = 'Legend only data'
         elif skill == 'L5':
             skill = 'L-5 data'
         period = period[:1] + ' ' + period[1:]

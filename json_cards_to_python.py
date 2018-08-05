@@ -4,10 +4,13 @@ cards_file = open(basedir + 'cards.json')
 cards_json = json.load(cards_file)
 
 cards_by_id = {}
+all_cards_by_id = {}
 for card in cards_json:
     #if 'dbfId' in card and 'set' in card and card.get('collectible', False):
     if 'dbfId' in card and card.get('collectible', False):
         cards_by_id[card['dbfId']] = card
+    if 'dbfId' in card:
+        all_cards_by_id[card['dbfId']] = card
 
 card_id_to_dbfId = {}
 for card in cards_json:
