@@ -36,7 +36,7 @@ def pre_ban(decks_a, decks_b, win_pcts, debug=False):
             tmp_b.remove(d2)
             res = post_ban(tmp_a, tmp_b, win_pcts)
             #mins[d2].append(res)
-            mins[d2] = round(min(mins[d2], res), 3)
+            mins[d2] = round(min(mins[d2], res), 4)
     return mins
 
 tested = {}
@@ -53,9 +53,12 @@ def post_ban(decks_a, decks_b, win_pcts, useGlobal=True, start=True, return_list
             return tested[(tuple_a, tuple_b)]
     if start:
         combos_a = list(itertools.permutations(decks_a))
+        combos_b = list(itertools.permutations(decks_b))
         res = []
         for x in combos_a:
-            res.append(post_ban(x, decks_b, win_pcts, useGlobal=useGlobal, start=False))
+            for y in combos_b:
+                res.append(post_ban(x, y, win_pcts, useGlobal=useGlobal, start=False))
+            #res.append(post_ban(x, decks_b, win_pcts, useGlobal=useGlobal, start=False))
         if not return_list:
             if useGlobal:
                 tested[(tuple_a, tuple_b)] = avg(res)
