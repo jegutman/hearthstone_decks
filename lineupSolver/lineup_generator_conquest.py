@@ -33,6 +33,40 @@ if __name__ == '__main__':
         "Quest Warrior,Big Spell Mage,Big Druid",
         "Even Warlock,Control Priest,Odd Rogue",
         "Shudderwock Shaman,Quest Warrior,Even Warlock",
+        "Malygos Druid,Odd Paladin,Zoo Warlock",
+        "Token Druid,Tempo Rogue,Zoo Warlock",
+        "Shudderwock Shaman,Odd Rogue,Zoo Warlock",
+        "Malygos Druid,Big Spell Mage,Shudderwock Shaman",
+        "Spell Hunter,Shudderwock Shaman,Malygos Druid",
+        "Deathrattle Hunter,Odd Paladin,Even Warlock",
+        "Deathrattle Hunter,Taunt Druid,Cube Warlock",
+        "Deathrattle Hunter,Token Druid,Even Shaman",
+        "Odd Paladin,Deathrattle Hunter,Zoo Warlock",
+        "Odd Rogue,Control Priest,Big Spell Mage",
+        "Midrange Hunter,Odd Rogue,Zoo Warlock",
+        "Taunt Druid,Shudderwock Shaman,Big Spell Mage",
+        "Big Spell Mage,Malygos Druid,Shudderwock Shaman",
+        "Odd Paladin,Zoo Warlock,Odd Rogue",
+        "Zoo Warlock,Odd Paladin,Big Spell Mage",
+        "Zoo Warlock,Token Druid,Odd Paladin",
+        "Shudderwock Shaman,Token Druid,Quest Warrior",
+        "Big Druid,Zoo Warlock,Shudderwock Shaman",
+        "Shudderwock Shaman,Even Warlock,Odd Rogue",
+        "Odd Rogue,Odd Paladin,Even Shaman",
+        "Even Warlock,Big Spell Mage,Control Priest",
+        "Token Druid,Odd Rogue,Even Warlock",
+        "Big Druid,Cube Warlock,Quest Warrior",
+        "Deathrattle Hunter,Odd Paladin,Odd Rogue",
+        "Even Warlock,Big Spell Mage,Quest Warrior",
+        "Miracle Rogue,Big Druid,Deathrattle Hunter",
+        "Control Warrior,Control Priest,Shudderwock Shaman",
+        "Zoo Warlock,Deathrattle Hunter,Big Druid",
+        "Control Priest,Malygos Druid,Even Warlock",
+        "Control Priest,Odd Rogue,Even Warlock",
+        "Deathrattle Hunter,Control Priest,Shudderwock Shaman",
+        "Odd Paladin,Token Druid,Odd Rogue",
+        "Even Warlock,Big Spell Mage,Quest Warrior",
+        "Freeze Mage,Odd Rogue,Zoo Warlock",
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
     weights = [1 for l in lineups_to_test]
@@ -264,12 +298,7 @@ if __name__ == '__main__':
 
     else:
         #### ESPORTS ARENA
-        #usingEsportsArena = True
-        usingEsportsArena = False
-        if usingEsportsArena:
-            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=50, min_win_pct=0.44,limitTop=100)
-        else:
-            win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=20, min_win_pct=0.44,limitTop=40)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=20, min_win_pct=0.44,limitTop=40)
         print sorted(archetypes, key=lambda x:x.split()[-1])
         excluded = []
         if False:
@@ -312,13 +341,6 @@ if __name__ == '__main__':
             print "%-80s" % ("   ".join(l)), '"' + ",".join(l) + '"'
         print "\n"
 
-        #for lineup in lineups:
-        #    if not usingEsportsArena:
-        #        lineup = get_lineup(lineup, archetype_map)
-        #    else:
-        #        lineup = tuple(lineup)
-        #    for lu_test in lineups_to_test:
-        #        win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts)]
         for lineup in lineups:
             for lu_test in lineups_to_test:
                 lu_test = list(get_lineup(lu_test, inverse_map))
@@ -346,6 +368,14 @@ if __name__ == '__main__':
             lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(geometric_mean([i[1] for i in j],weights),3), round(min([x[1] for x in j]),3)))
             print '         "' + lineup_string + '"'
         for i,j,k,l in lu_strings:
-            if usingEsportsArena:
-                print "%-20s: " % inverse[i]
             print "".join(["%-20s" % x for x in i.split(',')]), j, k, l, '    "%(i)s"' % locals()
+        classes = ['Druid', 'Mage', 'Shaman', 'Priest', 'Hunter', 'Paladin', 'Rogue', 'Warrior', 'Warlock']
+        file = open('tmp_output.csv', 'w')
+        res = ['win pct'] + classes
+        file.write(",".join(res) + '\n')
+        for i,j,k,l in lu_strings:
+            res = [str(j)]
+            for c in classes:
+                res.append(" ".join([d for d in i.split(',') if d.split(' ')[-1] == c]))
+            #print(",".join(res))
+            file.write(",".join(res) + '\n')
