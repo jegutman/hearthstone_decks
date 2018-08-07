@@ -104,12 +104,12 @@ class DeckDBHandler():
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
 
-    def search_helper(self, args, flags, allow_private, query_channel, limit=0, use_playoffs=False, tags=None):
+    def search_helper(self, args, flags, allow_private, query_channel, limit=0, use_playoffs=False, tags=None, min_date = '2018_08_07'):
         self.check_cursor()
         playoff_str = "playoff_region = 'None'"
         if use_playoffs:
-            #playoff_str = "playoff_region in ('NA', 'EU', 'APAC', 'DHATX')"
-            playoff_str = "playoff_region in ('DHATX')"
+            playoff_str = "playoff_region in ('NA', 'EU', 'APAC', 'DHATX')"
+            #playoff_str = "playoff_region in ('DHATX')"
         archetype_str = "deck_archetype like '%%%s%%'" % flags.get('archetype').replace('.*', '%') if flags.get('archetype') else ''
         class_str = "deck_class like '%%%s%%'" % flags.get('class').replace('.*', '%') if flags.get('class') else ''
         name_str = "deck_name like '%%%s%%'" % flags.get('name').replace('.*', '%') if flags.get('name') else ''
@@ -154,7 +154,11 @@ class DeckDBHandler():
         #        count += 1
         #        res.append((deck_id, date, 'Playoffs', deck_name, deck_class, deck_code))
         #else:
+        # minimum date for expansions and such
+        # min_date == '2018_08_07'
         for deck_id, date, user, deck_name, deck_class, deck_code in self.cursor.fetchall():
+            if date < min_date:
+                continue
             count += 1
             res.append((deck_id, date, user.split('\#')[0], deck_name, deck_class, deck_code))
         if limit:
