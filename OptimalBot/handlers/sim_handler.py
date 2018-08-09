@@ -76,7 +76,10 @@ class SimHandler():
             skill = 'Legend only data'
         elif skill == 'L5':
             skill = 'L-5 data'
-        period = period[:1] + ' ' + period[1:]
-        combined = "%s from %s for the previous %s" % (skill, date, period)
+        if period != 'EXPANSION':
+            period = period[:1] + ' ' + period[1:]
+            combined = "%s from %s for the previous %s" % (skill, date, period)
+        else:
+            combined = "%s from %s for the current expansion" % (skill, date)
         return 'using: %s' % combined
         #return 'using: %s' % wr_filename.split('/')[-1]
