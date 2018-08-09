@@ -20,6 +20,8 @@ file = open(filename)
 rating = {}
 games = {}
 wins = {}
+expected = []
+error = []
 for line in file:
     #event, sub_event, round_num, p1, p2, score1, score2 = line.strip().split(',')
     #date, bracket_name, round_number, p1, p2, result, p1_score, p2_score, games = line.strip().split(',')
@@ -40,12 +42,17 @@ for line in file:
         rating[p1] = Rating()
     if p2 not in rating:
         rating[p2] = Rating()
+    prediction = win_probability(rating[p1], rating[p2])
+    prediction = min(max(prediction, 0.25), 0.75)
+    expected.append(prediction)
     if result:
         rating[p1], rating[p2] = rate_1vs1(rating[p1], rating[p2])
         wins[p1] = wins.get(p1, 0) + 1
+        error.append((prediction - 1) ** 2)
     else:
         rating[p2], rating[p1] = rate_1vs1(rating[p2], rating[p1])
         wins[p2] = wins.get(p2, 0) + 1
+        error.append((prediction - 0) ** 2)
 file.close()
 
 min_games = 40
@@ -59,38 +66,38 @@ for p, r in top_players[:200]:
     losses = games[p] - win
     print("%3s %-15s %-5.2f %4s    %s - %s" % (index, p, expose(r), games[p], win, losses))
 
-top100 = [i for i,j in top_players[:100]]
-
-filename = 'hct_results.csv'
-file = open(filename)
-rating = {}
-games = {}
-wins = {}
-for line in file:
-    tmp = line.strip().split(',')
-    if len(tmp) == 8:
-        event, sub_event, sub_bracket, round_num, p1, p2, score1, score2 = tmp
-    elif len(tmp) == 10:
-        event, sub_event, sub_bracket, season, patch, round_num, p1, p2, score1, score2 = tmp
-    score1 = int(score1)
-    score2 = int(score2)
-    round_num = int(round_num)
-    p1 = p1.lower()
-    p2 = p2.lower()
-    if max(score1, score2) != 3: continue
-    if score1 == score2: continue
-    result = score1 > score2
-    games[p1] = games.get(p1, 0) + 1
-    games[p2] = games.get(p2, 0) + 1
-    if p1 not in rating:
-        rating[p1] = Rating()
-    if p2 not in rating:
-        rating[p2] = Rating()
-    if result:
-        rating[p1], rating[p2] = rate_1vs1(rating[p1], rating[p2])
-        wins[p1] = wins.get(p1, 0) + 1
-    else:
-        rating[p2], rating[p1] = rate_1vs1(rating[p2], rating[p1])
-        wins[p2] = wins.get(p2, 0) + 1
-file.close()
-
+#top100 = [i for i,j in top_players[:100]]
+#
+#filename = 'hct_results.csv'
+#file = open(filename)
+#rating = {}
+#games = {}
+#wins = {}
+#for line in file:
+#    tmp = line.strip().split(',')
+#    if len(tmp) == 8:
+#        event, sub_event, sub_bracket, round_num, p1, p2, score1, score2 = tmp
+#    elif len(tmp) == 10:
+#        event, sub_event, sub_bracket, season, patch, round_num, p1, p2, score1, score2 = tmp
+#    score1 = int(score1)
+#    score2 = int(score2)
+#    round_num = int(round_num)
+#    p1 = p1.lower()
+#    p2 = p2.lower()
+#    if max(score1, score2) != 3: continue
+#    if score1 == score2: continue
+#    result = score1 > score2
+#    games[p1] = games.get(p1, 0) + 1
+#    games[p2] = games.get(p2, 0) + 1
+#    if p1 not in rating:
+#        rating[p1] = Rating()
+#    if p2 not in rating:
+#        rating[p2] = Rating()
+#    if result:
+#        rating[p1], rating[p2] = rate_1vs1(rating[p1], rating[p2])
+#        wins[p1] = wins.get(p1, 0) + 1
+#    else:
+#        rating[p2], rating[p1] = rate_1vs1(rating[p2], rating[p1])
+#        wins[p2] = wins.get(p2, 0) + 1
+#file.close()
+#
