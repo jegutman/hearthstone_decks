@@ -255,6 +255,8 @@ class DeckDBHandler():
                                    VALUES (%(time)s, '%(date)s', '%(server)s', '%(user)s', %(is_private)s, '%(deck_code)s', '%(deck_class)s', %(deck_archetype)s, %(deck_name)s)""" % locals())
             self.connection.commit()
         except:
+            if not is_private:
+                self.cursor.execute("""UPDATE %(db)s.decks set is_private = 0 WHERE deck_code = '%(deck_code)s'""" % locals())
             self.logger.error_log('Insert Failed: %(deck_code)s' % locals())
             return False
         try:
