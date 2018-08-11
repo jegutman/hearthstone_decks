@@ -18,7 +18,7 @@ overrides = [
             ]
 win_pcts = override_wr(overrides,win_pcts)
 
-def sim(my_lineup, opp_lineup):
+def sim(my_lineup, opp_lineup, win_pcts=win_pcts):
     res = ""
     #assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
     for d in my_lineup:
@@ -39,7 +39,7 @@ def sim(my_lineup, opp_lineup):
     #                         win_pcts)
     return res
 
-def cq_bans(my_lineup, opp_lineup):
+def cq_bans(my_lineup, opp_lineup, win_pcts=win_pcts):
     res = ""
     for d in my_lineup:
         if d not in archetypes:
@@ -58,7 +58,7 @@ def cq_bans(my_lineup, opp_lineup):
         res += '%-20s %-20s %s' % (d1, d2, round(j,4)) + '\n'
     return res
 
-def lhs_bans(my_lineup, opp_lineup):
+def lhs_bans(my_lineup, opp_lineup, win_pcts=win_pcts):
     res = ""
     res_ban = pre_matrix(my_lineup,
                       opp_lineup,
@@ -70,7 +70,7 @@ def lhs_bans(my_lineup, opp_lineup):
         res += '%-20s %-20s %s' % (d1, d2, round(j,4)) + '\n'
     return res
 
-def lhs_leads(my_lineup, opp_lineup):
+def lhs_leads(my_lineup, opp_lineup, win_pcts=win_pcts):
     res = ""
     res_lead = lead_matrix(my_lineup,
                       opp_lineup,
@@ -90,7 +90,7 @@ def lhs_leads(my_lineup, opp_lineup):
     #print(my_lineup, opp_lineup, res)
     return res
 
-def sim_lhs(my_lineup, opp_lineup):
+def sim_lhs(my_lineup, opp_lineup, win_pcts=win_pcts):
     res = ""
     assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
     assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
