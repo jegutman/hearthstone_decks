@@ -81,6 +81,8 @@ def parse_match(match, only_finished=True):
         return None
     if 'team' not in match['bottom']:
         return None
+    if only_finished and 'completedAt' not in match:
+        return
     if only_finished:
         date = match['completedAt'][:10].replace('-', '_')
     else:
@@ -234,7 +236,7 @@ def get_decks(match):
     return p1_decks, p2_decks
         
 data = None
-def process_battlefy_url(bracket_url, only_finished=True):
+def process_battlefy_url(bracket_url, only_finished=False):
     matches = []
     failed = []
     count = 0
@@ -291,16 +293,19 @@ def process_battlefy_url(bracket_url, only_finished=True):
 
 if __name__ == '__main__':
     urls = [
-        'https://battlefy.com/blizzardzhtw/hct-taichung-tour-stop/5b3688a83e794e03b5d6a98e/stage/5b368952dbd70603ca28b946/bracket/',
+        'https://battlefy.com/black-claws/black-claws-x-zotac-am-thursday-challenger-cup-209/5b55bae1f6dfb403a3f9be47/stage/5b6cc76ab7843203cf6a6c2e/bracket/',
+        #'https://battlefy.com/kyoto-esports/kyotoesportsnet-wreckin-wednesdays-83-hct-official-challenger-cup-new-player-friendly-free-entry/5b59d7b546e02c03c1d0b635/stage/5b59d7c5463e4203a47baaaf/bracket/',
+        #'https://battlefy.com/blizzardzhtw/hct-taichung-tour-stop/5b3688a83e794e03b5d6a98e/stage/5b368952dbd70603ca28b946/bracket/',
         #'https://battlefy.com/promo-arena/hearthstone-copa-america-winter-season-american-qualifier-1/5b05d26ac49a3303c65ebe03/stage/5b1c32d4ed91af03c1a8e66b/bracket/',
     ]
     player_matches = {}
     decks = {}
     archetypes = {}
     all_matches = []
+    unlabeled = []
     for url in urls:
         #tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(url)
-        tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(url, only_finished=False)
+        tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(url, only_finished=True)
         # this is not quite right because could be lists to append to
         for i,j in tmp_player_matches.items():
             player_matches[i] = player_matches.get(i, []) + j
@@ -329,6 +334,8 @@ if __name__ == '__main__':
             label = label_archetype(tmp)
             if label:
                 archetypes[player].append(label)
+            else:
+                unlabeled.append((deck, tmp.get_class()))
         if wins[player] >= 7:
             print(",".join(sorted(archetypes[player], key=lambda x:x.split(' ')[1])))
 
