@@ -24,7 +24,9 @@ for K in range(36, 38, 2):
     bucket_pred = {}
     bucket_res = {}
     file = open(filename)
-    for line in file:
+    lines = [line for line in file]
+    lines.sort(key=lambda x:x[3])
+    for line in lines:
         event, sub_event, sub_bracket, date, season, patch, round_num, p1, p2, score1, score2 = line.strip().split(',')
         if score1 == 'None' or score2 == 'None': 
             continue
