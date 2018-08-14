@@ -8,18 +8,18 @@ import math
 import json
 from config import basedir
 
-date = '20180813'
+date = '20180814'
 #date = '20180710'
 base = basedir
 filenames = []
 #filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_1DAY.json' % locals()),
-#filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_3DAYS.json' % locals()),
+filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_3DAYS.json' % locals()),
 #filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_7DAYS.json' % locals()),
-filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_EXPANSION.json' % locals()),
+#filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_EXPANSION.json' % locals()),
 #filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_1DAY.json' % locals()),
-#filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_3DAYS.json' % locals()),
+filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_3DAYS.json' % locals()),
 #filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_7DAYS.json' % locals()),
-filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_EXPANSION.json' % locals()),
+#filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_EXPANSION.json' % locals()),
 
 #import datetime, os
 #filename = 'hsreplay' + datetime.datetime.today().strftime("%m%d") + '.json'
@@ -60,7 +60,7 @@ def get_win_pcts(min_game_threshold=0, min_game_threshold_higher=100, min_game_c
                 game_count[arch1] = 0
             for a2 in wr_json['series']['data'][a1].keys():
                 arch2 = get_archetype(a2)
-                if (arch1, arch2) in win_pcts: continue
+                if (arch1, arch2) in num_games: continue
                 wr, total_games = wr_json['series']['data'][a1][a2]['win_rate'], wr_json['series']['data'][a1][a2]['total_games']
                 if total_games >= min_game_threshold_tmp:
                     if (arch1, arch2) not in win_pcts:
@@ -71,8 +71,9 @@ def get_win_pcts(min_game_threshold=0, min_game_threshold_higher=100, min_game_c
                         win_pcts[(arch2, arch1)] = 1 - wr / 100.
                     else:
                         win_pcts[(arch2, arch1)] = (win_pcts[(arch2, arch1)] + (1 - wr / 100.)) / 2
-                num_games[(arch1, arch2)] = total_games
-                game_count[arch1] += total_games
+                    #if (arch1, arch2) == ('Even Warlock', 'Big Spell Mage'): print(total_games)
+                    num_games[(arch1, arch2)] = num_games.get((arch1, arch2), 0) + total_games
+                    game_count[arch1] += total_games
         top_arch = sorted(game_count.keys(), key=lambda x:game_count[x], reverse=True)[:limitTop]
         hsreplay_archetypes = [a for a in hsreplay_archetypes if game_count[a] > min_game_count and overall_wr[a] >= min_win_pct and a in top_arch]
         hsreplay_archetypes.sort(key=class_sort)
