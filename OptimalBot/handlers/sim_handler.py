@@ -3,7 +3,7 @@ import re
 from sim_matchup import *
 from target_utils import *
 
-from json_win_rates import filename as wr_filename
+from json_win_rates import filenames as wr_filenames
 
 class SimHandler():
     def __init__(self):
@@ -67,8 +67,7 @@ class SimHandler():
             return lhs_leads(lineup_a,lineup_b)
 
     def data_check(self):
-        #return '`using: %s`' % wr_filename.split('/')[-1]
-        name_info = wr_filename.split('/')[-1].split('.')[0]
+        name_info = wr_filenames[0].split('/')[-1].split('.')[0]
         name_info = name_info.replace('hsreplay', '')
         date, skill, period = name_info.split('_')
         date = date[:4] + '_' + date[4:6] + '_' + date[6:]
@@ -76,6 +75,8 @@ class SimHandler():
             skill = 'Legend only data'
         elif skill == 'L5':
             skill = 'L-5 data'
+        if len(wr_filenames) > 1:
+            skill = 'blended data' 
         if period != 'EXPANSION':
             period = period[:1] + ' ' + period[1:]
             combined = "%s from %s for the previous %s" % (skill, date, period)
