@@ -109,7 +109,9 @@ class EasyDeck():
             res.append((j, cards[i]))
         return res
 
-def print_side_by_side(list_of_decks):
+def print_side_by_side(list_of_decks, sort_decks=False):
+    if sort_decks:
+        list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
     #list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
     res = []
     deck_print_lines = [d.get_print_lines() for d in list_of_decks]
@@ -126,7 +128,6 @@ def print_side_by_side(list_of_decks):
     return res
 
 def print_side_by_side_diff(list_of_decks):
-    #list_of_decks = sorted(list_of_decks, key=lambda x:x.get_distance(list_of_decks[0]))
     #get_cards_to_print
     deck_cards_to_print = [d.get_cards_to_print() for d in list_of_decks]
     for dl in list_of_decks:
