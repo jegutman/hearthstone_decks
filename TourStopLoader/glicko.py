@@ -169,3 +169,13 @@ class Glicko2(object):
         expected_score2 = self.expect_score(rating2, rating1, self.reduce_impact(rating2))
         expected_score = (expected_score1 + expected_score2) / 2
         return 2 * (0.5 - abs(0.5 - expected_score))
+
+    def expect(self, rating1, rating2):
+        expected_score1 = self.expect_score(rating1, rating2, self.reduce_impact(rating1))
+        expected_score2 = self.expect_score(rating2, rating1, self.reduce_impact(rating2))
+        #print(expected_score1, expected_score2)
+        #return expected_score1
+        #return expected_score2
+        return expected_score1 / (expected_score1 + expected_score2)
+        #expected_score = (expected_score1 + expected_score2) / 2
+        #return 2 * (0.5 - abs(0.5 - expected_score))

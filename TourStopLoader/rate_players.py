@@ -1,4 +1,5 @@
 from glicko import Glicko2
+import math
 
 env = Glicko2(tau=0.5)
 
@@ -12,6 +13,9 @@ file = open(filename)
 rating = {}
 games = {}
 wins = {}
+expected = []
+errors = []
+baseline = []
 for line in file:
     event, sub_event, sub_bracket, date, season, patch, round_num, p1, p2, score1, score2 = line.strip().split(',')
     if score1 == 'None' or score2 == 'None': 
@@ -30,12 +34,21 @@ for line in file:
         rating[p1] = Rating()
     if p2 not in rating:
         rating[p2] = Rating()
+    #print(env.quality_1vs1(rating[p1], rating[p2]))
+    est = env.expect(rating[p1], rating[p2])
+    est = min(est, 0.75)
+    est = max(est, 0.25)
+    expected.append( est)
+    #baseline.append((0.5-result)**2)
     if result:
         rating[p1], rating[p2] = env.rate_1vs1(rating[p1], rating[p2])
         wins[p1] = wins.get(p1, 0) + 1
+        error = (est - 1) ** 2
     else:
         rating[p2], rating[p1] = env.rate_1vs1(rating[p2], rating[p1])
         wins[p2] = wins.get(p2, 0) + 1
+        error = (est - 0) ** 2
+    errors.append(error)
 
 min_games = 40
 

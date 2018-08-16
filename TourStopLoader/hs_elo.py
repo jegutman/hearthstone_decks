@@ -46,6 +46,10 @@ class HS_Elo(object):
         #rating_diff = min(max(rating_diff, -600), 600)
         return 1 / (1 + 10 ** (rating_diff / 1135.77))
 
+    def calc_diff(self, pct):
+        C = 1135.77
+        return -round(math.log(1/pct - 1, 10) * C, 1)
+
     def rate(self, rating, series):
         pass
 
