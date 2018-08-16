@@ -5,7 +5,8 @@ sys.path.append(basedir)
 sys.path.append(basedir + '/lineupSolver')
 
 from shared_utils import *
-from json_win_rates import * 
+from blended_win_rates import * 
+#from json_win_rates import * 
 from conquest_utils import * 
 
 import datetime
@@ -20,7 +21,7 @@ if __name__ == '__main__':
     lineups_to_test = [
         "Odd Warrior,Shudderwock Shaman,Malygos Druid",
         "Odd Rogue,Token Druid,Deathrattle Hunter",
-        "Shudderwock Shaman,Mech Rogue,Even Warlock",
+        "Shudderwock Shaman,Deathrattle Rogue,Even Warlock",
         "Control Priest,Control Warlock,Token Druid",
         "Malygos Druid,Even Warlock,Big Spell Mage",
         "Big Spell Mage,Control Warlock,Shudderwock Shaman",
@@ -40,7 +41,7 @@ if __name__ == '__main__':
         "Odd Warrior,Big Spell Mage,Malygos Druid",
         "Big Spell Mage,Malygos Druid,Control Warlock",
         "Even Shaman,Odd Warrior,Even Warlock",
-        "Tempo Mage,Deathrattle Hunter,Mech Rogue",
+        "Tempo Mage,Deathrattle Hunter,Deathrattle Rogue",
         "Miracle Rogue,Mill Druid,Zoo Warlock",
         "Malygos Druid,Quest Warrior,Deathrattle Hunter",
         "Even Warlock,Recruit Warrior,Spell Hunter",
@@ -51,11 +52,11 @@ if __name__ == '__main__':
         "Shudderwock Shaman,Odd Paladin,Even Warlock",
         "Tempo Mage,Zoo Warlock,Mecha'thun Druid",
         "Even Warlock,Shudderwock Shaman,Deathrattle Hunter",
-        "Big Spell Mage,Even Mecha'thun Warlock,Mecha'thun Druid",
+        "Big Spell Mage,Mecha'thun Warlock,Mecha'thun Druid",
         "Odd Warrior,Token Druid,Spell Hunter",
         "Tempo Mage,Odd Rogue,Even Warlock",
         "Odd Rogue,Zoo Warlock,Tempo Mage",
-        "Big Spell Mage,Zoo Warlock,Mech Rogue",
+        "Big Spell Mage,Zoo Warlock,Deathrattle Rogue",
         "Murloc Paladin,Malygos Druid,Zoo Warlock",
         "Tempo Mage,Token Druid,Zoo Warlock",
         "Taunt Druid,Control Warlock,Shudderwock Shaman",
@@ -97,7 +98,7 @@ if __name__ == '__main__':
         "Malygos Druid,Even Warlock,Even Shaman",
         "Malygos Druid,Control Warlock,Shudderwock Shaman",
         "Big Spell Mage,Control Warlock,Shudderwock Shaman",
-        "Zoo Warlock,Deathrattle Hunter,Mech Rogue",
+        "Zoo Warlock,Deathrattle Hunter,Deathrattle Rogue",
         "Quest Warrior,Even Warlock,Miracle Rogue",
         "Zoo Warlock,Malygos Druid,Odd Rogue",
         "Malygos Druid,Even Warlock,Spell Hunter",
@@ -116,7 +117,7 @@ if __name__ == '__main__':
         "Mecha'thun Priest,Zoo Warlock,Tempo Mage",
         "Even Warlock,Quest Warrior,Shudderwock Shaman",
         "Zoo Warlock,Mill Druid,Spell Hunter",
-        "Mech Hunter,Malygos Druid,Even Mecha'thun Warlock",
+        "Mech Hunter,Malygos Druid,Mecha'thun Warlock",
         "Tempo Mage,Odd Rogue,Even Warlock",
         "Mecha'thun Priest,Quest Warrior,Mill Druid",
         "Cube Warlock,Deathrattle Hunter,Big Spell Mage",
@@ -432,7 +433,9 @@ if __name__ == '__main__':
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
         print_time()
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 2 + min([i[1] for i in x[1]]))[-10:]:
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-40:]:
+        max_output = 40
+        max_file_output = 100
+        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-max_file_output:]:
             i = get_lineup(i, archetype_map)
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
@@ -440,7 +443,9 @@ if __name__ == '__main__':
             for _i in j:
                 x.append((str(archetype_map[_i[0]]), _i[1]))
             j = x
-            print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
+            max_file_output -= 1
+            if max_file_output <= max_output:
+                print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
             lineup_string = ",".join(i)
             lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(geometric_mean([i[1] for i in j],weights),3), round(min([x[1] for x in j]),3)))
             print '         "' + lineup_string + '"'

@@ -151,13 +151,13 @@ def group_scores(scores):
             groups[i+1] = groups[i+1][1:]
     return groups
 
-def simulate_matchup(l1, l2, win_pcts):
+def simulate_matchup(p1, p2, l1, l2, win_pcts):
     pct = calculate_win_rate(l1, l2, win_pcts)
     if random.random() < pct:
         return 1
     return 0
 
-def get_sim_matchup(decks, win_pcts):
+def get_sim_matchup(decks, win_pcts, rating=""):
     lineups = list(set([tuple(i) for i in decks.values()]))
     mu_pcts = {}
     for i in range(0, len(lineups)):
@@ -168,8 +168,41 @@ def get_sim_matchup(decks, win_pcts):
             mu_pcts[(l1, l2)] = sim_res
             mu_pcts[(l2, l1)] = 1 - sim_res
 
-    def sim_matchup(l1, l2, win_pcts):
+    def sim_matchup(p1, p2, l1, l2, win_pcts):
         pct = mu_pcts[(tuple(l1), tuple(l2))]
+        if random.random() < pct:
+            return 1
+        return 0
+    return sim_matchup, mu_pcts
+
+def expect_score_local(r1, r2):
+    rating_diff = r2 - r1
+    return 1 / (1 + 10 ** (rating_diff / 1135.77))
+
+def get_sim_matchup_rating(decks, win_pcts, rating):
+    #lineups = list(set([tuple(i) for i in decks.values()]))
+    lineups = list([tuple([i] +  j) for i,j in decks.items()])
+    mu_pcts = {}
+    for i in range(0, len(lineups)):
+        for j in range(i, len(lineups)):
+            ind1 = tuple(lineups[i])
+            ind2 = tuple(lineups[j])
+            l1 = tuple(lineups[i][1:])
+            l2 = tuple(lineups[j][1:])
+            p1 = lineups[i][0]
+            p2 = lineups[j][0]
+            sim_res = calculate_win_rate(list(l1), list(l2), win_pcts)
+            r1 = rating[p1.lower()]
+            r2 = rating[p2.lower()]
+            elo_adjust = r1.env.calc_diff(sim_res)
+            sim_res_blended = round(expect_score_local(r1.mu + elo_adjust, r2.mu),4)
+            mu_pcts[(ind1, ind2)] = sim_res_blended
+            mu_pcts[(ind2, ind1)] = 1 - sim_res_blended
+
+    def sim_matchup(p1, p2, l1, l2, win_pcts):
+        ind1 = tuple([p1] + l1)
+        ind2 = tuple([p2] + l2)
+        pct = mu_pcts[(tuple(ind1), tuple(ind2))]
         if random.random() < pct:
             return 1
         return 0
@@ -185,7 +218,7 @@ def simulate_round(decks, scores, win_pcts, simulate_matchup=simulate_matchup):
         for i in range(0, int(group_size / 2)):
             p1 = group[i][0]
             p2 = group[i + int(group_size / 2)][0]
-            match = simulate_matchup(decks[p1], decks[p2], win_pcts)
+            match = simulate_matchup(p1, p2, decks[p1], decks[p2], win_pcts)
             scores[p1] += match
             scores[p2] += (1 - match)
 
