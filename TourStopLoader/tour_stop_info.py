@@ -11,7 +11,6 @@ non_parse_file = open('non_parse_events.csv')
 non_parse_matches = {}
 #APAC Playoffs,Top8,Conquest,2018_05_20,kin0531,bloodtrail,3,0
 for line in non_parse_file:
-    print(line)
     event, sub_event, event_format, date, p1, p2, score1, score2 = line.strip().split(',')
     if (event, sub_event) not in non_parse_matches:
         non_parse_matches[(event, sub_event)] = []
