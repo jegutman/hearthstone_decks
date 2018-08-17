@@ -77,12 +77,14 @@ def parse_match(match, only_finished=True):
         return None
     if not match['top'] or not match['bottom']:
         return None
+    if 'winner' not in match['top']:
+        return None
     if 'team' not in match['top']:
         return None
     if 'team' not in match['bottom']:
         return None
     if only_finished and 'completedAt' not in match:
-        return
+        return None
     if only_finished:
         date = match['completedAt'][:10].replace('-', '_')
     else:

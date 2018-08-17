@@ -424,64 +424,64 @@ if __name__ == '__main__':
     #a_games, a_wins = get_stats(decks, matches, player_matches)
     #print_stats(a_games, a_wins)
 
-def expect_score_local(r1, r2):
-    rating_diff = r2 - r1
-    return 1 / (1 + 10 ** (rating_diff / 1135.77))
+    def expect_score_local(r1, r2):
+        rating_diff = r2 - r1
+        return 1 / (1 + 10 ** (rating_diff / 1135.77))
 
-to_print = []
-round_wins = {}
-tests = []
-tests2 = []
-tests3 = []
-for date, bracket, round_num, p1, p2, result, score1, score2,  games in sorted(matches, key=lambda x:x[2]):
-    p1_rat = p1.lower()
-    p2_rat = p2.lower()
-    if -1 in (score1, score2): continue
-    if None in (score1, score2): continue
-    if rating_games.get(p1.lower(), 0) < 10 or rating_games.get(p2.lower(), 0) < 10:
-        continue
-    if result:
-        round_wins[p1] = round_wins.get(p1, 0) + 1
-    else:
-        round_wins[p2] = round_wins.get(p2, 0) + 1
-    #if (p1 in OGs or p2 in OGs) and int(round_num) >= round_filter:
-    if True:
-        #if p2 in OGs and p1 not in OGs:
-        #    p1, p2 = p2, p1
-        #    score1, score2 = score2, score1
-        l1, l2 = archetypes[p1], archetypes[p2]
-        if len(l1) == 4 and len(l2) == 4:
-            wr = win_rate(archetypes[p1], archetypes[p2], win_pcts)[1]
-            wr_rating = round(env.expect_score(rating[p1_rat], rating[p2_rat]), 4)
-            adjust_rating = env.calc_diff(wr)            
-            wr_blended = round(expect_score_local(rating[p1_rat].mu + adjust_rating, rating[p2_rat].mu), 4)
-            #print(wr_rating)
-            if wr == 0: continue
-            wr = "%5.3f" % wr
-        else:
-            wr = 'Could not calculate'
+    to_print = []
+    round_wins = {}
+    tests = []
+    tests2 = []
+    tests3 = []
+    for date, bracket, round_num, p1, p2, result, score1, score2,  games in sorted(matches, key=lambda x:x[2]):
+        p1_rat = p1.lower()
+        p2_rat = p2.lower()
+        if -1 in (score1, score2): continue
+        if None in (score1, score2): continue
+        if rating_games.get(p1.lower(), 0) < 10 or rating_games.get(p2.lower(), 0) < 10:
             continue
-        if float(wr) > 0.5:
-            tests.append((float(wr), result, (p1, p2)))
+        if result:
+            round_wins[p1] = round_wins.get(p1, 0) + 1
         else:
-            tests.append((round(1-float(wr), 4), 1-result, (p2, p1)))
-        if wr_rating > 0.5:
-            tests2.append((wr_rating, result, (p1, p2)))
-        else:
-            tests2.append((round(1-wr_rating, 4), 1-result, (p2, p1)))
-        if wr_blended > 0.5:
-            tests3.append((wr_blended, result, (p1, p2)))
-        else:
-            tests3.append((round(1-wr_blended, 4), 1-result, (p2, p1)))
-        #ws = wins.get(p1, 0)
-        #ls = losses.get(p1, 0)
-        #print("%s %-20s %-20s %s %s %s %s %s" % (round_num, p1, p2, score1, score2, wr, ws, ls))
-        #score_summ = "%s - %s" % (round_wins.get(p1, 0), round_filter - 1 - round_wins.get(p1, 0))
-        #score_summ2 = "%s - %s" % (round_wins.get(p2, 0), round_filter - 1 - round_wins.get(p2, 0))
-        score_summ = ""
-        score_summ2 = wr_rating
-        #print("%s %-20s %-20s %s %s %s   %s" % (round_num, p1, p2, score1, score2, wr, score_summ))
-        to_print.append((round_wins.get(p1, 0), "%s %-20s %-20s %s %s %s   %s | %s" % (round_num, p1, p2, score1, score2, wr, score_summ, score_summ2)))
-        #to_print.append((round_wins.get(p1, 0), "%s %-20s %-20s %s %s %s   %s %s %s" % (round_num, p1, p2, score1, score2, wr, score_summ, calc_tiebreak(p1, player_matches), calc_tiebreak(p2,  player_matches))))
-for i, j in sorted(to_print, reverse=True):
-    print(j)
+            round_wins[p2] = round_wins.get(p2, 0) + 1
+        #if (p1 in OGs or p2 in OGs) and int(round_num) >= round_filter:
+        if True:
+            #if p2 in OGs and p1 not in OGs:
+            #    p1, p2 = p2, p1
+            #    score1, score2 = score2, score1
+            l1, l2 = archetypes[p1], archetypes[p2]
+            if len(l1) == 4 and len(l2) == 4:
+                wr = win_rate(archetypes[p1], archetypes[p2], win_pcts)[1]
+                wr_rating = round(env.expect_score(rating[p1_rat], rating[p2_rat]), 4)
+                adjust_rating = env.calc_diff(wr)            
+                wr_blended = round(expect_score_local(rating[p1_rat].mu + adjust_rating, rating[p2_rat].mu), 4)
+                #print(wr_rating)
+                if wr == 0: continue
+                wr = "%5.3f" % wr
+            else:
+                wr = 'Could not calculate'
+                continue
+            if float(wr) > 0.5:
+                tests.append((float(wr), result, (p1, p2)))
+            else:
+                tests.append((round(1-float(wr), 4), 1-result, (p2, p1)))
+            if wr_rating > 0.5:
+                tests2.append((wr_rating, result, (p1, p2)))
+            else:
+                tests2.append((round(1-wr_rating, 4), 1-result, (p2, p1)))
+            if wr_blended > 0.5:
+                tests3.append((wr_blended, result, (p1, p2)))
+            else:
+                tests3.append((round(1-wr_blended, 4), 1-result, (p2, p1)))
+            #ws = wins.get(p1, 0)
+            #ls = losses.get(p1, 0)
+            #print("%s %-20s %-20s %s %s %s %s %s" % (round_num, p1, p2, score1, score2, wr, ws, ls))
+            #score_summ = "%s - %s" % (round_wins.get(p1, 0), round_filter - 1 - round_wins.get(p1, 0))
+            #score_summ2 = "%s - %s" % (round_wins.get(p2, 0), round_filter - 1 - round_wins.get(p2, 0))
+            score_summ = ""
+            score_summ2 = wr_rating
+            #print("%s %-20s %-20s %s %s %s   %s" % (round_num, p1, p2, score1, score2, wr, score_summ))
+            to_print.append((round_wins.get(p1, 0), "%s %-20s %-20s %s %s %s   %s | %s" % (round_num, p1, p2, score1, score2, wr, score_summ, score_summ2)))
+            #to_print.append((round_wins.get(p1, 0), "%s %-20s %-20s %s %s %s   %s %s %s" % (round_num, p1, p2, score1, score2, wr, score_summ, calc_tiebreak(p1, player_matches), calc_tiebreak(p2,  player_matches))))
+    for i, j in sorted(to_print, reverse=True):
+        print(j)
