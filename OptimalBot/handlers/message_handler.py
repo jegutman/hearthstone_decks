@@ -72,6 +72,12 @@ class MessageHandler:
         self.logger.info_log("command_log: [%s] [%s] [%s] [%s] %s\n" % (timestamp, message.server, message.channel, message.author, message.content))
         sys.stdout.flush()
 
+    def check_user(self, user):
+        if user.lower() in ALLOWED_USERS:
+            return True
+        else:
+            return False
+
     async def handle(self, message):
         if str(message.channel.name) not in ALLOWED_CHANNELS:
             if not message.channel.is_private:
@@ -217,6 +223,10 @@ class MessageHandler:
             if str(message.channel.name).lower() not in ['sims']:
                 if not message.channel.is_private:
                     return True
+                else:
+                    if not self.check_user(str(message.author)):
+                        await self.respond(message, "Sorry %s, you are not an authorized user of DMs to optimal bot" % str(message.author).split('#')[0])
+                        return True
             await self.handle_bans(message, CMD_BANS, my_message)
             return True
 
@@ -224,6 +234,10 @@ class MessageHandler:
             if str(message.channel.name).lower() not in ['sims']:
                 if not message.channel.is_private:
                     return True
+                else:
+                    if not self.check_user(str(message.author)):
+                        await self.respond(message, "Sorry %s, you are not an authorized user of DMs to optimal bot" % str(message.author).split('#')[0])
+                        return True
             await self.handle_bans(message, CMD_BANS_LHS, my_message, is_conquest=False)
             return True
 
@@ -231,6 +245,10 @@ class MessageHandler:
             if str(message.channel.name).lower() not in ['sims']:
                 if not message.channel.is_private:
                     return True
+                else:
+                    if not self.check_user(str(message.author)):
+                        await self.respond(message, "Sorry %s, you are not an authorized user of DMs to optimal bot" % str(message.author).split('#')[0])
+                        return True
             await self.handle_lead(message, CMD_LEAD_LHS, my_message, is_conquest=False)
             return True
 
@@ -238,6 +256,11 @@ class MessageHandler:
             if str(message.channel.name).lower() not in ['sims']:
                 if not message.channel.is_private:
                     return True
+                else:
+                    if not self.check_user(str(message.author)):
+                        await self.respond(message, "Sorry %s, you are not an authorized user of DMs to optimal bot" % str(message.author).split('#')[0])
+                        return True
+                
             await self.handle_sim(message, CMD_SIM, my_message)
             return True
 
@@ -245,6 +268,10 @@ class MessageHandler:
             if str(message.channel.name).lower() not in ['sims']:
                 if not message.channel.is_private:
                     return True
+                else:
+                    if not self.check_user(str(message.author)):
+                        await self.respond(message, "Sorry %s, you are not an authorized user of DMs to optimal bot" % str(message.author).split('#')[0])
+                        return True
             await self.handle_sim(message, CMD_SIM_LHS, my_message, is_conquest=False)
             return True
             

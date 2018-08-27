@@ -10,6 +10,7 @@ class SimHandler():
             pass
 
     def handle(self, commands, is_conquest=True):
+        commands = commands.title()
         commands = commands.replace('“', '"').replace('”', '"')
         lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
@@ -28,6 +29,7 @@ class SimHandler():
             return sim_lhs(lineup_a,lineup_b)
 
     def handle_bans(self, commands, is_conquest=True):
+        commands = commands.title()
         commands = commands.replace('“', '"').replace('”', '"')
         lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
@@ -47,6 +49,7 @@ class SimHandler():
             return lhs_bans(lineup_a,lineup_b)
 
     def handle_lead(self, commands, is_conquest=True):
+        commands = commands.title()
         commands = commands.replace('“', '"').replace('”', '"')
         lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
