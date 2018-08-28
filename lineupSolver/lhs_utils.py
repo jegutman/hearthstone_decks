@@ -1,4 +1,5 @@
 from shared_utils import *
+import nashpy
 # some assumptions on formating
 # whatever deck a player is forced to play should be listed first (for 3v2 and 2v2 scenarios, irrelevant otherwise)
 
@@ -49,16 +50,49 @@ def pre_pick_average(decks_a, decks_b, win_pcts, useGlobal=True):
             all_res.append(res)
     return sum(all_res) / len(all_res)
 
-def lead_matrix(decks_a, decks_b, win_pcts, useGlobal=True):
-    cross = {}
+def pre_pick_nash_calc(decks_a, decks_b, win_pcts, useGlobal=True):
+    all_res = []
+    all_res_opp = []
     for i in decks_a:
+        tmp = []
         for j in decks_b:
             res = post_pick(decks_a,
                             decks_b,
                             win_pcts, i, j,
                             useGlobal=useGlobal)
+            tmp.append(res)
+        all_res.append(tmp)
+        all_res_opp([1-x for x in tmp])
+    return all_res
+
+def pre_pick_nash(decks_a, decks_b, win_pcts, useGlobal=True):
+    all_res = []
+    for i in decks_a:
+        tmp = []
+        for j in decks_b:
+            res = post_pick(decks_a,
+                            decks_b,
+                            win_pcts, i, j,
+                            useGlobal=useGlobal)
+            tmp.append(res)
+        all_res.append(tmp)
+    return all_res
+    #return sum(all_res) / len(all_res)
+
+def lead_matrix(decks_a, decks_b, win_pcts, useGlobal=True):
+    cross = {}
+    matrix = []
+    for i in decks_a:
+        tmp = []
+        for j in decks_b:
+            res = post_pick(decks_a,
+                            decks_b,
+                            win_pcts, i, j,
+                            useGlobal=useGlobal)
+            tmp.append(res)
             cross[(i,j)] = res
-    return cross
+        matrix.append(tmp)
+    return cross, matrix
 
 tested = {}
 def post_pick(decks_a, decks_b, win_pcts, a_pick=None, b_pick=None, useGlobal=True):

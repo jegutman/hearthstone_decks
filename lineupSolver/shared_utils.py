@@ -79,7 +79,7 @@ def generate_lineups(archetypes, unbeatable=False, num_classes=4, additional_arc
         count = 0
         tmp = []
         for i in class_set:
-            tmp.append(class_arch[i])
+            tmp.append(class_arch.get(i, []))
         lineups += itertools.product(*tmp)
     for a in additional_archetypes:
         archetype_map[a_count] = a

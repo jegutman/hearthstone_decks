@@ -5,8 +5,7 @@ sys.path.append(basedir)
 sys.path.append(basedir + '/lineupSolver')
 
 from shared_utils import *
-from blended_win_rates import * 
-#from json_win_rates import * 
+from json_win_rates import * 
 from conquest_utils import * 
 
 import datetime
@@ -19,116 +18,59 @@ if __name__ == '__main__':
     level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16 = None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
 
     lineups_to_test = [
-        "Odd Warrior,Shudderwock Shaman,Malygos Druid",
-        "Odd Rogue,Token Druid,Deathrattle Hunter",
-        "Shudderwock Shaman,Deathrattle Rogue,Even Warlock",
-        "Control Priest,Control Warlock,Token Druid",
-        "Malygos Druid,Even Warlock,Big Spell Mage",
-        "Big Spell Mage,Control Warlock,Shudderwock Shaman",
-        "Deathrattle Hunter,Malygos Druid,Control Warlock",
-        "Deathrattle Hunter,Control Warlock,Malygos Druid",
-        "Malygos Druid,Mecha'thun Priest,Even Warlock",
-        "Taunt Druid,Deathrattle Hunter,Even Shaman",
-        "Token Shaman,Big Druid,Deathrattle Hunter",
-        "Even Warlock,Malygos Druid,Odd Paladin",
-        "Deathrattle Rogue,Deathrattle Hunter,Zoo Warlock",
-        "Shudderwock Shaman,Combo Priest,Odd Warrior",
-        "Odd Paladin,Odd Rogue,Zoo Warlock",
-        "Even Warlock,Even Shaman,Big Druid",
-        "Even Warlock,Shudderwock Shaman,Big Spell Mage",
-        "Odd Rogue,Malygos Druid,Zoo Warlock",
-        "Odd Paladin,Even Warlock,Big Spell Mage",
-        "Odd Warrior,Big Spell Mage,Malygos Druid",
-        "Big Spell Mage,Malygos Druid,Control Warlock",
-        "Even Shaman,Odd Warrior,Even Warlock",
-        "Tempo Mage,Deathrattle Hunter,Deathrattle Rogue",
-        "Miracle Rogue,Mill Druid,Zoo Warlock",
-        "Malygos Druid,Quest Warrior,Deathrattle Hunter",
-        "Even Warlock,Recruit Warrior,Spell Hunter",
-        "Big Spell Mage,Mill Druid,Control Warlock",
-        "Zoo Warlock,Spell Hunter,Big Spell Mage",
-        "Malygos Druid,Miracle Rogue,Control Priest",
-        "Zoo Warlock,Odd Rogue,Spell Hunter",
-        "Shudderwock Shaman,Odd Paladin,Even Warlock",
-        "Tempo Mage,Zoo Warlock,Mecha'thun Druid",
-        "Even Warlock,Shudderwock Shaman,Deathrattle Hunter",
-        "Big Spell Mage,Mecha'thun Warlock,Mecha'thun Druid",
-        "Odd Warrior,Token Druid,Spell Hunter",
-        "Tempo Mage,Odd Rogue,Even Warlock",
-        "Odd Rogue,Zoo Warlock,Tempo Mage",
-        "Big Spell Mage,Zoo Warlock,Deathrattle Rogue",
-        "Murloc Paladin,Malygos Druid,Zoo Warlock",
-        "Tempo Mage,Token Druid,Zoo Warlock",
-        "Taunt Druid,Control Warlock,Shudderwock Shaman",
-        "Even Warlock,Odd Rogue,Malygos Druid",
-        "Big Druid,Big Spell Mage,Zoo Warlock",
-        "Mill Druid,Miracle Rogue,Even Warlock",
-        "Even Warlock,Control Priest,Shudderwock Shaman",
-        "Odd Rogue,Odd Warrior,Zoo Warlock",
-        "Mill Druid,Control Warlock,Mecha'thun Priest",
-        "Big Spell Mage,Spell Hunter,Even Warlock",
-        "Shudderwock Shaman,Malygos Druid,Odd Rogue",
-        "Quest Warrior,Spell Hunter,Big Spell Mage",
-        "Token Shaman,Malygos Druid,Zoo Warlock",
-        "Zoo Warlock,Big Druid,Deathrattle Hunter",
-        "Odd Rogue,Tempo Mage,Zoo Warlock",
-        "Control Warlock,Combo Priest,Mill Druid",
-        "Odd Rogue,Malygos Druid,Even Warlock",
-        "Control Priest,Even Shaman,Odd Rogue",
-        "Even Warlock,Malygos Druid,Mech Hunter",
-        "Odd Rogue,Control Priest,Odd Paladin",
-        "Kingsbane Rogue,Big Druid,Even Warlock",
-        "Shudderwock Shaman,Cube Warlock,Deathrattle Hunter",
-        "Shudderwock Shaman,Zoo Warlock,Malygos Druid",
-        "Odd Paladin,Deathrattle Rogue,Zoo Warlock",
-        "Malygos Druid,Big Spell Mage,Even Warlock",
-        "Shudderwock Shaman,Big Druid,Control Warlock",
-        "Zoo Warlock,Midrange Hunter,Odd Rogue",
-        "Big Druid,Odd Paladin,Odd Rogue",
-        "Mill Druid,Deathrattle Hunter,Even Warlock",
-        "Kingsbane Rogue,Quest Warrior,Zoo Warlock",
-        "Even Warlock,Odd Rogue,Malygos Druid",
-        "Big Spell Mage,Odd Warrior,Control Warlock",
-        "Zoo Warlock,Spell Hunter,Big Spell Mage",
-        "Malygos Druid,Even Warlock,Quest Warrior",
-        "Odd Rogue,Tempo Mage,Odd Paladin",
-        "Zoo Warlock,Recruit Warrior,Malygos Druid",
-        "Odd Paladin,Odd Rogue,Zoo Warlock",
-        "Big Druid,Zoo Warlock,Murloc Paladin",
-        "Malygos Druid,Even Warlock,Even Shaman",
-        "Malygos Druid,Control Warlock,Shudderwock Shaman",
-        "Big Spell Mage,Control Warlock,Shudderwock Shaman",
-        "Zoo Warlock,Deathrattle Hunter,Deathrattle Rogue",
-        "Quest Warrior,Even Warlock,Miracle Rogue",
-        "Zoo Warlock,Malygos Druid,Odd Rogue",
-        "Malygos Druid,Even Warlock,Spell Hunter",
-        "Combo Priest,Malygos Druid,Zoo Warlock",
-        "Malygos Druid,Even Warlock,Tempo Mage",
-        "Even Warlock,Spell Hunter,Malygos Druid",
-        "Control Warlock,Recruit Warrior,Mill Druid",
-        "Odd Warrior,Control Warlock,Combo Priest",
-        "Miracle Rogue,Odd Paladin,Zoo Warlock",
-        "Miracle Rogue,Malygos Druid,Even Warlock",
-        "Zoo Warlock,Odd Paladin,Token Druid",
-        "Malygos Druid,Cube Warlock,Tempo Mage",
-        "Odd Warrior,Odd Rogue,Zoo Warlock",
-        "Zoo Warlock,Odd Rogue,Token Druid",
+        "Odd Warrior,Malygos Druid,Deathrattle Hunter",
+        "Zoo Warlock,Shudderwock Shaman,Token Druid",
+        "Quest Rogue,Shudderwock Shaman,Odd Quest Warrior",
+        "Miracle Rogue,Deathrattle Hunter,Even Warlock",
         "Zoo Warlock,Odd Paladin,Odd Rogue",
-        "Mecha'thun Priest,Zoo Warlock,Tempo Mage",
-        "Even Warlock,Quest Warrior,Shudderwock Shaman",
-        "Zoo Warlock,Mill Druid,Spell Hunter",
-        "Mech Hunter,Malygos Druid,Mecha'thun Warlock",
-        "Tempo Mage,Odd Rogue,Even Warlock",
-        "Mecha'thun Priest,Quest Warrior,Mill Druid",
-        "Cube Warlock,Deathrattle Hunter,Big Spell Mage",
-        "Malygos Druid,Zoo Warlock,Odd Paladin",
-        "Zoo Warlock,Odd Paladin,Token Druid",
-        "Zoo Warlock,Odd Rogue,Shudderwock Shaman",
-        "Big Spell Mage,Token Shaman,Big Druid",
-        "Even Warlock,Even Shaman,Big Druid",
-        "Tempo Mage,Even Warlock,Mill Druid",
-        "Big Spell Mage,Malygos Druid,Control Warlock",
-        "Mill Druid,Tempo Mage,Zoo Warlock",
+        "Miracle Rogue,Odd Paladin,Even Warlock",
+        "Even Warlock,Deathrattle Hunter,Token Druid",
+        "Even Warlock,Malygos Druid,Deathrattle Hunter",
+        "Malygos Druid,Odd Warrior,Quest Rogue",
+        "Big Druid,Deathrattle Hunter,Control Warlock",
+        "Zoo Warlock,Token Druid,Odd Rogue",
+        "Deathrattle Hunter,Quest Rogue,Shudderwock Shaman",
+        "Odd Paladin,Control Warlock,Odd Rogue",
+        "Zoo Warlock,Odd Rogue,Deathrattle Hunter",
+        "Control Priest,Odd Rogue,Even Warlock",
+        "Control Warrior,Control Warlock,Deathrattle Hunter",
+        "Tempo Mage,Miracle Rogue,Deathrattle Hunter",
+        "Control Warlock,Quest Rogue,Mill Druid",
+        "Odd Rogue,Deathrattle Hunter,Odd Warrior",
+        "Zoo Warlock,Odd Rogue,Odd Paladin",
+        "Malygos Druid,Deathrattle Hunter,Midrange Shaman",
+        "Even Warlock,Deathrattle Hunter,Malygos Druid",
+        "Odd Paladin,Zoo Warlock,Mill Druid",
+        "Even Warlock,Control Priest,Odd Rogue",
+        "Even Warlock,Odd Rogue,Midrange Shaman",
+        "Control Warlock,Mech Paladin,Recruit Warrior",
+        "Big Druid,Recruit Warrior,Odd Rogue",
+        "Deathrattle Hunter,Odd Rogue,Control Warlock",
+        "Malygos Druid,Control Warlock,Control Priest",
+        "Spell Hunter,Control Warlock,Token Druid",
+        "Even Warlock,Deathrattle Hunter,Taunt Druid",
+        "Deathrattle Hunter,Odd Warrior,Malygos Druid",
+        "Big Druid,Deathrattle Hunter,Even Warlock",
+        "Tempo Mage,Even Warlock,Quest Rogue",
+        "Malygos Druid,Control Warlock,Miracle Rogue",
+        "Control Warlock,Malygos Druid,Spell Hunter",
+        "Odd Rogue,Spell Hunter,Taunt Druid",
+        "Malygos Druid,Deathrattle Hunter,Even Warlock",
+        "Even Warlock,Odd Paladin,Control Priest",
+        "Even Warlock,Odd Rogue,Taunt Druid",
+        "Kingsbane Rogue,Token Druid,Deathrattle Hunter",
+        "Odd Rogue,Deathrattle Hunter,Malygos Druid",
+        "Deathrattle Hunter,Quest Rogue,Shudderwock Shaman",
+        "Deathrattle Hunter,Malygos Druid,Odd Rogue",
+        "Control Warlock,Odd Rogue,Odd Paladin",
+        "Zoo Warlock,Deathrattle Hunter,Odd Rogue",
+        "Deathrattle Hunter,Zoo Warlock,Malygos Druid",
+        "Big Druid,Control Priest,Even Warlock",
+        "Shudderwock Shaman,Token Druid,Zoo Warlock",
+        "Malygos Druid,Odd Paladin,Control Warlock",
+        "Even Warlock,Malygos Druid,Odd Rogue",
+        "Even Warlock,Odd Warrior,Malygos Druid",
+        "Big Spell Mage,Deathrattle Hunter,Zoo Warlock",
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
     weights = [1 for l in lineups_to_test]
@@ -137,22 +79,6 @@ if __name__ == '__main__':
     import sys
     args = sys.argv[1:]
     custom = {
-        'Akumaker'      :   "Big Priest,Murloc Paladin,Cube Warlock,Secret Mage",
-        'Angrycarp'     :   "Big Priest,Quest Rogue,Secret Mage,Cube Warlock",
-        'Disdai'        :   "Cube Warlock,Big Spell Mage,Spiteful Priest,Quest Warrior",
-        'Ender'         :   "Spiteful Priest,Murloc Paladin,C'Thun Druid,Secret Mage",
-        #'GhostASA'      :   "Quest Rogue,Quest Druid,OTK DK Paladin,Jade Shaman",
-        'Glory'         :   "Cube Warlock,Big Priest,Big Spell Mage,OTK DK Paladin",
-        'Hearthstoner'  :   "Cube Warlock,Murloc Paladin,Spell Hunter,Combo Priest",
-        'Hikage7'       :   "Secret Mage,Zoo Warlock,Combo Priest,Murloc Paladin",
-        'Hotmeowth'     :   "Cube Warlock,Big Spell Mage,OTK DK Paladin,Spiteful Priest",
-        'Jakattack'     :   "Cube Warlock,Spiteful Priest,Secret Mage,OTK DK Paladin",
-        'Khaius'        :   "Murloc Paladin,Secret Mage,Cube Warlock,Combo Priest",
-        'Kin0531'       :   "Cube Warlock,Spiteful Priest,Silver Hand Paladin,Secret Mage",
-        'Odyssey'       :   "Control Warlock,Spiteful Priest,Secret Mage,Quest Rogue",
-        'Okasinnsuke'   :   "Combo Priest,Secret Mage,Cube Warlock,Spell Hunter",
-        'ProfessorOak'  :   "Cube Warlock,Silver Hand Paladin,Big Priest,Spell Hunter",
-        'WaningMoon'    :   "Cube Warlock,Murloc Paladin,Secret Mage,Combo Priest",
     }
     #useCustom = True
     useCustom = False
@@ -175,6 +101,7 @@ if __name__ == '__main__':
         #opp_lineup = [d.strip() for d in deck_2.split(',')]
         count, total = 0, 0.0
         values = []
+        samples = []
         bans = {}
         line = ['deck1', 'deck2', 'deck3', 'deck4', 'win_pct', 'ban', 'opp_win_pct', 'opp_ban', 'ban_details->']
         print(",".join([str(i) for i in line]))
@@ -187,6 +114,7 @@ if __name__ == '__main__':
             if win_pct > 0:
                 count += weight
                 total += win_pct * weight
+                samples.append(win_pct)
                 values.append(win_pct)
             
             opp_ban, opp_win_pct = win_rate(opp_lineup, my_lineup, win_pcts)
@@ -228,6 +156,8 @@ if __name__ == '__main__':
                     print '%-20s %-20s %s' % (d1, d2, round(j,4))
                 print "\n\n"
         print("average: %s" % (total / count))
+        print("samples: %s" % sorted(samples))
+        print("distr: %s %s" % (len([i for i in samples if i<0.5]), len([i for i in samples if i> 0.50])))
         print("min: %s" % min(values))
         print("bans: %s" % sorted(bans.items(), key=lambda x:x[1], reverse=True))
     elif len(args) > 0 and args[0] == 'custom':
@@ -309,22 +239,8 @@ if __name__ == '__main__':
         archetypes.append('Unbeatable')
         #archetypes.append('Fatigue Warrior')
         overrides = [
-                        ('Miracle Rogue', 'Combo Priest', 0.6),
-                        ('Deathrattle Hunter', 'Combo Priest', 0.4),
-                        ('Deathrattle Hunter', 'Combo Priest', 0.4),
-                        ('Miracle Rogue', 'Quest Rogue', 0.6),
-                        ('Miracle Rogue', 'Big Druid', 0.6),
-                        ('Miracle Rogue', 'Even Warlock', 0.6),
-                        ('Even Warlock', 'Combo Priest', 0.6),
-                        ('Even Warlock', 'Quest Rogue', 0.35),
-                        ('Malygos Druid', 'Combo Priest', 0.6),
-                        ('Miracle Rogue', 'Tempo Mage', 0.4),
-                        ('Miracle Rogue', 'Spell Hunter', 0.3),
-                        ('Miracle Rogue', 'Odd Rogue', 0.35),
-                        ('Miracle Rogue', 'Malygos Druid', 0.5),
-                        ('Miracle Rogue', 'Odd Paladin', 0.42),
-                        ('Miracle Rogue', 'Zoo Warlock', 0.35),
-                        ('Miracle Rogue', 'Shudderwock Shaman', 0.62),
+                        ('Odd Warrior', 'Malygos Druid', 0.6),
+                        ('Odd Warrior', 'Deathrattle Hunter', 0.55),
                     ]
         win_pcts = override_wr(overrides,win_pcts)
         if args[1] in custom.keys():
@@ -338,7 +254,7 @@ if __name__ == '__main__':
 
         print my_lineup, "vs", opp_lineup
         win_rates_grid(my_lineup, opp_lineup, win_pcts,num_games)
-        if len(my_lineup) < 4 or len(opp_lineup) < 4:
+        if len(my_lineup) < 3 or len(opp_lineup) < 3:
             print round(post_ban(my_lineup, opp_lineup, win_pcts) * 100,2)
         else:
             print win_rate(my_lineup, opp_lineup, win_pcts)
@@ -379,10 +295,10 @@ if __name__ == '__main__':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=20, min_win_pct=0.44,limitTop=50)
         print sorted(archetypes, key=lambda x:x.split()[-1])
         excluded = []
-        if False:
+        if True:
             excluded += []
             #excluded += ['Tempo Mage', 'Tempo Rogue', 'Murloc Mage', 'Recruit Hunter']
-            #excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
+            excluded += ['Spiteful Druid', 'Taunt Druid']
         print "\n\nEXCLUDING:", excluded
         archetypes = [a for a in archetypes if a not in excluded]
         win_rates_against_good = {}
@@ -395,6 +311,7 @@ if __name__ == '__main__':
                     print("Rare Archetypes: %s" % a)
                     additional_archetypes.append(a)
         lineups, archetype_map = generate_lineups(archetypes, additional_archetypes=additional_archetypes, num_classes=3)
+        #lineups, archetype_map = generate_lineups(archetypes, additional_archetypes=additional_archetypes, num_classes=4)
         inverse_map = {}
         for i,j in archetype_map.items():
             inverse_map[j] = i
@@ -436,6 +353,7 @@ if __name__ == '__main__':
         max_output = 40
         max_file_output = 100
         for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-max_file_output:]:
+        #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([1 if i[1] > 0.5 else 0 for i in x[1]]))[-max_file_output:]:
             i = get_lineup(i, archetype_map)
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'

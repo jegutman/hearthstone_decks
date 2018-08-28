@@ -3,6 +3,7 @@ import itertools
 # some assumptions on formating
 # whatever deck a player is forced to play should be listed first (for 3v2 and 2v2 scenarios, irrelevant otherwise)
 import random
+import nashpy
 
 # branching calcs
 # 16 x ban phase
@@ -19,6 +20,17 @@ def pre_ban_old(decks_a, decks_b, win_pcts):
 def win_rate(decks_a, decks_b, win_pcts):
     res = pre_ban(decks_a, decks_b, win_pcts)
     return max(res.items(), key=lambda x:x[1])
+
+def win_rate_nash(decks_a, decks_b, win_pcts):
+    res = pre_ban_matrix(decks_a, decks_b, win_pcts)
+    opp_res = []
+    for i in res:
+        opp_res.append([1-j for j in i])
+    ng = nashpy.game.Game(res,opp_res)
+    e,f = list(ng.support_enumeration())[0]
+    g = zip(e,decks_b)
+    h = zip(f,decks_a)
+    return ng[e,f], g,h 
 
 def calculate_win_rate(decks_a, decks_b, win_pcts):
     res = pre_ban(decks_a, decks_b, win_pcts)
@@ -38,6 +50,20 @@ def pre_ban(decks_a, decks_b, win_pcts, debug=False):
             #mins[d2].append(res)
             mins[d2] = round(min(mins[d2], res), 4)
     return mins
+
+def pre_ban_matrix(decks_a, decks_b, win_pcts, debug=False):
+    res_matrix = []
+    for d2 in decks_b:
+        tmp = []
+        for d1 in decks_a:
+            tmp_a = decks_a[:]
+            tmp_b = decks_b[:]
+            tmp_a.remove(d1)
+            tmp_b.remove(d2)
+            tmp.append(post_ban(tmp_a, tmp_b, win_pcts))
+            #mins[d2] = round(min(mins[d2], res), 4)
+        res_matrix.append(tmp)
+    return res_matrix
 
 tested = {}
 
@@ -229,7 +255,7 @@ def simulate_round_ko(decks, scores, win_pcts, simulate_matchup=simulate_matchup
         for i in range(0, group_size, 2):
             p1 = group[i][0]
             p2 = group[i + 1][0]
-            match = simulate_matchup(decks[p1], decks[p2], win_pcts)
+            match = simulate_matchup(p1, p2, decks[p1], decks[p2], win_pcts)
             scores[p1] += match
             scores[p2] += (1 - match)
     to_remove = []
