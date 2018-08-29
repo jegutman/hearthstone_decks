@@ -14,10 +14,12 @@ from deck_manager import *
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
-date = '2018_05_15'
-region = 'APAC'
+from label_archetype import label_archetype
 
-deck_id = 884
+date = '2018_08_29'
+region = 'EU'
+
+deck_id = None
 
 def process_deck(deck_code, deck_class, name, archetype, deck_id=None):
     deck_id += 1
@@ -26,8 +28,8 @@ def process_deck(deck_code, deck_class, name, archetype, deck_id=None):
     deck_code      = deck_code
     time           = datetime.datetime.now().strftime('%s')
     date           = datetime.datetime.now().strftime('%Y_%m_%d')
-    server         = 'APAC Playoffs Loader'
-    user           = 'APAC Playoffs Loader'
+    server         = 'EU Playoffs Loader'
+    user           = 'EU Playoffs Loader'
     is_private     = 0
 
     deck = EasyDeck(deck_code)
@@ -47,7 +49,7 @@ def insert_cards(deck, deck_id):
 
 def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype = None, deck_name = None):
     db = 'deckstrings'
-    playoff_region = 'APAC'
+    playoff_region = 'EU'
     if deck_archetype: 
         deck_archetype = "'%s'" % deck_archetype
     else:
@@ -76,7 +78,7 @@ def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_clas
 #    db = 'deckstrings'
 #    deck_archetype = "'%s'" % deck_archetype
 #    deck_name = "'%s'" % deck_name
-#    playoff_region = 'APAC'
+#    playoff_region = 'EU'
 #    if deck_id:
 #        print("""INSERT INTO %(db)s.decks (deck_id, time, date, server, user, is_private, deck_code, deck_class, deck_archetype, deck_name, playoff_region)
 #                               VALUES (%(deck_id)s, %(time)s, '%(date)s', '%(server)s', '%(user)s', %(is_private)s, '%(deck_code)s', '%(deck_class)s', %(deck_archetype)s, %(deck_name)s, '%(playoff_region)s')""" % locals())
@@ -109,7 +111,7 @@ def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_clas
 
 
 #cursor.execute("SELECT deck_name, deck_archetype, deck_class, deck_code FROM deckstrings.playoffs")
-filename = '2018_HCT_APAC_Summer_Playoffs.csv'
+filename = 'hct_europe_fall_decklists.csv'
 
 file = open(filename)
 
@@ -129,20 +131,5 @@ for line in file:
     deck_class = deck.get_class()
     max_results = flags.get('limit', 5)
     max_dist = flags.get('max_dist', 5)
-    to_compare = get_decks_by_class(deck_class)
-    res = []
-    for deck_id_tmp, deck_archetype, deck_code_tmp in to_compare:
-        tmp_deck = EasyDeck(deck_code_tmp)
-        distance = deck.get_distance(tmp_deck)
-        res.append((distance, deck_id_tmp, deck_archetype, deck_code_tmp))
-    res_final = sorted([i for i in res if i[0] <= max_dist][:max_results])
-    if len(res_final) == 0:
-        print('No deck within %(max_dist)s cards of deck' % locals())
-        print("%-25s %-10s %s" % (deck_name, deck_class, deck_code))
-    else:
-        print("%-25s %-10s %-15s %2s %s" % (deck_name, deck_class, res_final[0][2], res_final[0][0], deck_code))
-        deck_archetype = res_final[0][2]
-        deck_id += 1
-        process_deck(deck_code, deck_class, deck_name, deck_archetype, deck_id=deck_id)
-        #print(deck_archetype)
-        #cursor.execute("UPDATE deckstrings.playoffs set deck_archetype = '%(deck_archetype)s' WHERE deck_code = '%(deck_code)s'" % locals())
+    deck_archetype = label_archetype(deck, threshold=8)
+    process_deck(deck_code, deck_class, deck_name, deck_archetype, deck_id=deck_id)
