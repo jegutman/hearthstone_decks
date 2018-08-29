@@ -1,0 +1,38 @@
+Archetype,Number,Percentage of Decks
+"Token Druid",78,6.8
+"Taunt Druid",53,4.6
+"Malygos Druid",44,3.8
+"Mill Druid",31,2.7
+"Spiteful Druid",30,2.6
+"Big Druid",20,1.7
+"Quest Druid",2,0.2
+"Togwaggle Druid",1,0.1
+"Deathrattle Hunter",106,9.2
+"Midrange Hunter",11,1.0
+"Spell Hunter",8,0.7
+"Odd Hunter",2,0.2
+"Tempo Mage",38,3.3
+"Big Spell Mage",20,1.7
+"Odd Paladin",63,5.5
+"Even Paladin",24,2.1
+"Murloc Paladin",8,0.7
+"Mech Paladin",3,0.3
+"Control Paladin",1,0.1
+"Control Priest",46,4.0
+"Combo Priest",7,0.6
+"Quest Priest",1,0.1
+"Quest Rogue",93,8.1
+"Odd Rogue",88,7.6
+"Miracle Rogue",13,1.1
+"Kingsbane Rogue",3,0.3
+"Shudderwock Shaman",53,4.6
+"Midrange Shaman",19,1.6
+"Even Shaman",6,0.5
+"Zoo Warlock",85,7.4
+"Even Warlock",52,4.5
+"Control Warlock",45,3.9
+"Cube Warlock",42,3.6
+"Odd Warrior",40,3.5
+"Control Warrior",8,0.7
+"Quest Warrior",5,0.4
+"Odd Quest Warrior",3,0.3
