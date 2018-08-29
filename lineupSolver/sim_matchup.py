@@ -89,20 +89,21 @@ def lhs_leads(my_lineup, opp_lineup, win_pcts=win_pcts):
     #print(my_lineup, opp_lineup, res)
     return res
 
-def lhs_nash(my_lineup, opp_lineup, win_pcts=win_pcts):
+def lhs_nash(decks_a, decks_b, win_pcts=win_pcts):
     res = ""
-    res_lead, matrix_lead = lead_matrix(my_lineup, opp_lineup, win_pcts)
+    res_lead, matrix_lead = lead_matrix(decks_a, decks_b, win_pcts)
     ng = nashpy.game.Game(matrix_lead)
     e,f = list(ng.support_enumeration())[0]
     g = zip(e,decks_a)
     h = zip(f,decks_b)
     res += "leads" + '\n'
     res += "%-20s %s" % ("p1_lead", "lead_freq") + '\n'
-    for i,j in g:
-        res += '%-20s %s' % (i, round(j,4)) + '\n'
+    for i,j in sorted(g):
+        res += '%-20s %s' % (j, round(i,4)) + '\n'
+    res += '\n'
     res += "%-20s %s" % ("p2_lead", "lead_freq") + '\n'
-    for i,j in h:
-        res += '%-20s %s' % (i, round(j,4)) + '\n'
+    for i,j in sorted(h):
+        res += '%-20s %s' % (j, round(i,4)) + '\n'
     return res
 
 
