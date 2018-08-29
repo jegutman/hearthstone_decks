@@ -21,13 +21,22 @@ def win_rate(decks_a, decks_b, win_pcts):
     res = pre_ban(decks_a, decks_b, win_pcts)
     return max(res.items(), key=lambda x:x[1])
 
+def win_rate_nash_calc(decks_a, decks_b, win_pcts):
+    res = pre_ban_matrix(decks_a, decks_b, win_pcts)
+    opp_res = []
+    for i in res:
+        opp_res.append([1-j for j in i])
+    ng = nashpy.game.Game(res,opp_res)
+    e,f = list(ng.lemke_howson_enumeration())[0]
+    return ng[e,f][0]
+
 def win_rate_nash(decks_a, decks_b, win_pcts):
     res = pre_ban_matrix(decks_a, decks_b, win_pcts)
     opp_res = []
     for i in res:
         opp_res.append([1-j for j in i])
     ng = nashpy.game.Game(res,opp_res)
-    e,f = list(ng.support_enumeration())[0]
+    e,f = list(ng.lemke_howson_enumeration())[0]
     g = zip(e,decks_b)
     h = zip(f,decks_a)
     return ng[e,f], g,h 

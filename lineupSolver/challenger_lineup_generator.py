@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 sys.path.append('../')
 from config import basedir
@@ -109,6 +110,7 @@ if __name__ == '__main__':
             assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
             assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
             ban, win_pct = win_rate(my_lineup, opp_lineup, win_pcts)
+            win_pct = round(win_rate_nash_calc(my_lineup, opp_lineup, win_pcts), 4)
             bans[ban] = bans.get(ban, 0) + 1
             #second_ban = sorted(win_rate(my_lineup, opp_lineup, win_pcts).items())[-2][0]
             if win_pct > 0:
@@ -121,9 +123,9 @@ if __name__ == '__main__':
             #print ",".join([str(i) for i in [win_pct, opp_lineup, ban, win_pct, "weight", weight]])
             printCsv = True
             if not printCsv:
-                print "%-80s %-7s %-20s %-7s %-s" % (opp_lineup, win_pct, ban, opp_win_pct, opp_ban)
-                print "    ", win_rate(my_lineup, opp_lineup, win_pcts)
-                print "    ",pre_ban(my_lineup, opp_lineup, win_pcts), "\n"
+                print("%-80s %-7s %-20s %-7s %-s" % (opp_lineup, win_pct, ban, opp_win_pct, opp_ban))
+                print("    ", win_rate(my_lineup, opp_lineup, win_pcts))
+                print("    ",pre_ban(my_lineup, opp_lineup, win_pcts), "\n")
             else:
                 line = []
                 line.append(ban)
@@ -141,20 +143,20 @@ if __name__ == '__main__':
             # BAN STUFF
             showBans = False
             if showBans:
-                print my_lineup, "vs", opp_lineup
+                print(my_lineup, "vs", opp_lineup)
                 win_rates_grid(my_lineup, opp_lineup, win_pcts, num_games)
                 res = pre_ban_old(my_lineup,
                                   opp_lineup,
                                   win_pcts)
-                print ""
-                print my_lineup, "vs", opp_lineup
-                print "bans"
-                print "%-20s %-20s" % ("p1_ban", "p2_ban", "p1_win_%")
+                print("")
+                print(my_lineup, "vs", opp_lineup)
+                print("bans")
+                print("%-20s %-20s" % ("p1_ban", "p2_ban", "p1_win_%"))
                 #for i, j in sorted(res.items(), key=lambda x:-x[1]):
                 for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
                     d1, d2 = i
-                    print '%-20s %-20s %s' % (d1, d2, round(j,4))
-                print "\n\n"
+                    print('%-20s %-20s %s' % (d1, d2, round(j,4)))
+                print("\n\n")
         print("average: %s" % (total / count))
         print("samples: %s" % sorted(samples))
         print("distr: %s %s" % (len([i for i in samples if i<0.5]), len([i for i in samples if i> 0.50])))
@@ -174,12 +176,12 @@ if __name__ == '__main__':
                 assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
                 assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
                 ban, win_pct = win_rate(my_lineup, opp_lineup, win_pcts)
-                print ",".join([str(i) for i in [p1, p2, ban, win_pct]])
+                print(",".join([str(i) for i in [p1, p2, ban, win_pct]]))
     elif len(args) > 0 and args[0] == 'simfile':
         
         #win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
         win_pcts, archetypes = wr_from_csv('input_wr.csv', scaling=100)
-        print sorted(archetypes, key=lambda x:x.split()[-1])
+        print(sorted(archetypes, key=lambda x:x.split()[-1]))
         archetypes.append('Unbeatable')
         #archetypes.append('Fatigue Warrior')
         overrides = [
@@ -194,53 +196,51 @@ if __name__ == '__main__':
         assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
         #assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
 
-        print my_lineup, "vs", opp_lineup
+        print(my_lineup, "vs", opp_lineup)
         win_rates_grid(my_lineup, opp_lineup, win_pcts)
         if len(my_lineup) < 4 or len(opp_lineup) < 4:
-            print round(post_ban(my_lineup, opp_lineup, win_pcts) * 100,2)
+            print(round(post_ban(my_lineup, opp_lineup, win_pcts) * 100,2))
         else:
-            print win_rate(my_lineup, opp_lineup, win_pcts)
-            print pre_ban(my_lineup, opp_lineup, win_pcts)
+            print(win_rate(my_lineup, opp_lineup, win_pcts))
+            print(pre_ban(my_lineup, opp_lineup, win_pcts))
 
             res = pre_ban_old(my_lineup,
                               opp_lineup,
                               win_pcts)
-            print ""
-            print my_lineup, "vs", opp_lineup
-            print "bans"
-            print "%-20s %-20s" % ("p1_ban", "p2_ban")
+            print("")
+            print(my_lineup, "vs", opp_lineup)
+            print("bans")
+            print("%-20s %-20s" % ("p1_ban", "p2_ban"))
             #for i, j in sorted(res.items(), key=lambda x:-x[1]):
             for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
                 d1, d2 = i
-                print '%-20s %-20s %s' % (d1, d2, round(j,4))
+                print('%-20s %-20s %s' % (d1, d2, round(j,4)))
 
         my_lineup, opp_lineup = opp_lineup, my_lineup
-        print my_lineup, "vs", opp_lineup
+        print(my_lineup, "vs", opp_lineup)
         win_rates_grid(my_lineup, opp_lineup, win_pcts)
-        print win_rate(my_lineup, opp_lineup, win_pcts)
-        print pre_ban(my_lineup, opp_lineup, win_pcts)
+        print(win_rate(my_lineup, opp_lineup, win_pcts))
+        print(pre_ban(my_lineup, opp_lineup, win_pcts))
 
         res = pre_ban_old(my_lineup,
                           opp_lineup,
                           win_pcts)
-        print ""
-        print my_lineup, "vs", opp_lineup
-        print "bans"
-        print "%-20s %-20s" % ("p1_ban", "p2_ban")
+        print("")
+        print(my_lineup, "vs", opp_lineup)
+        print("bans")
+        print("%-20s %-20s" % ("p1_ban", "p2_ban"))
         #for i, j in sorted(res.items(), key=lambda x:-x[1]):
         for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
             d1, d2 = i
-            print '%-20s %-20s %s' % (d1, d2, round(j,4))
+            print('%-20s %-20s %s' % (d1, d2, round(j,4)))
 
     elif len(args) > 0 and args[0] == 'sim':
         
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
-        print sorted(archetypes, key=lambda x:x.split()[-1])
+        print(sorted(archetypes, key=lambda x:x.split()[-1]))
         archetypes.append('Unbeatable')
         #archetypes.append('Fatigue Warrior')
         overrides = [
-                        ('Odd Warrior', 'Malygos Druid', 0.6),
-                        ('Odd Warrior', 'Deathrattle Hunter', 0.55),
                     ]
         win_pcts = override_wr(overrides,win_pcts)
         if args[1] in custom.keys():
@@ -252,54 +252,55 @@ if __name__ == '__main__':
         assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
         assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
 
-        print my_lineup, "vs", opp_lineup
+        print(my_lineup, "vs", opp_lineup)
         win_rates_grid(my_lineup, opp_lineup, win_pcts,num_games)
         if len(my_lineup) < 3 or len(opp_lineup) < 3:
-            print round(post_ban(my_lineup, opp_lineup, win_pcts) * 100,2)
+            print(round(post_ban(my_lineup, opp_lineup, win_pcts) * 100,2))
         else:
-            print win_rate(my_lineup, opp_lineup, win_pcts)
-            print pre_ban(my_lineup, opp_lineup, win_pcts)
+            #print(win_rate(my_lineup, opp_lineup, win_pcts))
+            print(win_rate_nash_calc(my_lineup, opp_lineup, win_pcts))
+            print(pre_ban(my_lineup, opp_lineup, win_pcts))
 
             res = pre_ban_old(my_lineup,
                               opp_lineup,
                               win_pcts)
-            print ""
-            print my_lineup, "vs", opp_lineup
-            print "bans"
-            print "%-20s %-20s %s" % ("p1_ban", "p2_ban", "p1_win_%")
+            print("")
+            print(my_lineup, "vs", opp_lineup)
+            print("bans")
+            print("%-20s %-20s %s" % ("p1_ban", "p2_ban", "p1_win_%"))
             #for i, j in sorted(res.items(), key=lambda x:-x[1]):
             for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
                 d1, d2 = i
-                print '%-20s %-20s %s' % (d1, d2, round(j,4))
+                print('%-20s %-20s %s' % (d1, d2, round(j,4)))
 
         my_lineup, opp_lineup = opp_lineup, my_lineup
-        print my_lineup, "vs", opp_lineup
+        print(my_lineup, "vs", opp_lineup)
         win_rates_grid(my_lineup, opp_lineup, win_pcts,num_games)
-        print win_rate(my_lineup, opp_lineup, win_pcts)
-        print pre_ban(my_lineup, opp_lineup, win_pcts)
+        print(win_rate(my_lineup, opp_lineup, win_pcts))
+        print(pre_ban(my_lineup, opp_lineup, win_pcts))
 
         res = pre_ban_old(my_lineup,
                           opp_lineup,
                           win_pcts)
-        print ""
-        print my_lineup, "vs", opp_lineup
-        print "bans"
-        print "%-20s %-20s %s" % ("p1_ban", "p2_ban", "p1_win_%")
+        print("")
+        print(my_lineup, "vs", opp_lineup)
+        print("bans")
+        print("%-20s %-20s %s" % ("p1_ban", "p2_ban", "p1_win_%"))
         #for i, j in sorted(res.items(), key=lambda x:-x[1]):
         for i, j in sorted(res.items(), key=lambda x:(x[0][0], x[1])):
             d1, d2 = i
-            print '%-20s %-20s %s' % (d1, d2, round(j,4))
+            print('%-20s %-20s %s' % (d1, d2, round(j,4)))
 
     else:
         #### ESPORTS ARENA
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=20, min_win_pct=0.44,limitTop=50)
-        print sorted(archetypes, key=lambda x:x.split()[-1])
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=20, min_win_pct=0.44,limitTop=30)
+        print(sorted(archetypes, key=lambda x:x.split()[-1]))
         excluded = []
         if True:
             excluded += []
             #excluded += ['Tempo Mage', 'Tempo Rogue', 'Murloc Mage', 'Recruit Hunter']
             excluded += ['Spiteful Druid', 'Taunt Druid']
-        print "\n\nEXCLUDING:", excluded
+        print("\n\nEXCLUDING:", excluded)
         archetypes = [a for a in archetypes if a not in excluded]
         win_rates_against_good = {}
 
@@ -322,7 +323,7 @@ if __name__ == '__main__':
                     win_pcts_int[(i,j)] = win_pcts[(a,b)]
         print_time()
         
-        print "testing %s lineups" % len(lineups)
+        print("testing %s lineups" % len(lineups))
     
         if len(args) > 0 and args[0] == 'target':
             lineups_to_test = []
@@ -330,19 +331,23 @@ if __name__ == '__main__':
                 tmp = [i.strip() for i in x.split(',')]
                 lineups_to_test.append(tmp)
             weights = [1 for i in lineups_to_test]
-        print "\n"
-        print "TESTING vs LINEUPS"
+        print("\n")
+        print("TESTING vs LINEUPS")
         for l in lineups_to_test:
-            print "%-80s" % ("   ".join(l)), '"' + ",".join(l) + '"'
-        print "\n"
+            print("%-80s" % ("   ".join(l)), '"' + ",".join(l) + '"')
+        print("\n")
 
+        count_index = 0
         for lineup in lineups:
             for lu_test in lineups_to_test:
+                count_index += 1
+                print(count_index, [archetype_map[i] for i in lineup], lu_test)
                 lu_test = list(get_lineup(lu_test, inverse_map))
                 win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts_int)]
+                #win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate_nash(list(lineup), lu_test, win_pcts_int)]
 
         for lineup_txt, winrates in sorted(win_rates_against_good.items(), key=lambda x: x[1][0][1], reverse=True)[:3]:
-            print lineup_txt, winrates
+            print(lineup_txt, winrates)
 
         lu_strings = []
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:
@@ -356,19 +361,19 @@ if __name__ == '__main__':
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([1 if i[1] > 0.5 else 0 for i in x[1]]))[-max_file_output:]:
             i = get_lineup(i, archetype_map)
             i_print = "    " + "".join(["%-20s" % x for x in i])
-            #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'
+            #print("%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"')
             x = []
             for _i in j:
                 x.append((str(archetype_map[_i[0]]), _i[1]))
             j = x
             max_file_output -= 1
             if max_file_output <= max_output:
-                print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3))
+                print("%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)))
             lineup_string = ",".join(i)
             lu_strings.append((lineup_string, round(sum([x[1] for x in j])/len(j),3), round(geometric_mean([i[1] for i in j],weights),3), round(min([x[1] for x in j]),3)))
-            print '         "' + lineup_string + '"'
+            print('         "' + lineup_string + '"')
         for i,j,k,l in lu_strings:
-            print "".join(["%-20s" % x for x in i.split(',')]), j, k, l, '    "%(i)s"' % locals()
+            print("".join(["%-20s" % x for x in i.split(',')]), j, k, l, '    "%(i)s"' % locals())
         classes = ['Druid', 'Mage', 'Shaman', 'Priest', 'Hunter', 'Paladin', 'Rogue', 'Warrior', 'Warlock']
         file = open('tmp_output.csv', 'w')
         res = ['win pct'] + classes

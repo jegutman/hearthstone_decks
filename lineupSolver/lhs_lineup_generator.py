@@ -12,37 +12,37 @@ if __name__ == '__main__':
     tmp_weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     lineups_to_test = [
         "Deathrattle Hunter,Token Druid,Quest Rogue,Odd Paladin", # Zoo Warlock
-        "Malygos Druid,Zoo Warlock,Shudderwock Shaman,Quest Rogue", # Deathrattle Hunter
-        "Malygos Druid,Even Warlock,Odd Rogue,Deathrattle Hunter", # Shudderwock Shaman
-        "Zoo Warlock,Shudderwock Shaman,Deathrattle Hunter,Token Druid", # Fatigue Warrior
-        "Deathrattle Hunter,Miracle Rogue,Taunt Druid,Even Warrior", # Shudderwock Shaman
-        "Midrange Hunter,Miracle Rogue,Malygos Druid,Shudderwock Shaman", # Control Priest
-        "Malygos Druid,Deathrattle Hunter,Miracle Rogue,Cube Warlock", # Odd Paladin
-        "Odd Paladin,Token Druid,Even Warlock,Deathrattle Hunter", # Quest Warrior
-        "Shudderwock Shaman,Control Priest,Cube Warlock,Malygos Druid", # Odd Warrior
-        "Big Druid,Even Warlock,Odd Paladin,Deathrattle Hunter", # Shudderwock Shaman
-        "Token Driud,Big Spell Mage,Overload Shaman,Zoo Warlock", # Recruit Hunter
-        "Malygos Druid,Zoo Warlock,Odd Rogue,Deathrattle Hunter", # Odd Paladin
-        "Odd Paladin,Token Druid,Even Warlock,Deathrattle Hunter", # Odd Rogue
-        "Tempo Mage,Even Warlock,Odd Hunter,Malygos Druid", # Control Priest
-        "Big Druid,Shudderwock Shaman,Even Warlock,Miracle Rogue", # Deathrattle Hunter
-        "Shudderwock Shaman,Malygos Druid,Control Priest,Odd Rogue", # Even Warlock
-        "Deathrattle Hunter,Shudderwock Shaman,Zoo Warlock,Odd Rogue", # Token Druid
-        "Control Priest,Shudderwock Shaman,Quest Warrior,Taunt Druid", # Cube Warlock
-        "Shudderwock Shaman,Quest Rogue,Big Druid,Cube Warlock", # Control Priest
-        "Malygos Druid,Even Warlock,Odd Rogue,Deathrattle Hunter", # Shudderwock Shaman
-        "Odd Paladin,Zoo Warlock,Deathrattle Hunter,Token Druid", # Combo Priest
-        "Odd Rogue,Zoo Warlock,Malygos Druid,Deathrattle Hunter", # Shudderwock Shaman
-        "Malygos Druid,Odd Rogue,Shudderwock Shaman,Quest Warrior", # Cube Warlock
-        "Taunt Druid,Even Warlock,Miracle Rogue,Shudderwock Shaman", # Deathrattle Hunter
-        "Deathrattle Hunter,Scavenger Druid,Odd Rogue,Zoo Warlock", # Shudderwock Shaman
-        "Deathrattle Hunter,Quest Rogue,Big Druid,Murloc Mage", # Odd Paladin
-        "Cube Warlock,Control Priest,Miracle Rogue,Shudderwock Shaman", # Malygos Druid
-        "Token Druid,Deathrattle Hunter,Shudderwock Shaman,Zoo Warlock", # Odd Rogue
-        "Token Druid,Deathrattle Hunter,Cube Warlock,Shudderwock Shaman", # Odd Paladin
-        "Big Druid,Deathrattle Hunter,Miracle Rogue,Even Warlock", # Shudderwock Shaman
-        "Shudderwock Shaman,Even Warlock,Taunt Druid,Big Spell Mage", # Quest Warrior
-        "Even Warlock,Deathrattle Hunter,Miracle Rogue,Big Druid", # Big Spell Mage
+        #"Malygos Druid,Zoo Warlock,Shudderwock Shaman,Quest Rogue", # Deathrattle Hunter
+        #"Malygos Druid,Even Warlock,Odd Rogue,Deathrattle Hunter", # Shudderwock Shaman
+        #"Zoo Warlock,Shudderwock Shaman,Deathrattle Hunter,Token Druid", # Fatigue Warrior
+        #"Deathrattle Hunter,Tempo Rogue,Taunt Druid,Even Warrior", # Shudderwock Shaman
+        #"Midrange Hunter,Tempo Rogue,Malygos Druid,Shudderwock Shaman", # Control Priest
+        #"Malygos Druid,Deathrattle Hunter,Tempo Rogue,Cube Warlock", # Odd Paladin
+        #"Odd Paladin,Token Druid,Even Warlock,Deathrattle Hunter", # Quest Warrior
+        #"Shudderwock Shaman,Control Priest,Cube Warlock,Malygos Druid", # Odd Warrior
+        #"Big Druid,Even Warlock,Odd Paladin,Deathrattle Hunter", # Shudderwock Shaman
+        #"Token Driud,Big Spell Mage,Overload Shaman,Zoo Warlock", # Recruit Hunter
+        #"Malygos Druid,Zoo Warlock,Odd Rogue,Deathrattle Hunter", # Odd Paladin
+        #"Odd Paladin,Token Druid,Even Warlock,Deathrattle Hunter", # Odd Rogue
+        #"Tempo Mage,Even Warlock,Odd Hunter,Malygos Druid", # Control Priest
+        #"Big Druid,Shudderwock Shaman,Even Warlock,Tempo Rogue", # Deathrattle Hunter
+        #"Shudderwock Shaman,Malygos Druid,Control Priest,Odd Rogue", # Even Warlock
+        #"Deathrattle Hunter,Shudderwock Shaman,Zoo Warlock,Odd Rogue", # Token Druid
+        #"Control Priest,Shudderwock Shaman,Quest Warrior,Taunt Druid", # Cube Warlock
+        #"Shudderwock Shaman,Quest Rogue,Big Druid,Cube Warlock", # Control Priest
+        #"Malygos Druid,Even Warlock,Odd Rogue,Deathrattle Hunter", # Shudderwock Shaman
+        #"Odd Paladin,Zoo Warlock,Deathrattle Hunter,Token Druid", # Combo Priest
+        #"Odd Rogue,Zoo Warlock,Malygos Druid,Deathrattle Hunter", # Shudderwock Shaman
+        #"Malygos Druid,Odd Rogue,Shudderwock Shaman,Quest Warrior", # Cube Warlock
+        #"Taunt Druid,Even Warlock,Tempo Rogue,Shudderwock Shaman", # Deathrattle Hunter
+        #"Deathrattle Hunter,Scavenger Druid,Odd Rogue,Zoo Warlock", # Shudderwock Shaman
+        #"Deathrattle Hunter,Quest Rogue,Big Druid,Murloc Mage", # Odd Paladin
+        #"Cube Warlock,Control Priest,Tempo Rogue,Shudderwock Shaman", # Malygos Druid
+        #"Token Druid,Deathrattle Hunter,Shudderwock Shaman,Zoo Warlock", # Odd Rogue
+        #"Token Druid,Deathrattle Hunter,Cube Warlock,Shudderwock Shaman", # Odd Paladin
+        #"Big Druid,Deathrattle Hunter,Tempo Rogue,Even Warlock", # Shudderwock Shaman
+        #"Shudderwock Shaman,Even Warlock,Taunt Druid,Big Spell Mage", # Quest Warrior
+        #"Even Warlock,Deathrattle Hunter,Tempo Rogue,Big Druid", # Big Spell Mage
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
     weights = [1 for l in lineups_to_test if l is not None]
@@ -75,6 +75,7 @@ if __name__ == '__main__':
                 values.append(win_pct)
             print wr
             print pre_ban(my_lineup, opp_lineup, win_pcts)
+            #print pre_ban_nash_calc(my_lineup, opp_lineup, win_pcts)
             # BAN STUFF
             showBans = False
             if showBans:
@@ -107,7 +108,9 @@ if __name__ == '__main__':
 
             print my_lineup, "vs", opp_lineup
             win_rates_grid(my_lineup, opp_lineup, win_pcts, num_games)
-            print win_rate(my_lineup, opp_lineup, win_pcts)
+            #print win_rate(my_lineup, opp_lineup, win_pcts)
+            print round(pre_ban_nash_calc(my_lineup, opp_lineup, win_pcts), 4)
+            print pre_ban_nash(my_lineup, opp_lineup, win_pcts)
             print pre_ban(my_lineup, opp_lineup, win_pcts)
 
             print '\nOPP BANS'
@@ -136,9 +139,9 @@ if __name__ == '__main__':
             #print win_rate(my_lineup, opp_lineup, win_pcts)
             #print pre_ban(my_lineup, opp_lineup, win_pcts)
 
-            res = lead_matrix(my_lineup,
-                              opp_lineup,
-                              win_pcts)
+            res, matrix = lead_matrix(my_lineup,
+                                      opp_lineup,
+                                      win_pcts)
             print ""
             print my_lineup, "vs", opp_lineup
             print "leads"
@@ -212,7 +215,8 @@ if __name__ == '__main__':
         for lineup in lineups:
             for lu_test in lineups_to_test:
                 lu_test = list(get_lineup(lu_test, inverse_map))
-                win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts_int, useGlobal=True)]
+                #win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [win_rate(list(lineup), lu_test, win_pcts_int, useGlobal=True)]
+                win_rates_against_good[lineup] = win_rates_against_good.get(lineup, []) + [pre_ban_nash_calc(list(lineup), lu_test, win_pcts_int, useGlobal=True)]
 
         lu_strings = []
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sum([i[1] for i in x[1]]))[-10:]:

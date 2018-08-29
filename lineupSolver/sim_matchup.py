@@ -12,6 +12,7 @@ from lhs_utils import win_rate as lhs_win_rate
 from lhs_utils import pre_ban as lhs_pre_ban
 from lhs_utils import pre_matrix
 from lhs_utils import lead_matrix
+import nashpy
 
 win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
 overrides = [
@@ -72,9 +73,7 @@ def lhs_bans(my_lineup, opp_lineup, win_pcts=win_pcts):
 
 def lhs_leads(my_lineup, opp_lineup, win_pcts=win_pcts):
     res = ""
-    res_lead = lead_matrix(my_lineup,
-                      opp_lineup,
-                      win_pcts)
+    res_lead, matrix_lead = lead_matrix(my_lineup, opp_lineup, win_pcts)
     res += "leads" + '\n'
     res += "%-20s %-20s" % ("p1_lead", "p2_lead") + '\n'
     totals = {}
@@ -89,6 +88,24 @@ def lhs_leads(my_lineup, opp_lineup, win_pcts=win_pcts):
         res += '%-20s : %s'  % (d, round(totals[d] / counts[d], 4)) + '\n'
     #print(my_lineup, opp_lineup, res)
     return res
+
+def lhs_nash(my_lineup, opp_lineup, win_pcts=win_pcts):
+    res = ""
+    res_lead, matrix_lead = lead_matrix(my_lineup, opp_lineup, win_pcts)
+    ng = nashpy.game.Game(matrix_lead)
+    e,f = list(ng.support_enumeration())[0]
+    g = zip(e,decks_a)
+    h = zip(f,decks_b)
+    res += "leads" + '\n'
+    res += "%-20s %s" % ("p1_lead", "lead_freq") + '\n'
+    for i,j in g:
+        res += '%-20s %s' % (i, round(j,4)) + '\n'
+    res += "%-20s %s" % ("p2_lead", "lead_freq") + '\n'
+    for i,j in h:
+        res += '%-20s %s' % (i, round(j,4)) + '\n'
+    return res
+
+
 
 def sim_lhs(my_lineup, opp_lineup, win_pcts=win_pcts):
     res = ""

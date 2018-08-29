@@ -29,6 +29,7 @@ CMD_BANS = "!bans "
 CMD_BANS_LHS = "!banslhs "
 CMD_SIM_LHS = "!simlhs "
 CMD_LEAD_LHS = "!leadlhs "
+CMD_NASH_LHS = "!nashlhs "
 CMD_HELP = "!help"
 CMD_COUNTDOWN = "!countdown"
 CMD_UPTIME = "!uptime"
@@ -252,6 +253,17 @@ class MessageHandler:
             await self.handle_lead(message, CMD_LEAD_LHS, my_message, is_conquest=False)
             return True
 
+        if message.content.startswith(CMD_NASH_LHS):
+            if str(message.channel.name).lower() not in ['sims']:
+                if not message.channel.is_private:
+                    return True
+                else:
+                    if not self.check_user(str(message.author)):
+                        await self.respond(message, "Sorry %s, you are not an authorized user of DMs to optimal bot" % str(message.author).split('#')[0])
+                        return True
+            await self.handle_nash_lead(message, CMD_NASH_LHS, my_message, is_conquest=False)
+            return True
+
         if message.content.startswith(CMD_SIM):
             if str(message.channel.name).lower() not in ['sims']:
                 if not message.channel.is_private:
@@ -317,6 +329,12 @@ class MessageHandler:
 
     async def handle_lead(self, message, cmd, my_message, is_conquest=True):
         response = self.sim_handler.handle_lead(
+            message.content[len(cmd):], is_conquest
+        )
+        await self.respond(message, response, my_message)
+
+    async def handle_nash_lead(self, message, cmd, my_message, is_conquest=True):
+        response = self.sim_handler.handle_nash_lead(
             message.content[len(cmd):], is_conquest
         )
         await self.respond(message, response, my_message)

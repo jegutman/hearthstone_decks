@@ -27,6 +27,48 @@ def pre_ban(decks_a, decks_b, win_pcts,useGlobal=True):
             mins[d2] = round(min(mins[d2], res), 4)
     return mins
 
+def pre_ban_nash(decks_a, decks_b, win_pcts,useGlobal=True):
+    matrix = []
+    opp_matrix = []
+    for d2 in decks_b:
+        tmp = []
+        for d1 in decks_a:
+            tmp_a = decks_a[:]
+            tmp_b = decks_b[:]
+            tmp_a.remove(d1)
+            tmp_b.remove(d2)
+            tmp.append(pre_pick_nash_calc(tmp_a,tmp_b, win_pcts, useGlobal=useGlobal))
+        matrix.append(tmp)
+        opp_matrix.append([1-x for x in tmp])
+    ng = nashpy.game.Game(matrix,opp_matrix)
+    e,f = list(ng.support_enumeration())[0]
+    g = zip(e,decks_b)
+    h = zip(f,decks_a)
+    return ng[e,f], g, h
+
+def pre_ban_nash_calc(decks_a, decks_b, win_pcts,useGlobal=True):
+    matrix = []
+    opp_matrix = []
+    for d2 in decks_b:
+        tmp = []
+        for d1 in decks_a:
+            tmp_a = decks_a[:]
+            tmp_b = decks_b[:]
+            tmp_a.remove(d1)
+            tmp_b.remove(d2)
+            tmp.append(pre_pick_nash_calc(tmp_a,tmp_b, win_pcts, useGlobal=useGlobal))
+        matrix.append(tmp)
+        opp_matrix.append([1-x for x in tmp])
+    #ng = nashpy.game.Game(matrix,opp_matrix)
+    ng = nashpy.game.Game(matrix)
+    #e,f = list(ng.support_enumeration())[0]
+    e,f = list(ng.vertex_enumeration())[0]
+    g = zip(e,decks_b)
+    h = zip(f,decks_a)
+    return ng[e,f][0]
+    #a,b,c = pre_ban_nash(decks_a, decks_b, win_pcts,useGlobal)
+    #return a[b,c][0]
+
 def pre_matrix(decks_a, decks_b, win_pcts,useGlobal=True):
     cross = {}
     for d2 in decks_b:
@@ -62,11 +104,16 @@ def pre_pick_nash_calc(decks_a, decks_b, win_pcts, useGlobal=True):
                             useGlobal=useGlobal)
             tmp.append(res)
         all_res.append(tmp)
-        all_res_opp([1-x for x in tmp])
-    return all_res
+        all_res_opp.append([1-x for x in tmp])
+    ng = nashpy.game.Game(all_res,all_res_opp)
+    e,f = list(ng.lemke_howson_enumeration())[0]
+    g = zip(e,decks_a)
+    h = zip(f,decks_b)
+    return ng[e,f][0]
 
 def pre_pick_nash(decks_a, decks_b, win_pcts, useGlobal=True):
     all_res = []
+    all_res_opp = []
     for i in decks_a:
         tmp = []
         for j in decks_b:
@@ -76,8 +123,12 @@ def pre_pick_nash(decks_a, decks_b, win_pcts, useGlobal=True):
                             useGlobal=useGlobal)
             tmp.append(res)
         all_res.append(tmp)
-    return all_res
-    #return sum(all_res) / len(all_res)
+        all_res_opp([1-x for x in tmp])
+    ng = nashpy.game.Game(all_res,all_res_opp)
+    e,f = list(ng.support_enumeration())[0]
+    g = zip(e,decks_a)
+    h = zip(f,decks_b)
+    return ng[e,f], g, h
 
 def lead_matrix(decks_a, decks_b, win_pcts, useGlobal=True):
     cross = {}

@@ -19,22 +19,9 @@ if __name__ == '__main__':
     level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16 = None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
 
     lineups_to_test = [
-        'Even Warlock,Tempo Rogue,Deathrattle Hunter,Malygos Druid',
-        #'Combo Priest,Big Druid,Even Warlock,Quest Rogue',
-        'Tempo Mage,Spell Hunter,Odd Rogue,Malygos Druid',
-        'Odd Paladin,Zoo Warlock,Shudderwock Shaman,Malygos Druid',
-        'Odd Paladin,Even Warlock,Recruit Hunter,Mill Druid',
-        #"Malygos Druid,Mecha'thun Priest,Recruit Warrior,Even Warlock",
-        'Odd Rogue,Malygos Druid,Spell Hunter,Zoo Warlock',
-        'Malygos Druid,Deathrattle Hunter,Even Warlock,Tempo Rogue',
-        'Malygos Druid,Tempo Mage,Odd Rogue,Even Warlock',
-        'Malygos Druid,Odd Paladin,Odd Rogue,Zoo Warlock',
-        'Malygos Druid,Odd Rogue,Spell Hunter,Zoo Warlock',
-        'Token Druid,Shudderwock Shaman,Zoo Warlock,Odd Warrior',
-        'Tempo Mage,Odd Rogue,Spell Hunter,Malygos Druid',
-        'Odd Rogue,Cube Warlock,Spiteful Druid,Token Shaman',
-        #'Malygos Druid,Token Shaman,Control Warlock,Secret Hunter',
-        'Malygos Druid,Freeze Mage,Shudderwock Shaman,Recruit Warrior',
+        "Odd Paladin,Odd Rogue,Zoo Warlock,Token Druid",
+        "Odd Warrior,Control Priest,Token Druid,Control Warlock",
+        "Deathrattle Hunter,Cube Warlock,Quest Rogue,Shudderwock Shaman",
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
     weights = [1 for l in lineups_to_test]
@@ -43,22 +30,6 @@ if __name__ == '__main__':
     import sys
     args = sys.argv[1:]
     custom = {
-        'Akumaker'      :   "Big Priest,Murloc Paladin,Cube Warlock,Secret Mage",
-        'Angrycarp'     :   "Big Priest,Quest Rogue,Secret Mage,Cube Warlock",
-        'Disdai'        :   "Cube Warlock,Big Spell Mage,Spiteful Priest,Quest Warrior",
-        'Ender'         :   "Spiteful Priest,Murloc Paladin,C'Thun Druid,Secret Mage",
-        #'GhostASA'      :   "Quest Rogue,Quest Druid,OTK DK Paladin,Jade Shaman",
-        'Glory'         :   "Cube Warlock,Big Priest,Big Spell Mage,OTK DK Paladin",
-        'Hearthstoner'  :   "Cube Warlock,Murloc Paladin,Spell Hunter,Combo Priest",
-        'Hikage7'       :   "Secret Mage,Zoo Warlock,Combo Priest,Murloc Paladin",
-        'Hotmeowth'     :   "Cube Warlock,Big Spell Mage,OTK DK Paladin,Spiteful Priest",
-        'Jakattack'     :   "Cube Warlock,Spiteful Priest,Secret Mage,OTK DK Paladin",
-        'Khaius'        :   "Murloc Paladin,Secret Mage,Cube Warlock,Combo Priest",
-        'Kin0531'       :   "Cube Warlock,Spiteful Priest,Silver Hand Paladin,Secret Mage",
-        'Odyssey'       :   "Control Warlock,Spiteful Priest,Secret Mage,Quest Rogue",
-        'Okasinnsuke'   :   "Combo Priest,Secret Mage,Cube Warlock,Spell Hunter",
-        'ProfessorOak'  :   "Cube Warlock,Silver Hand Paladin,Big Priest,Spell Hunter",
-        'WaningMoon'    :   "Cube Warlock,Murloc Paladin,Secret Mage,Combo Priest",
     }
     #useCustom = True
     useCustom = False
@@ -215,22 +186,7 @@ if __name__ == '__main__':
         archetypes.append('Unbeatable')
         #archetypes.append('Fatigue Warrior')
         overrides = [
-                        ('Miracle Rogue', 'Combo Priest', 0.6),
-                        ('Deathrattle Hunter', 'Combo Priest', 0.4),
-                        ('Deathrattle Hunter', 'Combo Priest', 0.4),
-                        ('Miracle Rogue', 'Quest Rogue', 0.6),
-                        ('Miracle Rogue', 'Big Druid', 0.6),
-                        ('Miracle Rogue', 'Even Warlock', 0.6),
-                        ('Even Warlock', 'Combo Priest', 0.6),
-                        ('Even Warlock', 'Quest Rogue', 0.35),
-                        ('Malygos Druid', 'Combo Priest', 0.6),
-                        ('Miracle Rogue', 'Tempo Mage', 0.4),
-                        ('Miracle Rogue', 'Spell Hunter', 0.3),
-                        ('Miracle Rogue', 'Odd Rogue', 0.35),
-                        ('Miracle Rogue', 'Malygos Druid', 0.5),
-                        ('Miracle Rogue', 'Odd Paladin', 0.42),
-                        ('Miracle Rogue', 'Zoo Warlock', 0.35),
-                        ('Miracle Rogue', 'Shudderwock Shaman', 0.62),
+                        #('Deathrattle Hunter', 'Odd Paladin', 0.40),
                     ]
         win_pcts = override_wr(overrides,win_pcts)
         if args[1] in custom.keys():
@@ -285,8 +241,10 @@ if __name__ == '__main__':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=20, min_win_pct=0.44,limitTop=35)
         print sorted(archetypes, key=lambda x:x.split()[-1])
         excluded = []
-        if False:
+        if True:
             excluded += []
+            #excluded += ["Mecha'thun Priest", 'Spiteful Druid']
+            #excluded += ['Odd Warrior', 'Spell Hunter']
             #excluded += ['Tempo Mage', 'Tempo Rogue', 'Murloc Mage', 'Recruit Hunter']
             #excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
         print "\n\nEXCLUDING:", excluded
