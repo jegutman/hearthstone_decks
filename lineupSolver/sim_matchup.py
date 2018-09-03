@@ -12,6 +12,7 @@ from lhs_utils import win_rate as lhs_win_rate
 from lhs_utils import pre_ban as lhs_pre_ban
 from lhs_utils import pre_matrix
 from lhs_utils import lead_matrix
+from lhs_utils import pre_pick_nash_calc
 import nashpy
 
 win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
