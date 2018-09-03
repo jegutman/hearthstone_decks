@@ -266,9 +266,20 @@ class MessageHandler:
                     return True
                 else:
                     if not self.check_power_user(str(message.author)):
-                        await self.respond(message, "Sorry %s, you are not an authorized user of DMs to optimal bot" % str(message.author).split('#')[0])
+                        await self.respond(message, "Sorry %s, you are not an authorized user of this command to optimal bot" % str(message.author).split('#')[0])
                         return True
             await self.handle_nash_lead(message, CMD_NASH_LHS, my_message, is_conquest=False)
+            return True
+
+        if message.content.startswith(CMD_NASH_LHS_BANS):
+            if str(message.channel.name).lower() not in ['sims']:
+                if not message.channel.is_private:
+                    return True
+                else:
+                    if not self.check_power_user(str(message.author)):
+                        await self.respond(message, "Sorry %s, you are not an authorized user of this command to optimal bot" % str(message.author).split('#')[0])
+                        return True
+            await self.handle_nash_lhs_bans(message, CMD_NASH_LHS_BANS, my_message, is_conquest=False)
             return True
 
         if message.content.startswith(CMD_SIM):
@@ -342,6 +353,12 @@ class MessageHandler:
 
     async def handle_nash_lead(self, message, cmd, my_message, is_conquest=True):
         response = self.sim_handler.handle_nash_lead(
+            message.content[len(cmd):], is_conquest
+        )
+        await self.respond(message, response, my_message)
+
+    async def handle_nash_lhs_bans(self, message, cmd, my_message, is_conquest=True):
+        response = self.sim_handler.handle_nash_lhs_bans(
             message.content[len(cmd):], is_conquest
         )
         await self.respond(message, response, my_message)

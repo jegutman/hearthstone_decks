@@ -92,7 +92,14 @@ def pre_pick_average(decks_a, decks_b, win_pcts, useGlobal=True):
             all_res.append(res)
     return sum(all_res) / len(all_res)
 
+lead_tested = {}
 def pre_pick_nash_calc(decks_a, decks_b, win_pcts, useGlobal=True):
+    if useGlobal:
+        global lead_tested
+        tuple_a = tuple(decks_a)
+        tuple_b = tuple(decks_b)
+        if (tuple_a, tuple_b, a_pick, b_pick) in tested:
+            return lead_tested[(tuple_a, tuple_b, a_pick, b_pick)]
     all_res = []
     all_res_opp = []
     for i in decks_a:
@@ -109,6 +116,8 @@ def pre_pick_nash_calc(decks_a, decks_b, win_pcts, useGlobal=True):
     e,f = list(ng.lemke_howson_enumeration())[0]
     g = zip(e,decks_a)
     h = zip(f,decks_b)
+    if useGlobal:
+        lead_tested[(tuple_a, tuple_b)] = ng[e,f][0]
     return ng[e,f][0]
 
 def pre_pick_nash(decks_a, decks_b, win_pcts, useGlobal=True):

@@ -106,6 +106,34 @@ def lhs_nash(decks_a, decks_b, win_pcts=win_pcts):
         res += '%-20s %s' % (j, round(i,4)) + '\n'
     return res
 
+def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
+    res = ""
+    matrix = []
+    opp_matrix = []
+    for d2 in decks_b:
+        tmp = []
+        for d1 in decks_a:
+            tmp_a = decks_a[:]
+            tmp_b = decks_b[:]
+            tmp_a.remove(d1)
+            tmp_b.remove(d2)
+            tmp.append(pre_pick_nash_calc(tmp_a,tmp_b, win_pcts))
+        matrix.append(tmp)
+        opp_matrix.append([1-x for x in tmp])
+    ng = nashpy.game.Game(matrix)
+    e,f = list(ng.vertex_enumeration())[0]
+    g = zip(e,decks_b)
+    h = zip(f,decks_a)
+    res += "bans" + '\n'
+    res += "%-20s %s" % ("p1_ban", "ban_freq") + '\n'
+    for i,j in sorted(g):
+        res += '%-20s %s' % (j, round(i,4)) + '\n'
+    res += '\n'
+    res += "%-20s %s" % ("p2_ban", "ban_freq") + '\n'
+    for i,j in sorted(h):
+        res += '%-20s %s' % (j, round(i,4)) + '\n'
+    return res
+
 
 
 def sim_lhs(my_lineup, opp_lineup, win_pcts=win_pcts):
