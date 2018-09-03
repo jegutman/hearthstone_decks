@@ -128,11 +128,17 @@ def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
     res += "bans" + '\n'
     res += "%-20s %s" % ("p1_ban", "ban_freq") + '\n'
     for i,j in sorted(g):
-        res += '%-20s %s' % (j, round(i,4)) + '\n'
+        i = round(i, 2)
+        if abs(i) < 0.001:
+            i = 0
+        res += '%-20s %s' % (j, round(i,2)) + '\n'
     res += '\n'
     res += "%-20s %s" % ("p2_ban", "ban_freq") + '\n'
     for i,j in sorted(h):
-        res += '%-20s %s' % (j, round(i,4)) + '\n'
+        i = round(i, 2)
+        if abs(i) < 0.001:
+            i = 0
+        res += '%-20s %s' % (j, round(i,2)) + '\n'
     return res
 
 
