@@ -97,6 +97,7 @@ def lhs_nash(decks_a, decks_b, win_pcts=win_pcts):
     e,f = list(ng.support_enumeration())[0]
     g = zip(e,decks_a)
     h = zip(f,decks_b)
+    win_pct = round(ng[e,f][0], 3)
     res += "leads" + '\n'
     res += "%-20s %s" % ("p1_lead", "lead_freq") + '\n'
     for i,j in sorted(g):
@@ -105,6 +106,7 @@ def lhs_nash(decks_a, decks_b, win_pcts=win_pcts):
     res += "%-20s %s" % ("p2_lead", "lead_freq") + '\n'
     for i,j in sorted(h):
         res += '%-20s %s' % (j, round(i,4)) + '\n'
+    res += '\nWin Pct p1: %s\n' % win_pct
     return res
 
 def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
