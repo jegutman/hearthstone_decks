@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 sys.path.append('../')
 from config import basedir
@@ -6,7 +7,6 @@ sys.path.append(basedir + '/lineupSolver')
 from shared_utils import *
 import itertools
 from pprint import pprint
-from __future__ import print_function
 
 class HGG_Matchup():
     def __init__(self, l1, l2, decksA=[], decksB=[], win_pcts = None, clear_initialize=False):
