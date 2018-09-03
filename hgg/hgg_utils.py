@@ -6,6 +6,7 @@ sys.path.append(basedir + '/lineupSolver')
 from shared_utils import *
 import itertools
 from pprint import pprint
+from __future__ import print_function
 
 class HGG_Matchup():
     def __init__(self, l1, l2, decksA=[], decksB=[], win_pcts = None, clear_initialize=False):
@@ -374,22 +375,19 @@ def ban1(pool_a, pool_b, win_pcts):
 
 if __name__ == '__main__':
     from json_win_rates import *
-    l1 = 'Odd Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Tempo Mage,Token Druid,Deathrattle Hunter'.split(',')
-    l2 = 'Odd Warrior,Control Priest,Midrange Shaman,Even Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Malygos Druid,Spell Hunter'.split(',')
+    #USA
+    l1 = "Odd Warrior,Combo Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Tempo Mage,Token Druid,Deathrattle Hunter".split(',')
+    l2 = 'Odd Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Big Spell Mage,Token Druid,Deathrattle Hunter'.split(',')
 
     #debug = True
     mu = HGG_Matchup(l1, l2)
-    mu.add_ban(['Odd Warrior'], ['Odd Rogue'])
-    mu.add_picks(['Token Druid', 'Deathrattle Hunter'], ['Malygos Druid', 'Odd Paladin'])
-    #mu.add_ban(['Deathrattle Hunter', 'Zoo Warlock'], ['Malygos Druid', 'Control Priest'])
-    #mu.add_picks(['Control Priest', 'Odd Rogue'], ['Odd Rogue', 'Deathrattle Hunter'])
     #mu.add_picks(['Odd Rogue', 'Tempo Mage'], ['Quest Warrior', 'Control Priest'])
-    #mu.add_ban(['Tempo Mage'], ['Odd Paladin'])
+    mu.add_ban(['Token Druid'], ['Token Druid'])
     #mu.add_picks(['Murloc Mage', 'Zoo Warlock'], ['Quest Warrior', 'Shudderwock Shaman'])
     #mu.add_ban(['Malygos Druid'], ['Malygos Druid'])
     tmp = mu.calculate()
     #tmp = mu.calculate()
-    print '\n', tmp
+    print('\n', tmp)
     eval_final = None
     tmp = mu.calculate(isGoofy=True)
-    print '\n', tmp
+    print('\n', tmp)
