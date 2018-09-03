@@ -125,20 +125,22 @@ def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
     e,f = list(ng.vertex_enumeration())[0]
     g = zip(e,decks_b)
     h = zip(f,decks_a)
+    win_pct = round(ng[e,f][0], 4)
     res += "bans" + '\n'
     res += "%-20s %s" % ("p1_ban", "ban_freq") + '\n'
     for i,j in sorted(g):
         i = round(i, 2)
         if abs(i) < 0.001:
-            i = 0
+            i = 0.0
         res += '%-20s %s' % (j, round(i,2)) + '\n'
     res += '\n'
     res += "%-20s %s" % ("p2_ban", "ban_freq") + '\n'
     for i,j in sorted(h):
         i = round(i, 2)
         if abs(i) < 0.001:
-            i = 0
+            i = 0.0
         res += '%-20s %s' % (j, round(i,2)) + '\n'
+    res += '\nWin Pct p1: %s\n' % win_pct
     return res
 
 
