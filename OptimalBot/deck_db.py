@@ -179,7 +179,7 @@ class DeckDBHandler():
         return res_str
 
     def lineup(self, args, flags, allow_private, query_channel, use_playoffs=False):
-        res = self.search_helper(args, flags, allow_private, use_playoffs=use_playoffs, tags='lineup')
+        res = self.search_helper(args, flags, allow_private, query_channel, use_playoffs=use_playoffs, tags='lineup')
         all_decks = []
         res_str = []
         #for deck_id, date, user, deck_name, deck_class, deck_code in res[-10:]:

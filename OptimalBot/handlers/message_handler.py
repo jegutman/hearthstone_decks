@@ -30,6 +30,7 @@ CMD_BANS_LHS = "!banslhs "
 CMD_SIM_LHS = "!simlhs "
 CMD_LEAD_LHS = "!leadlhs "
 CMD_NASH_LHS = "!nashlhs "
+CMD_NASH_LHS_BANS = "!nashlhsbans "
 CMD_HELP = "!help"
 CMD_COUNTDOWN = "!countdown"
 CMD_UPTIME = "!uptime"
@@ -75,6 +76,12 @@ class MessageHandler:
 
     def check_user(self, user):
         if user.lower() in ALLOWED_USERS:
+            return True
+        else:
+            return False
+
+    def check_power_user(self, user):
+        if user.lower() in POWER_USERS:
             return True
         else:
             return False
@@ -197,7 +204,7 @@ class MessageHandler:
             na_tz = pytz.timezone('America/Los_Angeles')
             eu_tz = pytz.timezone('CET')
             asia_tz = pytz.timezone('Hongkong')
-            season_end = "09-01-2018 00:00:00"
+            season_end = "10-01-2018 00:00:00"
             na_end = na_tz.localize(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S"))
             eu_end = eu_tz.localize(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S"))
             asia_end = asia_tz.localize(datetime.strptime(season_end, "%m-%d-%Y %H:%M:%S"))
@@ -258,7 +265,7 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
                 else:
-                    if not self.check_user(str(message.author)):
+                    if not self.check_power_user(str(message.author)):
                         await self.respond(message, "Sorry %s, you are not an authorized user of DMs to optimal bot" % str(message.author).split('#')[0])
                         return True
             await self.handle_nash_lead(message, CMD_NASH_LHS, my_message, is_conquest=False)
