@@ -98,8 +98,8 @@ def pre_pick_nash_calc(decks_a, decks_b, win_pcts, useGlobal=True):
         global lead_tested
         tuple_a = tuple(decks_a)
         tuple_b = tuple(decks_b)
-        if (tuple_a, tuple_b, a_pick, b_pick) in tested:
-            return lead_tested[(tuple_a, tuple_b, a_pick, b_pick)]
+        if (tuple_a, tuple_b) in lead_tested:
+            return lead_tested[(tuple_a, tuple_b)]
     all_res = []
     all_res_opp = []
     for i in decks_a:

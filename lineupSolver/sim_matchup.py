@@ -118,7 +118,7 @@ def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
             tmp_b = decks_b[:]
             tmp_a.remove(d1)
             tmp_b.remove(d2)
-            tmp.append(pre_pick_nash_calc(tmp_a,tmp_b, win_pcts))
+            tmp.append(pre_pick_nash_calc(tmp_a,tmp_b, win_pcts, useGlobal=False))
         matrix.append(tmp)
         opp_matrix.append([1-x for x in tmp])
     ng = nashpy.game.Game(matrix)
