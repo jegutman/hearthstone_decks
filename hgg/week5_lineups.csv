@@ -1,23 +1,23 @@
 ,Warrior,Priest,Shaman,Warlock,Paladin,Rogue,Mage,Druid,Hunter
 Belarus,Odd Quest Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Murloc Mage,Mill Druid,Deathrattle Hunter
-Belgium,Odd Quest Warrior,Control Priest,Deathrattle Hunter,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Token Druid,Deathrattle Hunter
-Brazil,Odd Quest Warrior,Combo Priest,Shudderwock Shaman,Even Warlock,Deathrattle Hunter,Quest Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter
+Belgium,Odd Quest Warrior,Control Priest,Shudderwock,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Token Druid,Deathrattle Hunter
+Brazil,Odd Quest Warrior,Combo Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Quest Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter
 Bulgaria,Odd Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Big Spell Mage,Token Druid,Deathrattle Hunter
 Canada,Odd Warrior,Control Priest,Midrange Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Mill Druid,Deathrattle Hunter
 Chile,Odd Warrior,Control Priest,Even Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Token Druid,Midrange Hunter
-China,Odd Warrior,Control Priest,Shudderwock Shaman,Deathrattle Hunter,Odd Paladin,Deathrattle Hunter,Tempo Mage,Deathrattle Hunter,Deathrattle Hunter
+China,Odd Warrior,Control Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Quest Rogue,Tempo Mage,Mill Druid,Deathrattle Hunter
 Czech Republic,Odd Warrior,Control Priest,Midrange Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Big Spell Mage,Mill Druid,Deathrattle Hunter
 Denmark,Odd Warrior,Control Priest,Midrange Shaman,Even Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Malygos Druid,Spell Hunter
-Germany,Odd Warrior,Combo Priest,Shudderwock Shaman,Deathrattle Hunter,Odd Paladin,Odd Rogue,Tempo Mage,Token Druid,Deathrattle Hunter
-Hong Kong,Quest Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Deathrattle Hunter,Deathrattle Hunter
+Germany,Odd Warrior,Combo Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Token Druid,Deathrattle Hunter
+Hong Kong,Quest Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Token Druid,Deathrattle Hunter
 Indonesia,Odd Quest Warrior,Mecha'thun Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter
 Italy,Odd Warrior,Control Priest,Midrange Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter
 Japan,Odd Warrior,Control Priest,Even Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Token Druid,Deathrattle Hunter
 South Korea,Odd Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Big Spell Mage,Token Druid,Deathrattle Hunter
-Netherlands,Odd Warrior,Deathrattle Hunter,Shudderwock Shaman,Deathrattle Hunter,Odd Paladin,Quest Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter
+Netherlands,Odd Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter
 New Zealand,Odd Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter
 Norway,Recruit Warrior,Combo Priest,Midrange Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Tempo Mage,Token Druid,Deathrattle Hunter
-Peru,Odd Warrior,Deathrattle Hunter,Shudderwock Shaman,Zoo Warlock,Deathrattle Hunter,Quest Rogue,Deathrattle Hunter,Spiteful Druid,Deathrattle Hunter
+Peru,Odd Warrior,Combo Priest,Shudderwock Shaman,Zoo Warlock,Mech Paladin,Quest Rogue,Tempo Mage,Spiteful Druid,Deathrattle Hunter
 Poland,Odd Warrior,Control Priest,Even Shaman,Even Warlock,Odd Paladin,Odd Rogue,Big Spell Mage,Mill Druid,Spell Hunter
 Portugal,Odd Warrior,Combo Priest,Shudderwock Shaman,Control Warlock,Mech Paladin,Quest Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter
 Romania,Odd Quest Warrior,Combo Priest,Shudderwock Shaman,Zoo Warlock,Control Paladin,Quest Rogue,Tempo Mage,Big Druid,Deathrattle Hunter
@@ -26,7 +26,7 @@ Singapore,Odd Warrior,Control Priest,Shudderwock Shaman,Even Warlock,Odd Paladin
 Spain,Odd Warrior,Control Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Quest Rogue,Big Spell Mage,Malygos Druid,Deathrattle Hunter
 Switzerland,Odd Quest Warrior,Control Priest,Even Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Mill Druid,Deathrattle Hunter
 Taiwan,Quest Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Malygos Druid,Deathrattle Hunter
-Thailand,Odd Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Deathrattle Hunter,Odd Rogue,Tempo Mage,Token Druid,Spell Hunter
+Thailand,Odd Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Token Druid,Spell Hunter
 Ukraine,Odd Warrior,Combo Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Tempo Mage,Big Druid,Deathrattle Hunter
 United Kingdom,Odd Warrior,Combo Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Big Spell Mage,Token Druid,Deathrattle Hunter
 United States,Odd Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Tempo Mage,Token Druid,Deathrattle Hunter
