@@ -16,8 +16,8 @@ cursor = connection.cursor()
 
 from label_archetype import label_archetype
 
-date = '2018_08_29'
-region = 'EU'
+date = '2018_09_04'
+region = 'APAC'
 
 deck_id = None
 
@@ -28,8 +28,8 @@ def process_deck(deck_code, deck_class, name, archetype, deck_id=None):
     deck_code      = deck_code
     time           = datetime.datetime.now().strftime('%s')
     date           = datetime.datetime.now().strftime('%Y_%m_%d')
-    server         = 'EU Playoffs Loader'
-    user           = 'EU Playoffs Loader'
+    server         = 'APAC Playoffs Loader'
+    user           = 'APAC Playoffs Loader'
     is_private     = 0
 
     deck = EasyDeck(deck_code)
@@ -49,7 +49,7 @@ def insert_cards(deck, deck_id):
 
 def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype = None, deck_name = None):
     db = 'deckstrings'
-    playoff_region = 'EU'
+    playoff_region = 'APAC'
     if deck_archetype: 
         deck_archetype = "'%s'" % deck_archetype
     else:
@@ -78,7 +78,7 @@ def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_clas
 #    db = 'deckstrings'
 #    deck_archetype = "'%s'" % deck_archetype
 #    deck_name = "'%s'" % deck_name
-#    playoff_region = 'EU'
+#    playoff_region = 'APAC'
 #    if deck_id:
 #        print("""INSERT INTO %(db)s.decks (deck_id, time, date, server, user, is_private, deck_code, deck_class, deck_archetype, deck_name, playoff_region)
 #                               VALUES (%(deck_id)s, %(time)s, '%(date)s', '%(server)s', '%(user)s', %(is_private)s, '%(deck_code)s', '%(deck_class)s', %(deck_archetype)s, %(deck_name)s, '%(playoff_region)s')""" % locals())
@@ -106,7 +106,7 @@ def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_clas
 ###+---------+------------+--------+--------------+----------------+------------+----------------------------------------------------------------------------------+
 ###| deck_id | date       | region | deck_name    | deck_archetype | deck_class | deck_code                                                                        |
 ###+---------+------------+--------+--------------+----------------+------------+----------------------------------------------------------------------------------+
-###|     385 | 2018_05_01 | EU     | Mryagut#2306 | Taunt Druid    | Druid      | AAECAbSKAwiQB4fOAsLOAq/TAubTAvHqAt3rAr/yAgtAX+kB5AjJxwKU0gKY0gKe0gKL4QKE5gKN8AIA |
+###|     385 | 2018_05_01 | APAC     | Mryagut#2306 | Taunt Druid    | Druid      | AAECAbSKAwiQB4fOAsLOAq/TAubTAvHqAt3rAr/yAgtAX+kB5AjJxwKU0gKY0gKe0gKL4QKE5gKN8AIA |
 ###+---------+------------+--------+--------------+----------------+------------+----------------------------------------------------------------------------------+
 
 
