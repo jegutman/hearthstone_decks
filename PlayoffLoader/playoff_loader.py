@@ -111,7 +111,7 @@ def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_clas
 
 
 #cursor.execute("SELECT deck_name, deck_archetype, deck_class, deck_code FROM deckstrings.playoffs")
-filename = 'hct_europe_fall_decklists.csv'
+filename = 'hct_apac_fall_decklists.csv'
 
 file = open(filename)
 
@@ -124,12 +124,12 @@ def get_decks_by_class(deck_class):
     return [(i,j,k) for (i,j,k) in cursor.fetchall()]
 
 for line in file:
-    deck_name, deck_class, deck_code = line.strip().split(',')
+    deck_name, deck_class, deck_code, deck_archetype = line.strip().split(',')
     #print(deck_name, deck_class, deck_code)
     deck_class = deck_class.capitalize()
     deck = EasyDeck(deck_code)
     deck_class = deck.get_class()
     max_results = flags.get('limit', 5)
     max_dist = flags.get('max_dist', 5)
-    deck_archetype = label_archetype(deck, threshold=8)
+    #deck_archetype = label_archetype(deck, threshold=8)
     process_deck(deck_code, deck_class, deck_name, deck_archetype, deck_id=deck_id)
