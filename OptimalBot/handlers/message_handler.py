@@ -5,6 +5,7 @@ import asyncio
 import re
 import sys
 import os
+import random
 os.environ['TZ'] = 'America/Chicago'
 from datetime import datetime
 from deck_db import DeckDBHandler
@@ -24,6 +25,7 @@ CMD_COMPARE_ALL = "!compareall "
 CMD_SIMILAR = "!similar "
 CMD_UPDATE = "!update "
 CMD_DATA = "!data"
+CMD_RANDOM = "!random "
 CMD_SIM = "!sim "
 CMD_BANS = "!bans "
 CMD_BANS_LHS = "!banslhs "
@@ -189,6 +191,10 @@ class MessageHandler:
 
         if message.content.startswith(CMD_DATA):
             await self.data_check(message, CMD_DATA, my_message)
+            return True
+
+        if message.content.startswith(CMD_RANDOM):
+            await self.get_random(message, CMD_RANDOM, my_message)
             return True
 
         if message.content.startswith(CMD_HELP):
@@ -365,6 +371,10 @@ class MessageHandler:
 
     async def data_check(self, message, cmd, my_message):
         response = self.sim_handler.data_check()
+        await self.respond(message, response, my_message)
+
+    async def get_random(self, message, cmd, my_message):
+        response = self.sim_handler.get_random(message.content[len(cmd):])
         await self.respond(message, response, my_message)
 
     async def handle_deck(self, message, cmd, my_message, collectible=None):
