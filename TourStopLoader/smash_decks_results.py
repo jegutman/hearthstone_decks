@@ -342,7 +342,7 @@ if __name__ == '__main__':
     #decks = decks_from_smashgg('https://smash.gg/tournament/dreamhack-hct-grand-prix-tours-2018/event/dreamhack-hct-hearthstone-grand-prix-tours-2018/brackets/239288')
 
     #decks, matches, player_matches = parse_smash_tournament('dreamhack-hct-grand-prix-austin-2018')
-    decks, matches, player_matches = parse_smash_tournament('hct-esports-arena-oakland')
+    decks, matches, player_matches = parse_smash_tournament('dreamhack-hct-grand-prix-montreal-2018-1')
     #decks, matches, player_matches = parse_smash_tournament('dreamhack-hct-grand-prix-summer-2018')
     #decks, matches, player_matches = parse_smash_tournament('hct-toronto-at-eglx-2018-1')
     wins = {}
@@ -378,7 +378,7 @@ if __name__ == '__main__':
 
     from json_win_rates import *
     win_pcts, num_games, game_count, wr_archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
-    RNGs = ['Guiyze', 'Insom', 'TerrenceM', 'Luker', 'Kolmari', 'ETC', 'Jengo']
+    RNGs = ['Insom', 'Kolmari', 'ETC', 'Jengo']
     def print_ogs(matches, round_filter = 1,show_wr=True, OGs=None, bracket_filter = None):
         global win_pcts
         if OGs == None:
