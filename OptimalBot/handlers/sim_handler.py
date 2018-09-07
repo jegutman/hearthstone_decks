@@ -2,6 +2,7 @@ import re
 
 from sim_matchup import *
 from target_utils import *
+from numpy.random import choice
 
 from json_win_rates import filenames as wr_filenames
 
@@ -129,3 +130,21 @@ class SimHandler():
             combined = "%s from %s for the current expansion" % (skill, date)
         return 'using: %s' % combined
         #return 'using: %s' % wr_filename.split('/')[-1]
+
+    def get_random(self, commands):
+        commands = commands.title()
+        commands = commands.replace('“', '"').replace('”', '"')
+        commands = commands.split(' ')
+        if len(commands) == 1:
+            res = random.randint(1, int(commands[0]))
+            return "%s" % res
+        else:
+            commands = [i + ('.0' if '.' not in i else '') for i in commands]
+            print(commands)
+            tmp = [float(i) for i in commands]
+            normal = [i / sum(tmp) for i in tmp]
+            res = "Picking from: %s" % tmp + '\n'
+            #res += "%s" % normal + '\n'
+            rnd = choice(range(1, len(tmp) + 1), 1, p=normal)
+            res += "Choice:       %s" % [rnd[0], str(tmp[int(rnd[0])-1])]
+            return res
