@@ -59,8 +59,8 @@ def pre_ban_nash_calc(decks_a, decks_b, win_pcts,useGlobal=True):
             tmp.append(pre_pick_nash_calc(tmp_a,tmp_b, win_pcts, useGlobal=useGlobal))
         matrix.append(tmp)
         opp_matrix.append([1-x for x in tmp])
-    #ng = nashpy.game.Game(matrix,opp_matrix)
-    ng = nashpy.game.Game(matrix)
+    ng = nashpy.game.Game(matrix,opp_matrix)
+    #ng = nashpy.game.Game(matrix)
     #e,f = list(ng.support_enumeration())[0]
     e,f = list(ng.vertex_enumeration())[0]
     g = zip(e,decks_b)
