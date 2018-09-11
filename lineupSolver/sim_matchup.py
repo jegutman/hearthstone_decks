@@ -90,6 +90,16 @@ def lhs_leads(my_lineup, opp_lineup, win_pcts=win_pcts):
     #print(my_lineup, opp_lineup, res)
     return res
 
+def opp_matrix(matrix):
+    res = []
+    for row in matrix:
+        tmp = []
+        for column in row:
+            tmp.append(1-column)
+        res.append(tmp)
+    return res
+    
+
 def lhs_nash(decks_a, decks_b, win_pcts=win_pcts):
     for d in decks_a:
         if d not in archetypes:
