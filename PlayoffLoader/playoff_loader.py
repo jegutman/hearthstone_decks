@@ -14,12 +14,10 @@ from deck_manager import *
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
-from label_archetype import label_archetype
+date = '2018_09_11'
+region = 'NA'
 
-date = '2018_09_04'
-region = 'APAC'
-
-deck_id = None
+deck_id = 6319
 
 def process_deck(deck_code, deck_class, name, archetype, deck_id=None):
     deck_id += 1
@@ -28,8 +26,8 @@ def process_deck(deck_code, deck_class, name, archetype, deck_id=None):
     deck_code      = deck_code
     time           = datetime.datetime.now().strftime('%s')
     date           = datetime.datetime.now().strftime('%Y_%m_%d')
-    server         = 'APAC Playoffs Loader'
-    user           = 'APAC Playoffs Loader'
+    server         = 'NA Playoffs Loader'
+    user           = 'NA Playoffs Loader'
     is_private     = 0
 
     deck = EasyDeck(deck_code)
@@ -49,9 +47,9 @@ def insert_cards(deck, deck_id):
 
 def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype = None, deck_name = None):
     db = 'deckstrings'
-    playoff_region = 'APAC'
+    playoff_region = 'NA'
     if deck_archetype: 
-        deck_archetype = "'%s'" % deck_archetype
+        deck_archetype = '"%s"' % deck_archetype
     else:
         deck_archetype = 'null'
     if deck_name: 
@@ -78,7 +76,7 @@ def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_clas
 #    db = 'deckstrings'
 #    deck_archetype = "'%s'" % deck_archetype
 #    deck_name = "'%s'" % deck_name
-#    playoff_region = 'APAC'
+#    playoff_region = 'NA'
 #    if deck_id:
 #        print("""INSERT INTO %(db)s.decks (deck_id, time, date, server, user, is_private, deck_code, deck_class, deck_archetype, deck_name, playoff_region)
 #                               VALUES (%(deck_id)s, %(time)s, '%(date)s', '%(server)s', '%(user)s', %(is_private)s, '%(deck_code)s', '%(deck_class)s', %(deck_archetype)s, %(deck_name)s, '%(playoff_region)s')""" % locals())
@@ -106,12 +104,12 @@ def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_clas
 ###+---------+------------+--------+--------------+----------------+------------+----------------------------------------------------------------------------------+
 ###| deck_id | date       | region | deck_name    | deck_archetype | deck_class | deck_code                                                                        |
 ###+---------+------------+--------+--------------+----------------+------------+----------------------------------------------------------------------------------+
-###|     385 | 2018_05_01 | APAC     | Mryagut#2306 | Taunt Druid    | Druid      | AAECAbSKAwiQB4fOAsLOAq/TAubTAvHqAt3rAr/yAgtAX+kB5AjJxwKU0gKY0gKe0gKL4QKE5gKN8AIA |
+###|     385 | 2018_05_01 | NA     | Mryagut#2306 | Taunt Druid    | Druid      | AAECAbSKAwiQB4fOAsLOAq/TAubTAvHqAt3rAr/yAgtAX+kB5AjJxwKU0gKY0gKe0gKL4QKE5gKN8AIA |
 ###+---------+------------+--------+--------------+----------------+------------+----------------------------------------------------------------------------------+
 
 
 #cursor.execute("SELECT deck_name, deck_archetype, deck_class, deck_code FROM deckstrings.playoffs")
-filename = 'hct_apac_fall_decklists.csv'
+filename = 'hct_americas_fall_decklists.csv'
 
 file = open(filename)
 
