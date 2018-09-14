@@ -14,8 +14,8 @@ cursor = connection.cursor()
 
 def make_archetype_sheet(archetype):
     archetype_print = archetype.replace(' ', '')
-    region = 'APAC'
-    output_file = open('APAC_sheets/%(archetype_print)s.csv' % locals(), 'w')
+    region = 'NA'
+    output_file = open('NA_sheets/%(archetype_print)s.csv' % locals(), 'w')
     decks = []
     deckstrings = []
     cursor.execute('SELECT deck_name, deck_id, deck_code FROM deckstrings.decks WHERE deck_archetype = "%(archetype)s" and playoff_region = "%(region)s" and date > "2018_08_01"' % locals())
@@ -32,8 +32,8 @@ def make_archetype_sheet(archetype):
     #print(len(set(deckstrings)), len(deckstrings))
 
 def make_lineups_sheet():
-    output_file = open('APAC_sheets/Lineups.csv', 'w')
-    region = 'APAC'
+    output_file = open('NA_sheets/Lineups.csv', 'w')
+    region = 'NA'
     cursor.execute("SELECT deck_name, deck_archetype FROM deckstrings.decks WHERE playoff_region = '%(region)s' and date > '2018_08_01'" % locals())
     player_decks = {}
     output_file.write("Player,Deck1,Deck2,Deck3,Deck4\n")
@@ -58,9 +58,9 @@ def make_lineups_sheet():
         output_file.write(",".join(list(lu)) + "," + str(round(len(players) / float(num_players) * 100, 1)) + ",," + ",".join(players) + '\n')
 
 def archetype_percents():
-    output_file = open('APAC_sheets/Archetypes.csv', 'w')
+    output_file = open('NA_sheets/Archetypes.csv', 'w')
     output_file.write("Archetype,Number,Percentage of Decks\n")
-    region = 'APAC'
+    region = 'NA'
     total = 0
     cursor.execute("select deck_archetype, deck_class, count(deck_archetype) as total FROM deckstrings.decks WHERE playoff_region = '%(region)s' and date > '2018_08_01' group by deck_archetype, deck_class order by deck_class, total desc" % locals())
     archetypes = []
@@ -77,7 +77,7 @@ archetype_percents()
 
 make_lineups_sheet()
 
-region = 'APAC'
+region = 'NA'
 cursor.execute("SELECT distinct deck_archetype FROM deckstrings.decks WHERE playoff_region = '%(region)s' and date > '2018_08_01'" % locals())
 for (archetype,) in cursor.fetchall():
     make_archetype_sheet(archetype)

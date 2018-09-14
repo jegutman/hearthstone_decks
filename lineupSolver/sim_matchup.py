@@ -91,6 +91,12 @@ def lhs_leads(my_lineup, opp_lineup, win_pcts=win_pcts):
     return res
 
 def lhs_nash(decks_a, decks_b, win_pcts=win_pcts):
+    for d in decks_a:
+        if d not in archetypes:
+            return 'Could not recognize archetype: "%s"' % d
+    for d in decks_b:
+        if d not in archetypes:
+            return 'Could not recognize archetype: "%s"' % d
     res = ""
     res_lead, matrix_lead = lead_matrix(decks_a, decks_b, win_pcts)
     ng = nashpy.game.Game(matrix_lead)
@@ -110,9 +116,16 @@ def lhs_nash(decks_a, decks_b, win_pcts=win_pcts):
     return res
 
 def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
+    for d in decks_a:
+        if d not in archetypes:
+            return 'Could not recognize archetype: "%s"' % d
+    for d in decks_b:
+        if d not in archetypes:
+            return 'Could not recognize archetype: "%s"' % d
     res = ""
     matrix = []
     opp_matrix = []
+    details = []
     for d2 in decks_b:
         tmp = []
         for d1 in decks_a:
@@ -121,6 +134,8 @@ def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
             tmp_a.remove(d1)
             tmp_b.remove(d2)
             tmp.append(pre_pick_nash_calc(tmp_a,tmp_b, win_pcts, useGlobal=False))
+            details.append([d2,d1, round(tmp[-1], 3)])
+            #details += "%-20s %-20s %s" % (d2, d1, round(tmp[-1], 3)) + '\n'
         matrix.append(tmp)
         opp_matrix.append([1-x for x in tmp])
     ng = nashpy.game.Game(matrix)
@@ -143,6 +158,10 @@ def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
             i = 0.0
         res += '%-20s %s' % (j, round(i,2)) + '\n'
     res += '\nWin Pct p1: %s\n' % win_pct
+    res += "\ndetails\nbans" + '\n'
+    res += "%-20s %-20s" % ("p1_ban", "p2_ban") + '\n'
+    for a,b,c in sorted(details, key=lambda x:(x[0], x[2])):
+        res += "%-20s %-20s %s" % (a,b,c) + '\n'
     return res
 
 

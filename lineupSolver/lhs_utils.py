@@ -59,12 +59,10 @@ def pre_ban_nash_calc(decks_a, decks_b, win_pcts,useGlobal=True):
             tmp.append(pre_pick_nash_calc(tmp_a,tmp_b, win_pcts, useGlobal=useGlobal))
         matrix.append(tmp)
         opp_matrix.append([1-x for x in tmp])
-    #ng = nashpy.game.Game(matrix,opp_matrix)
-    ng = nashpy.game.Game(matrix)
+    ng = nashpy.game.Game(matrix,opp_matrix)
+    #ng = nashpy.game.Game(matrix)
     #e,f = list(ng.support_enumeration())[0]
-    e,f = list(ng.vertex_enumeration())[0]
-    g = zip(e,decks_b)
-    h = zip(f,decks_a)
+    e,f = list(ng.support_enumeration())[0]
     return ng[e,f][0]
     #a,b,c = pre_ban_nash(decks_a, decks_b, win_pcts,useGlobal)
     #return a[b,c][0]
@@ -113,11 +111,13 @@ def pre_pick_nash_calc(decks_a, decks_b, win_pcts, useGlobal=True):
         all_res.append(tmp)
         all_res_opp.append([1-x for x in tmp])
     ng = nashpy.game.Game(all_res,all_res_opp)
-    e,f = list(ng.lemke_howson_enumeration())[0]
+    e,f = list(ng.support_enumeration())[0]
     g = zip(e,decks_a)
     h = zip(f,decks_b)
     if useGlobal:
         lead_tested[(tuple_a, tuple_b)] = ng[e,f][0]
+    print(e)
+    print(f)
     return ng[e,f][0]
 
 def pre_pick_nash(decks_a, decks_b, win_pcts, useGlobal=True):

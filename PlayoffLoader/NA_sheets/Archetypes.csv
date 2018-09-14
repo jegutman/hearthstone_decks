@@ -1,38 +1,30 @@
 Archetype,Number,Percentage of Decks
-"Token Druid",2,0.7
-"Spell Hunter",4,1.4
-"Odd Hunter",2,0.7
-"Big Spell Mage",2,0.7
-"Spiteful Priest",1,0.3
-"Miracle Rogue",2,0.7
-"Even Shaman",3,1.0
-"Zoo Warlock",2,0.7
-"Recruit Warrior",2,0.7
-
-"Odd Rogue",15,5.1
-"Spiteful Druid",48,16.4
-"Tempo Mage",29,9.9
-"Even Paladin",45,15.4
-"Cube Warlock",42,14.4
-"Control Warlock",22,7.5
-"Control Priest",26,8.9
-"Quest Rogue",20,6.8
-"Taunt Druid",10,3.4
-"Murloc Paladin",9,3.1
-"Odd Warrior",6,2.1
-
-
-
-standards = {
-    'Odd Rogue'         : 'AAECAaIHAq8EnvgCDowCywPUBfUF3QiBwgKfwgLrwgLKwwLKywLR4QKL5QKm7wLH+AIA',
-    'Spiteful Druid'    : 'AAECAZICBK8EmdMCnOIC0OcCDd4F8gWXwQKfwgLrwgKbywLKywKHzgKR0ALR4QL55gLX6wKL7gIA',
-    'Tempo Mage'        : 'AAECAf0EBPIFlga/CKLTAg1xuwKVA6sEtATmBJYF7AXBwQKYxAKP0wL77ALv8QIA',
-    'Even Paladin'      : 'AAECAZ8FBIoHucECt+kCzfQCDfsBmQLcA/IF9AWWBs8GrwfZB7EIlgmbywL40gIA',
-    'Cube Warlock'      : 'AAECAf0GBvIFycICl9MCneIC2+kCnPgCDIoBkwT3BLYH4QfnywLy0AL40AKI0gKL4QL85QLo5wIA',
-    'Control Warlock'   : 'AAECAcn1AgqiApME2waKB8QIzAiX0wLY5wK38QKc+AIKigG2B5vCAufLAvLQAvjQAojSAvzlAurmAujnAgA=',
-    'Control Priest'    : 'AAECAa0GBsUEkAfTCtYKoM4CkNMCDKEE5QT2B40I8gz7DNHBAsnHAujQAsvmAonxAr3zAgA=',
-    'Quest Rogue'       : 'AAECAaIHBM0DhsICz+ECw+oCDcQBnALtAp8DiAXUBYYJl8EC/MEC68ICxscC2+MC9uwCAA==',
-    'Taunt Druid'       : 'AAECAZICBpAHyccCh84Cws4Cr9MC8eoCDEBf6QHEBuQIysMClNICmNICntICi+EChOYCjfACAA==',
-    'Murloc Paladin'    : 'AAECAZ8FBMUD8gW5wQLR4QIN2wOnBa8HpwixCLPBAp3CArHCArjHAuPLAvjSAtblAt6CAwA=',
-    'Odd Warrior'       : 'AAECAQcM0AKTBN4FqgaQB/kM0cMC08UCoscCz8cCze8CnvgCCUuiAqIE/AT/B5vCAsrnArrsAp3wAgA=',
-}
+"Token Druid",32,10.4
+"Taunt Druid",15,4.9
+"Malygos Druid",14,4.5
+"Mill Druid",8,2.6
+"Big Druid",3,1.0
+"Midrange Hunter",22,7.1
+"Deathrattle Hunter",20,6.5
+"Spell Hunter",2,0.6
+"Tempo Mage",3,1.0
+"Odd Paladin",9,2.9
+"OTK DK Paladin",1,0.3
+"Control Priest",12,3.9
+"Combo Priest",1,0.3
+"Mecha'thun Priest",1,0.3
+"Quest Rogue",33,10.7
+"Odd Rogue",23,7.5
+"Shudderwock Shaman",22,7.1
+"Even Shaman",2,0.6
+"Token Shaman",1,0.3
+"Even Warlock",39,12.7
+"Zoo Warlock",11,3.6
+"Cube Warlock",8,2.6
+"Mecha'thun Warlock",2,0.6
+"Control Warlock",1,0.3
+"Odd Warrior",15,4.9
+"Control Warrior",3,1.0
+"Quest Warrior",3,1.0
+"Mecha'thun Warrior",1,0.3
+"Odd Quest Warrior",1,0.3

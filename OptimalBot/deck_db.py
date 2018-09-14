@@ -110,7 +110,7 @@ class DeckDBHandler():
         if use_playoffs:
             playoff_str = "playoff_region in ('NA', 'EU', 'APAC', 'DHATX')"
             #playoff_str = "playoff_region in ('DHATX')"
-        archetype_str = "deck_archetype like '%%%s%%'" % flags.get('archetype').replace('.*', '%') if flags.get('archetype') else ''
+        archetype_str = 'deck_archetype like "%%%s%%"' % flags.get('archetype').replace('.*', '%') if flags.get('archetype') else ''
         class_str = "deck_class like '%%%s%%'" % flags.get('class').replace('.*', '%') if flags.get('class') else ''
         name_str = "deck_name like '%%%s%%'" % flags.get('name').replace('.*', '%') if flags.get('name') else ''
         user_str = "user like '%%%s%%'" % flags.get('user').replace('.*', '%') if flags.get('user') else ''
@@ -132,9 +132,9 @@ class DeckDBHandler():
             #    query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or date like '%%%(kw)s%%' or deck_code like '%%%(kw)s%%')" % locals()
             #else:
             if tags == 'lineup':
-                query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or user like '%%%(kw)s%%' or date like '%%%(kw)s%%')" % locals()
+                query_str = "(deck_archetype like \"%%%(kw)s%%\" or deck_name like \"%%%(kw)s%%\" or deck_class like \"%%%(kw)s%%\" or user like \"%%%(kw)s%%\" or date like \"%%%(kw)s%%\")" % locals()
             else:
-                query_str = "(deck_archetype like '%%%(kw)s%%' or deck_name like '%%%(kw)s%%' or deck_class like '%%%(kw)s%%' or user like '%%%(kw)s%%' or date like '%%%(kw)s%%' or deck_code like '%%%(kw)s%%')" % locals()
+                query_str = "(deck_archetype like \"%%%(kw)s%%\" or deck_name like \"%%%(kw)s%%\" or deck_class like \"%%%(kw)s%%\" or user like \"%%%(kw)s%%\" or date like \"%%%(kw)s%%\" or deck_code like \"%%%(kw)s%%\")" % locals()
             #if not allow_private:
             #    query_str += private_str 
             query_str += private_str 
@@ -243,7 +243,7 @@ class DeckDBHandler():
         self.check_cursor()
         db = 'deckstrings'
         if deck_archetype: 
-            deck_archetype = "'%s'" % deck_archetype
+            deck_archetype = '"%s"' % deck_archetype
         else:
             deck_archetype = 'null'
         if deck_name: 
