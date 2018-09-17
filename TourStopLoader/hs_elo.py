@@ -5,7 +5,8 @@ defaultK = 36
 
 class Rating(object):
 
-    def __init__(self, mu=MU, K=defaultK, games=0):
+    def __init__(self, env, mu=MU, K=defaultK, games=0):
+        self.env = env
         self.mu = mu
         self.minK = K
         #self.factor = 0.25
@@ -21,8 +22,9 @@ class Rating(object):
         self.mu += delta
         self.games += 1
         self.K = max(20 - self.games, 0) * self.factor * self.minK + self.minK
-        if self.games > 10:
-            self.history.append(int(self.mu))
+        #if self.games > 10:
+        #    self.history.append(int(self.mu))
+        self.history.append(int(self.mu))
 
     def __lt__(self, other):
         return self.mu < other.mu
@@ -39,7 +41,7 @@ class HS_Elo(object):
             mu = self.mu
         if K is None:
             K = self.defaultK
-        return Rating(mu, K)
+        return Rating(self, mu, K)
 
     def expect_score(self, r1, r2):
         rating_diff = r2.mu - r1.mu
