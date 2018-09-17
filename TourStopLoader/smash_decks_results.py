@@ -16,7 +16,8 @@ from pprint import pprint
 import pycookiecheat
 from fake_useragent import UserAgent
 from deck_manager import *
-from conquest_utils import *
+#from conquest_utils import *
+from lhs_utils import *
 
 #### use Elo
 from rate_hs_elo import *
@@ -297,8 +298,7 @@ def get_stats(decks, matches, player_matches, player_filter=None):
                 tmp = EasyDeck(deck)
             except:
                 print('bad deck: %s %s' % (player, deck))
-                continue
-            label = label_archetype(tmp)
+                label = label_archetype(tmp)
             if label:
                 archetypes[player].append(label)
                 class_archetypes[player][label.split(' ')[-1]] = label
@@ -333,6 +333,8 @@ def print_stats(a_games, a_wins):
         if len(i) == 2 and i[0] < i[1]:
             print("%-20s %-20s %s-%s" % (i[0], i[1],a_wins.get(i,0),j-a_wins.get(i,0)))
 
+def get_player_archetype(lineups, player, card_class):
+    tmp = [c for c in lineups[player] if card_class in c]
 
 if __name__ == '__main__':
     #decks = decks_from_smashgg('https://smash.gg/tournament/dreamhack-hct-grand-prix-tours-2018/event/dreamhack-hct-hearthstone-grand-prix-tours-2018/brackets/239288')
@@ -368,9 +370,13 @@ if __name__ == '__main__':
             if label:
                 archetypes[player].append(label)
                 class_archetypes[player][label.split(' ')[-1]] = label
+            else:
+                print(player)
+                print(deck)
+                tmp.print_deck()
         archetypes[player] = sorted(archetypes[player], key=lambda x:x.split(' ')[1])
-        if wins.get(player, 0) >= 7:
-            print(",".join(sorted(archetypes[player], key=lambda x:x.split(' ')[1])))
+        #if wins.get(player, 0) >= 7:
+        #    print(",".join(sorted(archetypes[player], key=lambda x:x.split(' ')[1])))
     for i,j in archetypes.items():
         if len(j) >0 and len(j) != 4:
             if i in wins: 
@@ -382,7 +388,7 @@ if __name__ == '__main__':
     def print_ogs(matches, round_filter = 1,show_wr=True, OGs=None, bracket_filter = None):
         global win_pcts
         if OGs == None:
-            OGs = ['TheChosenGuy', 'SwaggyG', 'Villain', 'Caravaggio', 'Ryder', 'seohyun628', 'XisBau5e', 'Qwerty97', 'Luker', 'Fenom', 'kuonet', 'Guiyze', 'killinallday']
+            OGs = ['Level9001', 'Ginky', 'TheChosenGuy', 'SwaggyG', 'Villain', 'Caravaggio', 'Ryder', 'seohyun628', 'XisBau5e', 'Qwerty97', 'Luker', 'Fenom', 'kuonet', 'Guiyze', 'killinallday', 'zlsjs', 'lnguagehackr']
         round_wins = {}
         to_print = []
         for date, bracket, round_num, p1, p2, result, score1, score2,  games in sorted(matches, key=lambda x:x[2]):
@@ -397,9 +403,15 @@ if __name__ == '__main__':
                     p1, p2 = p2, p1
                     score1, score2 = score2, score1
                 l1, l2 = archetypes[p1], archetypes[p2]
+                if not score1: score1 = 0
+                if not score2: score2 = 0
                 if len(l1) == 4 and len(l2) == 4 and show_wr:
-                    wr = win_rate(archetypes[p1], archetypes[p2], win_pcts)[1]
-                    wr = "%5.3f" % wr
+                    #wr = win_rate(archetypes[p1], archetypes[p2], win_pcts)[1]
+                    try:
+                        wr = pre_ban_nash_calc(archetypes[p1], archetypes[p2], win_pcts)
+                        wr = "%5.3f" % wr
+                    except:
+                        wr = "NaN"
                 else:
                     wr = 'Could not calculate'
                 #ws = wins.get(p1, 0)
@@ -428,60 +440,10 @@ if __name__ == '__main__':
         rating_diff = r2 - r1
         return 1 / (1 + 10 ** (rating_diff / 1135.77))
 
-    to_print = []
-    round_wins = {}
-    tests = []
-    tests2 = []
-    tests3 = []
-    for date, bracket, round_num, p1, p2, result, score1, score2,  games in sorted(matches, key=lambda x:x[2]):
-        p1_rat = p1.lower()
-        p2_rat = p2.lower()
-        if -1 in (score1, score2): continue
-        if None in (score1, score2): continue
-        if rating_games.get(p1.lower(), 0) < 10 or rating_games.get(p2.lower(), 0) < 10:
-            continue
-        if result:
-            round_wins[p1] = round_wins.get(p1, 0) + 1
-        else:
-            round_wins[p2] = round_wins.get(p2, 0) + 1
-        #if (p1 in OGs or p2 in OGs) and int(round_num) >= round_filter:
-        if True:
-            #if p2 in OGs and p1 not in OGs:
-            #    p1, p2 = p2, p1
-            #    score1, score2 = score2, score1
-            l1, l2 = archetypes[p1], archetypes[p2]
-            if len(l1) == 4 and len(l2) == 4:
-                wr = win_rate(archetypes[p1], archetypes[p2], win_pcts)[1]
-                wr_rating = round(env.expect_score(rating[p1_rat], rating[p2_rat]), 4)
-                adjust_rating = env.calc_diff(wr)            
-                wr_blended = round(expect_score_local(rating[p1_rat].mu + adjust_rating, rating[p2_rat].mu), 4)
-                #print(wr_rating)
-                if wr == 0: continue
-                wr = "%5.3f" % wr
-            else:
-                wr = 'Could not calculate'
-                continue
-            if float(wr) > 0.5:
-                tests.append((float(wr), result, (p1, p2)))
-            else:
-                tests.append((round(1-float(wr), 4), 1-result, (p2, p1)))
-            if wr_rating > 0.5:
-                tests2.append((wr_rating, result, (p1, p2)))
-            else:
-                tests2.append((round(1-wr_rating, 4), 1-result, (p2, p1)))
-            if wr_blended > 0.5:
-                tests3.append((wr_blended, result, (p1, p2)))
-            else:
-                tests3.append((round(1-wr_blended, 4), 1-result, (p2, p1)))
-            #ws = wins.get(p1, 0)
-            #ls = losses.get(p1, 0)
-            #print("%s %-20s %-20s %s %s %s %s %s" % (round_num, p1, p2, score1, score2, wr, ws, ls))
-            #score_summ = "%s - %s" % (round_wins.get(p1, 0), round_filter - 1 - round_wins.get(p1, 0))
-            #score_summ2 = "%s - %s" % (round_wins.get(p2, 0), round_filter - 1 - round_wins.get(p2, 0))
-            score_summ = ""
-            score_summ2 = wr_rating
-            #print("%s %-20s %-20s %s %s %s   %s" % (round_num, p1, p2, score1, score2, wr, score_summ))
-            to_print.append((round_wins.get(p1, 0), "%s %-20s %-20s %s %s %s   %s | %s" % (round_num, p1, p2, score1, score2, wr, score_summ, score_summ2)))
-            #to_print.append((round_wins.get(p1, 0), "%s %-20s %-20s %s %s %s   %s %s %s" % (round_num, p1, p2, score1, score2, wr, score_summ, calc_tiebreak(p1, player_matches), calc_tiebreak(p2,  player_matches))))
-    for i, j in sorted(to_print, reverse=True):
-        print(j)
+    print_ogs(matches, round_filter = 1,show_wr=True, OGs=None, bracket_filter = None)
+    #print_ogs(matches, round_filter = 1,show_wr=True, OGs=['zlsjs'], bracket_filter = None)
+    print('\n')
+    #print_ogs(matches, round_filter = 1,show_wr=True, OGs=RNGs, bracket_filter = None)
+    def print_lu(a, b):
+        print('"' + ",".join(archetypes[a]) + '"',  '"' + ",".join(archetypes[b]) + '"')
+

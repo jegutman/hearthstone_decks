@@ -295,7 +295,8 @@ def process_battlefy_url(bracket_url, only_finished=False):
 
 if __name__ == '__main__':
     urls = [
-        'https://battlefy.com/black-claws/black-claws-x-zotac-am-thursday-challenger-cup-209/5b55bae1f6dfb403a3f9be47/stage/5b6cc76ab7843203cf6a6c2e/bracket/',
+        #'https://battlefy.com/black-claws/black-claws-x-zotac-am-thursday-challenger-cup-209/5b55bae1f6dfb403a3f9be47/stage/5b6cc76ab7843203cf6a6c2e/bracket/',
+        'https://battlefy.com/hearthstone-esports/2018-americas-fall-playoffs/5b5902c01773a803a47759c0/stage/5b9d14d4d59a6903a15c46f4/bracket/'
         #'https://battlefy.com/kyoto-esports/kyotoesportsnet-wreckin-wednesdays-83-hct-official-challenger-cup-new-player-friendly-free-entry/5b59d7b546e02c03c1d0b635/stage/5b59d7c5463e4203a47baaaf/bracket/',
         #'https://battlefy.com/blizzardzhtw/hct-taichung-tour-stop/5b3688a83e794e03b5d6a98e/stage/5b368952dbd70603ca28b946/bracket/',
         #'https://battlefy.com/promo-arena/hearthstone-copa-america-winter-season-american-qualifier-1/5b05d26ac49a3303c65ebe03/stage/5b1c32d4ed91af03c1a8e66b/bracket/',
