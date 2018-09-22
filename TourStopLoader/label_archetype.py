@@ -16,7 +16,7 @@ cursor.execute("SELECT card_class, archetype, deck_code from hsreplay.reference_
 for card_class, archetype, deck_code in cursor.fetchall():
     reference_decks[card_class] = reference_decks.get(card_class, []) + [EasyDeck(deck_code, archetype)]
 
-def label_archetype(deck, threshold=6, reference_decks=reference_decks):
+def label_archetype(deck, threshold=6, reference_decks=reference_decks, default=None):
     reference_class = deck.get_class().capitalize()
     try:
         distances = sorted([(d.get_distance(deck), d) for d in reference_decks[reference_class]], key=lambda x:x[0])
@@ -31,4 +31,4 @@ def label_archetype(deck, threshold=6, reference_decks=reference_decks):
         distances = sorted(tmp_dists, key=lambda x:x[0])
         if distances[0][0] <= lower_threshold:
             return distances[0][1].name
-        return None
+        return default
