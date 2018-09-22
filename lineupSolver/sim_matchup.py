@@ -164,10 +164,10 @@ def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
             i = 0.0
         res += '%-20s %s' % (j, round(i,2)) + '\n'
     res += '\nWin Pct p1: %s\n' % win_pct
-    #res += "\ndetails\nbans" + '\n'
-    #res += "%-20s %-20s" % ("p1_ban", "p2_ban") + '\n'
-    #for a,b,c in sorted(details, key=lambda x:(x[0], x[2])):
-    #    res += "%-20s %-20s %s" % (a,b,c) + '\n'
+    res += "\ndetails\nbans" + '\n'
+    res += "%-20s %-20s" % ("p1_ban", "p2_ban") + '\n'
+    for a,b,c in sorted(details, key=lambda x:(x[0], x[2])):
+        res += "%-20s %-20s %s" % (a,b,c) + '\n'
     return res
 
 #res = pre_ban_matrix(decks_a, decks_b, win_pcts)
@@ -208,10 +208,10 @@ def conquest_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
             i = 0.0
         res += '%-20s %s' % (j, round(i,2)) + '\n'
     res += '\nWin Pct p1: %s\n' % win_pct
-    res += "\ndetails\nbans" + '\n'
-    res += "%-20s %-20s" % ("p1_ban", "p2_ban") + '\n'
-    for a,b,c in sorted(details, key=lambda x:(x[0], x[2])):
-        res += "%-20s %-20s %s" % (a,b,c) + '\n'
+    #res += "\ndetails\nbans" + '\n'
+    #res += "%-20s %-20s" % ("p1_ban", "p2_ban") + '\n'
+    #for a,b,c in sorted(details, key=lambda x:(x[0], x[2])):
+    #    res += "%-20s %-20s %s" % (a,b,c) + '\n'
     return res
 
 
