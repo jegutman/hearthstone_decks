@@ -89,6 +89,8 @@ def generate_lineups(archetypes, unbeatable=False, num_classes=4, additional_arc
 
 missing_wr = []
 def get_win_pct(a,b, win_pcts):
+    if a == b:
+        return 0.5
     global missing_wr
     if a == 'Unbeatable' and b != 'Unbeatable': return 1
     if b == 'Unbeatable' and a != 'Unbeatable': return 0

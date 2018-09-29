@@ -116,8 +116,8 @@ def pre_pick_nash_calc(decks_a, decks_b, win_pcts, useGlobal=True):
     h = zip(f,decks_b)
     if useGlobal:
         lead_tested[(tuple_a, tuple_b)] = ng[e,f][0]
-    print(e)
-    print(f)
+    #print(e)
+    #print(f)
     return ng[e,f][0]
 
 def pre_pick_nash(decks_a, decks_b, win_pcts, useGlobal=True):
