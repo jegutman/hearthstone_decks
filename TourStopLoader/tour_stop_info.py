@@ -41,6 +41,7 @@ for line in tourstops:
             result_out.write("\n")
     elif 'battlefy' in bracket_url:
         for date, round_number, p1, p2, result, p1_score, p2_score, games in sorted(tmp_matches, key=lambda x:(x[0], x[1])):
+            if p1_score == 0 and p2_score == 0: continue
             p1, p2 = p1.lower(), p2.lower()
             res = [event, sub_event, sub_bracket, date, season, patch, round_number, p1, p2, p1_score, p2_score]
             result_out.write(",".join([str(i) for i in res]))
@@ -49,6 +50,7 @@ for line in tourstops:
     else:
         #for date, round_number, p1, p2, result, p1_score, p2_score, games in sorted(tmp_matches, key=lambda x:(x[0], x[1])):
         for date, bracket_name, round_number, p1, p2, result, p1_score, p2_score, games in sorted(tmp_matches, key=lambda x:(x[0], x[2])):
+            if p1_score == 0 and p2_score == 0: continue
             p1, p2 = p1.lower(), p2.lower()
             sub_bracket = bracket_name
             res = [event, sub_event, sub_bracket, date, season, patch, round_number, p1, p2, p1_score, p2_score]
@@ -56,6 +58,7 @@ for line in tourstops:
             result_out.write("\n")
             #print(",".join([str(i) for i in res]))
     for player, lists in tmp_decks.items():
+        player = player.lower()
         res = [event, sub_event, event_format, sub_bracket, season, patch, player] + lists
         decks_out.write(",".join([str(i) for i in res]))
         decks_out.write("\n")

@@ -65,12 +65,10 @@ for K in range(36, 38, 2):
     for line in sorted(lines, key=lambda x:(x[3], x[5])):
         #event, sub_event, sub_bracket, date, season, patch, round_num, p1, p2, score1, score2 = line.strip().split(',')
         event, sub_event, sub_bracket, date, season, patch, round_num, p1, p2, score1, score2 = line
-        if 'zlsjs' in (p1, p2):
-            print("%s %-20s %-15s %-15s %4s %4s" % (date, event, p1, p2, rating.get(p1, 0), rating.get(p2, 0)))
         tournament = (event, sub_event)
         tournaments.add(tournament)
         # EXCLUDE ONLINE
-        #if tournament not in offline_tournaments: continue
+        if tournament not in offline_tournaments: continue
         #if int(season) != 3: continue
         if score1 == 'None' or score2 == 'None': 
             continue
