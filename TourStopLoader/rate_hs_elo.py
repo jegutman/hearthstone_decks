@@ -1,5 +1,37 @@
+import sys
+sys.path.append('../')
+from config import basedir
+sys.path.append(basedir)
+sys.path.append(basedir + '/lineupSolver')
+sys.path.append(basedir + '/TourStopLoader')
 from hs_elo import *
+import datetime
 import math
+
+offline_tournaments = [
+    ('APAC Playoffs', 'APAC Playoffs'),
+    ('Copa America Fall', 'Live Finals'),
+    ('Copa America Summer', 'Live Finals'),
+    ('EU Playoffs', 'EU Playoffs'),
+    ('HCT Austin', 'Dreamhack Austin'),
+    ('HCT Bangkok', 'HCT Bangkok'),
+    ('HCT Germany TakeTV (S1)', 'Live Finals'),
+    ('HCT Germany TakeTV (S3)', 'Live Finals'),
+    ('HCT Italy', 'HCT Italy'),
+    ('HCT Montreal', 'Dreamhack Montreal'),
+    ('HCT Oakland', 'Esports Arena Oakland'),
+    ('HCT Oslo', 'HCT Oslo'),
+    ('HCT Season 1 Champs', 'Season 1 Championship'),
+    ('HCT Seoul', 'HCT Seoul'),
+    ('HCT Summer', 'Dreamhack Jonkoping'),
+    ('HCT Sydney', 'Live Finals'),
+    ('HCT Taichung', ''),
+    ('HCT Taipei', 'Live Finals'),
+    ('HCT Tokyo', 'Live Finals'),
+    ('HCT Toronto (EGLX)', 'HCT Toronto'),
+    ('HCT Tours', 'HCT Tours'),
+    ('NA Playoffs', 'NA Playoffs'),
+]
 
 def logloss(result, predicted, eps=1e-15):
     if result == 1:
@@ -8,12 +40,13 @@ def logloss(result, predicted, eps=1e-15):
         return -math.log(1 - predicted)
 
 #for K in range(16, 64, 4):
+tournaments = set()
 for K in range(36, 38, 2):
     env = HS_Elo(defaultK=K)
 
     #HCT German TakeTV (S1),Global Qualifier,1,Sintolol,Radogask,3,1
     #event,sub_event,
-    filename = 'hct_results.csv'
+    filename = basedir + '/TourStopLoader/hct_results.csv'
     rating = {}
     rating_games = {}
     wins = {}
@@ -23,10 +56,22 @@ for K in range(36, 38, 2):
     bucket_pred = {}
     bucket_res = {}
     file = open(filename)
-    lines = [line for line in file]
-    lines.sort(key=lambda x:x[3])
+    lines = [line.strip().split(',') for line in file]
     for line in lines:
-        event, sub_event, sub_bracket, date, season, patch, round_num, p1, p2, score1, score2 = line.strip().split(',')
+        if line[3][:2] != '20':
+            line[3] = datetime.datetime.fromtimestamp(int(line[3])).strftime("%Y_%m_%d")
+            
+    lines.sort(key=lambda x:x[3])
+    for line in sorted(lines, key=lambda x:(x[3], x[5])):
+        #event, sub_event, sub_bracket, date, season, patch, round_num, p1, p2, score1, score2 = line.strip().split(',')
+        event, sub_event, sub_bracket, date, season, patch, round_num, p1, p2, score1, score2 = line
+        if 'zlsjs' in (p1, p2):
+            print("%s %-20s %-15s %-15s %4s %4s" % (date, event, p1, p2, rating.get(p1, 0), rating.get(p2, 0)))
+        tournament = (event, sub_event)
+        tournaments.add(tournament)
+        # EXCLUDE ONLINE
+        #if tournament not in offline_tournaments: continue
+        #if int(season) != 3: continue
         if score1 == 'None' or score2 == 'None': 
             continue
         score1 = int(score1)
@@ -45,7 +90,8 @@ for K in range(36, 38, 2):
             rating[p2] = env.create_rating()
         #print(env.quality_1vs1(rating[p1], rating[p2]))
         est = env.expect_score(rating[p1], rating[p2])
-        if min(rating_games[p1], rating_games[p2]) >= 10:
+        #if min(rating_games[p1], rating_games[p2]) >= 10:
+        if min(rating_games[p1], rating_games[p2]) >= 10 and min(rating[p1].mu, rating[p2].mu) > 1700:
             bucket = round(est * 2, 1) / 2.
             bucket_pred[bucket] = bucket_pred.get(bucket, []) + [est]
             bucket_res[bucket] = bucket_res.get(bucket, []) + [1 if result else 0]
@@ -77,7 +123,7 @@ for K in range(36, 38, 2):
         if True:
             print("   %-15s %-5s %-5s" % ('Player', 'rEst', 'games'))
             index = 0
-            for p, r in top_players[:30]:
+            for p, r in top_players[:50]:
                 index += 1
                 win = wins.get(p, 0)
                 losses = rating_games[p] - win
