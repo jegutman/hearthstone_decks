@@ -9,10 +9,8 @@ import datetime
 import math
 
 offline_tournaments = [
-    ('APAC Playoffs', 'APAC Playoffs'),
     ('Copa America Fall', 'Live Finals'),
     ('Copa America Summer', 'Live Finals'),
-    ('EU Playoffs', 'EU Playoffs'),
     ('HCT Austin', 'Dreamhack Austin'),
     ('HCT Bangkok', 'HCT Bangkok'),
     ('HCT Germany TakeTV (S1)', 'Live Finals'),
@@ -31,6 +29,9 @@ offline_tournaments = [
     ('HCT Toronto (EGLX)', 'HCT Toronto'),
     ('HCT Tours', 'HCT Tours'),
     ('NA Playoffs', 'NA Playoffs'),
+    ('EU Playoffs', 'EU Playoffs'),
+    ('APAC Playoffs', 'APAC Playoffs'),
+    ('HCT Oslo (S3)', 'HCT Oslo (S3)'),
 ]
 
 def logloss(result, predicted, eps=1e-15):
@@ -68,7 +69,7 @@ for K in range(36, 38, 2):
         tournament = (event, sub_event)
         tournaments.add(tournament)
         # EXCLUDE ONLINE
-        if tournament not in offline_tournaments: continue
+        #if tournament not in offline_tournaments: continue
         #if int(season) != 3: continue
         if score1 == 'None' or score2 == 'None': 
             continue
