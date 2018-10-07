@@ -32,6 +32,7 @@ offline_tournaments = [
     ('EU Playoffs', 'EU Playoffs'),
     ('APAC Playoffs', 'APAC Playoffs'),
     ('HCT Oslo (S3)', 'HCT Oslo (S3)'),
+    ('HCT Singapore', 'HCT Singapore'),
 ]
 
 def logloss(result, predicted, eps=1e-15):
