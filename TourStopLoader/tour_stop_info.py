@@ -18,6 +18,8 @@ for line in non_parse_file:
     non_parse_matches[(event, sub_event)].append([event, sub_event, event_format, date, p1, p2, score1, score2])
     pass
 
+print(non_parse_matches.keys())
+
 for line in tourstops:
     count += 1
     #if count % 6 != 0: continue
