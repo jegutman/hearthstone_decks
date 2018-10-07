@@ -90,11 +90,18 @@ def parse_match(match, only_finished=True):
     else:
         date = match['createdAt'][:10].replace('-', '_')
     round_number = match['roundNumber']
-    p1 = match['top']['team']['name'].replace(' \#', '#').split(' ')[0].split('(')[0]
-    p1 = p1.split('#')[0]
+    #print(match['top']['team']['name'])
+    #print(match['bottom']['team']['name'])
+    #p2 = match['bottom']['team']['name'].replace(' #', '#').split(' ')[0].split('(')[0]
+    p1 = re.sub('\(.*\) ', '', match['top']['team']['name']).replace(' \#', '#').split(' ')[0].split('(')[0]
     if p1 not in player_decks: player_decks[p1] = []
-    p2 = match['bottom']['team']['name'].replace(' #', '#').split(' ')[0].split('(')[0]
+    p1 = p1.split('#')[0]
+    #print(p1)
+    p2 = re.sub('\(.*\) ', '', match['bottom']['team']['name']).replace(' \#', '#').split(' ')[0].split('(')[0]
+    #p2 = match['bottom']['team']['name'].replace(' #', '#').split(' ')[0].split('(')[0]
+    p2 = re.sub('\(.*\) ', '', p2)
     p2 = p2.split('#')[0]
+    #print(p2)
     if p2 not in player_decks: player_decks[p2] = []
 
     if 'seedNumber' in match['top']:
@@ -296,7 +303,10 @@ def process_battlefy_url(bracket_url, only_finished=False):
 if __name__ == '__main__':
     urls = [
         #'https://battlefy.com/black-claws/black-claws-x-zotac-am-thursday-challenger-cup-209/5b55bae1f6dfb403a3f9be47/stage/5b6cc76ab7843203cf6a6c2e/bracket/',
-        'https://battlefy.com/hearthstone-esports/2018-americas-fall-playoffs/5b5902c01773a803a47759c0/stage/5b9d14d4d59a6903a15c46f4/bracket/'
+        #'https://battlefy.com/hearthstone-esports/2018-americas-fall-playoffs/5b5902c01773a803a47759c0/stage/5b9d14d4d59a6903a15c46f4/bracket/',
+        #'https://battlefy.com/polarisgg/hct-oslo-tour-stop-presented-by-polaris/5b72b052970b750398b1ca83/stage/5baf5988d9d88603bfc71eff/bracket/',
+        'https://battlefy.com/blizzardsea/hct-singapore/5b7aecc12b925d03b581d51a/stage/5bb45e380f164c03a5016b4a/bracket/',
+        #'https://battlefy.com/blizzardsea/hct-singapore/5b7aecc12b925d03b581d51a/stage/5bb74f9b163a4703a7ddf889/bracket/',
         #'https://battlefy.com/kyoto-esports/kyotoesportsnet-wreckin-wednesdays-83-hct-official-challenger-cup-new-player-friendly-free-entry/5b59d7b546e02c03c1d0b635/stage/5b59d7c5463e4203a47baaaf/bracket/',
         #'https://battlefy.com/blizzardzhtw/hct-taichung-tour-stop/5b3688a83e794e03b5d6a98e/stage/5b368952dbd70603ca28b946/bracket/',
         #'https://battlefy.com/promo-arena/hearthstone-copa-america-winter-season-american-qualifier-1/5b05d26ac49a3303c65ebe03/stage/5b1c32d4ed91af03c1a8e66b/bracket/',
@@ -363,3 +373,40 @@ if __name__ == '__main__':
     #            if res == 'W' and wr < 0.5: upset = 'UPSET'
     #            if res == 'L' and wr > 0.5: upset = 'UPSET'
     #            print(",".join([str(i) for i in [p1, p2, wr, res, upset]]))
+    archetype_map = {}
+    for p in archetypes:
+        for i in archetypes[p]:
+            archetype_map[(p, i.split(' ')[-1].lower())] = i
+
+    wins = {}
+    games = {}
+    for match in all_matches:
+        p1, p2 = match[2:4]
+        #print(match)
+        for game in match[-1]:
+            c1, c2, res = game
+            try:
+                d1 = archetype_map[(p1, c1)]
+            except:
+                print('mismatch %s %s' % (p1, c1))
+                continue
+            try:
+                d2 = archetype_map[(p2, c2)]
+            except:
+                print('mismatch %s %s' % (p2, c2))
+                continue
+            games[(d1, d2)] = games.get((d1, d2), 0) + 1
+            games[(d2, d1)] = games.get((d2, d1), 0) + 1
+            if res:
+                wins[(d1, d2)] = wins.get((d1, d2), 0) + 1
+            else:
+                wins[(d2, d1)] = wins.get((d2, d1), 0) + 1
+    for i,j in sorted(games.items(), key=lambda x:x[1], reverse=True):
+        if j < 10: continue
+        w = wins.get(i, 0)
+        pct = round(w / j, 3)
+        a,b = i
+        if a >= b: continue
+        l = j - w
+        #print("%-20s %-20s %s-%s %5s" % (a,b, w, l, pct))
+        print("%s,%s,%s,%s,%s" % (a,b, w, l, pct))
