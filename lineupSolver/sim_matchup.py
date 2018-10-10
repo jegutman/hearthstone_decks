@@ -30,10 +30,10 @@ def sim(my_lineup, opp_lineup, win_pcts=win_pcts, archetypes=archetypes):
     #assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
     for d in my_lineup:
         if d not in archetypes:
-            return '1Could not recognize archetype: "%s"' % d
+            return 'Could not recognize archetype: "%s"' % d
     for d in opp_lineup:
         if d not in archetypes:
-            return '1Could not recognize archetype: "%s"' % d
+            return 'Could not recognize archetype: "%s"' % d
     #assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
 
     res += str(my_lineup) +  " vs " + str(opp_lineup) + '\n'
@@ -178,13 +178,14 @@ def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
 #e,f = list(ng.lemke_howson_enumeration())[0]
 #return ng[e,f][0]
 
-def conquest_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
-    for d in decks_a:
-        if d not in archetypes:
-            return 'Could not recognize archetype: "%s"' % d
-    for d in decks_b:
-        if d not in archetypes:
-            return 'Could not recognize archetype: "%s"' % d
+def conquest_nash_bans(decks_a, decks_b, win_pcts=win_pcts, check_archetypes=True):
+    if check_archetypes:
+        for d in decks_a:
+            if d not in archetypes:
+                return 'Could not recognize archetype: "%s"' % d
+        for d in decks_b:
+            if d not in archetypes:
+                return 'Could not recognize archetype: "%s"' % d
     res = ""
     matrix = cq_pre_ban_matrix(decks_a, decks_b, win_pcts)
     opp_matrix = cq_pre_ban_matrix(decks_b, decks_a, win_pcts)
