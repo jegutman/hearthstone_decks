@@ -20,10 +20,10 @@ win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_
 overrides = [
             ]
 win_pcts = override_wr(overrides,win_pcts)
-filename = basedir + '/lineupSolver/' + 'custom_na.csv'
-win_pcts2, archetypes2 = wr_from_csv(filename, scaling=100)
-win_pcts.update(win_pcts2)
-archetypes = list(set(archetypes).union(set(archetypes2)))
+#filename = basedir + '/lineupSolver/' + 'custom_na.csv'
+#win_pcts2, archetypes2 = wr_from_csv(filename, scaling=100)
+#win_pcts.update(win_pcts2)
+#archetypes = list(set(archetypes).union(set(archetypes2)))
 
 def sim(my_lineup, opp_lineup, win_pcts=win_pcts, archetypes=archetypes):
     res = ""
