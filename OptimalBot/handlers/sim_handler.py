@@ -13,14 +13,14 @@ class SimHandler():
     def handle(self, commands, is_conquest=True):
         commands = commands.title()
         commands = commands.replace('“', '"').replace('”', '"')
-        commands = commands.replace("'", "")
+        commands = commands.replace("echa'thun", "echathun")
         lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         if is_conquest:
@@ -33,14 +33,14 @@ class SimHandler():
     def handle_bans(self, commands, is_conquest=True):
         commands = commands.title()
         commands = commands.replace('“', '"').replace('”', '"')
-        commands = commands.replace("'", "")
+        commands = commands.replace("echa'thun", "echathun")
         lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         if is_conquest:
@@ -54,14 +54,14 @@ class SimHandler():
     def handle_lead(self, commands, is_conquest=True):
         commands = commands.title()
         commands = commands.replace('“', '"').replace('”', '"')
-        commands = commands.replace("'", "")
+        commands = commands.replace("echa'thun", "echathun")
         lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         if is_conquest:
@@ -76,14 +76,14 @@ class SimHandler():
     def handle_nash_lead(self, commands, is_conquest=True):
         commands = commands.title()
         commands = commands.replace('“', '"').replace('”', '"')
-        commands = commands.replace("'", "")
+        commands = commands.replace("echa'thun", "echathun")
         lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         if is_conquest:
@@ -98,14 +98,14 @@ class SimHandler():
     def handle_nash_cq_bans(self, commands, is_conquest=True):
         commands = commands.title()
         commands = commands.replace('“', '"').replace('”', '"')
-        commands = commands.replace("'", "")
+        commands = commands.replace("echa'thun", "echathun")
         lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         return conquest_nash_bans(lineup_a,lineup_b)
@@ -113,14 +113,14 @@ class SimHandler():
     def handle_nash_lhs_bans(self, commands, is_conquest=True):
         commands = commands.title()
         commands = commands.replace('“', '"').replace('”', '"')
-        commands = commands.replace("'", "")
+        commands = commands.replace("echa'thun", "echathun")
         lineup_a, lineup_b = commands.split('" "')
         lineup_a = lineup_a.replace('"', '')
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         if is_conquest:
