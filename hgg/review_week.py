@@ -26,7 +26,7 @@ win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_
 #    team_pick_ban[team] = [ban1, pick1, pick2, ban2, ban3, pick3, pick4, ban4, pick5]
 
 # NEW FORMAT
-filename = 'week3_lineups.csv'
+filename = 'top16_lineups.csv'
 week_file = open(filename)
 lines = [line.strip() for line in week_file]
 team_lineups = {}
@@ -40,20 +40,15 @@ for line in lines:
             archetypes.append(l)
     team_lineups[team] = lineup
 
-#for i,j in round3[13:]:
-#    #if i not in ['Belgium'] : continue
-#    #if j not in ['Denmark']: continue
+#for i,j in round9:
 #    l1 = team_lineups[i]
 #    l2 = team_lineups[j]
-#    #print(l1, '\n', l2)
 #    mu = HGG_Matchup(l1, l2, win_pcts=win_pcts, clear_initialize=True)
 #    calc = mu.calculate()
 #    res = [i,j, calc]
 #    print(",".join([str(x) for x in res]))
 #
-#for i,j in round3:
-#    #if i not in ['Belgium'] : continue
-#    #if j not in ['Denmark']: continue
+#for i,j in round9:
 #    l1 = team_lineups[j]
 #    l2 = team_lineups[i]
 #    mu = HGG_Matchup(l1, l2, win_pcts=win_pcts, clear_initialize=True)
@@ -61,10 +56,13 @@ for line in lines:
 #    res = [j,i, calc]
 #    print(",".join([str(x) for x in res]))
 
+
 # CODE FOR PRE vs POST-QUEUE
-for i,j in round3:
-    #print(i,'-', j)
-    order = round3_final_order[(i,j)]
+for i,j in round9:
+    try:
+        order = round9_final_order[(i,j)]
+    except:
+        continue
     l1_order, l2_order = list(zip(*order))
     if l1_order[0] == 'FillInHere': continue
     l1_order = list(l1_order)
@@ -75,19 +73,11 @@ for i,j in round3:
     l2 = [d for d in team_lineups[j] if d.split(' ')[-1] in l2_order]
     l1 = sorted(l1, key=lambda x:l1_order.index(x.split(' ')[-1]))
     l2 = sorted(l2, key=lambda x:l2_order.index(x.split(' ')[-1]))
-    #print(l1, l2)
-    #print(l1_order)
-    #print(l2_order)
     final = round(eval_one(l1, l2, win_pcts) * 100, 1)
+    #for i,j in zip(l1, l2):
+    #    print("%s,%s,%s" % (i, j, win_pcts[(i, j)]))
     pre_order = round(eval_final_calc(l1, l2, win_pcts) * 100, 1)
     diff = round(final - pre_order, 1)
-    #s1, s2 = round3_scores[(i,j)]
     res = [i,j, pre_order, final]
     print(",".join([str(x) for x in res]))
-    #print("%-15s" % abs(diff), i,'-', j, pre_order, final, diff)
-    #print(i, ':', ",".join(team_played[i]))
-    #print(j, ':', ",".join(team_played[j]))
-    #print(i, ':', ",".join(team_lineups[i]))
-    #print(j, ':', ",".join(team_lineups[j]))
-    #print('')
 

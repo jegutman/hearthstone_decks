@@ -53,19 +53,19 @@ class HGG_Matchup():
         assert len(poolA) == len(poolB), "pools must be equal in size"
         assert len(decksA) == len(decksB), "decks must be equal in size"
         if len(poolA) == 9:
-            if debug: print("ban1")
+            print("1st ban" + '\n', "\n".join([str(i) for i in [self.decksA, self.decksB, self.poolA, self.poolB]]))
             return ban1_int(poolA, poolB, self.win_pcts)
         elif len(poolA) == 8:
-            if debug: print("pick1")
+            print("1st pick" + '\n', "\n".join([str(i) for i in [self.decksA, self.decksB, self.poolA, self.poolB]]))
             return pick1_int(poolA, poolB, self.win_pcts)
         elif len(poolA) == 6 and len(decksA) == 2:
-            if debug: print("ban2")
+            print("2nd ban" + '\n', "\n".join([str(i) for i in [self.decksA, self.decksB, self.poolA, self.poolB]]))
             return ban2(poolA, poolB, decksA, decksB, self.win_pcts)
         elif len(poolA) == 4 and len(decksA) == 2:
-            if debug: print("pick2")
+            print("2nd pick" +  '\n', "\n".join([str(i) for i in [self.decksA, self.decksB, self.poolA, self.poolB]]))
             return pick2(poolA, poolB, decksA, decksB, self.win_pcts)
         elif len(poolA) == 2 and len(decksA) == 4:
-            if debug: print("ban3")
+            print("3rd ban" +  '\n', "\n".join([str(i) for i in [self.decksA, self.decksB, self.poolA, self.poolB]]))
             return ban3(poolA, poolB, decksA, decksB, self.win_pcts)
         elif len(decksA) == 5:
             return eval_final_calc(decksA, decksB, self.win_pcts)
@@ -237,6 +237,7 @@ def pick2(pool_a, pool_b, decks_a, decks_b, win_pcts):
             for _i in p_b: tmp_pool_b.remove(_i)
             picks_b.append((ban3(tmp_pool_a, tmp_pool_b, decks_a + p_a, decks_b + p_b, win_pcts)[0], p_b))
         picks_a.append((min(picks_b), p_a))
+    #print(sorted(picks_a, reverse=True))
     res = max(picks_a)
     return res[0][0], res
     
@@ -261,6 +262,7 @@ def ban2(pool_a, pool_b, decks_a, decks_b, win_pcts):
         bans_from_b.append((min(bans_from_a), p_b))
     if debug:
         print(bans_from_b)
+    #print(sorted(bans_from_b, reverse=True))
     res = max(bans_from_b)
     return res[0][0], res
 
@@ -323,6 +325,7 @@ def pick1(pool_a, pool_b, win_pcts):
                     picks_b.append((tmp_res, p_b))
                     
             picks_a.append((min(picks_b), p_a))
+    #print(sorted(picks_a, reverse=True))
     res = max(picks_a)
     return res[0][0], res
 
@@ -375,16 +378,44 @@ def ban1(pool_a, pool_b, win_pcts):
 
 if __name__ == '__main__':
     from json_win_rates import *
+    #BUL
+    #l1 = "Odd Warrior,Mecha'thun Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Quest Rogue,Big Spell Mage,Token Druid,Deathrattle Hunter".split(',')
+    #l2 = "Odd Warrior,Control Priest,Shudderwock Shaman,Even Warlock,OTK DK Paladin,Quest Rogue,Tempo Mage,Mill Druid,Deathrattle Hunter".split(',')
+
     #USA
-    l1 = "Odd Warrior,Combo Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Tempo Mage,Token Druid,Deathrattle Hunter".split(',')
-    l2 = 'Odd Warrior,Control Priest,Shudderwock Shaman,Zoo Warlock,Odd Paladin,Quest Rogue,Big Spell Mage,Token Druid,Deathrattle Hunter'.split(',')
+    l1 = "Odd Warrior,USA Control Priest,Shudderwock Shaman,Even Warlock,Even Paladin,Quest Rogue,Tempo Mage,Token Druid,Deathrattle Hunter".split(',')
+    l2 = "Odd Warrior,TWN Control Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Mill Druid,Deathrattle Hunter".split(',')
 
     #debug = True
-    mu = HGG_Matchup(l1, l2)
-    #mu.add_picks(['Odd Rogue', 'Tempo Mage'], ['Quest Warrior', 'Control Priest'])
-    mu.add_ban(['Token Druid'], ['Token Druid'])
-    #mu.add_picks(['Murloc Mage', 'Zoo Warlock'], ['Quest Warrior', 'Shudderwock Shaman'])
-    #mu.add_ban(['Malygos Druid'], ['Malygos Druid'])
+    #mu = HGG_Matchup(l1, l2)
+    #overrides = [
+    #]
+    #mu.win_pcts = override_wr(overrides,mu.win_pcts)
+    
+    #BUL
+    #filename = 'BUL_NLD.csv'
+    #win_pcts, archetypes = wr_from_csv(filename, scaling=100)
+    #mu.win_pcts = win_pcts
+    
+    #mu.add_picks(['Deathrattle Hunter', 'Token Druid'], ['Deathrattle Hunter', 'Shudderwock Shaman'])
+    #mu.add_ban(['Shudderwock Shaman', 'Odd Paladin'], ['Control Priest', 'Mill Druid'])
+    #mu.add_picks(["Mecha'thun Priest", 'Big Spell Mage'], ['OTK DK Paladin', 'Tempo Mage'])
+    #mu.add_ban(['Even Warlock'], ['Even Warlock'])
+
+    #USA
+    filename = 'USA_TWN.csv'
+    win_pcts, archetypes = wr_from_csv(filename, scaling=100)
+    #win_pcts = None
+    mu = HGG_Matchup(l1, l2, win_pcts=win_pcts)
+    #mu.add_ban(['Token Druid'], ['Mill Druid'])
+    mu.add_ban(['Odd Warrior'], ['Deathrattle Hunter'])
+    mu.add_picks(['Deathrattle Hunter', 'Token Druid'], ['Even Warlock', 'Odd Rogue'])
+    mu.add_ban(['Quest Rogue', 'Shudderwock Shaman'], ['TWN Control Priest', 'Odd Paladin'])
+    mu.add_picks(['Even Warlock', 'Tempo Mage'], ['Shudderwock Shaman', 'Tempo Mage'])
+    mu.add_ban(['Even Paladin'], ['Odd Warrior'])
+    #mu.add_picks(['Deathrattle Hunter', 'Odd Warrior'], ['Odd Warrior', 'Deathrattle Hunter'])
+    #mu.add_picks(['Even Warlock', 'Odd Warrior'], ['Odd Paladin', 'Even Warlock'])
+
     tmp = mu.calculate()
     #tmp = mu.calculate()
     print('\n', tmp)
