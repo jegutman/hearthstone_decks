@@ -122,6 +122,7 @@ def lhs_nash(decks_a, decks_b, win_pcts=win_pcts):
     return res
 
 def lhs_nash_bans(decks_a, decks_b, win_pcts=win_pcts):
+    print(decks_a, decks_b)
     for d in decks_a:
         if d not in archetypes:
             return 'Could not recognize archetype: "%s"' % d
