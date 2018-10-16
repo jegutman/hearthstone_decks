@@ -19,8 +19,8 @@ class SimHandler():
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         if is_conquest:
@@ -39,8 +39,8 @@ class SimHandler():
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         if is_conquest:
@@ -60,8 +60,8 @@ class SimHandler():
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         if is_conquest:
@@ -82,8 +82,8 @@ class SimHandler():
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         if is_conquest:
@@ -104,8 +104,8 @@ class SimHandler():
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         return conquest_nash_bans(lineup_a,lineup_b)
@@ -119,8 +119,8 @@ class SimHandler():
         lineup_b = lineup_b.replace('"', '')
         lineup_a = lineup_a.split(',')
         lineup_b = lineup_b.split(',')
-        lineup_a = [i.replace('echathun', "echa'thun").strip() for i in lineup_a]
-        lineup_b = [i.replace('echathun', "echa'thun").strip() for i in lineup_b]
+        lineup_a = [i.replace('echaThun', "echa'thun").strip() for i in lineup_a]
+        lineup_b = [i.replace('echaThun', "echa'thun").strip() for i in lineup_b]
         #return str(lineup_a) + str(lineup_b)
     
         if is_conquest:
