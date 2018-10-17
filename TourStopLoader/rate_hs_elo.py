@@ -33,6 +33,7 @@ offline_tournaments = [
     ('APAC Playoffs', 'APAC Playoffs'),
     ('HCT Oslo (S3)', 'HCT Oslo (S3)'),
     ('HCT Singapore', 'HCT Singapore'),
+    ('HCT Season 2 Champs', 'Season 2 Championship'),
 ]
 
 def logloss(result, predicted, eps=1e-15):
@@ -67,6 +68,8 @@ for K in range(36, 38, 2):
     for line in sorted(lines, key=lambda x:(x[3], x[5])):
         #event, sub_event, sub_bracket, date, season, patch, round_num, p1, p2, score1, score2 = line.strip().split(',')
         event, sub_event, sub_bracket, date, season, patch, round_num, p1, p2, score1, score2 = line
+        #print(date)
+        #if date < '2018_07_01': continue
         tournament = (event, sub_event)
         tournaments.add(tournament)
         # EXCLUDE ONLINE
