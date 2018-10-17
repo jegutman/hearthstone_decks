@@ -4,8 +4,8 @@ from smash_decks_results import *
 filename = 'tour_stop_info.csv'
 tourstops = open(filename)
 count = 0
-result_out = open('hct_results.csv', 'w+')
-decks_out = open('hct_decks.csv', 'w+')
+result_out = open('hct_results.csv', 'w')
+decks_out = open('hct_decks.csv', 'w')
 
 non_parse_file = open('non_parse_events.csv')
 non_parse_matches = {}
@@ -28,6 +28,7 @@ for line in tourstops:
     #print(tmp)
     event, sub_event, event_format, sub_bracket, season, patch, bracket_url = tmp
     print("Loading: %s" % event)
+    tmp_decks = {}
     if bracket_url:
         if 'battlefy' in bracket_url:
             tmp_decks, tmp_matches, tmp_player_matches = process_battlefy_url(bracket_url)
