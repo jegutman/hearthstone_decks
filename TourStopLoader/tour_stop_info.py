@@ -6,6 +6,8 @@ tourstops = open(filename)
 count = 0
 result_out = open('hct_results.csv', 'w')
 decks_out = open('hct_decks.csv', 'w')
+#result_out = open('hct_results.csv', 'a')
+#decks_out = open('hct_decks.csv', 'a')
 
 non_parse_file = open('non_parse_events.csv')
 non_parse_matches = {}
