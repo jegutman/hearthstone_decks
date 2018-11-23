@@ -4,10 +4,10 @@ from smash_decks_results import *
 filename = 'tour_stop_info.csv'
 tourstops = open(filename)
 count = 0
-result_out = open('hct_results.csv', 'w')
-decks_out = open('hct_decks.csv', 'w')
-#result_out = open('hct_results.csv', 'a')
-#decks_out = open('hct_decks.csv', 'a')
+#result_out = open('hct_results.csv', 'w')
+#decks_out = open('hct_decks.csv', 'w')
+result_out = open('hct_results.csv', 'a')
+decks_out = open('hct_decks.csv', 'a')
 
 non_parse_file = open('non_parse_events.csv')
 non_parse_matches = {}
