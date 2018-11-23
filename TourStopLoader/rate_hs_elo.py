@@ -35,6 +35,7 @@ offline_tournaments = [
     ('HCT Singapore', 'HCT Singapore'),
     ('HCT Season 2 Champs', 'Season 2 Championship'),
     ('HCT Orange County', 'HCT Orange County'),
+    ('HCT Atlanta', 'Dreamhack Atlanta'),
 ]
 
 def logloss(result, predicted, eps=1e-15):
