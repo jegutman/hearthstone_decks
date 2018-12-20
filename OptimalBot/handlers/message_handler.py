@@ -40,6 +40,7 @@ CMD_UPTIME = "!uptime"
 CMD_OWNER = "!owner"
 CMD_MECHATHUN = "!mechathun"
 CMD_NEXTCARD = "!nextcard"
+CMD_CARDSCHEDULE = "!cardschedule"
 
 #USAGE = """`
 USAGE = """
@@ -120,13 +121,14 @@ class MessageHandler:
             await self.handle_deck_search(message, CMD_SEARCH_PLAYOFF, my_message)
             return True
 
-        if message.content.startswith(CMD_NEXTCARD):
+        if message.content.startswith(CMD_CARDSCHEDULE):
             if str(message.channel.name) not in ['new-cards']:
                 if not message.channel.is_private:
                     return True
                 
             reveal_times = [ 
                 # Times in PDT 
+                "2018_11_19 23:00:00",
                 "2018_11_20 02:00:00", 
                 "2018_11_20 04:00:00", 
                 "2018_11_20 05:00:00", 
@@ -176,6 +178,79 @@ class MessageHandler:
                 "2018_11_27 11:00:00", 
                 "2018_11_27 18:00:00", 
                 "2018_11_27 23:00:00", 
+            ]
+            na_tz = pytz.timezone('America/Los_Angeles')
+            local_tz = pytz.timezone('America/Chicago')
+            current_time = datetime.now(tz=local_tz)
+            card_times = []
+            for timestamp in reveal_times:
+                card_time = na_tz.localize(datetime.strptime(timestamp, "%Y_%m_%d %H:%M:%S"))
+                if card_time > current_time:
+                    break
+            index = reveal_times.index(timestamp)
+            res = "\n".join(reveal_times[index:])
+            #res = "Next Card Reveal in " + str(card_time - current_time).split('.')[0] + ' at ' + '%s PDT' % (card_time.strftime("%H:%M:%S"))
+            await self.respond(message, res)
+            return True
+
+        if message.content.startswith(CMD_NEXTCARD):
+            if str(message.channel.name) not in ['new-cards']:
+                if not message.channel.is_private:
+                    return True
+                
+            reveal_times = [ 
+                # Times in PDT 
+                "2018_11_19 23:00:00",
+                "2018_11_20 02:00:00", 
+                "2018_11_20 04:00:00", 
+                "2018_11_20 05:00:00", 
+                "2018_11_20 07:00:00", 
+                "2018_11_20 08:00:00", 
+                "2018_11_20 09:00:00", 
+                "2018_11_20 11:00:00", 
+                "2018_11_20 20:00:00", 
+                "2018_11_21 02:00:00", 
+                "2018_11_21 04:00:00", 
+                "2018_11_21 07:00:00", 
+                "2018_11_21 11:00:00", 
+                "2018_11_21 13:00:00", 
+                "2018_11_21 18:00:00", 
+                "2018_11_21 23:00:00", 
+                "2018_11_22 01:00:00", 
+                "2018_11_22 04:00:00", 
+                "2018_11_22 07:00:00", 
+                "2018_11_22 10:00:00", 
+                "2018_11_22 23:00:00", 
+                "2018_11_23 04:00:00", 
+                "2018_11_23 06:00:00", 
+                "2018_11_23 07:00:00", 
+                "2018_11_23 11:00:00", 
+                "2018_11_23 14:00:00", 
+                "2018_11_23 22:00:00", 
+                "2018_11_23 23:00:00", 
+                "2018_11_24 01:00:00", 
+                "2018_11_24 07:00:00", 
+                "2018_11_24 11:00:00", 
+                "2018_11_24 13:00:00", 
+                "2018_11_24 23:00:00", 
+                "2018_11_25 04:00:00", 
+                "2018_11_25 07:00:00", 
+                "2018_11_25 11:00:00", 
+                "2018_11_25 19:00:00", 
+                "2018_11_26 02:00:00", 
+                "2018_11_26 04:00:00", 
+                "2018_11_26 07:00:00", 
+                "2018_11_26 08:00:00", 
+                "2018_11_26 11:00:00", 
+                "2018_11_26 21:00:00", 
+                "2018_11_26 23:00:00", 
+                "2018_11_27 01:00:00", 
+                "2018_11_27 04:00:00", 
+                "2018_11_27 07:00:00", 
+                "2018_11_27 11:00:00", 
+                "2018_11_27 18:00:00", 
+                "2018_11_27 23:00:00", 
+                "2018_12_04 10:00:00", 
             ]
             na_tz = pytz.timezone('America/Los_Angeles')
             local_tz = pytz.timezone('America/Chicago')
