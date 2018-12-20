@@ -2,7 +2,7 @@ import requests
 import pycookiecheat
 from fake_useragent import UserAgent
 import datetime
-import sys
+import sys, os
 sys.path.append('../')
 from config import basedir
 
@@ -70,7 +70,7 @@ for ranks, time_range in downloads:
     filename = get_filename(ranks, time_range)
     output = open(filename, 'w')
     output.write(htmlContent.text)
-    print("writing %(filename)s" % locals())
+    print(os.stat(filename).st_size, "writing %(filename)s" % locals())
     output.close()
     output = open(get_all_filename(ranks, time_range), 'w')
     output.write(htmlContent.text)
