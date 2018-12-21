@@ -1,0 +1,18 @@
+lineups = {
+    'Alliestrasza'    : "Odd Rogue,Odd Warrior,Even Warlock,Even Shaman,Even Paladin,Clone Priest,Murloc Mage,Deathrattle Hunter,Taunt Druid".split(','),
+    'Arya'            : "Even Shaman,Odd Rogue,Spiteful Druid,Control Priest,Even Paladin,Even Warlock,Big Spell Mage,Rush Warrior,Deathrattle Hunter".split(','),
+    'Bloody'          : "Turvy OTK Priest,Quest Rogue,Murloc Mage,Odd Warrior,Even Shaman,Even Warlock,OTK DK Paladin,Spiteful Druid,Spell Hunter".split(','),
+    'Caracute'        : "Clone Priest,Odd Rogue,Even Shaman,Odd Warrior,Even Paladin,Murloc Mage,Even Warlock,Deathrattle Hunter,Spiteful Druid".split(','),
+    'Chandylandy'     : "Big Secret Hunter,Even Warlock,Odd Mage,Odd Warrior,Even Paladin,Even Shaman,Clone Priest,Odd Rogue,Spiteful Druid".split(','),
+    'Edelweiss'       : "Odd Warrior,Even Warlock,Even Shaman,Quest Rogue,Control Priest,Deathrattle Paladin,Midrange Hunter,Tempo Mage,Spiteful Druid".split(','),
+    'Hafu'            : "Odd Rogue,Undatakah Druid,OTK DK Paladin,Odd Warrior,Turvy OTK Priest,Even Shaman,Even Warlock,Deathrattle Hunter,Tempo Mage".split(','),
+    'Jia'             : "Odd Rogue,OTK DK Paladin,Turvy OTK Priest,Big Spell Mage,Odd Warrior,Even Shaman,Even Warlock,Deathrattle Hunter,Spiteful Druid".split(','),
+    'Nayara'          : "Malygos Druid,Clone Priest,Odd Warrior,Odd Rogue,Even Paladin,Even Warlock,Secret Hunter,Big Spell Mage,Even Shaman".split(','),
+    'Nicholena'       : "Taunt Druid,Big Spell Mage,Odd Rogue,Even Paladin,Control Priest,Even Warlock,Even Shaman,Odd Warrior,Secret Hunter".split(','),
+    'Pathra'          : "Big Spell Mage,Even Shaman,Odd Rogue,Control Priest,Even Paladin,Odd Warrior,Deathrattle Hunter,Spiteful Druid,Even Warlock".split(','),
+    'SaltyMonkey'     : "Even Warlock,Malygos Druid,Odd Rogue,Clone Priest,Odd Warrior,Odd Paladin,Even Paladin,Deathrattle Hunter,Aggro Overload Shaman".split(','),
+    'Scarakye'        : "Even Shaman,Even Warlock,Even Paladin,Odd Warrior,Control Priest,Odd Rogue,Murloc Mage,Deathrattle Hunter,Spiteful Druid".split(','),
+    'Slyssa'          : "Even Warlock,Deathrattle Hunter,Even Shaman,Odd Warrior,OTK DK Paladin,Tempo Mage,Token Druid,Quest Rogue,Control Priest".split(','),
+    'Songbird'        : "Even Shaman,Odd Warrior,Odd Rogue,Cube Warlock,Deathrattle Hunter,Token Druid,Clone Priest,Even Paladin,Big Spell Mage".split(','),
+    'Teebs'           : "Odd Warrior,Aggro Overload Shaman,Odd Rogue,Even Warlock,Secret Hunter,Control Priest,OTK DK Paladin,Spiteful Druid,Murloc Mage".split(','),
+}
