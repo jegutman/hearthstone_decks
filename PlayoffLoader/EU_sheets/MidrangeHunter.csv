@@ -1,26 +1,20 @@
-,,,,,"BoarControl","Moyen","Faeli","RastaFish","Altere"
-1,"Candleshot",1,20.0%,,,,,,1
-1,"Dire Mole",10,100.0%,,2,2,2,2,2
-1,"Secretkeeper",9,90.0%,,2,2,2,2,1
-1,"Tracking",7,70.0%,,2,2,1,1,1
-2,"Acidic Swamp Ooze",2,40.0%,,,,1,1,
-2,"Crackling Razormaw",10,100.0%,,2,2,2,2,2
-2,"Explosive Trap",5,100.0%,,1,1,1,1,1
-2,"Freezing Trap",5,100.0%,,1,1,1,1,1
-2,"Snake Trap",6,60.0%,,2,1,1,1,1
-2,"Snipe",2,40.0%,,,,1,1,
-2,"Venomstrike Trap",10,100.0%,,2,2,2,2,2
-2,"Wandering Monster",6,60.0%,,1,2,1,1,1
-3,"Animal Companion",10,100.0%,,2,2,2,2,2
-3,"Bearshark",1,20.0%,,1,,,,
-3,"Blood Knight",2,40.0%,,,1,,,1
-3,"Eaglehorn Bow",10,100.0%,,2,2,2,2,2
-3,"Kill Command",10,100.0%,,2,2,2,2,2
-3,"Unleash the Hounds",1,20.0%,,,,,,1
-4,"Flanking Strike",3,60.0%,,,,1,1,1
-4,"Houndmaster",10,100.0%,,2,2,2,2,2
-4,"Houndmaster Shaw",5,100.0%,,1,1,1,1,1
-5,"Lesser Emerald Spellstone",10,100.0%,,2,2,2,2,2
-5,"Subject 9",5,100.0%,,1,1,1,1,1
-6,"Deathstalker Rexxar",5,100.0%,,1,1,1,1,1
-6,"Mossy Horror",5,100.0%,,1,1,1,1,1
+,,,,,"cursed#21642","Xeno#2951","mikolop#2935","Trec#2878"
+1,"Candleshot",8,100.0%,,2,2,2,2
+1,"Dire Mole",8,100.0%,,2,2,2,2
+1,"Hunter's Mark",8,100.0%,,2,2,2,2
+1,"Springpaw",8,100.0%,,2,2,2,2
+1,"Timber Wolf",8,100.0%,,2,2,2,2
+1,"Tracking",8,100.0%,,2,2,2,2
+2,"Crackling Razormaw",8,100.0%,,2,2,2,2
+2,"Scavenging Hyena",8,100.0%,,2,2,2,2
+3,"Animal Companion",8,100.0%,,2,2,2,2
+3,"Bearshark",1,25.0%,,,,,1
+3,"Kill Command",8,100.0%,,2,2,2,2
+3,"Master's Call",8,100.0%,,2,2,2,2
+3,"Unleash the Hounds",3,75.0%,,1,1,1,
+4,"Dire Frenzy",5,62.5%,,1,1,1,2
+4,"Flanking Strike",8,100.0%,,2,2,2,2
+5,"Halazzi, the Lynx",1,25.0%,,,,,1
+5,"Tundra Rhino",4,100.0%,,1,1,1,1
+6,"Deathstalker Rexxar",4,100.0%,,1,1,1,1
+6,"Savannah Highmane",6,75.0%,,2,2,2,
