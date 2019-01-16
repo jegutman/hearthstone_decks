@@ -5,7 +5,7 @@ Player,Deck1,Deck2,Deck3,Deck4
 "Ant","Midrange Hunter","Clone Priest","Odd Rogue","Odd Warrior"
 "Apxvoid","Midrange Hunter","Holy Wrath Paladin","Clone Priest","Mecha'thun Warlock"
 "Arden","Secret Hunter","Even Paladin","Control Priest","Even Warlock"
-"bloodyface","Mecha'thun Druid","Holy Wrath Paladin","Turvy OTK Priest","Quest Rogue"
+"bloodyface","Hakkar Druid","Holy Wrath Paladin","Turvy OTK Priest","Quest Rogue"
 "bobbyex","Deathrattle Hunter","Even Paladin","Clone Priest","Quest Rogue"
 "caravaggio8","Secret Hunter","OTK DK Paladin","Control Priest","Even Warlock"
 "Cesky","Deathrattle Hunter","Holy Wrath Paladin","Clone Priest","Cube Warlock"
@@ -39,7 +39,7 @@ Player,Deck1,Deck2,Deck3,Deck4
 "leomane","Secret Hunter","Big Spell Mage","Holy Wrath Paladin","Odd Quest Warrior"
 "Level9001","Spell Hunter","Big Spell Mage","Control Priest","Odd Rogue"
 "lii","Deathrattle Hunter","Even Paladin","Odd Rogue","Even Shaman"
-"lnguagehackr","Mecha'thun Druid","Holy Wrath Paladin","Turvy OTK Priest","Mecha'thun Warlock"
+"lnguagehackr","Hakkar Druid","Holy Wrath Paladin","Turvy OTK Priest","Mecha'thun Warlock"
 "LuigEzz","Secret Hunter","Even Paladin","Odd Rogue","Even Warlock"
 "Mazzu","Secret Hunter","Even Paladin","Odd Rogue","Even Shaman"
 "MJM","Secret Hunter","Odd Paladin","Cube Warlock","Odd Quest Warrior"
@@ -47,7 +47,7 @@ Player,Deck1,Deck2,Deck3,Deck4
 "muzzy","Secret Hunter","Holy Wrath Paladin","Control Priest","Quest Rogue"
 "N0lan","Malygos Druid","Deathrattle Hunter","Clone Priest","Cube Warlock"
 "Nalguidan","Secret Hunter","Holy Wrath Paladin","Clone Priest","Odd Rogue"
-"noblord","Mecha'thun Druid","Holy Wrath Paladin","Turvy OTK Priest","Mecha'thun Warlock"
+"noblord","Hakkar Druid","Holy Wrath Paladin","Turvy OTK Priest","Mecha'thun Warlock"
 "Plantz","Secret Hunter","Big Spell Mage","Control Priest","Odd Warrior"
 "PNC","Deathrattle Hunter","Holy Wrath Paladin","Clone Priest","Quest Rogue"
 "Purple","Secret Hunter","Deathrattle Paladin","Control Priest","Even Warlock"
@@ -72,7 +72,7 @@ Player,Deck1,Deck2,Deck3,Deck4
 "villain","Secret Hunter","OTK DK Paladin","Control Priest","Even Warlock"
 "Wrackle","Secret Hunter","Even Paladin","Control Priest","Even Warlock"
 "zaguios","Secret Hunter","Control Priest","Odd Rogue","Even Warlock"
-"Zamos","Mecha'thun Druid","Control Priest","Odd Rogue","Cube Warlock"
+"Zamos","Hakkar Druid","Control Priest","Odd Rogue","Cube Warlock"
 "Zeh","Deathrattle Hunter","Deathrattle Paladin","Clone Priest","Cube Warlock"
 "zlsjs","Secret Hunter","OTK DK Paladin","Control Priest","Even Warlock"
 
@@ -88,11 +88,11 @@ Deck1,Deck2,Deck3,Deck4,Percent of Field,,Players
 "Secret Hunter","Holy Wrath Paladin","Shudderwock Shaman","Odd Quest Warrior",2.6,,Fled,SargentoSC
 "Secret Hunter","Deathrattle Paladin","Control Priest","Even Warlock",2.6,,Gallon,Purple
 "Secret Hunter","Big Spell Mage","Holy Wrath Paladin","Odd Quest Warrior",2.6,,leomane,Rase
-"Mecha'thun Druid","Holy Wrath Paladin","Turvy OTK Priest","Mecha'thun Warlock",2.6,,lnguagehackr,noblord
+"Hakkar Druid","Holy Wrath Paladin","Turvy OTK Priest","Mecha'thun Warlock",2.6,,lnguagehackr,noblord
 "Midrange Hunter","Control Priest","Odd Rogue","Odd Warrior",2.6,,Starfruit,SwaggyG
 "Malygos Druid","Secret Hunter","Even Paladin","Control Priest",1.3,,Alan870806
 "Secret Hunter","Holy Wrath Paladin","Control Priest","Odd Rogue",1.3,,amnesiac
-"Mecha'thun Druid","Holy Wrath Paladin","Turvy OTK Priest","Quest Rogue",1.3,,bloodyface
+"Hakkar Druid","Holy Wrath Paladin","Turvy OTK Priest","Quest Rogue",1.3,,bloodyface
 "Deathrattle Hunter","Even Paladin","Clone Priest","Quest Rogue",1.3,,bobbyex
 "Deathrattle Hunter","Holy Wrath Paladin","Clone Priest","Cube Warlock",1.3,,Cesky
 "Secret Hunter","Even Paladin","Clone Priest","Odd Warrior",1.3,,cowboys367
@@ -134,5 +134,5 @@ Deck1,Deck2,Deck3,Deck4,Percent of Field,,Players
 "Deathrattle Hunter","Big Spell Mage","Deathrattle Paladin","Clone Priest",1.3,,TheChosenGuy
 "Secret Hunter","Even Paladin","Control Priest","Cube Warlock",1.3,,Tincho
 "Malygos Druid","Midrange Hunter","Control Priest","Odd Rogue",1.3,,topopablo11
-"Mecha'thun Druid","Control Priest","Odd Rogue","Cube Warlock",1.3,,Zamos
+"Hakkar Druid","Control Priest","Odd Rogue","Cube Warlock",1.3,,Zamos
 "Deathrattle Hunter","Deathrattle Paladin","Clone Priest","Cube Warlock",1.3,,Zeh
