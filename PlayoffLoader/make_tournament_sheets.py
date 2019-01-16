@@ -18,7 +18,7 @@ def make_archetype_sheet(archetype):
     output_file = open('NA_sheets/%(archetype_print)s.csv' % locals(), 'w')
     decks = []
     deckstrings = []
-    cursor.execute('SELECT deck_name, deck_id, deck_code FROM deckstrings.decks WHERE deck_archetype = "%(archetype)s" and playoff_region = "%(region)s" and date > "2018_08_01"' % locals())
+    cursor.execute('SELECT deck_name, deck_id, deck_code FROM deckstrings.decks WHERE deck_archetype = "%(archetype)s" and playoff_region = "%(region)s" and date > "2019_01_01"' % locals())
     for deck_name, deck_id, deck_code in cursor.fetchall():
         deck_code = deck_code.strip()
         deckstrings.append(deck_code)
@@ -34,7 +34,7 @@ def make_archetype_sheet(archetype):
 def make_lineups_sheet():
     output_file = open('NA_sheets/Lineups.csv', 'w')
     region = 'NA'
-    cursor.execute("SELECT deck_name, deck_archetype FROM deckstrings.decks WHERE playoff_region = '%(region)s' and date > '2018_08_01'" % locals())
+    cursor.execute("SELECT deck_name, deck_archetype FROM deckstrings.decks WHERE playoff_region = '%(region)s' and date > '2019_01_01'" % locals())
     player_decks = {}
     output_file.write("Player,Deck1,Deck2,Deck3,Deck4\n")
     for deck_name, deck_archetype in cursor.fetchall():
@@ -62,7 +62,7 @@ def archetype_percents():
     output_file.write("Archetype,Number,Percentage of Decks\n")
     region = 'NA'
     total = 0
-    cursor.execute("select deck_archetype, deck_class, count(deck_archetype) as total FROM deckstrings.decks WHERE playoff_region = '%(region)s' and date > '2018_08_01' group by deck_archetype, deck_class order by deck_class, total desc" % locals())
+    cursor.execute("select deck_archetype, deck_class, count(deck_archetype) as total FROM deckstrings.decks WHERE playoff_region = '%(region)s' and date > '2019_01_01' group by deck_archetype, deck_class order by deck_class, total desc" % locals())
     archetypes = []
     for i,j,k in cursor.fetchall():
         i = '"' + i + '"'
@@ -78,7 +78,7 @@ archetype_percents()
 make_lineups_sheet()
 
 region = 'NA'
-cursor.execute("SELECT distinct deck_archetype FROM deckstrings.decks WHERE playoff_region = '%(region)s' and date > '2018_08_01'" % locals())
+cursor.execute("SELECT distinct deck_archetype FROM deckstrings.decks WHERE playoff_region = '%(region)s' and date > '2019_01_01'" % locals())
 for (archetype,) in cursor.fetchall():
     make_archetype_sheet(archetype)
 

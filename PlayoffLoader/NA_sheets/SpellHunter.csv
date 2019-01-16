@@ -1,20 +1,22 @@
-,,,,,"Rosty#1208","NoHandsGamer#1424"
-1,"Candleshot",4,100.0%,,2,2
-1,"Hunter's Mark",4,100.0%,,2,2
-1,"Secret Plan",4,100.0%,,2,2
-1,"Tracking",4,100.0%,,2,2
-2,"Explosive Trap",4,100.0%,,2,2
-2,"Freezing Trap",1,50.0%,,1,
-2,"Wandering Monster",4,100.0%,,2,2
-3,"Animal Companion",4,100.0%,,2,2
-3,"Deadly Shot",1,50.0%,,,1
-3,"Eaglehorn Bow",1,50.0%,,1,
-3,"Kill Command",4,100.0%,,2,2
-3,"Unleash the Hounds",4,100.0%,,2,2
-4,"Dire Frenzy",1,50.0%,,,1
-4,"Flanking Strike",4,100.0%,,2,2
-4,"Wing Blast",4,100.0%,,2,2
-5,"Lesser Emerald Spellstone",4,100.0%,,2,2
-6,"Deathstalker Rexxar",2,100.0%,,1,1
-6,"To My Side!",4,100.0%,,2,2
-7,"Rhok'delar",2,100.0%,,1,1
+,,,,,"fibonacci","Level9001","StormFever"
+1,"Candleshot",6,100.0%,,2,2,2
+1,"Hunter's Mark",6,100.0%,,2,2,2
+1,"Secret Plan",6,100.0%,,2,2,2
+1,"Tracking",5,83.3%,,2,2,1
+2,"Explosive Trap",6,100.0%,,2,2,2
+2,"Flare",1,33.3%,,,1,
+2,"Freezing Trap",3,50.0%,,,1,2
+2,"Venomstrike Trap",1,33.3%,,,,1
+2,"Wandering Monster",6,100.0%,,2,2,2
+3,"Animal Companion",6,100.0%,,2,2,2
+3,"Deadly Shot",5,83.3%,,2,1,2
+3,"Kill Command",4,66.7%,,,2,2
+3,"Unleash the Hounds",2,66.7%,,1,1,
+4,"Flanking Strike",6,100.0%,,2,2,2
+4,"Wing Blast",2,33.3%,,2,,
+5,"Baited Arrow",4,66.7%,,2,1,1
+5,"Lesser Emerald Spellstone",6,100.0%,,2,2,2
+6,"Deathstalker Rexxar",3,100.0%,,1,1,1
+6,"To My Side!",6,100.0%,,2,2,2
+7,"Rhok'delar",3,100.0%,,1,1,1
+10,"Zul'jin",3,100.0%,,1,1,1
