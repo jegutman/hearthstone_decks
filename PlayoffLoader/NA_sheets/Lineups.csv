@@ -29,7 +29,7 @@ Player,Deck1,Deck2,Deck3,Deck4
 "Itachi","Secret Hunter","Odd Paladin","Control Priest","Odd Warrior"
 "Itzvan","Deathrattle Hunter","OTK DK Paladin","Clone Priest","Even Warlock"
 "jakaso27","Mecha'thun Druid","Secret Hunter","OTK DK Paladin","Mecha'thun Warlock"
-"Jay","Mecha'thun Druid","Holy Wrath Paladin","Mecha'thun Quest Priest","Malygos Rogue"
+"Jay","Mecha'thun Druid","Holy Wrath Paladin","Mecha'thun Priest","Malygos Rogue"
 "Joaquin","Secret Hunter","OTK DK Paladin","Control Priest","Cube Warlock"
 "justsaiyan","Deathrattle Hunter","Holy Wrath Paladin","Control Priest","Odd Rogue"
 "Kevor24","Malygos Druid","Secret Hunter","Holy Wrath Paladin","Odd Warrior"
@@ -108,7 +108,7 @@ Deck1,Deck2,Deck3,Deck4,Percent of Field,,Players
 "Secret Hunter","Odd Paladin","Control Priest","Odd Warrior",1.3,,Itachi
 "Deathrattle Hunter","OTK DK Paladin","Clone Priest","Even Warlock",1.3,,Itzvan
 "Mecha'thun Druid","Secret Hunter","OTK DK Paladin","Mecha'thun Warlock",1.3,,jakaso27
-"Mecha'thun Druid","Holy Wrath Paladin","Mecha'thun Quest Priest","Malygos Rogue",1.3,,Jay
+"Mecha'thun Druid","Holy Wrath Paladin","Mecha'thun Priest","Malygos Rogue",1.3,,Jay
 "Secret Hunter","OTK DK Paladin","Control Priest","Cube Warlock",1.3,,Joaquin
 "Malygos Druid","Secret Hunter","Holy Wrath Paladin","Odd Warrior",1.3,,Kevor24
 "Big Spell Mage","Clone Priest","Control Warlock","Odd Warrior",1.3,,klei
