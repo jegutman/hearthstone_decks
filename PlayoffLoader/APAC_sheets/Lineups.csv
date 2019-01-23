@@ -43,8 +43,7 @@ Player,Deck1,Deck2,Deck3,Deck4
 "NonRoman12","Hakkar Druid","Big Spell Mage","Holy Wrath Paladin","Quest Priest"
 "NonRoman13","Mill Druid","Secret Hunter","Holy Wrath Paladin","Quest Rogue"
 "NonRoman14","Deathrattle Hunter","Even Paladin","Quest Rogue","Even Warlock"
-"NonRoman2","Midrange Hunter","Control Priest","Odd Rogue"
-"NonRoman2502","Even Paladin"
+"NonRoman2","Midrange Hunter","Even Paladin","Control Priest","Odd Rogue"
 "NonRoman3","Mill Druid","Secret Hunter","Holy Wrath Paladin","Mecha'thun Warlock"
 "NonRoman4","Deathrattle Hunter","Deathrattle Paladin","Control Priest","Cube Warlock"
 "NonRoman5","Secret Hunter","Holy Wrath Paladin","Odd Rogue","Mecha'thun Warlock"
@@ -82,10 +81,11 @@ Player,Deck1,Deck2,Deck3,Deck4
 
 
 Deck1,Deck2,Deck3,Deck4,Percent of Field,,Players
-"Secret Hunter","Even Paladin","Clone Priest","Odd Rogue",10.0,,cocosasa,KiRu,Kribo,MaRu,NAGON,okasinnsuke,strikeright,Tansoku
-"Secret Hunter","Holy Wrath Paladin","Clone Priest","Mecha'thun Warlock",8.8,,honbee,horo,Kowsai,NonRoman1,Pan,Steelo,Tredsred
-"Secret Hunter","Even Paladin","Control Priest","Odd Rogue",7.5,,CitizenNappa,curry,Ender,Hearthstoner,Machamp,posesi
+"Secret Hunter","Even Paladin","Clone Priest","Odd Rogue",10.1,,cocosasa,KiRu,Kribo,MaRu,NAGON,okasinnsuke,strikeright,Tansoku
+"Secret Hunter","Holy Wrath Paladin","Clone Priest","Mecha'thun Warlock",8.9,,honbee,horo,Kowsai,NonRoman1,Pan,Steelo,Tredsred
+"Secret Hunter","Even Paladin","Control Priest","Odd Rogue",7.6,,CitizenNappa,curry,Ender,Hearthstoner,Machamp,posesi
 "Secret Hunter","Holy Wrath Paladin","Clone Priest","Quest Rogue",3.8,,katsucurry,Sequinox,SilverByz
+"Midrange Hunter","Even Paladin","Control Priest","Odd Rogue",3.8,,NonRoman2,serra,Yisoo
 "Malygos Druid","Midrange Hunter","Clone Priest","Quest Rogue",2.5,,Akumaker,Surrender
 "Secret Hunter","Even Paladin","Odd Rogue","Even Shaman",2.5,,Alza,Tyler
 "Hakkar Druid","Holy Wrath Paladin","Turvy OTK Priest","Mecha'thun Warlock",2.5,,Duelist,NonRoman10
@@ -93,44 +93,41 @@ Deck1,Deck2,Deck3,Deck4,Percent of Field,,Players
 "Secret Hunter","Holy Wrath Paladin","Control Priest","Odd Rogue",2.5,,lambyseries,matsup
 "Hakkar Druid","Big Spell Mage","Holy Wrath Paladin","Quest Priest",2.5,,NonRoman12,NonRoman7
 "Midrange Hunter","Even Paladin","Odd Rogue","Even Warlock",2.5,,Roger,tom60229
-"Midrange Hunter","Even Paladin","Control Priest","Odd Rogue",2.5,,serra,Yisoo
-"Midrange Hunter","Even Paladin","Odd Rogue","Even Shaman",1.2,,blitzchung
-"Hakkar Druid","Holy Wrath Paladin","Turvy OTK Priest","Quest Rogue",1.2,,DacCarp
-"Big Spell Mage","Control Priest","Shudderwock Shaman","Odd Warrior",1.2,,DacMalza
-"Midrange Hunter","Deathrattle Paladin","Clone Priest","Quest Rogue",1.2,,Definition
-"Malygos Druid","Secret Hunter","Even Paladin","Odd Rogue",1.2,,Enrico
-"Holy Wrath Paladin","Clone Priest","Quest Rogue","Mecha'thun Warlock",1.2,,FroStee
-"Mecha'thun Druid","Holy Wrath Paladin","Turvy OTK Priest","Mecha'thun Warlock",1.2,,FuF
-"Secret Hunter","Turvy OTK Priest","Quest Rogue","Mecha'thun Warlock",1.2,,Fungggg
-"Secret Hunter","Even Paladin","Even Warlock","Odd Quest Warrior",1.2,,garubor
-"Malygos Druid","Secret Hunter","Odd Paladin","Odd Rogue",1.2,,Gyong
-"Deathrattle Hunter","Holy Wrath Paladin","Clone Priest","Mecha'thun Warlock",1.2,,hcm
-"Hakkar Druid","Turvy OTK Priest","Quest Rogue","Mecha'thun Warlock",1.2,,Hi3
-"Hakkar Druid","Secret Hunter","Holy Wrath Paladin","Clone Priest",1.2,,kevin
-"Holy Wrath Paladin","Turvy OTK Priest","Quest Rogue","Mecha'thun Warlock",1.2,,LastHopelolz
-"Taunt Druid","Deathrattle Hunter","Holy Wrath Paladin","Quest Rogue",1.2,,maxchen
-"Midrange Hunter","Even Paladin","Clone Priest","Odd Rogue",1.2,,MCweifu
-"Spell Hunter","Big Spell Mage","Holy Wrath Paladin","Control Priest",1.2,,MegaGliscor
-"Secret Hunter","Big Spell Mage","Even Paladin","Odd Quest Warrior",1.2,,NonRoman11
-"Mill Druid","Secret Hunter","Holy Wrath Paladin","Quest Rogue",1.2,,NonRoman13
-"Deathrattle Hunter","Even Paladin","Quest Rogue","Even Warlock",1.2,,NonRoman14
-"Midrange Hunter","Control Priest","Odd Rogue",1.2,,NonRoman2
-"Even Paladin",1.2,,NonRoman2502
-"Mill Druid","Secret Hunter","Holy Wrath Paladin","Mecha'thun Warlock",1.2,,NonRoman3
-"Deathrattle Hunter","Deathrattle Paladin","Control Priest","Cube Warlock",1.2,,NonRoman4
-"Secret Hunter","Holy Wrath Paladin","Odd Rogue","Mecha'thun Warlock",1.2,,NonRoman5
-"Secret Hunter","Big Spell Mage","Control Priest","Odd Rogue",1.2,,NonRoman6
-"Secret Hunter","Odd Mage","Holy Wrath Paladin","Clone Priest",1.2,,NonRoman8
-"Hakkar Druid","Even Paladin","Malygos Rogue","Mecha'thun Warlock",1.2,,NonRoman9
-"Spell Hunter","OTK DK Paladin","Mecha'thun Warlock","Odd Quest Warrior",1.2,,pianolkiller
-"Deathrattle Hunter","Even Paladin","Control Priest","Odd Rogue",1.2,,Portia
-"Secret Hunter","Even Paladin","Combo Priest","Odd Rogue",1.2,,Ruby
-"Mill Druid","Turvy OTK Priest","Quest Rogue","Mecha'thun Warlock",1.2,,Ryvius
-"Secret Hunter","Secret Paladin","Control Priest","Odd Rogue",1.2,,SamuelTsao
-"Hakkar Druid","Deathrattle Hunter","Clone Priest","Malygos Rogue",1.2,,Shaxy
-"Secret Hunter","Holy Wrath Paladin","Combo Priest","Quest Rogue",1.2,,Sooni
-"Midrange Hunter","Clone Priest","Odd Rogue","Odd Warrior",1.2,,Taesang
-"Hakkar Druid","Secret Hunter","Holy Wrath Paladin","Mecha'thun Warlock",1.2,,TIZS
-"Malygos Druid","Deathrattle Hunter","Even Paladin","Clone Priest",1.2,,TypoVampire
-"Secret Hunter","Odd Paladin","Combo Priest","Odd Rogue",1.2,,ulza8102
-"Midrange Hunter","Odd Paladin","Odd Rogue","Odd Warrior",1.2,,yusa
+"Midrange Hunter","Even Paladin","Odd Rogue","Even Shaman",1.3,,blitzchung
+"Hakkar Druid","Holy Wrath Paladin","Turvy OTK Priest","Quest Rogue",1.3,,DacCarp
+"Big Spell Mage","Control Priest","Shudderwock Shaman","Odd Warrior",1.3,,DacMalza
+"Midrange Hunter","Deathrattle Paladin","Clone Priest","Quest Rogue",1.3,,Definition
+"Malygos Druid","Secret Hunter","Even Paladin","Odd Rogue",1.3,,Enrico
+"Holy Wrath Paladin","Clone Priest","Quest Rogue","Mecha'thun Warlock",1.3,,FroStee
+"Mecha'thun Druid","Holy Wrath Paladin","Turvy OTK Priest","Mecha'thun Warlock",1.3,,FuF
+"Secret Hunter","Turvy OTK Priest","Quest Rogue","Mecha'thun Warlock",1.3,,Fungggg
+"Secret Hunter","Even Paladin","Even Warlock","Odd Quest Warrior",1.3,,garubor
+"Malygos Druid","Secret Hunter","Odd Paladin","Odd Rogue",1.3,,Gyong
+"Deathrattle Hunter","Holy Wrath Paladin","Clone Priest","Mecha'thun Warlock",1.3,,hcm
+"Hakkar Druid","Turvy OTK Priest","Quest Rogue","Mecha'thun Warlock",1.3,,Hi3
+"Hakkar Druid","Secret Hunter","Holy Wrath Paladin","Clone Priest",1.3,,kevin
+"Holy Wrath Paladin","Turvy OTK Priest","Quest Rogue","Mecha'thun Warlock",1.3,,LastHopelolz
+"Taunt Druid","Deathrattle Hunter","Holy Wrath Paladin","Quest Rogue",1.3,,maxchen
+"Midrange Hunter","Even Paladin","Clone Priest","Odd Rogue",1.3,,MCweifu
+"Spell Hunter","Big Spell Mage","Holy Wrath Paladin","Control Priest",1.3,,MegaGliscor
+"Secret Hunter","Big Spell Mage","Even Paladin","Odd Quest Warrior",1.3,,NonRoman11
+"Mill Druid","Secret Hunter","Holy Wrath Paladin","Quest Rogue",1.3,,NonRoman13
+"Deathrattle Hunter","Even Paladin","Quest Rogue","Even Warlock",1.3,,NonRoman14
+"Mill Druid","Secret Hunter","Holy Wrath Paladin","Mecha'thun Warlock",1.3,,NonRoman3
+"Deathrattle Hunter","Deathrattle Paladin","Control Priest","Cube Warlock",1.3,,NonRoman4
+"Secret Hunter","Holy Wrath Paladin","Odd Rogue","Mecha'thun Warlock",1.3,,NonRoman5
+"Secret Hunter","Big Spell Mage","Control Priest","Odd Rogue",1.3,,NonRoman6
+"Secret Hunter","Odd Mage","Holy Wrath Paladin","Clone Priest",1.3,,NonRoman8
+"Hakkar Druid","Even Paladin","Malygos Rogue","Mecha'thun Warlock",1.3,,NonRoman9
+"Spell Hunter","OTK DK Paladin","Mecha'thun Warlock","Odd Quest Warrior",1.3,,pianolkiller
+"Deathrattle Hunter","Even Paladin","Control Priest","Odd Rogue",1.3,,Portia
+"Secret Hunter","Even Paladin","Combo Priest","Odd Rogue",1.3,,Ruby
+"Mill Druid","Turvy OTK Priest","Quest Rogue","Mecha'thun Warlock",1.3,,Ryvius
+"Secret Hunter","Secret Paladin","Control Priest","Odd Rogue",1.3,,SamuelTsao
+"Hakkar Druid","Deathrattle Hunter","Clone Priest","Malygos Rogue",1.3,,Shaxy
+"Secret Hunter","Holy Wrath Paladin","Combo Priest","Quest Rogue",1.3,,Sooni
+"Midrange Hunter","Clone Priest","Odd Rogue","Odd Warrior",1.3,,Taesang
+"Hakkar Druid","Secret Hunter","Holy Wrath Paladin","Mecha'thun Warlock",1.3,,TIZS
+"Malygos Druid","Deathrattle Hunter","Even Paladin","Clone Priest",1.3,,TypoVampire
+"Secret Hunter","Odd Paladin","Combo Priest","Odd Rogue",1.3,,ulza8102
+"Midrange Hunter","Odd Paladin","Odd Rogue","Odd Warrior",1.3,,yusa
