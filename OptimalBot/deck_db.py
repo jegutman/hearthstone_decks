@@ -75,6 +75,21 @@ class DeckDBHandler():
 
         self.cursor.execute("SELECT deck_id, deck_archetype, deck_code FROM %(db)s.%(table)s WHERE deck_class = '%(deck_class)s'" % locals())
         return [(i,j,k) for (i,j,k) in self.cursor.fetchall()]
+
+    def get_record(self, player):
+        self.check_cursor()
+        player = player[0]
+        db = 'masters_cups'
+        sql = """
+            SELECT player_name, sum(if(result='W', 1, 0)) as wins, sum(if(result in ('W', 'L'), 1, 0)) as games
+            FROM %(db)s.games join %(db)s.player_info using(tournament_id, player_id)
+            WHERE player_name like '%(player)s%%'
+            GROUP BY player_name
+            ORDER BY games desc
+        """
+        print(sql % locals())
+        self.cursor.execute(sql % locals())
+        return [(i,j,k) for (i,j,k) in self.cursor.fetchall()]
     
     def process_deck(self, message, deck_code, name=None, archetype=None):
         self.check_cursor()
@@ -104,7 +119,7 @@ class DeckDBHandler():
         #deck_name      varchar(32),
         return self.insert_deck(deck, time, date, server, user, is_private, deck_code, deck_class, deck_archetype=archetype, deck_name=name)
 
-    def search_helper(self, args, flags, allow_private, query_channel, limit=0, use_playoffs=False, tags=None, min_date = '2018_08_07'):
+    def search_helper(self, args, flags, allow_private, query_channel, limit=0, use_playoffs=False, tags=None, min_date = '2018_10_07'):
         self.check_cursor()
         playoff_str = "playoff_region = 'None'"
         if use_playoffs:

@@ -19,12 +19,14 @@ from .deck_handler import DeckHandler
 CMD_DECK = "!deck "
 CMD_SEARCH = "!search "
 CMD_SEARCH_PLAYOFF = "!searchplayoff "
+CMD_MASTER_STATS = "!cupstats "
 CMD_LINEUP = "!lineup "
 CMD_COMPARE = "!compare "
 CMD_COMPARE_ALL = "!compareall "
 CMD_SIMILAR = "!similar "
 CMD_UPDATE = "!update "
 CMD_DATA = "!data"
+CMD_WILD = "!wild"
 CMD_RANDOM = "!random "
 CMD_SIM = "!sim "
 CMD_BANS = "!bans "
@@ -91,6 +93,9 @@ class MessageHandler:
             return False
 
     async def handle(self, message):
+        if message.content.startswith(CMD_WILD):
+            await self.respond(message, "THAT'S WILD!")
+            return True
         if str(message.channel.name) not in ALLOWED_CHANNELS:
             if not message.channel.is_private:
                 return True
@@ -100,6 +105,7 @@ class MessageHandler:
             return
 
     async def handle_cmd(self, message, my_message=None):
+
         if message.content.startswith(CMD_UPDATE):
             if str(message.channel.name) not in ALLOWED_CHANNELS:
                 if not message.channel.is_private:
@@ -119,6 +125,13 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_deck_search(message, CMD_SEARCH_PLAYOFF, my_message)
+            return True
+
+        if message.content.startswith(CMD_MASTER_STATS):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_cup_stats(message, CMD_MASTER_STATS, my_message)
             return True
 
         if message.content.startswith(CMD_CARDSCHEDULE):
@@ -536,6 +549,10 @@ class MessageHandler:
                 use_playoffs = True
             response = self.deck_handler.handle_search(message.content[len(cmd):], message, self.deck_db_handler, use_playoffs=use_playoffs)
             await self.respond(message, response, my_message)
+
+    async def handle_cup_stats(self, message, cmd, my_message):
+        response = self.deck_handler.handle_cup_stats(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message)
 
     async def handle_compare(self, message, cmd, my_message):
         response = self.deck_handler.handle_compare(message.content[len(cmd):], message, self.deck_db_handler)

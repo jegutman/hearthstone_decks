@@ -114,6 +114,24 @@ class DeckHandler():
             allow_private = False
         return deck_db_handler.search(args,flags, allow_private, message.server.name, use_playoffs=use_playoffs)
 
+    def handle_cup_stats(self, args, message, deck_db_handler):
+        player, flags = get_args(args)
+        #if 'help' in args.split()[0]:
+        #    return helpstring_search
+        res = deck_db_handler.get_record(player)
+        res_str = ""
+        res_str += "%-24s %3s %3s %s\n" % ('player', 'W', 'L', 'pct')
+        for player, W, G in res[:10]:
+            pct = round(W / G * 100, 1)
+            L = G - W
+            res_str += "%-24s %3s %3s %s\n" % (player, W, L, pct)
+        #if len(res) > 10:
+        #    res_str += '*Limited to 10 most recent results'
+        #res_str += '`'
+        return res_str
+
+        return deck_db_handler.search(args,flags, allow_private, message.server.name, use_playoffs=use_playoffs)
+
     def handle_lineup(self, args, message, deck_db_handler, use_playoffs=True):
         deckstrings, flags = get_args(args)
         if 'help' in args.split()[0]:
