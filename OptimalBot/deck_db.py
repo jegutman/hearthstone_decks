@@ -1,6 +1,6 @@
 from shared_utils import *
 from config import *
-from deck_manager import EasyDeck, print_side_by_side
+from deck_manager import EasyDeck, print_side_by_side, side_by_side_diff_lines
 from arg_split import get_args
 import sys
 
@@ -23,8 +23,9 @@ import datetime
 
 class DeckDBHandler():
     def __init__(self, logger):
-        self.connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
+        self.connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd, charset = 'utf8mb4')
         self.cursor = self.connection.cursor()
+        self.cursor.execute("SET NAMES utf8")
         self.logger = logger
         self.query_dc = "SELECT * FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
         self.query_label = "SELECT deck_code, deck_name, deck_archetype FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
@@ -90,6 +91,61 @@ class DeckDBHandler():
         print(sql % locals())
         self.cursor.execute(sql % locals())
         return [(i,j,k) for (i,j,k) in self.cursor.fetchall()]
+
+    def get_winners(self):
+        self.check_cursor()
+        db = 'masters_cups'
+        sql = """
+            SELECT tournament_name, player_name, archetype_prim
+            FROM %(db)s.winners join %(db)s.player_info using(tournament_id, player_id) join %(db)s.tournament using(tournament_id)
+            ORDER BY time
+        """
+        print(sql % locals())
+        self.cursor.execute(sql % locals())
+        res = [(i.split('-')[-1], j, k) for (i,j,k) in self.cursor.fetchall()]
+        for i in res:
+            print(i[1])
+        return res
+
+    def get_meta(self, tournament_numbers):
+        self.check_cursor()
+        db = 'masters_cups'
+        tournaments = []
+        if '..' in tournament_numbers[0]:
+            a,b = [int(i) for i in tournament_numbers[0].split('..')]
+            tournament_numbers = list(range(a, b+1))
+        for i in tournament_numbers:
+            tournaments.append("'hearthstone-masters-qualifier-las-vegas-%(i)s'" % locals())
+        tournaments = '(' + ",".join(tournaments) + ')'
+        
+       #self.cursor.execute("SELECT tournament_id from tournament where tournament_name in %(tournaments)s" % locals())
+        sql = """
+            SELECT archetype_prim, count(*) as total
+            FROM %(db)s.player_info join %(db)s.tournament using(tournament_id)
+            WHERE tournament_name in %(tournaments)s
+            GROUP BY archetype_prim
+            ORDER BY total desc
+        """
+        print(sql % locals())
+        self.cursor.execute(sql % locals())
+        return [(i,j) for (i,j) in self.cursor.fetchall()]
+
+    def get_cup_deck(self, args):
+        self.check_cursor()
+        db = 'masters_cups'
+        tournament_number, player = args
+        tournament_name = "'hearthstone-masters-qualifier-las-vegas-%(tournament_number)s'" % locals()
+        sql = """
+            SELECT deck1, deck2, deck3
+            FROM %(db)s.player_info join %(db)s.tournament using(tournament_id)
+            WHERE tournament_name = %(tournament_name)s
+                and player_name like '%(player)s%%'
+        """
+        print(sql % locals())
+        self.cursor.execute(sql % locals())
+        res = [(i,j,k) for (i,j,k) in self.cursor.fetchall()]
+        decks = [EasyDeck(i) for i in res[0]]
+        return side_by_side_diff_lines(decks)
     
     def process_deck(self, message, deck_code, name=None, archetype=None):
         self.check_cursor()

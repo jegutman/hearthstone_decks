@@ -132,6 +132,47 @@ class DeckHandler():
 
         return deck_db_handler.search(args,flags, allow_private, message.server.name, use_playoffs=use_playoffs)
 
+    def handle_cup_meta(self, args, message, deck_db_handler):
+        tournaments, flags = get_args(args)
+        #if 'help' in args.split()[0]:
+        #    return helpstring_search
+        res = deck_db_handler.get_meta(tournaments)
+        res_str = ""
+        res_str += "%-24s %3s\n" % ('Archetype', 'count')
+        total = 0
+        for arch, count in res[:50]:
+            res_str += "%-24s %3s\n" % (arch, count)
+            total += int(count)
+        #if len(res) > 10:
+        #    res_str += '*Limited to 10 most recent results'
+        #res_str += '`'
+        res_str += "%-24s %3s\n" % ('TOTAL', total)
+        return res_str
+
+    def handle_cup_winners(self, args, message, deck_db_handler):
+        res = deck_db_handler.get_winners()
+        res_str = ""
+        res_str += "%3s %-20s %-20s\n" % ('', 'player', 'arch')
+        for tourn, player, arch in res[-50:]:
+            res_str += "%3s %-20s %-20s\n" % (tourn, player, arch)
+        #if len(res) > 10:
+        #    res_str += '*Limited to 10 most recent results'
+        #res_str += '`'
+        return res_str
+
+    def handle_cup_deck(self, args, message, deck_db_handler):
+        query, flags = get_args(args)
+        return deck_db_handler.get_cup_deck(query)
+        #res = deck_db_handler.get_cup_deck(query)
+        #res_str = ""
+        #res_str += "%3s %-20s %-20s\n" % ('', 'player', 'arch')
+        #for tourn, player, arch in res[-50:]:
+        #    res_str += "%3s %-20s %-20s\n" % (tourn, player, arch)
+        ##if len(res) > 10:
+        ##    res_str += '*Limited to 10 most recent results'
+        ##res_str += '`'
+        #return res_str
+
     def handle_lineup(self, args, message, deck_db_handler, use_playoffs=True):
         deckstrings, flags = get_args(args)
         if 'help' in args.split()[0]:

@@ -19,7 +19,10 @@ from .deck_handler import DeckHandler
 CMD_DECK = "!deck "
 CMD_SEARCH = "!search "
 CMD_SEARCH_PLAYOFF = "!searchplayoff "
-CMD_MASTER_STATS = "!cupstats "
+CMD_CUP_STATS = "!cupstats "
+CMD_CUP_WINNERS = "!cupwinners"
+CMD_CUP_META = "!cupmeta "
+CMD_CUP_DECK = "!cupdeck "
 CMD_LINEUP = "!lineup "
 CMD_COMPARE = "!compare "
 CMD_COMPARE_ALL = "!compareall "
@@ -127,11 +130,32 @@ class MessageHandler:
             await self.handle_deck_search(message, CMD_SEARCH_PLAYOFF, my_message)
             return True
 
-        if message.content.startswith(CMD_MASTER_STATS):
+        if message.content.startswith(CMD_CUP_STATS):
             if str(message.channel.name) not in ALLOWED_CHANNELS:
                 if not message.channel.is_private:
                     return True
-            await self.handle_cup_stats(message, CMD_MASTER_STATS, my_message)
+            await self.handle_cup_stats(message, CMD_CUP_STATS, my_message)
+            return True
+
+        if message.content.startswith(CMD_CUP_META):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_cup_meta(message, CMD_CUP_META, my_message)
+            return True
+
+        if message.content.startswith(CMD_CUP_DECK):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_cup_deck(message, CMD_CUP_DECK, my_message)
+            return True
+
+        if message.content.startswith(CMD_CUP_WINNERS):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_cup_winners(message, CMD_CUP_WINNERS, my_message)
             return True
 
         if message.content.startswith(CMD_CARDSCHEDULE):
@@ -552,6 +576,18 @@ class MessageHandler:
 
     async def handle_cup_stats(self, message, cmd, my_message):
         response = self.deck_handler.handle_cup_stats(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_cup_meta(self, message, cmd, my_message):
+        response = self.deck_handler.handle_cup_meta(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_cup_deck(self, message, cmd, my_message):
+        response = self.deck_handler.handle_cup_deck(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_cup_winners(self, message, cmd, my_message):
+        response = self.deck_handler.handle_cup_winners(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
 
     async def handle_compare(self, message, cmd, my_message):

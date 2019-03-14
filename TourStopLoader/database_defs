@@ -1,0 +1,50 @@
+CREATE TABLE reference_archetypes
+(
+    card_class     varchar(128) NOT NULL,
+    archetype      varchar(128) NOT NULL,
+    deck_code      varchar(128) NOT NULL,
+    PRIMARY KEY(deck_code)
+);
+
+CREATE TABLE tournament
+(
+    tournament_id   varchar(24) NOT NULL,
+    tournament_name varchar(48) NOT NULL,
+    time            int(32) NOT NULL,
+    swiss_bracket   varchar(24),
+    top8_bracket    varchar(24),
+    PRIMARY KEY(tournament_id)
+);
+
+CREATE TABLE player_info
+(
+    tournament_id  varchar(24) NOT NULL,
+    player_id      varchar(24) NOT NULL,
+    player_name    varchar(32) NOT NULL,
+    deck1          varchar(128) NOT NULL,
+    deck2          varchar(128) NOT NULL,
+    deck3          varchar(128) NOT NULL,
+    archetype_prim varchar(32) NOT NULL,
+    PRIMARY KEY(tournament_id, player_id)
+);
+
+#games will be double entry to make summary easier
+CREATE TABLE games
+(
+    tournament_id   varchar(24) NOT NULL,
+    player_id       varchar(24) NOT NULL,
+    bracket_id      varchar(24) NOT NULL,
+    round_number    varchar(3)  NOT NULL,
+    opponent_id     varchar(24) NOT NULL,
+    score1          int(32) NOT NULL,
+    score2          int(32) NOT NULL,
+    result          varchar(1) NOT NULL,
+    PRIMARY KEY(tournament_id, player_id, bracket_id, round_number)
+);
+
+CREATE TABLE winners
+(
+    tournament_id   varchar(24) NOT NULL,
+    player_id       varchar(48) NOT NULL,
+    PRIMARY KEY(tournament_id, player_id)
+);
