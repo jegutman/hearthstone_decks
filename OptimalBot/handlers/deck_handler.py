@@ -121,7 +121,7 @@ class DeckHandler():
         res = deck_db_handler.get_record(player)
         res_str = ""
         res_str += "%-24s %3s %3s %s\n" % ('player', 'W', 'L', 'pct')
-        for player, W, G in res[:10]:
+        for player, W, G in res[:25]:
             pct = round(W / G * 100, 1)
             L = G - W
             res_str += "%-24s %3s %3s %s\n" % (player, W, L, pct)
@@ -130,7 +130,21 @@ class DeckHandler():
         #res_str += '`'
         return res_str
 
-        return deck_db_handler.search(args,flags, allow_private, message.server.name, use_playoffs=use_playoffs)
+    def handle_cup_history(self, args, message, deck_db_handler):
+        player, flags = get_args(args)
+        res = deck_db_handler.get_cup_history(player)
+        res_str = ""
+        res_str += "%3s %-18s %3s %3s %s\n" % ('cup', 'player', 'W', 'L', 'Archetype')
+        totW, totL = 0,0
+        for cup, player, arch, W, G in res[:25]:
+            cup = cup.split('-')[-1]
+            L = G - W
+            totW += W
+            totL += L
+            res_str += "%3s %-18s %3s %3s %s\n" % (cup, player, W, L, arch)
+        pct = round(totW / (totW + totL) * 100, 1)
+        res_str += "%3s %-18s %3s %3s %s\n" % ("TOT", player, totW, totL, pct)
+        return res_str
 
     def handle_cup_meta(self, args, message, deck_db_handler):
         tournaments, flags = get_args(args)

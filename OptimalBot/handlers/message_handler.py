@@ -20,6 +20,7 @@ CMD_DECK = "!deck "
 CMD_SEARCH = "!search "
 CMD_SEARCH_PLAYOFF = "!searchplayoff "
 CMD_CUP_STATS = "!cupstats "
+CMD_CUP_HISTORY = "!cuphistory "
 CMD_CUP_WINNERS = "!cupwinners"
 CMD_CUP_META = "!cupmeta "
 CMD_CUP_DECK = "!cupdeck "
@@ -135,6 +136,13 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_cup_stats(message, CMD_CUP_STATS, my_message)
+            return True
+
+        if message.content.startswith(CMD_CUP_HISTORY):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_cup_history(message, CMD_CUP_HISTORY, my_message)
             return True
 
         if message.content.startswith(CMD_CUP_META):
@@ -576,6 +584,10 @@ class MessageHandler:
 
     async def handle_cup_stats(self, message, cmd, my_message):
         response = self.deck_handler.handle_cup_stats(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_cup_history(self, message, cmd, my_message):
+        response = self.deck_handler.handle_cup_history(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
 
     async def handle_cup_meta(self, message, cmd, my_message):

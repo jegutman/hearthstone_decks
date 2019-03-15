@@ -92,6 +92,21 @@ class DeckDBHandler():
         self.cursor.execute(sql % locals())
         return [(i,j,k) for (i,j,k) in self.cursor.fetchall()]
 
+    def get_cup_history(self, player):
+        self.check_cursor()
+        player = player[0]
+        db = 'masters_cups'
+        sql = """
+            SELECT tournament_name, player_name, archetype_prim, sum(if(result='W', 1, 0)) as wins, sum(if(result in ('W', 'L'), 1, 0)) as games
+            FROM %(db)s.games join %(db)s.player_info using(tournament_id, player_id) join %(db)s.tournament using(tournament_id)
+            WHERE player_name like '%(player)s%%'
+            GROUP BY tournament_name, player_name, archetype_prim
+            ORDER BY time, games desc
+        """
+        print(sql % locals())
+        self.cursor.execute(sql % locals())
+        return [(i,j,k, l, m) for (i,j,k, l, m) in self.cursor.fetchall()]
+
     def get_winners(self):
         self.check_cursor()
         db = 'masters_cups'
@@ -144,7 +159,24 @@ class DeckDBHandler():
         print(sql % locals())
         self.cursor.execute(sql % locals())
         res = [(i,j,k) for (i,j,k) in self.cursor.fetchall()]
-        decks = [EasyDeck(i) for i in res[0]]
+        decks = [EasyDeck(i, i) for i in res[0]]
+        return side_by_side_diff_lines(decks)
+
+    def get_cup_details(self, args):
+        self.check_cursor()
+        db = 'masters_cups'
+        tournament_number, player = args
+        tournament_name = "'hearthstone-masters-qualifier-las-vegas-%(tournament_number)s'" % locals()
+        sql = """
+            SELECT deck1, deck2, deck3
+            FROM %(db)s.player_info join %(db)s.tournament using(tournament_id)
+            WHERE tournament_name = %(tournament_name)s
+                and player_name like '%(player)s%%'
+        """
+        print(sql % locals())
+        self.cursor.execute(sql % locals())
+        res = [(i,j,k) for (i,j,k) in self.cursor.fetchall()]
+        decks = [EasyDeck(i, i) for i in res[0]]
         return side_by_side_diff_lines(decks)
     
     def process_deck(self, message, deck_code, name=None, archetype=None):
