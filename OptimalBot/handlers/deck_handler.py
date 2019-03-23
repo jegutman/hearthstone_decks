@@ -120,11 +120,11 @@ class DeckHandler():
         #    return helpstring_search
         res = deck_db_handler.get_record(player)
         res_str = ""
-        res_str += "%-24s %3s %3s %s\n" % ('player', 'W', 'L', 'pct')
-        for player, W, G in res[:25]:
+        res_str += "%-24s %3s %3s %3s %s\n" % ('player', 'cups', 'W', 'L', 'pct')
+        for player, cups, W, G in res[:25]:
             pct = round(W / G * 100, 1)
             L = G - W
-            res_str += "%-24s %3s %3s %s\n" % (player, W, L, pct)
+            res_str += "%-24s %3s %3s %3s %s\n" % (player, cups, W, L, pct)
         #if len(res) > 10:
         #    res_str += '*Limited to 10 most recent results'
         #res_str += '`'
@@ -136,13 +136,13 @@ class DeckHandler():
         res_str = ""
         res_str += "%3s %-18s %3s %3s %s\n" % ('cup', 'player', 'W', 'L', 'Archetype')
         totW, totL = 0,0
-        for cup, player, arch, W, G in res[:25]:
+        for cup, player, arch, W, G in res[-50:]:
             cup = cup.split('-')[-1]
             L = G - W
             totW += W
             totL += L
             res_str += "%3s %-18s %3s %3s %s\n" % (cup, player, W, L, arch)
-        pct = round(totW / (totW + totL) * 100, 1)
+        pct = round(totW / max((totW + totL), 1) * 100, 1)
         res_str += "%3s %-18s %3s %3s %s\n" % ("TOT", player, totW, totL, pct)
         return res_str
 
@@ -163,29 +163,53 @@ class DeckHandler():
         res_str += "%-24s %3s\n" % ('TOTAL', total)
         return res_str
 
+    def handle_cup_link(self, args, message, deck_db_handler):
+        tournament, flags = get_args(args)
+        #if 'help' in args.split()[0]:
+        #    return helpstring_search
+        res = deck_db_handler.get_link(tournament)
+        res_str = '%(res)s' % locals()
+        return res_str
+
     def handle_cup_winners(self, args, message, deck_db_handler):
-        res = deck_db_handler.get_winners()
+        query_res = deck_db_handler.get_winners()
+        res = []
         res_str = ""
         res_str += "%3s %-20s %-20s\n" % ('', 'player', 'arch')
-        for tourn, player, arch in res[-50:]:
+        for tourn, player, arch in query_res[-75:-50]:
             res_str += "%3s %-20s %-20s\n" % (tourn, player, arch)
+        res.append(res_str)
+        res_str = ""
+        for tourn, player, arch in query_res[-50:-25]:
+            res_str += "%3s %-20s %-20s\n" % (tourn, player, arch)
+        res.append(res_str)
+        res_str = ""
+        #res_str += "%3s %-20s %-20s\n" % ('', 'player', 'arch')
+        for tourn, player, arch in query_res[-25:]:
+            res_str += "%3s %-20s %-20s\n" % (tourn, player, arch)
+        res.append(res_str)
         #if len(res) > 10:
         #    res_str += '*Limited to 10 most recent results'
         #res_str += '`'
-        return res_str
+        #return res_str
+        return res
 
     def handle_cup_deck(self, args, message, deck_db_handler):
         query, flags = get_args(args)
         return deck_db_handler.get_cup_deck(query)
-        #res = deck_db_handler.get_cup_deck(query)
-        #res_str = ""
-        #res_str += "%3s %-20s %-20s\n" % ('', 'player', 'arch')
-        #for tourn, player, arch in res[-50:]:
-        #    res_str += "%3s %-20s %-20s\n" % (tourn, player, arch)
-        ##if len(res) > 10:
-        ##    res_str += '*Limited to 10 most recent results'
-        ##res_str += '`'
-        #return res_str
+
+    def handle_cup_details(self, args, message, deck_db_handler):
+        query, flags = get_args(args)
+        res = deck_db_handler.get_cup_details(query)
+        count = 0
+        res_str = ""
+        res_str += "%2s %-20s %-20s %2s %2s %3s %s\n" % ('', 'p1', 'p2', 's1', 's2', 'res', 'opp_arch')
+        for round_number, p1, p2, s1, s2, r, opp_arch in res:
+            count += 1
+            if count != 1 and int(round_number) == 1:
+                res_str += ' Top 8\n'
+            res_str += "%2s %-20s %-20s %2s %2s %3s %s\n" % (round_number, p1, p2, s1, s2, r, opp_arch)
+        return res_str
 
     def handle_lineup(self, args, message, deck_db_handler, use_playoffs=True):
         deckstrings, flags = get_args(args)

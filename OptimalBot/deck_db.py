@@ -25,7 +25,9 @@ class DeckDBHandler():
     def __init__(self, logger):
         self.connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd, charset = 'utf8mb4')
         self.cursor = self.connection.cursor()
-        self.cursor.execute("SET NAMES utf8")
+        #self.cursor.execute("SET NAMES utf8")
+        #self.cursor.execute("SET CHARACTER SET utf8mb4")
+        #self.cursor.execute("SET character_set_connection=utf8mb4")
         self.logger = logger
         self.query_dc = "SELECT * FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
         self.query_label = "SELECT deck_code, deck_name, deck_archetype FROM %(db)s.%(table)s WHERE deck_code = '%(deck_code)s'"
@@ -34,7 +36,7 @@ class DeckDBHandler():
         try:
             cursor.execute("SELECT 1")
         except:
-            self.connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
+            self.connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd, charset = 'utf8mb4')
             self.cursor = self.connection.cursor()
 
     def guess_archetype(self, deck):
@@ -82,15 +84,15 @@ class DeckDBHandler():
         player = player[0]
         db = 'masters_cups'
         sql = """
-            SELECT player_name, sum(if(result='W', 1, 0)) as wins, sum(if(result in ('W', 'L'), 1, 0)) as games
+            SELECT player_name, count(distinct tournament_id) as cups, sum(if(result='W', 1, 0)) as wins, sum(if(result in ('W', 'L'), 1, 0)) as games
             FROM %(db)s.games join %(db)s.player_info using(tournament_id, player_id)
             WHERE player_name like '%(player)s%%'
             GROUP BY player_name
-            ORDER BY games desc
+            ORDER BY cups desc, wins desc
         """
         print(sql % locals())
         self.cursor.execute(sql % locals())
-        return [(i,j,k) for (i,j,k) in self.cursor.fetchall()]
+        return [i for i in self.cursor.fetchall()]
 
     def get_cup_history(self, player):
         self.check_cursor()
@@ -117,9 +119,12 @@ class DeckDBHandler():
         """
         print(sql % locals())
         self.cursor.execute(sql % locals())
-        res = [(i.split('-')[-1], j, k) for (i,j,k) in self.cursor.fetchall()]
-        for i in res:
-            print(i[1])
+        #print(self.cursor.fetchall())
+        res = self.cursor.fetchall()
+        #res = [(i.split('-')[-1], j, k) for (i,j,k) in self.cursor.fetchall()]
+        res = [(i.split('-')[-1], j, k) for (i,j,k) in res]
+        #for i in res:
+        #    print(i[1])
         return res
 
     def get_meta(self, tournament_numbers):
@@ -145,6 +150,23 @@ class DeckDBHandler():
         self.cursor.execute(sql % locals())
         return [(i,j) for (i,j) in self.cursor.fetchall()]
 
+    def get_link(self, tournament_number):
+        self.check_cursor()
+        db = 'masters_cups'
+        tournament_number = tournament_number[0]
+       #self.cursor.execute("SELECT tournament_id from tournament where tournament_name in %(tournaments)s" % locals())
+        sql = """
+            SELECT tournament_id
+            FROM %(db)s.tournament 
+            WHERE tournament_name = 'hearthstone-masters-qualifier-las-vegas-%(tournament_number)s'
+        """
+        link = 'https://battlefy.com/hsesports/hearthstone-masters-qualifier-las-vegas-%(tournament_number)s/%(tournament_id)s/'
+        print(sql % locals())
+        self.cursor.execute(sql % locals())
+        tournament_id = [i for (i,) in self.cursor.fetchall()][0]
+        print(tournament_id)
+        return link % locals()
+
     def get_cup_deck(self, args):
         self.check_cursor()
         db = 'masters_cups'
@@ -167,18 +189,26 @@ class DeckDBHandler():
         db = 'masters_cups'
         tournament_number, player = args
         tournament_name = "'hearthstone-masters-qualifier-las-vegas-%(tournament_number)s'" % locals()
+        bracket = 'swiss'
         sql = """
-            SELECT deck1, deck2, deck3
-            FROM %(db)s.player_info join %(db)s.tournament using(tournament_id)
-            WHERE tournament_name = %(tournament_name)s
-                and player_name like '%(player)s%%'
+            SELECT round_number, p1.player_name, p2.player_name, score1, score2, result, p2.archetype_prim
+            FROM %(db)s.games g join %(db)s.tournament t on g.tournament_id = t.tournament_id and g.bracket_id = t.%(bracket)s_bracket
+                join %(db)s.player_info p1 on t.tournament_id = p1.tournament_id and g.player_id = p1.player_id
+                join %(db)s.player_info p2 on t.tournament_id = p2.tournament_id and g.opponent_id = p2.player_id
+            WHERE t.tournament_name = %(tournament_name)s
+                and p1.player_name like '%(player)s%%'
+            ORDER BY round_number
         """
         print(sql % locals())
         self.cursor.execute(sql % locals())
-        res = [(i,j,k) for (i,j,k) in self.cursor.fetchall()]
-        decks = [EasyDeck(i, i) for i in res[0]]
-        return side_by_side_diff_lines(decks)
-    
+        res = [x for x in self.cursor.fetchall()]
+        bracket = 'top8'
+        print(sql % locals())
+        self.cursor.execute(sql % locals())
+        res += [x for x in self.cursor.fetchall()]
+        #decks = [EasyDeck(i, i) for i in res[0]]
+        return res
+
     def process_deck(self, message, deck_code, name=None, archetype=None):
         self.check_cursor()
         db, table = 'deckstrings,decks'.split(',')
