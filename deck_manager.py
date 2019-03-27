@@ -9,7 +9,13 @@ class EasyDeck():
 
     def __init__(self, deckstring, name = "", debug=False):
         if debug: print(deckstring)
-        self.deck = Deck.from_deckstring(deckstring)
+        try:
+            self.deck = Deck.from_deckstring(deckstring)
+        except:
+            try:
+                self.deck = Deck.from_deckstring(deckstring + '=')
+            except:
+                self.deck = Deck.from_deckstring(deckstring + '==')
         self.name = name
         self.deckstring = deckstring
         self.card_set = self.get_card_codes_long_set()
@@ -23,6 +29,14 @@ class EasyDeck():
 
     def card_count(self):
         return sum([j for i,j in self.deck.cards])
+
+    def check_card(self, card_name):
+        for i,j in self.deck.cards:
+            name = cards[i]['name']
+            #if 'Master' in name: print("hello")
+            if name == card_name: return True
+        return False
+
 
     def get_print_lines(self): 
         res = ['   ' + self.get_class()]
@@ -190,6 +204,9 @@ def side_by_side_diff_lines(list_of_decks):
                 if diff > 0:
                     diff = "+%s" % diff
                 res.append("    %2s %s" % (diff, card_name))
+    if len(list_of_decks) == 3:
+        res += [just_diff_lines(list_of_decks[:2])]
+        res += [just_diff_lines([list_of_decks[0], list_of_decks[2]])]
     return '\n'.join(res)
 
 def just_diff_lines(list_of_decks):
@@ -197,7 +214,8 @@ def just_diff_lines(list_of_decks):
     deck_cards_to_print = [d.get_cards_to_print() for d in list_of_decks]
     diffs = {}
     cost = {}
-    res = ["" + list_of_decks[0].get_class()]
+    res = [""]
+    #res = ["" + list_of_decks[0].get_class()]
     #res += [" | ".join([i.name for i in list_of_decks])]
     card_set = set()
     for cl in deck_cards_to_print:
