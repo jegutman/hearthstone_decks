@@ -1,0 +1,14 @@
+,Tempo Rogue,Zoo Warlock,Control Warrior,Midrange Hunter,Khadgar Dragon Mage,Bomb Warrior,Control Shaman,Miracle Rogue,Token Druid,Nomi Priest,Heal Druid,Token Shaman,Mech Hunter
+Tempo Rogue,50,55,36,70,58,47,50,65,55,53,61,50,61
+Zoo Warlock,,50,29,53,66,36,44,50,70,33,55,50,59
+Control Warrior,,,50,41,30,44,70,25,53,54,44,50,33
+Midrange Hunter,,,,50,59,53,75,45,49,64,58,50,44
+Khadgar Dragon Mage,,,,,50,69,75,75,48,58,87,50,32
+Bomb Warrior,,,,,,50,69,65,47,76,32,50,34
+Control Shaman,,,,,,,50,25,53,46,78,50,50
+Miracle Rogue,,,,,,,,50,60,20,50,50,50
+Token Druid,,,,,,,,,50,32,52,50,61
+Nomi Priest,,,,,,,,,,50,64,50,48
+Heal Druid,,,,,,,,,,,50,50,37
+Token Shaman,,,,,,,,,,,,50,50
+Mech Hunter,,,,,,,,,,,,,50
