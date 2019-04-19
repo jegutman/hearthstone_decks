@@ -23,7 +23,9 @@ CMD_CUP_STATS = "!cupstats "
 CMD_CUP_HISTORY = "!cuphistory "
 CMD_CUP_WINNERS = "!cupwinners"
 CMD_CUP_META = "!cupmeta "
+CMD_CUP_LINK = "!cuplink "
 CMD_CUP_DECK = "!cupdeck "
+CMD_CUP_DETAIL = "!cupdetail "
 CMD_LINEUP = "!lineup "
 CMD_COMPARE = "!compare "
 CMD_COMPARE_ALL = "!compareall "
@@ -145,6 +147,13 @@ class MessageHandler:
             await self.handle_cup_history(message, CMD_CUP_HISTORY, my_message)
             return True
 
+        if message.content.startswith(CMD_CUP_LINK):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_cup_link(message, CMD_CUP_LINK, my_message)
+            return True
+
         if message.content.startswith(CMD_CUP_META):
             if str(message.channel.name) not in ALLOWED_CHANNELS:
                 if not message.channel.is_private:
@@ -157,6 +166,13 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_cup_deck(message, CMD_CUP_DECK, my_message)
+            return True
+
+        if message.content.startswith(CMD_CUP_DETAIL):
+            if str(message.channel.name) not in ALLOWED_CHANNELS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_cup_detail(message, CMD_CUP_DETAIL, my_message)
             return True
 
         if message.content.startswith(CMD_CUP_WINNERS):
@@ -499,18 +515,21 @@ class MessageHandler:
         
         return False
 
-    async def respond(self, message, response, my_message=None):
+    async def respond(self, message, response, my_message=None, wrapper = '```\n'):
         self.log_message(message)
         if len(response) > 2000:
+            print(response)
             sys.stdout.write('response is very long: ' + str(len(response)) + '\n')
             sys.stdout.flush()
             response = 'Unfortunately response is too long'
         if my_message is None:
             if isinstance(response, list):
                 for tmp_response in response:
-                    my_message = await self.client.send_message(message.channel, '```\n' + tmp_response + '```')
+                    #my_message = await self.client.send_message(message.channel, '```\n' + tmp_response + '```')
+                    my_message = await self.client.send_message(message.channel, wrapper + tmp_response + wrapper.replace('\n', ''))
             else:
-                my_message = await self.client.send_message(message.channel, '```\n' + response + '```')
+                #my_message = await self.client.send_message(message.channel, '```\n' + response + '```')
+                my_message = await self.client.send_message(message.channel, wrapper + response + wrapper.replace('\n', ''))
         else:
             await self.client.edit_message(my_message, '```\n' + response + '```')
         await self.check_edit(message, my_message)
@@ -594,8 +613,16 @@ class MessageHandler:
         response = self.deck_handler.handle_cup_meta(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
 
+    async def handle_cup_link(self, message, cmd, my_message):
+        response = self.deck_handler.handle_cup_link(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message, wrapper='')
+
     async def handle_cup_deck(self, message, cmd, my_message):
         response = self.deck_handler.handle_cup_deck(message.content[len(cmd):], message, self.deck_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_cup_detail(self, message, cmd, my_message):
+        response = self.deck_handler.handle_cup_details(message.content[len(cmd):], message, self.deck_db_handler)
         await self.respond(message, response, my_message)
 
     async def handle_cup_winners(self, message, cmd, my_message):
