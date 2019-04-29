@@ -105,7 +105,18 @@ def get_match_info(tournament_id, bracket_id, match):
     p2_score = match['bottom']['score']
     #pprint(match)
     round_num = match['roundNumber']
+    if 'readyAt' not in match['top']:
+        tmp_name1 = player_tourn_names.get((tournament_id, p1_id), p1_id)
+        tmp_name2 = player_tourn_names.get((tournament_id, p2_id), p2_id)
+        print('forfeit P1', tournament_id, bracket_id, tmp_name1, tmp_name2, round_num)
+        return
+    if 'readyAt' not in match['bottom']:
+        tmp_name1 = player_tourn_names.get((tournament_id, p1_id), p1_id)
+        tmp_name2 = player_tourn_names.get((tournament_id, p2_id), p2_id)
+        print('forfeit P2', tournament_id, bracket_id, tmp_name1, tmp_name2, round_num)
+        return
     winner = match['top']['team']['name'] if match['top']['winner'] else match['bottom']['team']['name']
+    match_info = None
     if (tournament_id, p1_id) not in player_tourn_decks:
         match_info = json.loads(requests.get(match_info_url % locals()).text)
         p1_name = match_info[0]['top']['team']['players'][0]['inGameName']
@@ -130,6 +141,8 @@ def get_match_info(tournament_id, bracket_id, match):
         p1_name = player_tourn_names[(tournament_id, p1_id)]
         p1_decks = player_tourn_decks[(tournament_id, p1_id)]
     if (tournament_id, p2_id) not in player_tourn_decks:
+        if match_info is None:
+            match_info = json.loads(requests.get(match_info_url % locals()).text)
         p2_name = match_info[0]['bottom']['team']['players'][0]['inGameName']
         player_ids[tournament_id][p2_name] = p2_id
         p2_decks = []
@@ -279,6 +292,8 @@ for tournament_id, tournament_time, tournament_region, tournament_name in get_ma
     if check_winner(tournament_id):
         print("%s already loaded" % tournament_name)
         continue
+    else:
+        print("loading %s" % tournament_name)
     date_str = datetime.datetime.fromtimestamp(tournament_time).strftime("%Y_%m_%d %H:%M")
     stage_ids = get_stage_ids(tournament_id)
     if len(stage_ids) < 2: 
@@ -301,7 +316,7 @@ for tournament_id, tournament_time, tournament_region, tournament_name in get_ma
     winner = finals[0]['top']['team']['name'] if finals[0]['top']['winner'] else finals[0]['bottom']['team']['name']
     winner_id = finals[0]['top']['team']['captainID'] if finals[0]['top']['winner'] else finals[0]['bottom']['team']['captainID']
     load_winner(tournament_id, winner_id)
-    print("\n%s,%s,%s,%s,%s,%s\n" % (tournament_name.split('-')[-1], date_str, tournament_link_str % locals(), swiss_link, top8_link, winner))
+    #print("\n%s,%s,%s,%s,%s,%s\n" % (tournament_name.split('-')[-1], date_str, tournament_link_str % locals(), swiss_link, top8_link, winner))
     tmp_final = top8_games[-1]
 
 
