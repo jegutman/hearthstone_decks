@@ -11,6 +11,9 @@ reference_decks = {}
 file = open(basedir + '/TourStopLoader/hsreplay_archetypes.csv')
 for line in file:
     card_class, archetype, deck_code = line.strip().split(',')
+    if card_class == 'Handlock': 
+        card_class = "Warlock"
+        archetype = "Handlock Warlock"
     reference_decks[card_class] = reference_decks.get(card_class, []) + [EasyDeck(deck_code, archetype)]
 
 def label_archetype(code, threshold=8, reference_decks=reference_decks, default=None):
@@ -18,9 +21,9 @@ def label_archetype(code, threshold=8, reference_decks=reference_decks, default=
     try:
         deck = EasyDeck(code)
     except:
-        print('\n')
-        print("Invalid Deck Code: %s" % code)
-        print('\n')
+        #print('\n')
+        #print("Invalid Deck Code: %s" % code)
+        #print('\n')
         return None
     reference_class = deck.get_class().capitalize()
     try:

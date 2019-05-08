@@ -13,7 +13,7 @@ import os
 import re
 import requests
 from pprint import pprint
-import pycookiecheat
+#import pycookiecheat
 from fake_useragent import UserAgent
 from deck_manager import *
 #from conquest_utils import *
@@ -236,13 +236,14 @@ def parse_smash_tournament(tournament_name):
         bracket_name = phase_map[bracket['phaseId']]
         print(bracket_url % locals())
         bracket_data = json.loads(requests.get(bracket_url % locals()).text)
-        try:
+        #try:
+        if True:
             for entrant_data in bracket_data['entities']['entrants']:
                 entrants[entrant_data['id']] = tuple(entrant_data['mutations']['players'].values())[0]['gamerTag'].split('#')[0].strip()
                 entrant_name_to_id[entrant_data['name']] = entrant_data['id']
-        except:
-            print("bracket failed")
-            continue
+        #except:
+        #    print("bracket failed")
+        #    continue
         #decks.update(decks_from_smashgg(url_slug % locals(), entrants))
         decks.update(decks_from_smashgg_api(event_id, entrants, entrant_name_to_id))
         #for i in sorted(entrants.values()):
@@ -344,7 +345,7 @@ if __name__ == '__main__':
     #decks = decks_from_smashgg('https://smash.gg/tournament/dreamhack-hct-grand-prix-tours-2018/event/dreamhack-hct-hearthstone-grand-prix-tours-2018/brackets/239288')
 
     #decks, matches, player_matches = parse_smash_tournament('dreamhack-hct-grand-prix-austin-2018')
-    decks, matches, player_matches = parse_smash_tournament('dreamhack-hct-grand-prix-montreal-2018-1')
+    decks, matches, player_matches = parse_smash_tournament('hct-esports-arena-orange-county')
     #decks, matches, player_matches = parse_smash_tournament('dreamhack-hct-grand-prix-summer-2018')
     #decks, matches, player_matches = parse_smash_tournament('hct-toronto-at-eglx-2018-1')
     wins = {}
@@ -371,9 +372,10 @@ if __name__ == '__main__':
                 archetypes[player].append(label)
                 class_archetypes[player][label.split(' ')[-1]] = label
             else:
-                print(player)
-                print(deck)
-                tmp.print_deck()
+                if False:
+                    print(player)
+                    print(deck)
+                    tmp.print_deck()
         archetypes[player] = sorted(archetypes[player], key=lambda x:x.split(' ')[1])
         #if wins.get(player, 0) >= 7:
         #    print(",".join(sorted(archetypes[player], key=lambda x:x.split(' ')[1])))
@@ -388,7 +390,7 @@ if __name__ == '__main__':
     def print_ogs(matches, round_filter = 1,show_wr=True, OGs=None, bracket_filter = None):
         global win_pcts
         if OGs == None:
-            OGs = ['Level9001', 'Ginky', 'TheChosenGuy', 'SwaggyG', 'Villain', 'Caravaggio', 'Ryder', 'seohyun628', 'XisBau5e', 'Qwerty97', 'Luker', 'Fenom', 'kuonet', 'Guiyze', 'killinallday', 'zlsjs', 'lnguagehackr']
+            OGs = ['MegaManMusic', 'Level9001', 'Ginky', 'TheChosenGuy', 'SwaggyG', 'Villain', 'Caravaggio', 'Ryder', 'seohyun628', 'XisBau5e', 'Qwerty97', 'Luker', 'Fenom', 'kuonet', 'Guiyze', 'killinallday', 'zlsjs', 'lnguagehackr']
         round_wins = {}
         to_print = []
         for date, bracket, round_num, p1, p2, result, score1, score2,  games in sorted(matches, key=lambda x:x[2]):
@@ -440,7 +442,7 @@ if __name__ == '__main__':
         rating_diff = r2 - r1
         return 1 / (1 + 10 ** (rating_diff / 1135.77))
 
-    print_ogs(matches, round_filter = 1,show_wr=True, OGs=None, bracket_filter = None)
+    print_ogs(matches, round_filter = 5,show_wr=True, OGs=None, bracket_filter = None)
     #print_ogs(matches, round_filter = 1,show_wr=True, OGs=['zlsjs'], bracket_filter = None)
     print('\n')
     #print_ogs(matches, round_filter = 1,show_wr=True, OGs=RNGs, bracket_filter = None)

@@ -117,7 +117,7 @@ for K in range(36, 38, 2):
             errors.append(error)
     file.close()
 
-    min_games = 20
+    min_games = 5
 
     def expose(r):
         return int(r.mu)
@@ -128,7 +128,8 @@ for K in range(36, 38, 2):
         if True:
             print("   %-15s %-5s %-5s" % ('Player', 'rEst', 'games'))
             index = 0
-            for p, r in top_players[:50]:
+            #for p, r in top_players[:250]:
+            for p, r in top_players:
                 index += 1
                 win = wins.get(p, 0)
                 losses = rating_games[p] - win

@@ -36,7 +36,8 @@ cursor.execute("SET NAMES utf8")
 #deckstring_re = re.compile('AA(?:[A-Za-z0-9+/]{2})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}){12,}')
 deckstring_re = re.compile('AA[A-Za-z0-9+/]+=*')
 
-all_cups_url = 'https://playhearthstone.com/en-us/esports/schedule/scheduleData?month=%(month)s&year=%(year)s'
+#all_cups_url = 'https://playhearthstone.com/en-us/esports/schedule/scheduleData?month=%(month)s&year=%(year)s'
+all_cups_url = 'https://playhearthstone.com/en-us/api/esports/schedule/masters-qualifiers/?month=%(month)s&year=%(year)s'
 tournament_info_url = 'https://dtmwra1jsgyb0.cloudfront.net/tournaments/%(tournament_id)s'
 all_matches_url = 'https://dtmwra1jsgyb0.cloudfront.net/stages/%(stage_id)s/matches'
 match_info_url = 'https://dtmwra1jsgyb0.cloudfront.net/matches/%(match_id)s?extend%%5Btop.team%%5D%%5Bplayers%%5D%%5Buser%%5D=true&extend%%5Bbottom.team%%5D%%5Bplayers%%5D%%5Buser%%5D=true'
@@ -115,6 +116,9 @@ def get_match_info(tournament_id, bracket_id, match):
         tmp_name2 = player_tourn_names.get((tournament_id, p2_id), p2_id)
         print('forfeit P2', tournament_id, bracket_id, tmp_name1, tmp_name2, round_num)
         return
+    match_start = get_time_from_utc(match['top']['readyAt'])
+    match_start = max(match_start, get_time_from_utc( match['bottom']['readyAt']))
+    match_end = get_time_from_utc(match['completedAt'])
     winner = match['top']['team']['name'] if match['top']['winner'] else match['bottom']['team']['name']
     match_info = None
     if (tournament_id, p1_id) not in player_tourn_decks:
@@ -188,6 +192,8 @@ def get_match_info(tournament_id, bracket_id, match):
     load_game(tournament_id, p1_id, bracket_id, round_num, p2_id, p1_score, p2_score, result)
     result = 'W' if p2_name == winner else 'L'
     load_game(tournament_id, p2_id, bracket_id, round_num, p1_id, p2_score, p1_score, result)
+    load_times(tournament_id, p1_id, bracket_id, round_num, match_start, match_end)
+    load_times(tournament_id, p2_id, bracket_id, round_num, match_start, match_end)
     #print(round_num, p1_name, p2_name, p1_score, p2_score, winner, label_archetype(p1_decks[0]) if p1_decks else None, label_archetype(p2_decks[0]) if p2_decks else None)
     
 
@@ -206,6 +212,17 @@ def create_tournament(tournament_id, tournament_name, time, swiss_id, top8_id):
         connection.commit()
         return True
     return False
+
+def load_times(tournament_id, player_id, bracket_id, round_number, start_time, end_time):
+    db = 'masters_cups'
+    sql = """INSERT INTO %(db)s.times (tournament_id, player_id, bracket_id, round_number, start_time, end_time)
+             VALUES ('%(tournament_id)s', '%(player_id)s', '%(bracket_id)s', '%(round_number)s', %(start_time)s, %(end_time)s)
+             ON DUPLICATE KEY UPDATE
+             start_time = %(start_time)s,
+             end_time = %(end_time)s;
+          """
+    cursor.execute(sql % locals())
+    connection.commit()
 
 #CREATE TABLE player_info
 #(

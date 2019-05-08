@@ -7,24 +7,33 @@
 # 6) If they haven't load the lineup for the player and create player_id for tournament
 # 7) 
 
+import sys
+sys.path.append('../')
+from config import basedir
+sys.path.append(basedir)
+sys.path.append(basedir + '/lineupSolver')
 from pprint import pprint
 import json, requests
 import datetime
 import pytz
 from dateutil import parser
+from deck_manager import EasyDeck
+from label_archetype_file import label_archetype
 import os
 import re
 os.environ['TZ'] = 'America/Chicago'
 
-deckstring_re = re.compile('AA(?:[A-Za-z0-9+/]{2})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}){12,}')
+#deckstring_re = re.compile('AA(?:[A-Za-z0-9+/]{2})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}){12,}')
+deckstring_re = re.compile('AA[A-Za-z0-9+/]+=*')
 
 all_cups_url = 'https://playhearthstone.com/en-us/esports/schedule/scheduleData?month=%(month)s&year=%(year)s'
 tournament_info_url = 'https://dtmwra1jsgyb0.cloudfront.net/tournaments/%(tournament_id)s'
 all_matches_url = 'https://dtmwra1jsgyb0.cloudfront.net/stages/%(stage_id)s/matches'
 match_info_url = 'https://dtmwra1jsgyb0.cloudfront.net/matches/%(match_id)s?extend%%5Btop.team%%5D%%5Bplayers%%5D%%5Buser%%5D=true&extend%%5Bbottom.team%%5D%%5Bplayers%%5D%%5Buser%%5D=true'
-stage_link_str = 'https://battlefy.com/hsesports/hearthstone-masters-qualifiers-las-vegas-1/%(tournament_id)s/stage/%(stage_id)s/bracket/'
+stage_link_str = 'https://battlefy.com/hsesports/hearthstone-masters-qualifiers/%(tournament_id)s/stage/%(stage_id)s/bracket/'
 alt_tournament_info_url = 'https://majestic.battlefy.com/hearthstone-masters/tournaments?start=%(start_date)s&end=%(end_date)s'
 tournament_link_str = 'https://battlefy.com/hsesports/%(tournament_name)s/%(tournament_id)s/'
+archetypes = {}
 
 def get_time_from_utc(timestr):
     utc_time = parser.parse(timestr)
@@ -56,34 +65,91 @@ def get_stage_link(tournament_id, stage_id):
 def get_stage_games(stage_id):
     return json.loads(requests.get(all_matches_url % locals()).text)
 
+def check_legal(lineup):
+    if len(lineup) < 3: return True
+    try:
+        decks = [EasyDeck(i) for i in lineup]
+    except:
+        return True
+    if decks[0].get_distance(decks[1]) > 5:
+        return False
+    if decks[0].get_distance(decks[2]) > 5:
+        return False
+    return True
+
 #def get_matches(tournament_id, stage_id):
 
 player_tourn_decks = {}
 player_tourn_names = {}
+player_ids = {}
+player_games = {}
+player_wins = {}
+player_match_wins = {}
+player_matches = {}
+player_events = {}
 def get_match_info(tournament_id, match):
     match_id = match['_id']
     p1_id = match['top']['team']['captainID']
     p2_id = match['bottom']['team']['captainID']
     p1_score = match['top']['score']
     p2_score = match['bottom']['score']
+    #pprint(match)
+    round_num = match['roundNumber']
     winner = match['top']['team']['name'] if match['top']['winner'] else match['bottom']['team']['name']
-    if (tournament_id, p1_id) not in player_tourn_decks or (tournament_id, p2_id) not in player_tourn_decks:
+    if (tournament_id, p1_id) not in player_tourn_decks:
         match_info = json.loads(requests.get(match_info_url % locals()).text)
         p1_name = match_info[0]['top']['team']['players'][0]['inGameName']
-        p2_name = match_info[0]['bottom']['team']['players'][0]['inGameName']
-        p1_decks, p2_decks = [], []
-        for i in match_info[0]['top']['team']['players'][0]['gameAttributes']['deckStrings']:
-            p1_decks.append(deckstring_re.findall(i)[0])
-        for i in match_info[0]['bottom']['team']['players'][0]['gameAttributes']['deckStrings']:
-            p2_decks.append(deckstring_re.findall(i)[0])
+        if tournament_id not in player_ids:
+            player_ids[tournament_id] = {}
+        player_ids[tournament_id][p1_name] = p1_id
+        p1_decks = []
+        if 'deckStrings' in match_info[0]['top']['team']['players'][0]['gameAttributes']:
+            for i in match_info[0]['top']['team']['players'][0]['gameAttributes']['deckStrings']:
+                p1_decks.append(deckstring_re.findall(i)[0])
         player_tourn_decks[(tournament_id, p1_id)] = p1_decks
-        player_tourn_decks[(tournament_id, p2_id)] = p2_decks
         player_tourn_names[(tournament_id, p1_id)] = p1_name
-        player_tourn_names[(tournament_id, p2_id)] = p2_name
+        if not check_legal(p1_decks):
+            print("ILLEGAL LINEUP", p1_name, " ".join(p1_decks))
     else:
         p1_name = player_tourn_names[(tournament_id, p1_id)]
+        p1_decks = player_tourn_decks[(tournament_id, p1_id)]
+    if (tournament_id, p2_id) not in player_tourn_decks:
+        p2_name = match_info[0]['bottom']['team']['players'][0]['inGameName']
+        player_ids[tournament_id][p2_name] = p2_id
+        p2_decks = []
+        if 'deckStrings' in match_info[0]['bottom']['team']['players'][0]['gameAttributes']:
+            for i in match_info[0]['bottom']['team']['players'][0]['gameAttributes']['deckStrings']:
+                p2_decks.append(deckstring_re.findall(i)[0])
+            player_tourn_decks[(tournament_id, p2_id)] = p2_decks
+        player_tourn_names[(tournament_id, p2_id)] = p2_name
+        if not check_legal(p2_decks):
+            print("ILLEGAL LINEUP", p2_name, " ".join(p2_decks))
+    else:
         p2_name = player_tourn_names[(tournament_id, p2_id)]
-    print(p1_name, p2_name, p1_score, p2_score, winner)
+        p2_decks = player_tourn_decks[(tournament_id, p2_id)]
+    if p1_name == winner:
+        player_match_wins[p1_name] = player_match_wins.get(p1_name, 0) + 1
+    else:
+        player_match_wins[p2_name] = player_match_wins.get(p2_name, 0) + 1
+    player_games[p1_name] = player_games.get(p1_name, 0) + p1_score + p2_score
+    player_games[p2_name] = player_games.get(p2_name, 0) + p1_score + p2_score
+    player_wins[p1_name] = player_wins.get(p1_name, 0) + p1_score
+    player_wins[p2_name] = player_wins.get(p2_name, 0) + p2_score
+    if p1_name not in player_events:
+        player_events[p1_name] = set()
+    if p2_name not in player_events:
+        player_events[p2_name] = set()
+    player_events[p1_name].add(tournament_id)
+    player_events[p2_name].add(tournament_id)
+    player_matches[p1_name] = player_matches.get(p1_name, 0) + 1
+    player_matches[p2_name] = player_matches.get(p2_name, 0) + 1
+    if p1_decks:
+        a1 = label_archetype(p1_decks[0])
+        archetypes[a1] = archetypes.get(a1, 0) + 1
+    if p2_decks:
+        a2 = label_archetype(p2_decks[0])
+        archetypes[a2] = archetypes.get(a2, 0) + 1
+    #print(round_num, p1_name, p2_name, p1_score, p2_score, winner, label_archetype(p1_decks[0]) if p1_decks else None, label_archetype(p2_decks[0]) if p2_decks else None)
     
 
 month, year = 3, 2019
@@ -106,17 +172,24 @@ for tournament_id, tournament_time, tournament_region, tournament_name in get_ma
     swiss_link = get_stage_link(tournament_id, stage_ids[0])
     swiss_games = get_stage_games(stage_ids[0])
     for game in swiss_games:
-        get_match_info(tournament_id, game)
+        if not game['isBye']:
+            get_match_info(tournament_id, game)
     top8_link = get_stage_link(tournament_id, stage_ids[1])
     top8_games = get_stage_games(stage_ids[-1])
     if 'completedAt' not in top8_games[-1]: continue
-    #end_time = get_time_from_utc(top8_games[-1]['completedAt'])
-    #pprint(top8_games[-1])
-    #final_start = get_time_from_utc(top8_games[-1]['createdAt'])
-    #print("TIME", tournament_name.split('-')[-1], (end_time - tournament_time) / 3600., (final_start - tournament_time) / 3600.)
+    for game in top8_games:
+        get_match_info(tournament_id, game)
     match_id = top8_games[-1]['_id']
     finals = json.loads(requests.get(match_info_url % locals()).text)
     finals_name = finals[0]['top']['team']['name']
     winner = finals[0]['top']['team']['name'] if finals[0]['top']['winner'] else finals[0]['bottom']['team']['name']
-    print("%s,%s,%s,%s,%s,%s" % (tournament_name.split('-')[-1], date_str, tournament_link_str % locals(), swiss_link, top8_link, winner))
+    print("\n%s,%s,%s,%s,%s,%s\n" % (tournament_name.split('-')[-1], date_str, tournament_link_str % locals(), swiss_link, top8_link, winner))
     tmp_final = top8_games[-1]
+
+
+if True:
+    for i,j in sorted(player_wins.items(), key=lambda x:x[1], reverse=True)[:50]:
+        print("%-20s %s %s  %s %%" % (i,j, player_games[i], int(100 * j / player_games[i])))
+
+for i,j in sorted(archetypes.itesm(), key=lambda x:x[1], reverse=True):
+    print("%-25s %s" % (i,j))
