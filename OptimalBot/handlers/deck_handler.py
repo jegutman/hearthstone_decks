@@ -116,6 +116,8 @@ class DeckHandler():
 
     def handle_cup_stats(self, args, message, deck_db_handler):
         player, flags = get_args(args)
+        if 'deadinsidew' in player[0].lower():
+            player[0] = 'impact#'
         #if 'help' in args.split()[0]:
         #    return helpstring_search
         res = deck_db_handler.get_record(player)
@@ -132,19 +134,27 @@ class DeckHandler():
 
     def handle_cup_history(self, args, message, deck_db_handler):
         player, flags = get_args(args)
+        if 'deadinsidew' in player[0].lower():
+            player[0] = 'impact#'
         res = deck_db_handler.get_cup_history(player)
         res_str = ""
-        res_str += "%3s %-18s %3s %3s %s\n" % ('cup', 'player', 'W', 'L', 'Archetype')
+        res_str += "%4s %-18s %3s %3s %s\n" % ('cup', 'player', 'W', 'L', 'Archetype')
         totW, totL = 0,0
-        for cup, player, arch, W, G in res[-50:]:
-            cup = cup.split('-')[-1]
+        res_list = []
+        for cup, player, arch, W, G in res:
+            prefix = 'S' if 'seoul' in cup else 'L'
+            cup = prefix + cup.split('-')[-1]
             L = G - W
             totW += W
             totL += L
-            res_str += "%3s %-18s %3s %3s %s\n" % (cup, player, W, L, arch)
+            res_str += "%4s %-18s %3s %3s %s\n" % (cup, player, W, L, arch)
+            if len(res_str.split('\n')) > 20:
+                res_list.append(res_str)
+                res_str = ""
         pct = round(totW / max((totW + totL), 1) * 100, 1)
-        res_str += "%3s %-18s %3s %3s %s\n" % ("TOT", player, totW, totL, pct)
-        return res_str
+        res_str += "%4s %-18s %3s %3s %s\n" % ("TOT", player, totW, totL, pct)
+        res_list.append(res_str)
+        return res_list
 
     def handle_cup_meta(self, args, message, deck_db_handler):
         tournaments, flags = get_args(args)
@@ -175,18 +185,18 @@ class DeckHandler():
         query_res = deck_db_handler.get_winners()
         res = []
         res_str = ""
-        res_str += "%3s %-20s %-20s\n" % ('', 'player', 'arch')
+        res_str += "%4s %-20s %-20s\n" % ('', 'player', 'arch')
         for tourn, player, arch in query_res[-75:-50]:
-            res_str += "%3s %-20s %-20s\n" % (tourn, player, arch)
+            res_str += "%4s %-20s %-20s\n" % (tourn, player, arch)
         res.append(res_str)
         res_str = ""
         for tourn, player, arch in query_res[-50:-25]:
-            res_str += "%3s %-20s %-20s\n" % (tourn, player, arch)
+            res_str += "%4s %-20s %-20s\n" % (tourn, player, arch)
         res.append(res_str)
         res_str = ""
-        #res_str += "%3s %-20s %-20s\n" % ('', 'player', 'arch')
+        #res_str += "%4s %-20s %-20s\n" % ('', 'player', 'arch')
         for tourn, player, arch in query_res[-25:]:
-            res_str += "%3s %-20s %-20s\n" % (tourn, player, arch)
+            res_str += "%4s %-20s %-20s\n" % (tourn, player, arch)
         res.append(res_str)
         #if len(res) > 10:
         #    res_str += '*Limited to 10 most recent results'
@@ -196,10 +206,14 @@ class DeckHandler():
 
     def handle_cup_deck(self, args, message, deck_db_handler):
         query, flags = get_args(args)
+        if 'deadinsidew' in query[1].lower():
+            query[1] = 'impact#'
         return deck_db_handler.get_cup_deck(query)
 
     def handle_cup_details(self, args, message, deck_db_handler):
         query, flags = get_args(args)
+        if 'deadinsidew' in query[1].lower():
+            query[1] = 'impact#'
         res = deck_db_handler.get_cup_details(query)
         count = 0
         res_str = ""

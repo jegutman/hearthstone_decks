@@ -1,4 +1,5 @@
 import sys
+from collections import defaultdict
 sys.path.append('/home/jgutman/workspace/hearthstone_decks/')
 sys.path.append('/home/jgutman/workspace/hearthstone_decks/TourStopLoader')
 sys.path.append('../')
@@ -22,10 +23,8 @@ connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd, c
 #connection = MySQLdb.connect(user = 'guest', db = 'test', charset = 'utf8')
 cursor = connection.cursor()
 cursor.execute("SET NAMES utf8")
-tournament_number = 43
 db = 'masters_cups'
 #tournament_number, player = args
-tournament_name = "'hearthstone-masters-qualifier-las-vegas-%(tournament_number)s'" % locals()
 bracket = 'swiss'
 sql = """
     SELECT p1.archetype_prim as a1, p2.archetype_prim as a2, sum(score1) as wins, sum(score2) as losses, sum(score1 + score2) as games
@@ -33,12 +32,15 @@ sql = """
         join %(db)s.player_info p1 on t.tournament_id = p1.tournament_id and g.player_id = p1.player_id
         join %(db)s.player_info p2 on t.tournament_id = p2.tournament_id and g.opponent_id = p2.player_id
     WHERE p1.archetype_prim != p2.archetype_prim
+        #and time >= 1554861610
+        and time >= 1555736437
     GROUP BY a1, a2
     ORDER BY games desc
 """
 #print(sql % locals())
 cursor.execute(sql % locals())
 for a,b,c,d,e in cursor.fetchall()[:100]:
+    if a > b: continue
     e = round(float(c) / (float(c) + float(d)) * 100, 1)
     c = str(c)
     d = str(d)
@@ -51,12 +53,26 @@ sql = """
         join %(db)s.player_info p1 on t.tournament_id = p1.tournament_id and g.player_id = p1.player_id
         join %(db)s.player_info p2 on t.tournament_id = p2.tournament_id and g.opponent_id = p2.player_id
     #WHERE p1.archetype_prim != p2.archetype_prim
+    WHERE time >= 1554861610
+        and time >= 1555736437
     GROUP BY a1
     ORDER BY wins desc
 """
+class_stats = defaultdict(lambda : [0,0])
 #print(sql % locals())
 cursor.execute(sql % locals())
 for a,c,d in cursor.fetchall()[:100]:
+    e = round(float(c) / (float(c) + float(d)) * 100, 1)
+    c = str(c)
+    d = str(d)
+    e = str(e)
+    deck_class = a.split(' ')[-1]
+    class_stats[deck_class][0] += int(c)
+    class_stats[deck_class][1] += int(d)
+    print(",".join([a,c,d,e]))
+
+for a,j in class_stats.items():
+    c, d = j
     e = round(float(c) / (float(c) + float(d)) * 100, 1)
     c = str(c)
     d = str(d)
