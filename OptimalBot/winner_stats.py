@@ -38,4 +38,5 @@ for (pid, name) in cursor.fetchall():
     for (name, wins, games) in cursor.fetchall():
         pct = round( 100 * float(wins)/ float(games), 1)
         losses = games - wins
-        print("%-20s %3s %3s %s" % (name, wins, losses, pct))
+        #print("%-20s %3s %3s %s" % (name, wins, losses, pct))
+        print("%s,%s,%s,%s" % (name, wins, losses, pct))

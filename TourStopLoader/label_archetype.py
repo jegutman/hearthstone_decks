@@ -12,7 +12,7 @@ connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd)
 cursor = connection.cursor()
 
 reference_decks = {}
-cursor.execute("SELECT card_class, archetype, deck_code from hsreplay.reference_archetypes")
+cursor.execute("SELECT deck_class, deck_archetype, deck_code from deckstrings.decks")
 for card_class, archetype, deck_code in cursor.fetchall():
     reference_decks[card_class] = reference_decks.get(card_class, []) + [EasyDeck(deck_code, archetype)]
 

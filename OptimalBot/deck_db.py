@@ -20,6 +20,14 @@ import datetime
 #    deck_code      varchar(128) NOT NULL,
 #    PRIMARY KEY(deck_id)
 #)
+def get_tname(tournament_number):
+    if 'L' in tournament_number:
+        tournament_number = tournament_number[1:]
+        tournament_name = "hearthstone-masters-qualifier-las-vegas-%(tournament_number)s" % locals()
+    if 'S' in tournament_number:
+        tournament_number = tournament_number[1:]
+        tournament_name = "hearthstone-masters-qualifier-seoul-%(tournament_number)s" % locals()
+    return tournament_name
 
 class DeckDBHandler():
     def __init__(self, logger):
@@ -99,15 +107,15 @@ class DeckDBHandler():
         player = player[0]
         db = 'masters_cups'
         sql = """
-            SELECT tournament_name, player_name, archetype_prim, sum(if(result='W', 1, 0)) as wins, sum(if(result in ('W', 'L'), 1, 0)) as games
+            SELECT tournament_name, time, player_name, archetype_prim, sum(if(result='W', 1, 0)) as wins, sum(if(result in ('W', 'L'), 1, 0)) as games
             FROM %(db)s.games join %(db)s.player_info using(tournament_id, player_id) join %(db)s.tournament using(tournament_id)
             WHERE player_name like '%(player)s%%'
-            GROUP BY tournament_name, player_name, archetype_prim
+            GROUP BY tournament_name, time, player_name, archetype_prim
             ORDER BY time, games desc
         """
         print(sql % locals())
         self.cursor.execute(sql % locals())
-        return [(i,j,k, l, m) for (i,j,k, l, m) in self.cursor.fetchall()]
+        return [(i,j,k, l, m) for (i,t,j,k, l, m) in self.cursor.fetchall()]
 
     def get_winners(self):
         self.check_cursor()
@@ -122,27 +130,36 @@ class DeckDBHandler():
         #print(self.cursor.fetchall())
         res = self.cursor.fetchall()
         #res = [(i.split('-')[-1], j, k) for (i,j,k) in self.cursor.fetchall()]
-        res = [(i.split('-')[-1], j, k) for (i,j,k) in res]
+        res = [(str('L' if 'vegas' in i else 'S') + i.split('-')[-1], j, k) for (i,j,k) in res]
         #for i in res:
         #    print(i[1])
         return res
+
 
     def get_meta(self, tournament_numbers):
         self.check_cursor()
         db = 'masters_cups'
         tournaments = []
         if '..' in tournament_numbers[0]:
-            a,b = [int(i) for i in tournament_numbers[0].split('..')]
-            tournament_numbers = list(range(a, b+1))
-        for i in tournament_numbers:
-            tournaments.append("'hearthstone-masters-qualifier-las-vegas-%(i)s'" % locals())
-        tournaments = '(' + ",".join(tournaments) + ')'
+            a,b = [i for i in tournament_numbers[0].split('..')]
+            start_tournament = get_tname(a)
+            end_tournament = get_tname(b)
+        else:
+            start_tournament = tournament_numbers[0]
+            end_tournament = tournament_numbers[0]
+        sql = """SELECT time from %(db)s.tournament WHERE tournament_name = '%(start_tournament)s'"""
+        print(sql % locals())
+        self.cursor.execute(sql % locals())
+        start_time = [i for (i,) in self.cursor.fetchall()][0]
+        sql = """SELECT time from %(db)s.tournament WHERE tournament_name = '%(end_tournament)s'"""
+        self.cursor.execute(sql % locals())
+        end_time = [i for (i,) in self.cursor.fetchall()][0]
         
        #self.cursor.execute("SELECT tournament_id from tournament where tournament_name in %(tournaments)s" % locals())
         sql = """
             SELECT archetype_prim, count(*) as total
             FROM %(db)s.player_info join %(db)s.tournament using(tournament_id)
-            WHERE tournament_name in %(tournaments)s
+            WHERE time >= %(start_time)s and time <= %(end_time)s
             GROUP BY archetype_prim
             ORDER BY total desc
         """
@@ -155,12 +172,17 @@ class DeckDBHandler():
         db = 'masters_cups'
         tournament_number = tournament_number[0]
        #self.cursor.execute("SELECT tournament_id from tournament where tournament_name in %(tournaments)s" % locals())
+        cup_name = get_tname(tournament_number)
         sql = """
             SELECT tournament_id
             FROM %(db)s.tournament 
-            WHERE tournament_name = 'hearthstone-masters-qualifier-las-vegas-%(tournament_number)s'
+            WHERE tournament_name = '%(cup_name)s'
+            #WHERE tournament_name = 'hearthstone-masters-qualifier-las-vegas-%(tournament_number)s'
         """
-        link = 'https://battlefy.com/hsesports/hearthstone-masters-qualifier-las-vegas-%(tournament_number)s/%(tournament_id)s/'
+        if 'L' in tournament_number:
+            link = 'https://battlefy.com/hsesports/hearthstone-masters-qualifier-las-vegas-%(tournament_number)s/%(tournament_id)s/'
+        if 'S' in tournament_number:
+            link = 'https://battlefy.com/hsesports/hearthstone-masters-qualifier-seoul-%(tournament_number)s/%(tournament_id)s/'
         print(sql % locals())
         self.cursor.execute(sql % locals())
         tournament_id = [i for (i,) in self.cursor.fetchall()][0]
@@ -171,11 +193,11 @@ class DeckDBHandler():
         self.check_cursor()
         db = 'masters_cups'
         tournament_number, player = args
-        tournament_name = "'hearthstone-masters-qualifier-las-vegas-%(tournament_number)s'" % locals()
+        tournament_name = get_tname(tournament_number)
         sql = """
             SELECT deck1, deck2, deck3
             FROM %(db)s.player_info join %(db)s.tournament using(tournament_id)
-            WHERE tournament_name = %(tournament_name)s
+            WHERE tournament_name = '%(tournament_name)s'
                 and player_name like '%(player)s%%'
         """
         print(sql % locals())
@@ -188,7 +210,8 @@ class DeckDBHandler():
         self.check_cursor()
         db = 'masters_cups'
         tournament_number, player = args
-        tournament_name = "'hearthstone-masters-qualifier-las-vegas-%(tournament_number)s'" % locals()
+        #tournament_name = "'hearthstone-masters-qualifier-las-vegas-%(tournament_number)s'" % locals()
+        tournament_name = get_tname(tournament_number)
         bracket = 'swiss'
         sql = """
             SELECT round_number, p1.player_name, p2.player_name, score1, score2, result, p2.archetype_prim

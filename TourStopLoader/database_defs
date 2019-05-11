@@ -16,6 +16,13 @@ CREATE TABLE tournament
     PRIMARY KEY(tournament_id)
 );
 
+CREATE TABLE hct_points
+(
+    player_name    varchar(32) NOT NULL,
+    points         int(32) NOT NULL,
+    PRIMARY KEY(player_name)
+);
+
 CREATE TABLE player_info
 (
     tournament_id  varchar(24) NOT NULL,
@@ -39,6 +46,17 @@ CREATE TABLE games
     score1          int(32) NOT NULL,
     score2          int(32) NOT NULL,
     result          varchar(1) NOT NULL,
+    PRIMARY KEY(tournament_id, player_id, bracket_id, round_number)
+);
+
+CREATE TABLE times
+(
+    tournament_id   varchar(24) NOT NULL,
+    player_id       varchar(24) NOT NULL,
+    bracket_id      varchar(24) NOT NULL,
+    round_number    varchar(3)  NOT NULL,
+    start_time      int(32) NOT NULL,
+    end_time        int(32) NOT NULL,
     PRIMARY KEY(tournament_id, player_id, bracket_id, round_number)
 );
 
