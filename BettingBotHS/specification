@@ -1,0 +1,23 @@
+
+Need to be able to:
+-  See available bets
+-  Place Bets
+-  See Balance (should show outstanding bets)
+-  Resolve Bets
+-  Leaderboard
+-  Bet History?
+-  See Rules
+
+Rules:
+This is just for fun, if you make it not fun for anybody (or potentially even just yourself) you will not be allowed to play anymore.
+I can change the rules at any time (this is just for fun anyways)
+Rule changes can be retroactive
+Bets Freeze 1 hr before the first match of the weekend
+Bets resolve within 24 hours (hopefully) of last match of the weekend
+
+
+tables used:
+events
+event_options
+event_winners
+option_lookup

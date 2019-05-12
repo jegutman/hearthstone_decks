@@ -1,0 +1,95 @@
+# Need to be able to:
+#    See available bets
+#    Place Bets
+#    See Balance (should show outstanding bets)
+#    Resolve Bets
+#    Leaderboard
+#    Bet History?
+#    See Rules
+
+CREATE TABLE users
+(
+    user_id        varchar(32) NOT NULL,
+    user           varchar(32) NOT NULL,
+    PRIMARY KEY(user_id)
+);
+
+# bets move money from bal_user to bet_player with associated odds
+# resolving bets moves money from bet_user to bal_user
+
+CREATE TABLE bets
+(
+    bet_id         varchar(32) NOT NULL,
+    time           int(32) NOT NULL, 
+    user_id        varchar(32) NOT NULL,
+    event_id       varchar(32) NOT NULL,
+    option_id      int(32) NOT NULL,
+    bet_amount     int(32) NOT NULL,
+    
+    PRIMARY KEY(bet_id, event_id),
+    INDEX(user_id, option_id)
+);
+
+CREATE TABLE transactions
+(
+    transaction_id int(32) NOT NULL,
+    bet_id         varchar(32) NOT NULL,
+    from_account   varchar(32) NOT NULL,
+    to_account     varchar(32) NOT NULL,
+    amount         int(32) NOT NULL,
+    time           int(32) NOT NULL,
+    PRIMARY KEY(transaction_id, bet_id),
+    INDEX(from_account,to_account)
+);
+
+
+CREATE TABLE payouts
+(
+    bet_id         int(32) NOT NULL auto_increment,
+    time           int(32) NOT NULL, 
+    #user_id        varchar(32) NOT NULL,
+    #event_id       varchar(32) NOT NULL,
+    option_id      int(32) NOT NULL,
+    payout_amount     int(32) NOT NULL,
+    
+    PRIMARY KEY(bet_id)
+    #INDEX(user_id, event_id)
+    #INDEX(user_id)
+);
+
+CREATE TABLE events
+(
+    event_id       varchar(32) NOT NULL,
+    event_name     varchar(64) NOT NULL,
+    event_time     int(32) NOT NULL,
+    region_id      int(8) NOT NULL,
+    PRIMARY KEY(event_id)
+);
+
+CREATE TABLE event_options
+(
+    event_id       varchar(32) NOT NULL,
+    option_id      int(32) NOT NULL,
+    PRIMARY KEY(event_id, option_id)
+);
+
+CREATE TABLE event_winner
+(
+    event_id       varchar(32) NOT NULL,
+    option_id      int(32) NOT NULL,
+    PRIMARY KEY(event_id)
+);
+
+CREATE TABLE option_lookup
+(
+    option_id      int(32) NOT NULL,
+    option_name    varchar(64) NOT NULL,
+    PRIMARY KEY(option_id)
+);
+
+CREATE TABLE regions
+(
+    region_id      int(32) NOT NULL,
+    region_name    varchar(12) NOT NULL,
+    PRIMARY KEY(region_id)
+);
