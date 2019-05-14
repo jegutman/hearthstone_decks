@@ -43,20 +43,50 @@ class BettingBotDBHandler():
         if self.user_lookup is None:
             self.user_lookup = {}
             cursor.execute("SELECT user_id, user FROM %(db)s.users" % locals())
-            for user_id, user in cursor.fetchall():
-                self.user_lookup[user] = user_id
+            for user_id, user_name in cursor.fetchall():
+                self.user_lookup[user_name] = user_id
         return self.user_lookup
 
-    def add_user(self, user):
+    def get_transaction_id(self):
+        cursor = self.cursor
+        connection = self.connection
+        db = 'betting_bot'
+        cursor.execute("SELECT max(transaction_id) FROM %(db)s.transactions" % locals())
+        max_id_tmp = [i for (i,) in cursor.fetchall()]
+        if len(max_id_tmp) > 0:
+            max_id = max_id_tmp[0]
+        else:
+            max_id = 0
+        return max_id + 1
+        
+
+    def make_transfer(self, from_account, to_account, bet_id, amount):
+        self.check_cursor()
+        cursor = self.cursor
+        connection = self.connection
+        db = 'betting_bot'
+        time = datetime.datetime.now().strftime('%s')
+        txn_id = self.get_transaction_id()
+        sql = """INSERT INTO %(db)s.transactions (transaction_id, bet_id, from_account, to_account, amount, time)
+                VALUES (%(txn_id)s, '%(bet_id)s', '%(from_account)s', '%(to_account)s', %(amount)s, %(time)s)"""
+        print(sql % locals())
+        cursor.execute(sql % locals())
+        connection.commit()
+        return True
+        
+        
+
+    def add_user(self, user_name):
         self.check_cursor()
         cursor = self.cursor
         db = 'betting_bot'
         users = self.get_users()
         new_uid = hex(int(max(users.values()), 16) + 1)[2:].upper()
-        users[user] = new_uid
-        print("INSERT INTO %(db)s.users (user_id, user) VALUES ('%(new_uid)s', '%(user)s');" % locals())
-        cursor.execute("INSERT INTO %(db)s.users (user_id, user) VALUES ('%(new_uid)s', '%(user)s');" % locals())
+        users[user_name] = new_uid
+        print("INSERT INTO %(db)s.users (user_id, user) VALUES ('%(new_uid)s', '%(user_name)s');" % locals())
+        cursor.execute("INSERT INTO %(db)s.users (user_id, user) VALUES ('%(new_uid)s', '%(user_name)s');" % locals())
         self.connection.commit()
+        mt = self.make_transfer('NEW_USER', self.get_user_acct(new_uid), 'NEW', 10000)
 
     def get_user_acct(self, user_id):
         return 'CASH_%s' % user_id
@@ -64,27 +94,20 @@ class BettingBotDBHandler():
     def get_bet_acct(self, user_id, event_id, option_id):
         return 'BET-U%s-E%s-O%s' % (user_id, event_id, option_id)
 
-    def pick(self, user, event_id, option_id, amount):
-        try:
-            amount = int(amount)
-            assert amount > 0
-        except:
-            return "invalid amount: %s" % amount
-        self.check_cursor()
-        self.check_user(user)
-        users = self.get_users()
+    def get_balances(self, user_id):
+        res = defaultdict(lambda : 0)
         cursor = self.cursor
         connection = self.connection
-        user_id = users[user]
         db = 'betting_bot'
         # check balance
         sql = """
-            #SELECT sum(if(from_account = 'user_%(user_id)s', -amount, 0) + if(to_account = 'user_%(user_id)s', amount, 0)) as balance
+            #SELECT sum(if(from_account = 'CASH_%(user_id)s', -amount, 0) + if(to_account = 'CASH_%(user_id)s', amount, 0)) as balance
             SELECT from_account, to_account, amount
             FROM %(db)s.transactions
-            WHERE (from_account = 'user_%(user_id)s' or to_account = 'user_(user_id)s')
+            WHERE (from_account = 'CASH_%(user_id)s' or to_account = 'CASH_%(user_id)s')
             ORDER BY time
         """
+        print(sql % locals())
         cursor.execute(sql % locals())
         balances = defaultdict(lambda : 0)
         for acct1, acct2, amount in cursor.fetchall():
@@ -92,16 +115,45 @@ class BettingBotDBHandler():
                 balances[acct1] -= amount
             if user_id in acct2:
                 balances[acct2] += amount
-        usable_balance = balances['user_%(user_id)s' % locals()]
+        usable_balance = balances['CASH_%(user_id)s' % locals()]
+        return balances
+
+    def available_balance(self, user_name):
+        self.check_cursor()
+        self.check_user(user_name)
+        users = self.get_users()
+        user_id = users[user_name]
+        db = 'betting_bot'
+        # check balance
+        balances = self.get_balances(user_id)
+        return balances['CASH_%(user_id)s' % locals()]
+        
+
+    def pick(self, user_name, event_id, option_id, amount):
+        try:
+            amount = int(amount)
+            assert amount > 0
+        except:
+            return "invalid amount: %s" % amount
+        self.check_cursor()
+        self.check_user(user_name)
+        users = self.get_users()
+        cursor = self.cursor
+        connection = self.connection
+        user_id = users[user_name]
+        db = 'betting_bot'
+        # check balance
+        balances = self.get_balances(user_id)
+        print(balances)
         bet_balance = balances[self.get_bet_acct(user_id, event_id, option_id)]
         return 'test'
 
             
             
 
-    def show_picks(self, user, query):
+    def show_picks(self, user_name, query):
         self.check_cursor()
-        self.check_user(user)
+        self.check_user(user_name)
         cursor = self.cursor
         #if not query[0]: query = '%'
         if not query: query = '%'
@@ -128,10 +180,11 @@ class BettingBotDBHandler():
             res.append((event_id, event_name, event_time, options))
         return res
 
-    def check_user(self, user):
+    def check_user(self, user_name):
         self.check_cursor()
         cursor = self.cursor
         users = self.get_users()
-        if user not in users:
-            self.add_user(user)
-        return users[user]
+        #print(user_name, users, users[user_name])
+        if user_name not in users:
+            self.add_user(user_name)
+        return users[user_name]

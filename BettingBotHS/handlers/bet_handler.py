@@ -24,12 +24,14 @@ class BetHandler():
         #except:
         #    print("invalid format:", message.author, pick_info)
         #    return "Format: !pick <event_id> <option_id> <amount>"
-        query_res = bet_db_handler.pick(message.author, event_id, option_id, amount)
+        user_name = str(message.author)
+        query_res = bet_db_handler.pick(user_name, event_id, option_id, amount)
         return query_res
 
     def handle_show_picks(self, args, message, bet_db_handler):
         query, flags = get_args(args)
-        query_res = bet_db_handler.show_picks(message.author, query)
+        user_name = str(message.author)
+        query_res = bet_db_handler.show_picks(user_name, query)
         line_reset = 16
         
         res = []
