@@ -28,6 +28,11 @@ class BetHandler():
         query_res = bet_db_handler.pick(user_name, event_id, option_id, amount)
         return query_res
 
+    def handle_balance(self, args, message, bet_db_handler):
+        query, flags = get_args(args)
+        user_name = str(message.author)
+        return bet_db_handler.available_balance(user_name)
+
     def handle_show_picks(self, args, message, bet_db_handler):
         query, flags = get_args(args)
         user_name = str(message.author)

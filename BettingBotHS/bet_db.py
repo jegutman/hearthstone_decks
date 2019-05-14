@@ -126,8 +126,8 @@ class BettingBotDBHandler():
         db = 'betting_bot'
         # check balance
         balances = self.get_balances(user_id)
-        return balances['CASH_%(user_id)s' % locals()]
-        
+        pending = sum([j for i,j in balances.items() if 'CASH' not in i])
+        return '%s points available and %s points pending' % (balances['CASH_%(user_id)s' % locals()], pending)
 
     def pick(self, user_name, event_id, option_id, amount):
         try:
@@ -143,13 +143,28 @@ class BettingBotDBHandler():
         user_id = users[user_name]
         db = 'betting_bot'
         # check balance
+        user_acct = self.get_user_acct(user_id)
+        bet_acct = self.get_bet_acct(user_id, event_id, option_id)
         balances = self.get_balances(user_id)
-        print(balances)
-        bet_balance = balances[self.get_bet_acct(user_id, event_id, option_id)]
-        return 'test'
-
-            
-            
+        user_balance = balances[user_acct]
+        bet_balance = balances[bet_acct]
+        if amount > user_balance:
+            return 'You cannot use %s, your balance is only %s' % (amount, user_balance)
+        sql = """SELECT event_name, option_name FROM %(db)s.event_options join %(db)s.events using(event_id) join %(db)s.option_lookup using(option_id)
+                 WHERE option_id = %(option_id)s and event_id = '%(event_id)s'"""
+        try:
+            print(sql % locals())
+            cursor.execute(sql % locals())
+            event_name, event_option = cursor.fetchall()[0]
+        except:
+            return 'invalid event / option combintion for event: %s option %s' % (event_id, option_id)
+        mt = self.make_transfer(user_acct, bet_acct, 'BET', amount)
+        balances = self.get_balances(user_id)
+        new_bet_total = balances[bet_acct]
+        if mt:
+            return 'You have placed %s point(s) on %s in "%s"\ntotal is now %s' % (amount, event_option, event_name, new_bet_total)
+        else:
+            return 'something went wrong for event / option combintion for event: %s option %s' % (event_id, option_id)
 
     def show_picks(self, user_name, query):
         self.check_cursor()
