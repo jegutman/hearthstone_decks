@@ -17,6 +17,7 @@ ALLOWED_CHANNELS_BETS = ['bets']
 
 CMD_HELP = "!help"
 CMD_SHOW_PICKS = "!showpicks"
+CMD_PICK = "!pick "
 
 #USAGE = """`
 USAGE = """
@@ -76,6 +77,13 @@ class MessageHandler:
             await self.handle_show_picks(message, CMD_SHOW_PICKS, my_message)
             return True
 
+        if message.content.startswith(CMD_PICK):
+            if str(message.channel.name) not in ALLOWED_CHANNELS_BETS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_pick(message, CMD_PICK, my_message)
+            return True
+
         if message.content.startswith(CMD_HELP):
             await self.respond(message, USAGE)
             return True
@@ -103,6 +111,10 @@ class MessageHandler:
 
     async def handle_show_picks(self, message, cmd, my_message):
         response = self.bet_handler.handle_show_picks(message.content[len(cmd):], message, self.bet_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_pick(self, message, cmd, my_message):
+        response = self.bet_handler.handle_pick(message.content[len(cmd):], message, self.bet_db_handler)
         await self.respond(message, response, my_message)
 
     async def check_edit(self, message, sent):

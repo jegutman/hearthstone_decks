@@ -21,3 +21,7 @@ events
 event_options
 event_winners
 option_lookup
+
+
+probably need lockout_time for bets in a table
+Account for bet = UserID_EventID_OptionID

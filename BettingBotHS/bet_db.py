@@ -3,6 +3,7 @@ from config import *
 from deck_manager import EasyDeck, print_side_by_side, side_by_side_diff_lines
 from arg_split import get_args
 import sys
+from collections import defaultdict
 
 import MySQLdb
 import datetime
@@ -56,6 +57,47 @@ class BettingBotDBHandler():
         print("INSERT INTO %(db)s.users (user_id, user) VALUES ('%(new_uid)s', '%(user)s');" % locals())
         cursor.execute("INSERT INTO %(db)s.users (user_id, user) VALUES ('%(new_uid)s', '%(user)s');" % locals())
         self.connection.commit()
+
+    def get_user_acct(self, user_id):
+        return 'CASH_%s' % user_id
+    
+    def get_bet_acct(self, user_id, event_id, option_id):
+        return 'BET-U%s-E%s-O%s' % (user_id, event_id, option_id)
+
+    def pick(self, user, event_id, option_id, amount):
+        try:
+            amount = int(amount)
+            assert amount > 0
+        except:
+            return "invalid amount: %s" % amount
+        self.check_cursor()
+        self.check_user(user)
+        users = self.get_users()
+        cursor = self.cursor
+        connection = self.connection
+        user_id = users[user]
+        db = 'betting_bot'
+        # check balance
+        sql = """
+            #SELECT sum(if(from_account = 'user_%(user_id)s', -amount, 0) + if(to_account = 'user_%(user_id)s', amount, 0)) as balance
+            SELECT from_account, to_account, amount
+            FROM %(db)s.transactions
+            WHERE (from_account = 'user_%(user_id)s' or to_account = 'user_(user_id)s')
+            ORDER BY time
+        """
+        cursor.execute(sql % locals())
+        balances = defaultdict(lambda : 0)
+        for acct1, acct2, amount in cursor.fetchall():
+            if user_id in acct1:
+                balances[acct1] -= amount
+            if user_id in acct2:
+                balances[acct2] += amount
+        usable_balance = balances['user_%(user_id)s' % locals()]
+        bet_balance = balances[self.get_bet_acct(user_id, event_id, option_id)]
+        return 'test'
+
+            
+            
 
     def show_picks(self, user, query):
         self.check_cursor()
