@@ -13,12 +13,13 @@ from bot_logger import BotLogger
 
 from .bet_handler import BetHandler
 
-ALLOWED_CHANNELS_BETS = ['bets']
+ALLOWED_CHANNELS_BETS = ['picks']
 
 CMD_HELP = "!help"
 CMD_SHOW_PICKS = "!showpicks"
 CMD_PICK = "!pick "
 CMD_BALANCE = "!balance"
+CMD_EVENT_INFO = "!eventinfo "
 
 #USAGE = """`
 USAGE = """
@@ -61,7 +62,7 @@ class MessageHandler:
             return False
 
     async def handle(self, message):
-        if str(message.channel.name) not in ALLOWED_CHANNELS:
+        if str(message.channel.name) not in ALLOWED_CHANNELS_BETS:
             if not message.channel.is_private:
                 return True
         if message.author.id == self.client.user.id:
@@ -90,6 +91,13 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_balance(message, CMD_BALANCE, my_message)
+            return True
+
+        if message.content.startswith(CMD_EVENT_INFO):
+            if str(message.channel.name) not in ALLOWED_CHANNELS_BETS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_event_info(message, CMD_EVENT_INFO, my_message)
             return True
 
         if message.content.startswith(CMD_HELP):
@@ -127,6 +135,10 @@ class MessageHandler:
 
     async def handle_balance(self, message, cmd, my_message):
         response = self.bet_handler.handle_balance(message.content[len(cmd):], message, self.bet_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_event_info(self, message, cmd, my_message):
+        response = self.bet_handler.handle_event_balance(message.content[len(cmd):], message, self.bet_db_handler)
         await self.respond(message, response, my_message)
 
     async def check_edit(self, message, sent):

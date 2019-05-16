@@ -47,6 +47,20 @@ class BettingBotDBHandler():
                 self.user_lookup[user_name] = user_id
         return self.user_lookup
 
+    def lookup_option(self, option_id):
+        cursor = self.cursor
+        db = 'betting_bot'
+        print("SELECT option_name from %(db)s.option_lookup WHERE option_id = %(option_id)s" % locals())
+        cursor.execute("SELECT option_name from %(db)s.option_lookup WHERE option_id = %(option_id)s" % locals())
+        return [i for (i,) in cursor.fetchall()][0]
+
+    def lookup_event(self, event_id):
+        cursor = self.cursor
+        db = 'betting_bot'
+        print("SELECT event_name from %(db)s.events WHERE event_id = '%(event_id)s'" % locals())
+        cursor.execute("SELECT event_name from %(db)s.events WHERE event_id = '%(event_id)s'" % locals())
+        return [i for (i,) in cursor.fetchall()][0]
+
     def get_transaction_id(self):
         cursor = self.cursor
         connection = self.connection
@@ -71,7 +85,7 @@ class BettingBotDBHandler():
                 VALUES (%(txn_id)s, '%(bet_id)s', '%(from_account)s', '%(to_account)s', %(amount)s, %(time)s)"""
         print(sql % locals())
         cursor.execute(sql % locals())
-        connection.commit()
+        self.connection.commit()
         return True
         
         
@@ -115,7 +129,31 @@ class BettingBotDBHandler():
                 balances[acct1] -= amount
             if user_id in acct2:
                 balances[acct2] += amount
-        usable_balance = balances['CASH_%(user_id)s' % locals()]
+        return balances
+
+    def get_event_option_balances(self, event_id):
+        res = defaultdict(lambda : 0)
+        cursor = self.cursor
+        connection = self.connection
+        db = 'betting_bot'
+        # check balance
+        sql = """
+            SELECT from_account, to_account, amount
+            FROM %(db)s.transactions
+            WHERE (from_account like 'BET%%-E%(event_id)s-%%' or to_account like 'BET%%-E%(event_id)s-%%')
+            ORDER BY time
+        """
+        print(sql % locals())
+        cursor.execute(sql % locals())
+        balances = defaultdict(lambda : 0)
+        for acct1, acct2, amount in cursor.fetchall():
+            if 'BET' in acct1:
+                if acct1.split('-')[2][1:] == event_id:
+                    balances[int(acct1.split('-')[3][1:])] -= amount
+            if 'BET' in acct2:
+                if acct2.split('-')[2][1:] == event_id:
+                    balances[int(acct2.split('-')[3][1:])] += amount
+        print(balances)
         return balances
 
     def available_balance(self, user_name):
@@ -127,7 +165,21 @@ class BettingBotDBHandler():
         # check balance
         balances = self.get_balances(user_id)
         pending = sum([j for i,j in balances.items() if 'CASH' not in i])
-        return '%s points available and %s points pending' % (balances['CASH_%(user_id)s' % locals()], pending)
+        return '%s point(s) available and %s point(s) pending' % (balances['CASH_%(user_id)s' % locals()], pending)
+
+    def event_balance(self, user_name, event_id):
+        self.check_cursor()
+        #self.check_user(user_name)
+        db = 'betting_bot'
+        res = self.lookup_event(event_id) + ":\n"
+        for i,j in self.get_event_option_balances(event_id).items():
+            if j != 0:
+                #option_id, event_id =  i.split('-')[-2:]
+                option_id = i.split('-')[-1]
+                print("OID", option_id, i)
+                res += "%-12s : %s\n" % (self.lookup_option(option_id), j)
+                #res += "%-12s : %s\n" % (self.lookup_option(option_id), j)
+        return res
 
     def pick(self, user_name, event_id, option_id, amount):
         try:
@@ -190,9 +242,10 @@ class BettingBotDBHandler():
             WHERE event_id = '%(event_id)s'
         """
         for event_id, event_name, event_time, region_name in cursor.fetchall():
+            balances = self.get_event_option_balances(event_id)
             cursor.execute(sql % locals())
             options = [(a,b) for (a,b) in cursor.fetchall()]
-            res.append((event_id, event_name, event_time, options))
+            res.append((event_id, event_name, event_time, options, balances))
         return res
 
     def check_user(self, user_name):

@@ -33,6 +33,11 @@ class BetHandler():
         user_name = str(message.author)
         return bet_db_handler.available_balance(user_name)
 
+    def handle_event_balance(self, args, message, bet_db_handler):
+        query, flags = get_args(args)
+        user_name = str(message.author)
+        return bet_db_handler.event_balance(user_name, query[0])
+
     def handle_show_picks(self, args, message, bet_db_handler):
         query, flags = get_args(args)
         user_name = str(message.author)
@@ -40,11 +45,11 @@ class BetHandler():
         line_reset = 16
         
         res = []
-        res.append("event_id  (p1_id) player1 @ player2 (p2_id) time\n")
+        res.append("event_id  (p1_id) player1 <current_points> @ <current_points> player2 (p2_id) time\n")
         res_str = ""
         #res_str += "%5s %20s (%3s) %20s (%3s)\n" % ('id', 'option
         count = 0
-        for event_id, event_name, event_time, options in query_res:
+        for event_id, event_name, event_time, options, balances in query_res:
             event_name = event_name.split('_at_')[0].replace('_', ' ')
             time_str = parse_date(event_time)
             if len(options) != 2: assert False
@@ -58,7 +63,10 @@ class BetHandler():
                     continue
                 a1 = "(%(oid1)2s) %(o1)s" % locals()
                 a2 = "%(o2)s (%(oid2)2s)" % locals()
-                event_name = "%(a1)-16s @ %(a2)16s" % locals()
+                print(balances)
+                b1 = "%6s" % balances[oid1]
+                b2 = "%6s" % balances[oid2]
+                event_name = "%(a1)-16s %(b1)s @ %(b2)s %(a2)16s" % locals()
                 #event_name = " @ ".join(["%(option_name)s (%(option_id)s)" % locals() for option_id, option_name in options])
             #event_name = " @ ".join(["%(option_name)s (%(option_id)s)" % locals() for option_id, option_name in options])
             #res_str += "%(event_id)4s   %(event_name)-24s %(time_str)s\n" % locals()

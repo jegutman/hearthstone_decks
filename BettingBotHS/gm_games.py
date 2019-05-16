@@ -57,7 +57,7 @@ for c,a,b, region in sorted(matches):
     count += 1
     players.add((a, region))
     players.add((b, region))
-    #print("%3s %-20s %-20s %s %s" % (count, a,b,parse_date(c), region))
+    print("%3s %-20s %-20s %s %s" % (count, a,b,parse_date(c), region))
 
 for c,a,b, region in sorted(matches)[:48]:
     sql = "INSERT INTO %(db)s.events (event_id, event_name, event_time, region_id) VALUES ('%(event_id)s', '%(event_name)s', %(event_time)s, %(region)s);"
