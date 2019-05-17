@@ -22,12 +22,28 @@ import datetime
 #    PRIMARY KEY(deck_id)
 #)
 
+def get_user_from_acct(acct):
+    return acct.split('-')[1][1:]
+
+def get_event_from_acct(acct):
+    return acct.split('-')[2][1:]
+
+def get_option_from_acct(acct):
+    return acct.split('-')[3][1:]
+
+def get_acct_details(acct):
+    return (acct.split('-')[1][1:], acct.split('-')[2][1:], acct.split('-')[3][1:])
+
+def get_player_option(acct):
+    return (acct.split('-')[1][1:], acct.split('-')[3][1:])
+
 class BettingBotDBHandler():
     def __init__(self, logger):
         self.connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd, charset = 'utf8mb4')
         self.cursor = self.connection.cursor()
         self.logger = logger
         self.user_lookup = None
+        self.reverse_lookup = {}
 
     def check_cursor(self):
         try:
@@ -45,6 +61,7 @@ class BettingBotDBHandler():
             cursor.execute("SELECT user_id, user FROM %(db)s.users" % locals())
             for user_id, user_name in cursor.fetchall():
                 self.user_lookup[user_name] = user_id
+                self.reverse_lookup[user_id] = user_name
         return self.user_lookup
 
     def lookup_option(self, option_id):
@@ -88,7 +105,6 @@ class BettingBotDBHandler():
         self.connection.commit()
         return True
         
-        
 
     def add_user(self, user_name):
         self.check_cursor()
@@ -131,6 +147,59 @@ class BettingBotDBHandler():
                 balances[acct2] += amount
         return balances
 
+    def get_user_bets(self, user_id):
+        res = defaultdict(lambda : 0)
+        cursor = self.cursor
+        connection = self.connection
+        db = 'betting_bot'
+        # check balance
+        sql = """
+            SELECT from_account, to_account, amount
+            FROM %(db)s.transactions
+            WHERE (from_account like 'BET-U%(user_id)s-%%' or to_account like 'BET-U%(user_id)s-%%')
+            ORDER BY time
+        """
+        print(sql % locals())
+        cursor.execute(sql % locals())
+        balances = defaultdict(lambda : 0)
+        for acct1, acct2, amount in cursor.fetchall():
+            if 'BET' in acct1:
+                event_id1, option_id1 = acct1.split('-')[-2:]
+                #if acct1.split('-')[2][1:] == event_id:
+                balances[(event_id1, option_id1)] -= amount
+            if 'BET' in acct2:
+                event_id2, option_id2 = acct2.split('-')[-2:]
+                #if acct2.split('-')[2][1:] == event_id:
+                #    balances[int(acct2.split('-')[3][1:])] += amount
+                balances[(event_id2, option_id2)] += amount
+        print(balances)
+        return balances
+
+    def get_event_player_option_balances(self, event_id):
+        res = defaultdict(lambda : 0)
+        cursor = self.cursor
+        connection = self.connection
+        db = 'betting_bot'
+        # check balance
+        sql = """
+            SELECT from_account, to_account, amount
+            FROM %(db)s.transactions
+            WHERE (from_account like 'BET%%-E%(event_id)s-%%' or to_account like 'BET%%-E%(event_id)s-%%')
+            ORDER BY time
+        """
+        print(sql % locals())
+        cursor.execute(sql % locals())
+        balances = defaultdict(lambda : 0)
+        for acct1, acct2, amount in cursor.fetchall():
+            if 'BET' in acct1:
+                if get_event_from_acct(acct1) == event_id:
+                    balances[get_player_option(acct1)] -= amount
+            if 'BET' in acct2:
+                if get_event_from_acct(acct2) == event_id:
+                    balances[get_player_option(acct2)] += amount
+        print(balances)
+        return balances
+
     def get_event_option_balances(self, event_id):
         res = defaultdict(lambda : 0)
         cursor = self.cursor
@@ -165,7 +234,19 @@ class BettingBotDBHandler():
         # check balance
         balances = self.get_balances(user_id)
         pending = sum([j for i,j in balances.items() if 'CASH' not in i])
-        return '%s point(s) available and %s point(s) pending' % (balances['CASH_%(user_id)s' % locals()], pending)
+        res = []
+        res_str =  '%s point(s) available and %s point(s) pending\n' % (balances['CASH_%(user_id)s' % locals()], pending)
+        user_bets = self.get_user_bets(user_id)
+        count = 0
+        for i,j in user_bets.items():
+            if j==0: continue
+            count +=1
+            res_str += '  %-28s: %-14s %6s\n' % (self.lookup_event(i[0][1:]), self.lookup_option(i[1][1:]), j)
+            if count % 10 == 0:
+                res.append(res_str)
+        if res_str:
+            res.append(res_str)
+        return res_str
 
     def event_balance(self, user_name, event_id):
         self.check_cursor()
@@ -174,19 +255,41 @@ class BettingBotDBHandler():
         res = self.lookup_event(event_id) + ":\n"
         for i,j in self.get_event_option_balances(event_id).items():
             if j != 0:
+                print(i,j)
                 #option_id, event_id =  i.split('-')[-2:]
-                option_id = i.split('-')[-1]
-                print("OID", option_id, i)
+                #print("OID", i)
+                option_id = i
                 res += "%-12s : %s\n" % (self.lookup_option(option_id), j)
                 #res += "%-12s : %s\n" % (self.lookup_option(option_id), j)
         return res
 
+    def check_event(self, user_name, event_id):
+        self.check_cursor()
+        #self.check_user(user_name)
+        users = self.get_users()
+        db = 'betting_bot'
+        res = self.lookup_event(event_id) + ":\n"
+        for i,j in self.get_event_player_option_balances(event_id).items():
+            if j != 0:
+                print(i,j)
+                #option_id, event_id =  i.split('-')[-2:]
+                #print("OID", i)
+                option_id = i[1]
+                user_id = i[0]
+                res += "%-20s %-12s : %s\n" % (self.reverse_lookup.get(user_id, user_id), self.lookup_option(option_id), j)
+                #res += "%-12s : %s\n" % (self.lookup_option(option_id), j)
+        return res
+
+    def get_user(self, user_id):
+        self.check_cursor()
+        users = self.get_users()
+
     def pick(self, user_name, event_id, option_id, amount):
-        try:
-            amount = int(amount)
-            assert amount > 0
-        except:
-            return "invalid amount: %s" % amount
+        #try:
+        #    amount = int(amount)
+        #    assert amount > 0
+        #except:
+        #    return "invalid amount: %s" % amount
         self.check_cursor()
         self.check_user(user_name)
         users = self.get_users()
@@ -200,14 +303,23 @@ class BettingBotDBHandler():
         balances = self.get_balances(user_id)
         user_balance = balances[user_acct]
         bet_balance = balances[bet_acct]
+        try:
+            amount = int(amount)
+            assert amount > -bet_balance
+        except:
+            return "invalid amount: %s bet_balance: %s" % (amount, bet_balance)
         if amount > user_balance:
             return 'You cannot use %s, your balance is only %s' % (amount, user_balance)
-        sql = """SELECT event_name, option_name FROM %(db)s.event_options join %(db)s.events using(event_id) join %(db)s.option_lookup using(option_id)
+        sql = """SELECT event_name, option_name, event_time FROM %(db)s.event_options join %(db)s.events using(event_id) join %(db)s.option_lookup using(option_id)
                  WHERE option_id = %(option_id)s and event_id = '%(event_id)s'"""
         try:
             print(sql % locals())
             cursor.execute(sql % locals())
-            event_name, event_option = cursor.fetchall()[0]
+            event_name, event_option, time = cursor.fetchall()[0]
+            now = int(datetime.datetime.now().strftime('%s'))
+            print("TIME_DIFF", time - now)
+            if time - now < 900:
+                return "Sorry you cannot place points on a match that is scheduled less than 15 minutes away"
         except:
             return 'invalid event / option combintion for event: %s option %s' % (event_id, option_id)
         mt = self.make_transfer(user_acct, bet_acct, 'BET', amount)

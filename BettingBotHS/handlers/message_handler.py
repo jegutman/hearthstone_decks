@@ -20,6 +20,7 @@ CMD_SHOW_PICKS = "!showpicks"
 CMD_PICK = "!pick "
 CMD_BALANCE = "!balance"
 CMD_EVENT_INFO = "!eventinfo "
+CMD_CHECK_EVENT = "!checkevent "
 
 #USAGE = """`
 USAGE = """
@@ -51,6 +52,12 @@ class MessageHandler:
 
     def check_user(self, user):
         if user.lower() in ALLOWED_USERS:
+            return True
+        else:
+            return False
+
+    def check_super_user(self, user):
+        if user.lower() in ALLOWED_SUPER_USERS:
             return True
         else:
             return False
@@ -100,6 +107,16 @@ class MessageHandler:
             await self.handle_event_info(message, CMD_EVENT_INFO, my_message)
             return True
 
+        if message.content.startswith(CMD_CHECK_EVENT):
+            print("SUPER_USER", self.check_super_user(str(message.author)))
+            if not self.check_super_user(str(message.author)) and message.channel.is_private:
+                return True
+            if str(message.channel.name) not in ALLOWED_CHANNELS_BETS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_check_event(message, CMD_CHECK_EVENT, my_message)
+            return True
+
         if message.content.startswith(CMD_HELP):
             await self.respond(message, USAGE)
             return True
@@ -139,6 +156,10 @@ class MessageHandler:
 
     async def handle_event_info(self, message, cmd, my_message):
         response = self.bet_handler.handle_event_balance(message.content[len(cmd):], message, self.bet_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_check_event(self, message, cmd, my_message):
+        response = self.bet_handler.handle_check_event(message.content[len(cmd):], message, self.bet_db_handler)
         await self.respond(message, response, my_message)
 
     async def check_edit(self, message, sent):

@@ -38,6 +38,11 @@ class BetHandler():
         user_name = str(message.author)
         return bet_db_handler.event_balance(user_name, query[0])
 
+    def handle_check_event(self, args, message, bet_db_handler):
+        query, flags = get_args(args)
+        user_name = str(message.author)
+        return bet_db_handler.check_event(user_name, query[0])
+
     def handle_show_picks(self, args, message, bet_db_handler):
         query, flags = get_args(args)
         user_name = str(message.author)
