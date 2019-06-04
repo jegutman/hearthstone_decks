@@ -104,6 +104,10 @@ class BettingBotDBHandler():
         cursor.execute(sql % locals())
         self.connection.commit()
         return True
+
+    def make_test_transfer(self, from_account, to_account, bet_id, amount):
+        print('TEST TRANSFER', from_account, to_account, bet_id, amount)
+        return True
         
 
     def add_user(self, user_name):
@@ -113,10 +117,23 @@ class BettingBotDBHandler():
         users = self.get_users()
         new_uid = hex(int(max(users.values()), 16) + 1)[2:].upper()
         users[user_name] = new_uid
+        self.reverse_lookup[new_uid] = user_name
         print("INSERT INTO %(db)s.users (user_id, user) VALUES ('%(new_uid)s', '%(user_name)s');" % locals())
         cursor.execute("INSERT INTO %(db)s.users (user_id, user) VALUES ('%(new_uid)s', '%(user_name)s');" % locals())
         self.connection.commit()
         mt = self.make_transfer('NEW_USER', self.get_user_acct(new_uid), 'NEW', 10000)
+
+    def refill(self, user_name, user_id):
+        self.check_cursor()
+        cursor = self.cursor
+        db = 'betting_bot'
+        users = self.get_users()
+        balances = self.get_balances(user_id)
+        user_bets = self.get_user_bets(user_id)
+        pending = sum([j for i,j in user_bets.items() if 'CASH' not in i])
+        #res_str =  '%s point(s) available and %s point(s) pending\n' % (balances['CASH_%(user_id)s' % locals()], pending)
+        mt = self.make_transfer('REFILL', self.get_user_acct(user_id), 'REFILL', max(0, 2000 - pending - balances['CASH_%(user_id)s' % locals()]))
+        return "SUCCESS"
 
     def get_user_acct(self, user_id):
         return 'CASH_%s' % user_id
@@ -157,6 +174,7 @@ class BettingBotDBHandler():
             SELECT from_account, to_account, amount
             FROM %(db)s.transactions
             WHERE (from_account like 'BET-U%(user_id)s-%%' or to_account like 'BET-U%(user_id)s-%%')
+               or (from_account like 'BET-U%(user_id)s-%%' or to_account like 'BET-U%(user_id)s-%%')
             ORDER BY time
         """
         print(sql % locals())
@@ -212,7 +230,7 @@ class BettingBotDBHandler():
             WHERE (from_account like 'BET%%-E%(event_id)s-%%' or to_account like 'BET%%-E%(event_id)s-%%')
             ORDER BY time
         """
-        print(sql % locals())
+        #print(sql % locals())
         cursor.execute(sql % locals())
         balances = defaultdict(lambda : 0)
         for acct1, acct2, amount in cursor.fetchall():
@@ -233,20 +251,22 @@ class BettingBotDBHandler():
         db = 'betting_bot'
         # check balance
         balances = self.get_balances(user_id)
-        pending = sum([j for i,j in balances.items() if 'CASH' not in i])
+        #pending = sum([j for i,j in balances.items() if 'CASH' not in i])
         res = []
-        res_str =  '%s point(s) available and %s point(s) pending\n' % (balances['CASH_%(user_id)s' % locals()], pending)
         user_bets = self.get_user_bets(user_id)
+        pending = sum([j for i,j in user_bets.items() if 'CASH' not in i])
+        res_str =  '%s point(s) available and %s point(s) pending\n' % (balances['CASH_%(user_id)s' % locals()], pending)
         count = 0
         for i,j in user_bets.items():
             if j==0: continue
-            count +=1
+            count += 1
             res_str += '  %-28s: %-14s %6s\n' % (self.lookup_event(i[0][1:]), self.lookup_option(i[1][1:]), j)
             if count % 10 == 0:
                 res.append(res_str)
+                res_str = ""
         if res_str:
             res.append(res_str)
-        return res_str
+        return res
 
     def event_balance(self, user_name, event_id):
         self.check_cursor()
@@ -276,15 +296,91 @@ class BettingBotDBHandler():
                 #print("OID", i)
                 option_id = i[1]
                 user_id = i[0]
-                res += "%-20s %-12s : %s\n" % (self.reverse_lookup.get(user_id, user_id), self.lookup_option(option_id), j)
+                res += "%-20s %-12s (%s) : %s\n" % (self.reverse_lookup.get(user_id, user_id), self.lookup_option(option_id), option_id, j)
                 #res += "%-12s : %s\n" % (self.lookup_option(option_id), j)
         return res
+
+    def resolve_event(self, user_name, event_id, winner_id):
+        self.check_cursor()
+        #self.check_user(user_name)
+        users = self.get_users()
+        db = 'betting_bot'
+        # STEPS:
+        # reason-type resolve
+        # 0) Check existing winner?
+        # 1) Calculate total pool
+        # 2) Calculate pool of non-seed players
+        # 3) Calculate transfers and make for players
+        # 4) Transfer out SEED as well
+        # 5) Record winner
+        #res = self.lookup_event(event_id) + ":\n"
+        print("SELECT event_id, option_id from %(db)s.event_winner WHERE event_id = '%(event_id)s'" % locals())
+        self.cursor.execute("SELECT event_id, option_id from %(db)s.event_winner WHERE event_id = '%(event_id)s'" % locals())
+        check_winner = [i for (i,) in self.cursor.fetchall()]
+        if len(check_winner) > 0:
+            return "Already resolved"
+        self.cursor.execute("SELECT option_id FROM %(db)s.event_options WHERE event_id = '%(event_id)s'" % locals())
+        options = [int(i) for (i,) in self.cursor.fetchall()]
+        if int(winner_id) not in options:
+            return "Invalid resolve option: %s %s" % (winner_id, options)
+        total = 0
+        total_non_seed = 0
+        total_winners = 0
+        winning_players = {}
+        losing_players = {}
+        seed_totals = {}
+        for i,j in self.get_event_player_option_balances(event_id).items():
+            if j != 0:
+                print(i,j)
+                #print("OID", i)
+                oid = i[1]
+                user_id = i[0]
+                total += j
+                if oid == winner_id and user_id != 'SEED':
+                    total_winners += j
+                    winning_players[user_id] = j
+                elif oid != winner_id and user_id != 'SEED':
+                    losing_players[(user_id, oid)] = j
+                else:
+                    seed_totals[(user_id, oid)] = j
+        print('PROPOSED', total, total_winners)
+        total_paid = 0
+        for i,j in winning_players.items():
+            to_pay = int(round(j * float(total) / total_winners, 0))
+            initial_bet = j
+            total_paid += to_pay
+            print(self.reverse_lookup[i], j, int(round(j * float(total) / total_winners, 0)))
+            user_acct = self.get_user_acct(i)
+            bet_acct = self.get_bet_acct(i, event_id, winner_id)
+            #mt = self.make_test_transfer(bet_acct, user_acct, 'RESOLVE-' + event_id, initial_bet)
+            #mt = self.make_test_transfer('POOL-' + event_id, user_acct, 'RESOLVE-' + event_id, to_pay - initial_bet)
+            mt = self.make_transfer(bet_acct, user_acct, 'RESOLVE-' + event_id, initial_bet)
+            mt = self.make_transfer('POOL-' + event_id, user_acct, 'RESOLVE-' + event_id, to_pay - initial_bet)
+        for i,j in losing_players.items():
+            initial_bet = j
+            oid = i[1]
+            uid = i[0]
+            bet_acct = self.get_bet_acct(uid, event_id, oid)
+            #mt = self.make_test_transfer(bet_acct, 'POOL-' + event_id, 'RESOLVE-' + event_id, initial_bet)
+            mt = self.make_transfer(bet_acct, 'POOL-' + event_id, 'RESOLVE-' + event_id, initial_bet)
+        for i,j in seed_totals.items():
+            initial_bet = j
+            oid = i[1]
+            uid = i[0]
+            bet_acct = self.get_bet_acct(uid, event_id, oid)
+            #mt = self.make_test_transfer(bet_acct, 'POOL-' + event_id, 'RESOLVE-' + event_id, initial_bet)
+            mt = self.make_transfer(bet_acct, 'POOL-' + event_id, 'RESOLVE-' + event_id, initial_bet)
+        print("TOTAL PAID:", total_paid)
+        self.cursor.execute("INSERT INTO %(db)s.event_winner (event_id, option_id) VALUES ('%(event_id)s', %(winner_id)s)" % locals())
+        self.connection.commit()
+        return "default"
 
     def get_user(self, user_id):
         self.check_cursor()
         users = self.get_users()
 
     def pick(self, user_name, event_id, option_id, amount):
+        event_id = event_id.upper()
         #try:
         #    amount = int(amount)
         #    assert amount > 0
@@ -305,7 +401,8 @@ class BettingBotDBHandler():
         bet_balance = balances[bet_acct]
         try:
             amount = int(amount)
-            assert amount > -bet_balance
+            assert amount >= -bet_balance
+            assert not (amount == 0 and bet_balance == 0)
         except:
             return "invalid amount: %s bet_balance: %s" % (amount, bet_balance)
         if amount > user_balance:
@@ -346,6 +443,7 @@ class BettingBotDBHandler():
                 and region_name like '%(query)s'
             ORDER BY region_id, event_time
         """
+        print(sql % locals())
         cursor.execute(sql % locals())
         res = []
         sql = """
@@ -353,12 +451,46 @@ class BettingBotDBHandler():
             FROM %(db)s.event_options join %(db)s.option_lookup using(option_id)
             WHERE event_id = '%(event_id)s'
         """
+        count = 0
         for event_id, event_name, event_time, region_name in cursor.fetchall():
+            count += 1
+            print(count, 'EVENT_ID', event_id)
             balances = self.get_event_option_balances(event_id)
             cursor.execute(sql % locals())
             options = [(a,b) for (a,b) in cursor.fetchall()]
             res.append((event_id, event_name, event_time, options, balances))
         return res
+
+    def leader(self, user_name):
+        self.check_cursor()
+        self.check_user(user_name)
+        users = self.get_users()
+        db = 'betting_bot'
+        user_totals = defaultdict(lambda : 0)
+        sql = """
+            SELECT from_account, to_account, amount
+            FROM %(db)s.transactions
+            ORDER BY time
+        """
+        #print(sql % locals())
+        self.cursor.execute(sql % locals())
+        count = 0
+        for from_acct, to_acct, amount in self.cursor.fetchall():
+            count += 1
+            for user_id in users.values():
+                if user_id == 'A00001': continue
+                if user_id in from_acct:
+                    user_totals[user_id] -= amount
+                    print('fr', count, user_id)
+                if user_id in to_acct:
+                    user_totals[user_id] += amount
+                    print('to', count, user_id)
+        res_str = ""
+        for i,j in sorted(user_totals.items(), key=lambda x:x[1], reverse=True)[:10]:
+            res_str += "%-20s %6s\n" % (self.reverse_lookup[i], j)
+        for i,j in sorted(user_totals.items(), key=lambda x:x[1], reverse=True):
+            print(i, "%-20s %6s\n" % (self.reverse_lookup[i], j))
+        return res_str
 
     def check_user(self, user_name):
         self.check_cursor()

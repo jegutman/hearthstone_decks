@@ -16,9 +16,10 @@ connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd, c
 cursor = connection.cursor()
 cursor.execute("SET NAMES utf8")
 db = 'betting_bot'
-sql = "SELECT event_id, option_id FROM %(db)s.event_options join %(db)s.events using(event_id)"
+cursor.execute("SELECT max(transaction_id) FROM %(db)s.transactions" % locals())
+tid = [i for (i,) in cursor.fetchall()][0]
+sql = "SELECT event_id, option_id FROM %(db)s.event_options join %(db)s.events using(event_id) WHERE event_id not in (SELECT event_id from %(db)s.event_winner)"
 cursor.execute(sql % locals())
-tid = 8
 time_str = datetime.datetime.now().strftime('%s')
 for i,j in cursor.fetchall():
     #print(i, j)

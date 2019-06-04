@@ -12,12 +12,12 @@ import MySQLdb
 #import MySQLdb.constants as const
 from config import *
 connection = MySQLdb.connect(host='localhost', user=db_user, passwd=db_passwd, charset = 'utf8mb4')
-cursor = connection.cursor()
-cursor.execute("SET NAMES utf8")
+#cursor = connection.cursor()
+#cursor.execute("SET NAMES utf8")
 
 
 event_ids = {}
-EVENT_COUNTER = int('A000', 16)
+EVENT_COUNTER = int('A060', 16)
 def get_event_id(index):
     global EVENT_COUNTER, event_ids
     if index not in event_ids: 
@@ -57,9 +57,14 @@ for c,a,b, region in sorted(matches):
     count += 1
     players.add((a, region))
     players.add((b, region))
-    print("%3s %-20s %-20s %s %s" % (count, a,b,parse_date(c), region))
+    #print("%3s %-20s %-20s %s %s" % (count, a,b,parse_date(c), region))
 
-for c,a,b, region in sorted(matches)[:48]:
+start_date = int(datetime.datetime.strptime('2019-06-04', '%Y-%m-%d').strftime('%s'))
+end_date = int(datetime.datetime.strptime('2019-06-11', '%Y-%m-%d').strftime('%s'))
+print(start_date, end_date)
+#assert False
+
+for c,a,b, region in sorted(matches)[48:]:
     sql = "INSERT INTO %(db)s.events (event_id, event_name, event_time, region_id) VALUES ('%(event_id)s', '%(event_name)s', %(event_time)s, %(region)s);"
     db = 'betting_bot'
     date_str = parse_date(c).replace(' ', '_')
@@ -67,7 +72,8 @@ for c,a,b, region in sorted(matches)[:48]:
     event_name = "%(a)s @ %(b)s" % locals()
     event_id = get_event_id((c, a,b, region))
     event_time = int(c / 1000)
-    print(sql % locals())
+    if start_date <= event_time <= end_date:
+        print(sql % locals())
 
 count = 0
 options = {}
@@ -82,7 +88,7 @@ for i,j in sorted(list(players), key=lambda x:(x[1], x[0].lower())):
     #print(i)
 #print(len(players))
 
-for c,a,b, region in sorted(matches)[:48]:
+for c,a,b, region in sorted(matches)[48:]:
     sql = "INSERT INTO %(db)s.events (event_id, event_name, event_time, region_id) VALUES ('%(event_id)s', '%(event_name)s', %(event_time)s, %(region)s);"
     db = 'betting_bot'
     date_str = parse_date(c).replace(' ', '_')
@@ -92,7 +98,8 @@ for c,a,b, region in sorted(matches)[:48]:
     event_time = int(c / 1000)
     #print(sql % locals())
     sql = "INSERT INTO %(db)s.event_options (event_id, option_id) VALUES ('%(event_id)s', %(option_id)s);"
-    option_id = options[a]
-    print(sql % locals())
-    option_id = options[b]
-    print(sql % locals())
+    if start_date <= event_time <= end_date:
+        option_id = options[a]
+        print(sql % locals())
+        option_id = options[b]
+        print(sql % locals())

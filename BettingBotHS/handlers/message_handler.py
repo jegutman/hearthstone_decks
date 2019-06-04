@@ -19,8 +19,11 @@ CMD_HELP = "!help"
 CMD_SHOW_PICKS = "!showpicks"
 CMD_PICK = "!pick "
 CMD_BALANCE = "!balance"
+CMD_LEADER = "!leaderboard"
 CMD_EVENT_INFO = "!eventinfo "
 CMD_CHECK_EVENT = "!checkevent "
+CMD_RESOLVE_EVENT = "!resolveevent "
+CMD_REFILL = "!refill "
 
 #USAGE = """`
 USAGE = """
@@ -100,6 +103,13 @@ class MessageHandler:
             await self.handle_balance(message, CMD_BALANCE, my_message)
             return True
 
+        if message.content.startswith(CMD_LEADER):
+            if str(message.channel.name) not in ALLOWED_CHANNELS_BETS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_leader(message, CMD_LEADER, my_message)
+            return True
+
         if message.content.startswith(CMD_EVENT_INFO):
             if str(message.channel.name) not in ALLOWED_CHANNELS_BETS:
                 if not message.channel.is_private:
@@ -115,6 +125,26 @@ class MessageHandler:
                 if not message.channel.is_private:
                     return True
             await self.handle_check_event(message, CMD_CHECK_EVENT, my_message)
+            return True
+
+        if message.content.startswith(CMD_RESOLVE_EVENT):
+            print("SUPER_USER", self.check_super_user(str(message.author)))
+            if not self.check_super_user(str(message.author)) and message.channel.is_private:
+                return True
+            if str(message.channel.name) not in ALLOWED_CHANNELS_BETS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_resolve_event(message, CMD_RESOLVE_EVENT, my_message)
+            return True
+
+        if message.content.startswith(CMD_REFILL):
+            print("SUPER_USER", self.check_super_user(str(message.author)))
+            if not self.check_super_user(str(message.author)) and message.channel.is_private:
+                return True
+            if str(message.channel.name) not in ALLOWED_CHANNELS_BETS:
+                if not message.channel.is_private:
+                    return True
+            await self.handle_refill(message, CMD_REFILL, my_message)
             return True
 
         if message.content.startswith(CMD_HELP):
@@ -154,12 +184,24 @@ class MessageHandler:
         response = self.bet_handler.handle_balance(message.content[len(cmd):], message, self.bet_db_handler)
         await self.respond(message, response, my_message)
 
+    async def handle_leader(self, message, cmd, my_message):
+        response = self.bet_handler.handle_leader(message.content[len(cmd):], message, self.bet_db_handler)
+        await self.respond(message, response, my_message)
+
     async def handle_event_info(self, message, cmd, my_message):
         response = self.bet_handler.handle_event_balance(message.content[len(cmd):], message, self.bet_db_handler)
         await self.respond(message, response, my_message)
 
     async def handle_check_event(self, message, cmd, my_message):
         response = self.bet_handler.handle_check_event(message.content[len(cmd):], message, self.bet_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_resolve_event(self, message, cmd, my_message):
+        response = self.bet_handler.handle_resolve_event(message.content[len(cmd):], message, self.bet_db_handler)
+        await self.respond(message, response, my_message)
+
+    async def handle_refill(self, message, cmd, my_message):
+        response = self.bet_handler.handle_refill(message.content[len(cmd):], message, self.bet_db_handler)
         await self.respond(message, response, my_message)
 
     async def check_edit(self, message, sent):
