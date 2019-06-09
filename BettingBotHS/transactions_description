@@ -1,0 +1,9 @@
+NEW_USER
+(-10k in "new_user" account + 10k in the user's account)
+(should we do account / subaccount?)
+SEED
+move points from the SEED account to the SEED / bet / option account
+BET
+(-X in user_acct mv to account for user / bet / option)
+PAYOUT
+(-X in user / bet / option account + X * payout mult (either odds or 0) into user account)
