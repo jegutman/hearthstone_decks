@@ -7,6 +7,7 @@ sys.path.append(basedir + '/TourStopLoader')
 import random
 
 from rate_hs_elo import *
+print("override muzzy rating")
 
 from shared_utils import *
 from json_win_rates import * 

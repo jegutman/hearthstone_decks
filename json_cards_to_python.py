@@ -56,14 +56,15 @@ standard_sets = [
     'LOOTAPALOOZA',
     'GILNEAS',
     'BOOMSDAY',
+    'TROLL',
 ]
 
 rotation_sets = [
-    'ICECROWN', 
     'CORE', 
     'EXPERT1', 
-    'UNGORO', 
-    'LOOTAPALOOZA',
+    'GILNEAS',
+    'BOOMSDAY',
+    'TROLL',
 ]
 
 wild_sets = [

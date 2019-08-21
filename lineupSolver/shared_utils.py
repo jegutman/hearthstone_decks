@@ -1,4 +1,4 @@
-import itertools
+    import itertools
 import math
 import sys
 sys.path.append('../')
@@ -116,9 +116,21 @@ def get_win_pct(a,b, win_pcts, allow_none=True):
             res = 0.49999
         else:
             assert False, (a,b)
+        try:
+            a_alt = ' '.join(a.split(' ')[1:])
+            b_alt = ' '.join(a.split(' ')[1:])
+            for i,j in [(a, b_alt), (b, a_alt), (b_alt, a_alt)]:
+                res = win_pcts.get((i,j))
+                if res is not None:
+                    break
+        except:
+            res = 0.49999
+        if res == None:
+            res = 0.49999
+        return res
     #if a == 'Spiteful Druid':
     #    return win_pcts.get((a,b), 0) - 0.03
-    return win_pcts.get((a,b), 0)
+    return res
 
 def missing_wrs():
     global missing_wr

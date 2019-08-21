@@ -109,7 +109,7 @@ def insert_deck(deck, time, date, server, user, is_private, deck_code, deck_clas
 
 
 #cursor.execute("SELECT deck_name, deck_archetype, deck_class, deck_code FROM deckstrings.playoffs")
-filename = 'hct_americas_fall_decklists.csv'
+filename = 'hct_americas_winter_decklists.csv'
 
 file = open(filename)
 

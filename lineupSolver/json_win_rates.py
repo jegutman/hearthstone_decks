@@ -8,16 +8,16 @@ import math
 import json
 from config import basedir
 
-date = '20180909'
+date = '20190418'
 base = basedir
 filenames = []
 #filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_1DAY.json' % locals()),
-#filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_3DAYS.json' % locals()),
-filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_7DAYS.json' % locals()),
+filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_3DAYS.json' % locals()),
+#filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_7DAYS.json' % locals()),
 #filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_LONLY_EXPANSION.json' % locals()),
 #filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_1DAY.json' % locals()),
-#filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_3DAYS.json' % locals()),
-filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_7DAYS.json' % locals()),
+filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_3DAYS.json' % locals()),
+#filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_7DAYS.json' % locals()),
 #filenames.append('%(base)slineupSolver/win_rates/hsreplay%(date)s_L5_EXPANSION.json' % locals()),
 
 #import datetime, os
@@ -79,6 +79,21 @@ def get_win_pcts(min_game_threshold=0, min_game_threshold_higher=50, min_game_co
         wr_file.close()
     return win_pcts, num_games, game_count, hsreplay_archetypes, overall_wr
 
+def wr_to_csv_diag(win_pcts, archetypes, other_archetypes = None, scaling=1, default = 0.4999, rounding=4):
+    res = []
+    if other_archetypes is None:
+        other_archetypes = archetypes
+    res.append(",".join([""] + other_archetypes))
+    for i in archetypes:
+        line = [i]
+        for j in other_archetypes:
+            if archetypes.index(i) <= archetypes.index(j):
+                line += [str(round(win_pcts.get((i,j), default) * scaling, int(rounding-math.log(scaling, 10))))]
+            else:
+                line += [""]
+        res.append(",".join(line))
+    return "\n".join(res)
+
 def wr_to_csv(win_pcts, archetypes, other_archetypes = None, scaling=1, default = 0.4999, rounding=4):
     res = []
     if other_archetypes is None:
@@ -105,7 +120,10 @@ def wr_from_csv(filename, scaling=1):
         archetypes.append(i)
         for (j, pct) in zip(archetypes_col,tmp[1:]):
             if pct == '':
-                win_pcts[(i,j)] = 1 - win_pcts[(j,i)]
+                if (j,i) in win_pcts:
+                    win_pcts[(i,j)] = 1 - win_pcts[(j,i)]
+                else:
+                    win_pcts[(i,j)] = 0.00000001
             else:
                 win_pcts[(i,j)] = float(pct) / float(scaling)
     return win_pcts, archetypes

@@ -383,8 +383,11 @@ if __name__ == '__main__':
     #l2 = "Odd Warrior,Control Priest,Shudderwock Shaman,Even Warlock,OTK DK Paladin,Quest Rogue,Tempo Mage,Mill Druid,Deathrattle Hunter".split(',')
 
     #USA
-    l1 = "Odd Warrior,USA Control Priest,Shudderwock Shaman,Even Warlock,Even Paladin,Quest Rogue,Tempo Mage,Token Druid,Deathrattle Hunter".split(',')
-    l2 = "Odd Warrior,TWN Control Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Mill Druid,Deathrattle Hunter".split(',')
+    #l1 = "Odd Warrior,USA Control Priest,Shudderwock Shaman,Even Warlock,Even Paladin,Quest Rogue,Tempo Mage,Token Druid,Deathrattle Hunter".split(',')
+    #l2 = "Odd Warrior,TWN Control Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Odd Rogue,Tempo Mage,Mill Druid,Deathrattle Hunter".split(',')
+    
+    l1 = "Mill Druid,Deathrattle Hunter,Big Spell Mage,Odd Paladin,Mecha'thun Priest,Quest Rogue,Shudderwock Shaman,Even Warlock,Odd Warrior".split(',')
+    l2 = "Token Druid,Deathrattle Hunter,Murloc Mage,Odd Paladin,Clone Priest,Quest Rogue,Shudderwock Shaman,Cube Warlock,Odd Quest Warrior".split(',')
 
     #debug = True
     #mu = HGG_Matchup(l1, l2)
@@ -403,16 +406,15 @@ if __name__ == '__main__':
     #mu.add_ban(['Even Warlock'], ['Even Warlock'])
 
     #USA
-    filename = 'USA_TWN.csv'
-    win_pcts, archetypes = wr_from_csv(filename, scaling=100)
-    #win_pcts = None
+    #filename = 'USA_TWN.csv'
+    #win_pcts, archetypes = wr_from_csv(filename, scaling=100)
+    win_pcts = None
     mu = HGG_Matchup(l1, l2, win_pcts=win_pcts)
-    #mu.add_ban(['Token Druid'], ['Mill Druid'])
-    mu.add_ban(['Odd Warrior'], ['Deathrattle Hunter'])
-    mu.add_picks(['Deathrattle Hunter', 'Token Druid'], ['Even Warlock', 'Odd Rogue'])
-    mu.add_ban(['Quest Rogue', 'Shudderwock Shaman'], ['TWN Control Priest', 'Odd Paladin'])
-    mu.add_picks(['Even Warlock', 'Tempo Mage'], ['Shudderwock Shaman', 'Tempo Mage'])
-    mu.add_ban(['Even Paladin'], ['Odd Warrior'])
+    mu.add_ban(['Mill Druid'], ['Quest Rogue'])
+    mu.add_picks(['Odd Paladin', 'Even Warlock'], ['Token Druid', 'Cube Warlock'])
+    mu.add_ban(['Deathrattle Hunter', "Mecha'thun Priest"], ['Deathrattle Hunter', 'Shudderwock Shaman'])
+    mu.add_picks(['Shudderwock Shaman', 'Odd Warrior'], ['Odd Paladin', 'Clone Priest'])
+    mu.add_ban(['Quest Rogue'], ['Murloc Mage'])
     #mu.add_picks(['Deathrattle Hunter', 'Odd Warrior'], ['Odd Warrior', 'Deathrattle Hunter'])
     #mu.add_picks(['Even Warlock', 'Odd Warrior'], ['Odd Paladin', 'Even Warlock'])
 

@@ -19,9 +19,10 @@ if __name__ == '__main__':
     level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16 = None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None
 
     lineups_to_test = [
-        "Odd Paladin,Odd Rogue,Zoo Warlock,Token Druid",
-        "Odd Warrior,Control Priest,Token Druid,Control Warlock",
-        "Deathrattle Hunter,Cube Warlock,Quest Rogue,Shudderwock Shaman",
+        "Malygos Druid,Quest Rogue,Deathrattle Hunter,Clone Priest",
+        "Secret Odd Mage,Even Paladin,Pirate Rogue,Midrange Hunter",
+        "Malygos Druid,Quest Rogue,Deathrattle Hunter,Clone Priest",
+        "Even Warlock,Quest Rogue,Deathrattle Hunter,Clone Priest",
     ]
     lineups_to_test = [l.split(',') for l in lineups_to_test]
     weights = [1 for l in lineups_to_test]
@@ -44,6 +45,12 @@ if __name__ == '__main__':
         inverse[j] = i
     if len(args) > 0 and args[0] == 'practice':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
+        if False:
+            filename = 'wr_na.csv'
+            #win_pcts2, archetypes2 = wr_from_csv(filename, scaling=100)
+            #win_pcts2, archetypes2 = wr_from_csv(filename, scaling=100)
+            win_pcts2, archetypes = wr_from_csv(filename, scaling=100)
+            win_pcts.update(win_pcts2)
         overrides = [
                     ]
         win_pcts = override_wr(overrides,win_pcts)
@@ -55,6 +62,7 @@ if __name__ == '__main__':
         bans = {}
         line = ['deck1', 'deck2', 'deck3', 'deck4', 'win_pct', 'ban', 'opp_win_pct', 'opp_ban', 'ban_details->']
         print(",".join([str(i) for i in line]))
+        #print archetypes
         for opp_lineup, weight in zip(lineups_to_test, weights):
             assert all([d in archetypes for d in my_lineup]), ([d in archetypes for d in my_lineup], my_lineup)
             assert all([d in archetypes for d in opp_lineup]), ([d in archetypes for d in opp_lineup], opp_lineup)
@@ -75,10 +83,11 @@ if __name__ == '__main__':
                 print "    ",pre_ban(my_lineup, opp_lineup, win_pcts), "\n"
             else:
                 line = []
-                line.append(ban)
-                line.append('     ')
+                #line.append(ban)
+                #line.append('     ')
                 for l in opp_lineup:
                     line.append(l)
+                #line = ['deck1', 'deck2', 'deck3', 'deck4', 'win_pct', 'ban', 'opp_win_pct', 'opp_ban', 'ban_details->']
                 line.append(win_pct)
                 line.append(ban)
                 line.append(opp_win_pct)
@@ -109,7 +118,7 @@ if __name__ == '__main__':
         print("bans: %s" % sorted(bans.items(), key=lambda x:x[1], reverse=True))
     elif len(args) > 0 and args[0] == 'custom':
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
-        win_pcts[('Control Warrior', 'Control Warrior')] = 0.5
+        #win_pcts[('Control Warrior', 'Control Warrior')] = 0.5
         players = sorted(custom.keys())
         for p1 in players:
             for p2 in players:
@@ -183,6 +192,11 @@ if __name__ == '__main__':
         
         win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0)
         print sorted(archetypes, key=lambda x:x.split()[-1])
+        if True:
+            filename = 'wc_wr.csv'
+            #win_pcts2, archetypes2 = wr_from_csv(filename, scaling=100)
+            win_pcts2, archetypes2 = wr_from_csv(filename, scaling=100)
+            win_pcts.update(win_pcts2)
         archetypes.append('Unbeatable')
         #archetypes.append('Fatigue Warrior')
         overrides = [
@@ -238,12 +252,53 @@ if __name__ == '__main__':
 
     else:
         #### ESPORTS ARENA
-        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=20, min_win_pct=0.44,limitTop=35)
+        win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=50, min_game_count=20, min_win_pct=0.44,limitTop=30)
+        #if True:
+        if False:
+            filename = 'wr_eu.csv'
+            #win_pcts2, archetypes2 = wr_from_csv(filename, scaling=100)
+            win_pcts2, archetypes2 = wr_from_csv(filename, scaling=100)
+            win_pcts.update(win_pcts2)
+
+        if False:
+            archetypes = [
+                'Token Druid',
+                'Taunt Druid',
+                'Malygos Druid',
+                'Mill Druid',
+                'Deathrattle Hunter',
+                'Secret Hunter',
+                #'Tempo Mage',
+                #'Big Spell Mage',
+                #'Murloc Mage',
+                'Odd Paladin',
+                #'Even Paladin',
+                'Resurrect Priest',
+                'Deathrattle Rogue',
+                'Odd Rogue',
+                'Quest Rogue',
+                'Kingsbane Rogue',
+                'Shudderwock Shaman',
+                'Zoo Warlock',
+                'Even Warlock',
+                'Cube Warlock',
+                "Mecha'thun Warlock",
+                'Odd Warrior',
+                "Mecha'thun Warrior",
+                ]
+        overrides = [
+                        #('Quest Rogue', 'Zoo Warlock', 0.5),
+                        #('Quest Rogue', 'Odd Rogue', 0.5),
+                    ]
+        win_pcts = override_wr(overrides,win_pcts)
         print sorted(archetypes, key=lambda x:x.split()[-1])
+        #archetypes.append('Quest Warrior')
         excluded = []
         if True:
             excluded += []
-            #excluded += ["Mecha'thun Priest", 'Spiteful Druid']
+            #excluded += ['Secret Odd Mage','Odd Mage', 'Odd Warrior', 'Odd Quest Warrior', 'Malygos Rogue']
+            #excluded += ['Turvy OTK Priest', "Mecha'thun Druid"]
+            #excluded += ["Mecha'thun Priest"]
             #excluded += ['Odd Warrior', 'Spell Hunter']
             #excluded += ['Tempo Mage', 'Tempo Rogue', 'Murloc Mage', 'Recruit Hunter']
             #excluded += ['Spiteful Druid', 'Kingsbane Rogue', 'Quest Mage']
@@ -259,6 +314,8 @@ if __name__ == '__main__':
                     print("Rare Archetypes: %s" % a)
                     additional_archetypes.append(a)
         lineups, archetype_map = generate_lineups(archetypes, additional_archetypes=additional_archetypes, num_classes=4)
+        archetypes.append('Unbeatable')
+        archetype_map[len(archetypes)] = 'Unbeatable'
         inverse_map = {}
         for i,j in archetype_map.items():
             inverse_map[j] = i
@@ -297,7 +354,7 @@ if __name__ == '__main__':
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:geometric_mean([i[1] for i in x[1]],weights))[-10:]:
         print_time()
         #for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights) * 2 + min([i[1] for i in x[1]]))[-10:]:
-        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-40:]:
+        for i,j in sorted(win_rates_against_good.items(), key=lambda x:sumproduct_normalize([i[1] for i in x[1]],weights))[-60:]:
             i = get_lineup(i, archetype_map)
             i_print = "    " + "".join(["%-20s" % x for x in i])
             #print "%-80s %s %s" % (i_print,j, round(sum([x[1] for x in j])/len(j),3)), '"' + ",".join(i) + '"'

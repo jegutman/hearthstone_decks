@@ -14,6 +14,7 @@ class Rating(object):
         self.K = (1+self.factor) * K
         self.games = games
         self.history = []
+        self.player_history = []
 
     def __repr__(self):
         return '%s' % int(self.mu)

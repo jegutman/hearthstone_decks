@@ -55,6 +55,7 @@ for K in range(36, 38, 2):
     rating = {}
     rating_games = {}
     wins = {}
+    losses = {}
     expected = []
     errors = []
     baseline = []
@@ -75,7 +76,7 @@ for K in range(36, 38, 2):
         tournament = (event, sub_event)
         tournaments.add(tournament)
         # EXCLUDE ONLINE
-        #if tournament not in offline_tournaments: continue
+        if tournament not in offline_tournaments: continue
         #if int(season) != 3: continue
         if score1 == 'None' or score2 == 'None': 
             continue
@@ -105,11 +106,13 @@ for K in range(36, 38, 2):
         if result:
             env.rate_1vs1(rating[p1], rating[p2])
             wins[p1] = wins.get(p1, 0) + 1
+            losses[p2] = losses.get(p2, 0) + 1
             #if min(rating_games[p1], rating_games[p2]) >= 10:
             #    error = (est - 1) ** 2
         else:
             env.rate_1vs1(rating[p2], rating[p1])
             wins[p2] = wins.get(p2, 0) + 1
+            losses[p1] = losses.get(p1, 0) + 1
             #if min(rating_games[p1], rating_games[p2]) >= 10:
             #    error = (est - 0) ** 2
         if min(rating_games[p1], rating_games[p2]) >= 10:
@@ -117,7 +120,7 @@ for K in range(36, 38, 2):
             errors.append(error)
     file.close()
 
-    min_games = 5
+    min_games = 1
 
     def expose(r):
         return int(r.mu)
@@ -126,18 +129,18 @@ for K in range(36, 38, 2):
         top_players = [i for i in sorted(rating.items(), key = lambda x:expose(x[1]), reverse=True) if rating_games[i[0]] >= min_games]
         #top_players = [i for i in sorted(rating.items(), key = lambda x:expose(x[1]), reverse=True) if rating_games[i[0]] < 60]
         if True:
-            print("   %-15s %-5s %-5s" % ('Player', 'rEst', 'games'))
+            #print("   %-15s %-5s %-5s" % ('Player', 'rEst', 'games'))
             index = 0
             #for p, r in top_players[:250]:
             for p, r in top_players:
                 index += 1
                 win = wins.get(p, 0)
-                losses = rating_games[p] - win
+                #loss_ct = rating_games[p] - win
                 pct = int(100 * win / float(rating_games[p]))
-                print("%2s %-15s %5s %4s    %3s - %-3s   %s%%" % (index, p, expose(r), rating_games[p], win, losses, pct))
+                #print("%2s %-15s %5s %4s    %3s - %-3s   %s%%" % (index, p, expose(r), rating_games[p], win, loss_ct, pct))
 
-        print('')
-        print(K, round(sum(errors) / len(errors), 5))
+        #print('')
+        #print(K, round(sum(errors) / len(errors), 5))
 
         
         total_mini_error = 0
@@ -158,4 +161,7 @@ for K in range(36, 38, 2):
                 a = sum(bucket_pred[bucket] + bucket_pred[1-bucket]) / len(bucket_pred[bucket] + bucket_pred[1-bucket])
                 b = sum(bucket_res[bucket] + bucket_pred[1-bucket]) / len(bucket_res[bucket] + bucket_pred[1-bucket])
                 c = len(bucket_res[bucket])
-            print("%-4.2f" % bucket,"%-5.3f" % round(sum(bucket_pred[bucket]) / len(bucket_pred[bucket]), 3),"%-5.3f" % round(sum(bucket_res[bucket]) / len(bucket_res[bucket]), 3), len(bucket_res[bucket]))
+            #print("%-4.2f" % bucket,"%-5.3f" % round(sum(bucket_pred[bucket]) / len(bucket_pred[bucket]), 3),"%-5.3f" % round(sum(bucket_res[bucket]) / len(bucket_res[bucket]), 3), len(bucket_res[bucket]))
+        for i,j in top_players:
+            #print("%s,%s,%s" % (i, wins.get(i,0), rating_games[p] - wins.get(i,0)))
+            print("%s,%s,%s" % (i, wins.get(i,0), losses.get(i,0)))

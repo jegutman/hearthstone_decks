@@ -1,14 +1,13 @@
-,Combo Priest,Control Priest,Token Druid,Taunt Druid,Malygos Druid,Deathrattle Hunter,Secret Hunter,Odd Paladin,Odd Rogue,Quest Rogue,Shudderwock Shaman,Zoo Warlock,Even Warlock
-Combo Priest,50,50,60,50,45,53,45,40,35,50,60,55,45
-Control Priest,,50,58,40,35,47,52,70,45,40,43,58,55
-Token Druid,,,50,41,45,53,53,70,62,52,60,50,32
-Taunt Druid,,,,50,55,43,64,49,48,40,40,44,60
-Malygos Druid,,,,,50,46,45,65,60,47,70,45,54
-Deathrattle Hunter,,,,,,50,48,35,45,43,55,46,56
-Secret Hunter,,,,,,,50,42,56,60,42,50,38
-Odd Paladin,,,,,,,,50,65,50,50,40,38
-Odd Rogue,,,,,,,,,50,65,45,55,58
-Quest Rogue,,,,,,,,,,50,66,30,62
-Shudderwock Shaman,,,,,,,,,,,50,49,50
-Zoo Warlock,,,,,,,,,,,,50,42
-Even Warlock,,,,,,,,,,,,,50
+,Token Druid,Taunt Druid,Malygos Druid,Deathrattle Hunter,Secret Hunter,Odd Paladin,Odd Rogue,Quest Rogue,Shudderwock Shaman,Zoo Warlock,Even Warlock,Odd Warrior
+Token Druid,50,41,45,53,53,70,62,52,60,55,32,60
+Taunt Druid,,50,55,43,64,49,48,40,40,44,60,50
+Malygos Druid,,,50,46,45,62,60,47,65,50,54,55
+Deathrattle Hunter,,,,50,48,35,45,43,55,46,56,65
+Secret Hunter,,,,,50,42,56,60,42,55,38,35
+Odd Paladin,,,,,,50,65,50,50,50,38,45
+Odd Rogue,,,,,,,50,65,45,57,58,25
+Quest Rogue,,,,,,,,50,66,30,62,80
+Shudderwock Shaman,,,,,,,,,50,55,50,80
+Zoo Warlock,,,,,,,,,,50,40,32
+Even Warlock,,,,,,,,,,,50,50
+Odd Warrior,,,,,,,,,,,,50

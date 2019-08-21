@@ -532,6 +532,24 @@ def pick3b(pool_a, pool_b, decks_a, decks_b, win_pcts, alpha=-10, beta=10, head=
 
 if __name__ == '__main__':
     from json_win_rates import *
+    lineups = {
+        'Alliestrasza'    : "Odd Rogue,Odd Warrior,Even Warlock,Even Shaman,Even Paladin,Clone Priest,Murloc Mage,Deathrattle Hunter,Taunt Druid".split(','),
+        'Arya'            : "Even Shaman,Odd Rogue,Spiteful Druid,Control Priest,Even Paladin,Even Warlock,Big Spell Mage,Rush Warrior,Deathrattle Hunter".split(','),
+        'Bloody'          : "Turvy OTK Priest,Quest Rogue,Murloc Mage,Odd Warrior,Even Shaman,Even Warlock,OTK DK Paladin,Spiteful Druid,Spell Hunter".split(','),
+        'Caracute'        : "Clone Priest,Odd Rogue,Even Shaman,Odd Warrior,Even Paladin,Murloc Mage,Even Warlock,Deathrattle Hunter,Spiteful Druid".split(','),
+        'Chandylandy'     : "Big Secret Hunter,Even Warlock,Odd Mage,Odd Warrior,Even Paladin,Even Shaman,Clone Priest,Odd Rogue,Spiteful Druid".split(','),
+        'Edelweiss'       : "Odd Warrior,Even Warlock,Even Shaman,Quest Rogue,Control Priest,Deathrattle Paladin,Midrange Hunter,Tempo Mage,Spiteful Druid".split(','),
+        'Hafu'            : "Odd Rogue,Undatakah Druid,OTK DK Paladin,Odd Warrior,Turvy OTK Priest,Even Shaman,Even Warlock,Deathrattle Hunter,Tempo Mage".split(','),
+        'Jia'             : "Odd Rogue,OTK DK Paladin,Turvy OTK Priest,Big Spell Mage,Odd Warrior,Even Shaman,Even Warlock,Deathrattle Hunter,Spiteful Druid".split(','),
+        'Nayara'          : "Malygos Druid,Clone Priest,Odd Warrior,Odd Rogue,Even Paladin,Even Warlock,Secret Hunter,Big Spell Mage,Even Shaman".split(','),
+        'Nicholena'       : "Taunt Druid,Big Spell Mage,Odd Rogue,Even Paladin,Control Priest,Even Warlock,Even Shaman,Odd Warrior,Secret Hunter".split(','),
+        'Pathra'          : "Big Spell Mage,Even Shaman,Odd Rogue,Control Priest,Even Paladin,Odd Warrior,Deathrattle Hunter,Spiteful Druid,Even Warlock".split(','),
+        'SaltyMonkey'     : "Even Warlock,Malygos Druid,Odd Rogue,Clone Priest,Odd Warrior,Odd Paladin,Even Paladin,Deathrattle Hunter,Aggro Overload Shaman".split(','),
+        'Scarakye'        : "Even Shaman,Even Warlock,Even Paladin,Odd Warrior,Control Priest,Odd Rogue,Murloc Mage,Deathrattle Hunter,Spiteful Druid".split(','),
+        'Slyssa'          : "Even Warlock,Deathrattle Hunter,Even Shaman,Odd Warrior,OTK DK Paladin,Tempo Mage,Token Druid,Quest Rogue,Control Priest".split(','),
+        'Songbird'        : "Even Shaman,Odd Warrior,Odd Rogue,Cube Warlock,Deathrattle Hunter,Token Druid,Clone Priest,Even Paladin,Big Spell Mage".split(','),
+        'Teebs'           : "Odd Warrior,Aggro Overload Shaman,Odd Rogue,Even Warlock,Secret Hunter,Control Priest,OTK DK Paladin,Spiteful Druid,Murloc Mage".split(','),
+    }
     #BUL
     #l1 = "Odd Warrior,Mecha'thun Priest,Shudderwock Shaman,Even Warlock,Odd Paladin,Quest Rogue,Big Spell Mage,Token Druid,Deathrattle Hunter".split(',')
     #l2 = "Odd Warrior,Control Priest,Shudderwock Shaman,Even Warlock,OTK DK Paladin,Quest Rogue,Tempo Mage,Mill Druid,Deathrattle Hunter".split(',')
@@ -542,9 +560,11 @@ if __name__ == '__main__':
     
     #l1 = "Malygos Druid,Spell Hunter,Murloc Mage,Even Paladin,Clone Priest,Quest Rogue,Shudderwock Shaman,Even Warlock,Odd Warrior".split(',')
     #l2 = "Taunt Druid,Secret Hunter,Tempo Mage,Odd Paladin,Control Priest,Kingsbane Rogue,Even Shaman,Even Warlock,Odd Warrior".split(',')
-    l1 = "Shudderwock Shaman,Malygos Druid,Quest Rogue,Control Priest,Deathrattle Hunter,Murloc Mage,Zoo Warlock,Even Paladin,Odd Warrior".split(',')
+    #l1 = "Shudderwock Shaman,Malygos Druid,Quest Rogue,Control Priest,Deathrattle Hunter,Murloc Mage,Zoo Warlock,Even Paladin,Odd Warrior".split(',')
     #l2 = "Shudderwock Shaman,Malygos Druid,Quest Rogue,Control Priest,Deathrattle Hunter,Murloc Mage,Zoo Warlock,Even Paladin,Odd Warrior".split(',')
-    l2 = "Odd Warrior,Even Warlock,Shudderwock Shaman,Kingsbane Rogue,Control Priest,Odd Paladin,Tempo Mage,Secret Hunter,Malygos Druid".split(',')
+    #l2 = "Odd Warrior,Even Warlock,Shudderwock Shaman,Kingsbane Rogue,Control Priest,Odd Paladin,Tempo Mage,Secret Hunter,Malygos Druid".split(',')
+    l2 = lineups['Teebs']
+    l1 = lineups['Jia']
     
     win_pcts, num_games, game_count, archetypes, overall_wr = get_win_pcts(min_game_threshold=0, min_game_count=0,limitTop=100)
     assert all([d in archetypes for d in l1]), ([d in archetypes for d in l1], l1)

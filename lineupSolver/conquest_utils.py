@@ -193,18 +193,24 @@ def simulate_matchup(p1, p2, l1, l2, win_pcts):
     return 0
 
 def get_sim_matchup(decks, win_pcts, rating=""):
-    lineups = list(set([tuple(i) for i in decks.values()]))
+    lineups = list([tuple(i) for i in decks.values()])
+    players = list(decks.keys())
     mu_pcts = {}
     for i in range(0, len(lineups)):
         for j in range(i, len(lineups)):
             l1 = tuple(lineups[i])
             l2 = tuple(lineups[j])
+            p1 = players[i]
+            p2 = players[j]
             sim_res = calculate_win_rate(list(l1), list(l2), win_pcts)
-            mu_pcts[(l1, l2)] = sim_res
-            mu_pcts[(l2, l1)] = 1 - sim_res
+            #mu_pcts[(l1, l2)] = sim_res
+            #mu_pcts[(l2, l1)] = 1 - sim_res
+            mu_pcts[(p1, p2)] = sim_res
+            mu_pcts[(p2, p1)] = 1 - sim_res
 
     def sim_matchup(p1, p2, l1, l2, win_pcts):
-        pct = mu_pcts[(tuple(l1), tuple(l2))]
+        #pct = mu_pcts[(tuple(l1), tuple(l2))]
+        pct = mu_pcts[(p1, p2)]
         if random.random() < pct:
             return 1
         return 0
