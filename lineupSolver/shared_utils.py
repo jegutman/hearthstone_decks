@@ -27,6 +27,19 @@ def win_rates_lines(decks_a, decks_b, win_pcts,num_games=None):
         avg = round(sum(wrs) / len(wrs), 1)    
         line += "%6s              " % avg
         res += line + '\n'
+    line = "%-20s" % "Average"
+    for deck_b in decks_b:
+        wrt = 0
+        total = 0
+        for deck_a in decks_a:
+            wrt += win_pcts.get((deck_a, deck_b), 0)
+            total += 1
+            #print(wrt, total)
+        wr = round(wrt / total * 100, 1)
+        print(deck_b, wr)
+        ng = ""
+        line += "%6s  %5s       " % (wr, ng)
+    res += line + '\n'
     return res
     
 def similarity(deck_a, deck_b, win_pcts, archetypes, debug=False):
@@ -88,7 +101,7 @@ def generate_lineups(archetypes, unbeatable=False, num_classes=4, additional_arc
 
 
 missing_wr = []
-def get_win_pct(a,b, win_pcts):
+def get_win_pct(a,b, win_pcts, allow_none=True):
     if a == b:
         return 0.5
     global missing_wr
@@ -99,7 +112,10 @@ def get_win_pct(a,b, win_pcts):
     if (a,b) not in missing_wr:
         missing_wr.append((a,b))
     if res == None:
-        res = 0.49999
+        if allow_none:
+            res = 0.49999
+        else:
+            assert False, (a,b)
     #if a == 'Spiteful Druid':
     #    return win_pcts.get((a,b), 0) - 0.03
     return win_pcts.get((a,b), 0)
