@@ -12,6 +12,7 @@ def pick_phase(decks_a, decks_b, win_pcts, useGlobal=True, win_rem=1):
     key = (tuple(sorted(decks_a)), tuple(sorted(decks_b)))
     if key in pick_res:
         return pick_res[key]
+    pairs = {}
     matrix = []
     opp_matrix = []
     for d1 in decks_a:
@@ -21,6 +22,7 @@ def pick_phase(decks_a, decks_b, win_pcts, useGlobal=True, win_rem=1):
             tmp_b = [d for d in decks_b if d != d2]
             wr = get_win_pct(d1, d2, win_pcts, allow_none=False)
             res = wr * pick_phase(tmp_a, decks_b, win_pcts, useGlobal=useGlobal, win_rem=win_rem)[0] + (1 - wr) * pick_phase(decks_a, tmp_b, win_pcts, useGlobal=useGlobal, win_rem=win_rem)[0]
+            pairs[(d1, d2)] = res
             tmp.append(res)
         matrix.append(tmp)
         opp_matrix.append([1-x for x in tmp])
@@ -32,7 +34,7 @@ def pick_phase(decks_a, decks_b, win_pcts, useGlobal=True, win_rem=1):
     h = [_x for _x in zip(e,decks_b)]
     g = [_x for _x in zip(f,decks_a)]
     #pick_res[key] = (ng[e,f][0], matrix, g, h)
-    pick_res[key] = (ng[e,f][0], g, h)
+    pick_res[key] = (ng[e,f][0], pairs, g, h)
     return pick_res[key]
     #return ng[e,f], matrix, g, h
 
@@ -42,14 +44,17 @@ def ban_phase(decks_a, decks_b, win_pcts, useGlobal=True, win_rem=1):
     key = (tuple(decks_a[:1] + sorted(decks_a[1:])), tuple(decks_b[:1] + sorted(decks_b[1:])))
     if key in ban_res:
         return ban_res[key]
+    pairs = {}
     matrix = []
     opp_matrix = []
+    pairs = {}
     for d2 in decks_b[1:]:
         tmp = []
         for d1 in decks_a[1:]:
             tmp_a = [d for d in decks_a if d != d1]
             tmp_b = [d for d in decks_b if d != d2]
             res = pick_phase(tmp_a, tmp_b, win_pcts, useGlobal=useGlobal, win_rem=win_rem)[0]
+            pairs[(d2, d1)] = res
             tmp.append(res)
         matrix.append(tmp)
         opp_matrix.append([1-x for x in tmp])
@@ -58,7 +63,7 @@ def ban_phase(decks_a, decks_b, win_pcts, useGlobal=True, win_rem=1):
     h = [_x for _x in zip(e,decks_a[1:])]
     g = [_x for _x in zip(f,decks_b[1:])]
     #ban_res[key] = (ng[e,f][0], matrix, g, h)
-    ban_res[key] = (ng[e,f][0], g, h)
+    ban_res[key] = (ng[e,f][0], pairs, g, h)
     return ban_res[key]
     #return ng[e,f], matrix, g, h
 
@@ -68,6 +73,7 @@ def protect_phase(decks_a, decks_b, win_pcts, useGlobal=True, win_rem=1):
     key = (tuple(sorted(decks_a)), tuple(sorted(decks_b)))
     #if key in protect_res:
     #    return protect_res[key]
+    pairs = {}
     matrix = []
     opp_matrix = []
     for d1 in decks_a:
@@ -76,6 +82,7 @@ def protect_phase(decks_a, decks_b, win_pcts, useGlobal=True, win_rem=1):
             tmp_a = [d1] + [d for d in decks_a if d != d1]
             tmp_b = [d2] + [d for d in decks_b if d != d2]
             res = ban_phase(tmp_a, tmp_b, win_pcts, useGlobal=useGlobal, win_rem=win_rem)[0]
+            pairs[(d2, d1)] = res
             tmp.append(res)
         matrix.append(tmp)
         opp_matrix.append([1-x for x in tmp])
@@ -86,7 +93,7 @@ def protect_phase(decks_a, decks_b, win_pcts, useGlobal=True, win_rem=1):
     #g = sorted([_x for _x in zip(e,decks_a)], key=deckfoo2)
     g = sorted([_x for _x in zip(e,decks_a)])
     #protect_res[key] = (ng[e,f][0], matrix, g, h)
-    protect_res[key] = (ng[e,f][0], g, h)
+    protect_res[key] = (ng[e,f][0], pairs, g, h)
     return protect_res[key]
 
 def deckfoo(deck):
